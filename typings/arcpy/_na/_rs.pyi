@@ -7,16 +7,18 @@ from arcgisscripting import na as cna
 
 """Module for working with Route Solver."""
 __all__ = ["RouteInputDataType", "RouteOutputDataType", "Route"]
+
 class RouteInputDataType(IntEnum):
     """Enumeration for feature class names used by the Route solver to store inputs."""
+
     Stops = ...
     PointBarriers = ...
     LineBarriers = ...
     PolygonBarriers = ...
 
-
 class RouteOutputDataType(IntEnum):
     """Enumeration for feature class names used by the Route solver to store outputs."""
+
     Stops = ...
     Routes = ...
     RouteEdges = ...
@@ -25,7 +27,6 @@ class RouteOutputDataType(IntEnum):
     Directions = ...
     RouteJunctions = ...
     RouteTurns = ...
-
 
 class Route(cna.Route):
     """Perform route analysis.
@@ -56,6 +57,7 @@ class Route(cna.Route):
         print(result.solverMessages())
 
     """
+
     __slots__ = ...
     def __init__(self, in_network) -> None:
         """Create a route solver object based on the input network dataset.
@@ -75,6 +77,3 @@ class Route(cna.Route):
 
         """
         ...
-    
-
-

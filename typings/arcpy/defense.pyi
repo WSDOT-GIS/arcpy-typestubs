@@ -7,1494 +7,1745 @@ from arcpy.geoprocessing._base import gptooldoc
 r"""The Defense toolbox provides a collection of geoprocessing tools that
 enable the automation of analytical processes and workflows for
 determining location, distance, range, and visibility."""
-__all__ = ['CoordinateTableTo2PointLine', 'CoordinateTableToEllipse', 'CoordinateTableToLineOfBearing', 'CoordinateTableToPoint', 'CoordinateTableToPolygon', 'CoordinateTableToPolyline', 'FindHighestLowestPoint', 'FindLocalPeaksValleys', 'GenerateCoordinateNotations', 'GenerateGRGFromArea', 'GenerateGRGFromPoint', 'GenerateRangeFans', 'GenerateRangeFansFromFeatures', 'GenerateRangeRings', 'GenerateRangeRingsFromFeatures', 'GenerateRangeRingsFromTable', 'GenerateReferenceSystemGRGFromArea', 'LetterFeatures', 'LetterIntersections', 'LinearLineOfSight', 'NumberFeatures', 'NumberFeaturesBySector', 'RadialLineOfSight', 'RadialLineOfSightAndRange']
+__all__ = [
+    "CoordinateTableTo2PointLine",
+    "CoordinateTableToEllipse",
+    "CoordinateTableToLineOfBearing",
+    "CoordinateTableToPoint",
+    "CoordinateTableToPolygon",
+    "CoordinateTableToPolyline",
+    "FindHighestLowestPoint",
+    "FindLocalPeaksValleys",
+    "GenerateCoordinateNotations",
+    "GenerateGRGFromArea",
+    "GenerateGRGFromPoint",
+    "GenerateRangeFans",
+    "GenerateRangeFansFromFeatures",
+    "GenerateRangeRings",
+    "GenerateRangeRingsFromFeatures",
+    "GenerateRangeRingsFromTable",
+    "GenerateReferenceSystemGRGFromArea",
+    "LetterFeatures",
+    "LetterIntersections",
+    "LinearLineOfSight",
+    "NumberFeatures",
+    "NumberFeaturesBySector",
+    "RadialLineOfSight",
+    "RadialLineOfSightAndRange",
+]
 __alias__ = ...
-@gptooldoc('CoordinateTableTo2PointLine_defense', None)
-def CoordinateTableTo2PointLine(in_table=..., out_feature_class=..., start_x_or_lon_field=..., end_x_or_lon_field=..., in_coordinate_format=..., start_y_or_lat_field=..., end_y_or_lat_field=..., line_type=..., coordinate_system=...): # -> conversion | int | float | complex | basestring | list[Unknown] | tuple[Unknown, ...] | dict[Unknown, Unknown]:
+
+@gptooldoc("CoordinateTableTo2PointLine_defense", None)
+def CoordinateTableTo2PointLine(
+    in_table=...,
+    out_feature_class=...,
+    start_x_or_lon_field=...,
+    end_x_or_lon_field=...,
+    in_coordinate_format=...,
+    start_y_or_lat_field=...,
+    end_y_or_lat_field=...,
+    line_type=...,
+    coordinate_system=...,
+):  # -> conversion | int | float | complex | basestring | list[Unknown] | tuple[Unknown, ...] | dict[Unknown, Unknown]:
     """CoordinateTableTo2PointLine_defense(in_table, out_feature_class, start_x_or_lon_field, end_x_or_lon_field, in_coordinate_format, {start_y_or_lat_field}, {end_y_or_lat_field}, {line_type}, {coordinate_system})
 
-        Creates 2-point line features from coordinates stored in a table.
+       Creates 2-point line features from coordinates stored in a table.
 
-     INPUTS:
-      in_table (Table View):
-          The table containing the source coordinates.
-      start_x_or_lon_field (Field):
-          The field in the input table containing the starting x or longitude
-          coordinates.
-      end_x_or_lon_field (Field):
-          The field in the input table containing the ending x or longitude
-          coordinates.
-      in_coordinate_format (String):
-          Specifies the format of the point coordinates.
+    INPUTS:
+     in_table (Table View):
+         The table containing the source coordinates.
+     start_x_or_lon_field (Field):
+         The field in the input table containing the starting x or longitude
+         coordinates.
+     end_x_or_lon_field (Field):
+         The field in the input table containing the ending x or longitude
+         coordinates.
+     in_coordinate_format (String):
+         Specifies the format of the point coordinates.
 
-          * DD_1-Coordinates will be formatted in a decimal degrees coordinate
-          pair stored in a single field with coordinates separated by a space,
-          comma, or slash.
+         * DD_1-Coordinates will be formatted in a decimal degrees coordinate
+         pair stored in a single field with coordinates separated by a space,
+         comma, or slash.
 
-          * DD_2-Coordinates will be formatted in a decimal degrees coordinate
-          pair stored in two table fields. This is the default.
+         * DD_2-Coordinates will be formatted in a decimal degrees coordinate
+         pair stored in two table fields. This is the default.
 
-          * DDM_1-Coordinates will be formatted in a degrees and decimal minutes
-          coordinate pair stored in a single table field with coordinates
-          separated by a space, comma, or slash.
+         * DDM_1-Coordinates will be formatted in a degrees and decimal minutes
+         coordinate pair stored in a single table field with coordinates
+         separated by a space, comma, or slash.
 
-          * DDM_2-Coordinates will be formatted in a degrees and decimal minutes
-          coordinate pair stored in two table fields.
+         * DDM_2-Coordinates will be formatted in a degrees and decimal minutes
+         coordinate pair stored in two table fields.
 
-          * DMS_1-Coordinates will be formatted in a degrees, minutes, and
-          seconds coordinate pair stored in a single table field with
-          coordinates separated by a space, comma, or slash.
+         * DMS_1-Coordinates will be formatted in a degrees, minutes, and
+         seconds coordinate pair stored in a single table field with
+         coordinates separated by a space, comma, or slash.
 
-          * DMS_2-Coordinates will be formatted in a degrees, minutes, and
-          seconds coordinate pair stored in two table fields.
+         * DMS_2-Coordinates will be formatted in a degrees, minutes, and
+         seconds coordinate pair stored in two table fields.
 
-          * GARS-Coordinates will be formatted in Global Area Reference System.
+         * GARS-Coordinates will be formatted in Global Area Reference System.
 
-          * GEOREF-Coordinates will be formatted in World Geographic Reference
-          System.
+         * GEOREF-Coordinates will be formatted in World Geographic Reference
+         System.
 
-          * UTM_BANDS-Coordinates will be formatted in Universal Transverse
-          Mercator coordinate bands.
+         * UTM_BANDS-Coordinates will be formatted in Universal Transverse
+         Mercator coordinate bands.
 
-          * UTM_ZONES-Coordinates will be formatted in Universal Transverse
-          Mercator coordinate zones.
+         * UTM_ZONES-Coordinates will be formatted in Universal Transverse
+         Mercator coordinate zones.
 
-          * USNG-Coordinates will be formatted in United States National Grid.
+         * USNG-Coordinates will be formatted in United States National Grid.
 
-          * MGRS-Coordinates will be formatted in Military Grid Reference
-          System.
-      start_y_or_lat_field {Field}:
-          The field in the input table containing the starting y or latitude
-          coordinates.The start_y_or_lat_field parameter is used when the
-          in_coordinate_format parameter is set to DD_2, DDM_2, or DMS_2.
-      end_y_or_lat_field {Field}:
-          The field in the input table containing the ending y or latitude
-          coordinates.The end_y_or_lat_field parameter is used when the
-          in_coordinate_format
-          parameter is set to DD_2, DDM_2, or DMS_2.
-      line_type {String}:
-          Specifies the output line type.
+         * MGRS-Coordinates will be formatted in Military Grid Reference
+         System.
+     start_y_or_lat_field {Field}:
+         The field in the input table containing the starting y or latitude
+         coordinates.The start_y_or_lat_field parameter is used when the
+         in_coordinate_format parameter is set to DD_2, DDM_2, or DMS_2.
+     end_y_or_lat_field {Field}:
+         The field in the input table containing the ending y or latitude
+         coordinates.The end_y_or_lat_field parameter is used when the
+         in_coordinate_format
+         parameter is set to DD_2, DDM_2, or DMS_2.
+     line_type {String}:
+         Specifies the output line type.
 
-          * GEODESIC-The shortest distance between any two points on the earth's
-          spheroidal surface (ellipsoid) will be used. This is the default.
+         * GEODESIC-The shortest distance between any two points on the earth's
+         spheroidal surface (ellipsoid) will be used. This is the default.
 
-          * GREAT_CIRCLE-The line on a spheroid (ellipsoid) defined by the
-          intersection of a plane passing through the center of the spheroid
-          will be used.
+         * GREAT_CIRCLE-The line on a spheroid (ellipsoid) defined by the
+         intersection of a plane passing through the center of the spheroid
+         will be used.
 
-          * RHUMB_LINE-A line of constant bearing or azimuth will be used.
+         * RHUMB_LINE-A line of constant bearing or azimuth will be used.
 
-          * NORMAL_SECTION-A normal plane to the earth's ellipsoidal surface
-          containing the start and end points will be used.
-      coordinate_system {Spatial Reference}:
-          The spatial reference of the output feature class. The default is
-          GCS_WGS_1984.
+         * NORMAL_SECTION-A normal plane to the earth's ellipsoidal surface
+         containing the start and end points will be used.
+     coordinate_system {Spatial Reference}:
+         The spatial reference of the output feature class. The default is
+         GCS_WGS_1984.
 
-     OUTPUTS:
-      out_feature_class (Feature Class):
-          The feature class containing the output line features."""
+    OUTPUTS:
+     out_feature_class (Feature Class):
+         The feature class containing the output line features."""
     ...
 
-@gptooldoc('CoordinateTableToEllipse_defense', None)
-def CoordinateTableToEllipse(in_table=..., out_feature_class=..., x_or_lon_field=..., major_field=..., minor_field=..., in_coordinate_format=..., distance_units=..., y_or_lat_field=..., azimuth_field=..., azimuth_units=..., coordinate_system=...): # -> conversion | int | float | complex | basestring | list[Unknown] | tuple[Unknown, ...] | dict[Unknown, Unknown]:
+@gptooldoc("CoordinateTableToEllipse_defense", None)
+def CoordinateTableToEllipse(
+    in_table=...,
+    out_feature_class=...,
+    x_or_lon_field=...,
+    major_field=...,
+    minor_field=...,
+    in_coordinate_format=...,
+    distance_units=...,
+    y_or_lat_field=...,
+    azimuth_field=...,
+    azimuth_units=...,
+    coordinate_system=...,
+):  # -> conversion | int | float | complex | basestring | list[Unknown] | tuple[Unknown, ...] | dict[Unknown, Unknown]:
     """CoordinateTableToEllipse_defense(in_table, out_feature_class, x_or_lon_field, major_field, minor_field, in_coordinate_format, {distance_units}, {y_or_lat_field}, {azimuth_field}, {azimuth_units}, {coordinate_system})
 
-        Creates ellipse features from coordinates stored in a table and input
-        data values.
+       Creates ellipse features from coordinates stored in a table and input
+       data values.
 
-     INPUTS:
-      in_table (Table View):
-          The table containing the source coordinates.
-      x_or_lon_field (Field):
-          The field in the input table containing the x or longitude
-          coordinates.
-      major_field (Field):
-          The field in the input table containing the major axis values.
-      minor_field (Field):
-          The field in the input table containing the minor axis values.
-      in_coordinate_format (String):
-          Specifies the format of the input table coordinates.
+    INPUTS:
+     in_table (Table View):
+         The table containing the source coordinates.
+     x_or_lon_field (Field):
+         The field in the input table containing the x or longitude
+         coordinates.
+     major_field (Field):
+         The field in the input table containing the major axis values.
+     minor_field (Field):
+         The field in the input table containing the minor axis values.
+     in_coordinate_format (String):
+         Specifies the format of the input table coordinates.
 
-          * DD_1-Coordinates will be formatted in a decimal degrees coordinate
-          pair stored in a single field with coordinates separated by a space,
-          comma, or slash.
+         * DD_1-Coordinates will be formatted in a decimal degrees coordinate
+         pair stored in a single field with coordinates separated by a space,
+         comma, or slash.
 
-          * DD_2-Coordinates will be formatted in a decimal degrees coordinate
-          pair stored in two table fields. This is the default.
+         * DD_2-Coordinates will be formatted in a decimal degrees coordinate
+         pair stored in two table fields. This is the default.
 
-          * DDM_1-Coordinates will be formatted in a degrees and decimal minutes
-          coordinate pair stored in a single table field with coordinates
-          separated by a space, comma, or slash.
+         * DDM_1-Coordinates will be formatted in a degrees and decimal minutes
+         coordinate pair stored in a single table field with coordinates
+         separated by a space, comma, or slash.
 
-          * DDM_2-Coordinates will be formatted in a degrees and decimal minutes
-          coordinate pair stored in two table fields.
+         * DDM_2-Coordinates will be formatted in a degrees and decimal minutes
+         coordinate pair stored in two table fields.
 
-          * DMS_1-Coordinates will be formatted in a degrees, minutes, and
-          seconds coordinate pair stored in a single table field with
-          coordinates separated by a space, comma, or slash.
+         * DMS_1-Coordinates will be formatted in a degrees, minutes, and
+         seconds coordinate pair stored in a single table field with
+         coordinates separated by a space, comma, or slash.
 
-          * DMS_2-Coordinates will be formatted in a degrees, minutes, and
-          seconds coordinate pair stored in two table fields.
+         * DMS_2-Coordinates will be formatted in a degrees, minutes, and
+         seconds coordinate pair stored in two table fields.
 
-          * GARS-Coordinates will be formatted in Global Area Reference System.
+         * GARS-Coordinates will be formatted in Global Area Reference System.
 
-          * GEOREF-Coordinates will be formatted in World Geographic Reference
-          System.
+         * GEOREF-Coordinates will be formatted in World Geographic Reference
+         System.
 
-          * UTM_BANDS-Coordinates will be formatted in Universal Transverse
-          Mercator coordinate bands.
+         * UTM_BANDS-Coordinates will be formatted in Universal Transverse
+         Mercator coordinate bands.
 
-          * UTM_ZONES-Coordinates will be formatted in Universal Transverse
-          Mercator coordinate zones.
+         * UTM_ZONES-Coordinates will be formatted in Universal Transverse
+         Mercator coordinate zones.
 
-          * USNG-Coordinates will be formatted in United States National Grid.
+         * USNG-Coordinates will be formatted in United States National Grid.
 
-          * MGRS-Coordinates will be formatted in Military Grid Reference
-          System.
-      distance_units {String}:
-          Specifies the unit of measurement for the major and minor axes.
+         * MGRS-Coordinates will be formatted in Military Grid Reference
+         System.
+     distance_units {String}:
+         Specifies the unit of measurement for the major and minor axes.
 
-          * METERS-The unit will be meters. This is the default.
+         * METERS-The unit will be meters. This is the default.
 
-          * KILOMETERS-The unit will be kilometers.
+         * KILOMETERS-The unit will be kilometers.
 
-          * MILES-The unit will be miles.
+         * MILES-The unit will be miles.
 
-          * NAUTICAL_MILES-The unit will be nautical miles.
+         * NAUTICAL_MILES-The unit will be nautical miles.
 
-          * FEET-The unit will be feet.
+         * FEET-The unit will be feet.
 
-          * US_SURVEY_FEET-The unit will be U.S. survey feet.
-      y_or_lat_field {Field}:
-          The field in the input table containing the latitude coordinates.The
-          y_or_lat_field parameter is used when the in_coordinate_format
-          parameter is set to DD_2, DDM_2, or DMS_2.
-      azimuth_field {Field}:
-          The field in the input table containing the ellipse azimuth values.
-      azimuth_units {String}:
-          Specifies the unit of measurement for the azimuth field.
+         * US_SURVEY_FEET-The unit will be U.S. survey feet.
+     y_or_lat_field {Field}:
+         The field in the input table containing the latitude coordinates.The
+         y_or_lat_field parameter is used when the in_coordinate_format
+         parameter is set to DD_2, DDM_2, or DMS_2.
+     azimuth_field {Field}:
+         The field in the input table containing the ellipse azimuth values.
+     azimuth_units {String}:
+         Specifies the unit of measurement for the azimuth field.
 
-          * DEGREES-The angle will be degrees. This is the default.
+         * DEGREES-The angle will be degrees. This is the default.
 
-          * MILS-The angle will be mils.
+         * MILS-The angle will be mils.
 
-          * RADS-The angle will be radians.
+         * RADS-The angle will be radians.
 
-          * GRADS-The angle will be gradians.
-      coordinate_system {Spatial Reference}:
-          The spatial reference of the output feature class. The default is
-          GCS_WGS_1984.
+         * GRADS-The angle will be gradians.
+     coordinate_system {Spatial Reference}:
+         The spatial reference of the output feature class. The default is
+         GCS_WGS_1984.
 
-     OUTPUTS:
-      out_feature_class (Feature Class):
-          The feature class containing the output ellipse polygon features."""
+    OUTPUTS:
+     out_feature_class (Feature Class):
+         The feature class containing the output ellipse polygon features."""
     ...
 
-@gptooldoc('CoordinateTableToLineOfBearing_defense', None)
-def CoordinateTableToLineOfBearing(in_table=..., out_feature_class=..., x_or_lon_field=..., bearing_field=..., distance_field=..., in_coordinate_format=..., bearing_units=..., distance_units=..., y_or_lat_field=..., line_type=..., coordinate_system=...): # -> conversion | int | float | complex | basestring | list[Unknown] | tuple[Unknown, ...] | dict[Unknown, Unknown]:
+@gptooldoc("CoordinateTableToLineOfBearing_defense", None)
+def CoordinateTableToLineOfBearing(
+    in_table=...,
+    out_feature_class=...,
+    x_or_lon_field=...,
+    bearing_field=...,
+    distance_field=...,
+    in_coordinate_format=...,
+    bearing_units=...,
+    distance_units=...,
+    y_or_lat_field=...,
+    line_type=...,
+    coordinate_system=...,
+):  # -> conversion | int | float | complex | basestring | list[Unknown] | tuple[Unknown, ...] | dict[Unknown, Unknown]:
     """CoordinateTableToLineOfBearing_defense(in_table, out_feature_class, x_or_lon_field, bearing_field, distance_field, in_coordinate_format, {bearing_units}, {distance_units}, {y_or_lat_field}, {line_type}, {coordinate_system})
 
-        Creates lines of bearing from coordinates stored in a table.
+       Creates lines of bearing from coordinates stored in a table.
 
-     INPUTS:
-      in_table (Table View):
-          The table containing the source coordinates.
-      x_or_lon_field (Field):
-          The field in the input table containing the x or longitude
-          coordinates.
-      bearing_field (Field):
-          The field in the input table containing the bearing values.
-      distance_field (Field):
-          The field in the input table containing the distance values.
-      in_coordinate_format (String):
-          Specifies the format of the input table coordinates.
+    INPUTS:
+     in_table (Table View):
+         The table containing the source coordinates.
+     x_or_lon_field (Field):
+         The field in the input table containing the x or longitude
+         coordinates.
+     bearing_field (Field):
+         The field in the input table containing the bearing values.
+     distance_field (Field):
+         The field in the input table containing the distance values.
+     in_coordinate_format (String):
+         Specifies the format of the input table coordinates.
 
-          * DD_1-Coordinates will be formatted in a decimal degrees coordinate
-          pair stored in a single field with coordinates separated by a space,
-          comma, or slash.
+         * DD_1-Coordinates will be formatted in a decimal degrees coordinate
+         pair stored in a single field with coordinates separated by a space,
+         comma, or slash.
 
-          * DD_2-Coordinates will be formatted in a decimal degrees coordinate
-          pair stored in two table fields. This is the default.
+         * DD_2-Coordinates will be formatted in a decimal degrees coordinate
+         pair stored in two table fields. This is the default.
 
-          * DDM_1-Coordinates will be formatted in a degrees and decimal minutes
-          coordinate pair stored in a single table field with coordinates
-          separated by a space, comma, or slash.
+         * DDM_1-Coordinates will be formatted in a degrees and decimal minutes
+         coordinate pair stored in a single table field with coordinates
+         separated by a space, comma, or slash.
 
-          * DDM_2-Coordinates will be formatted in a degrees and decimal minutes
-          coordinate pair stored in two table fields.
+         * DDM_2-Coordinates will be formatted in a degrees and decimal minutes
+         coordinate pair stored in two table fields.
 
-          * DMS_1-Coordinates will be formatted in a degrees, minutes, and
-          seconds coordinate pair stored in a single table field with
-          coordinates separated by a space, comma, or slash.
+         * DMS_1-Coordinates will be formatted in a degrees, minutes, and
+         seconds coordinate pair stored in a single table field with
+         coordinates separated by a space, comma, or slash.
 
-          * DMS_2-Coordinates will be formatted in a degrees, minutes, and
-          seconds coordinate pair stored in two table fields.
+         * DMS_2-Coordinates will be formatted in a degrees, minutes, and
+         seconds coordinate pair stored in two table fields.
 
-          * GARS-Coordinates will be formatted in Global Area Reference System.
+         * GARS-Coordinates will be formatted in Global Area Reference System.
 
-          * GEOREF-Coordinates will be formatted in World Geographic Reference
-          System.
+         * GEOREF-Coordinates will be formatted in World Geographic Reference
+         System.
 
-          * UTM_BANDS-Coordinates will be formatted in Universal Transverse
-          Mercator coordinate bands.
+         * UTM_BANDS-Coordinates will be formatted in Universal Transverse
+         Mercator coordinate bands.
 
-          * UTM_ZONES-Coordinates will be formatted in Universal Transverse
-          Mercator coordinate zones.
+         * UTM_ZONES-Coordinates will be formatted in Universal Transverse
+         Mercator coordinate zones.
 
-          * USNG-Coordinates will be formatted in United States National Grid.
+         * USNG-Coordinates will be formatted in United States National Grid.
 
-          * MGRS-Coordinates will be formatted in Military Grid Reference
-          System.
-      bearing_units {String}:
-          Specifies the unit of measurement for the bearing angles.
+         * MGRS-Coordinates will be formatted in Military Grid Reference
+         System.
+     bearing_units {String}:
+         Specifies the unit of measurement for the bearing angles.
 
-          * DEGREES-The angle will be degrees. This is the default.
+         * DEGREES-The angle will be degrees. This is the default.
 
-          * MILS-The angle will be mils.
+         * MILS-The angle will be mils.
 
-          * RADS-The angle will be radians.
+         * RADS-The angle will be radians.
 
-          * GRADS-The angle will be gradians.
-      distance_units {String}:
-          Specifies the units of measurement for the distance.
+         * GRADS-The angle will be gradians.
+     distance_units {String}:
+         Specifies the units of measurement for the distance.
 
-          * METERS-The unit will be meters. This is the default.
+         * METERS-The unit will be meters. This is the default.
 
-          * KILOMETERS-The unit will be kilometers.
+         * KILOMETERS-The unit will be kilometers.
 
-          * MILES-The unit will be miles.
+         * MILES-The unit will be miles.
 
-          * NAUTICAL_MILES-The unit will be nautical miles.
+         * NAUTICAL_MILES-The unit will be nautical miles.
 
-          * FEET-The unit will be feet.
+         * FEET-The unit will be feet.
 
-          * US_SURVEY_FEET-The unit will be U.S. survey feet.
-      y_or_lat_field {Field}:
-          The field in the input table containing the y or latitude
-          coordinates.The y_or_lat_field parameter is used when the
-          in_coordinate_format
-          parameter is set to DD_2, DDM_2, or DMS_2.
-      line_type {String}:
-          Specifies the output line type.
+         * US_SURVEY_FEET-The unit will be U.S. survey feet.
+     y_or_lat_field {Field}:
+         The field in the input table containing the y or latitude
+         coordinates.The y_or_lat_field parameter is used when the
+         in_coordinate_format
+         parameter is set to DD_2, DDM_2, or DMS_2.
+     line_type {String}:
+         Specifies the output line type.
 
-          * GEODESIC-The shortest distance between any two points on the earth's
-          spheroidal surface (ellipsoid) will be used. This is the default.
+         * GEODESIC-The shortest distance between any two points on the earth's
+         spheroidal surface (ellipsoid) will be used. This is the default.
 
-          * GREAT_CIRCLE-The line on a spheroid (ellipsoid) defined by the
-          intersection of a plane passing through the center of the spheroid
-          will be used.
+         * GREAT_CIRCLE-The line on a spheroid (ellipsoid) defined by the
+         intersection of a plane passing through the center of the spheroid
+         will be used.
 
-          * RHUMB_LINE-A line of constant bearing or azimuth will be used.
+         * RHUMB_LINE-A line of constant bearing or azimuth will be used.
 
-          * NORMAL_SECTION-A normal plane to the earth's ellipsoidal surface
-          containing the start and end points will be used.
-      coordinate_system {Spatial Reference}:
-          The spatial reference of the output feature class. The default is
-          GCS_WGS_1984.
+         * NORMAL_SECTION-A normal plane to the earth's ellipsoidal surface
+         containing the start and end points will be used.
+     coordinate_system {Spatial Reference}:
+         The spatial reference of the output feature class. The default is
+         GCS_WGS_1984.
 
-     OUTPUTS:
-      out_feature_class (Feature Class):
-          The feature class containing the output lines of bearing."""
+    OUTPUTS:
+     out_feature_class (Feature Class):
+         The feature class containing the output lines of bearing."""
     ...
 
-@gptooldoc('CoordinateTableToPoint_defense', None)
-def CoordinateTableToPoint(in_table=..., out_feature_class=..., x_or_lon_field=..., in_coordinate_format=..., y_or_lat_field=..., coordinate_system=...): # -> conversion | int | float | complex | basestring | list[Unknown] | tuple[Unknown, ...] | dict[Unknown, Unknown]:
+@gptooldoc("CoordinateTableToPoint_defense", None)
+def CoordinateTableToPoint(
+    in_table=...,
+    out_feature_class=...,
+    x_or_lon_field=...,
+    in_coordinate_format=...,
+    y_or_lat_field=...,
+    coordinate_system=...,
+):  # -> conversion | int | float | complex | basestring | list[Unknown] | tuple[Unknown, ...] | dict[Unknown, Unknown]:
     """CoordinateTableToPoint_defense(in_table, out_feature_class, x_or_lon_field, in_coordinate_format, {y_or_lat_field}, {coordinate_system})
 
-        Creates a point feature class from coordinates stored in a table.
+       Creates a point feature class from coordinates stored in a table.
 
-     INPUTS:
-      in_table (Table View):
-          The table containing the source coordinates.
-      x_or_lon_field (Field):
-          The field in the input table containing the x or longitude
-          coordinates.
-      in_coordinate_format (String):
-          Specifies the format of the input table coordinates.
+    INPUTS:
+     in_table (Table View):
+         The table containing the source coordinates.
+     x_or_lon_field (Field):
+         The field in the input table containing the x or longitude
+         coordinates.
+     in_coordinate_format (String):
+         Specifies the format of the input table coordinates.
 
-          * DD_1-Coordinates will be formatted in a decimal degrees coordinate
-          pair stored in a single field with coordinates separated by a space,
-          comma, or slash.
+         * DD_1-Coordinates will be formatted in a decimal degrees coordinate
+         pair stored in a single field with coordinates separated by a space,
+         comma, or slash.
 
-          * DD_2-Coordinates will be formatted in a decimal degrees coordinate
-          pair stored in two table fields. This is the default.
+         * DD_2-Coordinates will be formatted in a decimal degrees coordinate
+         pair stored in two table fields. This is the default.
 
-          * DDM_1-Coordinates will be formatted in a degrees and decimal minutes
-          coordinate pair stored in a single table field with coordinates
-          separated by a space, comma, or slash.
+         * DDM_1-Coordinates will be formatted in a degrees and decimal minutes
+         coordinate pair stored in a single table field with coordinates
+         separated by a space, comma, or slash.
 
-          * DDM_2-Coordinates will be formatted in a degrees and decimal minutes
-          coordinate pair stored in two table fields.
+         * DDM_2-Coordinates will be formatted in a degrees and decimal minutes
+         coordinate pair stored in two table fields.
 
-          * DMS_1-Coordinates will be formatted in a degrees, minutes, and
-          seconds coordinate pair stored in a single table field with
-          coordinates separated by a space, comma, or slash.
+         * DMS_1-Coordinates will be formatted in a degrees, minutes, and
+         seconds coordinate pair stored in a single table field with
+         coordinates separated by a space, comma, or slash.
 
-          * DMS_2-Coordinates will be formatted in a degrees, minutes, and
-          seconds coordinate pair stored in two table fields.
+         * DMS_2-Coordinates will be formatted in a degrees, minutes, and
+         seconds coordinate pair stored in two table fields.
 
-          * GARS-Coordinates will be formatted in Global Area Reference System.
+         * GARS-Coordinates will be formatted in Global Area Reference System.
 
-          * GEOREF-Coordinates will be formatted in World Geographic Reference
-          System.
+         * GEOREF-Coordinates will be formatted in World Geographic Reference
+         System.
 
-          * UTM_BANDS-Coordinates will be formatted in Universal Transverse
-          Mercator coordinate bands.
+         * UTM_BANDS-Coordinates will be formatted in Universal Transverse
+         Mercator coordinate bands.
 
-          * UTM_ZONES-Coordinates will be formatted in Universal Transverse
-          Mercator coordinate zones.
+         * UTM_ZONES-Coordinates will be formatted in Universal Transverse
+         Mercator coordinate zones.
 
-          * USNG-Coordinates will be formatted in United States National Grid.
+         * USNG-Coordinates will be formatted in United States National Grid.
 
-          * MGRS-Coordinates will be formatted in Military Grid Reference
-          System.
-      y_or_lat_field {Field}:
-          The field in the input table containing the y or latitude
-          coordinates.The y_or_lat_field parameter is used when the
-          in_coordinate_format
-          parameter is set to DD_2, DDM_2, or DMS_2.
-      coordinate_system {Spatial Reference}:
-          The spatial reference of the output feature class. The default is
-          GCS_WGS_1984.
+         * MGRS-Coordinates will be formatted in Military Grid Reference
+         System.
+     y_or_lat_field {Field}:
+         The field in the input table containing the y or latitude
+         coordinates.The y_or_lat_field parameter is used when the
+         in_coordinate_format
+         parameter is set to DD_2, DDM_2, or DMS_2.
+     coordinate_system {Spatial Reference}:
+         The spatial reference of the output feature class. The default is
+         GCS_WGS_1984.
 
-     OUTPUTS:
-      out_feature_class (Feature Class):
-          The feature class containing the output point features."""
+    OUTPUTS:
+     out_feature_class (Feature Class):
+         The feature class containing the output point features."""
     ...
 
-@gptooldoc('CoordinateTableToPolygon_defense', None)
-def CoordinateTableToPolygon(in_table=..., out_feature_class=..., x_or_lon_field=..., in_coordinate_format=..., y_or_lat_field=..., line_group_field=..., sort_field=..., coordinate_system=...): # -> conversion | int | float | complex | basestring | list[Unknown] | tuple[Unknown, ...] | dict[Unknown, Unknown]:
+@gptooldoc("CoordinateTableToPolygon_defense", None)
+def CoordinateTableToPolygon(
+    in_table=...,
+    out_feature_class=...,
+    x_or_lon_field=...,
+    in_coordinate_format=...,
+    y_or_lat_field=...,
+    line_group_field=...,
+    sort_field=...,
+    coordinate_system=...,
+):  # -> conversion | int | float | complex | basestring | list[Unknown] | tuple[Unknown, ...] | dict[Unknown, Unknown]:
     """CoordinateTableToPolygon_defense(in_table, out_feature_class, x_or_lon_field, in_coordinate_format, {y_or_lat_field}, {line_group_field}, {sort_field}, {coordinate_system})
 
-        Creates polygon features from coordinates stored in a table.
+       Creates polygon features from coordinates stored in a table.
 
-     INPUTS:
-      in_table (Table View):
-          The table containing the source coordinates.
-      x_or_lon_field (Field):
-          The field in the input table containing the x or longitude
-          coordinates.
-      in_coordinate_format (String):
-          Specifies the format of the input table coordinates.
+    INPUTS:
+     in_table (Table View):
+         The table containing the source coordinates.
+     x_or_lon_field (Field):
+         The field in the input table containing the x or longitude
+         coordinates.
+     in_coordinate_format (String):
+         Specifies the format of the input table coordinates.
 
-          * DD_1-Coordinates will be formatted in a decimal degrees coordinate
-          pair stored in a single field with coordinates separated by a space,
-          comma, or slash.
+         * DD_1-Coordinates will be formatted in a decimal degrees coordinate
+         pair stored in a single field with coordinates separated by a space,
+         comma, or slash.
 
-          * DD_2-Coordinates will be formatted in a decimal degrees coordinate
-          pair stored in two table fields. This is the default.
+         * DD_2-Coordinates will be formatted in a decimal degrees coordinate
+         pair stored in two table fields. This is the default.
 
-          * DDM_1-Coordinates will be formatted in a degrees and decimal minutes
-          coordinate pair stored in a single table field with coordinates
-          separated by a space, comma, or slash.
+         * DDM_1-Coordinates will be formatted in a degrees and decimal minutes
+         coordinate pair stored in a single table field with coordinates
+         separated by a space, comma, or slash.
 
-          * DDM_2-Coordinates will be formatted in a degrees and decimal minutes
-          coordinate pair stored in two table fields.
+         * DDM_2-Coordinates will be formatted in a degrees and decimal minutes
+         coordinate pair stored in two table fields.
 
-          * DMS_1-Coordinates will be formatted in a degrees, minutes, and
-          seconds coordinate pair stored in a single table field with
-          coordinates separated by a space, comma, or slash.
+         * DMS_1-Coordinates will be formatted in a degrees, minutes, and
+         seconds coordinate pair stored in a single table field with
+         coordinates separated by a space, comma, or slash.
 
-          * DMS_2-Coordinates will be formatted in a degrees, minutes, and
-          seconds coordinate pair stored in two table fields.
+         * DMS_2-Coordinates will be formatted in a degrees, minutes, and
+         seconds coordinate pair stored in two table fields.
 
-          * GARS-Coordinates will be formatted in Global Area Reference System.
+         * GARS-Coordinates will be formatted in Global Area Reference System.
 
-          * GEOREF-Coordinates will be formatted in World Geographic Reference
-          System.
+         * GEOREF-Coordinates will be formatted in World Geographic Reference
+         System.
 
-          * UTM_BANDS-Coordinates will be formatted in Universal Transverse
-          Mercator coordinate bands.
+         * UTM_BANDS-Coordinates will be formatted in Universal Transverse
+         Mercator coordinate bands.
 
-          * UTM_ZONES-Coordinates will be formatted in Universal Transverse
-          Mercator coordinate zones.
+         * UTM_ZONES-Coordinates will be formatted in Universal Transverse
+         Mercator coordinate zones.
 
-          * USNG-Coordinates will be formatted in United States National Grid.
+         * USNG-Coordinates will be formatted in United States National Grid.
 
-          * MGRS-Coordinates will be formatted in Military Grid Reference
-          System.
-      y_or_lat_field {Field}:
-          The field in the input table containing the y or latitude
-          coordinates.The y_or_lat_field parameter is used when the
-          in_coordinate_format
-          parameter is set to DD_2, DDM_2, or DMS_2.
-      line_group_field {Field}:
-          The field in the input table used to create unique polygons. A polygon
-          will be created for each unique value.
-      sort_field {Field}:
-          The field in the input table used to order the polygon vertices. The
-          field must be a numerical field.
-      coordinate_system {Spatial Reference}:
-          The spatial reference of the output feature class. The default is
-          GCS_WGS_1984.
+         * MGRS-Coordinates will be formatted in Military Grid Reference
+         System.
+     y_or_lat_field {Field}:
+         The field in the input table containing the y or latitude
+         coordinates.The y_or_lat_field parameter is used when the
+         in_coordinate_format
+         parameter is set to DD_2, DDM_2, or DMS_2.
+     line_group_field {Field}:
+         The field in the input table used to create unique polygons. A polygon
+         will be created for each unique value.
+     sort_field {Field}:
+         The field in the input table used to order the polygon vertices. The
+         field must be a numerical field.
+     coordinate_system {Spatial Reference}:
+         The spatial reference of the output feature class. The default is
+         GCS_WGS_1984.
 
-     OUTPUTS:
-      out_feature_class (Feature Class):
-          The feature class containing the output polygon features."""
+    OUTPUTS:
+     out_feature_class (Feature Class):
+         The feature class containing the output polygon features."""
     ...
 
-@gptooldoc('CoordinateTableToPolyline_defense', None)
-def CoordinateTableToPolyline(in_table=..., out_feature_class=..., x_or_lon_field=..., in_coordinate_format=..., y_or_lat_field=..., line_group_field=..., sort_field=..., coordinate_system=...): # -> conversion | int | float | complex | basestring | list[Unknown] | tuple[Unknown, ...] | dict[Unknown, Unknown]:
+@gptooldoc("CoordinateTableToPolyline_defense", None)
+def CoordinateTableToPolyline(
+    in_table=...,
+    out_feature_class=...,
+    x_or_lon_field=...,
+    in_coordinate_format=...,
+    y_or_lat_field=...,
+    line_group_field=...,
+    sort_field=...,
+    coordinate_system=...,
+):  # -> conversion | int | float | complex | basestring | list[Unknown] | tuple[Unknown, ...] | dict[Unknown, Unknown]:
     """CoordinateTableToPolyline_defense(in_table, out_feature_class, x_or_lon_field, in_coordinate_format, {y_or_lat_field}, {line_group_field}, {sort_field}, {coordinate_system})
 
-        Creates a polyline feature class from coordinates stored in a table.
+       Creates a polyline feature class from coordinates stored in a table.
 
-     INPUTS:
-      in_table (Table View):
-          The table containing the source coordinates.
-      x_or_lon_field (Field):
-          The field in the input table containing the x or longitude
-          coordinates.
-      in_coordinate_format (String):
-          Specifies the format of the input table coordinates.
+    INPUTS:
+     in_table (Table View):
+         The table containing the source coordinates.
+     x_or_lon_field (Field):
+         The field in the input table containing the x or longitude
+         coordinates.
+     in_coordinate_format (String):
+         Specifies the format of the input table coordinates.
 
-          * DD_1-Coordinates will be formatted in a decimal degrees coordinate
-          pair stored in a single field with coordinates separated by a space,
-          comma, or slash.
+         * DD_1-Coordinates will be formatted in a decimal degrees coordinate
+         pair stored in a single field with coordinates separated by a space,
+         comma, or slash.
 
-          * DD_2-Coordinates will be formatted in a decimal degrees coordinate
-          pair stored in two table fields. This is the default.
+         * DD_2-Coordinates will be formatted in a decimal degrees coordinate
+         pair stored in two table fields. This is the default.
 
-          * DDM_1-Coordinates will be formatted in a degrees and decimal minutes
-          coordinate pair stored in a single table field with coordinates
-          separated by a space, comma, or slash.
+         * DDM_1-Coordinates will be formatted in a degrees and decimal minutes
+         coordinate pair stored in a single table field with coordinates
+         separated by a space, comma, or slash.
 
-          * DDM_2-Coordinates will be formatted in a degrees and decimal minutes
-          coordinate pair stored in two table fields.
+         * DDM_2-Coordinates will be formatted in a degrees and decimal minutes
+         coordinate pair stored in two table fields.
 
-          * DMS_1-Coordinates will be formatted in a degrees, minutes, and
-          seconds coordinate pair stored in a single table field with
-          coordinates separated by a space, comma, or slash.
+         * DMS_1-Coordinates will be formatted in a degrees, minutes, and
+         seconds coordinate pair stored in a single table field with
+         coordinates separated by a space, comma, or slash.
 
-          * DMS_2-Coordinates will be formatted in a degrees, minutes, and
-          seconds coordinate pair stored in two table fields.
+         * DMS_2-Coordinates will be formatted in a degrees, minutes, and
+         seconds coordinate pair stored in two table fields.
 
-          * GARS-Coordinates will be formatted in Global Area Reference System.
+         * GARS-Coordinates will be formatted in Global Area Reference System.
 
-          * GEOREF-Coordinates will be formatted in World Geographic Reference
-          System.
+         * GEOREF-Coordinates will be formatted in World Geographic Reference
+         System.
 
-          * UTM_BANDS-Coordinates will be formatted in Universal Transverse
-          Mercator coordinate bands.
+         * UTM_BANDS-Coordinates will be formatted in Universal Transverse
+         Mercator coordinate bands.
 
-          * UTM_ZONES-Coordinates will be formatted in Universal Transverse
-          Mercator coordinate zones.
+         * UTM_ZONES-Coordinates will be formatted in Universal Transverse
+         Mercator coordinate zones.
 
-          * USNG-Coordinates will be formatted in United States National Grid.
+         * USNG-Coordinates will be formatted in United States National Grid.
 
-          * MGRS-Coordinates will be formatted in Military Grid Reference
-          System.
-      y_or_lat_field {Field}:
-          The field in the input table containing the y or latitude
-          coordinates.The y_or_lat_field parameter is used when the
-          in_coordinate_format
-          parameter is set to DD_2, DDM_2, or DMS_2.
-      line_group_field {Field}:
-          The field in the input table field used to create unique polylines. A
-          polyline will be created for each unique value.
-      sort_field {Field}:
-          The field in the input table used to order the polyline vertices. The
-          field must be numeric.
-      coordinate_system {Spatial Reference}:
-          The spatial reference of the output feature class. The default is
-          GCS_WGS_1984.
+         * MGRS-Coordinates will be formatted in Military Grid Reference
+         System.
+     y_or_lat_field {Field}:
+         The field in the input table containing the y or latitude
+         coordinates.The y_or_lat_field parameter is used when the
+         in_coordinate_format
+         parameter is set to DD_2, DDM_2, or DMS_2.
+     line_group_field {Field}:
+         The field in the input table field used to create unique polylines. A
+         polyline will be created for each unique value.
+     sort_field {Field}:
+         The field in the input table used to order the polyline vertices. The
+         field must be numeric.
+     coordinate_system {Spatial Reference}:
+         The spatial reference of the output feature class. The default is
+         GCS_WGS_1984.
 
-     OUTPUTS:
-      out_feature_class (Feature Class):
-          The feature class containing the output polyline features."""
+    OUTPUTS:
+     out_feature_class (Feature Class):
+         The feature class containing the output polyline features."""
     ...
 
-@gptooldoc('GenerateCoordinateNotations_defense', None)
-def GenerateCoordinateNotations(in_table=..., out_table=..., x_or_lon_field=..., in_coordinate_format=..., y_or_lat_field=..., coordinate_system=...): # -> conversion | int | float | complex | basestring | list[Unknown] | tuple[Unknown, ...] | dict[Unknown, Unknown]:
+@gptooldoc("GenerateCoordinateNotations_defense", None)
+def GenerateCoordinateNotations(
+    in_table=...,
+    out_table=...,
+    x_or_lon_field=...,
+    in_coordinate_format=...,
+    y_or_lat_field=...,
+    coordinate_system=...,
+):  # -> conversion | int | float | complex | basestring | list[Unknown] | tuple[Unknown, ...] | dict[Unknown, Unknown]:
     """GenerateCoordinateNotations_defense(in_table, out_table, x_or_lon_field, in_coordinate_format, {y_or_lat_field}, {coordinate_system})
 
-        Converts source coordinates in a table to multiple coordinate formats.
+       Converts source coordinates in a table to multiple coordinate formats.
 
-     INPUTS:
-      in_table (Table View):
-          The table containing the source coordinates.
-      x_or_lon_field (Field):
-          The field in the input table containing the x or longitude
-          coordinates.
-      in_coordinate_format (String):
-          Specifies the format of the input table coordinates.
+    INPUTS:
+     in_table (Table View):
+         The table containing the source coordinates.
+     x_or_lon_field (Field):
+         The field in the input table containing the x or longitude
+         coordinates.
+     in_coordinate_format (String):
+         Specifies the format of the input table coordinates.
 
-          * DD_1-Coordinates will be formatted in a decimal degrees coordinate
-          pair stored in a single field with coordinates separated by a space,
-          comma, or slash.
+         * DD_1-Coordinates will be formatted in a decimal degrees coordinate
+         pair stored in a single field with coordinates separated by a space,
+         comma, or slash.
 
-          * DD_2-Coordinates will be formatted in a decimal degrees coordinate
-          pair stored in two table fields. This is the default.
+         * DD_2-Coordinates will be formatted in a decimal degrees coordinate
+         pair stored in two table fields. This is the default.
 
-          * DDM_1-Coordinates will be formatted in a degrees and decimal minutes
-          coordinate pair stored in a single table field with coordinates
-          separated by a space, comma, or slash.
+         * DDM_1-Coordinates will be formatted in a degrees and decimal minutes
+         coordinate pair stored in a single table field with coordinates
+         separated by a space, comma, or slash.
 
-          * DDM_2-Coordinates will be formatted in a degrees and decimal minutes
-          coordinate pair stored in two table fields.
+         * DDM_2-Coordinates will be formatted in a degrees and decimal minutes
+         coordinate pair stored in two table fields.
 
-          * DMS_1-Coordinates will be formatted in a degrees, minutes, and
-          seconds coordinate pair stored in a single table field with
-          coordinates separated by a space, comma, or slash.
+         * DMS_1-Coordinates will be formatted in a degrees, minutes, and
+         seconds coordinate pair stored in a single table field with
+         coordinates separated by a space, comma, or slash.
 
-          * DMS_2-Coordinates will be formatted in a degrees, minutes, and
-          seconds coordinate pair stored in two table fields.
+         * DMS_2-Coordinates will be formatted in a degrees, minutes, and
+         seconds coordinate pair stored in two table fields.
 
-          * GARS-Coordinates will be formatted in Global Area Reference System.
+         * GARS-Coordinates will be formatted in Global Area Reference System.
 
-          * GEOREF-Coordinates will be formatted in World Geographic Reference
-          System.
+         * GEOREF-Coordinates will be formatted in World Geographic Reference
+         System.
 
-          * UTM_BANDS-Coordinates will be formatted in Universal Transverse
-          Mercator coordinate bands.
+         * UTM_BANDS-Coordinates will be formatted in Universal Transverse
+         Mercator coordinate bands.
 
-          * UTM_ZONES-Coordinates will be formatted in Universal Transverse
-          Mercator coordinate zones.
+         * UTM_ZONES-Coordinates will be formatted in Universal Transverse
+         Mercator coordinate zones.
 
-          * USNG-Coordinates will be formatted in United States National Grid.
+         * USNG-Coordinates will be formatted in United States National Grid.
 
-          * MGRS-Coordinates will be formatted in Military Grid Reference
-          System.
-      y_or_lat_field {Field}:
-          The field in the input table containing the y or latitude
-          coordinates.The y_or_lat_field parameter is used when the
-          in_coordinate_format
-          parameter is set to DD_2, DDM_2, or DMS_2.
-      coordinate_system {Spatial Reference}:
-          The spatial reference of the coordinates in the output table. The
-          default is GCS_WGS_1984.
+         * MGRS-Coordinates will be formatted in Military Grid Reference
+         System.
+     y_or_lat_field {Field}:
+         The field in the input table containing the y or latitude
+         coordinates.The y_or_lat_field parameter is used when the
+         in_coordinate_format
+         parameter is set to DD_2, DDM_2, or DMS_2.
+     coordinate_system {Spatial Reference}:
+         The spatial reference of the coordinates in the output table. The
+         default is GCS_WGS_1984.
 
-     OUTPUTS:
-      out_table (Table):
-          The output table containing the converted coordinates."""
+    OUTPUTS:
+     out_table (Table):
+         The output table containing the converted coordinates."""
     ...
 
-@gptooldoc('GenerateRangeFans_defense', None)
-def GenerateRangeFans(in_features=..., out_range_fan_feature_class=..., inner_radius=..., outer_radius=..., horizontal_start_angle=..., horizontal_end_angle=..., distance_units=..., angle_units=...): # -> conversion | int | float | complex | basestring | list[Unknown] | tuple[Unknown, ...] | dict[Unknown, Unknown]:
+@gptooldoc("GenerateRangeFans_defense", None)
+def GenerateRangeFans(
+    in_features=...,
+    out_range_fan_feature_class=...,
+    inner_radius=...,
+    outer_radius=...,
+    horizontal_start_angle=...,
+    horizontal_end_angle=...,
+    distance_units=...,
+    angle_units=...,
+):  # -> conversion | int | float | complex | basestring | list[Unknown] | tuple[Unknown, ...] | dict[Unknown, Unknown]:
     """GenerateRangeFans_defense(in_features, out_range_fan_feature_class, inner_radius, outer_radius, horizontal_start_angle, horizontal_end_angle, {distance_units}, {angle_units})
 
-        Creates range fans originating from a starting point given a
-        horizontal start angle, horizontal end angle, minimum distance, and
-        maximum distance.
+       Creates range fans originating from a starting point given a
+       horizontal start angle, horizontal end angle, minimum distance, and
+       maximum distance.
 
-     INPUTS:
-      in_features (Feature Set):
-          The input point feature set that identifies the origin points of the
-          range fans. The input must have at least one point.
-      inner_radius (Double):
-          The distance from the origin point to the start of the range fan.
-      outer_radius (Double):
-          The distance from the origin point to the end of the range fan.
-      horizontal_start_angle (Double):
-          The angle from the origin point to the start of the range fan.
-      horizontal_end_angle (Double):
-          The angle from the origin point to the end of the range fan.
-      distance_units {String}:
-          Specifies the linear unit of measurement for minimum and maximum
-          distance.
+    INPUTS:
+     in_features (Feature Set):
+         The input point feature set that identifies the origin points of the
+         range fans. The input must have at least one point.
+     inner_radius (Double):
+         The distance from the origin point to the start of the range fan.
+     outer_radius (Double):
+         The distance from the origin point to the end of the range fan.
+     horizontal_start_angle (Double):
+         The angle from the origin point to the start of the range fan.
+     horizontal_end_angle (Double):
+         The angle from the origin point to the end of the range fan.
+     distance_units {String}:
+         Specifies the linear unit of measurement for minimum and maximum
+         distance.
 
-          * METERS-The unit will be meters. This is the default.
+         * METERS-The unit will be meters. This is the default.
 
-          * KILOMETERS-The unit will be kilometers.
+         * KILOMETERS-The unit will be kilometers.
 
-          * MILES-The unit will be miles.
+         * MILES-The unit will be miles.
 
-          * NAUTICAL_MILES-The unit will be nautical miles.
+         * NAUTICAL_MILES-The unit will be nautical miles.
 
-          * FEET-The unit will be feet.
+         * FEET-The unit will be feet.
 
-          * US_SURVEY_FEET-The unit will be U.S. survey feet.
-      angle_units {String}:
-          Specifies the angular unit of measurement for start and end angles.
+         * US_SURVEY_FEET-The unit will be U.S. survey feet.
+     angle_units {String}:
+         Specifies the angular unit of measurement for start and end angles.
 
-          * DEGREES-The angle will be degrees. This is the default.
+         * DEGREES-The angle will be degrees. This is the default.
 
-          * MILS-The angle will be mils.
+         * MILS-The angle will be mils.
 
-          * RADS-The angle will be radians.
+         * RADS-The angle will be radians.
 
-          * GRADS-The angle will be gradians.
+         * GRADS-The angle will be gradians.
 
-     OUTPUTS:
-      out_range_fan_feature_class (Feature Class):
-          The feature class that will contain the output range fan features."""
+    OUTPUTS:
+     out_range_fan_feature_class (Feature Class):
+         The feature class that will contain the output range fan features."""
     ...
 
-@gptooldoc('GenerateRangeFansFromFeatures_defense', None)
-def GenerateRangeFansFromFeatures(in_features=..., output_feature_class=..., inner_radius_field=..., outer_radius_field=..., start_angle_field=..., end_angle_field=..., distance_units=..., angle_units=...): # -> conversion | int | float | complex | basestring | list[Unknown] | tuple[Unknown, ...] | dict[Unknown, Unknown]:
+@gptooldoc("GenerateRangeFansFromFeatures_defense", None)
+def GenerateRangeFansFromFeatures(
+    in_features=...,
+    output_feature_class=...,
+    inner_radius_field=...,
+    outer_radius_field=...,
+    start_angle_field=...,
+    end_angle_field=...,
+    distance_units=...,
+    angle_units=...,
+):  # -> conversion | int | float | complex | basestring | list[Unknown] | tuple[Unknown, ...] | dict[Unknown, Unknown]:
     """GenerateRangeFansFromFeatures_defense(in_features, output_feature_class, inner_radius_field, outer_radius_field, start_angle_field, end_angle_field, {distance_units}, {angle_units})
 
-        Creates range fans with attributes derived from fields in a point
-        feature class or shapefile.
+       Creates range fans with attributes derived from fields in a point
+       feature class or shapefile.
 
-     INPUTS:
-      in_features (Feature Layer):
-          The point feature set that identifies the origin points of the range
-          fans. The input must have at least one point.
-      inner_radius_field (Field):
-          The field that contains the values for the distance from the origin
-          point to the start of the range fan.
-      outer_radius_field (Field):
-          The field that contains the values for the distance from the origin
-          point to the end of the range fan.
-      start_angle_field (Field):
-          The field that contains the values for the angle from the origin point
-          to the start of the range fan.
-      end_angle_field (Field):
-          The field that contains the values for the angle from the origin point
-          to the end of the range fan.
-      distance_units {String}:
-          Specifies the linear unit of measure for minimum and maximum distance.
+    INPUTS:
+     in_features (Feature Layer):
+         The point feature set that identifies the origin points of the range
+         fans. The input must have at least one point.
+     inner_radius_field (Field):
+         The field that contains the values for the distance from the origin
+         point to the start of the range fan.
+     outer_radius_field (Field):
+         The field that contains the values for the distance from the origin
+         point to the end of the range fan.
+     start_angle_field (Field):
+         The field that contains the values for the angle from the origin point
+         to the start of the range fan.
+     end_angle_field (Field):
+         The field that contains the values for the angle from the origin point
+         to the end of the range fan.
+     distance_units {String}:
+         Specifies the linear unit of measure for minimum and maximum distance.
 
-          * METERS-The unit will be meters. This is the default.
+         * METERS-The unit will be meters. This is the default.
 
-          * KILOMETERS-The unit will be kilometers.
+         * KILOMETERS-The unit will be kilometers.
 
-          * MILES-The unit will be miles.
+         * MILES-The unit will be miles.
 
-          * NAUTICAL_MILES-The unit will be nautical miles.
+         * NAUTICAL_MILES-The unit will be nautical miles.
 
-          * FEET-The unit will be feet.
+         * FEET-The unit will be feet.
 
-          * US_SURVEY_FEET-The unit will be U.S. survey feet.
-      angle_units {String}:
-          Specifies the angular unit of measure for start and end angles.
+         * US_SURVEY_FEET-The unit will be U.S. survey feet.
+     angle_units {String}:
+         Specifies the angular unit of measure for start and end angles.
 
-          * DEGREES-The angle will be degrees. This is the default.
+         * DEGREES-The angle will be degrees. This is the default.
 
-          * MILS-The angle will be mils.
+         * MILS-The angle will be mils.
 
-          * RADS-The angle will be radians.
+         * RADS-The angle will be radians.
 
-          * GRADS-The angle will be gradians.
+         * GRADS-The angle will be gradians.
 
-     OUTPUTS:
-      output_feature_class (Feature Class):
-          The feature class that will contain the output range fan features."""
+    OUTPUTS:
+     output_feature_class (Feature Class):
+         The feature class that will contain the output range fan features."""
     ...
 
-@gptooldoc('GenerateRangeRings_defense', None)
-def GenerateRangeRings(in_features=..., out_feature_class_rings=..., range_rings_type=..., out_feature_class_radials=..., number_of_radials=..., distance_units=..., number_of_rings=..., interval_between_rings=..., minimum_range=..., maximum_range=...): # -> conversion | int | float | complex | basestring | list[Unknown] | tuple[Unknown, ...] | dict[Unknown, Unknown]:
+@gptooldoc("GenerateRangeRings_defense", None)
+def GenerateRangeRings(
+    in_features=...,
+    out_feature_class_rings=...,
+    range_rings_type=...,
+    out_feature_class_radials=...,
+    number_of_radials=...,
+    distance_units=...,
+    number_of_rings=...,
+    interval_between_rings=...,
+    minimum_range=...,
+    maximum_range=...,
+):  # -> conversion | int | float | complex | basestring | list[Unknown] | tuple[Unknown, ...] | dict[Unknown, Unknown]:
     """GenerateRangeRings_defense(in_features, out_feature_class_rings, range_rings_type, {out_feature_class_radials}, {number_of_radials}, {distance_units}, {number_of_rings}, {interval_between_rings}, {minimum_range}, {maximum_range})
 
-        Creates a set of concentric circles from a point, given a number of
-        rings and distance between rings or a minimum and maximum distance
-        from center.
+       Creates a set of concentric circles from a point, given a number of
+       rings and distance between rings or a minimum and maximum distance
+       from center.
 
-     INPUTS:
-      in_features (Feature Set):
-          The point feature set that identifies the center of the range ring.
-          The input must have at least one point.
-      range_rings_type (String):
-          Specifies the method to create the range rings.
+    INPUTS:
+     in_features (Feature Set):
+         The point feature set that identifies the center of the range ring.
+         The input must have at least one point.
+     range_rings_type (String):
+         Specifies the method to create the range rings.
 
-          * INTERVAL-Range rings will be generated based on the number of rings
-          and distance between rings. This the default.
+         * INTERVAL-Range rings will be generated based on the number of rings
+         and distance between rings. This the default.
 
-          * MIN_MAX-Range rings will be generated based on a minimum and maximum
-          distance.
-      number_of_radials {Long}:
-          The number of radials to generate.
-      distance_units {String}:
-          Specifies the linear unit of measurement for the
-          interval_between_rings parameter or the minimum_range and
-          maximum_range parameters.
+         * MIN_MAX-Range rings will be generated based on a minimum and maximum
+         distance.
+     number_of_radials {Long}:
+         The number of radials to generate.
+     distance_units {String}:
+         Specifies the linear unit of measurement for the
+         interval_between_rings parameter or the minimum_range and
+         maximum_range parameters.
 
-          * METERS-The unit will be meters. This is the default.
+         * METERS-The unit will be meters. This is the default.
 
-          * KILOMETERS-The unit will be kilometers.
+         * KILOMETERS-The unit will be kilometers.
 
-          * MILES-The unit will be miles.
+         * MILES-The unit will be miles.
 
-          * NAUTICAL_MILES-The unit will be nautical miles.
+         * NAUTICAL_MILES-The unit will be nautical miles.
 
-          * FEET-The unit will be feet.
+         * FEET-The unit will be feet.
 
-          * US_SURVEY_FEET-The unit will be U.S. survey feet.
-      number_of_rings {Long}:
-          The number of rings to generate.
-      interval_between_rings {Double}:
-          The distance between each ring.
-      minimum_range {Double}:
-          The distance from the center to the nearest ring.
-      maximum_range {Double}:
-          The distance from the center to the farthest ring.
+         * US_SURVEY_FEET-The unit will be U.S. survey feet.
+     number_of_rings {Long}:
+         The number of rings to generate.
+     interval_between_rings {Double}:
+         The distance between each ring.
+     minimum_range {Double}:
+         The distance from the center to the nearest ring.
+     maximum_range {Double}:
+         The distance from the center to the farthest ring.
 
-     OUTPUTS:
-      out_feature_class_rings (Feature Class):
-          The feature class containing the output ring features.
-      out_feature_class_radials {Feature Class}:
-          The feature class containing the output radial features."""
+    OUTPUTS:
+     out_feature_class_rings (Feature Class):
+         The feature class containing the output ring features.
+     out_feature_class_radials {Feature Class}:
+         The feature class containing the output radial features."""
     ...
 
-@gptooldoc('GenerateRangeRingsFromFeatures_defense', None)
-def GenerateRangeRingsFromFeatures(in_features=..., output_feature_class=..., range_rings_type=..., out_feature_class_radials=..., radial_count_field=..., min_range_field=..., max_range_field=..., ring_count_field=..., ring_interval_field=..., distance_units=...): # -> conversion | int | float | complex | basestring | list[Unknown] | tuple[Unknown, ...] | dict[Unknown, Unknown]:
+@gptooldoc("GenerateRangeRingsFromFeatures_defense", None)
+def GenerateRangeRingsFromFeatures(
+    in_features=...,
+    output_feature_class=...,
+    range_rings_type=...,
+    out_feature_class_radials=...,
+    radial_count_field=...,
+    min_range_field=...,
+    max_range_field=...,
+    ring_count_field=...,
+    ring_interval_field=...,
+    distance_units=...,
+):  # -> conversion | int | float | complex | basestring | list[Unknown] | tuple[Unknown, ...] | dict[Unknown, Unknown]:
     """GenerateRangeRingsFromFeatures_defense(in_features, output_feature_class, range_rings_type, {out_feature_class_radials}, {radial_count_field}, {min_range_field}, {max_range_field}, {ring_count_field}, {ring_interval_field}, {distance_units})
 
-        Creates range rings with attributes derived from fields in a point
-        feature class.
+       Creates range rings with attributes derived from fields in a point
+       feature class.
 
-     INPUTS:
-      in_features (Feature Layer):
-          The point feature set that identifies the center of the range ring.
-          The input must have at least one point.
-      range_rings_type (String):
-          Specifies how range rings will be generated.
+    INPUTS:
+     in_features (Feature Layer):
+         The point feature set that identifies the center of the range ring.
+         The input must have at least one point.
+     range_rings_type (String):
+         Specifies how range rings will be generated.
 
-          * INTERVAL-Range rings will be generated based on the number of rings
-          and distance between rings. This the default.
+         * INTERVAL-Range rings will be generated based on the number of rings
+         and distance between rings. This the default.
 
-          * MIN_MAX-Range rings will be generated based on a minimum and maximum
-          distance.
-      radial_count_field {Field}:
-          The field that contains the number of radials to be created.
-      min_range_field {Field}:
-          The field that contains the values for the distance from the origin
-          point to the inner ring.
-      max_range_field {Field}:
-          The field that contains the values for the distance from the origin
-          point to the outer ring.
-      ring_count_field {Field}:
-          The field that contains the values for the number of rings to
-          generate.
-      ring_interval_field {Field}:
-          The field that contains the values for the interval between rings.
-      distance_units {String}:
-          Specifies the linear unit of measure for the value of the
-          ring_interval_field parameter or the values of the min_range_field and
-          max_range_field parameters.
+         * MIN_MAX-Range rings will be generated based on a minimum and maximum
+         distance.
+     radial_count_field {Field}:
+         The field that contains the number of radials to be created.
+     min_range_field {Field}:
+         The field that contains the values for the distance from the origin
+         point to the inner ring.
+     max_range_field {Field}:
+         The field that contains the values for the distance from the origin
+         point to the outer ring.
+     ring_count_field {Field}:
+         The field that contains the values for the number of rings to
+         generate.
+     ring_interval_field {Field}:
+         The field that contains the values for the interval between rings.
+     distance_units {String}:
+         Specifies the linear unit of measure for the value of the
+         ring_interval_field parameter or the values of the min_range_field and
+         max_range_field parameters.
 
-          * METERS-The unit will be meters. This is the default.
+         * METERS-The unit will be meters. This is the default.
 
-          * KILOMETERS-The unit will be kilometers.
+         * KILOMETERS-The unit will be kilometers.
 
-          * MILES-The unit will be miles.
+         * MILES-The unit will be miles.
 
-          * NAUTICAL_MILES-The unit will be nautical miles.
+         * NAUTICAL_MILES-The unit will be nautical miles.
 
-          * FEET-The unit will be feet.
+         * FEET-The unit will be feet.
 
-          * US_SURVEY_FEET-The unit will be U.S. survey feet.
+         * US_SURVEY_FEET-The unit will be U.S. survey feet.
 
-     OUTPUTS:
-      output_feature_class (Feature Class):
-          The feature class that will contain the output ring features.
-      out_feature_class_radials {Feature Class}:
-          The feature class that will contain the output radial features."""
+    OUTPUTS:
+     output_feature_class (Feature Class):
+         The feature class that will contain the output ring features.
+     out_feature_class_radials {Feature Class}:
+         The feature class that will contain the output radial features."""
     ...
 
-@gptooldoc('GenerateRangeRingsFromTable_defense', None)
-def GenerateRangeRingsFromTable(in_features=..., in_table=..., out_feature_class_rings=..., lookup_name=..., range_rings_type=..., out_feature_class_radials=..., number_of_radials=..., distance_units=..., lookup_name_field=..., min_range_field=..., max_range_field=..., number_of_rings_field=..., ring_interval_field=...): # -> conversion | int | float | complex | basestring | list[Unknown] | tuple[Unknown, ...] | dict[Unknown, Unknown]:
+@gptooldoc("GenerateRangeRingsFromTable_defense", None)
+def GenerateRangeRingsFromTable(
+    in_features=...,
+    in_table=...,
+    out_feature_class_rings=...,
+    lookup_name=...,
+    range_rings_type=...,
+    out_feature_class_radials=...,
+    number_of_radials=...,
+    distance_units=...,
+    lookup_name_field=...,
+    min_range_field=...,
+    max_range_field=...,
+    number_of_rings_field=...,
+    ring_interval_field=...,
+):  # -> conversion | int | float | complex | basestring | list[Unknown] | tuple[Unknown, ...] | dict[Unknown, Unknown]:
     """GenerateRangeRingsFromTable_defense(in_features, in_table, out_feature_class_rings, lookup_name, range_rings_type, {out_feature_class_radials}, {number_of_radials}, {distance_units}, {lookup_name_field}, {min_range_field}, {max_range_field}, {number_of_rings_field}, {ring_interval_field})
 
-        Creates a set of concentric circles from a center based on values
-        stored in a lookup table.
+       Creates a set of concentric circles from a center based on values
+       stored in a lookup table.
 
-     INPUTS:
-      in_features (Feature Set):
-          The point feature set that identifies the center of the range ring.
-          The input must have at least one point.
-      in_table (Table):
-          The input table that contains values for creating rings.
-      lookup_name (String):
-          The row from the in_table that contains the input values for minimum
-          and maximum values or number of rings and interval.
-      range_rings_type (String):
-          Specifies the method used to create the range rings.
+    INPUTS:
+     in_features (Feature Set):
+         The point feature set that identifies the center of the range ring.
+         The input must have at least one point.
+     in_table (Table):
+         The input table that contains values for creating rings.
+     lookup_name (String):
+         The row from the in_table that contains the input values for minimum
+         and maximum values or number of rings and interval.
+     range_rings_type (String):
+         Specifies the method used to create the range rings.
 
-          * INTERVAL-Range rings will be generated based on the number of rings
-          and distance between rings. This the default.
+         * INTERVAL-Range rings will be generated based on the number of rings
+         and distance between rings. This the default.
 
-          * MIN_MAX-Range rings will be generated based on a minimum and maximum
-          distance.
-      number_of_radials {Long}:
-          The number of radials to create.
-      distance_units {String}:
-          Specifies the linear unit of measurement for the ring_interval_field
-          parameter or the min_range_field and max_range_field parameters.
+         * MIN_MAX-Range rings will be generated based on a minimum and maximum
+         distance.
+     number_of_radials {Long}:
+         The number of radials to create.
+     distance_units {String}:
+         Specifies the linear unit of measurement for the ring_interval_field
+         parameter or the min_range_field and max_range_field parameters.
 
-          * METERS-The unit will be meters. This is the default.
+         * METERS-The unit will be meters. This is the default.
 
-          * KILOMETERS-The unit will be kilometers.
+         * KILOMETERS-The unit will be kilometers.
 
-          * MILES-The unit will be miles.
+         * MILES-The unit will be miles.
 
-          * NAUTICAL_MILES-The unit will be nautical miles.
+         * NAUTICAL_MILES-The unit will be nautical miles.
 
-          * FEET-The unit will be feet.
+         * FEET-The unit will be feet.
 
-          * US_SURVEY_FEET-The unit will be U.S. survey feet.
-      lookup_name_field {Field}:
-          The field from the input table that contains the lookup_name value.
-          The default field name is Name.
-      min_range_field {Field}:
-          The field from the input table that contains the minimum range value.
-          The default field name is Min.
-      max_range_field {Field}:
-          The field from the input table that contains the maximum range value.
-          The default field name is Max.
-      number_of_rings_field {Field}:
-          The field from the input table that contains the number of rings
-          value. The default field name is Rings.
-      ring_interval_field {Field}:
-          The field from the input table that contains the ring interval value.
-          The default field name is Interval.
+         * US_SURVEY_FEET-The unit will be U.S. survey feet.
+     lookup_name_field {Field}:
+         The field from the input table that contains the lookup_name value.
+         The default field name is Name.
+     min_range_field {Field}:
+         The field from the input table that contains the minimum range value.
+         The default field name is Min.
+     max_range_field {Field}:
+         The field from the input table that contains the maximum range value.
+         The default field name is Max.
+     number_of_rings_field {Field}:
+         The field from the input table that contains the number of rings
+         value. The default field name is Rings.
+     ring_interval_field {Field}:
+         The field from the input table that contains the ring interval value.
+         The default field name is Interval.
 
-     OUTPUTS:
-      out_feature_class_rings (Feature Class):
-          The output feature class containing the ring features.
-      out_feature_class_radials {Feature Class}:
-          The feature class containing the output radial features."""
+    OUTPUTS:
+     out_feature_class_rings (Feature Class):
+         The output feature class containing the ring features.
+     out_feature_class_radials {Feature Class}:
+         The feature class containing the output radial features."""
     ...
 
-@gptooldoc('GenerateGRGFromArea_defense', None)
-def GenerateGRGFromArea(in_feature=..., out_feature_class=..., cell_width=..., cell_height=..., cell_units=..., label_start_position=..., label_format=..., label_separator=...): # -> conversion | int | float | complex | basestring | list[Unknown] | tuple[Unknown, ...] | dict[Unknown, Unknown]:
+@gptooldoc("GenerateGRGFromArea_defense", None)
+def GenerateGRGFromArea(
+    in_feature=...,
+    out_feature_class=...,
+    cell_width=...,
+    cell_height=...,
+    cell_units=...,
+    label_start_position=...,
+    label_format=...,
+    label_separator=...,
+):  # -> conversion | int | float | complex | basestring | list[Unknown] | tuple[Unknown, ...] | dict[Unknown, Unknown]:
     """GenerateGRGFromArea_defense(in_feature, out_feature_class, {cell_width}, {cell_height}, {cell_units}, {label_start_position}, {label_format}, {label_separator})
 
-        Generates a Gridded Reference Graphic (GRG) over a specified area with
-        a custom size based on a bounding polygon.
+       Generates a Gridded Reference Graphic (GRG) over a specified area with
+       a custom size based on a bounding polygon.
 
-     INPUTS:
-      in_feature (Feature Set):
-          The input polygon feature on which the GRG will be based.
-      cell_width {Double}:
-          The width of the cells. Measurement units are specified by the Cell
-          Units parameter.
-      cell_height {Double}:
-          The height of the cells. Measurement units are specified by the Cell
-          Units parameter.
-      cell_units {String}:
-          Specifies the measurement units for cell width and height.
+    INPUTS:
+     in_feature (Feature Set):
+         The input polygon feature on which the GRG will be based.
+     cell_width {Double}:
+         The width of the cells. Measurement units are specified by the Cell
+         Units parameter.
+     cell_height {Double}:
+         The height of the cells. Measurement units are specified by the Cell
+         Units parameter.
+     cell_units {String}:
+         Specifies the measurement units for cell width and height.
 
-          * METERS-The unit will be meters. This is the default.
+         * METERS-The unit will be meters. This is the default.
 
-          * KILOMETERS-The unit will be kilometers.
+         * KILOMETERS-The unit will be kilometers.
 
-          * MILES-The unit will be miles.
+         * MILES-The unit will be miles.
 
-          * NAUTICAL_MILES-The unit will be nautical miles.
+         * NAUTICAL_MILES-The unit will be nautical miles.
 
-          * FEET-The unit will be feet.
+         * FEET-The unit will be feet.
 
-          * US_SURVEY_FEET-The unit will be U.S. survey feet.
-      label_start_position {String}:
-          Specifies the grid cell where labelling will start.
+         * US_SURVEY_FEET-The unit will be U.S. survey feet.
+     label_start_position {String}:
+         Specifies the grid cell where labelling will start.
 
-          * UPPER_LEFT-The label position will be the upper left. This is the
-          default.
+         * UPPER_LEFT-The label position will be the upper left. This is the
+         default.
 
-          * LOWER_LEFT-The label position will be the lower left.
+         * LOWER_LEFT-The label position will be the lower left.
 
-          * UPPER_RIGHT-The label position will be the upper right.
+         * UPPER_RIGHT-The label position will be the upper right.
 
-          * LOWER_RIGHT-The label position will be the lower right.
-      label_format {String}:
-          Specifies the labeling type for each grid cell.
+         * LOWER_RIGHT-The label position will be the lower right.
+     label_format {String}:
+         Specifies the labeling type for each grid cell.
 
-          * ALPHA_NUMERIC-The label will use an alpha character, a separator,
-          and a number. This is the default.
+         * ALPHA_NUMERIC-The label will use an alpha character, a separator,
+         and a number. This is the default.
 
-          * ALPHA_ALPHA-The label will use an alpha character, a separator, and
-          an additional alpha character.
+         * ALPHA_ALPHA-The label will use an alpha character, a separator, and
+         an additional alpha character.
 
-          * NUMERIC-The label will be numeric.
-      label_separator {String}:
-          Specifies the separator to be used between x- and y-values when the
-          label_format parameter is set to ALPHA_ALPHA, for example, A-A, A-AA,
-          AA-A.
+         * NUMERIC-The label will be numeric.
+     label_separator {String}:
+         Specifies the separator to be used between x- and y-values when the
+         label_format parameter is set to ALPHA_ALPHA, for example, A-A, A-AA,
+         AA-A.
 
-          * --The label separator will be a hyphen. This is the default.
+         * --The label separator will be a hyphen. This is the default.
 
-          * ,-The label separator will be a comma.
+         * ,-The label separator will be a comma.
 
-          * .-The label separator will be a period.
+         * .-The label separator will be a period.
 
-          * /-The label separator will be a forward slash.
+         * /-The label separator will be a forward slash.
 
-     OUTPUTS:
-      out_feature_class (Feature Class):
-          The output polygon feature class containing the GRG."""
+    OUTPUTS:
+     out_feature_class (Feature Class):
+         The output polygon feature class containing the GRG."""
     ...
 
-@gptooldoc('GenerateGRGFromPoint_defense', None)
-def GenerateGRGFromPoint(in_feature=..., out_feature_class=..., horizontal_cells=..., vertical_cells=..., cell_width=..., cell_height=..., cell_units=..., label_start_position=..., label_format=..., label_separator=..., grid_angle=..., grid_angle_units=...): # -> conversion | int | float | complex | basestring | list[Unknown] | tuple[Unknown, ...] | dict[Unknown, Unknown]:
+@gptooldoc("GenerateGRGFromPoint_defense", None)
+def GenerateGRGFromPoint(
+    in_feature=...,
+    out_feature_class=...,
+    horizontal_cells=...,
+    vertical_cells=...,
+    cell_width=...,
+    cell_height=...,
+    cell_units=...,
+    label_start_position=...,
+    label_format=...,
+    label_separator=...,
+    grid_angle=...,
+    grid_angle_units=...,
+):  # -> conversion | int | float | complex | basestring | list[Unknown] | tuple[Unknown, ...] | dict[Unknown, Unknown]:
     """GenerateGRGFromPoint_defense(in_feature, out_feature_class, {horizontal_cells}, {vertical_cells}, {cell_width}, {cell_height}, {cell_units}, {label_start_position}, {label_format}, {label_separator}, {grid_angle}, {grid_angle_units})
 
-        Generates a Gridded Reference Graphic (GRG) as a polygon feature class
-        over a specified area with a custom size.
+       Generates a Gridded Reference Graphic (GRG) as a polygon feature class
+       over a specified area with a custom size.
 
-     INPUTS:
-      in_feature (Feature Set):
-          The center point for the GRG starting point.
-      horizontal_cells {Long}:
-          The number of horizontal grid cells.
-      vertical_cells {Long}:
-          The number of vertical grid cells.
-      cell_width {Double}:
-          The width of the cells. Measurement units are specified by the Cell
-          Units parameter.
-      cell_height {Double}:
-          The height of the cells. Measurement units are specified by the Cell
-          Units parameter.
-      cell_units {String}:
-          Specifies the measurement units for cell width and height.
+    INPUTS:
+     in_feature (Feature Set):
+         The center point for the GRG starting point.
+     horizontal_cells {Long}:
+         The number of horizontal grid cells.
+     vertical_cells {Long}:
+         The number of vertical grid cells.
+     cell_width {Double}:
+         The width of the cells. Measurement units are specified by the Cell
+         Units parameter.
+     cell_height {Double}:
+         The height of the cells. Measurement units are specified by the Cell
+         Units parameter.
+     cell_units {String}:
+         Specifies the measurement units for cell width and height.
 
-          * METERS-The unit will be meters. This is the default.
+         * METERS-The unit will be meters. This is the default.
 
-          * KILOMETERS-The unit will be kilometers.
+         * KILOMETERS-The unit will be kilometers.
 
-          * MILES-The unit will be miles.
+         * MILES-The unit will be miles.
 
-          * NAUTICAL_MILES-The unit will be nautical miles.
+         * NAUTICAL_MILES-The unit will be nautical miles.
 
-          * FEET-The unit will be feet.
+         * FEET-The unit will be feet.
 
-          * US_SURVEY_FEET-The unit will be U.S. survey feet.
-      label_start_position {String}:
-          Specifies the grid cell where labelling will start.
+         * US_SURVEY_FEET-The unit will be U.S. survey feet.
+     label_start_position {String}:
+         Specifies the grid cell where labelling will start.
 
-          * UPPER_LEFT-The label position will be the upper left. This is the
-          default.
+         * UPPER_LEFT-The label position will be the upper left. This is the
+         default.
 
-          * LOWER_LEFT-The label position will be the lower left.
+         * LOWER_LEFT-The label position will be the lower left.
 
-          * UPPER_RIGHT-The label position will be the upper right.
+         * UPPER_RIGHT-The label position will be the upper right.
 
-          * LOWER_RIGHT-The label position will be the lower right.
-      label_format {String}:
-          Specifies the labeling type for each grid cell.
+         * LOWER_RIGHT-The label position will be the lower right.
+     label_format {String}:
+         Specifies the labeling type for each grid cell.
 
-          * ALPHA_NUMERIC-The label will use an alpha character, a separator,
-          and a number. This is the default.
+         * ALPHA_NUMERIC-The label will use an alpha character, a separator,
+         and a number. This is the default.
 
-          * ALPHA_ALPHA-The label will use an alpha character, a separator, and
-          an additional alpha character.
+         * ALPHA_ALPHA-The label will use an alpha character, a separator, and
+         an additional alpha character.
 
-          * NUMERIC-The label will be numeric.
-      label_separator {String}:
-          Specifies the separator to be used between x- and y-values when the
-          label_format parameter is set to ALPHA_ALPHA, for example, A-A, A-AA,
-          AA-A.
+         * NUMERIC-The label will be numeric.
+     label_separator {String}:
+         Specifies the separator to be used between x- and y-values when the
+         label_format parameter is set to ALPHA_ALPHA, for example, A-A, A-AA,
+         AA-A.
 
-          * --The label separator will be a hyphen. This is the default.
+         * --The label separator will be a hyphen. This is the default.
 
-          * ,-The label separator will be a comma.
+         * ,-The label separator will be a comma.
 
-          * .-The label separator will be a period.
+         * .-The label separator will be a period.
 
-          * /-The label separator will be a forward slash.
-      grid_angle {Double}:
-          The angle used to rotate the grid.
-      grid_angle_units {String}:
-          The angular units for grid rotation.
+         * /-The label separator will be a forward slash.
+     grid_angle {Double}:
+         The angle used to rotate the grid.
+     grid_angle_units {String}:
+         The angular units for grid rotation.
 
-          * DEGREES-The angle will be degrees. This is the default.
+         * DEGREES-The angle will be degrees. This is the default.
 
-          * MILS-The angle will be mils.
+         * MILS-The angle will be mils.
 
-          * RADS-The angle will be radians.
+         * RADS-The angle will be radians.
 
-          * GRADS-The angle will be gradians.
+         * GRADS-The angle will be gradians.
 
-     OUTPUTS:
-      out_feature_class (Feature Class):
-          The output polygon feature class containing the GRG to be created."""
+    OUTPUTS:
+     out_feature_class (Feature Class):
+         The output polygon feature class containing the GRG to be created."""
     ...
 
-@gptooldoc('GenerateReferenceSystemGRGFromArea_defense', None)
-def GenerateReferenceSystemGRGFromArea(in_features=..., output_feature_class=..., grid_reference_system=..., grid_square_size=..., large_grid_handling=...): # -> conversion | int | float | complex | basestring | list[Unknown] | tuple[Unknown, ...] | dict[Unknown, Unknown]:
+@gptooldoc("GenerateReferenceSystemGRGFromArea_defense", None)
+def GenerateReferenceSystemGRGFromArea(
+    in_features=...,
+    output_feature_class=...,
+    grid_reference_system=...,
+    grid_square_size=...,
+    large_grid_handling=...,
+):  # -> conversion | int | float | complex | basestring | list[Unknown] | tuple[Unknown, ...] | dict[Unknown, Unknown]:
     """GenerateReferenceSystemGRGFromArea_defense(in_features, output_feature_class, grid_reference_system, grid_square_size, {large_grid_handling})
 
-        Creates Gridded Reference Graphics (GRG) based on Military Grid
-        Reference System (MGRS) or United States National Grid (USNG)
-        reference grids.
+       Creates Gridded Reference Graphics (GRG) based on Military Grid
+       Reference System (MGRS) or United States National Grid (USNG)
+       reference grids.
 
-     INPUTS:
-      in_features (Feature Set):
-          The input polygon feature on which the GRG will be based.
-      grid_reference_system (String):
-          Specifies the reference system the GRG will use.
+    INPUTS:
+     in_features (Feature Set):
+         The input polygon feature on which the GRG will be based.
+     grid_reference_system (String):
+         Specifies the reference system the GRG will use.
 
-          * MGRS-The Military Grid Reference System will be used. This is the
-          default.
+         * MGRS-The Military Grid Reference System will be used. This is the
+         default.
 
-          * USNG-The United States National Grid will be used.
-      grid_square_size (String):
-          Specifies the grid square size that will be used for the cells in the
-          GRG.
+         * USNG-The United States National Grid will be used.
+     grid_square_size (String):
+         Specifies the grid square size that will be used for the cells in the
+         GRG.
 
-          * GRID_ZONE_DESIGNATOR-The size of the grid cells will be a Grid Zone.
-          This is the default.
+         * GRID_ZONE_DESIGNATOR-The size of the grid cells will be a Grid Zone.
+         This is the default.
 
-          * 100000M_GRID-The size of the grid cells will be 100,000-meter grid
-          squares.
+         * 100000M_GRID-The size of the grid cells will be 100,000-meter grid
+         squares.
 
-          * 10000M_GRID-The size of the grid cells will be 10,000-meter grid
-          squares.
+         * 10000M_GRID-The size of the grid cells will be 10,000-meter grid
+         squares.
 
-          * 1000M_GRID-The size of the grid cells will be 1,000-meter grid
-          squares.
+         * 1000M_GRID-The size of the grid cells will be 1,000-meter grid
+         squares.
 
-          * 100M_GRID-The size of the grid cells will be 100-meter grid squares.
+         * 100M_GRID-The size of the grid cells will be 100-meter grid squares.
 
-          * 10M_GRID-The size of the grid cells will be 10-meter grid squares.
-      large_grid_handling {String}:
-          Specifies how large input areas that may contain many features will be
-          handled.
+         * 10M_GRID-The size of the grid cells will be 10-meter grid squares.
+     large_grid_handling {String}:
+         Specifies how large input areas that may contain many features will be
+         handled.
 
-          * NO_LARGE_GRIDS-Processing will stop when 2000 features are created.
-          This is the default.
+         * NO_LARGE_GRIDS-Processing will stop when 2000 features are created.
+         This is the default.
 
-          * ALLOW_LARGE_GRIDS-Large grids are supported.
+         * ALLOW_LARGE_GRIDS-Large grids are supported.
 
-     OUTPUTS:
-      output_feature_class (Feature Class):
-          The output polygon feature class containing the GRG."""
+    OUTPUTS:
+     output_feature_class (Feature Class):
+         The output polygon feature class containing the GRG."""
     ...
 
-@gptooldoc('LetterFeatures_defense', None)
-def LetterFeatures(in_features=..., field_to_letter=..., in_area=..., spatial_sort_method=..., lettering_format=..., starting_letter=..., omit_letters=..., center_point=..., add_distance_and_bearing=...): # -> conversion | int | float | complex | basestring | list[Unknown] | tuple[Unknown, ...] | dict[Unknown, Unknown]:
+@gptooldoc("LetterFeatures_defense", None)
+def LetterFeatures(
+    in_features=...,
+    field_to_letter=...,
+    in_area=...,
+    spatial_sort_method=...,
+    lettering_format=...,
+    starting_letter=...,
+    omit_letters=...,
+    center_point=...,
+    add_distance_and_bearing=...,
+):  # -> conversion | int | float | complex | basestring | list[Unknown] | tuple[Unknown, ...] | dict[Unknown, Unknown]:
     """LetterFeatures_defense(in_features, field_to_letter, {in_area}, {spatial_sort_method}, {lettering_format}, {starting_letter}, {omit_letters;omit_letters...}, {center_point}, {add_distance_and_bearing})
 
-        Adds a sequential letter to a new or existing field of a set of
-        features.
+       Adds a sequential letter to a new or existing field of a set of
+       features.
 
-     INPUTS:
-      in_features (Feature Set):
-          The input features that will be lettered.
-      field_to_letter (Field):
-          The input field that will be lettered. The field must be a new or
-          existing text field.
-      in_area {Feature Set}:
-          The area that will limit the features to letter; only features within
-          this area will be lettered.
-      spatial_sort_method {String}:
-          Specifies how features will be spatially sorted for the purpose of
-          lettering. Features are not reordered in the table.
+    INPUTS:
+     in_features (Feature Set):
+         The input features that will be lettered.
+     field_to_letter (Field):
+         The input field that will be lettered. The field must be a new or
+         existing text field.
+     in_area {Feature Set}:
+         The area that will limit the features to letter; only features within
+         this area will be lettered.
+     spatial_sort_method {String}:
+         Specifies how features will be spatially sorted for the purpose of
+         lettering. Features are not reordered in the table.
 
-          * UR-Features will be sorted starting at the upper right corner. This
-          is the default.
+         * UR-Features will be sorted starting at the upper right corner. This
+         is the default.
 
-          * UL-Features will be sorted starting at the upper left corner.
+         * UL-Features will be sorted starting at the upper left corner.
 
-          * LR-Features will be sorted starting at the lower right corner.
+         * LR-Features will be sorted starting at the lower right corner.
 
-          * LL-Features will be sorted starting at the lower left corner.
+         * LL-Features will be sorted starting at the lower left corner.
 
-          * PEANO-Features will be sorted using a space-filling curve algorithm,
-          also known as a Peano curve.
+         * PEANO-Features will be sorted using a space-filling curve algorithm,
+         also known as a Peano curve.
 
-          * CENTER-Features will be sorted starting from a center point (the
-          mean center will be used if no center is supplied).
+         * CENTER-Features will be sorted starting from a center point (the
+         mean center will be used if no center is supplied).
 
-          * CLOCKWISE-Features will be sorted starting from a center point and
-          moving clockwise.
+         * CLOCKWISE-Features will be sorted starting from a center point and
+         moving clockwise.
 
-          * COUNTERCLOCKWISE-Features will be sorted starting from a center
-          point and moving counterclockwise.
+         * COUNTERCLOCKWISE-Features will be sorted starting from a center
+         point and moving counterclockwise.
 
-          * NONE-No spatial sort will be used. The same order as the feature
-          class will be used.
-      lettering_format {String}:
-          Specifies the labeling format that will be used for each feature.
+         * NONE-No spatial sort will be used. The same order as the feature
+         class will be used.
+     lettering_format {String}:
+         Specifies the labeling format that will be used for each feature.
 
-          * A_B_C-An alpha character (for example, A, B, C) will be used as the
-          label. This is the default.
+         * A_B_C-An alpha character (for example, A, B, C) will be used as the
+         label. This is the default.
 
-          * AA_AB_AC-A constant alpha character with an incrementing second
-          alpha character grid (for example, AA, AB, AC) will be used.
+         * AA_AB_AC-A constant alpha character with an incrementing second
+         alpha character grid (for example, AA, AB, AC) will be used.
 
-          * AA_BB_CC-A double alpha character that is incremented for each
-          feature (for example, AA, BB, CC) will be used.
-      starting_letter {String}:
-          The value that will be used to begin lettering.
-      omit_letters {String}:
-          The values that will be omitted from the lettering sequence.
-      center_point {Feature Set}:
-          The center point that will be used to sort and letter features.
-      add_distance_and_bearing {Boolean}:
-          Specifies whether fields will be added to the output for distance and
-          bearing to a center point.
+         * AA_BB_CC-A double alpha character that is incremented for each
+         feature (for example, AA, BB, CC) will be used.
+     starting_letter {String}:
+         The value that will be used to begin lettering.
+     omit_letters {String}:
+         The values that will be omitted from the lettering sequence.
+     center_point {Feature Set}:
+         The center point that will be used to sort and letter features.
+     add_distance_and_bearing {Boolean}:
+         Specifies whether fields will be added to the output for distance and
+         bearing to a center point.
 
-          * DONT_ADD_DISTANCE-No distance or bearing fields will be added to the
-          output. This is the default.
+         * DONT_ADD_DISTANCE-No distance or bearing fields will be added to the
+         output. This is the default.
 
-          * ADD_DISTANCE-DIST_TO_CENTER and ANGLE_TO_CENTER fields will be added
-          to the output."""
+         * ADD_DISTANCE-DIST_TO_CENTER and ANGLE_TO_CENTER fields will be added
+         to the output."""
     ...
 
-@gptooldoc('LetterIntersections_defense', None)
-def LetterIntersections(in_features=..., out_feature_class=..., field_to_letter=..., in_area=..., spatial_sort_method=..., lettering_format=..., starting_letter=..., omit_letters=..., min_out_point_distance=..., center_point=..., add_distance_and_bearing=...): # -> conversion | int | float | complex | basestring | list[Unknown] | tuple[Unknown, ...] | dict[Unknown, Unknown]:
+@gptooldoc("LetterIntersections_defense", None)
+def LetterIntersections(
+    in_features=...,
+    out_feature_class=...,
+    field_to_letter=...,
+    in_area=...,
+    spatial_sort_method=...,
+    lettering_format=...,
+    starting_letter=...,
+    omit_letters=...,
+    min_out_point_distance=...,
+    center_point=...,
+    add_distance_and_bearing=...,
+):  # -> conversion | int | float | complex | basestring | list[Unknown] | tuple[Unknown, ...] | dict[Unknown, Unknown]:
     """LetterIntersections_defense(in_features, out_feature_class, field_to_letter, {in_area}, {spatial_sort_method}, {lettering_format}, {starting_letter}, {omit_letters;omit_letters...}, {min_out_point_distance}, {center_point}, {add_distance_and_bearing})
 
-        Identifies intersections in a line feature class and adds sequential
-        letters to output point features.
+       Identifies intersections in a line feature class and adds sequential
+       letters to output point features.
 
-     INPUTS:
-      in_features (Feature Set):
-          The input line features with intersections that will be lettered.
-      field_to_letter (Field):
-          The name of the field that will contain the letter designator for each
-          intersection.
-      in_area {Feature Set}:
-          The area that will limit the intersections identified; only
-          intersections within this area will be identified and lettered.
-      spatial_sort_method {String}:
-          Specifies how features will be spatially sorted for the purpose of
-          lettering. Features are not reordered in the table.
+    INPUTS:
+     in_features (Feature Set):
+         The input line features with intersections that will be lettered.
+     field_to_letter (Field):
+         The name of the field that will contain the letter designator for each
+         intersection.
+     in_area {Feature Set}:
+         The area that will limit the intersections identified; only
+         intersections within this area will be identified and lettered.
+     spatial_sort_method {String}:
+         Specifies how features will be spatially sorted for the purpose of
+         lettering. Features are not reordered in the table.
 
-          * UR-Features will be sorted starting at the upper right corner. This
-          is the default.
+         * UR-Features will be sorted starting at the upper right corner. This
+         is the default.
 
-          * UL-Features will be sorted starting at the upper left corner.
+         * UL-Features will be sorted starting at the upper left corner.
 
-          * LR-Features will be sorted starting at the lower right corner.
+         * LR-Features will be sorted starting at the lower right corner.
 
-          * LL-Features will be sorted starting at the lower left corner.
+         * LL-Features will be sorted starting at the lower left corner.
 
-          * PEANO-Features will be sorted using a space-filling curve algorithm,
-          also known as a Peano curve.
+         * PEANO-Features will be sorted using a space-filling curve algorithm,
+         also known as a Peano curve.
 
-          * CENTER-Features will be sorted starting from a center point (the
-          mean center will be used if no center is supplied).
+         * CENTER-Features will be sorted starting from a center point (the
+         mean center will be used if no center is supplied).
 
-          * CLOCKWISE-Features will be sorted starting from a center point and
-          moving clockwise.
+         * CLOCKWISE-Features will be sorted starting from a center point and
+         moving clockwise.
 
-          * COUNTERCLOCKWISE-Features will be sorted starting from a center
-          point and moving counterclockwise.
+         * COUNTERCLOCKWISE-Features will be sorted starting from a center
+         point and moving counterclockwise.
 
-          * NONE-No spatial sort will be used. The same order as the feature
-          class will be used.
-      lettering_format {String}:
-          Specifies the labeling format that will be used for each feature.
+         * NONE-No spatial sort will be used. The same order as the feature
+         class will be used.
+     lettering_format {String}:
+         Specifies the labeling format that will be used for each feature.
 
-          * A_B_C-An alpha character (for example, A, B, C) will be used as the
-          label. This is the default.
+         * A_B_C-An alpha character (for example, A, B, C) will be used as the
+         label. This is the default.
 
-          * AA_AB_AC-A constant alpha character with an incrementing second
-          alpha character grid (for example, AA, AB, AC) will be used.
+         * AA_AB_AC-A constant alpha character with an incrementing second
+         alpha character grid (for example, AA, AB, AC) will be used.
 
-          * AA_BB_CC-A double alpha character that is incremented for each
-          feature (for example, AA, BB, CC) will be used.
-      starting_letter {String}:
-          The value that will be used to begin lettering.
-      omit_letters {String}:
-          The values that will be omitted from the lettering sequence.
-      min_out_point_distance {Linear Unit}:
-          The minimum distance between intersections that are identified for
-          lettering.
-      center_point {Feature Set}:
-          The center point that will be used to sort and letter features.
-      add_distance_and_bearing {Boolean}:
-          Specifies whether fields will be added to the output for distance and
-          bearing to a center point.
+         * AA_BB_CC-A double alpha character that is incremented for each
+         feature (for example, AA, BB, CC) will be used.
+     starting_letter {String}:
+         The value that will be used to begin lettering.
+     omit_letters {String}:
+         The values that will be omitted from the lettering sequence.
+     min_out_point_distance {Linear Unit}:
+         The minimum distance between intersections that are identified for
+         lettering.
+     center_point {Feature Set}:
+         The center point that will be used to sort and letter features.
+     add_distance_and_bearing {Boolean}:
+         Specifies whether fields will be added to the output for distance and
+         bearing to a center point.
 
-          * DONT_ADD_DISTANCE-No distance or bearing fields will be added to the
-          output. This is the default.
+         * DONT_ADD_DISTANCE-No distance or bearing fields will be added to the
+         output. This is the default.
 
-          * ADD_DISTANCE-DIST_TO_CENTER and ANGLE_TO_CENTER fields will be added
-          to the output.
+         * ADD_DISTANCE-DIST_TO_CENTER and ANGLE_TO_CENTER fields will be added
+         to the output.
 
-     OUTPUTS:
-      out_feature_class (Feature Class):
-          The output point feature class."""
+    OUTPUTS:
+     out_feature_class (Feature Class):
+         The output point feature class."""
     ...
 
-@gptooldoc('NumberFeatures_defense', None)
-def NumberFeatures(in_features=..., field_to_number=..., in_area=..., spatial_sort_method=..., new_field_type=..., starting_number=..., increment_by=..., center_point=..., add_distance_and_bearing=...): # -> conversion | int | float | complex | basestring | list[Unknown] | tuple[Unknown, ...] | dict[Unknown, Unknown]:
+@gptooldoc("NumberFeatures_defense", None)
+def NumberFeatures(
+    in_features=...,
+    field_to_number=...,
+    in_area=...,
+    spatial_sort_method=...,
+    new_field_type=...,
+    starting_number=...,
+    increment_by=...,
+    center_point=...,
+    add_distance_and_bearing=...,
+):  # -> conversion | int | float | complex | basestring | list[Unknown] | tuple[Unknown, ...] | dict[Unknown, Unknown]:
     """NumberFeatures_defense(in_features, field_to_number, {in_area}, {spatial_sort_method}, {new_field_type}, {starting_number}, {increment_by}, {center_point}, {add_distance_and_bearing})
 
-        Adds a sequential number to a new or existing field of a set of input
-        features.
+       Adds a sequential number to a new or existing field of a set of input
+       features.
 
-     INPUTS:
-      in_features (Feature Set):
-          The input features that will be numbered.
-      field_to_number (Field):
-          The input field that will be numbered. The field can be an existing
-          short, long, or text field, or a new field.
-      in_area {Feature Set}:
-          The area that will limit the features to number; only features within
-          this area will be numbered.
-      spatial_sort_method {String}:
-          Specifies how features will be spatially sorted for the purpose of
-          numbering. Features are not reordered in the table.
+    INPUTS:
+     in_features (Feature Set):
+         The input features that will be numbered.
+     field_to_number (Field):
+         The input field that will be numbered. The field can be an existing
+         short, long, or text field, or a new field.
+     in_area {Feature Set}:
+         The area that will limit the features to number; only features within
+         this area will be numbered.
+     spatial_sort_method {String}:
+         Specifies how features will be spatially sorted for the purpose of
+         numbering. Features are not reordered in the table.
 
-          * UR-Features will be sorted starting at the upper right corner. This
-          is the default.
+         * UR-Features will be sorted starting at the upper right corner. This
+         is the default.
 
-          * UL-Features will be sorted starting at the upper left corner.
+         * UL-Features will be sorted starting at the upper left corner.
 
-          * LR-Features will be sorted starting at the lower right corner.
+         * LR-Features will be sorted starting at the lower right corner.
 
-          * LL-Features will be sorted starting at the lower left corner.
+         * LL-Features will be sorted starting at the lower left corner.
 
-          * PEANO-Features will be sorted using a space-filling curve algorithm,
-          also known as a Peano curve.
+         * PEANO-Features will be sorted using a space-filling curve algorithm,
+         also known as a Peano curve.
 
-          * CENTER-Features will be sorted starting from a center point (the
-          mean center will be used if no center is supplied).
+         * CENTER-Features will be sorted starting from a center point (the
+         mean center will be used if no center is supplied).
 
-          * CLOCKWISE-Features will be sorted starting from a center point and
-          moving clockwise.
+         * CLOCKWISE-Features will be sorted starting from a center point and
+         moving clockwise.
 
-          * COUNTERCLOCKWISE-Features will be sorted starting from a center
-          point and moving counterclockwise.
+         * COUNTERCLOCKWISE-Features will be sorted starting from a center
+         point and moving counterclockwise.
 
-          * NONE-No spatial sort will be used. The same order as the feature
-          class will be used.
-      new_field_type {String}:
-          Specifies the field type that will be used for the new field. This
-          parameter is only used when the field name does not exist in the input
-          table.
+         * NONE-No spatial sort will be used. The same order as the feature
+         class will be used.
+     new_field_type {String}:
+         Specifies the field type that will be used for the new field. This
+         parameter is only used when the field name does not exist in the input
+         table.
 
-          * SHORT-The field will be of short type. This is the default.
+         * SHORT-The field will be of short type. This is the default.
 
-          * LONG-The field will be of long type.
+         * LONG-The field will be of long type.
 
-          * TEXT-The field will be of text type.
-      starting_number {Long}:
-          The value that will be used to begin numbering.
-      increment_by {Long}:
-          The value that will be used to increment by from the previous value.
-      center_point {Feature Set}:
-          The center point that will be used to sort and number features.
-      add_distance_and_bearing {Boolean}:
-          Specifies whether fields will be added to the output for distance and
-          bearing to a center point.
+         * TEXT-The field will be of text type.
+     starting_number {Long}:
+         The value that will be used to begin numbering.
+     increment_by {Long}:
+         The value that will be used to increment by from the previous value.
+     center_point {Feature Set}:
+         The center point that will be used to sort and number features.
+     add_distance_and_bearing {Boolean}:
+         Specifies whether fields will be added to the output for distance and
+         bearing to a center point.
 
-          * DONT_ADD_DISTANCE-No distance or bearing fields will be added to the
-          output. This is the default.
+         * DONT_ADD_DISTANCE-No distance or bearing fields will be added to the
+         output. This is the default.
 
-          * ADD_DISTANCE-DIST_TO_CENTER and ANGLE_TO_CENTER fields will be added
-          to the output."""
+         * ADD_DISTANCE-DIST_TO_CENTER and ANGLE_TO_CENTER fields will be added
+         to the output."""
     ...
 
-@gptooldoc('NumberFeaturesBySector_defense', None)
-def NumberFeaturesBySector(in_features=..., sector_polygons=..., field_to_number=..., new_field_type=..., spatial_sort_method=..., increment_by=..., center_point=..., add_distance_and_bearing=...): # -> conversion | int | float | complex | basestring | list[Unknown] | tuple[Unknown, ...] | dict[Unknown, Unknown]:
+@gptooldoc("NumberFeaturesBySector_defense", None)
+def NumberFeaturesBySector(
+    in_features=...,
+    sector_polygons=...,
+    field_to_number=...,
+    new_field_type=...,
+    spatial_sort_method=...,
+    increment_by=...,
+    center_point=...,
+    add_distance_and_bearing=...,
+):  # -> conversion | int | float | complex | basestring | list[Unknown] | tuple[Unknown, ...] | dict[Unknown, Unknown]:
     """NumberFeaturesBySector_defense(in_features, sector_polygons, field_to_number, {new_field_type}, {spatial_sort_method}, {increment_by}, {center_point}, {add_distance_and_bearing})
 
-        Adds a sequential number to a new or existing field of a set of input
-        features based on a geographic grouping to which the features belong.
+       Adds a sequential number to a new or existing field of a set of input
+       features based on a geographic grouping to which the features belong.
 
-     INPUTS:
-      in_features (Feature Set):
-          The input features that will be numbered.
-      sector_polygons (Feature Set):
-          The input polygons representing sectors that will be used for
-          numbering.
-      field_to_number (Field):
-          The input field that will be numbered. The field can be an existing
-          short, long, or text field, or a new field.
-      new_field_type {String}:
-          Specifies the field type that will be used for the new field. This
-          parameter is only used when the field name does not exist in the input
-          table.
+    INPUTS:
+     in_features (Feature Set):
+         The input features that will be numbered.
+     sector_polygons (Feature Set):
+         The input polygons representing sectors that will be used for
+         numbering.
+     field_to_number (Field):
+         The input field that will be numbered. The field can be an existing
+         short, long, or text field, or a new field.
+     new_field_type {String}:
+         Specifies the field type that will be used for the new field. This
+         parameter is only used when the field name does not exist in the input
+         table.
 
-          * SHORT-The field will be of short type. This is the default.
+         * SHORT-The field will be of short type. This is the default.
 
-          * LONG-The field will be of long type.
+         * LONG-The field will be of long type.
 
-          * TEXT-The field will be of text type.
-      spatial_sort_method {String}:
-          Specifies how features will be spatially sorted for the purpose of
-          numbering. Features are not reordered in the table. If a SortMethod
-          field exists in the sector_polygons input, that value will be used
-          instead.
+         * TEXT-The field will be of text type.
+     spatial_sort_method {String}:
+         Specifies how features will be spatially sorted for the purpose of
+         numbering. Features are not reordered in the table. If a SortMethod
+         field exists in the sector_polygons input, that value will be used
+         instead.
 
-          * UR-Features will be sorted starting at the upper right corner. This
-          is the default.
+         * UR-Features will be sorted starting at the upper right corner. This
+         is the default.
 
-          * UL-Features will be sorted starting at the upper left corner.
+         * UL-Features will be sorted starting at the upper left corner.
 
-          * LR-Features will be sorted starting at the lower right corner.
+         * LR-Features will be sorted starting at the lower right corner.
 
-          * LL-Features will be sorted starting at the lower left corner.
+         * LL-Features will be sorted starting at the lower left corner.
 
-          * PEANO-Features will be sorted using a space-filling curve algorithm,
-          also known as a Peano curve.
+         * PEANO-Features will be sorted using a space-filling curve algorithm,
+         also known as a Peano curve.
 
-          * CENTER-Features will be sorted starting from a center point (the
-          mean center will be used if no center is supplied).
+         * CENTER-Features will be sorted starting from a center point (the
+         mean center will be used if no center is supplied).
 
-          * CLOCKWISE-Features will be sorted starting from a center point and
-          moving clockwise.
+         * CLOCKWISE-Features will be sorted starting from a center point and
+         moving clockwise.
 
-          * COUNTERCLOCKWISE-Features will be sorted starting from a center
-          point and moving counterclockwise.
+         * COUNTERCLOCKWISE-Features will be sorted starting from a center
+         point and moving counterclockwise.
 
-          * NONE-No spatial sort will be used. The same order as the feature
-          class will be used.
-      increment_by {Long}:
-          The value that will be used to increment by from the previous sector.
-          If a StartNumber field exists in the sector_polygons input, that value
-          will be used instead.
-      center_point {Feature Set}:
-          The center point that will be used to sort and number features.
-      add_distance_and_bearing {Boolean}:
-          Specifies whether fields will be added to the output for distance and
-          bearing to a center point.
+         * NONE-No spatial sort will be used. The same order as the feature
+         class will be used.
+     increment_by {Long}:
+         The value that will be used to increment by from the previous sector.
+         If a StartNumber field exists in the sector_polygons input, that value
+         will be used instead.
+     center_point {Feature Set}:
+         The center point that will be used to sort and number features.
+     add_distance_and_bearing {Boolean}:
+         Specifies whether fields will be added to the output for distance and
+         bearing to a center point.
 
-          * DONT_ADD_DISTANCE-No distance or bearing fields will be added to the
-          output. This is the default.
+         * DONT_ADD_DISTANCE-No distance or bearing fields will be added to the
+         output. This is the default.
 
-          * ADD_DISTANCE-DIST_TO_CENTER and ANGLE_TO_CENTER fields will be added
-          to the output."""
+         * ADD_DISTANCE-DIST_TO_CENTER and ANGLE_TO_CENTER fields will be added
+         to the output."""
     ...
 
-@gptooldoc('FindHighestLowestPoint_defense', None)
-def FindHighestLowestPoint(in_surface=..., out_feature_class=..., high_low_operation_type=..., in_feature=...): # -> conversion | int | float | complex | basestring | list[Unknown] | tuple[Unknown, ...] | dict[Unknown, Unknown]:
+@gptooldoc("FindHighestLowestPoint_defense", None)
+def FindHighestLowestPoint(
+    in_surface=..., out_feature_class=..., high_low_operation_type=..., in_feature=...
+):  # -> conversion | int | float | complex | basestring | list[Unknown] | tuple[Unknown, ...] | dict[Unknown, Unknown]:
     """FindHighestLowestPoint_defense(in_surface, out_feature_class, high_low_operation_type, {in_feature})
 
-        Finds the highest or lowest point of the input surface within a
-        defined area.
+       Finds the highest or lowest point of the input surface within a
+       defined area.
 
-     INPUTS:
-      in_surface (Raster Layer / Mosaic Dataset / Mosaic Layer):
-          The input elevation raster surface.
-      high_low_operation_type (String):
-          Specifies the type of operation the tool will perform.
+    INPUTS:
+     in_surface (Raster Layer / Mosaic Dataset / Mosaic Layer):
+         The input elevation raster surface.
+     high_low_operation_type (String):
+         Specifies the type of operation the tool will perform.
 
-          * HIGHEST-The highest points will be found. This is the default.
+         * HIGHEST-The highest points will be found. This is the default.
 
-          * LOWEST-The lowest points will be found.
-      in_feature {Feature Set}:
-          The input polygon feature class within which the highest or lowest
-          point will be found.
+         * LOWEST-The lowest points will be found.
+     in_feature {Feature Set}:
+         The input polygon feature class within which the highest or lowest
+         point will be found.
 
-     OUTPUTS:
-      out_feature_class (Feature Class):
-          The feature class containing the output highest or lowest point."""
+    OUTPUTS:
+     out_feature_class (Feature Class):
+         The feature class containing the output highest or lowest point."""
     ...
 
-@gptooldoc('FindLocalPeaksValleys_defense', None)
-def FindLocalPeaksValleys(in_surface=..., out_feature_class=..., peak_valley_op_type=..., num_peaks_valleys=..., in_feature=...): # -> conversion | int | float | complex | basestring | list[Unknown] | tuple[Unknown, ...] | dict[Unknown, Unknown]:
+@gptooldoc("FindLocalPeaksValleys_defense", None)
+def FindLocalPeaksValleys(
+    in_surface=...,
+    out_feature_class=...,
+    peak_valley_op_type=...,
+    num_peaks_valleys=...,
+    in_feature=...,
+):  # -> conversion | int | float | complex | basestring | list[Unknown] | tuple[Unknown, ...] | dict[Unknown, Unknown]:
     """FindLocalPeaksValleys_defense(in_surface, out_feature_class, peak_valley_op_type, num_peaks_valleys, {in_feature})
 
-        Finds local peaks or valleys within a defined area.
+       Finds local peaks or valleys within a defined area.
 
-     INPUTS:
-      in_surface (Raster Layer / Mosaic Dataset / Mosaic Layer):
-          The input elevation raster surface.
-      peak_valley_op_type (String):
-          Specifies the type of operation the tool will perform.
+    INPUTS:
+     in_surface (Raster Layer / Mosaic Dataset / Mosaic Layer):
+         The input elevation raster surface.
+     peak_valley_op_type (String):
+         Specifies the type of operation the tool will perform.
 
-          * PEAKS-Local peaks will be found. This is the default.
+         * PEAKS-Local peaks will be found. This is the default.
 
-          * VALLEYS-Local valleys will be found.
-      num_peaks_valleys (Long):
-          The number of peaks or valleys to find.
-      in_feature {Feature Set}:
-          The input polygon feature class in which the local peaks or valleys
-          will be found.
+         * VALLEYS-Local valleys will be found.
+     num_peaks_valleys (Long):
+         The number of peaks or valleys to find.
+     in_feature {Feature Set}:
+         The input polygon feature class in which the local peaks or valleys
+         will be found.
 
-     OUTPUTS:
-      out_feature_class (Feature Class):
-          The output point feature class containing the local peaks or valleys."""
+    OUTPUTS:
+     out_feature_class (Feature Class):
+         The output point feature class containing the local peaks or valleys."""
     ...
 
-@gptooldoc('LinearLineOfSight_defense', None)
-def LinearLineOfSight(in_observer_features=..., in_target_features=..., in_surface=..., out_los_feature_class=..., out_sight_line_feature_class=..., out_observer_feature_class=..., out_target_feature_class=..., in_obstruction_features=..., observer_height_above_surface=..., target_height_above_surface=..., add_profile_attachment=...): # -> conversion | int | float | complex | basestring | list[Unknown] | tuple[Unknown, ...] | dict[Unknown, Unknown]:
+@gptooldoc("LinearLineOfSight_defense", None)
+def LinearLineOfSight(
+    in_observer_features=...,
+    in_target_features=...,
+    in_surface=...,
+    out_los_feature_class=...,
+    out_sight_line_feature_class=...,
+    out_observer_feature_class=...,
+    out_target_feature_class=...,
+    in_obstruction_features=...,
+    observer_height_above_surface=...,
+    target_height_above_surface=...,
+    add_profile_attachment=...,
+):  # -> conversion | int | float | complex | basestring | list[Unknown] | tuple[Unknown, ...] | dict[Unknown, Unknown]:
     """LinearLineOfSight_defense(in_observer_features, in_target_features, in_surface, out_los_feature_class, out_sight_line_feature_class, out_observer_feature_class, out_target_feature_class, {in_obstruction_features}, {observer_height_above_surface}, {target_height_above_surface}, {add_profile_attachment})
 
-        Creates lines of sight between observers and targets.
+       Creates lines of sight between observers and targets.
 
-     INPUTS:
-      in_observer_features (Feature Set):
-          The input observer points.
-      in_target_features (Feature Set):
-          The input target points.
-      in_surface (Raster Layer / Mosaic Dataset / Mosaic Layer):
-          The input elevation raster surface.
-      in_obstruction_features {Feature Layer}:
-          The input multipatch feature that may obstruct the lines of sight.
-      observer_height_above_surface {Double}:
-          The height that will be added to the surface elevation of the
-          observer. The default is 2.
-      target_height_above_surface {Double}:
-          The height that will be added to the surface elevation of the target.
-          The default is 0.
-      add_profile_attachment {Boolean}:
-          Specifies whether the tool will add an attachment to the feature with
-          the profile (cross section terrain graph) between observer and target.
+    INPUTS:
+     in_observer_features (Feature Set):
+         The input observer points.
+     in_target_features (Feature Set):
+         The input target points.
+     in_surface (Raster Layer / Mosaic Dataset / Mosaic Layer):
+         The input elevation raster surface.
+     in_obstruction_features {Feature Layer}:
+         The input multipatch feature that may obstruct the lines of sight.
+     observer_height_above_surface {Double}:
+         The height that will be added to the surface elevation of the
+         observer. The default is 2.
+     target_height_above_surface {Double}:
+         The height that will be added to the surface elevation of the target.
+         The default is 0.
+     add_profile_attachment {Boolean}:
+         Specifies whether the tool will add an attachment to the feature with
+         the profile (cross section terrain graph) between observer and target.
 
-          * NO_PROFILE_GRAPH-No profile graph will be added. This is the
-          default.
+         * NO_PROFILE_GRAPH-No profile graph will be added. This is the
+         default.
 
-          * ADD_PROFILE_GRAPH-A profile graph will be added.
+         * ADD_PROFILE_GRAPH-A profile graph will be added.
 
-     OUTPUTS:
-      out_los_feature_class (Feature Class):
-          The output feature class showing lines of visible and nonvisible
-          surface areas.
-      out_sight_line_feature_class (Feature Class):
-          The output line feature class showing the direct line of sight between
-          observer and target.
-      out_observer_feature_class (Feature Class):
-          The output observer point feature class.
-      out_target_feature_class (Feature Class):
-          The output target point feature class."""
+    OUTPUTS:
+     out_los_feature_class (Feature Class):
+         The output feature class showing lines of visible and nonvisible
+         surface areas.
+     out_sight_line_feature_class (Feature Class):
+         The output line feature class showing the direct line of sight between
+         observer and target.
+     out_observer_feature_class (Feature Class):
+         The output observer point feature class.
+     out_target_feature_class (Feature Class):
+         The output target point feature class."""
     ...
 
-@gptooldoc('RadialLineOfSight_defense', None)
-def RadialLineOfSight(in_observer_features=..., in_surface=..., out_feature_class=..., radius=..., observer_height_above_surface=...): # -> conversion | int | float | complex | basestring | list[Unknown] | tuple[Unknown, ...] | dict[Unknown, Unknown]:
+@gptooldoc("RadialLineOfSight_defense", None)
+def RadialLineOfSight(
+    in_observer_features=...,
+    in_surface=...,
+    out_feature_class=...,
+    radius=...,
+    observer_height_above_surface=...,
+):  # -> conversion | int | float | complex | basestring | list[Unknown] | tuple[Unknown, ...] | dict[Unknown, Unknown]:
     """RadialLineOfSight_defense(in_observer_features, in_surface, out_feature_class, {radius}, {observer_height_above_surface})
 
-        Shows areas visible to one or more observer locations.
+       Shows areas visible to one or more observer locations.
 
-     INPUTS:
-      in_observer_features (Feature Set):
-          The input observer points.
-      in_surface (Raster Layer / Mosaic Dataset / Mosaic Layer):
-          The input elevation raster surface.
-      radius {Double}:
-          The radius of the analysis area from the observer.
-      observer_height_above_surface {Double}:
-          The height added to the surface elevation of the observer. The default
-          is 2.
+    INPUTS:
+     in_observer_features (Feature Set):
+         The input observer points.
+     in_surface (Raster Layer / Mosaic Dataset / Mosaic Layer):
+         The input elevation raster surface.
+     radius {Double}:
+         The radius of the analysis area from the observer.
+     observer_height_above_surface {Double}:
+         The height added to the surface elevation of the observer. The default
+         is 2.
 
-     OUTPUTS:
-      out_feature_class (Feature Class):
-          The output polygon feature class showing visible and nonvisible
-          surface areas."""
+    OUTPUTS:
+     out_feature_class (Feature Class):
+         The output polygon feature class showing visible and nonvisible
+         surface areas."""
     ...
 
-@gptooldoc('RadialLineOfSightAndRange_defense', None)
-def RadialLineOfSightAndRange(in_observer_features=..., in_surface=..., out_viewshed_feature_class=..., out_fov_feature_class=..., out_range_radius_feature_class=..., observer_height_offset=..., inner_radius=..., outer_radius=..., horizontal_start_angle=..., horizontal_end_angle=...): # -> conversion | int | float | complex | basestring | list[Unknown] | tuple[Unknown, ...] | dict[Unknown, Unknown]:
+@gptooldoc("RadialLineOfSightAndRange_defense", None)
+def RadialLineOfSightAndRange(
+    in_observer_features=...,
+    in_surface=...,
+    out_viewshed_feature_class=...,
+    out_fov_feature_class=...,
+    out_range_radius_feature_class=...,
+    observer_height_offset=...,
+    inner_radius=...,
+    outer_radius=...,
+    horizontal_start_angle=...,
+    horizontal_end_angle=...,
+):  # -> conversion | int | float | complex | basestring | list[Unknown] | tuple[Unknown, ...] | dict[Unknown, Unknown]:
     """RadialLineOfSightAndRange_defense(in_observer_features, in_surface, out_viewshed_feature_class, out_fov_feature_class, out_range_radius_feature_class, {observer_height_offset}, {inner_radius}, {outer_radius}, {horizontal_start_angle}, {horizontal_end_angle})
 
-        Shows areas visible to one or more observer locations given a
-        specified distance and viewing angle.
+       Shows areas visible to one or more observer locations given a
+       specified distance and viewing angle.
 
-     INPUTS:
-      in_observer_features (Feature Set):
-          The input observer points.
-      in_surface (Raster Layer / Mosaic Dataset / Mosaic Layer):
-          The input elevation raster surface. The elevation surface must be
-          projected.
-      observer_height_offset {Double}:
-          The height added to the surface elevation of the observer. The default
-          is 2.
-      inner_radius {Double}:
-          The minimum (nearest) distance from observers to consider for analysis
-          in meters. The default is 1000.
-      outer_radius {Double}:
-          The maximum (farthest) distance from observers to consider for
-          analysis in meters. The default is 3000.
-      horizontal_start_angle {Double}:
-          The left bearing limit in degrees. The default is 0.
-      horizontal_end_angle {Double}:
-          The right bearing limit in degrees. The default is 360.
+    INPUTS:
+     in_observer_features (Feature Set):
+         The input observer points.
+     in_surface (Raster Layer / Mosaic Dataset / Mosaic Layer):
+         The input elevation raster surface. The elevation surface must be
+         projected.
+     observer_height_offset {Double}:
+         The height added to the surface elevation of the observer. The default
+         is 2.
+     inner_radius {Double}:
+         The minimum (nearest) distance from observers to consider for analysis
+         in meters. The default is 1000.
+     outer_radius {Double}:
+         The maximum (farthest) distance from observers to consider for
+         analysis in meters. The default is 3000.
+     horizontal_start_angle {Double}:
+         The left bearing limit in degrees. The default is 0.
+     horizontal_end_angle {Double}:
+         The right bearing limit in degrees. The default is 360.
 
-     OUTPUTS:
-      out_viewshed_feature_class (Feature Class):
-          The output polygon feature class showing visible and nonvisible areas.
-      out_fov_feature_class (Feature Class):
-          The output polygon feature class containing the field of view range
-          fan.
-      out_range_radius_feature_class (Feature Class):
-          The output polygon feature class containing the viewing sector created
-          by the range radius, start angle, and end angle."""
+    OUTPUTS:
+     out_viewshed_feature_class (Feature Class):
+         The output polygon feature class showing visible and nonvisible areas.
+     out_fov_feature_class (Feature Class):
+         The output polygon feature class containing the field of view range
+         fan.
+     out_range_radius_feature_class (Feature Class):
+         The output polygon feature class containing the viewing sector created
+         by the range radius, start angle, and end angle."""
     ...
-

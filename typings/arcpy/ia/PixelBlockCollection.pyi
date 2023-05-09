@@ -11,26 +11,28 @@ class PixelBlock:
         :param extent: arcpy.Extent
         """
         ...
-    
-    def getData(self): # -> Any:
+    def getData(self):  # -> Any:
         """
         access the pixel block data as a numpy ndarray array
 
         :return: numpy.ndarray, a copy of the pixel block data with shape ({slices}, height, width, bands).
         """
         ...
-    
     cell_size = ...
     spatial_reference = ...
     tlc = ...
     @property
-    def extent(self): # -> Extent:
-        ...
-    
-
+    def extent(self): ...
 
 class PixelBlockCollection:
-    def __init__(self, rasters, pixel_block_size=..., stride=..., overlay_type=..., nodata_to_values=...) -> None:
+    def __init__(
+        self,
+        rasters,
+        pixel_block_size=...,
+        stride=...,
+        overlay_type=...,
+        nodata_to_values=...,
+    ) -> None:
         """
         pixel block collection that queries or iterates on a single raster or a list of rasters. The iteration or pixel block
         index origin is the top left corner of the extent. The order of iteration is left to right, top to bottom.
@@ -49,35 +51,25 @@ class PixelBlockCollection:
                                 If any element is set to None, the default NoData value in the raster will be used.
         """
         ...
-    
-    def __iter__(self): # -> Self@PixelBlockCollection:
-        ...
-    
-    def __next__(self): # -> list[Unknown]:
-        ...
-    
-    def __getitem__(self, item): # -> list[Unknown]:
+    def __iter__(self): ...
+    def __next__(self): ...
+    def __getitem__(self, item):  # -> list[Unknown]:
         """
         access the pixel block by giving the block height and width index as a tuple. i.e. pixel_block_collection[height_index, width_index]
         :param item: a tuple (pixel_block_height_index, pixel_block_width_index)
         :return: the pixel block at the index specified as a tuple
         """
         ...
-    
-    def reset(self): # -> None:
+    def reset(self):  # -> None:
         """
         reset the cursor of the pixel block collection
         :return: None
         """
         ...
-    
-    def shuffle(self): # -> None:
+    def shuffle(self):  # -> None:
         """
         shuffle the current pixel block collection, everytime you iterate the pixel block collection you get a random
         location for the pixel blocks
         :return: None
         """
         ...
-    
-
-

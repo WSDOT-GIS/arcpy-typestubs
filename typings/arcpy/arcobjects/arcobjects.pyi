@@ -847,8 +847,10 @@ class FieldMappings(mixins.FieldMappingsMixin, _BaseArcObject):
         Find the field map by name."""
         ...
     def loadFromString(
-        self, string:str
-    ) -> ...:  # -> conversion | int | float | complex | basestring | list[Unknown] | tuple[Unknown, ...] | dict[Unknown, Unknown]:
+        self, string: str
+    ) -> (
+        ...
+    ):  # -> conversion | int | float | complex | basestring | list[Unknown] | tuple[Unknown, ...] | dict[Unknown, Unknown]:
         """FieldMappings.loadFromString(string)
 
         Restore the object using its string representation.     The
@@ -1880,7 +1882,8 @@ class Point(mixins.PointMixin, _BaseArcObject):
     """The point object is used frequently with cursors. Point features return a
     single point object instead of an array of point objects. All other
     feature types—polygon, polyline, and multipoint—return an array of point
-    objects or an array containing multiple arrays of point objects if the feature has multiple parts."""
+    objects or an array containing multiple arrays of point objects if the feature has multiple parts.
+    """
 
     X = ...
     Y = ...
@@ -2119,7 +2122,9 @@ class Result(mixins.ResultMixin, _BaseArcObject):
         ...
     def getOutput(
         self, index: int
-    ) -> RecordSet | str:  # -> conversion | int | float | complex | basestring | list[Unknown] | tuple[Unknown, ...] | dict[Unknown, Unknown]:
+    ) -> (
+        RecordSet | str
+    ):  # -> conversion | int | float | complex | basestring | list[Unknown] | tuple[Unknown, ...] | dict[Unknown, Unknown]:
         """Result.getOutput(index)
 
         Returns a given output, either as a recordset or a string.
@@ -2442,7 +2447,7 @@ class Value(_BaseArcObject):
     """The value object is returned from GetParameterInfo when used in a script
     tool's ToolValidator class."""
 
-    value:str | None = None
+    value: str | None = None
     isEmpty: bool = ...
 
 class ValueTable(mixins.ValueTableMixin, _BaseArcObject):

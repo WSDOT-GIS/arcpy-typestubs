@@ -12,7 +12,7 @@ from ._na._vrps import *
 from ._na._nds import *
 
 """Work with network analysis functionality provided with ArcGIS Network Analyst extension."""
+
 def ListDirectionsLanguages():
     """Return a List of supported directions language names."""
     ...
-

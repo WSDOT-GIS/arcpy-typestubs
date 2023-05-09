@@ -9,828 +9,967 @@ intelligence data sources. You can use these tools as part of
 intelligence workflows to import data from many sources at once,
 analyze point track data to determine patterns, and assess physical
 environment data for suitable mobility or landing zones."""
-__all__ = ['BatchImportData', 'ClassifyMovementEvents', 'CompareAreas', 'CreateLocationFileFromTextFile', 'DOFToObstacleFeatures', 'DropZones', 'FindCotravelers', 'FindFrequentedLocations', 'FindMeetingLocations', 'FindOverlaps', 'GenerateBlindSpotAreas', 'GenerateCoverageAreas', 'GenerateHLZSuitability', 'GenerateObstacleFeatures', 'LeastCostPath', 'PointsToTrackSegments', 'SelectMovementTracks']
+__all__ = [
+    "BatchImportData",
+    "ClassifyMovementEvents",
+    "CompareAreas",
+    "CreateLocationFileFromTextFile",
+    "DOFToObstacleFeatures",
+    "DropZones",
+    "FindCotravelers",
+    "FindFrequentedLocations",
+    "FindMeetingLocations",
+    "FindOverlaps",
+    "GenerateBlindSpotAreas",
+    "GenerateCoverageAreas",
+    "GenerateHLZSuitability",
+    "GenerateObstacleFeatures",
+    "LeastCostPath",
+    "PointsToTrackSegments",
+    "SelectMovementTracks",
+]
 __alias__ = ...
-@gptooldoc('FindOverlaps_intelligence', None)
-def FindOverlaps(in_features=..., out_intersection=..., out_centroid=..., group_field=...): # -> conversion | int | float | complex | basestring | list[Unknown] | tuple[Unknown, ...] | dict[Unknown, Unknown]:
+
+@gptooldoc("FindOverlaps_intelligence", None)
+def FindOverlaps(
+    in_features=..., out_intersection=..., out_centroid=..., group_field=...
+):  # -> conversion | int | float | complex | basestring | list[Unknown] | tuple[Unknown, ...] | dict[Unknown, Unknown]:
     """FindOverlaps_intelligence(in_features, out_intersection, out_centroid, {group_field})
 
-        Finds overlapping areas in a feature class and provides a count for
-        the number of overlaps.
+       Finds overlapping areas in a feature class and provides a count for
+       the number of overlaps.
 
-     INPUTS:
-      in_features (Feature Layer):
-          The input polygon features for which overlaps will be computed.
-      group_field {Field}:
-          The in_features group field.
+    INPUTS:
+     in_features (Feature Layer):
+         The input polygon features for which overlaps will be computed.
+     group_field {Field}:
+         The in_features group field.
 
-     OUTPUTS:
-      out_intersection (Feature Class):
-          The output intersection areas.
-      out_centroid (Feature Class):
-          The output centroid locations of the out_intersection features."""
+    OUTPUTS:
+     out_intersection (Feature Class):
+         The output intersection areas.
+     out_centroid (Feature Class):
+         The output centroid locations of the out_intersection features."""
     ...
 
-@gptooldoc('GenerateBlindSpotAreas_intelligence', None)
-def GenerateBlindSpotAreas(in_features=..., out_feature_class=..., clip_features=..., start_time_field=..., end_time_field=...): # -> conversion | int | float | complex | basestring | list[Unknown] | tuple[Unknown, ...] | dict[Unknown, Unknown]:
+@gptooldoc("GenerateBlindSpotAreas_intelligence", None)
+def GenerateBlindSpotAreas(
+    in_features=...,
+    out_feature_class=...,
+    clip_features=...,
+    start_time_field=...,
+    end_time_field=...,
+):  # -> conversion | int | float | complex | basestring | list[Unknown] | tuple[Unknown, ...] | dict[Unknown, Unknown]:
     """GenerateBlindSpotAreas_intelligence(in_features, out_feature_class, {clip_features}, {start_time_field}, {end_time_field})
 
-        Creates an output nonvisible area, or blind spot, for input
-        Intelligence, Surveillance, Reconnaissance (ISR) or patrol visible
-        buffer features based on start and end times. The output blind spot
-        layer is used with the time slider to visualize and explore areas that
-        are not visible to ISR or patrol assets at specified times. For
-        example, the output can show areas that a guard is not able to observe
-        for given input time periods at posts along a patrol route.
+       Creates an output nonvisible area, or blind spot, for input
+       Intelligence, Surveillance, Reconnaissance (ISR) or patrol visible
+       buffer features based on start and end times. The output blind spot
+       layer is used with the time slider to visualize and explore areas that
+       are not visible to ISR or patrol assets at specified times. For
+       example, the output can show areas that a guard is not able to observe
+       for given input time periods at posts along a patrol route.
 
-     INPUTS:
-      in_features (Feature Layer):
-          The input visible buffer features.
-      clip_features {Feature Set}:
-          The features used to define the input boundary.
-      start_time_field {Field}:
-          The field containing the start date and time when the asset is
-          available.
-      end_time_field {Field}:
-          The field containing the end date and time when the asset is no longer
-          available.
+    INPUTS:
+     in_features (Feature Layer):
+         The input visible buffer features.
+     clip_features {Feature Set}:
+         The features used to define the input boundary.
+     start_time_field {Field}:
+         The field containing the start date and time when the asset is
+         available.
+     end_time_field {Field}:
+         The field containing the end date and time when the asset is no longer
+         available.
 
-     OUTPUTS:
-      out_feature_class (Feature Class):
-          The output blind spot area features."""
+    OUTPUTS:
+     out_feature_class (Feature Class):
+         The output blind spot area features."""
     ...
 
-@gptooldoc('GenerateCoverageAreas_intelligence', None)
-def GenerateCoverageAreas(in_features=..., out_feature_class=..., buffer_type=..., range_unit=..., start_time_field=..., end_time_field=...): # -> conversion | int | float | complex | basestring | list[Unknown] | tuple[Unknown, ...] | dict[Unknown, Unknown]:
+@gptooldoc("GenerateCoverageAreas_intelligence", None)
+def GenerateCoverageAreas(
+    in_features=...,
+    out_feature_class=...,
+    buffer_type=...,
+    range_unit=...,
+    start_time_field=...,
+    end_time_field=...,
+):  # -> conversion | int | float | complex | basestring | list[Unknown] | tuple[Unknown, ...] | dict[Unknown, Unknown]:
     """GenerateCoverageAreas_intelligence(in_features, out_feature_class, buffer_type, {range_unit}, {start_time_field}, {end_time_field})
 
-        Creates a proximity buffer for input Intelligence, Surveillance, and
-        Reconnaissance (ISR) or patrol assets for use in the Generate Blind
-        Spot Areas tool.
+       Creates a proximity buffer for input Intelligence, Surveillance, and
+       Reconnaissance (ISR) or patrol assets for use in the Generate Blind
+       Spot Areas tool.
 
-     INPUTS:
-      in_features (Feature Layer):
-          The input asset features.
-      buffer_type (Linear Unit / Field):
-          The distance around the input features that will be buffered.
-          Distances can be provided as either a linear distance or a field from
-          the in_features parameter value that defines the individual ranges and
-          units to buffer each feature.
-      range_unit {String}:
-          Specifies the linear unit that will be used when the chosen
-          buffer_type parameter value does not contain the unit of distance.
+    INPUTS:
+     in_features (Feature Layer):
+         The input asset features.
+     buffer_type (Linear Unit / Field):
+         The distance around the input features that will be buffered.
+         Distances can be provided as either a linear distance or a field from
+         the in_features parameter value that defines the individual ranges and
+         units to buffer each feature.
+     range_unit {String}:
+         Specifies the linear unit that will be used when the chosen
+         buffer_type parameter value does not contain the unit of distance.
 
-          * Meters-The distance unit will be meters.
+         * Meters-The distance unit will be meters.
 
-          * Kilometers-The distance unit will be kilometers.
+         * Kilometers-The distance unit will be kilometers.
 
-          * Feet-The distance unit will be feet.
+         * Feet-The distance unit will be feet.
 
-          * Miles-The distance unit will be miles.
+         * Miles-The distance unit will be miles.
 
-          * NauticalMiles-The distance unit will be nautical miles.
-      start_time_field {Field}:
-          The field containing the start date and time the asset is available.
-      end_time_field {Field}:
-          The field containing the end date and time the asset is no longer
-          available.
+         * NauticalMiles-The distance unit will be nautical miles.
+     start_time_field {Field}:
+         The field containing the start date and time the asset is available.
+     end_time_field {Field}:
+         The field containing the end date and time the asset is no longer
+         available.
 
-     OUTPUTS:
-      out_feature_class (Feature Class):
-          The output blind spot buffer features."""
+    OUTPUTS:
+     out_feature_class (Feature Class):
+         The output blind spot buffer features."""
     ...
 
-@gptooldoc('DOFToObstacleFeatures_intelligence', None)
-def DOFToObstacleFeatures(in_table=..., out_obstacle_features=..., out_obstacle_buffers=..., clip_features=...): # -> conversion | int | float | complex | basestring | list[Unknown] | tuple[Unknown, ...] | dict[Unknown, Unknown]:
+@gptooldoc("DOFToObstacleFeatures_intelligence", None)
+def DOFToObstacleFeatures(
+    in_table=..., out_obstacle_features=..., out_obstacle_buffers=..., clip_features=...
+):  # -> conversion | int | float | complex | basestring | list[Unknown] | tuple[Unknown, ...] | dict[Unknown, Unknown]:
     """DOFToObstacleFeatures_intelligence(in_table, out_obstacle_features, out_obstacle_buffers, {clip_features})
 
-        Converts the U.S. Federal Aviation Administration (FAA) Digital
-        Obstacle File (DOF) to obstruction points and obstruction buffer
-        features.
+       Converts the U.S. Federal Aviation Administration (FAA) Digital
+       Obstacle File (DOF) to obstruction points and obstruction buffer
+       features.
 
-     INPUTS:
-      in_table (Table View):
-          The input DOF table to convert into obstacle features.
-      clip_features {Feature Layer}:
-          An area to clip from the in_table. Only obstacles within this area
-          will be created and buffered.
+    INPUTS:
+     in_table (Table View):
+         The input DOF table to convert into obstacle features.
+     clip_features {Feature Layer}:
+         An area to clip from the in_table. Only obstacles within this area
+         will be created and buffered.
 
-     OUTPUTS:
-      out_obstacle_features (Feature Class):
-          The point obstacle features created from the in_table.
-      out_obstacle_buffers (Feature Class):
-          The distance buffers created at 10 times the value of the AGL field in
-          the in_table."""
+    OUTPUTS:
+     out_obstacle_features (Feature Class):
+         The point obstacle features created from the in_table.
+     out_obstacle_buffers (Feature Class):
+         The distance buffers created at 10 times the value of the AGL field in
+         the in_table."""
     ...
 
-@gptooldoc('DropZones_intelligence', None)
-def DropZones(in_slope_raster=..., in_vegetation_features=..., clip_features=..., out_feature_class=...): # -> conversion | int | float | complex | basestring | list[Unknown] | tuple[Unknown, ...] | dict[Unknown, Unknown]:
+@gptooldoc("DropZones_intelligence", None)
+def DropZones(
+    in_slope_raster=...,
+    in_vegetation_features=...,
+    clip_features=...,
+    out_feature_class=...,
+):  # -> conversion | int | float | complex | basestring | list[Unknown] | tuple[Unknown, ...] | dict[Unknown, Unknown]:
     """DropZones_intelligence(in_slope_raster, in_vegetation_features, clip_features, out_feature_class)
 
-        Identifies drop zone locations suitable for parachuting equipment or
-        personnel within a designated area of interest given slope and
-        vegetation data.
+       Identifies drop zone locations suitable for parachuting equipment or
+       personnel within a designated area of interest given slope and
+       vegetation data.
 
-     INPUTS:
-      in_slope_raster (Raster Layer):
-          The slope raster percentage used to determine the slope component of
-          DZ suitability.
-      in_vegetation_features (Feature Layer):
-          The features that define the combined vegetation and land cover types.
-          These features will be used to find areas with suitable vegetation
-          coverage for DZs.
-      clip_features (Feature Set):
-          The area within which suitable DZs will be found.
+    INPUTS:
+     in_slope_raster (Raster Layer):
+         The slope raster percentage used to determine the slope component of
+         DZ suitability.
+     in_vegetation_features (Feature Layer):
+         The features that define the combined vegetation and land cover types.
+         These features will be used to find areas with suitable vegetation
+         coverage for DZs.
+     clip_features (Feature Set):
+         The area within which suitable DZs will be found.
 
-     OUTPUTS:
-      out_feature_class (Feature Class):
-          The output feature class showing terrain suitability for DZs."""
+    OUTPUTS:
+     out_feature_class (Feature Class):
+         The output feature class showing terrain suitability for DZs."""
     ...
 
-@gptooldoc('GenerateHLZSuitability_intelligence', None)
-def GenerateHLZSuitability(in_slope_raster=..., in_land_cover_raster=..., in_obstacle_buffer_features=..., out_raster=...): # -> conversion | int | float | complex | basestring | list[Unknown] | tuple[Unknown, ...] | dict[Unknown, Unknown]:
+@gptooldoc("GenerateHLZSuitability_intelligence", None)
+def GenerateHLZSuitability(
+    in_slope_raster=...,
+    in_land_cover_raster=...,
+    in_obstacle_buffer_features=...,
+    out_raster=...,
+):  # -> conversion | int | float | complex | basestring | list[Unknown] | tuple[Unknown, ...] | dict[Unknown, Unknown]:
     """GenerateHLZSuitability_intelligence(in_slope_raster, in_land_cover_raster, in_obstacle_buffer_features, out_raster)
 
-        Creates a helicopter landing zone (HLZ) suitability raster layer from
-        reclassified slope, reclassified land cover, and obstacle buffers.
+       Creates a helicopter landing zone (HLZ) suitability raster layer from
+       reclassified slope, reclassified land cover, and obstacle buffers.
 
-     INPUTS:
-      in_slope_raster (Raster Layer):
-          The reclassified slope raster with values 1 (acceptable) and 2
-          (acceptable with caution). All other values will be excluded from the
-          analysis.
-      in_land_cover_raster (Raster Layer):
-          The reclassified land cover raster with values 1 (acceptable) and 2
-          (acceptable with caution). All other values will be excluded from the
-          analysis.
-      in_obstacle_buffer_features (Feature Layer):
-          Obstacle area features representing approach and departure safety
-          buffers around obstacles.
+    INPUTS:
+     in_slope_raster (Raster Layer):
+         The reclassified slope raster with values 1 (acceptable) and 2
+         (acceptable with caution). All other values will be excluded from the
+         analysis.
+     in_land_cover_raster (Raster Layer):
+         The reclassified land cover raster with values 1 (acceptable) and 2
+         (acceptable with caution). All other values will be excluded from the
+         analysis.
+     in_obstacle_buffer_features (Feature Layer):
+         Obstacle area features representing approach and departure safety
+         buffers around obstacles.
 
-     OUTPUTS:
-      out_raster (Raster Dataset):
-          The output raster dataset."""
+    OUTPUTS:
+     out_raster (Raster Dataset):
+         The output raster dataset."""
     ...
 
-@gptooldoc('GenerateObstacleFeatures_intelligence', None)
-def GenerateObstacleFeatures(in_features=..., height_field=..., out_obstacle_features=..., out_obstacle_buffers=..., clip_features=...): # -> conversion | int | float | complex | basestring | list[Unknown] | tuple[Unknown, ...] | dict[Unknown, Unknown]:
+@gptooldoc("GenerateObstacleFeatures_intelligence", None)
+def GenerateObstacleFeatures(
+    in_features=...,
+    height_field=...,
+    out_obstacle_features=...,
+    out_obstacle_buffers=...,
+    clip_features=...,
+):  # -> conversion | int | float | complex | basestring | list[Unknown] | tuple[Unknown, ...] | dict[Unknown, Unknown]:
     """GenerateObstacleFeatures_intelligence(in_features, height_field, out_obstacle_features, out_obstacle_buffers, {clip_features})
 
-        Converts features with a height field to a 3D obstacle feature and an
-        obstacle restriction buffer for use in evaluating helicopter landing
-        zones.
+       Converts features with a height field to a 3D obstacle feature and an
+       obstacle restriction buffer for use in evaluating helicopter landing
+       zones.
 
-     INPUTS:
-      in_features (Feature Layer):
-          The input source features used to create obstacle features.
-      height_field (Field):
-          A field from the in_features parameter containing height values. The
-          field type can be numeric or text. If a text field is used, the field
-          values must be numeric.
-      clip_features {Feature Layer}:
-          An area to clip the out_obstacle_features. Only features within the
-          clip_features will be processed.
+    INPUTS:
+     in_features (Feature Layer):
+         The input source features used to create obstacle features.
+     height_field (Field):
+         A field from the in_features parameter containing height values. The
+         field type can be numeric or text. If a text field is used, the field
+         values must be numeric.
+     clip_features {Feature Layer}:
+         An area to clip the out_obstacle_features. Only features within the
+         clip_features will be processed.
 
-     OUTPUTS:
-      out_obstacle_features (Feature Class):
-          The output 3D obstacle features.
-      out_obstacle_buffers (Feature Class):
-          The output obstacle buffer features"""
+    OUTPUTS:
+     out_obstacle_features (Feature Class):
+         The output 3D obstacle features.
+     out_obstacle_buffers (Feature Class):
+         The output obstacle buffer features"""
     ...
 
-@gptooldoc('LeastCostPath_intelligence', None)
-def LeastCostPath(in_cost_surface=..., in_start_point=..., in_end_point=..., out_path_feature_class=..., handle_zeros=...): # -> conversion | int | float | complex | basestring | list[Unknown] | tuple[Unknown, ...] | dict[Unknown, Unknown]:
+@gptooldoc("LeastCostPath_intelligence", None)
+def LeastCostPath(
+    in_cost_surface=...,
+    in_start_point=...,
+    in_end_point=...,
+    out_path_feature_class=...,
+    handle_zeros=...,
+):  # -> conversion | int | float | complex | basestring | list[Unknown] | tuple[Unknown, ...] | dict[Unknown, Unknown]:
     """LeastCostPath_intelligence(in_cost_surface, in_start_point, in_end_point, out_path_feature_class, {handle_zeros})
 
-        Finds the shortest path between starting points and ending points
-        across a cost surface.
+       Finds the shortest path between starting points and ending points
+       across a cost surface.
 
-     INPUTS:
-      in_cost_surface (Raster Layer):
-          The input raster used to determine the cost to travel from starting
-          point to ending point. No Data values cannot be crossed.
-      in_start_point (Feature Set):
-          The input starting point feature. Multiple start points will
-          significantly increase processing time.
-      in_end_point (Feature Set):
-          The input ending point feature. Multiple end points will increase the
-          number of output lines, as the resulting path will branch into
-          separate paths.
-      handle_zeros {String}:
-          Specifies how zero values in the in_cost_surface parameter will be
-          handled.
+    INPUTS:
+     in_cost_surface (Raster Layer):
+         The input raster used to determine the cost to travel from starting
+         point to ending point. No Data values cannot be crossed.
+     in_start_point (Feature Set):
+         The input starting point feature. Multiple start points will
+         significantly increase processing time.
+     in_end_point (Feature Set):
+         The input ending point feature. Multiple end points will increase the
+         number of output lines, as the resulting path will branch into
+         separate paths.
+     handle_zeros {String}:
+         Specifies how zero values in the in_cost_surface parameter will be
+         handled.
 
-          * SMALL_POSITIVE-All zeros will be changed to a small positive value.
-          This will allow the cells to be traversed. This is the default.
+         * SMALL_POSITIVE-All zeros will be changed to a small positive value.
+         This will allow the cells to be traversed. This is the default.
 
-          * NO_DATA-All zeros will be changed to null values. The cells will not
-          be traversed and will be avoided.
+         * NO_DATA-All zeros will be changed to null values. The cells will not
+         be traversed and will be avoided.
 
-     OUTPUTS:
-      out_path_feature_class (Feature Class):
-          The output path feature class."""
+    OUTPUTS:
+     out_path_feature_class (Feature Class):
+         The output path feature class."""
     ...
 
-@gptooldoc('BatchImportData_intelligence', None)
-def BatchImportData(in_data=..., target_gdb=..., filter=..., include_sub_folders=..., include_groundoverlay=...): # -> conversion | int | float | complex | basestring | list[Unknown] | tuple[Unknown, ...] | dict[Unknown, Unknown]:
+@gptooldoc("BatchImportData_intelligence", None)
+def BatchImportData(
+    in_data=...,
+    target_gdb=...,
+    filter=...,
+    include_sub_folders=...,
+    include_groundoverlay=...,
+):  # -> conversion | int | float | complex | basestring | list[Unknown] | tuple[Unknown, ...] | dict[Unknown, Unknown]:
     """BatchImportData_intelligence(in_data;in_data..., target_gdb, {filter}, {include_sub_folders}, {include_groundoverlay})
 
-        Imports KML, KMZ, shapefiles, Excel worksheets, tabular text files,
-        GeoJSON, and GPX files to feature classes stored in a single
-        geodatabase.
+       Imports KML, KMZ, shapefiles, Excel worksheets, tabular text files,
+       GeoJSON, and GPX files to feature classes stored in a single
+       geodatabase.
 
-     INPUTS:
-      in_data (Folder / File):
-          The folders containing the data files or the data files to convert to
-          geodatabase feature classes.
-      target_gdb (Workspace):
-          The target geodatabase where output feature classes will be stored.
-      filter {String}:
-          Applies a filter to limit which files are imported from
-          folders. The following wildcard characters for the filter work on the
-          full path to the input data:Multiple patterns can be added to the
-          filter by separating each pattern with the vertical bar or pipe
-          delimiter (|). Pattern comparisons are not case sensitive, so using
-          the *airport.shp, *AIRPORT.SHP, or *Airport.shp pattern, for example,
-          will import the same shapefile.
+    INPUTS:
+     in_data (Folder / File):
+         The folders containing the data files or the data files to convert to
+         geodatabase feature classes.
+     target_gdb (Workspace):
+         The target geodatabase where output feature classes will be stored.
+     filter {String}:
+         Applies a filter to limit which files are imported from
+         folders. The following wildcard characters for the filter work on the
+         full path to the input data:Multiple patterns can be added to the
+         filter by separating each pattern with the vertical bar or pipe
+         delimiter (|). Pattern comparisons are not case sensitive, so using
+         the *airport.shp, *AIRPORT.SHP, or *Airport.shp pattern, for example,
+         will import the same shapefile.
 
-          * *-Match any character
+         * *-Match any character
 
-          * ?-Match a single character
+         * ?-Match a single character
 
-          * [range]-Match a single character in the range
+         * [range]-Match a single character in the range
 
-          * [!range]-Match any character not in the range
-                  The following are filter examples:
+         * [!range]-Match any character not in the range
+                 The following are filter examples:
 
-          * To import all shapefiles, use *.shp.
+         * To import all shapefiles, use *.shp.
 
-          * To import all shapefiles and all .kml files, use *.shp|*.kml.
+         * To import all shapefiles and all .kml files, use *.shp|*.kml.
 
-          * To import all files that have airport in the file path or file name,
-          use *airport*.
+         * To import all files that have airport in the file path or file name,
+         use *airport*.
 
-          * To import all .geojson files that have airport in the file path or
-          file name, use *airport*.geojson.
+         * To import all .geojson files that have airport in the file path or
+         file name, use *airport*.geojson.
 
-          * To import all .kmz files that have airport appended with any two
-          characters in the name, use *airport??.kmz.
+         * To import all .kmz files that have airport appended with any two
+         characters in the name, use *airport??.kmz.
 
-          * To import all files that have 1990 through 1997 in the file path or
-          file name, use *199[0-7]*.
+         * To import all files that have 1990 through 1997 in the file path or
+         file name, use *199[0-7]*.
 
-          * To import all shapefiles that have the exact folder name
-          airfacilities in their file path, use *\\airfacilities\\*.shp.
-      include_sub_folders {Boolean}:
-          Specifies whether subfolders will be recursively explored.
+         * To import all shapefiles that have the exact folder name
+         airfacilities in their file path, use *\\airfacilities\\*.shp.
+     include_sub_folders {Boolean}:
+         Specifies whether subfolders will be recursively explored.
 
-          * SUBFOLDERS-All subfolders will be explored This is the default.
+         * SUBFOLDERS-All subfolders will be explored This is the default.
 
-          * NO_SUBFOLDERS-Only the top-level folder will be explored.
-      include_groundoverlay {Boolean}:
-          Specifies whether KML or KMZ ground overlays (raster, air photos, and
-          so on) are included in the output.Use caution if the KMZ points to a
-          service that serves raster imagery.
-          The tool will attempt to translate the raster imagery at all available
-          scales. This process may be lengthy and possibly overwhelm the
-          service.
+         * NO_SUBFOLDERS-Only the top-level folder will be explored.
+     include_groundoverlay {Boolean}:
+         Specifies whether KML or KMZ ground overlays (raster, air photos, and
+         so on) are included in the output.Use caution if the KMZ points to a
+         service that serves raster imagery.
+         The tool will attempt to translate the raster imagery at all available
+         scales. This process may be lengthy and possibly overwhelm the
+         service.
 
-          * GROUNDOVERLAY-Ground overlays will be included in the output. This
-          is the default.
+         * GROUNDOVERLAY-Ground overlays will be included in the output. This
+         is the default.
 
-          * NO_GROUNDOVERLAY-Ground overlays will not be included in the output."""
+         * NO_GROUNDOVERLAY-Ground overlays will not be included in the output."""
     ...
 
-@gptooldoc('CreateLocationFileFromTextFile_intelligence', None)
-def CreateLocationFileFromTextFile(in_placenames_file=..., data_source=..., out_location_file=..., include_features=..., in_rois=...): # -> conversion | int | float | complex | basestring | list[Unknown] | tuple[Unknown, ...] | dict[Unknown, Unknown]:
+@gptooldoc("CreateLocationFileFromTextFile_intelligence", None)
+def CreateLocationFileFromTextFile(
+    in_placenames_file=...,
+    data_source=...,
+    out_location_file=...,
+    include_features=...,
+    in_rois=...,
+):  # -> conversion | int | float | complex | basestring | list[Unknown] | tuple[Unknown, ...] | dict[Unknown, Unknown]:
     """CreateLocationFileFromTextFile_intelligence(in_placenames_file, data_source, out_location_file, {include_features;include_features...}, {in_rois})
 
-        Creates a location file for use in ArcGIS LocateXT from a text file
-        from GeoNames, National Geospatial-Intelligence Agency Geonet Names
-        Server, or U.S. Geological Survey Geographic Names Information
-        Service.
+       Creates a location file for use in ArcGIS LocateXT from a text file
+       from GeoNames, National Geospatial-Intelligence Agency Geonet Names
+       Server, or U.S. Geological Survey Geographic Names Information
+       Service.
 
-     INPUTS:
-      in_placenames_file (File):
-          A place-names text file obtained from GeoNames, NGA GNS, or USGS GNIS.
-      data_source (String):
-          Specifies the data source from which the input was created.
+    INPUTS:
+     in_placenames_file (File):
+         A place-names text file obtained from GeoNames, NGA GNS, or USGS GNIS.
+     data_source (String):
+         Specifies the data source from which the input was created.
 
-          * GEONAMES-The input file is from GeoNames.org.
+         * GEONAMES-The input file is from GeoNames.org.
 
-          * NGA_GNS-The input file is from NGA GNS.
+         * NGA_GNS-The input file is from NGA GNS.
 
-          * USGS_GNIS-The input file is from USGS GNIS.
+         * USGS_GNIS-The input file is from USGS GNIS.
 
-          * USGS_ANTARCTIC_NAMES-The input file is from USGS GNIS Antarctic
-          Names.
-      include_features {String}:
-          Specifies the feature class types from the input data source that will
-          be included in the output.
+         * USGS_ANTARCTIC_NAMES-The input file is from USGS GNIS Antarctic
+         Names.
+     include_features {String}:
+         Specifies the feature class types from the input data source that will
+         be included in the output.
 
-          * ADMINISTRATIVE_FEATURES-Administrative features such as
-          administrative boundaries, town, city, state, province, tribal, and
-          country borders will be included.
+         * ADMINISTRATIVE_FEATURES-Administrative features such as
+         administrative boundaries, town, city, state, province, tribal, and
+         country borders will be included.
 
-          * HYDROLOGICAL_FEATURES-Features such as rivers, lakes, ponds, and
-          other water features will be included.
+         * HYDROLOGICAL_FEATURES-Features such as rivers, lakes, ponds, and
+         other water features will be included.
 
-          * LOCALITY_FEATURES-Features such as buildings, churches, hospitals,
-          and other human-made points of interest will be included.
+         * LOCALITY_FEATURES-Features such as buildings, churches, hospitals,
+         and other human-made points of interest will be included.
 
-          * POPULATED_PLACES-Locations of named places such as towns, cities,
-          villages, and other consolidated areas of people will be included.
+         * POPULATED_PLACES-Locations of named places such as towns, cities,
+         villages, and other consolidated areas of people will be included.
 
-          * TRANSPORTATION_FEATURES-Features such as roads, trails, railroads,
-          and airports will be included.
+         * TRANSPORTATION_FEATURES-Features such as roads, trails, railroads,
+         and airports will be included.
 
-          * SPOT_FEATURES-Hypsographic features such as mountain peaks and other
-          natural points of interest will be included.
+         * SPOT_FEATURES-Hypsographic features such as mountain peaks and other
+         natural points of interest will be included.
 
-          * TERRAIN_FEATURES-Features such as mountains, hills, cliffs, craters,
-          and ridges will be included.
+         * TERRAIN_FEATURES-Features such as mountains, hills, cliffs, craters,
+         and ridges will be included.
 
-          * VEGETATION_FEATURES-Features such as forests, bushland, scrubland,
-          and other areas of consistent vegetation will be included.
+         * VEGETATION_FEATURES-Features such as forests, bushland, scrubland,
+         and other areas of consistent vegetation will be included.
 
-          * UNDERSEA_FEATURES-Undersea features such as reefs, bars, and
-          shipwrecks will be included.
-      in_rois {Feature Layer}:
-          The feature layer that will be used to create a subset of the input
-          place-names file.
+         * UNDERSEA_FEATURES-Undersea features such as reefs, bars, and
+         shipwrecks will be included.
+     in_rois {Feature Layer}:
+         The feature layer that will be used to create a subset of the input
+         place-names file.
 
-     OUTPUTS:
-      out_location_file (File):
-          The output location file."""
+    OUTPUTS:
+     out_location_file (File):
+         The output location file."""
     ...
 
-@gptooldoc('PointsToTrackSegments_intelligence', None)
-def PointsToTrackSegments(in_features=..., date_field=..., out_feature_class=..., group_field=..., include_velocity=..., out_point_feature_class=..., error_on_duplicate_timestamps=..., keep_input_fields=...): # -> conversion | int | float | complex | basestring | list[Unknown] | tuple[Unknown, ...] | dict[Unknown, Unknown]:
+@gptooldoc("PointsToTrackSegments_intelligence", None)
+def PointsToTrackSegments(
+    in_features=...,
+    date_field=...,
+    out_feature_class=...,
+    group_field=...,
+    include_velocity=...,
+    out_point_feature_class=...,
+    error_on_duplicate_timestamps=...,
+    keep_input_fields=...,
+):  # -> conversion | int | float | complex | basestring | list[Unknown] | tuple[Unknown, ...] | dict[Unknown, Unknown]:
     """PointsToTrackSegments_intelligence(in_features, date_field, out_feature_class, {group_field}, {include_velocity}, {out_point_feature_class}, {error_on_duplicate_timestamps}, {keep_input_fields})
 
-        Converts time-enabled sequences of input point data, such as GPS
-        points, to a series of output paths.
+       Converts time-enabled sequences of input point data, such as GPS
+       points, to a series of output paths.
 
-     INPUTS:
-      in_features (Feature Layer):
-          Point features as point positions along the tracks to be created.
-      date_field (Field):
-          The date field that will be used to order the in_features points.
-      group_field {Field}:
-          A field from the in_features parameter that will be used to group the
-          input points. Each unique group will create a separate track.
-      include_velocity {Boolean}:
-          Specifies whether output velocity fields (speed_mps, speed_mph,
-          speed_kph, and speed_knt) will be included in the out_feature_class
-          parameter value.
+    INPUTS:
+     in_features (Feature Layer):
+         Point features as point positions along the tracks to be created.
+     date_field (Field):
+         The date field that will be used to order the in_features points.
+     group_field {Field}:
+         A field from the in_features parameter that will be used to group the
+         input points. Each unique group will create a separate track.
+     include_velocity {Boolean}:
+         Specifies whether output velocity fields (speed_mps, speed_mph,
+         speed_kph, and speed_knt) will be included in the out_feature_class
+         parameter value.
 
-          * INCLUDE_VELOCITY-Output velocity fields will be included in the
-          output. This is the default.
+         * INCLUDE_VELOCITY-Output velocity fields will be included in the
+         output. This is the default.
 
-          * EXCLUDE_VELOCITY-Output velocity fields will not be included in the
-          output.
-      error_on_duplicate_timestamps {Boolean}:
-          Specifies whether duplicate time stamps in the date_field parameter
-          value or within each group in the group_field parameter value will be
-          accepted or cause the tool to fail.
+         * EXCLUDE_VELOCITY-Output velocity fields will not be included in the
+         output.
+     error_on_duplicate_timestamps {Boolean}:
+         Specifies whether duplicate time stamps in the date_field parameter
+         value or within each group in the group_field parameter value will be
+         accepted or cause the tool to fail.
 
-          * ERROR_DUPLICATE_TIMESTAMPS-Duplicate time stamps will cause the tool
-          to fail. This is the default.
+         * ERROR_DUPLICATE_TIMESTAMPS-Duplicate time stamps will cause the tool
+         to fail. This is the default.
 
-          * ALLOW_DUPLICATE_TIMESTAMPS-Duplicate time stamps will be accepted.
-          The sequence of the duplicate time stamps is based on the ObjectID.
-      keep_input_fields {Boolean}:
-          Specifies whether fields will be transferred from the in_features
-          parameter value to the out_point_feature_class parameter value.
+         * ALLOW_DUPLICATE_TIMESTAMPS-Duplicate time stamps will be accepted.
+         The sequence of the duplicate time stamps is based on the ObjectID.
+     keep_input_fields {Boolean}:
+         Specifies whether fields will be transferred from the in_features
+         parameter value to the out_point_feature_class parameter value.
 
-          * KEEP_INPUT_FIELDS-Fields will be transferred from the in_features
-          parameter value to the out_point_feature_class parameter value.
+         * KEEP_INPUT_FIELDS-Fields will be transferred from the in_features
+         parameter value to the out_point_feature_class parameter value.
 
-          * DISCARD_INPUT_FIELDS-Fields will be transferred from the in_features
-          parameter value to the out_point_feature_class parameter value. This
-          is the default.
+         * DISCARD_INPUT_FIELDS-Fields will be transferred from the in_features
+         parameter value to the out_point_feature_class parameter value. This
+         is the default.
 
-     OUTPUTS:
-      out_feature_class (Feature Class):
-          The output track line features.
-      out_point_feature_class {Feature Class}:
-          The output point features. The output will include a SEQUENCE field
-          that contains the order that will be used for the path created in the
-          out_feature_class parameter."""
+    OUTPUTS:
+     out_feature_class (Feature Class):
+         The output track line features.
+     out_point_feature_class {Feature Class}:
+         The output point features. The output will include a SEQUENCE field
+         that contains the order that will be used for the path created in the
+         out_feature_class parameter."""
     ...
 
-@gptooldoc('ClassifyMovementEvents_intelligence', None)
-def ClassifyMovementEvents(in_features=..., id_field=..., out_featureclass=..., curvature=..., number_of_points=..., regions_of_interest=..., roi_id_field=..., include_turn_ids=..., exclude_non_turn_events=..., turn_events_representation=...): # -> conversion | int | float | complex | basestring | list[Unknown] | tuple[Unknown, ...] | dict[Unknown, Unknown]:
+@gptooldoc("ClassifyMovementEvents_intelligence", None)
+def ClassifyMovementEvents(
+    in_features=...,
+    id_field=...,
+    out_featureclass=...,
+    curvature=...,
+    number_of_points=...,
+    regions_of_interest=...,
+    roi_id_field=...,
+    include_turn_ids=...,
+    exclude_non_turn_events=...,
+    turn_events_representation=...,
+):  # -> conversion | int | float | complex | basestring | list[Unknown] | tuple[Unknown, ...] | dict[Unknown, Unknown]:
     """ClassifyMovementEvents_intelligence(in_features, id_field, out_featureclass, {curvature}, {number_of_points}, {regions_of_interest}, {roi_id_field}, {include_turn_ids}, {exclude_non_turn_events}, {turn_events_representation})
 
-        Identifies turn events, acceleration events, and speed from an input
-        point track dataset.
+       Identifies turn events, acceleration events, and speed from an input
+       point track dataset.
 
-     INPUTS:
-      in_features (Feature Layer):
-          A time-enabled point feature layer with a field annotating the track
-          with which each point is associated. The geometry, object identifier,
-          track name, and time will be transferred to the output feature class.
-          The input must be in a projected coordinate system.
-      id_field (Field):
-          A field from the input features that will be used to obtain the unique
-          identifiers per point track. The field will be copied to the output
-          feature class.
-      curvature {Double}:
-          The minimum value that is necessary for an event to be classified as a
-          turn event. After the curvature is calculated, any calculated
-          curvature greater than this value will cause the turn_event field to
-          be populated with the relevant turn event, while values less than this
-          will cause the turn_event field to be classified as traveling.Turns
-          are calculated using the curvature and number_of_points
-          parameters. Each point is evaluated based on the bearing from the
-          previous point in the track to the current point and from the current
-          point to the next point in the track. If the value exceeds the value
-          specified for the curvature parameter, it is considered a turn.
-          Otherwise, it is considered to be traveling. For tracks representing
-          large objects, it is recommended that you increase the
-          number_of_points value to account for the longer amount of time to
-          conduct a turn.
-      number_of_points {Long}:
-          The number of points that will be evaluated before and after a given
-          point when calculating the bearing difference. When using data with a
-          high sampling rate (subsecond), you may need to increase the
-          number_of_points parameter value to account for the decreased movement
-          that is possible in that brief time period. A value of 1 is suitable
-          for automobiles and pedestrians assuming a one-second sampling on the
-          input data. Larger values are necessary for aircraft and ships; use a
-          value of 5 for these.
-      regions_of_interest {Feature Layer}:
-          The regions of interest. This input feature layer must be a polygon
-          feature class. If a value is provided, a roi field will be added to
-          the out_featureclass parameter.
-      roi_id_field {Field}:
-          A field from the regions_of_interest parameter that contains the
-          unique identifiers for each region of interest.
-      include_turn_ids {Boolean}:
-          Specifies whether turn event identifiers will be created for the
-          output feature class.
+    INPUTS:
+     in_features (Feature Layer):
+         A time-enabled point feature layer with a field annotating the track
+         with which each point is associated. The geometry, object identifier,
+         track name, and time will be transferred to the output feature class.
+         The input must be in a projected coordinate system.
+     id_field (Field):
+         A field from the input features that will be used to obtain the unique
+         identifiers per point track. The field will be copied to the output
+         feature class.
+     curvature {Double}:
+         The minimum value that is necessary for an event to be classified as a
+         turn event. After the curvature is calculated, any calculated
+         curvature greater than this value will cause the turn_event field to
+         be populated with the relevant turn event, while values less than this
+         will cause the turn_event field to be classified as traveling.Turns
+         are calculated using the curvature and number_of_points
+         parameters. Each point is evaluated based on the bearing from the
+         previous point in the track to the current point and from the current
+         point to the next point in the track. If the value exceeds the value
+         specified for the curvature parameter, it is considered a turn.
+         Otherwise, it is considered to be traveling. For tracks representing
+         large objects, it is recommended that you increase the
+         number_of_points value to account for the longer amount of time to
+         conduct a turn.
+     number_of_points {Long}:
+         The number of points that will be evaluated before and after a given
+         point when calculating the bearing difference. When using data with a
+         high sampling rate (subsecond), you may need to increase the
+         number_of_points parameter value to account for the decreased movement
+         that is possible in that brief time period. A value of 1 is suitable
+         for automobiles and pedestrians assuming a one-second sampling on the
+         input data. Larger values are necessary for aircraft and ships; use a
+         value of 5 for these.
+     regions_of_interest {Feature Layer}:
+         The regions of interest. This input feature layer must be a polygon
+         feature class. If a value is provided, a roi field will be added to
+         the out_featureclass parameter.
+     roi_id_field {Field}:
+         A field from the regions_of_interest parameter that contains the
+         unique identifiers for each region of interest.
+     include_turn_ids {Boolean}:
+         Specifies whether turn event identifiers will be created for the
+         output feature class.
 
-          * INCLUDE_TURN_IDS-Unique turn event identifiers will be created.
+         * INCLUDE_TURN_IDS-Unique turn event identifiers will be created.
 
-          * NO_TURN_IDS-Unique turn event identifiers will not be created. This
-          is the default.
-      exclude_non_turn_events {Boolean}:
-          Specifies whether to filter features with a turn_event field value of
-          Traveling.
+         * NO_TURN_IDS-Unique turn event identifiers will not be created. This
+         is the default.
+     exclude_non_turn_events {Boolean}:
+         Specifies whether to filter features with a turn_event field value of
+         Traveling.
 
-          * ONLY_TURN_EVENTS-Features with a turn_event field value of Traveling
-          will be excluded.
+         * ONLY_TURN_EVENTS-Features with a turn_event field value of Traveling
+         will be excluded.
 
-          * ALL_FEATURES-Features with a turn_event field value of Traveling
-          will not be excluded; all features will be returned. This is the
-          default.
-      turn_events_representation {String}:
-          Specifies how the output turn events will be represented.
+         * ALL_FEATURES-Features with a turn_event field value of Traveling
+         will not be excluded; all features will be returned. This is the
+         default.
+     turn_events_representation {String}:
+         Specifies how the output turn events will be represented.
 
-     OUTPUTS:
-      out_featureclass (Feature Class):
-          The output feature class that will contain the calculated movement
-          events."""
+    OUTPUTS:
+     out_featureclass (Feature Class):
+         The output feature class that will contain the calculated movement
+         events."""
     ...
 
-@gptooldoc('CompareAreas_intelligence', None)
-def CompareAreas(in_point_features=..., in_area_features=..., out_featureclass=..., point_id_field=..., area_id_field=..., relationship=..., time_difference=..., time_relationship=..., include_time_statistics=...): # -> conversion | int | float | complex | basestring | list[Unknown] | tuple[Unknown, ...] | dict[Unknown, Unknown]:
+@gptooldoc("CompareAreas_intelligence", None)
+def CompareAreas(
+    in_point_features=...,
+    in_area_features=...,
+    out_featureclass=...,
+    point_id_field=...,
+    area_id_field=...,
+    relationship=...,
+    time_difference=...,
+    time_relationship=...,
+    include_time_statistics=...,
+):  # -> conversion | int | float | complex | basestring | list[Unknown] | tuple[Unknown, ...] | dict[Unknown, Unknown]:
     """CompareAreas_intelligence(in_point_features, in_area_features, out_featureclass, point_id_field, area_id_field, relationship, {time_difference}, {time_relationship}, {include_time_statistics})
 
-        Compares movement point tracks across multiple known areas of
-        interest.
+       Compares movement point tracks across multiple known areas of
+       interest.
 
-     INPUTS:
-      in_point_features (Feature Layer):
-          The point features representing the movement track points. The layer
-          can be time enabled.
-      in_area_features (Feature Layer):
-          The area features representing the areas of interest that will be used
-          to identify unique movement track point identifiers. The layer can be
-          time enabled.
-      point_id_field (Field):
-          The field containing the unique identifiers for the movement track
-          points. The field can be either a number or a string.
-      area_id_field (Field):
-          The field containing the unique identifiers for the areas of interest.
-          The field can be either a number or a string.
-      relationship (String):
-          Specifies the relationship between the inputs.
+    INPUTS:
+     in_point_features (Feature Layer):
+         The point features representing the movement track points. The layer
+         can be time enabled.
+     in_area_features (Feature Layer):
+         The area features representing the areas of interest that will be used
+         to identify unique movement track point identifiers. The layer can be
+         time enabled.
+     point_id_field (Field):
+         The field containing the unique identifiers for the movement track
+         points. The field can be either a number or a string.
+     area_id_field (Field):
+         The field containing the unique identifiers for the areas of interest.
+         The field can be either a number or a string.
+     relationship (String):
+         Specifies the relationship between the inputs.
 
-          * LOCATION_ONLY-Points and area features will be evaluated based on
-          spatial co-occurrence.
+         * LOCATION_ONLY-Points and area features will be evaluated based on
+         spatial co-occurrence.
 
-          * LOCATION_TIME-Points and area features will be evaluated based on
-          spatial and temporal co-occurrence.
-      time_difference {Time Unit}:
-          The time allowed between the in_point_features and in_area_features
-          parameter values before a spatial relationship is considered invalid.
-          This parameter is enabled when the relationship parameter is set to
-          LOCATION_TIME and both inputs are time enabled.
-      time_relationship {String}:
-          Specifies the time relationship between the in_point_features and
-          in_area_features parameter values.This parameter is only enabled when
-          the relationship parameter is set
-          to LOCATION_TIME and both inputs are time enabled. If the NEAR_BEFORE
-          or NEAR_AFTER option is specified, only features in the
-          in_point_features parameter value that are within the specified time
-          window will be evaluated for inclusion in the out_featureclass
-          parameter value.
+         * LOCATION_TIME-Points and area features will be evaluated based on
+         spatial and temporal co-occurrence.
+     time_difference {Time Unit}:
+         The time allowed between the in_point_features and in_area_features
+         parameter values before a spatial relationship is considered invalid.
+         This parameter is enabled when the relationship parameter is set to
+         LOCATION_TIME and both inputs are time enabled.
+     time_relationship {String}:
+         Specifies the time relationship between the in_point_features and
+         in_area_features parameter values.This parameter is only enabled when
+         the relationship parameter is set
+         to LOCATION_TIME and both inputs are time enabled. If the NEAR_BEFORE
+         or NEAR_AFTER option is specified, only features in the
+         in_point_features parameter value that are within the specified time
+         window will be evaluated for inclusion in the out_featureclass
+         parameter value.
 
-          * NEAR-When a point feature time is within a specified range of time
-          from the area feature time, the point feature time is near the area
-          feature time.
+         * NEAR-When a point feature time is within a specified range of time
+         from the area feature time, the point feature time is near the area
+         feature time.
 
-          * NEAR_BEFORE-When a point feature time is before the area feature
-          time but within a specified range of time from the join time, the
-          point feature time is near before the area feature time.
+         * NEAR_BEFORE-When a point feature time is before the area feature
+         time but within a specified range of time from the join time, the
+         point feature time is near before the area feature time.
 
-          * NEAR_AFTER-When a point feature time is after the area feature time
-          but within a specified range of time from the join time, the point
-          feature time is near after the area feature time.
-      include_time_statistics {Boolean}:
-          Specifies whether time statistics fields will be added.
+         * NEAR_AFTER-When a point feature time is after the area feature time
+         but within a specified range of time from the join time, the point
+         feature time is near after the area feature time.
+     include_time_statistics {Boolean}:
+         Specifies whether time statistics fields will be added.
 
-          * TIME_STATISTICS-Time statistics fields will be added to the output.
+         * TIME_STATISTICS-Time statistics fields will be added to the output.
 
-          * NO_TIME_STATISTICS-Time statistics fields will not be added to the
-          output.
+         * NO_TIME_STATISTICS-Time statistics fields will not be added to the
+         output.
 
-     OUTPUTS:
-      out_featureclass (Feature Layer):
-          The output area feature class. The output will contain a copy of the
-          in_area_features geometry and the unique identifiers from the
-          area_id_field and point_id_field parameters.If both the
-          in_point_features and in_area_features parameter values
-          are time enabled and relationship is set to LOCATION_TIME, only the
-          features matching the geometry and the time span will be returned."""
+    OUTPUTS:
+     out_featureclass (Feature Layer):
+         The output area feature class. The output will contain a copy of the
+         in_area_features geometry and the unique identifiers from the
+         area_id_field and point_id_field parameters.If both the
+         in_point_features and in_area_features parameter values
+         are time enabled and relationship is set to LOCATION_TIME, only the
+         features matching the geometry and the time span will be returned."""
     ...
 
-@gptooldoc('FindCotravelers_intelligence', None)
-def FindCotravelers(input_features=..., out_featureclass=..., id_field=..., search_distance=..., time_difference=..., input_type=..., secondary_features=..., secondary_id_field=..., create_summary_table=..., out_summary_table=..., include_min_cotraveling_duration=..., min_cotraveling_duration=...): # -> conversion | int | float | complex | basestring | list[Unknown] | tuple[Unknown, ...] | dict[Unknown, Unknown]:
+@gptooldoc("FindCotravelers_intelligence", None)
+def FindCotravelers(
+    input_features=...,
+    out_featureclass=...,
+    id_field=...,
+    search_distance=...,
+    time_difference=...,
+    input_type=...,
+    secondary_features=...,
+    secondary_id_field=...,
+    create_summary_table=...,
+    out_summary_table=...,
+    include_min_cotraveling_duration=...,
+    min_cotraveling_duration=...,
+):  # -> conversion | int | float | complex | basestring | list[Unknown] | tuple[Unknown, ...] | dict[Unknown, Unknown]:
     """FindCotravelers_intelligence(input_features, out_featureclass, id_field, {search_distance}, {time_difference}, {input_type}, {secondary_features}, {secondary_id_field}, {create_summary_table}, {out_summary_table}, {include_min_cotraveling_duration}, {min_cotraveling_duration})
 
-        Extracts unique identifiers that are moving through space and time at
-        specified intervals in a point track dataset.
+       Extracts unique identifiers that are moving through space and time at
+       specified intervals in a point track dataset.
 
-     INPUTS:
-      input_features (Feature Layer):
-          The time-enabled features representing the known identifier that will
-          be used to find cotravelers. The unique identifiers, time stamps, and
-          locations will be transferred to the output layer to assist with
-          calculating the time and spatial separation.
-      id_field (Field):
-          A field from the input_features parameter that will be used to obtain
-          the unique identifiers per point track. The field will be copied to
-          the output feature class.
-      search_distance {Linear Unit}:
-          The maximum distance that can separate features before they are
-          considered not to be cotraveling features. The default is 100 feet.
-      time_difference {Time Unit}:
-          The maximum time difference that can separate features before they are
-          considered not to be cotraveling features. The default is 10 seconds.
-      input_type {String}:
-          Specifies whether cotravelers will be detected in one feature class or
-          across two.
+    INPUTS:
+     input_features (Feature Layer):
+         The time-enabled features representing the known identifier that will
+         be used to find cotravelers. The unique identifiers, time stamps, and
+         locations will be transferred to the output layer to assist with
+         calculating the time and spatial separation.
+     id_field (Field):
+         A field from the input_features parameter that will be used to obtain
+         the unique identifiers per point track. The field will be copied to
+         the output feature class.
+     search_distance {Linear Unit}:
+         The maximum distance that can separate features before they are
+         considered not to be cotraveling features. The default is 100 feet.
+     time_difference {Time Unit}:
+         The maximum time difference that can separate features before they are
+         considered not to be cotraveling features. The default is 10 seconds.
+     input_type {String}:
+         Specifies whether cotravelers will be detected in one feature class or
+         across two.
 
-          * ONE_FEATURECLASS-Cotravelers will be detected in one feature class.
-          This is the default.
+         * ONE_FEATURECLASS-Cotravelers will be detected in one feature class.
+         This is the default.
 
-          * TWO_FEATURECLASSES-Cotravelers will be detected across two feature
-          classes.
-      secondary_features {Feature Layer}:
-          A second feature class that will identify cotravelers.
-          Potential cotravelers will be evaluated using the following:
+         * TWO_FEATURECLASSES-Cotravelers will be detected across two feature
+         classes.
+     secondary_features {Feature Layer}:
+         A second feature class that will identify cotravelers.
+         Potential cotravelers will be evaluated using the following:
 
-          * Cotravelers are cotraveling inside the input features.
+         * Cotravelers are cotraveling inside the input features.
 
-          * Cotravelers are cotraveling inside the secondary features.
+         * Cotravelers are cotraveling inside the secondary features.
 
-          * Cotravelers are cotraveling between the input features and secondary
-          features.
-      secondary_id_field {Field}:
-          A field from the secondary_features parameter that will be used to
-          obtain the unique identifiers per point track. The field will be
-          copied to the output feature class.
-      create_summary_table {Boolean}:
-          Specifies whether an output summary table will be created.
+         * Cotravelers are cotraveling between the input features and secondary
+         features.
+     secondary_id_field {Field}:
+         A field from the secondary_features parameter that will be used to
+         obtain the unique identifiers per point track. The field will be
+         copied to the output feature class.
+     create_summary_table {Boolean}:
+         Specifies whether an output summary table will be created.
 
-          * NO_SUMMARY_TABLE-A summary table will not be created. This is the
-          default.
+         * NO_SUMMARY_TABLE-A summary table will not be created. This is the
+         default.
 
-          * CREATE_SUMMARY_TABLE-A summary table will be created.
-      include_min_cotraveling_duration {Boolean}:
-          Specifies whether a filter that only returns cotravelers who
-          meet a minimum time of traveling together will be applied.
+         * CREATE_SUMMARY_TABLE-A summary table will be created.
+     include_min_cotraveling_duration {Boolean}:
+         Specifies whether a filter that only returns cotravelers who
+         meet a minimum time of traveling together will be applied.
 
-          * Checked-The minimum cotraveler duration filter will be applied.
+         * Checked-The minimum cotraveler duration filter will be applied.
 
-          * Unchecked-The minimum cotraveler duration filter will not be
-          applied. This is the default.
-          Specifies whether a minimum cotraveler duration filter will be
-          applied.
+         * Unchecked-The minimum cotraveler duration filter will not be
+         applied. This is the default.
+         Specifies whether a minimum cotraveler duration filter will be
+         applied.
 
-          * MIN_COTRAVELING_DURATION-The minimum cotraveler duration filter will
-          be applied.
+         * MIN_COTRAVELING_DURATION-The minimum cotraveler duration filter will
+         be applied.
 
-          * NO_MIN_COTRAVELING_DURATION-The minimum cotraveler duration filter
-          will not be applied. This is the default.
-      min_cotraveling_duration {Time Unit}:
-          The minimum amount of time that two features must be moving through
-          space and time together before they will be considered cotravelers.
+         * NO_MIN_COTRAVELING_DURATION-The minimum cotraveler duration filter
+         will not be applied. This is the default.
+     min_cotraveling_duration {Time Unit}:
+         The minimum amount of time that two features must be moving through
+         space and time together before they will be considered cotravelers.
 
-     OUTPUTS:
-      out_featureclass (Feature Class):
-          The output feature class that will contain the point track segments
-          identified as cotraveling with the input source layers. This feature
-          class will include the source with which the specified point track
-          segment is associated. Time and spatial separation will be calculated
-          for each point track feature.
-      out_summary_table {Table}:
-          The output table that will store the summary information. This
-          parameter is only enabled when the create_summary_table parameter
-          value is set to CREATE_SUMMARY_TABLE. Output files must be tables in a
-          file geodatabase, text files, or comma-separated value files (.csv)."""
+    OUTPUTS:
+     out_featureclass (Feature Class):
+         The output feature class that will contain the point track segments
+         identified as cotraveling with the input source layers. This feature
+         class will include the source with which the specified point track
+         segment is associated. Time and spatial separation will be calculated
+         for each point track feature.
+     out_summary_table {Table}:
+         The output table that will store the summary information. This
+         parameter is only enabled when the create_summary_table parameter
+         value is set to CREATE_SUMMARY_TABLE. Output files must be tables in a
+         file geodatabase, text files, or comma-separated value files (.csv)."""
     ...
 
-@gptooldoc('FindFrequentedLocations_intelligence', None)
-def FindFrequentedLocations(in_features=..., track_id_field=..., out_featureclass=..., expression=..., search_distance=..., minimum_loiter_time=..., time_boundary=..., minimum_dwells=..., normalize_daily_distribution=..., summary_fields=...): # -> conversion | int | float | complex | basestring | list[Unknown] | tuple[Unknown, ...] | dict[Unknown, Unknown]:
+@gptooldoc("FindFrequentedLocations_intelligence", None)
+def FindFrequentedLocations(
+    in_features=...,
+    track_id_field=...,
+    out_featureclass=...,
+    expression=...,
+    search_distance=...,
+    minimum_loiter_time=...,
+    time_boundary=...,
+    minimum_dwells=...,
+    normalize_daily_distribution=...,
+    summary_fields=...,
+):  # -> conversion | int | float | complex | basestring | list[Unknown] | tuple[Unknown, ...] | dict[Unknown, Unknown]:
     """FindFrequentedLocations_intelligence(in_features, track_id_field, out_featureclass, {expression}, {search_distance}, {minimum_loiter_time}, {time_boundary}, {minimum_dwells}, {normalize_daily_distribution}, {summary_fields;summary_fields...})
 
-        Identifies areas where a movement track has dwelled for multiple time
-        periods and aggregates those locations based on a track identifier.
+       Identifies areas where a movement track has dwelled for multiple time
+       periods and aggregates those locations based on a track identifier.
 
-     INPUTS:
-      in_features (Feature Layer):
-          The input movement track points that will be analyzed for possible
-          frequented locations. The layer must be time enabled.
-      track_id_field (Field):
-          The field containing the unique identifiers that will organize the
-          source data into movement tracks.
-      expression {SQL Expression}:
-          An SQL expression used to select a subset of records. For more
-          information about SQL syntax, see SQL reference for query expressions
-          used in ArcGIS.
-      search_distance {Linear Unit}:
-          The maximum distance a movement track point can loiter before it is no
-          longer considered part of a frequented location. The default is 100
-          meters.
-      minimum_loiter_time {Time Unit}:
-          The minimum amount of time a movement track point can loiter in an
-          area before it is considered to be dwelling.This value helps identify
-          possible frequented locations where multiple
-          unique movement tracks are dwelling in the same time and space. The
-          default is 10 minutes.
-      time_boundary {Time Unit}:
-          The time span that will be used to split the Input Features parameter
-          value. For example, if you use a time boundary of 1 day, tracks will
-          be split at the beginning of every day.
-      minimum_dwells {Long}:
-          The minimum number of overlapping individual dwells that will need to
-          occur to be defined as a frequented location. By default, all
-          locations that meet the criteria for a dwell will be returned.
-      normalize_daily_distribution {Boolean}:
-          Specifies whether the daily distribution of dwell locations will be
-          normalized. Normalized values represent a percentage of total time
-          that a dwell location occurred on the particular day, while the real
-          values represent the total number of dwells that occurred on the given
-          day.
+    INPUTS:
+     in_features (Feature Layer):
+         The input movement track points that will be analyzed for possible
+         frequented locations. The layer must be time enabled.
+     track_id_field (Field):
+         The field containing the unique identifiers that will organize the
+         source data into movement tracks.
+     expression {SQL Expression}:
+         An SQL expression used to select a subset of records. For more
+         information about SQL syntax, see SQL reference for query expressions
+         used in ArcGIS.
+     search_distance {Linear Unit}:
+         The maximum distance a movement track point can loiter before it is no
+         longer considered part of a frequented location. The default is 100
+         meters.
+     minimum_loiter_time {Time Unit}:
+         The minimum amount of time a movement track point can loiter in an
+         area before it is considered to be dwelling.This value helps identify
+         possible frequented locations where multiple
+         unique movement tracks are dwelling in the same time and space. The
+         default is 10 minutes.
+     time_boundary {Time Unit}:
+         The time span that will be used to split the Input Features parameter
+         value. For example, if you use a time boundary of 1 day, tracks will
+         be split at the beginning of every day.
+     minimum_dwells {Long}:
+         The minimum number of overlapping individual dwells that will need to
+         occur to be defined as a frequented location. By default, all
+         locations that meet the criteria for a dwell will be returned.
+     normalize_daily_distribution {Boolean}:
+         Specifies whether the daily distribution of dwell locations will be
+         normalized. Normalized values represent a percentage of total time
+         that a dwell location occurred on the particular day, while the real
+         values represent the total number of dwells that occurred on the given
+         day.
 
-          * NORMALIZED-The daily distribution of dwell locations values will be
-          normalized.
+         * NORMALIZED-The daily distribution of dwell locations values will be
+         normalized.
 
-          * REAL-The daily distribution of dwell locations values will not be
-          normalized and represent the actual value. This is the default.
-      summary_fields {Value Table}:
-          Specifies the statistics that will be calculated.Statistics can be
-          calculated for the following variables:
+         * REAL-The daily distribution of dwell locations values will not be
+         normalized and represent the actual value. This is the default.
+     summary_fields {Value Table}:
+         Specifies the statistics that will be calculated.Statistics can be
+         calculated for the following variables:
 
-          * START_TIME-The time in hours that the individual dwell location was
-          first detected. The time is rounded to the nearest hour.
+         * START_TIME-The time in hours that the individual dwell location was
+         first detected. The time is rounded to the nearest hour.
 
-          * END_TIME-The time in hours that the individual dwell location was
-          last detected. The time is rounded to the nearest hour.
+         * END_TIME-The time in hours that the individual dwell location was
+         last detected. The time is rounded to the nearest hour.
 
-          * DWELL_DURATION-The time in seconds that the individual dwell
-          location was active.
-          The following statistics are supported:
+         * DWELL_DURATION-The time in seconds that the individual dwell
+         location was active.
+         The following statistics are supported:
 
-          * MEAN-The mean of numeric values.
+         * MEAN-The mean of numeric values.
 
-          * MIN-The minimum value of a numeric field.
+         * MIN-The minimum value of a numeric field.
 
-          * MAX-The maximum value of a numeric field.
+         * MAX-The maximum value of a numeric field.
 
-          * STDDEV-The standard deviation of a numeric field.
+         * STDDEV-The standard deviation of a numeric field.
 
-     OUTPUTS:
-      out_featureclass (Feature Class):
-          The output polygon feature class containing the possible frequented
-          locations."""
+    OUTPUTS:
+     out_featureclass (Feature Class):
+         The output polygon feature class containing the possible frequented
+         locations."""
     ...
 
-@gptooldoc('FindMeetingLocations_intelligence', None)
-def FindMeetingLocations(in_features=..., out_area_features=..., out_point_features=..., unique_name_field=..., search_distance=..., minimum_loiter_time=..., temporal_relationship=..., min_meeting_duration=..., max_meeting_duration=...): # -> conversion | int | float | complex | basestring | list[Unknown] | tuple[Unknown, ...] | dict[Unknown, Unknown]:
+@gptooldoc("FindMeetingLocations_intelligence", None)
+def FindMeetingLocations(
+    in_features=...,
+    out_area_features=...,
+    out_point_features=...,
+    unique_name_field=...,
+    search_distance=...,
+    minimum_loiter_time=...,
+    temporal_relationship=...,
+    min_meeting_duration=...,
+    max_meeting_duration=...,
+):  # -> conversion | int | float | complex | basestring | list[Unknown] | tuple[Unknown, ...] | dict[Unknown, Unknown]:
     """FindMeetingLocations_intelligence(in_features, out_area_features, out_point_features, unique_name_field, {search_distance}, {minimum_loiter_time}, {temporal_relationship}, {min_meeting_duration}, {max_meeting_duration})
 
-        Identifies locations where multiple unique movement tracks have
-        dwelled for a defined time period.
+       Identifies locations where multiple unique movement tracks have
+       dwelled for a defined time period.
 
-     INPUTS:
-      in_features (Feature Layer):
-          The input movement track points that will be analyzed for possible
-          meeting locations. This layer must be time enabled.
-      unique_name_field (Field):
-          The field containing the unique identifiers for movement track points.
-      search_distance {Linear Unit}:
-          The maximum distance a movement track can loiter before it is no
-          longer considered part of a meeting. The default is 100 meters.
-      minimum_loiter_time {Time Unit}:
-          The minimum amount of time a movement track point can loiter in an
-          area before it is considered to be dwelling. This helps identify
-          possible meeting locations where multiple unique movement tracks are
-          dwelling in the same time and space. The default is 10 minutes.
-      temporal_relationship {String}:
-          Specifies the time criteria that will be used to match features.
+    INPUTS:
+     in_features (Feature Layer):
+         The input movement track points that will be analyzed for possible
+         meeting locations. This layer must be time enabled.
+     unique_name_field (Field):
+         The field containing the unique identifiers for movement track points.
+     search_distance {Linear Unit}:
+         The maximum distance a movement track can loiter before it is no
+         longer considered part of a meeting. The default is 100 meters.
+     minimum_loiter_time {Time Unit}:
+         The minimum amount of time a movement track point can loiter in an
+         area before it is considered to be dwelling. This helps identify
+         possible meeting locations where multiple unique movement tracks are
+         dwelling in the same time and space. The default is 10 minutes.
+     temporal_relationship {String}:
+         Specifies the time criteria that will be used to match features.
 
-          * OVERLAPS-When a target time interval starts and ends before the
-          start and end of the join time interval, the target time will overlap
-          the join time.
+         * OVERLAPS-When a target time interval starts and ends before the
+         start and end of the join time interval, the target time will overlap
+         the join time.
 
-          * INTERSECTS-When any part of a target time occurs at the same time as
-          the join time, the target time will intersect the join time. This is
-          the default.
-      min_meeting_duration {Time Unit}:
-          The minimum meeting duration that will be used for the meeting to be
-          included in the output.
-      max_meeting_duration {Time Unit}:
-          The maximum meeting duration that will be used for the meeting to be
-          included in the output.
+         * INTERSECTS-When any part of a target time occurs at the same time as
+         the join time, the target time will intersect the join time. This is
+         the default.
+     min_meeting_duration {Time Unit}:
+         The minimum meeting duration that will be used for the meeting to be
+         included in the output.
+     max_meeting_duration {Time Unit}:
+         The maximum meeting duration that will be used for the meeting to be
+         included in the output.
 
-     OUTPUTS:
-      out_area_features (Feature Class):
-          The output area features that represent the extent of the identified
-          meeting location.
-      out_point_features (Feature Class):
-          The output point features that represent the centroid of the area of
-          the individual meeting. Multiple meetings can occur at a given meeting
-          location. This feature class contains all of the details regarding the
-          individual meetings including participants, duration, and start and
-          end times."""
+    OUTPUTS:
+     out_area_features (Feature Class):
+         The output area features that represent the extent of the identified
+         meeting location.
+     out_point_features (Feature Class):
+         The output point features that represent the centroid of the area of
+         the individual meeting. Multiple meetings can occur at a given meeting
+         location. This feature class contains all of the details regarding the
+         individual meetings including participants, duration, and start and
+         end times."""
     ...
 
-@gptooldoc('SelectMovementTracks_intelligence', None)
-def SelectMovementTracks(in_features=..., track_id_field=..., area_of_interest=..., time_relationship=..., selection_time=...): # -> conversion | int | float | complex | basestring | list[Unknown] | tuple[Unknown, ...] | dict[Unknown, Unknown]:
+@gptooldoc("SelectMovementTracks_intelligence", None)
+def SelectMovementTracks(
+    in_features=...,
+    track_id_field=...,
+    area_of_interest=...,
+    time_relationship=...,
+    selection_time=...,
+):  # -> conversion | int | float | complex | basestring | list[Unknown] | tuple[Unknown, ...] | dict[Unknown, Unknown]:
     """SelectMovementTracks_intelligence(in_features, track_id_field, area_of_interest, {time_relationship}, {selection_time})
 
-        Selects movement tracks based on an area of interest.
+       Selects movement tracks based on an area of interest.
 
-     INPUTS:
-      in_features (Feature Layer):
-          The features that will be compared with the area_of_interest parameter
-          value to identify unique tracks and select the relevant tracks.
-      track_id_field (Field):
-          The field containing the unique identifiers for the movement track
-          points. The field can be either a number or a string.
-      area_of_interest (Feature Set):
-          The feature or features that will be compared with the in_features
-          value to determine the tracks to select.
-      time_relationship {String}:
-          Specifies the time relationship between the in_features and
-          area_of_interest parameter values. If the BEFORE, AFTER, or
-          BEFORE_AFTER option is specified, only features that are present in
-          the area_of_interest value within the specified time window will be
-          included in the output selection.
+    INPUTS:
+     in_features (Feature Layer):
+         The features that will be compared with the area_of_interest parameter
+         value to identify unique tracks and select the relevant tracks.
+     track_id_field (Field):
+         The field containing the unique identifiers for the movement track
+         points. The field can be either a number or a string.
+     area_of_interest (Feature Set):
+         The feature or features that will be compared with the in_features
+         value to determine the tracks to select.
+     time_relationship {String}:
+         Specifies the time relationship between the in_features and
+         area_of_interest parameter values. If the BEFORE, AFTER, or
+         BEFORE_AFTER option is specified, only features that are present in
+         the area_of_interest value within the specified time window will be
+         included in the output selection.
 
-          * BEFORE_AFTER-When a feature's time is before the first time
-          identified and after the last time identified for the Area Of Interest
-          value but within the specified range of time from the first identified
-          time and the last identified time, the time relationship will be
-          before and after the selection time.
+         * BEFORE_AFTER-When a feature's time is before the first time
+         identified and after the last time identified for the Area Of Interest
+         value but within the specified range of time from the first identified
+         time and the last identified time, the time relationship will be
+         before and after the selection time.
 
-          * BEFORE-When a feature's time is before the first time identified for
-          the Area Of Interest value but within the specified range of time from
-          the first identified time, the time relationship will be before the
-          selection time.
+         * BEFORE-When a feature's time is before the first time identified for
+         the Area Of Interest value but within the specified range of time from
+         the first identified time, the time relationship will be before the
+         selection time.
 
-          * AFTER-When a feature's time is after the last time identified for
-          the Area Of Interest value but within the specified range of time from
-          the last identified time, the time relationship will be after the
-          selection time.
+         * AFTER-When a feature's time is after the last time identified for
+         the Area Of Interest value but within the specified range of time from
+         the last identified time, the time relationship will be after the
+         selection time.
 
-          * NONE-All tracks associated with the unique identifier specified in
-          Track ID Field that are present in the Area Of Interest value will be
-          returned.
-      selection_time {Time Unit}:
-          The time frame that will be used to select features if BEFORE, AFTER,
-          or BEFORE_AFTER is specified for the time_relationship parameter.If
-          BEFORE or BEFORE_AFTER is specified, the earliest time selected
-          will be the first identified time of the features selected from the
-          initial selection generated from the in_features and area_of_interest
-          parameters, subtracting the time value specified. If AFTER or
-          BEFORE_AFTER is specified, the selection time will be added to the
-          latest time from the initial selection to determine the selected
-          features."""
+         * NONE-All tracks associated with the unique identifier specified in
+         Track ID Field that are present in the Area Of Interest value will be
+         returned.
+     selection_time {Time Unit}:
+         The time frame that will be used to select features if BEFORE, AFTER,
+         or BEFORE_AFTER is specified for the time_relationship parameter.If
+         BEFORE or BEFORE_AFTER is specified, the earliest time selected
+         will be the first identified time of the features selected from the
+         initial selection generated from the in_features and area_of_interest
+         parameters, subtracting the time value specified. If AFTER or
+         BEFORE_AFTER is specified, the selection time will be added to the
+         latest time from the initial selection to determine the selected
+         features."""
     ...
-

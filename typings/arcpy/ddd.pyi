@@ -8,7868 +8,9027 @@ r"""The 3D Analyst toolbox provides a collection of geoprocessing tools
 that enable a wide variety of analytical, data management, and data
 conversion operations on surface models and three-dimensional vector
 data."""
-__all__ = ['ASCII3DToFeatureClass', 'AddFeatureClassToTerrain', 'AddSurfaceInformation', 'AddTerrainPoints', 'AddTerrainPyramidLevel', 'AddZInformation', 'AppendTerrainPoints', 'Aspect', 'Buffer3D', 'BuildTerrain', 'ChangeLasClassCodes', 'ChangeTerrainReferenceScale', 'ChangeTerrainResolutionBounds', 'ClassifyLasBuilding', 'ClassifyLasByHeight', 'ClassifyLasGround', 'ClassifyLasNoise', 'ClassifyLasOverlap', 'ClassifyPointCloudUsingTrainedModel', 'ColorizeLas', 'ConstructSightLines', 'Contour', 'ContourList', 'ContourWithBarriers', 'CopyTin', 'CreateTerrain', 'CreateTin', 'Curvature', 'CutFill', 'DecimateTinNodes', 'DeleteTerrainPoints', 'DelineateTinDataArea', 'Difference3D', 'Divide', 'EditTin', 'EncloseMultiPatch', 'EnforceRiverMonotonicity', 'EvaluatePointCloudClassificationModel', 'ExtractLas', 'ExtractMultipatchFromMesh', 'ExtractPowerLinesFromPointCloud', 'ExtrudeBetween', 'FeatureClassZToASCII', 'FeatureTo3DByAttribute', 'FeaturesFromCityEngineRules', 'FenceDiagram', 'Float', 'GenerateClearanceSurface', 'HillShade', 'Idw', 'Import3DFiles', 'Inside3D', 'Int', 'InterpolatePolyToPatch', 'InterpolateShape', 'Intersect3D', 'Intersect3DLineWithMultiPatch', 'Intersect3DLineWithSurface', 'Intersect3DLines', 'Intervisibility', 'IsClosed3D', 'Kriging', 'LASToMultipoint', 'LandXMLToTin', 'LasBuildingMultipatch', 'LasDatasetToTin', 'LasHeightMetrics', 'LasPointStatsByArea', 'Layer3DToFeatureClass', 'LayerToKML', 'LineOfSight', 'LocateLasPointsByProximity', 'LocateOutliers', 'Lookup', 'MapToKML', 'MinimumBoundingVolume', 'Minus', 'MultiPatchFootprint', 'NaturalNeighbor', 'Near3D', 'ObserverPoints', 'Plus', 'PointFileInformation', 'PolygonVolume', 'PreparePointCloudTrainingData', 'RasterDomain', 'RasterTin', 'RasterToMultipoint', 'ReclassByASCIIFile', 'ReclassByTable', 'Reclassify', 'RegularizeAdjacentBuildingFootprint', 'RegularizeBuildingFootprint', 'RemoveFeatureClassFromTerrain', 'RemoveTerrainPoints', 'RemoveTerrainPyramidLevel', 'ReplaceTerrainPoints', 'SetLasClassCodesUsingFeatures', 'SetLasClassCodesUsingRaster', 'Simplify3DLine', 'Skyline', 'SkylineBarrier', 'SkylineGraph', 'Slice', 'Slope', 'Spline', 'SplineWithBarriers', 'StackProfile', 'SunShadowFrequency', 'SunShadowVolume', 'SurfaceAspect', 'SurfaceContour', 'SurfaceDifference', 'SurfaceLength', 'SurfaceParameters', 'SurfaceSlope', 'SurfaceSpot', 'SurfaceVolume', 'TerrainToPoints', 'TerrainToRaster', 'TerrainToTin', 'ThinLas', 'TileLas', 'Times', 'TinAspect', 'TinContour', 'TinDifference', 'TinDomain', 'TinEdge', 'TinLine', 'TinNode', 'TinPolygonTag', 'TinPolygonVolume', 'TinRaster', 'TinSlope', 'TinTriangle', 'TopoToRaster', 'TopoToRasterByFile', 'TrainPointCloudClassificationModel', 'Trend', 'Union3D', 'UpdateFeatureZ', 'Viewshed', 'Viewshed2', 'Visibility']
+__all__ = [
+    "ASCII3DToFeatureClass",
+    "AddFeatureClassToTerrain",
+    "AddSurfaceInformation",
+    "AddTerrainPoints",
+    "AddTerrainPyramidLevel",
+    "AddZInformation",
+    "AppendTerrainPoints",
+    "Aspect",
+    "Buffer3D",
+    "BuildTerrain",
+    "ChangeLasClassCodes",
+    "ChangeTerrainReferenceScale",
+    "ChangeTerrainResolutionBounds",
+    "ClassifyLasBuilding",
+    "ClassifyLasByHeight",
+    "ClassifyLasGround",
+    "ClassifyLasNoise",
+    "ClassifyLasOverlap",
+    "ClassifyPointCloudUsingTrainedModel",
+    "ColorizeLas",
+    "ConstructSightLines",
+    "Contour",
+    "ContourList",
+    "ContourWithBarriers",
+    "CopyTin",
+    "CreateTerrain",
+    "CreateTin",
+    "Curvature",
+    "CutFill",
+    "DecimateTinNodes",
+    "DeleteTerrainPoints",
+    "DelineateTinDataArea",
+    "Difference3D",
+    "Divide",
+    "EditTin",
+    "EncloseMultiPatch",
+    "EnforceRiverMonotonicity",
+    "EvaluatePointCloudClassificationModel",
+    "ExtractLas",
+    "ExtractMultipatchFromMesh",
+    "ExtractPowerLinesFromPointCloud",
+    "ExtrudeBetween",
+    "FeatureClassZToASCII",
+    "FeatureTo3DByAttribute",
+    "FeaturesFromCityEngineRules",
+    "FenceDiagram",
+    "Float",
+    "GenerateClearanceSurface",
+    "HillShade",
+    "Idw",
+    "Import3DFiles",
+    "Inside3D",
+    "Int",
+    "InterpolatePolyToPatch",
+    "InterpolateShape",
+    "Intersect3D",
+    "Intersect3DLineWithMultiPatch",
+    "Intersect3DLineWithSurface",
+    "Intersect3DLines",
+    "Intervisibility",
+    "IsClosed3D",
+    "Kriging",
+    "LASToMultipoint",
+    "LandXMLToTin",
+    "LasBuildingMultipatch",
+    "LasDatasetToTin",
+    "LasHeightMetrics",
+    "LasPointStatsByArea",
+    "Layer3DToFeatureClass",
+    "LayerToKML",
+    "LineOfSight",
+    "LocateLasPointsByProximity",
+    "LocateOutliers",
+    "Lookup",
+    "MapToKML",
+    "MinimumBoundingVolume",
+    "Minus",
+    "MultiPatchFootprint",
+    "NaturalNeighbor",
+    "Near3D",
+    "ObserverPoints",
+    "Plus",
+    "PointFileInformation",
+    "PolygonVolume",
+    "PreparePointCloudTrainingData",
+    "RasterDomain",
+    "RasterTin",
+    "RasterToMultipoint",
+    "ReclassByASCIIFile",
+    "ReclassByTable",
+    "Reclassify",
+    "RegularizeAdjacentBuildingFootprint",
+    "RegularizeBuildingFootprint",
+    "RemoveFeatureClassFromTerrain",
+    "RemoveTerrainPoints",
+    "RemoveTerrainPyramidLevel",
+    "ReplaceTerrainPoints",
+    "SetLasClassCodesUsingFeatures",
+    "SetLasClassCodesUsingRaster",
+    "Simplify3DLine",
+    "Skyline",
+    "SkylineBarrier",
+    "SkylineGraph",
+    "Slice",
+    "Slope",
+    "Spline",
+    "SplineWithBarriers",
+    "StackProfile",
+    "SunShadowFrequency",
+    "SunShadowVolume",
+    "SurfaceAspect",
+    "SurfaceContour",
+    "SurfaceDifference",
+    "SurfaceLength",
+    "SurfaceParameters",
+    "SurfaceSlope",
+    "SurfaceSpot",
+    "SurfaceVolume",
+    "TerrainToPoints",
+    "TerrainToRaster",
+    "TerrainToTin",
+    "ThinLas",
+    "TileLas",
+    "Times",
+    "TinAspect",
+    "TinContour",
+    "TinDifference",
+    "TinDomain",
+    "TinEdge",
+    "TinLine",
+    "TinNode",
+    "TinPolygonTag",
+    "TinPolygonVolume",
+    "TinRaster",
+    "TinSlope",
+    "TinTriangle",
+    "TopoToRaster",
+    "TopoToRasterByFile",
+    "TrainPointCloudClassificationModel",
+    "Trend",
+    "Union3D",
+    "UpdateFeatureZ",
+    "Viewshed",
+    "Viewshed2",
+    "Visibility",
+]
 __alias__ = ...
-@gptooldoc('AddTerrainPoints_3d', None)
-def AddTerrainPoints(in_terrain=..., terrain_feature_class=..., in_feature_class=..., method=...): # -> conversion | int | float | complex | basestring | list[Unknown] | tuple[Unknown, ...] | dict[Unknown, Unknown]:
+
+@gptooldoc("AddTerrainPoints_3d", None)
+def AddTerrainPoints(
+    in_terrain=..., terrain_feature_class=..., in_feature_class=..., method=...
+):  # -> conversion | int | float | complex | basestring | list[Unknown] | tuple[Unknown, ...] | dict[Unknown, Unknown]:
     """AddTerrainPoints(in_terrain, terrain_feature_class, in_feature_class, {method})
 
-        Adds terrain multipoints to an embedded terrain feature class.
+       Adds terrain multipoints to an embedded terrain feature class.
 
-     INPUTS:
-      in_terrain (Terrain Layer):
-          Input Terrain
-      terrain_feature_class (String):
-          Input Terrain Feature Class
-      in_feature_class (Feature Layer):
-          Input Feature Class
-      method {String}:
-          Method"""
+    INPUTS:
+     in_terrain (Terrain Layer):
+         Input Terrain
+     terrain_feature_class (String):
+         Input Terrain Feature Class
+     in_feature_class (Feature Layer):
+         Input Feature Class
+     method {String}:
+         Method"""
     ...
 
-@gptooldoc('LayerToKML_3d', None)
-def LayerToKML(layer=..., out_kmz_file=..., layer_output_scale=..., is_composite=..., boundary_box_extent=..., image_size=..., dpi_of_client=..., ignore_zvalue=...): # -> conversion | int | float | complex | basestring | list[Unknown] | tuple[Unknown, ...] | dict[Unknown, Unknown]:
+@gptooldoc("LayerToKML_3d", None)
+def LayerToKML(
+    layer=...,
+    out_kmz_file=...,
+    layer_output_scale=...,
+    is_composite=...,
+    boundary_box_extent=...,
+    image_size=...,
+    dpi_of_client=...,
+    ignore_zvalue=...,
+):  # -> conversion | int | float | complex | basestring | list[Unknown] | tuple[Unknown, ...] | dict[Unknown, Unknown]:
     """LayerToKML(layer, out_kmz_file, {layer_output_scale}, {is_composite}, {boundary_box_extent}, {image_size}, {dpi_of_client}, {ignore_zvalue})
 
-        3D Analyst Layer to KML geoprocessing function
+       3D Analyst Layer to KML geoprocessing function
 
-     INPUTS:
-      layer (Feature Layer / Raster Layer / Mosaic Layer / Group Layer / Layer File):
-          Layer
-      layer_output_scale {Double}:
-          Layer Output Scale
-      is_composite {Boolean}:
-          Return single composite image
-      boundary_box_extent {Extent}:
-          Extent to Export
-      image_size {Long}:
-          Size of returned image (pixels)
-      dpi_of_client {Long}:
-          DPI of output image
-      ignore_zvalue {Boolean}:
-          Clamped features to ground
+    INPUTS:
+     layer (Feature Layer / Raster Layer / Mosaic Layer / Group Layer / Layer File):
+         Layer
+     layer_output_scale {Double}:
+         Layer Output Scale
+     is_composite {Boolean}:
+         Return single composite image
+     boundary_box_extent {Extent}:
+         Extent to Export
+     image_size {Long}:
+         Size of returned image (pixels)
+     dpi_of_client {Long}:
+         DPI of output image
+     ignore_zvalue {Boolean}:
+         Clamped features to ground
 
-     OUTPUTS:
-      out_kmz_file (File):
-          Output File"""
+    OUTPUTS:
+     out_kmz_file (File):
+         Output File"""
     ...
 
-@gptooldoc('MapToKML_3d', None)
-def MapToKML(in_map=..., out_kmz_file=..., map_output_scale=..., is_composite=..., is_vector_to_raster=..., extent_to_export=..., image_size=..., dpi_of_client=..., ignore_zvalue=..., layout=...): # -> conversion | int | float | complex | basestring | list[Unknown] | tuple[Unknown, ...] | dict[Unknown, Unknown]:
+@gptooldoc("MapToKML_3d", None)
+def MapToKML(
+    in_map=...,
+    out_kmz_file=...,
+    map_output_scale=...,
+    is_composite=...,
+    is_vector_to_raster=...,
+    extent_to_export=...,
+    image_size=...,
+    dpi_of_client=...,
+    ignore_zvalue=...,
+    layout=...,
+):  # -> conversion | int | float | complex | basestring | list[Unknown] | tuple[Unknown, ...] | dict[Unknown, Unknown]:
     """MapToKML(in_map, out_kmz_file, {map_output_scale}, {is_composite}, {is_vector_to_raster}, {extent_to_export}, {image_size}, {dpi_of_client}, {ignore_zvalue}, {layout})
 
-        3D Analyst Map to KML geoprocessing function
+       3D Analyst Map to KML geoprocessing function
 
-     INPUTS:
-      in_map (Map):
-          Input Map
-      map_output_scale {Double}:
-          Map Output Scale
-      is_composite {Boolean}:
-          Return single composite image
-      is_vector_to_raster {Boolean}:
-          Convert Vector to Raster
-      extent_to_export {Extent}:
-          Extent to Export
-      image_size {Long}:
-          Size of returned image (pixels)
-      dpi_of_client {Long}:
-          DPI of output image
-      ignore_zvalue {Boolean}:
-          Clamped features to ground
-      layout {String}:
-          Layout
+    INPUTS:
+     in_map (Map):
+         Input Map
+     map_output_scale {Double}:
+         Map Output Scale
+     is_composite {Boolean}:
+         Return single composite image
+     is_vector_to_raster {Boolean}:
+         Convert Vector to Raster
+     extent_to_export {Extent}:
+         Extent to Export
+     image_size {Long}:
+         Size of returned image (pixels)
+     dpi_of_client {Long}:
+         DPI of output image
+     ignore_zvalue {Boolean}:
+         Clamped features to ground
+     layout {String}:
+         Layout
 
-     OUTPUTS:
-      out_kmz_file (File):
-          Output File"""
+    OUTPUTS:
+     out_kmz_file (File):
+         Output File"""
     ...
 
-@gptooldoc('SurfaceLength_3d', None)
-def SurfaceLength(in_surface=..., in_feature_class=..., out_length_field=..., sample_distance=..., z_factor=..., method=..., pyramid_level_resolution=...): # -> conversion | int | float | complex | basestring | list[Unknown] | tuple[Unknown, ...] | dict[Unknown, Unknown]:
+@gptooldoc("SurfaceLength_3d", None)
+def SurfaceLength(
+    in_surface=...,
+    in_feature_class=...,
+    out_length_field=...,
+    sample_distance=...,
+    z_factor=...,
+    method=...,
+    pyramid_level_resolution=...,
+):  # -> conversion | int | float | complex | basestring | list[Unknown] | tuple[Unknown, ...] | dict[Unknown, Unknown]:
     """SurfaceLength(in_surface, in_feature_class, {out_length_field}, {sample_distance}, {z_factor}, {method}, {pyramid_level_resolution})
 
-        Determines surface length for each line in a feature class based on an
-        input surface.
+       Determines surface length for each line in a feature class based on an
+       input surface.
 
-     INPUTS:
-      in_surface (TIN Layer / Raster Layer / Terrain Layer):
-          Input Surface
-      in_feature_class (Feature Layer):
-          Input Feature Class
-      out_length_field {String}:
-          Surface Length Field
-      sample_distance {Double}:
-          Sampling Distance
-      z_factor {Double}:
-          Z Factor
-      method {String}:
-          Method
-      pyramid_level_resolution {Double}:
-          Pyramid Level Resolution"""
+    INPUTS:
+     in_surface (TIN Layer / Raster Layer / Terrain Layer):
+         Input Surface
+     in_feature_class (Feature Layer):
+         Input Feature Class
+     out_length_field {String}:
+         Surface Length Field
+     sample_distance {Double}:
+         Sampling Distance
+     z_factor {Double}:
+         Z Factor
+     method {String}:
+         Method
+     pyramid_level_resolution {Double}:
+         Pyramid Level Resolution"""
     ...
 
-@gptooldoc('SurfaceSpot_3d', None)
-def SurfaceSpot(in_surface=..., in_feature_class=..., out_spot_field=..., z_factor=..., method=..., pyramid_level_resolution=...): # -> conversion | int | float | complex | basestring | list[Unknown] | tuple[Unknown, ...] | dict[Unknown, Unknown]:
+@gptooldoc("SurfaceSpot_3d", None)
+def SurfaceSpot(
+    in_surface=...,
+    in_feature_class=...,
+    out_spot_field=...,
+    z_factor=...,
+    method=...,
+    pyramid_level_resolution=...,
+):  # -> conversion | int | float | complex | basestring | list[Unknown] | tuple[Unknown, ...] | dict[Unknown, Unknown]:
     """SurfaceSpot(in_surface, in_feature_class, {out_spot_field}, {z_factor}, {method}, {pyramid_level_resolution})
 
-        Calculates surface values for each point in a feature class based on
-        an input surface.
+       Calculates surface values for each point in a feature class based on
+       an input surface.
 
-     INPUTS:
-      in_surface (TIN Layer / Raster Layer / Terrain Layer):
-          Input Surface
-      in_feature_class (Feature Layer):
-          Input Feature Class
-      out_spot_field {String}:
-          Spot Field
-      z_factor {Double}:
-          Z Factor
-      method {String}:
-          Method
-      pyramid_level_resolution {Double}:
-          Pyramid Level Resolution"""
+    INPUTS:
+     in_surface (TIN Layer / Raster Layer / Terrain Layer):
+         Input Surface
+     in_feature_class (Feature Layer):
+         Input Feature Class
+     out_spot_field {String}:
+         Spot Field
+     z_factor {Double}:
+         Z Factor
+     method {String}:
+         Method
+     pyramid_level_resolution {Double}:
+         Pyramid Level Resolution"""
     ...
 
-@gptooldoc('TinAspect_3d', None)
-def TinAspect(in_tin=..., out_feature_class=..., class_breaks_table=..., aspect_field=...): # -> conversion | int | float | complex | basestring | list[Unknown] | tuple[Unknown, ...] | dict[Unknown, Unknown]:
+@gptooldoc("TinAspect_3d", None)
+def TinAspect(
+    in_tin=..., out_feature_class=..., class_breaks_table=..., aspect_field=...
+):  # -> conversion | int | float | complex | basestring | list[Unknown] | tuple[Unknown, ...] | dict[Unknown, Unknown]:
     """TinAspect(in_tin, out_feature_class, {class_breaks_table}, {aspect_field})
 
-        Extracts the directional orientation of input TIN to an output polygon
-        feature class.
+       Extracts the directional orientation of input TIN to an output polygon
+       feature class.
 
-     INPUTS:
-      in_tin (TIN Layer):
-          The input TIN.
-      class_breaks_table {Table}:
-          An input table containing the classification breaks that will be used
-          to classify the output feature class.
-      aspect_field {String}:
-          The field containing aspect values.
+    INPUTS:
+     in_tin (TIN Layer):
+         The input TIN.
+     class_breaks_table {Table}:
+         An input table containing the classification breaks that will be used
+         to classify the output feature class.
+     aspect_field {String}:
+         The field containing aspect values.
 
-     OUTPUTS:
-      out_feature_class (Feature Class):
-          The output feature class."""
+    OUTPUTS:
+     out_feature_class (Feature Class):
+         The output feature class."""
     ...
 
-@gptooldoc('TinContour_3d', None)
-def TinContour(in_tin=..., out_feature_class=..., interval=..., base_contour=..., contour_field=..., contour_field_precision=..., index_interval=..., index_interval_field=..., z_factor=...): # -> conversion | int | float | complex | basestring | list[Unknown] | tuple[Unknown, ...] | dict[Unknown, Unknown]:
+@gptooldoc("TinContour_3d", None)
+def TinContour(
+    in_tin=...,
+    out_feature_class=...,
+    interval=...,
+    base_contour=...,
+    contour_field=...,
+    contour_field_precision=...,
+    index_interval=...,
+    index_interval_field=...,
+    z_factor=...,
+):  # -> conversion | int | float | complex | basestring | list[Unknown] | tuple[Unknown, ...] | dict[Unknown, Unknown]:
     """TinContour(in_tin, out_feature_class, interval, {base_contour}, {contour_field}, {contour_field_precision}, {index_interval}, {index_interval_field}, {z_factor})
 
-        Generates contours from a TIN surface.
+       Generates contours from a TIN surface.
 
-     INPUTS:
-      in_tin (TIN Layer):
-          The surface from which the contours will be interpolated.
-      interval (Double):
-          The interval between the contours.
-      base_contour {Double}:
-          Along with the index interval, the base height is used to determine
-          what contours are produced. The base height is a starting point from
-          which the index interval is either added or subtracted. By default,
-          the base contour is 0.0.
-      contour_field {String}:
-          The field containing contour values.
-      contour_field_precision {Long}:
-          The precision of the contour field. Zero specifies an integer, and the
-          numbers 1-9 indicate how many decimal places the field will contain.
-          By default, the field will be an integer (0).
-      index_interval {Double}:
-          The difference, in Z units, between index contours. The value
-          specified should be evenly divisible by the contour interval.
-          Typically, it's five times greater. Use of this parameter adds an
-          attribute field to the output feature class that's used to
-          differentiate index contours from regular contours.
-      index_interval_field {String}:
-          The name of the field used to record whether a contour is a regular or
-          an index contour. By default, the value is ‘Index'.
-      z_factor {Double}:
-          Specifies a factor by which to multiply the surface heights. Used to
-          convert z units to x and y units.
+    INPUTS:
+     in_tin (TIN Layer):
+         The surface from which the contours will be interpolated.
+     interval (Double):
+         The interval between the contours.
+     base_contour {Double}:
+         Along with the index interval, the base height is used to determine
+         what contours are produced. The base height is a starting point from
+         which the index interval is either added or subtracted. By default,
+         the base contour is 0.0.
+     contour_field {String}:
+         The field containing contour values.
+     contour_field_precision {Long}:
+         The precision of the contour field. Zero specifies an integer, and the
+         numbers 1-9 indicate how many decimal places the field will contain.
+         By default, the field will be an integer (0).
+     index_interval {Double}:
+         The difference, in Z units, between index contours. The value
+         specified should be evenly divisible by the contour interval.
+         Typically, it's five times greater. Use of this parameter adds an
+         attribute field to the output feature class that's used to
+         differentiate index contours from regular contours.
+     index_interval_field {String}:
+         The name of the field used to record whether a contour is a regular or
+         an index contour. By default, the value is ‘Index'.
+     z_factor {Double}:
+         Specifies a factor by which to multiply the surface heights. Used to
+         convert z units to x and y units.
 
-     OUTPUTS:
-      out_feature_class (Feature Class):
-          The output feature class."""
+    OUTPUTS:
+     out_feature_class (Feature Class):
+         The output feature class."""
     ...
 
-@gptooldoc('TinDifference_3d', None)
-def TinDifference(in_tin1=..., in_tin2=..., out_feature_class=...): # -> conversion | int | float | complex | basestring | list[Unknown] | tuple[Unknown, ...] | dict[Unknown, Unknown]:
+@gptooldoc("TinDifference_3d", None)
+def TinDifference(
+    in_tin1=..., in_tin2=..., out_feature_class=...
+):  # -> conversion | int | float | complex | basestring | list[Unknown] | tuple[Unknown, ...] | dict[Unknown, Unknown]:
     """TinDifference(in_tin1, in_tin2, out_feature_class)
 
-        Calculates the volumetric difference between two TIN datasets.
+       Calculates the volumetric difference between two TIN datasets.
 
-     INPUTS:
-      in_tin1 (TIN Layer):
-          The first input TIN.
-      in_tin2 (TIN Layer):
-          The second input TIN.
+    INPUTS:
+     in_tin1 (TIN Layer):
+         The first input TIN.
+     in_tin2 (TIN Layer):
+         The second input TIN.
 
-     OUTPUTS:
-      out_feature_class (Feature Class):
-          The output polygon feature class."""
+    OUTPUTS:
+     out_feature_class (Feature Class):
+         The output polygon feature class."""
     ...
 
-@gptooldoc('TinPolygonVolume_3d', None)
-def TinPolygonVolume(in_tin=..., in_feature_class=..., in_height_field=..., reference_plane=..., out_volume_field=..., surface_area_field=...): # -> conversion | int | float | complex | basestring | list[Unknown] | tuple[Unknown, ...] | dict[Unknown, Unknown]:
+@gptooldoc("TinPolygonVolume_3d", None)
+def TinPolygonVolume(
+    in_tin=...,
+    in_feature_class=...,
+    in_height_field=...,
+    reference_plane=...,
+    out_volume_field=...,
+    surface_area_field=...,
+):  # -> conversion | int | float | complex | basestring | list[Unknown] | tuple[Unknown, ...] | dict[Unknown, Unknown]:
     """TinPolygonVolume(in_tin, in_feature_class, in_height_field, {reference_plane}, {out_volume_field}, {surface_area_field})
 
-        Calculates the volumetric and surface area between polygons of an
-        input feature class and a TIN surface.
+       Calculates the volumetric and surface area between polygons of an
+       input feature class and a TIN surface.
 
-     INPUTS:
-      in_tin (TIN Layer):
-          The input TIN.
-      in_feature_class (Feature Layer):
-          The input polygon feature class.
-      in_height_field (String):
-          The name of the field containing polygon reference plane heights.
-      reference_plane {String}:
-          The keyword used to indicate whether volume and surface area are
-          calculated ABOVE the reference plane height of the polygons, or BELOW.
-          The default is BELOW.
-      out_volume_field {String}:
-          The name of the output field used to store the volume result. The
-          default is Volume.
-      surface_area_field {String}:
-          The name of the output field used to store the surface area result.
-          The default is SArea."""
+    INPUTS:
+     in_tin (TIN Layer):
+         The input TIN.
+     in_feature_class (Feature Layer):
+         The input polygon feature class.
+     in_height_field (String):
+         The name of the field containing polygon reference plane heights.
+     reference_plane {String}:
+         The keyword used to indicate whether volume and surface area are
+         calculated ABOVE the reference plane height of the polygons, or BELOW.
+         The default is BELOW.
+     out_volume_field {String}:
+         The name of the output field used to store the volume result. The
+         default is Volume.
+     surface_area_field {String}:
+         The name of the output field used to store the surface area result.
+         The default is SArea."""
     ...
 
-@gptooldoc('TinSlope_3d', None)
-def TinSlope(in_tin=..., out_feature_class=..., units=..., class_breaks_table=..., slope_field=..., z_factor=...): # -> conversion | int | float | complex | basestring | list[Unknown] | tuple[Unknown, ...] | dict[Unknown, Unknown]:
+@gptooldoc("TinSlope_3d", None)
+def TinSlope(
+    in_tin=...,
+    out_feature_class=...,
+    units=...,
+    class_breaks_table=...,
+    slope_field=...,
+    z_factor=...,
+):  # -> conversion | int | float | complex | basestring | list[Unknown] | tuple[Unknown, ...] | dict[Unknown, Unknown]:
     """TinSlope(in_tin, out_feature_class, {units}, {class_breaks_table}, {slope_field}, {z_factor})
 
-        Extracts slope information from the input TIN surface into polygon
-        features.
+       Extracts slope information from the input TIN surface into polygon
+       features.
 
-     INPUTS:
-      in_tin (TIN Layer):
-          The input TIN.
-      units {String}:
-          The units of measure for the slope values. Units are honored when a
-          class breaks table is used.
-      class_breaks_table {Table}:
-          An input table containing the classification breaks that will be used
-          to classify the output feature class.
-      slope_field {String}:
-          The field containing slope values.
-      z_factor {Double}:
-          The factor applied to the slope calculation to convert the TIN's z
-          units to x and y units. By default, the z-factor is 1.
+    INPUTS:
+     in_tin (TIN Layer):
+         The input TIN.
+     units {String}:
+         The units of measure for the slope values. Units are honored when a
+         class breaks table is used.
+     class_breaks_table {Table}:
+         An input table containing the classification breaks that will be used
+         to classify the output feature class.
+     slope_field {String}:
+         The field containing slope values.
+     z_factor {Double}:
+         The factor applied to the slope calculation to convert the TIN's z
+         units to x and y units. By default, the z-factor is 1.
 
-     OUTPUTS:
-      out_feature_class (Feature Class):
-          The output feature class."""
+    OUTPUTS:
+     out_feature_class (Feature Class):
+         The output feature class."""
     ...
 
-@gptooldoc('EncloseMultiPatch_3d', None)
-def EncloseMultiPatch(in_features=..., out_feature_class=..., grid_size=...): # -> conversion | int | float | complex | basestring | list[Unknown] | tuple[Unknown, ...] | dict[Unknown, Unknown]:
+@gptooldoc("EncloseMultiPatch_3d", None)
+def EncloseMultiPatch(
+    in_features=..., out_feature_class=..., grid_size=...
+):  # -> conversion | int | float | complex | basestring | list[Unknown] | tuple[Unknown, ...] | dict[Unknown, Unknown]:
     """EncloseMultiPatch(in_features, out_feature_class, {grid_size})
 
-        Creates closed multipatch features from open multipatch features.
+       Creates closed multipatch features from open multipatch features.
 
-     INPUTS:
-      in_features (Feature Layer):
-          The multipatch features that will be used to construct closed
-          multipatches.
-      grid_size {Double}:
-          The resolution that will be used to construct the closed multipatch
-          features. This value is defined using the linear units of the input
-          feature's spatial reference.
+    INPUTS:
+     in_features (Feature Layer):
+         The multipatch features that will be used to construct closed
+         multipatches.
+     grid_size {Double}:
+         The resolution that will be used to construct the closed multipatch
+         features. This value is defined using the linear units of the input
+         feature's spatial reference.
 
-     OUTPUTS:
-      out_feature_class (Feature Class):
-          The output closed multipatch features."""
+    OUTPUTS:
+     out_feature_class (Feature Class):
+         The output closed multipatch features."""
     ...
 
-@gptooldoc('EnforceRiverMonotonicity_3d', None)
-def EnforceRiverMonotonicity(in_rivers=..., in_flow_direction=..., out_feature_class=..., max_sample_distance=..., simplification_tolerance=...): # -> conversion | int | float | complex | basestring | list[Unknown] | tuple[Unknown, ...] | dict[Unknown, Unknown]:
+@gptooldoc("EnforceRiverMonotonicity_3d", None)
+def EnforceRiverMonotonicity(
+    in_rivers=...,
+    in_flow_direction=...,
+    out_feature_class=...,
+    max_sample_distance=...,
+    simplification_tolerance=...,
+):  # -> conversion | int | float | complex | basestring | list[Unknown] | tuple[Unknown, ...] | dict[Unknown, Unknown]:
     """EnforceRiverMonotonicity(in_rivers, in_flow_direction, out_feature_class, {max_sample_distance}, {simplification_tolerance})
 
-        Creates height adjusted breaklines from 3D polygons representing river
-        banks.
+       Creates height adjusted breaklines from 3D polygons representing river
+       banks.
 
-     INPUTS:
-      in_rivers (Feature Layer):
-          The 3D polygons delineating the river banks that will be processed.
-      in_flow_direction (Feature Layer):
-          The line features that indicate the flow direction of the river bank
-          polygons.
-      max_sample_distance {Linear Unit}:
-          The regular sampling distance of the polygon's boundary that will be
-          used to establish monotonicity along the river banks.
-      simplification_tolerance {Linear Unit}:
-          The z-range that will be used to simplify the resulting river boundary
-          line.
+    INPUTS:
+     in_rivers (Feature Layer):
+         The 3D polygons delineating the river banks that will be processed.
+     in_flow_direction (Feature Layer):
+         The line features that indicate the flow direction of the river bank
+         polygons.
+     max_sample_distance {Linear Unit}:
+         The regular sampling distance of the polygon's boundary that will be
+         used to establish monotonicity along the river banks.
+     simplification_tolerance {Linear Unit}:
+         The z-range that will be used to simplify the resulting river boundary
+         line.
 
-     OUTPUTS:
-      out_feature_class (Feature Class):
-          The output river boundary lines."""
+    OUTPUTS:
+     out_feature_class (Feature Class):
+         The output river boundary lines."""
     ...
 
-@gptooldoc('IsClosed3D_3d', None)
-def IsClosed3D(in_feature_class=...): # -> conversion | int | float | complex | basestring | list[Unknown] | tuple[Unknown, ...] | dict[Unknown, Unknown]:
+@gptooldoc("IsClosed3D_3d", None)
+def IsClosed3D(
+    in_feature_class=...,
+):  # -> conversion | int | float | complex | basestring | list[Unknown] | tuple[Unknown, ...] | dict[Unknown, Unknown]:
     """IsClosed3D(in_feature_class)
 
-        Evaluates multipatch features to determine whether each feature
-        completely encloses a volume of space.
+       Evaluates multipatch features to determine whether each feature
+       completely encloses a volume of space.
 
-     INPUTS:
-      in_feature_class (Feature Layer):
-          The multipatch features to be tested."""
+    INPUTS:
+     in_feature_class (Feature Layer):
+         The multipatch features to be tested."""
     ...
 
-@gptooldoc('Simplify3DLine_3d', None)
-def Simplify3DLine(in_features=..., out_feature_class=..., tolerance=...): # -> conversion | int | float | complex | basestring | list[Unknown] | tuple[Unknown, ...] | dict[Unknown, Unknown]:
+@gptooldoc("Simplify3DLine_3d", None)
+def Simplify3DLine(
+    in_features=..., out_feature_class=..., tolerance=...
+):  # -> conversion | int | float | complex | basestring | list[Unknown] | tuple[Unknown, ...] | dict[Unknown, Unknown]:
     """Simplify3DLine(in_features, out_feature_class, tolerance)
 
-        Generalizes 3D line features to reduce the overall number of vertices
-        while approximating the original shape in horizontal and vertical
-        directions within a specified tolerance.
+       Generalizes 3D line features to reduce the overall number of vertices
+       while approximating the original shape in horizontal and vertical
+       directions within a specified tolerance.
 
-     INPUTS:
-      in_features (Feature Layer):
-          The line features to be simplified.
-      tolerance (Linear Unit):
-          The 3D distance threshold from the input lines that the simplified
-          output must remain within.
+    INPUTS:
+     in_features (Feature Layer):
+         The line features to be simplified.
+     tolerance (Linear Unit):
+         The 3D distance threshold from the input lines that the simplified
+         output must remain within.
 
-     OUTPUTS:
-      out_feature_class (Feature Class):
-          The simplified output line features."""
+    OUTPUTS:
+     out_feature_class (Feature Class):
+         The simplified output line features."""
     ...
 
-@gptooldoc('ASCII3DToFeatureClass_3d', None)
-def ASCII3DToFeatureClass(input=..., in_file_type=..., out_feature_class=..., out_geometry_type=..., z_factor=..., input_coordinate_system=..., average_point_spacing=..., file_suffix=..., decimal_separator=...): # -> conversion | int | float | complex | basestring | list[Unknown] | tuple[Unknown, ...] | dict[Unknown, Unknown]:
+@gptooldoc("ASCII3DToFeatureClass_3d", None)
+def ASCII3DToFeatureClass(
+    input=...,
+    in_file_type=...,
+    out_feature_class=...,
+    out_geometry_type=...,
+    z_factor=...,
+    input_coordinate_system=...,
+    average_point_spacing=...,
+    file_suffix=...,
+    decimal_separator=...,
+):  # -> conversion | int | float | complex | basestring | list[Unknown] | tuple[Unknown, ...] | dict[Unknown, Unknown]:
     """ASCII3DToFeatureClass(input;input..., in_file_type, out_feature_class, out_geometry_type, {z_factor}, {input_coordinate_system}, {average_point_spacing}, {file_suffix}, {decimal_separator})
 
-        Imports 3D features from one or more ASCII files stored in XYZ, XYZI,
-        or GENERATE formats into a new feature class.
+       Imports 3D features from one or more ASCII files stored in XYZ, XYZI,
+       or GENERATE formats into a new feature class.
 
-     INPUTS:
-      input (File / Folder):
-          The ASCII files or folders containing data in XYZ, XYZI (with lidar
-          intensity), or 3D GENERATE format. All input files must be in the same
-          format. If a folder is specified, the File Suffix parameter becomes
-          required, and all the files that have the same extension as the
-          specified suffix will be processed.In the tool dialog box, a folder
-          can also be specified as an input by
-          selecting the folder in Windows Explorer and dragging it onto the
-          parameter's input box.
-      in_file_type (String):
-          The format of the ASCII files that will be converted to a feature
-          class.
+    INPUTS:
+     input (File / Folder):
+         The ASCII files or folders containing data in XYZ, XYZI (with lidar
+         intensity), or 3D GENERATE format. All input files must be in the same
+         format. If a folder is specified, the File Suffix parameter becomes
+         required, and all the files that have the same extension as the
+         specified suffix will be processed.In the tool dialog box, a folder
+         can also be specified as an input by
+         selecting the folder in Windows Explorer and dragging it onto the
+         parameter's input box.
+     in_file_type (String):
+         The format of the ASCII files that will be converted to a feature
+         class.
 
-          * XYZ-Text file that contain geometry information stored as XYZ
-          coordinates.
+         * XYZ-Text file that contain geometry information stored as XYZ
+         coordinates.
 
-          * XYZI-Text files that contain XYZ coordinates alongside intensity
-          measurements.
+         * XYZI-Text files that contain XYZ coordinates alongside intensity
+         measurements.
 
-          * GENERATE-Text files structured in the Generate format.
-      out_geometry_type (String):
-          The geometry type of the output feature class.
+         * GENERATE-Text files structured in the Generate format.
+     out_geometry_type (String):
+         The geometry type of the output feature class.
 
-          * MULTIPOINT-Multipoints are recommended the input data contains a
-          large number of points and attributes per feature are not required.
+         * MULTIPOINT-Multipoints are recommended the input data contains a
+         large number of points and attributes per feature are not required.
 
-          * POINT-Each XYZ coordinate will produce one point feature.
+         * POINT-Each XYZ coordinate will produce one point feature.
 
-          * POLYLINE-The output will contain polyline features.
+         * POLYLINE-The output will contain polyline features.
 
-          * POLYGON-The output will contain polygon features.
-      z_factor {Double}:
-          The factor by which z-values will be multiplied. This is typically
-          used to convert z linear units to match x,y linear units. The default
-          is 1, which leaves elevation values unchanged. This parameter is not
-          available if the spatial reference of the input surface has a z datum
-          with a specified linear unit.
-      input_coordinate_system {Coordinate System}:
-          The coordinate system of the input data. The default is an Unknown
-          Coordinate System. If specified, the output may or may not be
-          projected into a different coordinate system. This depends the whether
-          the geoprocessing environment has a coordinate system defined for the
-          location of the target feature class.
-      average_point_spacing {Double}:
-          The average planimetric distance between points of the input. This
-          parameter is only used when the output geometry is set to MULTIPOINT,
-          and its function is to provide a means for grouping the points
-          together. This value is used in conjunction with the points per shape
-          limit to construct a virtual tile system used to group the points. The
-          tile system's origin is based on the domain of the target feature
-          class. Specify the spacing in the horizontal units of the target
-          feature class.
-      file_suffix {String}:
-          The suffix of the files that will be imported from an input folder.
-          This parameter is required when a folder is specified as input.
-      decimal_separator {String}:
-          The decimal character that will be used in the text file to
-          differentiate the integer of a number from its fractional part.
+         * POLYGON-The output will contain polygon features.
+     z_factor {Double}:
+         The factor by which z-values will be multiplied. This is typically
+         used to convert z linear units to match x,y linear units. The default
+         is 1, which leaves elevation values unchanged. This parameter is not
+         available if the spatial reference of the input surface has a z datum
+         with a specified linear unit.
+     input_coordinate_system {Coordinate System}:
+         The coordinate system of the input data. The default is an Unknown
+         Coordinate System. If specified, the output may or may not be
+         projected into a different coordinate system. This depends the whether
+         the geoprocessing environment has a coordinate system defined for the
+         location of the target feature class.
+     average_point_spacing {Double}:
+         The average planimetric distance between points of the input. This
+         parameter is only used when the output geometry is set to MULTIPOINT,
+         and its function is to provide a means for grouping the points
+         together. This value is used in conjunction with the points per shape
+         limit to construct a virtual tile system used to group the points. The
+         tile system's origin is based on the domain of the target feature
+         class. Specify the spacing in the horizontal units of the target
+         feature class.
+     file_suffix {String}:
+         The suffix of the files that will be imported from an input folder.
+         This parameter is required when a folder is specified as input.
+     decimal_separator {String}:
+         The decimal character that will be used in the text file to
+         differentiate the integer of a number from its fractional part.
 
-          * DECIMAL_POINT-A point will be used as the decimal character. This is
-          the default.
+         * DECIMAL_POINT-A point will be used as the decimal character. This is
+         the default.
 
-          * DECIMAL_COMMA-A comma will be used as the decimal character.
+         * DECIMAL_COMMA-A comma will be used as the decimal character.
 
-     OUTPUTS:
-      out_feature_class (Feature Class):
-          The feature class that will be produced."""
+    OUTPUTS:
+     out_feature_class (Feature Class):
+         The feature class that will be produced."""
     ...
 
-@gptooldoc('FeatureClassZToASCII_3d', None)
-def FeatureClassZToASCII(in_feature_class=..., output_location=..., out_file=..., format=..., delimiter=..., decimal_format=..., digits_after_decimal=..., decimal_separator=...): # -> conversion | int | float | complex | basestring | list[Unknown] | tuple[Unknown, ...] | dict[Unknown, Unknown]:
+@gptooldoc("FeatureClassZToASCII_3d", None)
+def FeatureClassZToASCII(
+    in_feature_class=...,
+    output_location=...,
+    out_file=...,
+    format=...,
+    delimiter=...,
+    decimal_format=...,
+    digits_after_decimal=...,
+    decimal_separator=...,
+):  # -> conversion | int | float | complex | basestring | list[Unknown] | tuple[Unknown, ...] | dict[Unknown, Unknown]:
     """FeatureClassZToASCII(in_feature_class, output_location, out_file, {format}, {delimiter}, {decimal_format}, {digits_after_decimal}, {decimal_separator})
 
-        Exports 3D features to ASCII text files storing GENERATE, XYZ, or
-        profile data.
+       Exports 3D features to ASCII text files storing GENERATE, XYZ, or
+       profile data.
 
-     INPUTS:
-      in_feature_class (Feature Layer):
-          The 3D point, multipoint, polyline, or polygon feature class that will
-          be exported to an ASCII file.
-      output_location (Folder):
-          The folder to which output files will be written.
-      out_file (String):
-          The name of the resulting ASCII file.If a line or polygon feature
-          class is exported to XYZ format, the file
-          name is used as a base name. Each feature will have a unique file
-          output, since the XYZ format only supports one line or polygon per
-          file. Multipart features will also have each part written to a
-          separate file. The file name will be appended with the OID of each
-          feature, as well as any additional characters needed to make each file
-          name unique.
-      format {String}:
-          Specifies the format of the ASCII file being created.
+    INPUTS:
+     in_feature_class (Feature Layer):
+         The 3D point, multipoint, polyline, or polygon feature class that will
+         be exported to an ASCII file.
+     output_location (Folder):
+         The folder to which output files will be written.
+     out_file (String):
+         The name of the resulting ASCII file.If a line or polygon feature
+         class is exported to XYZ format, the file
+         name is used as a base name. Each feature will have a unique file
+         output, since the XYZ format only supports one line or polygon per
+         file. Multipart features will also have each part written to a
+         separate file. The file name will be appended with the OID of each
+         feature, as well as any additional characters needed to make each file
+         name unique.
+     format {String}:
+         Specifies the format of the ASCII file being created.
 
-          * GENERATE-Writes output in the GENERATE format. This is the default.
+         * GENERATE-Writes output in the GENERATE format. This is the default.
 
-          * XYZ-Writes XYZ information of input features. One file will be
-          created for each line or polygon in the input feature.
+         * XYZ-Writes XYZ information of input features. One file will be
+         created for each line or polygon in the input feature.
 
-          * PROFILE-Writes profile information for line features that can be
-          used in external graphing applications.
-      delimiter {String}:
-          Specifies the delimiter that will indicate the separation of entries
-          in the columns of the text file table.
+         * PROFILE-Writes profile information for line features that can be
+         used in external graphing applications.
+     delimiter {String}:
+         Specifies the delimiter that will indicate the separation of entries
+         in the columns of the text file table.
 
-          * SPACE-A space will be used to delimit field values. This is the
-          default.
+         * SPACE-A space will be used to delimit field values. This is the
+         default.
 
-          * COMMA-A comma will be used to delimit field values. This option is
-          not applicable if the decimal separator is also a comma.
-      decimal_format {String}:
-          Specifies the method that will determine the number of significant
-          digits stored in the output files.
+         * COMMA-A comma will be used to delimit field values. This option is
+         not applicable if the decimal separator is also a comma.
+     decimal_format {String}:
+         Specifies the method that will determine the number of significant
+         digits stored in the output files.
 
-          * AUTOMATIC-The number of significant digits needed to preserve the
-          available precision, while removing unnecessary trailing zeros, is
-          automatically determined. This is the default.
+         * AUTOMATIC-The number of significant digits needed to preserve the
+         available precision, while removing unnecessary trailing zeros, is
+         automatically determined. This is the default.
 
-          * FIXED-The number of significant digits is defined in the Digits
-          after Decimal parameter.
-      digits_after_decimal {Long}:
-          The number of digits written after the decimal for floating-point
-          values written to the output files. This parameter is used when the
-          Decimal Notation parameter is set to Specified Number
-          (decimal_format=FIXED in Python).
-      decimal_separator {String}:
-          Specifies the decimal character that will differentiate the integer of
-          a number from its fractional part.
+         * FIXED-The number of significant digits is defined in the Digits
+         after Decimal parameter.
+     digits_after_decimal {Long}:
+         The number of digits written after the decimal for floating-point
+         values written to the output files. This parameter is used when the
+         Decimal Notation parameter is set to Specified Number
+         (decimal_format=FIXED in Python).
+     decimal_separator {String}:
+         Specifies the decimal character that will differentiate the integer of
+         a number from its fractional part.
 
-          * DECIMAL_POINT-A point is used as the decimal character. This is the
-          default.
+         * DECIMAL_POINT-A point is used as the decimal character. This is the
+         default.
 
-          * DECIMAL_COMMA-A comma is used as the decimal character."""
+         * DECIMAL_COMMA-A comma is used as the decimal character."""
     ...
 
-@gptooldoc('FeatureTo3DByAttribute_3d', None)
-def FeatureTo3DByAttribute(in_features=..., out_feature_class=..., height_field=..., to_height_field=...): # -> conversion | int | float | complex | basestring | list[Unknown] | tuple[Unknown, ...] | dict[Unknown, Unknown]:
+@gptooldoc("FeatureTo3DByAttribute_3d", None)
+def FeatureTo3DByAttribute(
+    in_features=..., out_feature_class=..., height_field=..., to_height_field=...
+):  # -> conversion | int | float | complex | basestring | list[Unknown] | tuple[Unknown, ...] | dict[Unknown, Unknown]:
     """FeatureTo3DByAttribute(in_features, out_feature_class, height_field, {to_height_field})
 
-        Creates 3D features using height values derived from the attribute of
-        the input features.
+       Creates 3D features using height values derived from the attribute of
+       the input features.
 
-     INPUTS:
-      in_features (Feature Layer):
-          The features that will be used to create 3D features.
-      height_field (Field):
-          The field whose values will define the height of the resulting 3D
-          features.
-      to_height_field {Field}:
-          An optional second height field used for lines. When using two height
-          fields, each line will start at the first height and end at the second
-          (sloped).
+    INPUTS:
+     in_features (Feature Layer):
+         The features that will be used to create 3D features.
+     height_field (Field):
+         The field whose values will define the height of the resulting 3D
+         features.
+     to_height_field {Field}:
+         An optional second height field used for lines. When using two height
+         fields, each line will start at the first height and end at the second
+         (sloped).
 
-     OUTPUTS:
-      out_feature_class (Feature Class):
-          The feature class that will be produced."""
+    OUTPUTS:
+     out_feature_class (Feature Class):
+         The feature class that will be produced."""
     ...
 
-@gptooldoc('FeaturesFromCityEngineRules_3d', None)
-def FeaturesFromCityEngineRules(in_features=..., in_rule_package=..., out_feature_class=..., in_existing_fields=..., in_include_reports=..., in_leaf_shapes=...): # -> conversion | int | float | complex | basestring | list[Unknown] | tuple[Unknown, ...] | dict[Unknown, Unknown]:
+@gptooldoc("FeaturesFromCityEngineRules_3d", None)
+def FeaturesFromCityEngineRules(
+    in_features=...,
+    in_rule_package=...,
+    out_feature_class=...,
+    in_existing_fields=...,
+    in_include_reports=...,
+    in_leaf_shapes=...,
+):  # -> conversion | int | float | complex | basestring | list[Unknown] | tuple[Unknown, ...] | dict[Unknown, Unknown]:
     """FeaturesFromCityEngineRules(in_features, in_rule_package, out_feature_class, {in_existing_fields}, {in_include_reports}, {in_leaf_shapes})
 
-        Generates 3D geometries from existing 2D and 3D input features using
-        rules authored in ArcGIS CityEngine.
+       Generates 3D geometries from existing 2D and 3D input features using
+       rules authored in ArcGIS CityEngine.
 
-     INPUTS:
-      in_features (Feature Layer):
-          The input point, polygon, or multipatch features. Input features can
-          be procedurally symbolized feature layers. Field mapping (attribute-
-          driven symbol properties) will be honored.
-      in_rule_package (File):
-          The CityEngine rule package file (*.rpk) containing CGA rule
-          information and assets. The rule annotated with @StartRule in the .rpk
-          file should be annotated @InPoint for a rule package intended for
-          point features, @InPolygon for a rule package intended for polygon
-          features, or @InMesh for a rule package intended for multipatch
-          features. If @StartRule is not annotated with @InPoint, @InPolygon, or
-          @InMesh, the feature type will be assumed to be polygon.
-      in_existing_fields {Boolean}:
-          Specifies whether the output feature class will include the attribute
-          fields of the input feature class. This parameter is not considered
-          when the in_leaf_shapes parameter is used.
+    INPUTS:
+     in_features (Feature Layer):
+         The input point, polygon, or multipatch features. Input features can
+         be procedurally symbolized feature layers. Field mapping (attribute-
+         driven symbol properties) will be honored.
+     in_rule_package (File):
+         The CityEngine rule package file (*.rpk) containing CGA rule
+         information and assets. The rule annotated with @StartRule in the .rpk
+         file should be annotated @InPoint for a rule package intended for
+         point features, @InPolygon for a rule package intended for polygon
+         features, or @InMesh for a rule package intended for multipatch
+         features. If @StartRule is not annotated with @InPoint, @InPolygon, or
+         @InMesh, the feature type will be assumed to be polygon.
+     in_existing_fields {Boolean}:
+         Specifies whether the output feature class will include the attribute
+         fields of the input feature class. This parameter is not considered
+         when the in_leaf_shapes parameter is used.
 
-          * INCLUDE_EXISTING_FIELDS-The attribute fields of the input feature
-          class will be included in the output feature class. This is the
-          default.
+         * INCLUDE_EXISTING_FIELDS-The attribute fields of the input feature
+         class will be included in the output feature class. This is the
+         default.
 
-          * DROP_EXISTING_FIELDS-The attribute fields of the input feature class
-          will not be included in the output feature class. This option will be
-          used automatically if the in_leaf_shapes parameter is set to
-          FEATURE_PER_LEAF_SHAPE.
-      in_include_reports {Boolean}:
-          Depending on how the rule package has been authored, it may contain
-          logic that generates one or more reports as the models are created.
-          These reports can contain a variety of information about the features.
-          An example is a rule package that reports the number of windows
-          generated for each building model.
+         * DROP_EXISTING_FIELDS-The attribute fields of the input feature class
+         will not be included in the output feature class. This option will be
+         used automatically if the in_leaf_shapes parameter is set to
+         FEATURE_PER_LEAF_SHAPE.
+     in_include_reports {Boolean}:
+         Depending on how the rule package has been authored, it may contain
+         logic that generates one or more reports as the models are created.
+         These reports can contain a variety of information about the features.
+         An example is a rule package that reports the number of windows
+         generated for each building model.
 
-          * INCLUDE_REPORTS-The output feature class will include new attribute
-          fields to hold reported values for each feature as defined by the rule
-          package report generation logic. A unique attribute is created for
-          each reported value.
+         * INCLUDE_REPORTS-The output feature class will include new attribute
+         fields to hold reported values for each feature as defined by the rule
+         package report generation logic. A unique attribute is created for
+         each reported value.
 
-          * EXCLUDE_REPORTS-Reports generated in the rule package will be
-          ignored, and no new attributes relating to the reports will be
-          generated. This is the default.
-          This parameter is ignored if the rule package does not contain logic
-          to generate reports.
-      in_leaf_shapes {Boolean}:
-          Specifies whether each input feature will be convert to a single,
-          merged multipatch feature or become a set of many features that can be
-          points, line, or multipatches.CityEngine rule packages construct
-          content by generating component
-          pieces and merging them into a single 3D object. However, these
-          components, or leaf shapes, can also be stored as separate features.
-          This option can be especially important when running analytical
-          operations using subelements of a 3D object, such as the windows of a
-          building.For example, a rule may generate seamless building models
-          from input
-          polygon footprints, or alternatively, it may create separate features
-          for each apartment face, including an outward-facing panel, a
-          representative center point, and lines showing the borders. In this
-          example, the apartment panels, center points, and outlines are all
-          considered leaf shapes.
+         * EXCLUDE_REPORTS-Reports generated in the rule package will be
+         ignored, and no new attributes relating to the reports will be
+         generated. This is the default.
+         This parameter is ignored if the rule package does not contain logic
+         to generate reports.
+     in_leaf_shapes {Boolean}:
+         Specifies whether each input feature will be convert to a single,
+         merged multipatch feature or become a set of many features that can be
+         points, line, or multipatches.CityEngine rule packages construct
+         content by generating component
+         pieces and merging them into a single 3D object. However, these
+         components, or leaf shapes, can also be stored as separate features.
+         This option can be especially important when running analytical
+         operations using subelements of a 3D object, such as the windows of a
+         building.For example, a rule may generate seamless building models
+         from input
+         polygon footprints, or alternatively, it may create separate features
+         for each apartment face, including an outward-facing panel, a
+         representative center point, and lines showing the borders. In this
+         example, the apartment panels, center points, and outlines are all
+         considered leaf shapes.
 
-          * FEATURE_PER_LEAF_SHAPE-Additional output feature classes will be
-          generated. The attribute fields from the input feature class will not
-          be included in the output feature class. The output feature class will
-          contain a field named OriginalOID that references the ObjectID of the
-          input feature from which the output was generated.
+         * FEATURE_PER_LEAF_SHAPE-Additional output feature classes will be
+         generated. The attribute fields from the input feature class will not
+         be included in the output feature class. The output feature class will
+         contain a field named OriginalOID that references the ObjectID of the
+         input feature from which the output was generated.
 
-          * FEATURE_PER_SHAPE-Additional output feature classes will not be
-          generated, even if additional leaf shapes are defined in the logic of
-          the rule. All of the geometry will be contained within the output
-          multipatch features. This is the default.
+         * FEATURE_PER_SHAPE-Additional output feature classes will not be
+         generated, even if additional leaf shapes are defined in the logic of
+         the rule. All of the geometry will be contained within the output
+         multipatch features. This is the default.
 
-     OUTPUTS:
-      out_feature_class (Feature Class):
-          The output feature class containing multipatch features with CGA rules
-          applied. An OriginalOID field is added to the output feature classes
-          to contain the ObjectID of the input feature from which each output
-          feature has been generated."""
+    OUTPUTS:
+     out_feature_class (Feature Class):
+         The output feature class containing multipatch features with CGA rules
+         applied. An OriginalOID field is added to the output feature classes
+         to contain the ObjectID of the input feature from which each output
+         feature has been generated."""
     ...
 
-@gptooldoc('Import3DFiles_3d', None)
-def Import3DFiles(in_files=..., out_featureClass=..., root_per_feature=..., spatial_reference=..., y_is_up=..., file_suffix=..., in_featureClass=..., symbol_field=...): # -> conversion | int | float | complex | basestring | list[Unknown] | tuple[Unknown, ...] | dict[Unknown, Unknown]:
+@gptooldoc("Import3DFiles_3d", None)
+def Import3DFiles(
+    in_files=...,
+    out_featureClass=...,
+    root_per_feature=...,
+    spatial_reference=...,
+    y_is_up=...,
+    file_suffix=...,
+    in_featureClass=...,
+    symbol_field=...,
+):  # -> conversion | int | float | complex | basestring | list[Unknown] | tuple[Unknown, ...] | dict[Unknown, Unknown]:
     """Import3DFiles(in_files;in_files..., out_featureClass, {root_per_feature}, {spatial_reference}, {y_is_up}, {file_suffix}, {in_featureClass}, {symbol_field})
 
-        Imports one or more 3D models into a multipatch feature class.
+       Imports one or more 3D models into a multipatch feature class.
 
-     INPUTS:
-      in_files (Folder / File):
-          One or more 3D models or folders containing such files in the
-          supported formats, which are 3D Studio Max (*.3ds), VRML and GeoVRML
-          (*.wrl), OpenFlight (*.flt), COLLADA (*.dae), and Wavefront OBJ models
-          (*.obj).
-      root_per_feature {Boolean}:
-          Indicates whether to produce one feature per file or one feature for
-          every root node in the file. This option only applies to VRML models.
+    INPUTS:
+     in_files (Folder / File):
+         One or more 3D models or folders containing such files in the
+         supported formats, which are 3D Studio Max (*.3ds), VRML and GeoVRML
+         (*.wrl), OpenFlight (*.flt), COLLADA (*.dae), and Wavefront OBJ models
+         (*.obj).
+     root_per_feature {Boolean}:
+         Indicates whether to produce one feature per file or one feature for
+         every root node in the file. This option only applies to VRML models.
 
-          * ONE_ROOT_ONE_FEATURE-The generated output will contain one feature
-          for each root node in the file.
+         * ONE_ROOT_ONE_FEATURE-The generated output will contain one feature
+         for each root node in the file.
 
-          * ONE_FILE_ONE_FEATURE-The generated output will contain one file for
-          each feature. This is the default.
-      spatial_reference {Spatial Reference}:
-          The coordinate system of the input data. For the majority of formats,
-          this is unknown. Only the GeoVRML format stores its coordinate system,
-          and its default will be obtained from the first file in the list
-          unless a spatial reference is specified here.
-      y_is_up {Boolean}:
-          Identifies the axis that defines the vertical orientation of the input
-          files.
+         * ONE_FILE_ONE_FEATURE-The generated output will contain one file for
+         each feature. This is the default.
+     spatial_reference {Spatial Reference}:
+         The coordinate system of the input data. For the majority of formats,
+         this is unknown. Only the GeoVRML format stores its coordinate system,
+         and its default will be obtained from the first file in the list
+         unless a spatial reference is specified here.
+     y_is_up {Boolean}:
+         Identifies the axis that defines the vertical orientation of the input
+         files.
 
-          * Z_IS_UP-Indicates that z is up. This is the default.
+         * Z_IS_UP-Indicates that z is up. This is the default.
 
-          * Y_IS_UP-Indicated that y is up.
-      file_suffix {String}:
-          The file extension of the files to import from an input folder. This
-          parameter is required when at least one folder is specified as an
-          input.
+         * Y_IS_UP-Indicated that y is up.
+     file_suffix {String}:
+         The file extension of the files to import from an input folder. This
+         parameter is required when at least one folder is specified as an
+         input.
 
-          * *-All supported files. This is the default.
+         * *-All supported files. This is the default.
 
-          * 3DS-3D Studio Max
+         * 3DS-3D Studio Max
 
-          * WRL-VRML or GeoVRML
+         * WRL-VRML or GeoVRML
 
-          * FLT-OpenFlight
+         * FLT-OpenFlight
 
-          * DAE-Collada
+         * DAE-Collada
 
-          * OBJ-Wavefront OBJ model
-      in_featureClass {Feature Layer}:
-          The point features whose coordinates define the real-world position of
-          the input files. Each input file will be matched to its corresponding
-          point based on the file names stored in the Symbol Field. The
-          Coordinate System parameter should be defined to match the spatial
-          reference of the points.
-      symbol_field {Field}:
-          The field in the point features containing the name of the 3D file
-          associated with each point.
+         * OBJ-Wavefront OBJ model
+     in_featureClass {Feature Layer}:
+         The point features whose coordinates define the real-world position of
+         the input files. Each input file will be matched to its corresponding
+         point based on the file names stored in the Symbol Field. The
+         Coordinate System parameter should be defined to match the spatial
+         reference of the points.
+     symbol_field {Field}:
+         The field in the point features containing the name of the 3D file
+         associated with each point.
 
-     OUTPUTS:
-      out_featureClass (Feature Class):
-          The multipatch that will be created from the input files."""
+    OUTPUTS:
+     out_featureClass (Feature Class):
+         The multipatch that will be created from the input files."""
     ...
 
-@gptooldoc('Layer3DToFeatureClass_3d', None)
-def Layer3DToFeatureClass(in_feature_layer=..., out_feature_class=..., group_field=..., disable_materials=...): # -> conversion | int | float | complex | basestring | list[Unknown] | tuple[Unknown, ...] | dict[Unknown, Unknown]:
+@gptooldoc("Layer3DToFeatureClass_3d", None)
+def Layer3DToFeatureClass(
+    in_feature_layer=..., out_feature_class=..., group_field=..., disable_materials=...
+):  # -> conversion | int | float | complex | basestring | list[Unknown] | tuple[Unknown, ...] | dict[Unknown, Unknown]:
     """Layer3DToFeatureClass(in_feature_layer, out_feature_class, {group_field}, {disable_materials})
 
-        Exports feature layers with 3D display properties to 3D lines or
-        multipatch features.
+       Exports feature layers with 3D display properties to 3D lines or
+       multipatch features.
 
-     INPUTS:
-      in_feature_layer (Feature Layer):
-          The input feature layer with 3D display properties defined.
-      group_field {Field}:
-          The input feature's text field that will be used to merge multiple
-          input features into the same output feature. The resulting output's
-          remaining attributes will be inherited from one of the input records.
-      disable_materials {Boolean}:
-          Specifies whether color and texture properties will be maintained when
-          exporting a 3D layer to a multipatch feature class.
+    INPUTS:
+     in_feature_layer (Feature Layer):
+         The input feature layer with 3D display properties defined.
+     group_field {Field}:
+         The input feature's text field that will be used to merge multiple
+         input features into the same output feature. The resulting output's
+         remaining attributes will be inherited from one of the input records.
+     disable_materials {Boolean}:
+         Specifies whether color and texture properties will be maintained when
+         exporting a 3D layer to a multipatch feature class.
 
-          * ENABLE_COLORS_AND_TEXTURES-Colors and textures will be preserved
-          with the multipatch.
+         * ENABLE_COLORS_AND_TEXTURES-Colors and textures will be preserved
+         with the multipatch.
 
-          * DISABLE_COLORS_AND_TEXTURES-Colors and textures will not be stored
-          as part of the multipatch definition. This is the default.
+         * DISABLE_COLORS_AND_TEXTURES-Colors and textures will not be stored
+         as part of the multipatch definition. This is the default.
 
-     OUTPUTS:
-      out_feature_class (Feature Class):
-          The output feature class with 3D features. Extruded points will be
-          exported as 3D lines. Points with 3D symbols, extruded lines, and
-          polygons will be exported as multipatch features."""
+    OUTPUTS:
+     out_feature_class (Feature Class):
+         The output feature class with 3D features. Extruded points will be
+         exported as 3D lines. Points with 3D symbols, extruded lines, and
+         polygons will be exported as multipatch features."""
     ...
 
-@gptooldoc('ExtractMultipatchFromMesh_3d', None)
-def ExtractMultipatchFromMesh(source_mesh=..., footprint_features=..., out_feature_class=...): # -> conversion | int | float | complex | basestring | list[Unknown] | tuple[Unknown, ...] | dict[Unknown, Unknown]:
+@gptooldoc("ExtractMultipatchFromMesh_3d", None)
+def ExtractMultipatchFromMesh(
+    source_mesh=..., footprint_features=..., out_feature_class=...
+):  # -> conversion | int | float | complex | basestring | list[Unknown] | tuple[Unknown, ...] | dict[Unknown, Unknown]:
     """ExtractMultipatchFromMesh(source_mesh, footprint_features, out_feature_class)
 
-        Creates a multipatch feature from the portion of an integrated mesh
-        that overlaps a polygon.
+       Creates a multipatch feature from the portion of an integrated mesh
+       that overlaps a polygon.
 
-     INPUTS:
-      source_mesh (Scene Layer / File):
-          The integrated mesh that will be processed.
-      footprint_features (Feature Layer):
-          The polygon features defining the area that will be clipped.
+    INPUTS:
+     source_mesh (Scene Layer / File):
+         The integrated mesh that will be processed.
+     footprint_features (Feature Layer):
+         The polygon features defining the area that will be clipped.
 
-     OUTPUTS:
-      out_feature_class (Feature Class):
-          The multipatch feature class that will be produced by this tool."""
+    OUTPUTS:
+     out_feature_class (Feature Class):
+         The multipatch feature class that will be produced by this tool."""
     ...
 
-@gptooldoc('ExtractPowerLinesFromPointCloud_3d', None)
-def ExtractPowerLinesFromPointCloud(in_point_cloud=..., class_codes=..., out_3d_lines=..., point_tolerance=..., separation_distance=..., max_sampling_gap=..., line_tolerance=..., wind_correction=..., min_wind_span=..., max_wind_deviation=..., end_point_search_radius=..., min_length=..., eliminate_wind=..., min_line_length=...): # -> conversion | int | float | complex | basestring | list[Unknown] | tuple[Unknown, ...] | dict[Unknown, Unknown]:
+@gptooldoc("ExtractPowerLinesFromPointCloud_3d", None)
+def ExtractPowerLinesFromPointCloud(
+    in_point_cloud=...,
+    class_codes=...,
+    out_3d_lines=...,
+    point_tolerance=...,
+    separation_distance=...,
+    max_sampling_gap=...,
+    line_tolerance=...,
+    wind_correction=...,
+    min_wind_span=...,
+    max_wind_deviation=...,
+    end_point_search_radius=...,
+    min_length=...,
+    eliminate_wind=...,
+    min_line_length=...,
+):  # -> conversion | int | float | complex | basestring | list[Unknown] | tuple[Unknown, ...] | dict[Unknown, Unknown]:
     """ExtractPowerLinesFromPointCloud(in_point_cloud, class_codes;class_codes..., out_3d_lines, {point_tolerance}, {separation_distance}, {max_sampling_gap}, {line_tolerance}, {wind_correction}, {min_wind_span}, {max_wind_deviation}, {end_point_search_radius}, {min_length}, {eliminate_wind}, {min_line_length})
 
-        Extracts 3D line features modeling power lines from classified point
-        cloud data.
+       Extracts 3D line features modeling power lines from classified point
+       cloud data.
 
-     INPUTS:
-      in_point_cloud (LAS Dataset Layer):
-          The LAS dataset layer containing points classified as power lines.
-      class_codes (Long):
-          The class code values for the points representing the power lines.
-      point_tolerance {Linear Unit}:
-          The distance used to establish the points that belong to a given power
-          line. The default is 80 centimeters.
-      separation_distance {Linear Unit}:
-          The distance apart points must be to determine if they belong to
-          different power lines. The default is 1 meter.
-      max_sampling_gap {Linear Unit}:
-          The largest gap that can exist in a given span of a power line. The
-          catenary curve being modeled from a set of power line points will be
-          extended by this distance to find other points that fit the same power
-          line. The default is 5 meters.
-      line_tolerance {Linear Unit}:
-          The distance that will be used to establish the accuracy of the output
-          power line. A larger distance will result in the creation of less
-          vertices per line, yielding a more coarse representation of the power
-          line when compared with a smaller distance. The default is 1
-          centimeter.
-      wind_correction {Boolean}:
-          Specifies whether the output power lines will be adjusted for the
-          influence of wind. When wind correction is applied, it can be used to
-          either improve the fitting of wind modified points or model the
-          resting state of the power lines when no wind is acting on them. The
-          type of wind correction is specified using the eliminate_wind
-          parameter.
+    INPUTS:
+     in_point_cloud (LAS Dataset Layer):
+         The LAS dataset layer containing points classified as power lines.
+     class_codes (Long):
+         The class code values for the points representing the power lines.
+     point_tolerance {Linear Unit}:
+         The distance used to establish the points that belong to a given power
+         line. The default is 80 centimeters.
+     separation_distance {Linear Unit}:
+         The distance apart points must be to determine if they belong to
+         different power lines. The default is 1 meter.
+     max_sampling_gap {Linear Unit}:
+         The largest gap that can exist in a given span of a power line. The
+         catenary curve being modeled from a set of power line points will be
+         extended by this distance to find other points that fit the same power
+         line. The default is 5 meters.
+     line_tolerance {Linear Unit}:
+         The distance that will be used to establish the accuracy of the output
+         power line. A larger distance will result in the creation of less
+         vertices per line, yielding a more coarse representation of the power
+         line when compared with a smaller distance. The default is 1
+         centimeter.
+     wind_correction {Boolean}:
+         Specifies whether the output power lines will be adjusted for the
+         influence of wind. When wind correction is applied, it can be used to
+         either improve the fitting of wind modified points or model the
+         resting state of the power lines when no wind is acting on them. The
+         type of wind correction is specified using the eliminate_wind
+         parameter.
 
-          * WIND-The power lines will be adjusted for the influence of the wind.
-          This is the default.
+         * WIND-The power lines will be adjusted for the influence of the wind.
+         This is the default.
 
-          * NO_WIND-An attempt will be made to fit the points without additional
-          adjustments for the wind.
-      min_wind_span {Linear Unit}:
-          The shortest distance a power line span can be to apply wind
-          correction when generating the output power line. The default is 60
-          meters.
-      max_wind_deviation {Double}:
-          The maximum angle that the wind is expected to deviate a given power
-          line. The default is 10 degrees.
-      end_point_search_radius {Linear Unit}:
-          The distance that will be used to identify a common suspension point
-          for power line segments connected to the same distribution pole or
-          transmission tower. The default is 10 meters.
-      min_length {Linear Unit}:
-          The shortest wire length that can be used to determine the presence of
-          a common end point. The default is 5 meters.
-      eliminate_wind {Boolean}:
-          Specifies how wind correction will be applied to the output power
-          lines. Wind correction will only be applied for catenary curves that
-          span a distance longer than the value specified in the min_wind_span
-          parameter.
+         * NO_WIND-An attempt will be made to fit the points without additional
+         adjustments for the wind.
+     min_wind_span {Linear Unit}:
+         The shortest distance a power line span can be to apply wind
+         correction when generating the output power line. The default is 60
+         meters.
+     max_wind_deviation {Double}:
+         The maximum angle that the wind is expected to deviate a given power
+         line. The default is 10 degrees.
+     end_point_search_radius {Linear Unit}:
+         The distance that will be used to identify a common suspension point
+         for power line segments connected to the same distribution pole or
+         transmission tower. The default is 10 meters.
+     min_length {Linear Unit}:
+         The shortest wire length that can be used to determine the presence of
+         a common end point. The default is 5 meters.
+     eliminate_wind {Boolean}:
+         Specifies how wind correction will be applied to the output power
+         lines. Wind correction will only be applied for catenary curves that
+         span a distance longer than the value specified in the min_wind_span
+         parameter.
 
-          * ELIMINATE_WIND-The power lines will be adjusted to simulate the
-          elimination of the impact of wind.
+         * ELIMINATE_WIND-The power lines will be adjusted to simulate the
+         elimination of the impact of wind.
 
-          * KEEP_WIND-The power lines will be adjusted to achieve a better fit
-          for the impact of wind. This is the default.
-      min_line_length {Linear Unit}:
-          The minimum 3D length of the output wires. Lines that have a length
-          shorter than the value specified for this parameter will be omitted
-          from the output.
+         * KEEP_WIND-The power lines will be adjusted to achieve a better fit
+         for the impact of wind. This is the default.
+     min_line_length {Linear Unit}:
+         The minimum 3D length of the output wires. Lines that have a length
+         shorter than the value specified for this parameter will be omitted
+         from the output.
 
-     OUTPUTS:
-      out_3d_lines (Feature Class):
-          The 3D lines modeling the power lines."""
+    OUTPUTS:
+     out_3d_lines (Feature Class):
+         The 3D lines modeling the power lines."""
     ...
 
-@gptooldoc('LasBuildingMultipatch_3d', None)
-def LasBuildingMultipatch(in_las_dataset=..., in_features=..., ground=..., out_feature_class=..., point_selection=..., simplification=..., sampling_resolution=...): # -> conversion | int | float | complex | basestring | list[Unknown] | tuple[Unknown, ...] | dict[Unknown, Unknown]:
+@gptooldoc("LasBuildingMultipatch_3d", None)
+def LasBuildingMultipatch(
+    in_las_dataset=...,
+    in_features=...,
+    ground=...,
+    out_feature_class=...,
+    point_selection=...,
+    simplification=...,
+    sampling_resolution=...,
+):  # -> conversion | int | float | complex | basestring | list[Unknown] | tuple[Unknown, ...] | dict[Unknown, Unknown]:
     """LasBuildingMultipatch(in_las_dataset, in_features, ground, out_feature_class, {point_selection}, {simplification}, {sampling_resolution})
 
-        Creates building models derived from rooftop points captured in lidar
-        data.
+       Creates building models derived from rooftop points captured in lidar
+       data.
 
-     INPUTS:
-      in_las_dataset (LAS Dataset Layer):
-          The LAS dataset containing the points that will define the building
-          rooftop.
-      in_features (Feature Layer):
-          The polygon features that define the building footprint.
-      ground (Raster Layer / TIN Layer / Field):
-          The source of ground height values can be either a numeric field in
-          the building footprint attribute table or a raster or TIN surface. A
-          field-based ground source will be processed faster than a surface-
-          based ground source.
-      point_selection {String}:
-          Specifies the LAS points that will be used to define the building
-          rooftop.
+    INPUTS:
+     in_las_dataset (LAS Dataset Layer):
+         The LAS dataset containing the points that will define the building
+         rooftop.
+     in_features (Feature Layer):
+         The polygon features that define the building footprint.
+     ground (Raster Layer / TIN Layer / Field):
+         The source of ground height values can be either a numeric field in
+         the building footprint attribute table or a raster or TIN surface. A
+         field-based ground source will be processed faster than a surface-
+         based ground source.
+     point_selection {String}:
+         Specifies the LAS points that will be used to define the building
+         rooftop.
 
-          * BUILDING_CLASSIFIED_POINTS-LAS points assigned a class code value of
-          6 will be used. This is the default.
+         * BUILDING_CLASSIFIED_POINTS-LAS points assigned a class code value of
+         6 will be used. This is the default.
 
-          * LAYER_FILTERED_POINTS-LAS points that are filtered by the input
-          layer will be used.
+         * LAYER_FILTERED_POINTS-LAS points that are filtered by the input
+         layer will be used.
 
-          * ALL_POINTS-All LAS points that overlay the building footprint will
-          be used.
-      simplification {Linear Unit}:
-          A z-tolerance value that will be used to simplify the rooftop
-          geometry. This value defines the maximum deviation of the output
-          rooftop model from the TIN surface created using the LAS points.
-      sampling_resolution {Linear Unit}:
-          The binning size used to thin the point cloud prior to constructing
-          the rooftop surface.
+         * ALL_POINTS-All LAS points that overlay the building footprint will
+         be used.
+     simplification {Linear Unit}:
+         A z-tolerance value that will be used to simplify the rooftop
+         geometry. This value defines the maximum deviation of the output
+         rooftop model from the TIN surface created using the LAS points.
+     sampling_resolution {Linear Unit}:
+         The binning size used to thin the point cloud prior to constructing
+         the rooftop surface.
 
-     OUTPUTS:
-      out_feature_class (Feature Class):
-          The multipatch feature class that will store the output building
-          models."""
+    OUTPUTS:
+     out_feature_class (Feature Class):
+         The multipatch feature class that will store the output building
+         models."""
     ...
 
-@gptooldoc('MultiPatchFootprint_3d', None)
-def MultiPatchFootprint(in_feature_class=..., out_feature_class=..., group_field=...): # -> conversion | int | float | complex | basestring | list[Unknown] | tuple[Unknown, ...] | dict[Unknown, Unknown]:
+@gptooldoc("MultiPatchFootprint_3d", None)
+def MultiPatchFootprint(
+    in_feature_class=..., out_feature_class=..., group_field=...
+):  # -> conversion | int | float | complex | basestring | list[Unknown] | tuple[Unknown, ...] | dict[Unknown, Unknown]:
     """MultiPatchFootprint(in_feature_class, out_feature_class, {group_field})
 
-        Creates polygon footprints representing the two-dimensional area of
-        multipatch features.
+       Creates polygon footprints representing the two-dimensional area of
+       multipatch features.
 
-     INPUTS:
-      in_feature_class (Feature Layer):
-          The multipatch feature whose footprint will be generated.
-      group_field {Field}:
-          The field used for combining multipatch features so that they
-          contribute to the same footprint polygon.
+    INPUTS:
+     in_feature_class (Feature Layer):
+         The multipatch feature whose footprint will be generated.
+     group_field {Field}:
+         The field used for combining multipatch features so that they
+         contribute to the same footprint polygon.
 
-     OUTPUTS:
-      out_feature_class (Feature Class):
-          The resulting footprint polygon feature class."""
+    OUTPUTS:
+     out_feature_class (Feature Class):
+         The resulting footprint polygon feature class."""
     ...
 
-@gptooldoc('RegularizeAdjacentBuildingFootprint_3d', None)
-def RegularizeAdjacentBuildingFootprint(in_features=..., group=..., out_feature_class=..., method=..., tolerance=..., precision=..., angular_limit=...): # -> conversion | int | float | complex | basestring | list[Unknown] | tuple[Unknown, ...] | dict[Unknown, Unknown]:
+@gptooldoc("RegularizeAdjacentBuildingFootprint_3d", None)
+def RegularizeAdjacentBuildingFootprint(
+    in_features=...,
+    group=...,
+    out_feature_class=...,
+    method=...,
+    tolerance=...,
+    precision=...,
+    angular_limit=...,
+):  # -> conversion | int | float | complex | basestring | list[Unknown] | tuple[Unknown, ...] | dict[Unknown, Unknown]:
     """RegularizeAdjacentBuildingFootprint(in_features, group, out_feature_class, {method}, {tolerance}, {precision}, {angular_limit})
 
-        Regularizes building footprints that have common boundaries.
+       Regularizes building footprints that have common boundaries.
 
-     INPUTS:
-      in_features (Feature Layer):
-          The input features to process.
-      group (Field):
-          The field that will be used to determine which features share
-          coincident, non-overlapping boundaries.
-      method {String}:
-          The method that will be used to regularize the input features.
+    INPUTS:
+     in_features (Feature Layer):
+         The input features to process.
+     group (Field):
+         The field that will be used to determine which features share
+         coincident, non-overlapping boundaries.
+     method {String}:
+         The method that will be used to regularize the input features.
 
-          * RIGHT_ANGLES-Identifies the best line segments that fit the input
-          feature vertices along 90° and 180° angles.
+         * RIGHT_ANGLES-Identifies the best line segments that fit the input
+         feature vertices along 90° and 180° angles.
 
-          * RIGHT_ANGLES_AND_DIAGONALS-Identifies the best line segments that
-          fit the input feature vertices along 90°, 135°, and 180° interior
-          angles.
+         * RIGHT_ANGLES_AND_DIAGONALS-Identifies the best line segments that
+         fit the input feature vertices along 90°, 135°, and 180° interior
+         angles.
 
-          * ANY_ANGLES-Identifies the best fit line that falls along any angle
-          while reducing the overall vertex count of the input features.
-      tolerance {Linear Unit}:
-          The maximum distance that the regularized footprint can deviate from
-          the boundary of its originating feature.
-      precision {Double}:
-          The precision of the spatial grid that will be used in the
-          regularization process. Valid values range from 0.05 to 0.25.
-      angular_limit {Double}:
-          The maximum deviation of the best fit line's interior angles that will
-          be tolerated when using the Right Angles and Diagonals
-          (RIGHT_ANGLES_AND_DIAGONALS) method. This value should generally be
-          kept to less than 5° to obtain best results. This parameter is
-          disabled for other regularization methods.
+         * ANY_ANGLES-Identifies the best fit line that falls along any angle
+         while reducing the overall vertex count of the input features.
+     tolerance {Linear Unit}:
+         The maximum distance that the regularized footprint can deviate from
+         the boundary of its originating feature.
+     precision {Double}:
+         The precision of the spatial grid that will be used in the
+         regularization process. Valid values range from 0.05 to 0.25.
+     angular_limit {Double}:
+         The maximum deviation of the best fit line's interior angles that will
+         be tolerated when using the Right Angles and Diagonals
+         (RIGHT_ANGLES_AND_DIAGONALS) method. This value should generally be
+         kept to less than 5° to obtain best results. This parameter is
+         disabled for other regularization methods.
 
-     OUTPUTS:
-      out_feature_class (Feature Class):
-          The feature class that will be produced."""
+    OUTPUTS:
+     out_feature_class (Feature Class):
+         The feature class that will be produced."""
     ...
 
-@gptooldoc('RegularizeBuildingFootprint_3d', None)
-def RegularizeBuildingFootprint(in_features=..., out_feature_class=..., method=..., tolerance=..., densification=..., precision=..., diagonal_penalty=..., min_radius=..., max_radius=..., alignment_feature=..., alignment_tolerance=..., tolerance_type=...): # -> conversion | int | float | complex | basestring | list[Unknown] | tuple[Unknown, ...] | dict[Unknown, Unknown]:
+@gptooldoc("RegularizeBuildingFootprint_3d", None)
+def RegularizeBuildingFootprint(
+    in_features=...,
+    out_feature_class=...,
+    method=...,
+    tolerance=...,
+    densification=...,
+    precision=...,
+    diagonal_penalty=...,
+    min_radius=...,
+    max_radius=...,
+    alignment_feature=...,
+    alignment_tolerance=...,
+    tolerance_type=...,
+):  # -> conversion | int | float | complex | basestring | list[Unknown] | tuple[Unknown, ...] | dict[Unknown, Unknown]:
     """RegularizeBuildingFootprint(in_features, out_feature_class, method, tolerance, {densification}, {precision}, {diagonal_penalty}, {min_radius}, {max_radius}, {alignment_feature}, {alignment_tolerance}, {tolerance_type})
 
-        Normalizes the footprint of building polygons by eliminating
-        undesirable artifacts in their geometry.
+       Normalizes the footprint of building polygons by eliminating
+       undesirable artifacts in their geometry.
 
-     INPUTS:
-      in_features (Feature Layer):
-          The polygons that represent the building footprints to be regularized.
-      method (String):
-          Specifies the regularization method that will be used in processing
-          the input features.
+    INPUTS:
+     in_features (Feature Layer):
+         The polygons that represent the building footprints to be regularized.
+     method (String):
+         Specifies the regularization method that will be used in processing
+         the input features.
 
-          * RIGHT_ANGLES-Shapes composed of 90° angles between adjoining edges
-          will be constructed.
+         * RIGHT_ANGLES-Shapes composed of 90° angles between adjoining edges
+         will be constructed.
 
-          * RIGHT_ANGLES_AND_DIAGONALS-Shapes composed of 45° and 90° angles
-          between adjoining edges will be constructed.
+         * RIGHT_ANGLES_AND_DIAGONALS-Shapes composed of 45° and 90° angles
+         between adjoining edges will be constructed.
 
-          * ANY_ANGLE-Shapes that form any angles between adjoining edges will
-          be constructed.
+         * ANY_ANGLE-Shapes that form any angles between adjoining edges will
+         be constructed.
 
-          * CIRCLE-The best fitting circle around the input features will be
-          constructed.
-      tolerance (Double):
-          For most methods, this value represents the maximum distance that the
-          regularized footprint can deviate from the boundary of its originating
-          feature. The specified value will be based on the linear units of the
-          input feature's coordinate system. When using the CIRCLE method, this
-          option can also be interpreted as a ratio of the difference between
-          the original feature and its regularized result against the area of
-          the regularized result based on the selection that is made in the
-          tolerance_type parameter.
-      densification {Double}:
-          The sampling interval that will be used to evaluate whether the
-          regularized feature will be straight or bent. The densification must
-          be equal to or less than the tolerance value.This parameter is only
-          used with methods that support right angle
-          identification.
-      precision {Double}:
-          The precision of the spatial grid that will be used in the
-          regularization process. Valid values range from 0.05 to 0.25.
-      diagonal_penalty {Double}:
-          When the RIGHT_ANGLES_AND_DIAGONALS method is used, this value
-          identifies the likelihood of constructing right angles or diagonal
-          edges between two adjoining segments. When the ANY_ANGLES method is
-          used, this value identifies the likelihood of constructing diagonal
-          edges that do not conform to the preferred edges determined by the
-          tool's algorithm. Generally, the higher the value, the less likely a
-          diagonal edge will be constructed.
-      min_radius {Double}:
-          The smallest radius allowed for a regularized circle. A value of 0
-          implies that there is no minimum size limit. This option is only
-          available with the CIRCLE method.
-      max_radius {Double}:
-          The largest radius allowed for a regularized circle. This option is
-          only available with the CIRCLE method.
-      alignment_feature {Feature Layer}:
-          The line feature that will be used to align the orientation of the
-          regularized polygons. Each polygon will only be aligned to one line
-          feature.
-      alignment_tolerance {Linear Unit}:
-          The maximum distance threshold that will be used for finding the
-          nearest alignment feature. For example, a value of 20 meters means the
-          nearest line that is within 20 meters will be used to align the
-          regularized polygon.
-      tolerance_type {String}:
-          Specifies how tolerance will be applied when the method parameter is
-          set to CIRCLE.
+         * CIRCLE-The best fitting circle around the input features will be
+         constructed.
+     tolerance (Double):
+         For most methods, this value represents the maximum distance that the
+         regularized footprint can deviate from the boundary of its originating
+         feature. The specified value will be based on the linear units of the
+         input feature's coordinate system. When using the CIRCLE method, this
+         option can also be interpreted as a ratio of the difference between
+         the original feature and its regularized result against the area of
+         the regularized result based on the selection that is made in the
+         tolerance_type parameter.
+     densification {Double}:
+         The sampling interval that will be used to evaluate whether the
+         regularized feature will be straight or bent. The densification must
+         be equal to or less than the tolerance value.This parameter is only
+         used with methods that support right angle
+         identification.
+     precision {Double}:
+         The precision of the spatial grid that will be used in the
+         regularization process. Valid values range from 0.05 to 0.25.
+     diagonal_penalty {Double}:
+         When the RIGHT_ANGLES_AND_DIAGONALS method is used, this value
+         identifies the likelihood of constructing right angles or diagonal
+         edges between two adjoining segments. When the ANY_ANGLES method is
+         used, this value identifies the likelihood of constructing diagonal
+         edges that do not conform to the preferred edges determined by the
+         tool's algorithm. Generally, the higher the value, the less likely a
+         diagonal edge will be constructed.
+     min_radius {Double}:
+         The smallest radius allowed for a regularized circle. A value of 0
+         implies that there is no minimum size limit. This option is only
+         available with the CIRCLE method.
+     max_radius {Double}:
+         The largest radius allowed for a regularized circle. This option is
+         only available with the CIRCLE method.
+     alignment_feature {Feature Layer}:
+         The line feature that will be used to align the orientation of the
+         regularized polygons. Each polygon will only be aligned to one line
+         feature.
+     alignment_tolerance {Linear Unit}:
+         The maximum distance threshold that will be used for finding the
+         nearest alignment feature. For example, a value of 20 meters means the
+         nearest line that is within 20 meters will be used to align the
+         regularized polygon.
+     tolerance_type {String}:
+         Specifies how tolerance will be applied when the method parameter is
+         set to CIRCLE.
 
-          * DISTANCE-The tolerance will represent the maximum distance from the
-          boundary of the feature being processed. This is the default.
+         * DISTANCE-The tolerance will represent the maximum distance from the
+         boundary of the feature being processed. This is the default.
 
-          * AREA_RATIO-The tolerance will represent the maximum limit for the
-          ratio between the area of the original feature that differs from the
-          regularized circle and the area of the regularized circle.
+         * AREA_RATIO-The tolerance will represent the maximum limit for the
+         ratio between the area of the original feature that differs from the
+         regularized circle and the area of the regularized circle.
 
-     OUTPUTS:
-      out_feature_class (Feature Class):
-          The feature class that will be produced."""
+    OUTPUTS:
+     out_feature_class (Feature Class):
+         The feature class that will be produced."""
     ...
 
-@gptooldoc('InterpolatePolyToPatch_3d', None)
-def InterpolatePolyToPatch(in_surface=..., in_feature_class=..., out_feature_class=..., max_strip_size=..., z_factor=..., area_field=..., surface_area_field=..., pyramid_level_resolution=...): # -> conversion | int | float | complex | basestring | list[Unknown] | tuple[Unknown, ...] | dict[Unknown, Unknown]:
+@gptooldoc("InterpolatePolyToPatch_3d", None)
+def InterpolatePolyToPatch(
+    in_surface=...,
+    in_feature_class=...,
+    out_feature_class=...,
+    max_strip_size=...,
+    z_factor=...,
+    area_field=...,
+    surface_area_field=...,
+    pyramid_level_resolution=...,
+):  # -> conversion | int | float | complex | basestring | list[Unknown] | tuple[Unknown, ...] | dict[Unknown, Unknown]:
     """InterpolatePolyToPatch(in_surface, in_feature_class, out_feature_class, {max_strip_size}, {z_factor}, {area_field}, {surface_area_field}, {pyramid_level_resolution})
 
-        Creates surface-conforming multipatch features by draping polygon
-        features over a surface.
+       Creates surface-conforming multipatch features by draping polygon
+       features over a surface.
 
-     INPUTS:
-      in_surface (TIN Layer / Terrain Layer):
-          The input triangulated irregular network (TIN) or terrain dataset
-          surface.
-      in_feature_class (Feature Layer):
-          The input polygon feature.
-      max_strip_size {Long}:
-          Controls the maximum number of points used to create an individual
-          triangle strip. Note that each multipatch is usually composed of
-          multiple strips. The default value is 1,024.
-      z_factor {Double}:
-          The factor by which z-values will be multiplied. This is typically
-          used to convert z linear units to match x,y linear units. The default
-          is 1, which leaves elevation values unchanged. This parameter is not
-          available if the spatial reference of the input surface has a z datum
-          with a specified linear unit.
-      area_field {String}:
-          The name of the output field containing the planimetric, or 2D, area
-          of the resulting multipatches.
-      surface_area_field {String}:
-          The name of the output field containing the 3D area of the resulting
-          multipatches. This area takes the surface undulations into
-          consideration and is always larger than the planimetric area unless
-          the surface is flat, in which case, the two are equal.
-      pyramid_level_resolution {Double}:
-          The z-tolerance or window-size resolution of the terrain pyramid level
-          that will be used. The default is 0, or full resolution.
+    INPUTS:
+     in_surface (TIN Layer / Terrain Layer):
+         The input triangulated irregular network (TIN) or terrain dataset
+         surface.
+     in_feature_class (Feature Layer):
+         The input polygon feature.
+     max_strip_size {Long}:
+         Controls the maximum number of points used to create an individual
+         triangle strip. Note that each multipatch is usually composed of
+         multiple strips. The default value is 1,024.
+     z_factor {Double}:
+         The factor by which z-values will be multiplied. This is typically
+         used to convert z linear units to match x,y linear units. The default
+         is 1, which leaves elevation values unchanged. This parameter is not
+         available if the spatial reference of the input surface has a z datum
+         with a specified linear unit.
+     area_field {String}:
+         The name of the output field containing the planimetric, or 2D, area
+         of the resulting multipatches.
+     surface_area_field {String}:
+         The name of the output field containing the 3D area of the resulting
+         multipatches. This area takes the surface undulations into
+         consideration and is always larger than the planimetric area unless
+         the surface is flat, in which case, the two are equal.
+     pyramid_level_resolution {Double}:
+         The z-tolerance or window-size resolution of the terrain pyramid level
+         that will be used. The default is 0, or full resolution.
 
-     OUTPUTS:
-      out_feature_class (Feature Class):
-          The output multipatch feature class."""
+    OUTPUTS:
+     out_feature_class (Feature Class):
+         The output multipatch feature class."""
     ...
 
-@gptooldoc('InterpolateShape_3d', None)
-def InterpolateShape(in_surface=..., in_feature_class=..., out_feature_class=..., sample_distance=..., z_factor=..., method=..., vertices_only=..., pyramid_level_resolution=..., preserve_features=...): # -> conversion | int | float | complex | basestring | list[Unknown] | tuple[Unknown, ...] | dict[Unknown, Unknown]:
+@gptooldoc("InterpolateShape_3d", None)
+def InterpolateShape(
+    in_surface=...,
+    in_feature_class=...,
+    out_feature_class=...,
+    sample_distance=...,
+    z_factor=...,
+    method=...,
+    vertices_only=...,
+    pyramid_level_resolution=...,
+    preserve_features=...,
+):  # -> conversion | int | float | complex | basestring | list[Unknown] | tuple[Unknown, ...] | dict[Unknown, Unknown]:
     """InterpolateShape(in_surface, in_feature_class, out_feature_class, {sample_distance}, {z_factor}, {method}, {vertices_only}, {pyramid_level_resolution}, {preserve_features})
 
-        Creates 3D features by interpolating z-values from a surface.
+       Creates 3D features by interpolating z-values from a surface.
 
-     INPUTS:
-      in_surface (TIN Layer / Raster Layer / Mosaic Layer / Terrain Layer / LAS Dataset Layer / Image Service):
-          The surface that will be used for interpolating z-values.
-      in_feature_class (Feature Layer):
-          The input features to process.
-      sample_distance {Double}:
-          The spacing at which z-values will be interpolated. By default, this
-          is a raster dataset's cell size or a triangulated surface's natural
-          densification.
-      z_factor {Double}:
-          The factor by which z-values will be multiplied. This is typically
-          used to convert z linear units to match x,y linear units. The default
-          is 1, which leaves elevation values unchanged. This parameter is not
-          available if the spatial reference of the input surface has a z datum
-          with a specified linear unit.
-      method {String}:
-          Specifies the interpolation method that will be used to determine
-          elevation values for the output features. The available options depend
-          on the surface type.
+    INPUTS:
+     in_surface (TIN Layer / Raster Layer / Mosaic Layer / Terrain Layer / LAS Dataset Layer / Image Service):
+         The surface that will be used for interpolating z-values.
+     in_feature_class (Feature Layer):
+         The input features to process.
+     sample_distance {Double}:
+         The spacing at which z-values will be interpolated. By default, this
+         is a raster dataset's cell size or a triangulated surface's natural
+         densification.
+     z_factor {Double}:
+         The factor by which z-values will be multiplied. This is typically
+         used to convert z linear units to match x,y linear units. The default
+         is 1, which leaves elevation values unchanged. This parameter is not
+         available if the spatial reference of the input surface has a z datum
+         with a specified linear unit.
+     method {String}:
+         Specifies the interpolation method that will be used to determine
+         elevation values for the output features. The available options depend
+         on the surface type.
 
-          * BILINEAR-The value of the query point will be determined using
-          bilinear interpolation. This is the default when the input is a raster
-          surface.
+         * BILINEAR-The value of the query point will be determined using
+         bilinear interpolation. This is the default when the input is a raster
+         surface.
 
-          * NEAREST-The value of the query point will be determined using
-          nearest neighbor interpolation. With this method, surface values will
-          only be interpolated for the input feature's vertices. This option is
-          only available for a raster surface.
+         * NEAREST-The value of the query point will be determined using
+         nearest neighbor interpolation. With this method, surface values will
+         only be interpolated for the input feature's vertices. This option is
+         only available for a raster surface.
 
-          * LINEAR-Elevation values will be obtained from the plane defined by
-          the triangle that contains the x,y-location of a query point. This is
-          the default interpolation method for TIN, terrain, and LAS datasets.
+         * LINEAR-Elevation values will be obtained from the plane defined by
+         the triangle that contains the x,y-location of a query point. This is
+         the default interpolation method for TIN, terrain, and LAS datasets.
 
-          * NATURAL_NEIGHBORS-Elevation values will be obtained by applying
-          area-based weights to the natural neighbors of a query point.
+         * NATURAL_NEIGHBORS-Elevation values will be obtained by applying
+         area-based weights to the natural neighbors of a query point.
 
-          * CONFLATE_ZMIN-Elevation values will be obtained from the smallest
-          z-value found among the natural neighbors of a query point.
+         * CONFLATE_ZMIN-Elevation values will be obtained from the smallest
+         z-value found among the natural neighbors of a query point.
 
-          * CONFLATE_ZMAX-Elevation values will be obtained from the largest
-          z-value found among the natural neighbors of a query point.
+         * CONFLATE_ZMAX-Elevation values will be obtained from the largest
+         z-value found among the natural neighbors of a query point.
 
-          * CONFLATE_NEAREST-Elevation values will be obtained from the nearest
-          value among the natural neighbors of a query point.
+         * CONFLATE_NEAREST-Elevation values will be obtained from the nearest
+         value among the natural neighbors of a query point.
 
-          * CONFLATE_CLOSEST_TO_MEAN-Elevation values will be obtained from the
-          z-value that is closest to the average of all the natural neighbors of
-          a query point.
-      vertices_only {Boolean}:
-          Specifies whether the interpolation will only occur along the vertices
-          of an input feature, ignoring the sample distance option.
+         * CONFLATE_CLOSEST_TO_MEAN-Elevation values will be obtained from the
+         z-value that is closest to the average of all the natural neighbors of
+         a query point.
+     vertices_only {Boolean}:
+         Specifies whether the interpolation will only occur along the vertices
+         of an input feature, ignoring the sample distance option.
 
-          * DENSIFY-Interpolation will occur using the sampling distance. This
-          is the default.
+         * DENSIFY-Interpolation will occur using the sampling distance. This
+         is the default.
 
-          * VERTICES_ONLY-Interpolation will only occur along the vertices.
-      pyramid_level_resolution {Double}:
-          The z-tolerance or window-size resolution of the terrain pyramid level
-          that will be used. The default is 0, or full resolution.
-      preserve_features {Boolean}:
-          Specifies whether features with one or more vertices that fall outside
-          the raster's data area will be retained in the output. This parameter
-          is only available when the input surface is a raster and the nearest
-          neighbor interpolation method is used.
+         * VERTICES_ONLY-Interpolation will only occur along the vertices.
+     pyramid_level_resolution {Double}:
+         The z-tolerance or window-size resolution of the terrain pyramid level
+         that will be used. The default is 0, or full resolution.
+     preserve_features {Boolean}:
+         Specifies whether features with one or more vertices that fall outside
+         the raster's data area will be retained in the output. This parameter
+         is only available when the input surface is a raster and the nearest
+         neighbor interpolation method is used.
 
-          * PRESERVE-Each vertex that falls outside the raster surface will have
-          its z-value derived from the trend of z-values calculated for the
-          vertices within the raster surface and will be retained in the output.
+         * PRESERVE-Each vertex that falls outside the raster surface will have
+         its z-value derived from the trend of z-values calculated for the
+         vertices within the raster surface and will be retained in the output.
 
-          * EXCLUDE-Features with at least one vertex that falls outside the
-          raster surface will be skipped in the output. This is the default.
+         * EXCLUDE-Features with at least one vertex that falls outside the
+         raster surface will be skipped in the output. This is the default.
 
-     OUTPUTS:
-      out_feature_class (Feature Class):
-          The feature class that will be produced."""
+    OUTPUTS:
+     out_feature_class (Feature Class):
+         The feature class that will be produced."""
     ...
 
-@gptooldoc('UpdateFeatureZ_3d', None)
-def UpdateFeatureZ(in_features=..., in_surface=..., method=..., status_field=...): # -> conversion | int | float | complex | basestring | list[Unknown] | tuple[Unknown, ...] | dict[Unknown, Unknown]:
+@gptooldoc("UpdateFeatureZ_3d", None)
+def UpdateFeatureZ(
+    in_features=..., in_surface=..., method=..., status_field=...
+):  # -> conversion | int | float | complex | basestring | list[Unknown] | tuple[Unknown, ...] | dict[Unknown, Unknown]:
     """UpdateFeatureZ(in_features, in_surface, {method}, {status_field})
 
-        Updates the z-coordinates of 3D feature vertices using a surface.
+       Updates the z-coordinates of 3D feature vertices using a surface.
 
-     INPUTS:
-      in_features (Feature Layer):
-          The 3D features whose vertex z-values will be modified.
-      in_surface (TIN Layer / Raster Layer / Mosaic Layer / LAS Dataset Layer):
-          The surface that will be used to determine the new z-value for the 3D
-          feature vertices.
-      method {String}:
-          Interpolation method used in determining information about the
-          surface. The available options depend on the data type of the input
-          surface:
+    INPUTS:
+     in_features (Feature Layer):
+         The 3D features whose vertex z-values will be modified.
+     in_surface (TIN Layer / Raster Layer / Mosaic Layer / LAS Dataset Layer):
+         The surface that will be used to determine the new z-value for the 3D
+         feature vertices.
+     method {String}:
+         Interpolation method used in determining information about the
+         surface. The available options depend on the data type of the input
+         surface:
 
-          * BILINEAR-An interpolation method exclusive to the raster surface,
-          which determines cell values from the four nearest cells. This is the
-          only option available for a raster surface.
+         * BILINEAR-An interpolation method exclusive to the raster surface,
+         which determines cell values from the four nearest cells. This is the
+         only option available for a raster surface.
 
-          * LINEAR-Default interpolation method for a TIN, terrain, and LAS
-          dataset. Obtains elevation from the plane defined by the triangle that
-          contains the XY location of a query point.
+         * LINEAR-Default interpolation method for a TIN, terrain, and LAS
+         dataset. Obtains elevation from the plane defined by the triangle that
+         contains the XY location of a query point.
 
-          * NATURAL_NEIGHBORS-Obtains elevation by applying area-based weights
-          to the natural neighbors of a query point.
+         * NATURAL_NEIGHBORS-Obtains elevation by applying area-based weights
+         to the natural neighbors of a query point.
 
-          * CONFLATE_ZMIN-Obtains elevation from the smallest z-value found
-          among the natural neighbors of a query point.
+         * CONFLATE_ZMIN-Obtains elevation from the smallest z-value found
+         among the natural neighbors of a query point.
 
-          * CONFLATE_ZMAX-Obtains elevation from the largest z-value found
-          among the natural neighbors of a query point.
+         * CONFLATE_ZMAX-Obtains elevation from the largest z-value found
+         among the natural neighbors of a query point.
 
-          * CONFLATE_NEAREST-Obtains elevation from the nearest value among the
-          natural neighbors of a query point.
+         * CONFLATE_NEAREST-Obtains elevation from the nearest value among the
+         natural neighbors of a query point.
 
-          * CONFLATE_CLOSEST_TO_MEAN-Obtains elevation from the z-value that is
-          closest to the average of all the natural neighbors of a query point.
-      status_field {Field}:
-          An existing numeric field that will be populated with values to
-          reflect whether the feature's vertices were successfully updated. A
-          value of 1 would be specified for updated features and 0 for features
-          that were not updated. Features that partially overlap the surface
-          will not be updated."""
+         * CONFLATE_CLOSEST_TO_MEAN-Obtains elevation from the z-value that is
+         closest to the average of all the natural neighbors of a query point.
+     status_field {Field}:
+         An existing numeric field that will be populated with values to
+         reflect whether the feature's vertices were successfully updated. A
+         value of 1 would be specified for updated features and 0 for features
+         that were not updated. Features that partially overlap the surface
+         will not be updated."""
     ...
 
-@gptooldoc('FenceDiagram_3d', None)
-def FenceDiagram(in_line_features=..., in_surface=..., out_feature_class=..., method=..., floor_height=..., ceiling_height=..., sample_distance=...): # -> conversion | int | float | complex | basestring | list[Unknown] | tuple[Unknown, ...] | dict[Unknown, Unknown]:
+@gptooldoc("FenceDiagram_3d", None)
+def FenceDiagram(
+    in_line_features=...,
+    in_surface=...,
+    out_feature_class=...,
+    method=...,
+    floor_height=...,
+    ceiling_height=...,
+    sample_distance=...,
+):  # -> conversion | int | float | complex | basestring | list[Unknown] | tuple[Unknown, ...] | dict[Unknown, Unknown]:
     """FenceDiagram(in_line_features, in_surface;in_surface..., out_feature_class, {method}, {floor_height}, {ceiling_height}, {sample_distance})
 
-        Constructs a vertical cross section of a collection of surfaces.
+       Constructs a vertical cross section of a collection of surfaces.
 
-     INPUTS:
-      in_line_features (Feature Layer):
-          The line features that will be used to construct the fence diagram.
-      in_surface (TIN Layer / Raster Layer / Mosaic Layer):
-          The surfaces that will be used to construct the fence diagram.
-      method {String}:
-          Specifies the interpolation method that will be used to obtain
-          z-values from TIN surfaces when constructing the fence diagram. This
-          parameter does not apply to raster surfaces.
+    INPUTS:
+     in_line_features (Feature Layer):
+         The line features that will be used to construct the fence diagram.
+     in_surface (TIN Layer / Raster Layer / Mosaic Layer):
+         The surfaces that will be used to construct the fence diagram.
+     method {String}:
+         Specifies the interpolation method that will be used to obtain
+         z-values from TIN surfaces when constructing the fence diagram. This
+         parameter does not apply to raster surfaces.
 
-          * LINEAR-Linear interpolation will be used. This is the default.
+         * LINEAR-Linear interpolation will be used. This is the default.
 
-          * NATURAL_NEIGHBORS-Natural neighbors interpolation will be used.
-      floor_height {Linear Unit}:
-          A constant height that will be used to define the lowest height of the
-          fence diagram.
-      ceiling_height {Linear Unit}:
-          A constant height that will be used to define the highest height of
-          the fence diagram.
-      sample_distance {Linear Unit}:
-          The horizontal distance that will be used to determine the positions
-          where height measurements are interpolated from the underlying
-          surfaces.
+         * NATURAL_NEIGHBORS-Natural neighbors interpolation will be used.
+     floor_height {Linear Unit}:
+         A constant height that will be used to define the lowest height of the
+         fence diagram.
+     ceiling_height {Linear Unit}:
+         A constant height that will be used to define the highest height of
+         the fence diagram.
+     sample_distance {Linear Unit}:
+         The horizontal distance that will be used to determine the positions
+         where height measurements are interpolated from the underlying
+         surfaces.
 
-     OUTPUTS:
-      out_feature_class (Feature Class):
-          The output multipatch that is composed of vertical faces that depict
-          the fence diagram."""
+    OUTPUTS:
+     out_feature_class (Feature Class):
+         The output multipatch that is composed of vertical faces that depict
+         the fence diagram."""
     ...
 
-@gptooldoc('Intersect3D_3d', None)
-def Intersect3D(in_feature_class_1=..., out_feature_class=..., in_feature_class_2=..., output_geometry_type=...): # -> conversion | int | float | complex | basestring | list[Unknown] | tuple[Unknown, ...] | dict[Unknown, Unknown]:
+@gptooldoc("Intersect3D_3d", None)
+def Intersect3D(
+    in_feature_class_1=...,
+    out_feature_class=...,
+    in_feature_class_2=...,
+    output_geometry_type=...,
+):  # -> conversion | int | float | complex | basestring | list[Unknown] | tuple[Unknown, ...] | dict[Unknown, Unknown]:
     """Intersect3D(in_feature_class_1, out_feature_class, {in_feature_class_2}, {output_geometry_type})
 
-        Computes the intersection of multipatch features to produce closed
-        multipatches encompassing the overlapping volumes, open multipatch
-        features from the common surface areas, or lines from the intersecting
-        edges.
+       Computes the intersection of multipatch features to produce closed
+       multipatches encompassing the overlapping volumes, open multipatch
+       features from the common surface areas, or lines from the intersecting
+       edges.
 
-     INPUTS:
-      in_feature_class_1 (Feature Layer):
-          The multipatch features that will be intersected. When only one input
-          feature layer or feature class is provided, the output will indicate
-          the intersection of its own features.
-      in_feature_class_2 {Feature Layer}:
-          The optional second multipatch feature layer or feature class to be
-          intersected with the first.
-      output_geometry_type {String}:
-          Determines the type of intersection geometry created.
+    INPUTS:
+     in_feature_class_1 (Feature Layer):
+         The multipatch features that will be intersected. When only one input
+         feature layer or feature class is provided, the output will indicate
+         the intersection of its own features.
+     in_feature_class_2 {Feature Layer}:
+         The optional second multipatch feature layer or feature class to be
+         intersected with the first.
+     output_geometry_type {String}:
+         Determines the type of intersection geometry created.
 
-          * SOLID-Creates a closed multipatch representing the overlapping
-          volumes between input features. This is the default.
+         * SOLID-Creates a closed multipatch representing the overlapping
+         volumes between input features. This is the default.
 
-          * SURFACE-Creates a multipatch surface representing shared faces
-          between input features.
+         * SURFACE-Creates a multipatch surface representing shared faces
+         between input features.
 
-          * LINE-Creates lines representing shared edges between input
-          features.
+         * LINE-Creates lines representing shared edges between input
+         features.
 
-     OUTPUTS:
-      out_feature_class (Feature Class):
-          The feature class that will be produced."""
+    OUTPUTS:
+     out_feature_class (Feature Class):
+         The feature class that will be produced."""
     ...
 
-@gptooldoc('Intersect3DLineWithMultiPatch_3d', None)
-def Intersect3DLineWithMultiPatch(in_line_features=..., in_multipatch_features=..., join_attributes=..., out_point_feature_class=..., out_line_feature_class=...): # -> conversion | int | float | complex | basestring | list[Unknown] | tuple[Unknown, ...] | dict[Unknown, Unknown]:
+@gptooldoc("Intersect3DLineWithMultiPatch_3d", None)
+def Intersect3DLineWithMultiPatch(
+    in_line_features=...,
+    in_multipatch_features=...,
+    join_attributes=...,
+    out_point_feature_class=...,
+    out_line_feature_class=...,
+):  # -> conversion | int | float | complex | basestring | list[Unknown] | tuple[Unknown, ...] | dict[Unknown, Unknown]:
     """Intersect3DLineWithMultiPatch(in_line_features, in_multipatch_features, {join_attributes}, {out_point_feature_class}, {out_line_feature_class})
 
-        Returns the number of geometric intersections between 3D line and
-        multipatch features and also provides optional features that represent
-        points of intersection and also divide the 3D lines at such points.
+       Returns the number of geometric intersections between 3D line and
+       multipatch features and also provides optional features that represent
+       points of intersection and also divide the 3D lines at such points.
 
-     INPUTS:
-      in_line_features (Feature Layer):
-          The line features that will be intersected with the multipatch
-          features.
-      in_multipatch_features (Feature Layer):
-          The multipatch features that the lines will be intersected against.
-      join_attributes {String}:
-          The input line feature attributes that will be stored with the
-          optional output features.
+    INPUTS:
+     in_line_features (Feature Layer):
+         The line features that will be intersected with the multipatch
+         features.
+     in_multipatch_features (Feature Layer):
+         The multipatch features that the lines will be intersected against.
+     join_attributes {String}:
+         The input line feature attributes that will be stored with the
+         optional output features.
 
-          * IDS_ONLY-Only feature identification numbers will be stored. This
-          is the default.
+         * IDS_ONLY-Only feature identification numbers will be stored. This
+         is the default.
 
-          * ALL-All attributes will be stored.
+         * ALL-All attributes will be stored.
 
-     OUTPUTS:
-      out_point_feature_class {Feature Class}:
-          Optional features that represent points of intersection between the 3D
-          line and multipatch.
-      out_line_feature_class {Feature Class}:
-          Optional line features that divide the input lines at each point of
-          intersection with a multipatch feature."""
+    OUTPUTS:
+     out_point_feature_class {Feature Class}:
+         Optional features that represent points of intersection between the 3D
+         line and multipatch.
+     out_line_feature_class {Feature Class}:
+         Optional line features that divide the input lines at each point of
+         intersection with a multipatch feature."""
     ...
 
-@gptooldoc('Intersect3DLineWithSurface_3d', None)
-def Intersect3DLineWithSurface(in_line_features=..., in_surfaces=..., out_line_feature_class=..., out_point_feature_class=...): # -> conversion | int | float | complex | basestring | list[Unknown] | tuple[Unknown, ...] | dict[Unknown, Unknown]:
+@gptooldoc("Intersect3DLineWithSurface_3d", None)
+def Intersect3DLineWithSurface(
+    in_line_features=...,
+    in_surfaces=...,
+    out_line_feature_class=...,
+    out_point_feature_class=...,
+):  # -> conversion | int | float | complex | basestring | list[Unknown] | tuple[Unknown, ...] | dict[Unknown, Unknown]:
     """Intersect3DLineWithSurface(in_line_features, in_surfaces;in_surfaces..., out_line_feature_class, {out_point_feature_class})
 
-        Computes the geometric intersection of 3D line features and one or
-        more surfaces to return the intersection as segmented line features
-        and points.
+       Computes the geometric intersection of 3D line features and one or
+       more surfaces to return the intersection as segmented line features
+       and points.
 
-     INPUTS:
-      in_line_features (Feature Layer):
-          The input 3D line features.
-      in_surfaces (TIN Layer / Raster Layer / Mosaic Layer):
-          One or more surfaces that will be used to determine the points of
-          intersection.
+    INPUTS:
+     in_line_features (Feature Layer):
+         The input 3D line features.
+     in_surfaces (TIN Layer / Raster Layer / Mosaic Layer):
+         One or more surfaces that will be used to determine the points of
+         intersection.
 
-     OUTPUTS:
-      out_line_feature_class (Feature Class):
-          The output line features that represent the input line features split
-          at the points of intersection with the surface.
-      out_point_feature_class {Feature Class}:
-          The optional point features that represent the input line's
-          intersection with a surface ."""
+    OUTPUTS:
+     out_line_feature_class (Feature Class):
+         The output line features that represent the input line features split
+         at the points of intersection with the surface.
+     out_point_feature_class {Feature Class}:
+         The optional point features that represent the input line's
+         intersection with a surface ."""
     ...
 
-@gptooldoc('Intersect3DLines_3d', None)
-def Intersect3DLines(in_lines=..., max_z_diff=..., join_attributes=..., out_point_fc=..., out_line_fc=...): # -> conversion | int | float | complex | basestring | list[Unknown] | tuple[Unknown, ...] | dict[Unknown, Unknown]:
+@gptooldoc("Intersect3DLines_3d", None)
+def Intersect3DLines(
+    in_lines=..., max_z_diff=..., join_attributes=..., out_point_fc=..., out_line_fc=...
+):  # -> conversion | int | float | complex | basestring | list[Unknown] | tuple[Unknown, ...] | dict[Unknown, Unknown]:
     """Intersect3DLines(in_lines;in_lines..., {max_z_diff}, {join_attributes}, {out_point_fc}, {out_line_fc})
 
-        Computes the intersecting and overlapping segments of lines in 3D
-        space.
+       Computes the intersecting and overlapping segments of lines in 3D
+       space.
 
-     INPUTS:
-      in_lines (Feature Layer):
-          The line features that will be evaluated for intersections. The input
-          can consist of either one or two line feature layers or classes. If
-          one input is specified, each feature will be compared with all other
-          features in that feature class. No feature will be compared to itself.
-      max_z_diff {Linear Unit}:
-          The maximum vertical distance between line segments that intersect.
-      join_attributes {String}:
-          Specifies the attributes from the input features that will be
-          transferred to the output feature class.
+    INPUTS:
+     in_lines (Feature Layer):
+         The line features that will be evaluated for intersections. The input
+         can consist of either one or two line feature layers or classes. If
+         one input is specified, each feature will be compared with all other
+         features in that feature class. No feature will be compared to itself.
+     max_z_diff {Linear Unit}:
+         The maximum vertical distance between line segments that intersect.
+     join_attributes {String}:
+         Specifies the attributes from the input features that will be
+         transferred to the output feature class.
 
-          * ALL-All the attributes from the input features will be transferred
-          to the output feature class. This is the default.
+         * ALL-All the attributes from the input features will be transferred
+         to the output feature class. This is the default.
 
-          * NO_FID-All the attributes except the FID attribute from the input
-          features will be transferred to the output feature class.
+         * NO_FID-All the attributes except the FID attribute from the input
+         features will be transferred to the output feature class.
 
-          * ONLY_FID-Only the FID attribute from the input features will be
-          transferred to the output feature class.
+         * ONLY_FID-Only the FID attribute from the input features will be
+         transferred to the output feature class.
 
-     OUTPUTS:
-      out_point_fc {Feature Class}:
-          The output points representing the locations where the input lines
-          intersect, including locations where overlapping line segments begin
-          and end.
-      out_line_fc {Feature Class}:
-          The output lines representing the overlapping sections that exist
-          between the input lines."""
+    OUTPUTS:
+     out_point_fc {Feature Class}:
+         The output points representing the locations where the input lines
+         intersect, including locations where overlapping line segments begin
+         and end.
+     out_line_fc {Feature Class}:
+         The output lines representing the overlapping sections that exist
+         between the input lines."""
     ...
 
-@gptooldoc('StackProfile_3d', None)
-def StackProfile(in_line_features=..., profile_targets=..., out_table=..., out_graph=...): # -> conversion | int | float | complex | basestring | list[Unknown] | tuple[Unknown, ...] | dict[Unknown, Unknown]:
+@gptooldoc("StackProfile_3d", None)
+def StackProfile(
+    in_line_features=..., profile_targets=..., out_table=..., out_graph=...
+):  # -> conversion | int | float | complex | basestring | list[Unknown] | tuple[Unknown, ...] | dict[Unknown, Unknown]:
     """StackProfile(in_line_features, profile_targets;profile_targets..., out_table, {out_graph})
 
-        Creates a table and optional graph denoting the profile of line
-        features over one or more multipatch, raster, TIN, or terrain
-        surfaces.
+       Creates a table and optional graph denoting the profile of line
+       features over one or more multipatch, raster, TIN, or terrain
+       surfaces.
 
-     INPUTS:
-      in_line_features (Feature Layer):
-          The line features that will be profiled over the surface inputs.
-      profile_targets (Feature Layer / TIN Layer / Raster Layer / Mosaic Layer / Terrain Layer / LAS Dataset Layer):
-          The data being profiled, which can be comprised from any combination
-          of multipatch features, raster, and triangulated surface models.
+    INPUTS:
+     in_line_features (Feature Layer):
+         The line features that will be profiled over the surface inputs.
+     profile_targets (Feature Layer / TIN Layer / Raster Layer / Mosaic Layer / Terrain Layer / LAS Dataset Layer):
+         The data being profiled, which can be comprised from any combination
+         of multipatch features, raster, and triangulated surface models.
 
-     OUTPUTS:
-      out_table (Table):
-          The output table that will store the height interpolated for each
-          profile target that intersects the input line.
-      out_graph {Graph}:
-          The output graph is not supported in Pro."""
+    OUTPUTS:
+     out_table (Table):
+         The output table that will store the height interpolated for each
+         profile target that intersects the input line.
+     out_graph {Graph}:
+         The output graph is not supported in Pro."""
     ...
 
-@gptooldoc('Buffer3D_3d', None)
-def Buffer3D(in_features=..., out_feature_class=..., buffer_distance_or_field=..., buffer_joint_type=..., buffer_quality=..., simplification_tolerance=...): # -> conversion | int | float | complex | basestring | list[Unknown] | tuple[Unknown, ...] | dict[Unknown, Unknown]:
+@gptooldoc("Buffer3D_3d", None)
+def Buffer3D(
+    in_features=...,
+    out_feature_class=...,
+    buffer_distance_or_field=...,
+    buffer_joint_type=...,
+    buffer_quality=...,
+    simplification_tolerance=...,
+):  # -> conversion | int | float | complex | basestring | list[Unknown] | tuple[Unknown, ...] | dict[Unknown, Unknown]:
     """Buffer3D(in_features, out_feature_class, buffer_distance_or_field, {buffer_joint_type}, {buffer_quality}, {simplification_tolerance})
 
-        Creates a 3-dimensional buffer around points or lines to produce
-        spherical or cylindrical multipatch features.
+       Creates a 3-dimensional buffer around points or lines to produce
+       spherical or cylindrical multipatch features.
 
-     INPUTS:
-      in_features (Feature Layer):
-          The line or point features to be buffered.
-      buffer_distance_or_field (Linear Unit / Field):
-          The distance of the buffer around the input features, which can be
-          provided as either a linear distance or be derived from a numeric
-          field in the input feature's attribute table. If the buffer distance
-          is specified from an input field, its unit of measurement will be
-          derived from the feature's spatial reference. If the linear distance
-          is specified as a numeric value, the following units of measure are
-          supported:
-      buffer_joint_type {String}:
-          Specifies the shape of the buffer between the vertices of the line
-          segments. This parameter is only valid for input line features.
+    INPUTS:
+     in_features (Feature Layer):
+         The line or point features to be buffered.
+     buffer_distance_or_field (Linear Unit / Field):
+         The distance of the buffer around the input features, which can be
+         provided as either a linear distance or be derived from a numeric
+         field in the input feature's attribute table. If the buffer distance
+         is specified from an input field, its unit of measurement will be
+         derived from the feature's spatial reference. If the linear distance
+         is specified as a numeric value, the following units of measure are
+         supported:
+     buffer_joint_type {String}:
+         Specifies the shape of the buffer between the vertices of the line
+         segments. This parameter is only valid for input line features.
 
-          * STRAIGHT-The shape of connections between vertices will be straight.
-          This is the default.
+         * STRAIGHT-The shape of connections between vertices will be straight.
+         This is the default.
 
-          * ROUND-The shape of connections between vertices will be round.
-      buffer_quality {Long}:
-          The number of segments that will be used to represent the resulting
-          multipatch features. A higher value produces smoother 3D features, but
-          also lengthens the processing time. Any number between the range of 6
-          to 60 can be entered. The default is 20.
-      simplification_tolerance {Linear Unit}:
-          Simplifies the input lines by maintaining their shape within the
-          specified offset of its original form. Simplification will not take
-          place if no value is specified.
+         * ROUND-The shape of connections between vertices will be round.
+     buffer_quality {Long}:
+         The number of segments that will be used to represent the resulting
+         multipatch features. A higher value produces smoother 3D features, but
+         also lengthens the processing time. Any number between the range of 6
+         to 60 can be entered. The default is 20.
+     simplification_tolerance {Linear Unit}:
+         Simplifies the input lines by maintaining their shape within the
+         specified offset of its original form. Simplification will not take
+         place if no value is specified.
 
-     OUTPUTS:
-      out_feature_class (Feature Class):
-          The output multipatch containing the 3D buffers."""
+    OUTPUTS:
+     out_feature_class (Feature Class):
+         The output multipatch containing the 3D buffers."""
     ...
 
-@gptooldoc('GenerateClearanceSurface_3d', None)
-def GenerateClearanceSurface(in_3d_features=..., horizontal_clearance=..., vertical_clearance=..., out_surface=..., cell_size=..., overlap_method=..., flare_angle=..., flare_distance=...): # -> conversion | int | float | complex | basestring | list[Unknown] | tuple[Unknown, ...] | dict[Unknown, Unknown]:
+@gptooldoc("GenerateClearanceSurface_3d", None)
+def GenerateClearanceSurface(
+    in_3d_features=...,
+    horizontal_clearance=...,
+    vertical_clearance=...,
+    out_surface=...,
+    cell_size=...,
+    overlap_method=...,
+    flare_angle=...,
+    flare_distance=...,
+):  # -> conversion | int | float | complex | basestring | list[Unknown] | tuple[Unknown, ...] | dict[Unknown, Unknown]:
     """GenerateClearanceSurface(in_3d_features, horizontal_clearance, vertical_clearance, out_surface, cell_size, {overlap_method}, {flare_angle}, {flare_distance})
 
-        Generates a raster surface modeling the clearance zone around 3D line
-        features.
+       Generates a raster surface modeling the clearance zone around 3D line
+       features.
 
-     INPUTS:
-      in_3d_features (Feature Layer):
-          The 3D line features that will be used to generate the clearance zone.
-      horizontal_clearance (Linear Unit):
-          The horizontal displacement of the clearance zone from each side of
-          the input features.
-      vertical_clearance (Linear Unit):
-          The vertical displacement of the clearance zone from each input
-          feature. The direction of the vertical displacement is indicated by
-          the overlap_method parameter value. If the MINIMUM option is
-          specified, the vertical displacement will be lower than the input
-          features. If the MAXIMUM option is specified, the displacement will be
-          higher than the input features.
-      cell_size (Linear Unit):
-          The cell size of the output raster surface.
-      overlap_method {String}:
-          Specifies the method that will be used to define the clearance zone in
-          places where the zone around multiple features overlap.
+    INPUTS:
+     in_3d_features (Feature Layer):
+         The 3D line features that will be used to generate the clearance zone.
+     horizontal_clearance (Linear Unit):
+         The horizontal displacement of the clearance zone from each side of
+         the input features.
+     vertical_clearance (Linear Unit):
+         The vertical displacement of the clearance zone from each input
+         feature. The direction of the vertical displacement is indicated by
+         the overlap_method parameter value. If the MINIMUM option is
+         specified, the vertical displacement will be lower than the input
+         features. If the MAXIMUM option is specified, the displacement will be
+         higher than the input features.
+     cell_size (Linear Unit):
+         The cell size of the output raster surface.
+     overlap_method {String}:
+         Specifies the method that will be used to define the clearance zone in
+         places where the zone around multiple features overlap.
 
-          * MINIMUM-The lowest clearance will be used to define the clearance
-          zone. This is the default.
+         * MINIMUM-The lowest clearance will be used to define the clearance
+         zone. This is the default.
 
-          * MAXIMUM-The highest clearance will be used to define the clearance
-          zone.
-      flare_angle {Double}:
-          The arithmetic angle that defines the direction of the flare at the
-          end of the clearance zone.
-      flare_distance {Linear Unit}:
-          The length of the flare at the end of the clearance zone.
+         * MAXIMUM-The highest clearance will be used to define the clearance
+         zone.
+     flare_angle {Double}:
+         The arithmetic angle that defines the direction of the flare at the
+         end of the clearance zone.
+     flare_distance {Linear Unit}:
+         The length of the flare at the end of the clearance zone.
 
-     OUTPUTS:
-      out_surface (Raster Dataset):
-          The output raster surface that represents the clearance zone."""
+    OUTPUTS:
+     out_surface (Raster Dataset):
+         The output raster surface that represents the clearance zone."""
     ...
 
-@gptooldoc('Inside3D_3d', None)
-def Inside3D(in_target_feature_class=..., in_container_feature_class=..., out_table=..., complex_output=...): # -> conversion | int | float | complex | basestring | list[Unknown] | tuple[Unknown, ...] | dict[Unknown, Unknown]:
+@gptooldoc("Inside3D_3d", None)
+def Inside3D(
+    in_target_feature_class=...,
+    in_container_feature_class=...,
+    out_table=...,
+    complex_output=...,
+):  # -> conversion | int | float | complex | basestring | list[Unknown] | tuple[Unknown, ...] | dict[Unknown, Unknown]:
     """Inside3D(in_target_feature_class, in_container_feature_class, out_table, {complex_output})
 
-        Determines if 3D features from an input feature class are contained
-        inside a closed multipatch, and writes an output table recording the
-        features that are partially or fully inside the multipatch.
+       Determines if 3D features from an input feature class are contained
+       inside a closed multipatch, and writes an output table recording the
+       features that are partially or fully inside the multipatch.
 
-     INPUTS:
-      in_target_feature_class (Feature Layer):
-          The input multipatch or 3D point, line, or polygon feature class.
-      in_container_feature_class (Feature Layer):
-          The closed multipatch features that will be used as the containers for
-          the input features.
-      complex_output {Boolean}:
-          Specifies if the output table will identify the relationship between
-          the Input Features and the Input Multipatch Features through the
-          creation of a Contain_ID field that identifies the multipatch feature
-          that contains the input feature.
+    INPUTS:
+     in_target_feature_class (Feature Layer):
+         The input multipatch or 3D point, line, or polygon feature class.
+     in_container_feature_class (Feature Layer):
+         The closed multipatch features that will be used as the containers for
+         the input features.
+     complex_output {Boolean}:
+         Specifies if the output table will identify the relationship between
+         the Input Features and the Input Multipatch Features through the
+         creation of a Contain_ID field that identifies the multipatch feature
+         that contains the input feature.
 
-          * Checked-The multipatch feature that contains an input feature will
-          be identified.
+         * Checked-The multipatch feature that contains an input feature will
+         be identified.
 
-          * Unchecked-The multipatch feature that contains an input feature will
-          not be identified. This is the default.
-          Specifies if the output table will identify the relationship between
-          the Input Features and the Input Multipatch Features through the
-          creation of a Contain_ID field that identifies the multipatch feature
-          that contains the input feature.
+         * Unchecked-The multipatch feature that contains an input feature will
+         not be identified. This is the default.
+         Specifies if the output table will identify the relationship between
+         the Input Features and the Input Multipatch Features through the
+         creation of a Contain_ID field that identifies the multipatch feature
+         that contains the input feature.
 
-          * COMPLEX-The multipatch feature that contains an input feature will
-          be identified.
+         * COMPLEX-The multipatch feature that contains an input feature will
+         be identified.
 
-          * SIMPLE-The multipatch feature that contains an input feature will
-          not be identified. This is the default.
+         * SIMPLE-The multipatch feature that contains an input feature will
+         not be identified. This is the default.
 
-     OUTPUTS:
-      out_table (Table):
-          The output table providing a list of 3D Input Features that are inside
-          or partially inside the Input Multipatch Features which are closed.
-          The output table contains an OBJECTID (object ID), Target_ID, and
-          Status field. The Status field will state if the input feature
-          (Target_ID) is inside or partially inside a multipatch."""
+    OUTPUTS:
+     out_table (Table):
+         The output table providing a list of 3D Input Features that are inside
+         or partially inside the Input Multipatch Features which are closed.
+         The output table contains an OBJECTID (object ID), Target_ID, and
+         Status field. The Status field will state if the input feature
+         (Target_ID) is inside or partially inside a multipatch."""
     ...
 
-@gptooldoc('LocateLasPointsByProximity_3d', None)
-def LocateLasPointsByProximity(in_las_dataset=..., in_features=..., search_radius=..., count_field=..., out_features=..., geometry=..., class_code=..., compute_stats=..., update_pyramid=...): # -> conversion | int | float | complex | basestring | list[Unknown] | tuple[Unknown, ...] | dict[Unknown, Unknown]:
+@gptooldoc("LocateLasPointsByProximity_3d", None)
+def LocateLasPointsByProximity(
+    in_las_dataset=...,
+    in_features=...,
+    search_radius=...,
+    count_field=...,
+    out_features=...,
+    geometry=...,
+    class_code=...,
+    compute_stats=...,
+    update_pyramid=...,
+):  # -> conversion | int | float | complex | basestring | list[Unknown] | tuple[Unknown, ...] | dict[Unknown, Unknown]:
     """LocateLasPointsByProximity(in_las_dataset, in_features, {search_radius}, {count_field}, {out_features}, {geometry}, {class_code}, {compute_stats}, {update_pyramid})
 
-        Identifies LAS points within the three-dimensional proximity of
-        z-enabled features along with the option to reclassify those points.
+       Identifies LAS points within the three-dimensional proximity of
+       z-enabled features along with the option to reclassify those points.
 
-     INPUTS:
-      in_las_dataset (LAS Dataset Layer):
-          The LAS dataset to process.
-      in_features (Feature Layer):
-          The 3D point, line, polygon, or multipatch features whose proximity
-          will be used for identifying LAS points.
-      search_radius {Linear Unit / Field}:
-          The distance around the input features that will be evaluated for the
-          presence of LAS points, which can be provided as either a linear
-          distance or a numeric field in the input feature's attribute table. If
-          the search radius is derived from a field or a linear distance whose
-          units are specified as Unknown, the linear unit of the input features'
-          XY spatial reference is used.
-      count_field {String}:
-          The name of the field that will be added to the input feature's
-          attribute table and populated with the number of LAS points in each
-          feature's proximity. The default field name is COUNT.
-      geometry {String}:
-          Specifies the geometry of the output point features that represent the
-          LAS points found within the specified proximity of the input features.
+    INPUTS:
+     in_las_dataset (LAS Dataset Layer):
+         The LAS dataset to process.
+     in_features (Feature Layer):
+         The 3D point, line, polygon, or multipatch features whose proximity
+         will be used for identifying LAS points.
+     search_radius {Linear Unit / Field}:
+         The distance around the input features that will be evaluated for the
+         presence of LAS points, which can be provided as either a linear
+         distance or a numeric field in the input feature's attribute table. If
+         the search radius is derived from a field or a linear distance whose
+         units are specified as Unknown, the linear unit of the input features'
+         XY spatial reference is used.
+     count_field {String}:
+         The name of the field that will be added to the input feature's
+         attribute table and populated with the number of LAS points in each
+         feature's proximity. The default field name is COUNT.
+     geometry {String}:
+         Specifies the geometry of the output point features that represent the
+         LAS points found within the specified proximity of the input features.
 
-          * MULTIPOINT-Multipoint features that will have multiple points in
-          each row.
+         * MULTIPOINT-Multipoint features that will have multiple points in
+         each row.
 
-          * POINT-Single-point features that will have a unique row for each
-          identified LAS point.
-      class_code {Long}:
-          The class code value that will be used to reclassify the points found
-          within the search radius of the input features.
-      compute_stats {Boolean}:
-          Specifies whether statistics will be computed for the .las files
-          referenced by the LAS dataset. Computing statistics provides a spatial
-          index for each .las file, which improves analysis and display
-          performance. Statistics also enhance the filtering and symbology
-          experience by limiting the display of LAS attributes, such as
-          classification codes and return information, to values that are
-          present in the .las file.
+         * POINT-Single-point features that will have a unique row for each
+         identified LAS point.
+     class_code {Long}:
+         The class code value that will be used to reclassify the points found
+         within the search radius of the input features.
+     compute_stats {Boolean}:
+         Specifies whether statistics will be computed for the .las files
+         referenced by the LAS dataset. Computing statistics provides a spatial
+         index for each .las file, which improves analysis and display
+         performance. Statistics also enhance the filtering and symbology
+         experience by limiting the display of LAS attributes, such as
+         classification codes and return information, to values that are
+         present in the .las file.
 
-          * COMPUTE_STATS-Statistics will be computed. This is the default.
+         * COMPUTE_STATS-Statistics will be computed. This is the default.
 
-          * NO_COMPUTE_STATS-Statistics will not be computed.
-      update_pyramid {Boolean}:
-          Specifies whether the LAS dataset pyramid will be updated after the
-          class codes are modified.
+         * NO_COMPUTE_STATS-Statistics will not be computed.
+     update_pyramid {Boolean}:
+         Specifies whether the LAS dataset pyramid will be updated after the
+         class codes are modified.
 
-          * UPDATE_PYRAMID-The LAS dataset pyramid will be updated. This is the
-          default.
+         * UPDATE_PYRAMID-The LAS dataset pyramid will be updated. This is the
+         default.
 
-          * NO_UPDATE_PYRAMID-The LAS dataset pyramid will not be updated.
+         * NO_UPDATE_PYRAMID-The LAS dataset pyramid will not be updated.
 
-     OUTPUTS:
-      out_features {Feature Class}:
-          The point features that represent the LAS points detected within the
-          specified proximity of the input features."""
+    OUTPUTS:
+     out_features {Feature Class}:
+         The point features that represent the LAS points detected within the
+         specified proximity of the input features."""
     ...
 
-@gptooldoc('Near3D_3d', None)
-def Near3D(in_features=..., near_features=..., search_radius=..., location=..., angle=..., delta=...): # -> conversion | int | float | complex | basestring | list[Unknown] | tuple[Unknown, ...] | dict[Unknown, Unknown]:
+@gptooldoc("Near3D_3d", None)
+def Near3D(
+    in_features=...,
+    near_features=...,
+    search_radius=...,
+    location=...,
+    angle=...,
+    delta=...,
+):  # -> conversion | int | float | complex | basestring | list[Unknown] | tuple[Unknown, ...] | dict[Unknown, Unknown]:
     """Near3D(in_features, near_features;near_features..., {search_radius}, {location}, {angle}, {delta})
 
-        Calculates the three-dimensional distance from each input feature to
-        the nearest feature that resides in one or more near feature classes.
+       Calculates the three-dimensional distance from each input feature to
+       the nearest feature that resides in one or more near feature classes.
 
-     INPUTS:
-      in_features (Feature Layer):
-          The input feature class whose features will be attributed with
-          information about the nearest feature.
-      near_features (Feature Layer):
-          The one or more features whose proximity to the input features will be
-          calculated. If multiple feature classes are specified, an additional
-          field named NEAR_FC will be added to the input feature class to
-          identify which near feature class contained the closest feature.
-      search_radius {Linear Unit}:
-          The maximum distance for which the nearest features from a given input
-          will be determined. If no value is specified, the nearest feature at
-          any distance will be determined.
-      location {Boolean}:
-          Determines whether the coordinates of the nearest point in the input
-          and near feature will be added to the input's attribute table.
+    INPUTS:
+     in_features (Feature Layer):
+         The input feature class whose features will be attributed with
+         information about the nearest feature.
+     near_features (Feature Layer):
+         The one or more features whose proximity to the input features will be
+         calculated. If multiple feature classes are specified, an additional
+         field named NEAR_FC will be added to the input feature class to
+         identify which near feature class contained the closest feature.
+     search_radius {Linear Unit}:
+         The maximum distance for which the nearest features from a given input
+         will be determined. If no value is specified, the nearest feature at
+         any distance will be determined.
+     location {Boolean}:
+         Determines whether the coordinates of the nearest point in the input
+         and near feature will be added to the input's attribute table.
 
-          * NO_LOCATION-The coordinates are not added to the input feature. This
-          is the default.
+         * NO_LOCATION-The coordinates are not added to the input feature. This
+         is the default.
 
-          * LOCATION-The coordinates are added to the input feature.
-      angle {Boolean}:
-          Determines whether the horizontal arithmetic angle and vertical angle
-          between the input feature and the nearest feature will be added to the
-          input attribute table.
+         * LOCATION-The coordinates are added to the input feature.
+     angle {Boolean}:
+         Determines whether the horizontal arithmetic angle and vertical angle
+         between the input feature and the nearest feature will be added to the
+         input attribute table.
 
-          * NO_ANGLE-The angles will not be added to the input's attribute
-          table. This is the default.
+         * NO_ANGLE-The angles will not be added to the input's attribute
+         table. This is the default.
 
-          * ANGLE-The horizontal arithmetic angle and vertical angle will be
-          added to the NEAR_ANG_H and NEAR_ANG_V fields in the input's attribute
-          table.
-      delta {Boolean}:
-          Determines whether the distances along the X, Y, and Z axes between
-          the input feature and the nearest feature will be added to the input
-          attribute table.
+         * ANGLE-The horizontal arithmetic angle and vertical angle will be
+         added to the NEAR_ANG_H and NEAR_ANG_V fields in the input's attribute
+         table.
+     delta {Boolean}:
+         Determines whether the distances along the X, Y, and Z axes between
+         the input feature and the nearest feature will be added to the input
+         attribute table.
 
-          * NO_DELTA-No distances will be added to the input attribute table.
-          This is the default.
+         * NO_DELTA-No distances will be added to the input attribute table.
+         This is the default.
 
-          * DELTA-Distances along the X, Y, and Z axes will be calculated in the
-          NEAR_DELTX, NEAR_DELTY, and NEAR_DELTZ fields."""
+         * DELTA-Distances along the X, Y, and Z axes will be calculated in the
+         NEAR_DELTX, NEAR_DELTY, and NEAR_DELTZ fields."""
     ...
 
-@gptooldoc('Union3D_3d', None)
-def Union3D(in_feature_class=..., out_feature_class=..., group_field=..., disable_optimization=..., output_all=..., out_table=...): # -> conversion | int | float | complex | basestring | list[Unknown] | tuple[Unknown, ...] | dict[Unknown, Unknown]:
+@gptooldoc("Union3D_3d", None)
+def Union3D(
+    in_feature_class=...,
+    out_feature_class=...,
+    group_field=...,
+    disable_optimization=...,
+    output_all=...,
+    out_table=...,
+):  # -> conversion | int | float | complex | basestring | list[Unknown] | tuple[Unknown, ...] | dict[Unknown, Unknown]:
     """Union3D(in_feature_class, out_feature_class, {group_field}, {disable_optimization}, {output_all}, {out_table})
 
-        Merges closed, overlapping multipatch features from an input feature
-        class.
+       Merges closed, overlapping multipatch features from an input feature
+       class.
 
-     INPUTS:
-      in_feature_class (Feature Layer):
-          The multipatch features that will be unioned.
-      group_field {Field}:
-          The field used to identify the features that should be grouped
-          together.
-      disable_optimization {Boolean}:
-          Specifies whether optimization is performed or not performed on the
-          input data. Optimization will preprocess the input data by grouping
-          them to improve performance and create unique outputs for each set of
-          overlapping features.
+    INPUTS:
+     in_feature_class (Feature Layer):
+         The multipatch features that will be unioned.
+     group_field {Field}:
+         The field used to identify the features that should be grouped
+         together.
+     disable_optimization {Boolean}:
+         Specifies whether optimization is performed or not performed on the
+         input data. Optimization will preprocess the input data by grouping
+         them to improve performance and create unique outputs for each set of
+         overlapping features.
 
-          * ENABLE-Optimization is enabled, and the grouping field is ignored.
-          This is the default. This is the default.
+         * ENABLE-Optimization is enabled, and the grouping field is ignored.
+         This is the default. This is the default.
 
-          * DISABLE-No optimization is performed on the input data. Features
-          will either be stored in a single output feature or be unioned
-          according to their grouping field, if one is provided.
-      output_all {Boolean}:
-          Determines if the output feature class contains all features or only
-          the overlapping ones that were unioned.
+         * DISABLE-No optimization is performed on the input data. Features
+         will either be stored in a single output feature or be unioned
+         according to their grouping field, if one is provided.
+     output_all {Boolean}:
+         Determines if the output feature class contains all features or only
+         the overlapping ones that were unioned.
 
-          * ENABLE-All input features are written to the output. This is the
-          default.
+         * ENABLE-All input features are written to the output. This is the
+         default.
 
-          * DISABLE-Only unioned features are written to the output. Non-
-          overlapping features will be ignored.
+         * DISABLE-Only unioned features are written to the output. Non-
+         overlapping features will be ignored.
 
-     OUTPUTS:
-      out_feature_class (Feature Class):
-          The output multipatch feature class that will store the aggregated
-          features.
-      out_table {Table}:
-          A many-to-one table that identifies the input features that contribute
-          to each output."""
+    OUTPUTS:
+     out_feature_class (Feature Class):
+         The output multipatch feature class that will store the aggregated
+         features.
+     out_table {Table}:
+         A many-to-one table that identifies the input features that contribute
+         to each output."""
     ...
 
-@gptooldoc('CutFill_3d', None)
-def CutFill(in_before_surface=..., in_after_surface=..., out_raster=..., z_factor=...): # -> conversion | int | float | complex | basestring | list[Unknown] | tuple[Unknown, ...] | dict[Unknown, Unknown]:
+@gptooldoc("CutFill_3d", None)
+def CutFill(
+    in_before_surface=..., in_after_surface=..., out_raster=..., z_factor=...
+):  # -> conversion | int | float | complex | basestring | list[Unknown] | tuple[Unknown, ...] | dict[Unknown, Unknown]:
     """CutFill(in_before_surface, in_after_surface, out_raster, {z_factor})
 
-        Calculates the volume change between two surfaces. This is typically
-        used for cut and fill operations.
+       Calculates the volume change between two surfaces. This is typically
+       used for cut and fill operations.
 
-     INPUTS:
-      in_before_surface (Composite Geodataset):
-          The input representing the surface before the cut or fill operation.
-      in_after_surface (Composite Geodataset):
-          The input representing the surface after the cut or fill operation.
-      z_factor {Double}:
-          The number of ground x,y units in one surface z-unit.The z-factor
-          adjusts the units of measure for the z-units when they
-          are different from the x,y units of the input surface. The z-values of
-          the input surface are multiplied by the z-factor when calculating the
-          final output surface.If the x,y units and z-units are in the same
-          units of measure, the
-          z-factor is 1. This is the default.If the x,y units and z-units are in
-          different units of measure, the
-          z-factor must be set to the appropriate factor or the results will be
-          incorrect. For example, if the z-units are feet and the x,y units are
-          meters, you would use a z-factor of 0.3048 to convert the z-units from
-          feet to meters (1 foot = 0.3048 meter).
+    INPUTS:
+     in_before_surface (Composite Geodataset):
+         The input representing the surface before the cut or fill operation.
+     in_after_surface (Composite Geodataset):
+         The input representing the surface after the cut or fill operation.
+     z_factor {Double}:
+         The number of ground x,y units in one surface z-unit.The z-factor
+         adjusts the units of measure for the z-units when they
+         are different from the x,y units of the input surface. The z-values of
+         the input surface are multiplied by the z-factor when calculating the
+         final output surface.If the x,y units and z-units are in the same
+         units of measure, the
+         z-factor is 1. This is the default.If the x,y units and z-units are in
+         different units of measure, the
+         z-factor must be set to the appropriate factor or the results will be
+         incorrect. For example, if the z-units are feet and the x,y units are
+         meters, you would use a z-factor of 0.3048 to convert the z-units from
+         feet to meters (1 foot = 0.3048 meter).
 
-     OUTPUTS:
-      out_raster (Raster Dataset):
-          The output raster defining regions of cut and of fill.The values show
-          the locations and amounts where the surface has been
-          added to or removed from."""
+    OUTPUTS:
+     out_raster (Raster Dataset):
+         The output raster defining regions of cut and of fill.The values show
+         the locations and amounts where the surface has been
+         added to or removed from."""
     ...
 
-@gptooldoc('Difference3D_3d', None)
-def Difference3D(in_features_minuend=..., in_features_subtrahend=..., out_feature_class=..., out_table=...): # -> conversion | int | float | complex | basestring | list[Unknown] | tuple[Unknown, ...] | dict[Unknown, Unknown]:
+@gptooldoc("Difference3D_3d", None)
+def Difference3D(
+    in_features_minuend=...,
+    in_features_subtrahend=...,
+    out_feature_class=...,
+    out_table=...,
+):  # -> conversion | int | float | complex | basestring | list[Unknown] | tuple[Unknown, ...] | dict[Unknown, Unknown]:
     """Difference3D(in_features_minuend, in_features_subtrahend, out_feature_class, {out_table})
 
-        Eliminates portions of multipatch features in a target feature class
-        that overlap with enclosed volumes of multipatch features in the
-        subtraction feature class.
+       Eliminates portions of multipatch features in a target feature class
+       that overlap with enclosed volumes of multipatch features in the
+       subtraction feature class.
 
-     INPUTS:
-      in_features_minuend (Feature Layer):
-          The multipatch features that will have its features removed by the
-          subtrahend features.
-      in_features_subtrahend (Feature Layer):
-          The multipatch features that will be subtracted from the input.
+    INPUTS:
+     in_features_minuend (Feature Layer):
+         The multipatch features that will have its features removed by the
+         subtrahend features.
+     in_features_subtrahend (Feature Layer):
+         The multipatch features that will be subtracted from the input.
 
-     OUTPUTS:
-      out_feature_class (Feature Class):
-          The output multipatch feature class that will contain the resulting
-          features.
-      out_table {Table}:
-          An optional table that stores information about the relationship
-          between the input features and the difference output. The following
-          fields are present in this table:
+    OUTPUTS:
+     out_feature_class (Feature Class):
+         The output multipatch feature class that will contain the resulting
+         features.
+     out_table {Table}:
+         An optional table that stores information about the relationship
+         between the input features and the difference output. The following
+         fields are present in this table:
 
-          * Output_ID-The ID of the output feature.
+         * Output_ID-The ID of the output feature.
 
-          * Minuend_ID-The ID of the input feature.
+         * Minuend_ID-The ID of the input feature.
 
-          * Subtrahend-The ID of the subtract feature."""
+         * Subtrahend-The ID of the subtract feature."""
     ...
 
-@gptooldoc('ExtrudeBetween_3d', None)
-def ExtrudeBetween(in_tin1=..., in_tin2=..., in_feature_class=..., out_feature_class=...): # -> conversion | int | float | complex | basestring | list[Unknown] | tuple[Unknown, ...] | dict[Unknown, Unknown]:
+@gptooldoc("ExtrudeBetween_3d", None)
+def ExtrudeBetween(
+    in_tin1=..., in_tin2=..., in_feature_class=..., out_feature_class=...
+):  # -> conversion | int | float | complex | basestring | list[Unknown] | tuple[Unknown, ...] | dict[Unknown, Unknown]:
     """ExtrudeBetween(in_tin1, in_tin2, in_feature_class, out_feature_class)
 
-        Creates 3D features by extruding each input feature between two
-        triangulated irregular network (TIN) datasets.
+       Creates 3D features by extruding each input feature between two
+       triangulated irregular network (TIN) datasets.
 
-     INPUTS:
-      in_tin1 (TIN Layer):
-          The first input TIN.
-      in_tin2 (TIN Layer):
-          The second input TIN.
-      in_feature_class (Feature Layer):
-          The features that will be extruded between the TINs.
+    INPUTS:
+     in_tin1 (TIN Layer):
+         The first input TIN.
+     in_tin2 (TIN Layer):
+         The second input TIN.
+     in_feature_class (Feature Layer):
+         The features that will be extruded between the TINs.
 
-     OUTPUTS:
-      out_feature_class (Feature Class):
-          The output that will store the extruded features."""
+    OUTPUTS:
+     out_feature_class (Feature Class):
+         The output that will store the extruded features."""
     ...
 
-@gptooldoc('MinimumBoundingVolume_3d', None)
-def MinimumBoundingVolume(in_features=..., z_value=..., out_feature_class=..., geometry_type=..., group=..., group_field=..., mbv_fields=...): # -> conversion | int | float | complex | basestring | list[Unknown] | tuple[Unknown, ...] | dict[Unknown, Unknown]:
+@gptooldoc("MinimumBoundingVolume_3d", None)
+def MinimumBoundingVolume(
+    in_features=...,
+    z_value=...,
+    out_feature_class=...,
+    geometry_type=...,
+    group=...,
+    group_field=...,
+    mbv_fields=...,
+):  # -> conversion | int | float | complex | basestring | list[Unknown] | tuple[Unknown, ...] | dict[Unknown, Unknown]:
     """MinimumBoundingVolume(in_features, z_value, out_feature_class, {geometry_type}, {group}, {group_field;group_field...}, {mbv_fields})
 
-        Creates multipatch features that represent the volume of space
-        occupied by a set of 3D features.
+       Creates multipatch features that represent the volume of space
+       occupied by a set of 3D features.
 
-     INPUTS:
-      in_features (Feature Layer / LAS Dataset Layer):
-          The LAS dataset or 3D features whose minimum bounding volume will be
-          evaluated.
-      z_value (Field):
-          The source of z-values for the input data.
-      geometry_type {String}:
-          Specifies the method that will be used to determine the geometry of
-          the minimum bounding volume.
+    INPUTS:
+     in_features (Feature Layer / LAS Dataset Layer):
+         The LAS dataset or 3D features whose minimum bounding volume will be
+         evaluated.
+     z_value (Field):
+         The source of z-values for the input data.
+     geometry_type {String}:
+         Specifies the method that will be used to determine the geometry of
+         the minimum bounding volume.
 
-          * CONVEX_HULL-The smallest convex region surrounding the input data.
+         * CONVEX_HULL-The smallest convex region surrounding the input data.
 
-          * SPHERE-The smallest sphere enclosing the input data.
+         * SPHERE-The smallest sphere enclosing the input data.
 
-          * ENVELOPE-The XYZ extent of the input data.
+         * ENVELOPE-The XYZ extent of the input data.
 
-          * CONCAVE_HULL-The concave hull that encloses the input data.
-      group {String}:
-          Specifies how the input features will be grouped; each group will be
-          enclosed with one output multipatch.
+         * CONCAVE_HULL-The concave hull that encloses the input data.
+     group {String}:
+         Specifies how the input features will be grouped; each group will be
+         enclosed with one output multipatch.
 
-          * NONE-Input features will not be grouped. This is the default. This
-          option is not available for point input.
+         * NONE-Input features will not be grouped. This is the default. This
+         option is not available for point input.
 
-          * ALL-All input features will be treated as one group.
+         * ALL-All input features will be treated as one group.
 
-          * LIST-Input features will be grouped based on their common values in
-          the specified field or fields in the group field parameter.
-      group_field {Field}:
-          The field or fields in the input features that will be used to group
-          features when LIST is specified as group_option. At least one group
-          field is required for the LIST option. All features that have the same
-          value in the specified field or fields will be treated as a group.
-      mbv_fields {Boolean}:
-          Specifies whether geometric attributes will be added to the output
-          multipatch feature class.
+         * LIST-Input features will be grouped based on their common values in
+         the specified field or fields in the group field parameter.
+     group_field {Field}:
+         The field or fields in the input features that will be used to group
+         features when LIST is specified as group_option. At least one group
+         field is required for the LIST option. All features that have the same
+         value in the specified field or fields will be treated as a group.
+     mbv_fields {Boolean}:
+         Specifies whether geometric attributes will be added to the output
+         multipatch feature class.
 
-          * NO_MBV_FIELDS-No geometric attributes will be added to the output
-          feature. This is the default.
+         * NO_MBV_FIELDS-No geometric attributes will be added to the output
+         feature. This is the default.
 
-          * MBV_FIELDS-Geometric attributes will be added to the output feature.
+         * MBV_FIELDS-Geometric attributes will be added to the output feature.
 
-     OUTPUTS:
-      out_feature_class (Feature Class):
-          The feature class that will be produced."""
+    OUTPUTS:
+     out_feature_class (Feature Class):
+         The feature class that will be produced."""
     ...
 
-@gptooldoc('PolygonVolume_3d', None)
-def PolygonVolume(in_surface=..., in_feature_class=..., in_height_field=..., reference_plane=..., out_volume_field=..., surface_area_field=..., pyramid_level_resolution=..., out_volume_above_field=..., out_volume_below_field=..., surface_area_above_field=..., surface_area_below_field=...): # -> conversion | int | float | complex | basestring | list[Unknown] | tuple[Unknown, ...] | dict[Unknown, Unknown]:
+@gptooldoc("PolygonVolume_3d", None)
+def PolygonVolume(
+    in_surface=...,
+    in_feature_class=...,
+    in_height_field=...,
+    reference_plane=...,
+    out_volume_field=...,
+    surface_area_field=...,
+    pyramid_level_resolution=...,
+    out_volume_above_field=...,
+    out_volume_below_field=...,
+    surface_area_above_field=...,
+    surface_area_below_field=...,
+):  # -> conversion | int | float | complex | basestring | list[Unknown] | tuple[Unknown, ...] | dict[Unknown, Unknown]:
     """PolygonVolume(in_surface, in_feature_class, in_height_field, {reference_plane}, {out_volume_field}, {surface_area_field}, {pyramid_level_resolution}, {out_volume_above_field}, {out_volume_below_field}, {surface_area_above_field}, {surface_area_below_field})
 
-        Calculates the volume and surface area between a polygon of a constant
-        height and a surface.
+       Calculates the volume and surface area between a polygon of a constant
+       height and a surface.
 
-     INPUTS:
-      in_surface (TIN Layer / Terrain Layer / LAS Dataset Layer):
-          The TIN, terrain, or LAS dataset surface to process.
-      in_feature_class (Feature Layer):
-          The polygon features that define the region being processed.
-      in_height_field (String):
-          The field in the polygon's attribute table that defines the height of
-          the reference plane that will be used in determining volumetric
-          calculations.
-      reference_plane {String}:
-          Specifies the direction from the reference plane that volume and
-          surface area will be calculated.
+    INPUTS:
+     in_surface (TIN Layer / Terrain Layer / LAS Dataset Layer):
+         The TIN, terrain, or LAS dataset surface to process.
+     in_feature_class (Feature Layer):
+         The polygon features that define the region being processed.
+     in_height_field (String):
+         The field in the polygon's attribute table that defines the height of
+         the reference plane that will be used in determining volumetric
+         calculations.
+     reference_plane {String}:
+         Specifies the direction from the reference plane that volume and
+         surface area will be calculated.
 
-          * ABOVE-Volume and surface area will be calculated above the reference
-          plane height of the polygons.
+         * ABOVE-Volume and surface area will be calculated above the reference
+         plane height of the polygons.
 
-          * BELOW-Volume and surface area will be calculated below the reference
-          plane height of the polygons. This is the default.
+         * BELOW-Volume and surface area will be calculated below the reference
+         plane height of the polygons. This is the default.
 
-          * BOTH-Volume and surface area will be calculated above and below the
-          reference plane height of the polygons.
-      out_volume_field {String}:
-          The name of the field that will contain volumetric calculations. The
-          default is Volume.
-      surface_area_field {String}:
-          The name of the field that will contain the surface area calculations.
-          The default is SArea.
-      pyramid_level_resolution {Double}:
-          The z-tolerance or window-size resolution of the terrain pyramid level
-          that will be used. The default is 0, or full resolution.
-      out_volume_above_field {String}:
-          The name of the field that will contain the volume calculated above
-          the polygon height. The default is Above_Vol.
-      out_volume_below_field {String}:
-          The name of the field that will contain the volume calculated below
-          the polygon height. The default is Below_Vol.
-      surface_area_above_field {String}:
-          The name of the field that will contain the surface area calculated
-          above the polygon height. The default is Above_SA.
-      surface_area_below_field {String}:
-          The name of the field that will contain the surface area calculated
-          below the polygon height. The default is Below_SA."""
+         * BOTH-Volume and surface area will be calculated above and below the
+         reference plane height of the polygons.
+     out_volume_field {String}:
+         The name of the field that will contain volumetric calculations. The
+         default is Volume.
+     surface_area_field {String}:
+         The name of the field that will contain the surface area calculations.
+         The default is SArea.
+     pyramid_level_resolution {Double}:
+         The z-tolerance or window-size resolution of the terrain pyramid level
+         that will be used. The default is 0, or full resolution.
+     out_volume_above_field {String}:
+         The name of the field that will contain the volume calculated above
+         the polygon height. The default is Above_Vol.
+     out_volume_below_field {String}:
+         The name of the field that will contain the volume calculated below
+         the polygon height. The default is Below_Vol.
+     surface_area_above_field {String}:
+         The name of the field that will contain the surface area calculated
+         above the polygon height. The default is Above_SA.
+     surface_area_below_field {String}:
+         The name of the field that will contain the surface area calculated
+         below the polygon height. The default is Below_SA."""
     ...
 
-@gptooldoc('SurfaceDifference_3d', None)
-def SurfaceDifference(in_surface=..., in_reference_surface=..., out_feature_class=..., pyramid_level_resolution=..., reference_pyramid_level_resolution=..., out_raster=..., raster_cell_size=..., out_tin_folder=..., out_tin_basename=..., method=..., reference_method=..., extent=..., boundary=...): # -> conversion | int | float | complex | basestring | list[Unknown] | tuple[Unknown, ...] | dict[Unknown, Unknown]:
+@gptooldoc("SurfaceDifference_3d", None)
+def SurfaceDifference(
+    in_surface=...,
+    in_reference_surface=...,
+    out_feature_class=...,
+    pyramid_level_resolution=...,
+    reference_pyramid_level_resolution=...,
+    out_raster=...,
+    raster_cell_size=...,
+    out_tin_folder=...,
+    out_tin_basename=...,
+    method=...,
+    reference_method=...,
+    extent=...,
+    boundary=...,
+):  # -> conversion | int | float | complex | basestring | list[Unknown] | tuple[Unknown, ...] | dict[Unknown, Unknown]:
     """SurfaceDifference(in_surface, in_reference_surface, out_feature_class, {pyramid_level_resolution}, {reference_pyramid_level_resolution}, {out_raster}, {raster_cell_size}, {out_tin_folder}, {out_tin_basename}, {method}, {reference_method}, {extent}, {boundary})
 
-        Calculate the displacement between two surfaces to determine where one
-        is above, below or the same as the other surface.
+       Calculate the displacement between two surfaces to determine where one
+       is above, below or the same as the other surface.
 
-     INPUTS:
-      in_surface (TIN Layer / Terrain Layer / LAS Dataset Layer):
-          The triangulated surface whose relative displacement is being
-          evaluated from the reference surface.
-      in_reference_surface (TIN Layer / Terrain Layer / LAS Dataset Layer):
-          The triangulated surface that will be used as the baseline for
-          determining the relative displacement of the input surface.
-      pyramid_level_resolution {Double}:
-          The resolution that will be used to generate the input surface. For a
-          terrain dataset, this will correspond to its pyramid-level
-          definitions, where the default of 0 represents full resolution. For a
-          LAS dataset, this value represents the length of each side of the
-          square area that will be used to thin the LAS point returns.
-      reference_pyramid_level_resolution {Double}:
-          The resolution that will be used to generate the reference surface.
-          For a terrain dataset, this will correspond to its pyramid-level
-          definitions, where the default of 0 represents full resolution. For a
-          LAS dataset, this value represents the length of each side of the
-          square area that will be used to thin the LAS points returns.
-      raster_cell_size {Double}:
-          The cell size of the output raster.
-      out_tin_folder {Folder}:
-          The folder location for storing one or more TIN surfaces whose values
-          represent the difference between the input and reference surface.
-      out_tin_basename {String}:
-          The base name given to each output TIN surface. If one TIN dataset is
-          not sufficient to represent the data, multiple TINs will be created
-          with the same base name.
-      method {String}:
-          The method used to select a LAS point in each analysis window when
-          applying an analysis resolution to thin the input LAS dataset surface.
-          The resulting points will be used to construct a triangulated surface.
+    INPUTS:
+     in_surface (TIN Layer / Terrain Layer / LAS Dataset Layer):
+         The triangulated surface whose relative displacement is being
+         evaluated from the reference surface.
+     in_reference_surface (TIN Layer / Terrain Layer / LAS Dataset Layer):
+         The triangulated surface that will be used as the baseline for
+         determining the relative displacement of the input surface.
+     pyramid_level_resolution {Double}:
+         The resolution that will be used to generate the input surface. For a
+         terrain dataset, this will correspond to its pyramid-level
+         definitions, where the default of 0 represents full resolution. For a
+         LAS dataset, this value represents the length of each side of the
+         square area that will be used to thin the LAS point returns.
+     reference_pyramid_level_resolution {Double}:
+         The resolution that will be used to generate the reference surface.
+         For a terrain dataset, this will correspond to its pyramid-level
+         definitions, where the default of 0 represents full resolution. For a
+         LAS dataset, this value represents the length of each side of the
+         square area that will be used to thin the LAS points returns.
+     raster_cell_size {Double}:
+         The cell size of the output raster.
+     out_tin_folder {Folder}:
+         The folder location for storing one or more TIN surfaces whose values
+         represent the difference between the input and reference surface.
+     out_tin_basename {String}:
+         The base name given to each output TIN surface. If one TIN dataset is
+         not sufficient to represent the data, multiple TINs will be created
+         with the same base name.
+     method {String}:
+         The method used to select a LAS point in each analysis window when
+         applying an analysis resolution to thin the input LAS dataset surface.
+         The resulting points will be used to construct a triangulated surface.
 
-          * CLOSEST_TO_MEAN-The LAS point whose value is closest to the mean of
-          all LAS points in the analysis window will be used. This is the
-          default.
+         * CLOSEST_TO_MEAN-The LAS point whose value is closest to the mean of
+         all LAS points in the analysis window will be used. This is the
+         default.
 
-          * MIN-The LAS point with the smallest z-value among all the LAS points
-          in the analysis window.
+         * MIN-The LAS point with the smallest z-value among all the LAS points
+         in the analysis window.
 
-          * MAX-The LAS point with the highest z-value among all the LAS points
-          in the analysis window.
-      reference_method {String}:
-          The method used to select a LAS point in each analysis window when
-          applying an analysis resolution to thin the input LAS dataset surface.
-          The resulting points will be used to construct a triangulated surface.
+         * MAX-The LAS point with the highest z-value among all the LAS points
+         in the analysis window.
+     reference_method {String}:
+         The method used to select a LAS point in each analysis window when
+         applying an analysis resolution to thin the input LAS dataset surface.
+         The resulting points will be used to construct a triangulated surface.
 
-          * CLOSEST_TO_MEAN-The LAS point whose value is closest to the mean of
-          all LAS points in the analysis window will be used. This is the
-          default.
+         * CLOSEST_TO_MEAN-The LAS point whose value is closest to the mean of
+         all LAS points in the analysis window will be used. This is the
+         default.
 
-          * MIN-The LAS point with the smallest z-value among all the LAS points
-          in the analysis window.
+         * MIN-The LAS point with the smallest z-value among all the LAS points
+         in the analysis window.
 
-          * MAX-The LAS point with the highest z-value among all the LAS points
-          in the analysis window.
-      extent {Extent}:
-          The extent of the data that will be evaluated.
+         * MAX-The LAS point with the highest z-value among all the LAS points
+         in the analysis window.
+     extent {Extent}:
+         The extent of the data that will be evaluated.
 
-          * MAXOF-The maximum extent of all inputs will be used.
+         * MAXOF-The maximum extent of all inputs will be used.
 
-          * MINOF-The minimum area common to all inputs will be used.
+         * MINOF-The minimum area common to all inputs will be used.
 
-          * DISPLAY-The extent is equal to the visible display.
+         * DISPLAY-The extent is equal to the visible display.
 
-          * Layer name-The extent of the specified layer will be used.
+         * Layer name-The extent of the specified layer will be used.
 
-          * Extent object-The extent of the specified object will be used.
+         * Extent object-The extent of the specified object will be used.
 
-          * Space delimited string of coordinates-The extent of the specified
-          string will be used. Coordinates are expressed in the order of x-min,
-          y-min, x-max, y-max.
-      boundary {Feature Layer}:
-          A polygon feature that defines the area of interest to be processed.
+         * Space delimited string of coordinates-The extent of the specified
+         string will be used. Coordinates are expressed in the order of x-min,
+         y-min, x-max, y-max.
+     boundary {Feature Layer}:
+         A polygon feature that defines the area of interest to be processed.
 
-     OUTPUTS:
-      out_feature_class (Feature Class):
-          The output feature class containing contiguous triangles and triangle
-          parts that have the same classification grouped into polygons. The
-          volume enclosed by each region of difference is listed in the
-          attribute table.
-      out_raster {Raster Dataset}:
-          The output raster surface whose values represent the input surface
-          normalized against the reference surface. Positive values reflect
-          areas where the input surface is above the reference surface, whereas
-          negative values indicate the areas where the input surface is below
-          the reference surface. The raster's values are derived from a TIN
-          using linear interpolation."""
+    OUTPUTS:
+     out_feature_class (Feature Class):
+         The output feature class containing contiguous triangles and triangle
+         parts that have the same classification grouped into polygons. The
+         volume enclosed by each region of difference is listed in the
+         attribute table.
+     out_raster {Raster Dataset}:
+         The output raster surface whose values represent the input surface
+         normalized against the reference surface. Positive values reflect
+         areas where the input surface is above the reference surface, whereas
+         negative values indicate the areas where the input surface is below
+         the reference surface. The raster's values are derived from a TIN
+         using linear interpolation."""
     ...
 
-@gptooldoc('SurfaceVolume_3d', None)
-def SurfaceVolume(in_surface=..., out_text_file=..., reference_plane=..., base_z=..., z_factor=..., pyramid_level_resolution=...): # -> conversion | int | float | complex | basestring | list[Unknown] | tuple[Unknown, ...] | dict[Unknown, Unknown]:
+@gptooldoc("SurfaceVolume_3d", None)
+def SurfaceVolume(
+    in_surface=...,
+    out_text_file=...,
+    reference_plane=...,
+    base_z=...,
+    z_factor=...,
+    pyramid_level_resolution=...,
+):  # -> conversion | int | float | complex | basestring | list[Unknown] | tuple[Unknown, ...] | dict[Unknown, Unknown]:
     """SurfaceVolume(in_surface, {out_text_file}, {reference_plane}, {base_z}, {z_factor}, {pyramid_level_resolution})
 
-        Calculates the area and volume of the region between a surface and a
-        reference plane.
+       Calculates the area and volume of the region between a surface and a
+       reference plane.
 
-     INPUTS:
-      in_surface (TIN Layer / Raster Layer / Mosaic Layer / Terrain Layer):
-          The raster, TIN, or terrain surface to process.
-      reference_plane {String}:
-          The direction from the reference plane for which to calculate the
-          results.
+    INPUTS:
+     in_surface (TIN Layer / Raster Layer / Mosaic Layer / Terrain Layer):
+         The raster, TIN, or terrain surface to process.
+     reference_plane {String}:
+         The direction from the reference plane for which to calculate the
+         results.
 
-          * ABOVE-Volume and area calculations will represent the region of
-          space between the specified plane height and the portions of the
-          surface that are above the plane. This is the default.
+         * ABOVE-Volume and area calculations will represent the region of
+         space between the specified plane height and the portions of the
+         surface that are above the plane. This is the default.
 
-          * BELOW-Volume and area calculations will represent the region of
-          space between the specified plane height and portions of the surface
-          that are below the plane.
-      base_z {Double}:
-          The Z value of the plane that will be used to calculate area and
-          volume.
-      z_factor {Double}:
-          The factor by which z-values will be multiplied. This is typically
-          used to convert z linear units to match x,y linear units. The default
-          is 1, which leaves elevation values unchanged. This parameter is not
-          available if the spatial reference of the input surface has a z datum
-          with a specified linear unit.
-      pyramid_level_resolution {Double}:
-          The z-tolerance or window-size resolution of the terrain pyramid level
-          that will be used. The default is 0, or full resolution.
+         * BELOW-Volume and area calculations will represent the region of
+         space between the specified plane height and portions of the surface
+         that are below the plane.
+     base_z {Double}:
+         The Z value of the plane that will be used to calculate area and
+         volume.
+     z_factor {Double}:
+         The factor by which z-values will be multiplied. This is typically
+         used to convert z linear units to match x,y linear units. The default
+         is 1, which leaves elevation values unchanged. This parameter is not
+         available if the spatial reference of the input surface has a z datum
+         with a specified linear unit.
+     pyramid_level_resolution {Double}:
+         The z-tolerance or window-size resolution of the terrain pyramid level
+         that will be used. The default is 0, or full resolution.
 
-     OUTPUTS:
-      out_text_file {File}:
-          A comma-delimited ASCII text file containing the area and volume
-          calculations. If the file already exists, the new results will be
-          appended to the file."""
+    OUTPUTS:
+     out_text_file {File}:
+         A comma-delimited ASCII text file containing the area and volume
+         calculations. If the file already exists, the new results will be
+         appended to the file."""
     ...
 
-@gptooldoc('ColorizeLas_3d', None)
-def ColorizeLas(in_las_dataset=..., in_image=..., bands=..., target_folder=..., name_suffix=..., las_version=..., point_format=..., compression=..., rearrange_points=..., compute_stats=..., out_las_dataset=...): # -> conversion | int | float | complex | basestring | list[Unknown] | tuple[Unknown, ...] | dict[Unknown, Unknown]:
+@gptooldoc("ColorizeLas_3d", None)
+def ColorizeLas(
+    in_las_dataset=...,
+    in_image=...,
+    bands=...,
+    target_folder=...,
+    name_suffix=...,
+    las_version=...,
+    point_format=...,
+    compression=...,
+    rearrange_points=...,
+    compute_stats=...,
+    out_las_dataset=...,
+):  # -> conversion | int | float | complex | basestring | list[Unknown] | tuple[Unknown, ...] | dict[Unknown, Unknown]:
     """ColorizeLas(in_las_dataset, in_image, bands;bands..., target_folder, {name_suffix}, {las_version}, {point_format}, {compression}, {rearrange_points}, {compute_stats}, {out_las_dataset})
 
-        Applies colors and near-infrared values from orthographic imagery to
-        LAS points.
+       Applies colors and near-infrared values from orthographic imagery to
+       LAS points.
 
-     INPUTS:
-      in_las_dataset (LAS Dataset Layer):
-          The LAS dataset to process.
-      in_image (Raster Layer / Mosaic Layer):
-          The image that will be used to assign colors to LAS points.
-      bands (Value Table):
-          The bands from the input image that will be assigned to the color
-          channels associated with the output LAS points.
-      target_folder (Folder):
-          The existing folder to which the output .las files will be written.
-      name_suffix {String}:
-          The text that will be appended to the name of each output .las file.
-          Each file will inherit its base name from its source file, followed by
-          the suffix specified in this parameter.
-      las_version {String}:
-          The LAS version of the output files being created.
+    INPUTS:
+     in_las_dataset (LAS Dataset Layer):
+         The LAS dataset to process.
+     in_image (Raster Layer / Mosaic Layer):
+         The image that will be used to assign colors to LAS points.
+     bands (Value Table):
+         The bands from the input image that will be assigned to the color
+         channels associated with the output LAS points.
+     target_folder (Folder):
+         The existing folder to which the output .las files will be written.
+     name_suffix {String}:
+         The text that will be appended to the name of each output .las file.
+         Each file will inherit its base name from its source file, followed by
+         the suffix specified in this parameter.
+     las_version {String}:
+         The LAS version of the output files being created.
 
-          * 1.2-LAS file version 1.2 will be created.
+         * 1.2-LAS file version 1.2 will be created.
 
-          * 1.3-LAS file version 1.3 will be created.
+         * 1.3-LAS file version 1.3 will be created.
 
-          * 1.4-LAS file version 1.4 will be created. This is the default.
-      point_format {Long}:
-          The point record format of the output LAS files.
+         * 1.4-LAS file version 1.4 will be created. This is the default.
+     point_format {Long}:
+         The point record format of the output LAS files.
 
-          * 2-Point record format 2.
+         * 2-Point record format 2.
 
-          * 3-Point record format 3 supports the storage of GPS time.
+         * 3-Point record format 3 supports the storage of GPS time.
 
-          * 7-Point record format 7. This is the default value and is only
-          available for LAS version 1.4
+         * 7-Point record format 7. This is the default value and is only
+         available for LAS version 1.4
 
-          * 8-Point record format 8 supports the storage of near-infrared
-          values. This is only available for LAS version 1.4.
-      compression {String}:
-          Specifies whether the output .las file will be in a compressed format
-          or the standard LAS format.
+         * 8-Point record format 8 supports the storage of near-infrared
+         values. This is only available for LAS version 1.4.
+     compression {String}:
+         Specifies whether the output .las file will be in a compressed format
+         or the standard LAS format.
 
-          * NO_COMPRESSION-The output will be in the standard LAS format (*.las
-          file). This is the default.
+         * NO_COMPRESSION-The output will be in the standard LAS format (*.las
+         file). This is the default.
 
-          * ZLAS-Output .las files will be compressed in the zLAS format.
-      rearrange_points {Boolean}:
-          Specifies whether points in the .las files will be rearranged.
+         * ZLAS-Output .las files will be compressed in the zLAS format.
+     rearrange_points {Boolean}:
+         Specifies whether points in the .las files will be rearranged.
 
-          * NO_REARRANGE_POINTS-The order of the points in the .las files will
-          not be rearranged.
+         * NO_REARRANGE_POINTS-The order of the points in the .las files will
+         not be rearranged.
 
-          * REARRANGE_POINTS-The points in the .las files will be rearranged.
-          This is the default.
-      compute_stats {Boolean}:
-          Specifies whether statistics will be computed for the .las files
-          referenced by the LAS dataset. Computing statistics provides a spatial
-          index for each .las file, which improves analysis and display
-          performance. Statistics also enhance the filtering and symbology
-          experience by limiting the display of LAS attributes, such as
-          classification codes and return information, to values that are
-          present in the .las file.
+         * REARRANGE_POINTS-The points in the .las files will be rearranged.
+         This is the default.
+     compute_stats {Boolean}:
+         Specifies whether statistics will be computed for the .las files
+         referenced by the LAS dataset. Computing statistics provides a spatial
+         index for each .las file, which improves analysis and display
+         performance. Statistics also enhance the filtering and symbology
+         experience by limiting the display of LAS attributes, such as
+         classification codes and return information, to values that are
+         present in the .las file.
 
-          * COMPUTE_STATS-Statistics will be computed. This is the default.
+         * COMPUTE_STATS-Statistics will be computed. This is the default.
 
-          * NO_COMPUTE_STATS-Statistics will not be computed.
+         * NO_COMPUTE_STATS-Statistics will not be computed.
 
-     OUTPUTS:
-      out_las_dataset {LAS Dataset}:
-          The output LAS dataset referencing the newly created .las files."""
+    OUTPUTS:
+     out_las_dataset {LAS Dataset}:
+         The output LAS dataset referencing the newly created .las files."""
     ...
 
-@gptooldoc('ExtractLas_3d', None)
-def ExtractLas(in_las_dataset=..., target_folder=..., extent=..., boundary=..., process_entire_files=..., name_suffix=..., remove_vlr=..., rearrange_points=..., compute_stats=..., out_las_dataset=..., compression=...): # -> conversion | int | float | complex | basestring | list[Unknown] | tuple[Unknown, ...] | dict[Unknown, Unknown]:
+@gptooldoc("ExtractLas_3d", None)
+def ExtractLas(
+    in_las_dataset=...,
+    target_folder=...,
+    extent=...,
+    boundary=...,
+    process_entire_files=...,
+    name_suffix=...,
+    remove_vlr=...,
+    rearrange_points=...,
+    compute_stats=...,
+    out_las_dataset=...,
+    compression=...,
+):  # -> conversion | int | float | complex | basestring | list[Unknown] | tuple[Unknown, ...] | dict[Unknown, Unknown]:
     """ExtractLas(in_las_dataset, target_folder, {extent}, {boundary}, {process_entire_files}, {name_suffix}, {remove_vlr}, {rearrange_points}, {compute_stats}, {out_las_dataset}, {compression})
 
-        Creates new LAS files from point cloud data in a LAS dataset or point
-        cloud scene layer.
+       Creates new LAS files from point cloud data in a LAS dataset or point
+       cloud scene layer.
 
-     INPUTS:
-      in_las_dataset (LAS Dataset Layer / Scene Layer / File):
-          The LAS dataset or point cloud scene layer package (.slpk file) to
-          process.
-      target_folder (Folder):
-          The existing folder to which the output .las files will be written.
-      extent {Extent}:
-          The extent of the data that will be evaluated.
+    INPUTS:
+     in_las_dataset (LAS Dataset Layer / Scene Layer / File):
+         The LAS dataset or point cloud scene layer package (.slpk file) to
+         process.
+     target_folder (Folder):
+         The existing folder to which the output .las files will be written.
+     extent {Extent}:
+         The extent of the data that will be evaluated.
 
-          * MAXOF-The maximum extent of all inputs will be used.
+         * MAXOF-The maximum extent of all inputs will be used.
 
-          * MINOF-The minimum area common to all inputs will be used.
+         * MINOF-The minimum area common to all inputs will be used.
 
-          * DISPLAY-The extent is equal to the visible display.
+         * DISPLAY-The extent is equal to the visible display.
 
-          * Layer name-The extent of the specified layer will be used.
+         * Layer name-The extent of the specified layer will be used.
 
-          * Extent object-The extent of the specified object will be used.
+         * Extent object-The extent of the specified object will be used.
 
-          * Space delimited string of coordinates-The extent of the specified
-          string will be used. Coordinates are expressed in the order of x-min,
-          y-min, x-max, y-max.
-      boundary {Feature Layer}:
-          A polygon boundary that defines the area of the .las files that will
-          be clipped.
-      process_entire_files {Boolean}:
-          Specifies how the processing extent will be applied.
+         * Space delimited string of coordinates-The extent of the specified
+         string will be used. Coordinates are expressed in the order of x-min,
+         y-min, x-max, y-max.
+     boundary {Feature Layer}:
+         A polygon boundary that defines the area of the .las files that will
+         be clipped.
+     process_entire_files {Boolean}:
+         Specifies how the processing extent will be applied.
 
-          * PROCESS_EXTENT-Only LAS points that intersect the area of interest
-          will be processed. This is the default.
+         * PROCESS_EXTENT-Only LAS points that intersect the area of interest
+         will be processed. This is the default.
 
-          * PROCESS_ENTIRE_FILES-If any portion of a .las file intersects the
-          area of interest, all the points in that .las file, including those
-          outside the area of interest, will be processed.
-      name_suffix {String}:
-          The text that will be appended to the name of each output .las file.
-          Each file will inherit its base name from its source file, followed by
-          the suffix specified in this parameter.
-      remove_vlr {Boolean}:
-          Specifies whether variable length records (VLRs) will be removed. Each
-          .las file may potentially contain a set of VLRs that were added by the
-          software that produced it. The meaning of these records is typically
-          only known by the originating software. Unless the output LAS data
-          will be processed by an application that understands this information,
-          retaining the VLRs may not provide any value-added functionality.
-          Removing the VLRs can potentially save significant disk space
-          depending on their total size and the number of files containing them.
+         * PROCESS_ENTIRE_FILES-If any portion of a .las file intersects the
+         area of interest, all the points in that .las file, including those
+         outside the area of interest, will be processed.
+     name_suffix {String}:
+         The text that will be appended to the name of each output .las file.
+         Each file will inherit its base name from its source file, followed by
+         the suffix specified in this parameter.
+     remove_vlr {Boolean}:
+         Specifies whether variable length records (VLRs) will be removed. Each
+         .las file may potentially contain a set of VLRs that were added by the
+         software that produced it. The meaning of these records is typically
+         only known by the originating software. Unless the output LAS data
+         will be processed by an application that understands this information,
+         retaining the VLRs may not provide any value-added functionality.
+         Removing the VLRs can potentially save significant disk space
+         depending on their total size and the number of files containing them.
 
-          * MAINTAIN_VLR-Any data stored in the processed .las file's variable
-          length records will not be removed and will remain in the extracted
-          .las files. This is the default.
+         * MAINTAIN_VLR-Any data stored in the processed .las file's variable
+         length records will not be removed and will remain in the extracted
+         .las files. This is the default.
 
-          * REMOVE_VLR-The additional variable length records will be removed
-          from the .las files.
-      rearrange_points {Boolean}:
-          Specifies whether points in the .las files will be rearranged.
+         * REMOVE_VLR-The additional variable length records will be removed
+         from the .las files.
+     rearrange_points {Boolean}:
+         Specifies whether points in the .las files will be rearranged.
 
-          * MAINTAIN_POINTS-The order of the points in the .las files will not
-          be rearranged.
+         * MAINTAIN_POINTS-The order of the points in the .las files will not
+         be rearranged.
 
-          * REARRANGE_POINTS-The points in the .las files will be rearranged.
-          This is the default.
-      compute_stats {Boolean}:
-          Specifies whether statistics will be computed for the .las files
-          referenced by the LAS dataset. Computing statistics provides a spatial
-          index for each .las file, which improves analysis and display
-          performance. Statistics also enhance the filtering and symbology
-          experience by limiting the display of LAS attributes, such as
-          classification codes and return information, to values that are
-          present in the .las file.
+         * REARRANGE_POINTS-The points in the .las files will be rearranged.
+         This is the default.
+     compute_stats {Boolean}:
+         Specifies whether statistics will be computed for the .las files
+         referenced by the LAS dataset. Computing statistics provides a spatial
+         index for each .las file, which improves analysis and display
+         performance. Statistics also enhance the filtering and symbology
+         experience by limiting the display of LAS attributes, such as
+         classification codes and return information, to values that are
+         present in the .las file.
 
-          * COMPUTE_STATS-Statistics will be computed. This is the default.
+         * COMPUTE_STATS-Statistics will be computed. This is the default.
 
-          * NO_COMPUTE_STATS-Statistics will not be computed.
-      compression {String}:
-          Specifies whether the output .las file will be in a compressed format
-          or the standard LAS format.
+         * NO_COMPUTE_STATS-Statistics will not be computed.
+     compression {String}:
+         Specifies whether the output .las file will be in a compressed format
+         or the standard LAS format.
 
-          * SAME_AS_INPUT-The compression will be the same as the input. This
-          option is only available when the input is a LAS dataset, and it is
-          the default in that case.
+         * SAME_AS_INPUT-The compression will be the same as the input. This
+         option is only available when the input is a LAS dataset, and it is
+         the default in that case.
 
-          * NO_COMPRESSION-The output will be in the standard LAS format
-          (*.las). This is the default when the input is a point cloud scene
-          layer.
+         * NO_COMPRESSION-The output will be in the standard LAS format
+         (*.las). This is the default when the input is a point cloud scene
+         layer.
 
-          * ZLAS-Output .las files will be compressed in the zLAS format.
+         * ZLAS-Output .las files will be compressed in the zLAS format.
 
-     OUTPUTS:
-      out_las_dataset {LAS Dataset}:
-          The output LAS dataset referencing the newly created .las files."""
+    OUTPUTS:
+     out_las_dataset {LAS Dataset}:
+         The output LAS dataset referencing the newly created .las files."""
     ...
 
-@gptooldoc('ThinLas_3d', None)
-def ThinLas(in_las_dataset=..., target_folder=..., thinning_dimension=..., xy_resolution=..., z_resolution=..., point_selection_method=..., class_codes_weights=..., name_suffix=..., out_las_dataset=..., preserved_class_codes=..., preserved_flags=..., preserved_returns=..., excluded_class_codes=..., excluded_flags=..., excluded_returns=..., compression=..., remove_vlr=..., rearrange_points=..., compute_stats=...): # -> conversion | int | float | complex | basestring | list[Unknown] | tuple[Unknown, ...] | dict[Unknown, Unknown]:
+@gptooldoc("ThinLas_3d", None)
+def ThinLas(
+    in_las_dataset=...,
+    target_folder=...,
+    thinning_dimension=...,
+    xy_resolution=...,
+    z_resolution=...,
+    point_selection_method=...,
+    class_codes_weights=...,
+    name_suffix=...,
+    out_las_dataset=...,
+    preserved_class_codes=...,
+    preserved_flags=...,
+    preserved_returns=...,
+    excluded_class_codes=...,
+    excluded_flags=...,
+    excluded_returns=...,
+    compression=...,
+    remove_vlr=...,
+    rearrange_points=...,
+    compute_stats=...,
+):  # -> conversion | int | float | complex | basestring | list[Unknown] | tuple[Unknown, ...] | dict[Unknown, Unknown]:
     """ThinLas(in_las_dataset, target_folder, thinning_dimension, xy_resolution, {z_resolution}, {point_selection_method}, {class_codes_weights;class_codes_weights...}, {name_suffix}, {out_las_dataset}, {preserved_class_codes;preserved_class_codes...}, {preserved_flags;preserved_flags...}, {preserved_returns;preserved_returns...}, {excluded_class_codes;excluded_class_codes...}, {excluded_flags;excluded_flags...}, {excluded_returns;excluded_returns...}, {compression}, {remove_vlr}, {rearrange_points}, {compute_stats})
 
-        Creates new LAS files that contain a subset of LAS points from the
-        input LAS dataset.
+       Creates new LAS files that contain a subset of LAS points from the
+       input LAS dataset.
 
-     INPUTS:
-      in_las_dataset (LAS Dataset Layer):
-          The LAS dataset to process.
-      target_folder (Folder):
-          The existing folder to which the output .las files will be written.
-      thinning_dimension (String):
-          The type of thinning operation that will be conducted.
+    INPUTS:
+     in_las_dataset (LAS Dataset Layer):
+         The LAS dataset to process.
+     target_folder (Folder):
+         The existing folder to which the output .las files will be written.
+     thinning_dimension (String):
+         The type of thinning operation that will be conducted.
 
-          * 2D-Thinning will occur in tiles defined along the x,y-axis.
+         * 2D-Thinning will occur in tiles defined along the x,y-axis.
 
-          * 3D-Thinning will occur in volumes of space defined by tiles along
-          the x,y-axis, and height gradients along the z-axis. This is the
-          default.
-      xy_resolution (Linear Unit):
-          The size of each side of the thinning tile along the x,y-axis.
-      z_resolution {Linear Unit}:
-          The height of each thinning region when using the 3D thinning method.
-      point_selection_method {String}:
-          The method used to determine which points are retained in each
-          thinning region.
+         * 3D-Thinning will occur in volumes of space defined by tiles along
+         the x,y-axis, and height gradients along the z-axis. This is the
+         default.
+     xy_resolution (Linear Unit):
+         The size of each side of the thinning tile along the x,y-axis.
+     z_resolution {Linear Unit}:
+         The height of each thinning region when using the 3D thinning method.
+     point_selection_method {String}:
+         The method used to determine which points are retained in each
+         thinning region.
 
-          * CLOSEST_TO_CENTER-The LAS point that is closest to the center of the
-          region being thinned. This is the default.
+         * CLOSEST_TO_CENTER-The LAS point that is closest to the center of the
+         region being thinned. This is the default.
 
-          * CLASS_CODE-The LAS points with the class code that has the highest
-          weight assigned.
+         * CLASS_CODE-The LAS points with the class code that has the highest
+         weight assigned.
 
-          * PREDOMINANT_CLASS-The LAS points with the most frequent class code
-          value in the region being thinned.
+         * PREDOMINANT_CLASS-The LAS points with the most frequent class code
+         value in the region being thinned.
 
-          * Z_MIN-The lowest LAS point in the region being thinned.
+         * Z_MIN-The lowest LAS point in the region being thinned.
 
-          * Z_MAX-The highest LAS point in the region being thinned.
+         * Z_MAX-The highest LAS point in the region being thinned.
 
-          * Z_MIN_MAX-The highest and lowest LAS points in the region being
-          thinned.
+         * Z_MIN_MAX-The highest and lowest LAS points in the region being
+         thinned.
 
-          * Z_AVERAGE-The LAS point whose height is closest to the average of
-          height of all points in the region being thinned.
+         * Z_AVERAGE-The LAS point whose height is closest to the average of
+         height of all points in the region being thinned.
 
-          * INTENSITY_MIN-The LAS point whose intensity value is the lowest
-          among the points in the region being thinned.
+         * INTENSITY_MIN-The LAS point whose intensity value is the lowest
+         among the points in the region being thinned.
 
-          * INTENSITY_MAX-The LAS point whose intensity value is the highest
-          among the points in the region being thinned.
+         * INTENSITY_MAX-The LAS point whose intensity value is the highest
+         among the points in the region being thinned.
 
-          * INTENSITY_MIN_MAX-The two LAS points with the lowest and the highest
-          intensity values among the points in the region being thinned.
+         * INTENSITY_MIN_MAX-The two LAS points with the lowest and the highest
+         intensity values among the points in the region being thinned.
 
-          * INTENSITY_AVERAGE-The LAS point whose intensity value is closest to
-          the average of all intensity values from points in the region being
-          thinned.
-      class_codes_weights {Value Table}:
-          The weights assigned to each class code that determine which points
-          are retained in each thinning region. This parameter is only enabled
-          when the Class Code Weights option is specified in the Point Selection
-          Method parameter. The class code with the highest weight will be
-          retained in the thinning region. If two class codes with the same
-          weight exist in a given thinning region, the class code with the
-          smallest point source ID will be retained.
-      name_suffix {String}:
-          The name added to each output file.
-      preserved_class_codes {Long}:
-          The input LAS points with the specified class code values will not be
-          thinned from the output LAS files.
-      preserved_flags {String}:
-          The input LAS points with the specified class flag designations will
-          be preserved in the output LAS files.
+         * INTENSITY_AVERAGE-The LAS point whose intensity value is closest to
+         the average of all intensity values from points in the region being
+         thinned.
+     class_codes_weights {Value Table}:
+         The weights assigned to each class code that determine which points
+         are retained in each thinning region. This parameter is only enabled
+         when the Class Code Weights option is specified in the Point Selection
+         Method parameter. The class code with the highest weight will be
+         retained in the thinning region. If two class codes with the same
+         weight exist in a given thinning region, the class code with the
+         smallest point source ID will be retained.
+     name_suffix {String}:
+         The name added to each output file.
+     preserved_class_codes {Long}:
+         The input LAS points with the specified class code values will not be
+         thinned from the output LAS files.
+     preserved_flags {String}:
+         The input LAS points with the specified class flag designations will
+         be preserved in the output LAS files.
 
-          * MODEL_KEY-Points with the model key class flag will be preserved.
+         * MODEL_KEY-Points with the model key class flag will be preserved.
 
-          * OVERLAP-Points with the overlap class flag will be preserved.
+         * OVERLAP-Points with the overlap class flag will be preserved.
 
-          * SYNTHETIC-Points with the synthetic class flag will be preserved.
+         * SYNTHETIC-Points with the synthetic class flag will be preserved.
 
-          * WITHHELD-Points with the withheld class flag will be preserved.
-      preserved_returns {String}:
-          The input LAS points with the specified returns will be preserved in
-          the output LAS files.
+         * WITHHELD-Points with the withheld class flag will be preserved.
+     preserved_returns {String}:
+         The input LAS points with the specified returns will be preserved in
+         the output LAS files.
 
-          * SINGLE-All single return points will be included.
+         * SINGLE-All single return points will be included.
 
-          * LAST-All single and last returns will be included.
+         * LAST-All single and last returns will be included.
 
-          * FIRST_OF_MANY-All points that are the first of multiple returns will
-          be included.
+         * FIRST_OF_MANY-All points that are the first of multiple returns will
+         be included.
 
-          * LAST_OF_MANY-All points that are the last of multiple returns will
-          be included.
-      excluded_class_codes {Long}:
-          The input LAS points with the specified class code values will be
-          excluded from the output LAS files.
-      excluded_flags {String}:
-          The input LAS points with the specified class flag designations will
-          be excluded from the output LAS files.
+         * LAST_OF_MANY-All points that are the last of multiple returns will
+         be included.
+     excluded_class_codes {Long}:
+         The input LAS points with the specified class code values will be
+         excluded from the output LAS files.
+     excluded_flags {String}:
+         The input LAS points with the specified class flag designations will
+         be excluded from the output LAS files.
 
-          * MODEL_KEY-Points with the model key class flag will be excluded.
+         * MODEL_KEY-Points with the model key class flag will be excluded.
 
-          * OVERLAP-Points with the overlap class flag will be excluded.
+         * OVERLAP-Points with the overlap class flag will be excluded.
 
-          * SYNTHETIC-Points with the synthetic class flag will be excluded.
+         * SYNTHETIC-Points with the synthetic class flag will be excluded.
 
-          * WITHHELD-Points with the withheld class flag will be excluded.
-      excluded_returns {String}:
-          The input LAS points with the specified returns will be excluded from
-          the output LAS files.
+         * WITHHELD-Points with the withheld class flag will be excluded.
+     excluded_returns {String}:
+         The input LAS points with the specified returns will be excluded from
+         the output LAS files.
 
-          * SINGLE-All single return points will be excluded.
+         * SINGLE-All single return points will be excluded.
 
-          * LAST-All single and last returns will be excluded.
+         * LAST-All single and last returns will be excluded.
 
-          * FIRST_OF_MANY-All points that are the first of multiple returns will
-          be excluded.
+         * FIRST_OF_MANY-All points that are the first of multiple returns will
+         be excluded.
 
-          * LAST_OF_MANY-All points that are the last of multiple returns will
-          be excluded.
-      compression {String}:
-          Specifies whether the output .las file will be in a compressed format
-          or the standard LAS format.
+         * LAST_OF_MANY-All points that are the last of multiple returns will
+         be excluded.
+     compression {String}:
+         Specifies whether the output .las file will be in a compressed format
+         or the standard LAS format.
 
-          * NO_COMPRESSION-The output will be in the standard LAS format (*.las
-          file). This is the default.
+         * NO_COMPRESSION-The output will be in the standard LAS format (*.las
+         file). This is the default.
 
-          * ZLAS-Output .las files will be compressed in the zLAS format.
-      remove_vlr {Boolean}:
-          Indicates whether variable length records stored with the input LAS
-          points will be preserved or eliminated in the output LAS data.
+         * ZLAS-Output .las files will be compressed in the zLAS format.
+     remove_vlr {Boolean}:
+         Indicates whether variable length records stored with the input LAS
+         points will be preserved or eliminated in the output LAS data.
 
-          * MAINTAIN_VLR-Variable length records will be maintained in the
-          output LAS points. This is the default.
+         * MAINTAIN_VLR-Variable length records will be maintained in the
+         output LAS points. This is the default.
 
-          * REMOVE_VLR-Variable length records will be removed from the output
-          LAS points.
-      rearrange_points {Boolean}:
-          Indicates if LAS points will be stored in spatially organized
-          clusters.
+         * REMOVE_VLR-Variable length records will be removed from the output
+         LAS points.
+     rearrange_points {Boolean}:
+         Indicates if LAS points will be stored in spatially organized
+         clusters.
 
-          * MAINTAIN_POINTS-The order of the points in the LAS files will remain
-          the same.
+         * MAINTAIN_POINTS-The order of the points in the LAS files will remain
+         the same.
 
-          * REARRANGE_POINTS-The points in the LAS files will be rearranged.
-          This is the default.
-      compute_stats {Boolean}:
-          Specifies whether statistics will be computed for the .las files
-          referenced by the LAS dataset. Computing statistics provides a spatial
-          index for each .las file, which improves analysis and display
-          performance. Statistics also enhance the filtering and symbology
-          experience by limiting the display of LAS attributes, such as
-          classification codes and return information, to values that are
-          present in the .las file.
+         * REARRANGE_POINTS-The points in the LAS files will be rearranged.
+         This is the default.
+     compute_stats {Boolean}:
+         Specifies whether statistics will be computed for the .las files
+         referenced by the LAS dataset. Computing statistics provides a spatial
+         index for each .las file, which improves analysis and display
+         performance. Statistics also enhance the filtering and symbology
+         experience by limiting the display of LAS attributes, such as
+         classification codes and return information, to values that are
+         present in the .las file.
 
-          * COMPUTE_STATS-Statistics will be computed. This is the default.
+         * COMPUTE_STATS-Statistics will be computed. This is the default.
 
-          * NO_COMPUTE_STATS-Statistics will not be computed.
+         * NO_COMPUTE_STATS-Statistics will not be computed.
 
-     OUTPUTS:
-      out_las_dataset {LAS Dataset}:
-          The output LAS dataset referencing the newly created .las files."""
+    OUTPUTS:
+     out_las_dataset {LAS Dataset}:
+         The output LAS dataset referencing the newly created .las files."""
     ...
 
-@gptooldoc('TileLas_3d', None)
-def TileLas(in_las_dataset=..., target_folder=..., base_name=..., out_las_dataset=..., compute_stats=..., las_version=..., point_format=..., compression=..., las_options=..., tile_feature=..., naming_method=..., file_size=..., tile_width=..., tile_height=..., tile_origin=...): # -> conversion | int | float | complex | basestring | list[Unknown] | tuple[Unknown, ...] | dict[Unknown, Unknown]:
+@gptooldoc("TileLas_3d", None)
+def TileLas(
+    in_las_dataset=...,
+    target_folder=...,
+    base_name=...,
+    out_las_dataset=...,
+    compute_stats=...,
+    las_version=...,
+    point_format=...,
+    compression=...,
+    las_options=...,
+    tile_feature=...,
+    naming_method=...,
+    file_size=...,
+    tile_width=...,
+    tile_height=...,
+    tile_origin=...,
+):  # -> conversion | int | float | complex | basestring | list[Unknown] | tuple[Unknown, ...] | dict[Unknown, Unknown]:
     """TileLas(in_las_dataset, target_folder, {base_name}, {out_las_dataset}, {compute_stats}, {las_version}, {point_format}, {compression}, {las_options;las_options...}, {tile_feature}, {naming_method}, {file_size}, {tile_width}, {tile_height}, {tile_origin})
 
-        Creates a set of nonoverlapping LAS files whose horizontal extents are
-        divided by a regular grid.
+       Creates a set of nonoverlapping LAS files whose horizontal extents are
+       divided by a regular grid.
 
-     INPUTS:
-      in_las_dataset (LAS Dataset Layer):
-          The LAS dataset to process.
-      target_folder (Folder):
-          The folder where the tiled LAS files will be written.
-      base_name {String}:
-          The name that each output file will begin with.
-      compute_stats {Boolean}:
-          Specifies whether statistics will be computed for the .las files
-          referenced by the LAS dataset. Computing statistics provides a spatial
-          index for each .las file, which improves analysis and display
-          performance. Statistics also enhance the filtering and symbology
-          experience by limiting the display of LAS attributes, such as
-          classification codes and return information, to values that are
-          present in the .las file.
+    INPUTS:
+     in_las_dataset (LAS Dataset Layer):
+         The LAS dataset to process.
+     target_folder (Folder):
+         The folder where the tiled LAS files will be written.
+     base_name {String}:
+         The name that each output file will begin with.
+     compute_stats {Boolean}:
+         Specifies whether statistics will be computed for the .las files
+         referenced by the LAS dataset. Computing statistics provides a spatial
+         index for each .las file, which improves analysis and display
+         performance. Statistics also enhance the filtering and symbology
+         experience by limiting the display of LAS attributes, such as
+         classification codes and return information, to values that are
+         present in the .las file.
 
-          * COMPUTE_STATS-Statistics will be computed. This is the default.
+         * COMPUTE_STATS-Statistics will be computed. This is the default.
 
-          * NO_COMPUTE_STATS-Statistics will not be computed.
-      las_version {String}:
-          Specifies the LAS file version of each output file. The default is
-          1.4.
+         * NO_COMPUTE_STATS-Statistics will not be computed.
+     las_version {String}:
+         Specifies the LAS file version of each output file. The default is
+         1.4.
 
-          * 1.0-This version supported 256 unique class codes but did not have a
-          predefined classification schema.
+         * 1.0-This version supported 256 unique class codes but did not have a
+         predefined classification schema.
 
-          * 1.1-This version introduced a predefined classification scheme, and
-          point record formats 0 and 1, and the synthetic classification flag
-          for points that were derived from a source other than a lidar sensor.
+         * 1.1-This version introduced a predefined classification scheme, and
+         point record formats 0 and 1, and the synthetic classification flag
+         for points that were derived from a source other than a lidar sensor.
 
-          * 1.2-This version featured support for GPS time and RGB records in
-          point records 2 and 3.
+         * 1.2-This version featured support for GPS time and RGB records in
+         point records 2 and 3.
 
-          * 1.3-This version added support for point records 4 and 5 for
-          waveform data. However, waveform information is not read in ArcGIS.
+         * 1.3-This version added support for point records 4 and 5 for
+         waveform data. However, waveform information is not read in ArcGIS.
 
-          * 1.4-This version introduced point record formats 6 through 10, along
-          with new class definitions, 256 unique class codes, and the overlap
-          classification flag.
-      point_format {Long}:
-          The point record format of the output LAS files. The available options
-          will vary based on the LAS file version specified in the point_format
-          parameter.
-      compression {String}:
-          Specifies whether the output LAS file will be in a compressed format
-          or the standard LAS format.
+         * 1.4-This version introduced point record formats 6 through 10, along
+         with new class definitions, 256 unique class codes, and the overlap
+         classification flag.
+     point_format {Long}:
+         The point record format of the output LAS files. The available options
+         will vary based on the LAS file version specified in the point_format
+         parameter.
+     compression {String}:
+         Specifies whether the output LAS file will be in a compressed format
+         or the standard LAS format.
 
-          * NO_COMPRESSION-The output will be in the standard LAS format (*.las
-          file). This is the default.
+         * NO_COMPRESSION-The output will be in the standard LAS format (*.las
+         file). This is the default.
 
-          * ZLAS-Output LAS files will be compressed in the zLAS format.
-      las_options {String}:
-          A list of optional modifications to the output LAS files.
+         * ZLAS-Output LAS files will be compressed in the zLAS format.
+     las_options {String}:
+         A list of optional modifications to the output LAS files.
 
-          * REARRANGE_POINTS-LAS points will be arranged according to their
-          spatial clustering.
+         * REARRANGE_POINTS-LAS points will be arranged according to their
+         spatial clustering.
 
-          * REMOVE_VLR-Variable-length records that are added after the header
-          and the point records of each file will be removed.
+         * REMOVE_VLR-Variable-length records that are added after the header
+         and the point records of each file will be removed.
 
-          * REMOVE_EXTRA_BYTES-Extra bytes that are present with each point
-          record in the input LAS file will be removed.
-      tile_feature {Feature Layer}:
-          The polygon features that define the tile width and height to be used
-          when tiling the lidar data. The polygons are presumed to be
-          rectangular, and the first feature's extent is used to define the tile
-          width and height.
-      naming_method {String}:
-          Specifies the way each output tile is named. When input features are
-          specified in the tile_feature parameter, the name of its text or
-          numeric fields can also be specified as a source for defining the name
-          of the output LAS files. This name will be appended to the end of the
-          text defined in the base_name parameter. The following automatically
-          generated naming conventions are supported:
+         * REMOVE_EXTRA_BYTES-Extra bytes that are present with each point
+         record in the input LAS file will be removed.
+     tile_feature {Feature Layer}:
+         The polygon features that define the tile width and height to be used
+         when tiling the lidar data. The polygons are presumed to be
+         rectangular, and the first feature's extent is used to define the tile
+         width and height.
+     naming_method {String}:
+         Specifies the way each output tile is named. When input features are
+         specified in the tile_feature parameter, the name of its text or
+         numeric fields can also be specified as a source for defining the name
+         of the output LAS files. This name will be appended to the end of the
+         text defined in the base_name parameter. The following automatically
+         generated naming conventions are supported:
 
-          * XY_COORDS-The X and Y coordinates of the center point of each tile
-          will be appended. This is the default.
+         * XY_COORDS-The X and Y coordinates of the center point of each tile
+         will be appended. This is the default.
 
-          * ROW_COLUMN-The tile name will be assigned based on the row and
-          column it belongs to in the overall tiling scheme. The rows increment
-          from the top down, while the columns increment from left to right.
+         * ROW_COLUMN-The tile name will be assigned based on the row and
+         column it belongs to in the overall tiling scheme. The rows increment
+         from the top down, while the columns increment from left to right.
 
-          * ORDINAL-The tile name will be assigned based on its order of
-          creation, where 1 is the first tile, 2 is the second, and so on.
-      file_size {Double}:
-          This value, which is expressed in megabytes, represents the upper
-          limit of the uncompressed file size of an output LAS tile with uniform
-          point distribution across its entire extent. The default is 250, and
-          the value is used to estimate the tile width and height. This
-          parameter is ignored when values are provided for the tile_feature or
-          tile_width and tile_height parameters.
-      tile_width {Linear Unit}:
-          The width of each tile. If a value is specified for the tile width and
-          height, the file_size parameter will be ignored. When input features
-          are specified in the tile_feature parameter, the tile width will be
-          derived from the height of the first feature, and this parameter will
-          be ignored.
-      tile_height {Linear Unit}:
-          The height of each tile. If a value is specified for the tile width
-          and height, the file_size parameter will be ignored. When input
-          features are specified in the tile_feature parameter, the tile height
-          will be derived from the height of the first feature, and this
-          parameter will be ignored.
-      tile_origin {Point}:
-          The coordinates of the origin of the tiling grid. The default values
-          are obtained from the lower left corner of the input LAS dataset. When
-          input features are specified in the tile_feature parameter, the origin
-          will be inherited from the lower left corner of the first feature, and
-          this parameter will be ignored.
+         * ORDINAL-The tile name will be assigned based on its order of
+         creation, where 1 is the first tile, 2 is the second, and so on.
+     file_size {Double}:
+         This value, which is expressed in megabytes, represents the upper
+         limit of the uncompressed file size of an output LAS tile with uniform
+         point distribution across its entire extent. The default is 250, and
+         the value is used to estimate the tile width and height. This
+         parameter is ignored when values are provided for the tile_feature or
+         tile_width and tile_height parameters.
+     tile_width {Linear Unit}:
+         The width of each tile. If a value is specified for the tile width and
+         height, the file_size parameter will be ignored. When input features
+         are specified in the tile_feature parameter, the tile width will be
+         derived from the height of the first feature, and this parameter will
+         be ignored.
+     tile_height {Linear Unit}:
+         The height of each tile. If a value is specified for the tile width
+         and height, the file_size parameter will be ignored. When input
+         features are specified in the tile_feature parameter, the tile height
+         will be derived from the height of the first feature, and this
+         parameter will be ignored.
+     tile_origin {Point}:
+         The coordinates of the origin of the tiling grid. The default values
+         are obtained from the lower left corner of the input LAS dataset. When
+         input features are specified in the tile_feature parameter, the origin
+         will be inherited from the lower left corner of the first feature, and
+         this parameter will be ignored.
 
-     OUTPUTS:
-      out_las_dataset {LAS Dataset}:
-          The new LAS dataset that references the tiled LAS files created by
-          this tool. This is optional."""
+    OUTPUTS:
+     out_las_dataset {LAS Dataset}:
+         The new LAS dataset that references the tiled LAS files created by
+         this tool. This is optional."""
     ...
 
-@gptooldoc('ChangeLasClassCodes_3d', None)
-def ChangeLasClassCodes(in_las_dataset=..., class_codes=..., compute_stats=..., extent=..., boundary=..., process_entire_files=..., update_pyramid=...): # -> conversion | int | float | complex | basestring | list[Unknown] | tuple[Unknown, ...] | dict[Unknown, Unknown]:
+@gptooldoc("ChangeLasClassCodes_3d", None)
+def ChangeLasClassCodes(
+    in_las_dataset=...,
+    class_codes=...,
+    compute_stats=...,
+    extent=...,
+    boundary=...,
+    process_entire_files=...,
+    update_pyramid=...,
+):  # -> conversion | int | float | complex | basestring | list[Unknown] | tuple[Unknown, ...] | dict[Unknown, Unknown]:
     """ChangeLasClassCodes(in_las_dataset, class_codes;class_codes..., {compute_stats}, {extent}, {boundary}, {process_entire_files}, {update_pyramid})
 
-        Reassigns the classification codes and flags of .las files.
+       Reassigns the classification codes and flags of .las files.
 
-     INPUTS:
-      in_las_dataset (LAS Dataset Layer):
-          The LAS dataset to process.
-      class_codes (Value Table):
-          Specifies the list of existing class codes to be modified and the
-          change that will be made to its respective classification code value
-          and classification flags.The existing class code, the new class code,
-          and the new class flag
-          can be represented as a space-delimited string or a list of lists
-          containing the values to be reclassified. For example, a current class
-          code of 5 can be changed to 25 by specifying "5 2" or [[5, 2]].
-          Likewise, a change to the synthetic class flag can be made by adding
-          the keyword for the desired modification ("5 2 SET" or [[5, 2,
-          "SET"]]). Multiple changes can be specified as a semicolon-delimited
-          string (for example, "5 2; 8 3; 1 4") or as a list of lists (for
-          example, [[5, 2], [8, 3], [1, 4]]).
-      compute_stats {Boolean}:
-          Specifies whether statistics will be computed for the .las files
-          referenced by the LAS dataset. Computing statistics provides a spatial
-          index for each .las file, which improves analysis and display
-          performance. Statistics also enhance the filtering and symbology
-          experience by limiting the display of LAS attributes, such as
-          classification codes and return information, to values that are
-          present in the .las file.
+    INPUTS:
+     in_las_dataset (LAS Dataset Layer):
+         The LAS dataset to process.
+     class_codes (Value Table):
+         Specifies the list of existing class codes to be modified and the
+         change that will be made to its respective classification code value
+         and classification flags.The existing class code, the new class code,
+         and the new class flag
+         can be represented as a space-delimited string or a list of lists
+         containing the values to be reclassified. For example, a current class
+         code of 5 can be changed to 25 by specifying "5 2" or [[5, 2]].
+         Likewise, a change to the synthetic class flag can be made by adding
+         the keyword for the desired modification ("5 2 SET" or [[5, 2,
+         "SET"]]). Multiple changes can be specified as a semicolon-delimited
+         string (for example, "5 2; 8 3; 1 4") or as a list of lists (for
+         example, [[5, 2], [8, 3], [1, 4]]).
+     compute_stats {Boolean}:
+         Specifies whether statistics will be computed for the .las files
+         referenced by the LAS dataset. Computing statistics provides a spatial
+         index for each .las file, which improves analysis and display
+         performance. Statistics also enhance the filtering and symbology
+         experience by limiting the display of LAS attributes, such as
+         classification codes and return information, to values that are
+         present in the .las file.
 
-          * COMPUTE_STATS-Statistics will be computed. This is the default.
+         * COMPUTE_STATS-Statistics will be computed. This is the default.
 
-          * NO_COMPUTE_STATS-Statistics will not be computed.
-      extent {Extent}:
-          The extent of the data that will be evaluated.
+         * NO_COMPUTE_STATS-Statistics will not be computed.
+     extent {Extent}:
+         The extent of the data that will be evaluated.
 
-          * MAXOF-The maximum extent of all inputs will be used.
+         * MAXOF-The maximum extent of all inputs will be used.
 
-          * MINOF-The minimum area common to all inputs will be used.
+         * MINOF-The minimum area common to all inputs will be used.
 
-          * DISPLAY-The extent is equal to the visible display.
+         * DISPLAY-The extent is equal to the visible display.
 
-          * Layer name-The extent of the specified layer will be used.
+         * Layer name-The extent of the specified layer will be used.
 
-          * Extent object-The extent of the specified object will be used.
+         * Extent object-The extent of the specified object will be used.
 
-          * Space delimited string of coordinates-The extent of the specified
-          string will be used. Coordinates are expressed in the order of x-min,
-          y-min, x-max, y-max.
-      boundary {Feature Layer}:
-          A polygon feature that defines the area of interest to be processed.
-      process_entire_files {Boolean}:
-          Specifies how the processing extent will be applied.
+         * Space delimited string of coordinates-The extent of the specified
+         string will be used. Coordinates are expressed in the order of x-min,
+         y-min, x-max, y-max.
+     boundary {Feature Layer}:
+         A polygon feature that defines the area of interest to be processed.
+     process_entire_files {Boolean}:
+         Specifies how the processing extent will be applied.
 
-          * PROCESS_EXTENT-Only LAS points that intersect the area of interest
-          will be processed. This is the default.
+         * PROCESS_EXTENT-Only LAS points that intersect the area of interest
+         will be processed. This is the default.
 
-          * PROCESS_ENTIRE_FILES-If any portion of a .las file intersects the
-          area of interest, all the points in that .las file, including those
-          outside the area of interest, will be processed.
-      update_pyramid {Boolean}:
-          Specifies whether the LAS dataset pyramid will be updated after the
-          class codes are modified.
+         * PROCESS_ENTIRE_FILES-If any portion of a .las file intersects the
+         area of interest, all the points in that .las file, including those
+         outside the area of interest, will be processed.
+     update_pyramid {Boolean}:
+         Specifies whether the LAS dataset pyramid will be updated after the
+         class codes are modified.
 
-          * UPDATE_PYRAMID-The LAS dataset pyramid will be updated. This is the
-          default.
+         * UPDATE_PYRAMID-The LAS dataset pyramid will be updated. This is the
+         default.
 
-          * NO_UPDATE_PYRAMID-The LAS dataset pyramid will not be updated."""
+         * NO_UPDATE_PYRAMID-The LAS dataset pyramid will not be updated."""
     ...
 
-@gptooldoc('ClassifyLasBuilding_3d', None)
-def ClassifyLasBuilding(in_las_dataset=..., min_height=..., min_area=..., compute_stats=..., extent=..., boundary=..., process_entire_files=..., point_spacing=..., reuse_building=..., photogrammetric_data=..., method=..., classify_above_roof=..., above_roof_height=..., above_roof_code=..., classify_below_roof=..., below_roof_code=..., update_pyramid=...): # -> conversion | int | float | complex | basestring | list[Unknown] | tuple[Unknown, ...] | dict[Unknown, Unknown]:
+@gptooldoc("ClassifyLasBuilding_3d", None)
+def ClassifyLasBuilding(
+    in_las_dataset=...,
+    min_height=...,
+    min_area=...,
+    compute_stats=...,
+    extent=...,
+    boundary=...,
+    process_entire_files=...,
+    point_spacing=...,
+    reuse_building=...,
+    photogrammetric_data=...,
+    method=...,
+    classify_above_roof=...,
+    above_roof_height=...,
+    above_roof_code=...,
+    classify_below_roof=...,
+    below_roof_code=...,
+    update_pyramid=...,
+):  # -> conversion | int | float | complex | basestring | list[Unknown] | tuple[Unknown, ...] | dict[Unknown, Unknown]:
     """ClassifyLasBuilding(in_las_dataset, min_height, min_area, {compute_stats}, {extent}, {boundary}, {process_entire_files}, {point_spacing}, {reuse_building}, {photogrammetric_data}, {method}, {classify_above_roof}, {above_roof_height}, {above_roof_code}, {classify_below_roof}, {below_roof_code}, {update_pyramid})
 
-        Classifies building rooftops and sides in LAS data.
+       Classifies building rooftops and sides in LAS data.
 
-     INPUTS:
-      in_las_dataset (LAS Dataset Layer):
-          The LAS dataset to be classified.
-      min_height (Linear Unit):
-          The height from the ground that defines the lowest point from which
-          rooftop points will be identified.
-      min_area (Areal Unit):
-          The smallest area of the building rooftop.
-      compute_stats {Boolean}:
-          Specifies whether statistics will be computed for the .las files
-          referenced by the LAS dataset. Computing statistics provides a spatial
-          index for each .las file, which improves analysis and display
-          performance. Statistics also enhance the filtering and symbology
-          experience by limiting the display of LAS attributes, such as
-          classification codes and return information, to values that are
-          present in the .las file.
+    INPUTS:
+     in_las_dataset (LAS Dataset Layer):
+         The LAS dataset to be classified.
+     min_height (Linear Unit):
+         The height from the ground that defines the lowest point from which
+         rooftop points will be identified.
+     min_area (Areal Unit):
+         The smallest area of the building rooftop.
+     compute_stats {Boolean}:
+         Specifies whether statistics will be computed for the .las files
+         referenced by the LAS dataset. Computing statistics provides a spatial
+         index for each .las file, which improves analysis and display
+         performance. Statistics also enhance the filtering and symbology
+         experience by limiting the display of LAS attributes, such as
+         classification codes and return information, to values that are
+         present in the .las file.
 
-          * COMPUTE_STATS-Statistics will be computed. This is the default.
+         * COMPUTE_STATS-Statistics will be computed. This is the default.
 
-          * NO_COMPUTE_STATS-Statistics will not be computed.
-      extent {Extent}:
-          The extent of the data that will be evaluated.
+         * NO_COMPUTE_STATS-Statistics will not be computed.
+     extent {Extent}:
+         The extent of the data that will be evaluated.
 
-          * MAXOF-The maximum extent of all inputs will be used.
+         * MAXOF-The maximum extent of all inputs will be used.
 
-          * MINOF-The minimum area common to all inputs will be used.
+         * MINOF-The minimum area common to all inputs will be used.
 
-          * DISPLAY-The extent is equal to the visible display.
+         * DISPLAY-The extent is equal to the visible display.
 
-          * Layer name-The extent of the specified layer will be used.
+         * Layer name-The extent of the specified layer will be used.
 
-          * Extent object-The extent of the specified object will be used.
+         * Extent object-The extent of the specified object will be used.
 
-          * Space delimited string of coordinates-The extent of the specified
-          string will be used. Coordinates are expressed in the order of x-min,
-          y-min, x-max, y-max.
-      boundary {Feature Layer}:
-          A polygon feature that defines the area of interest to be processed.
-      process_entire_files {Boolean}:
-          Specifies how the processing extent will be applied.
+         * Space delimited string of coordinates-The extent of the specified
+         string will be used. Coordinates are expressed in the order of x-min,
+         y-min, x-max, y-max.
+     boundary {Feature Layer}:
+         A polygon feature that defines the area of interest to be processed.
+     process_entire_files {Boolean}:
+         Specifies how the processing extent will be applied.
 
-          * PROCESS_EXTENT-Only LAS points that intersect the area of interest
-          will be processed. This is the default.
+         * PROCESS_EXTENT-Only LAS points that intersect the area of interest
+         will be processed. This is the default.
 
-          * PROCESS_ENTIRE_FILES-If any portion of a .las file intersects the
-          area of interest, all the points in that .las file, including those
-          outside the area of interest, will be processed.
-      point_spacing {Linear Unit}:
-          The average spacing of LAS points. This parameter is no longer used.
-      reuse_building {Boolean}:
-          Specifies whether the existing building classified points will be
-          reused or reevaluated.Specifies whether the existing building
-          classified points will be
-          reused or reevaluated.
+         * PROCESS_ENTIRE_FILES-If any portion of a .las file intersects the
+         area of interest, all the points in that .las file, including those
+         outside the area of interest, will be processed.
+     point_spacing {Linear Unit}:
+         The average spacing of LAS points. This parameter is no longer used.
+     reuse_building {Boolean}:
+         Specifies whether the existing building classified points will be
+         reused or reevaluated.Specifies whether the existing building
+         classified points will be
+         reused or reevaluated.
 
-          * RECLASSIFY_BUILDING-Existing building classified points will be
-          reevaluated to fit the criteria for plane detection, and points that
-          do not fit the specified area and height will be assigned a value of
-          1. This is the default.
+         * RECLASSIFY_BUILDING-Existing building classified points will be
+         reevaluated to fit the criteria for plane detection, and points that
+         do not fit the specified area and height will be assigned a value of
+         1. This is the default.
 
-          * REUSE_BUILDING-Existing building classified points will contribute
-          to the plane detection process but will not be reclassified in the
-          event they do not meet the criteria specified in the tool's execution.
-          Use this option if the existing classification is necessary.
-      photogrammetric_data {Boolean}:
-          Specifies whether the points in the .las file were derived using a
-          photogrammetric technique.Specifies whether the points in the .las
-          file were derived using a
-          photogrammetric technique.
+         * REUSE_BUILDING-Existing building classified points will contribute
+         to the plane detection process but will not be reclassified in the
+         event they do not meet the criteria specified in the tool's execution.
+         Use this option if the existing classification is necessary.
+     photogrammetric_data {Boolean}:
+         Specifies whether the points in the .las file were derived using a
+         photogrammetric technique.Specifies whether the points in the .las
+         file were derived using a
+         photogrammetric technique.
 
-          * NOT_PHOTOGRAMMETRIC_DATA-The points in the .las file were obtained
-          from a lidar survey, not from a photogrammetric technique for
-          producing point clouds. This is the default.
+         * NOT_PHOTOGRAMMETRIC_DATA-The points in the .las file were obtained
+         from a lidar survey, not from a photogrammetric technique for
+         producing point clouds. This is the default.
 
-          * PHOTOGRAMMETRIC_DATA-The points in the .las file were obtained using
-          a photogrammetric technique for producing point clouds from
-          overlapping imagery.
-      method {String}:
-          Specifies the classification method that will be used.
+         * PHOTOGRAMMETRIC_DATA-The points in the .las file were obtained using
+         a photogrammetric technique for producing point clouds from
+         overlapping imagery.
+     method {String}:
+         Specifies the classification method that will be used.
 
-          * AGGRESSIVE-Points that fit the planar rooftop characteristics with a
-          relatively high tolerance for outliers will be detected. Use this
-          method if the points are not well calibrated.
+         * AGGRESSIVE-Points that fit the planar rooftop characteristics with a
+         relatively high tolerance for outliers will be detected. Use this
+         method if the points are not well calibrated.
 
-          * STANDARD-Points that fit the planar rooftop characteristics with a
-          relatively moderate tolerance for irregular points will be detected.
-          This is the default
+         * STANDARD-Points that fit the planar rooftop characteristics with a
+         relatively moderate tolerance for irregular points will be detected.
+         This is the default
 
-          * CONSERVATIVE-Points that fit the planar rooftop characteristics with
-          a relatively low tolerance for irregular points will be detected. Use
-          this method if the building points are co-planar with points from
-          objects that are not buildings.
-      classify_above_roof {Boolean}:
-          Specifies whether points above the planes detected for the roof will
-          be classified.
+         * CONSERVATIVE-Points that fit the planar rooftop characteristics with
+         a relatively low tolerance for irregular points will be detected. Use
+         this method if the building points are co-planar with points from
+         objects that are not buildings.
+     classify_above_roof {Boolean}:
+         Specifies whether points above the planes detected for the roof will
+         be classified.
 
-          * NO_CLASSIFY_ABOVE_ROOF-Points detected above the planes will not be
-          classified. This is the default..
+         * NO_CLASSIFY_ABOVE_ROOF-Points detected above the planes will not be
+         classified. This is the default..
 
-          * CLASSIFY_ABOVE_ROOF-Points detected above the planes will be
-          classified.
-      above_roof_height {Linear Unit}:
-          The maximum height of the points above the building rooftop that will
-          be classified to the value designated in the Above Roof Class Code
-          parameter.
-      above_roof_code {Long}:
-          The class code that will be assigned to points above the roof.
-      classify_below_roof {Boolean}:
-          Specifies whether points between the roof and the ground will be
-          classified.
+         * CLASSIFY_ABOVE_ROOF-Points detected above the planes will be
+         classified.
+     above_roof_height {Linear Unit}:
+         The maximum height of the points above the building rooftop that will
+         be classified to the value designated in the Above Roof Class Code
+         parameter.
+     above_roof_code {Long}:
+         The class code that will be assigned to points above the roof.
+     classify_below_roof {Boolean}:
+         Specifies whether points between the roof and the ground will be
+         classified.
 
-          * NO_CLASSIFY_BELOW_ROOF-Points between the roof and the ground will
-          not be classified. This is the default.
+         * NO_CLASSIFY_BELOW_ROOF-Points between the roof and the ground will
+         not be classified. This is the default.
 
-          * CLASSIFY_BELOW_ROOF-Points between the roof and the ground will be
-          classified.
-      below_roof_code {Long}:
-          The class code that will be assigned to points between the ground and
-          the roof.
-      update_pyramid {Boolean}:
-          Specifies whether the LAS dataset pyramid will be updated after the
-          class codes are modified.
+         * CLASSIFY_BELOW_ROOF-Points between the roof and the ground will be
+         classified.
+     below_roof_code {Long}:
+         The class code that will be assigned to points between the ground and
+         the roof.
+     update_pyramid {Boolean}:
+         Specifies whether the LAS dataset pyramid will be updated after the
+         class codes are modified.
 
-          * UPDATE_PYRAMID-The LAS dataset pyramid will be updated. This is the
-          default.
+         * UPDATE_PYRAMID-The LAS dataset pyramid will be updated. This is the
+         default.
 
-          * NO_UPDATE_PYRAMID-The LAS dataset pyramid will not be updated."""
+         * NO_UPDATE_PYRAMID-The LAS dataset pyramid will not be updated."""
     ...
 
-@gptooldoc('ClassifyLasByHeight_3d', None)
-def ClassifyLasByHeight(in_las_dataset=..., ground_source=..., height_classification=..., noise=..., compute_stats=..., extent=..., process_entire_files=..., boundary=..., update_pyramid=...): # -> conversion | int | float | complex | basestring | list[Unknown] | tuple[Unknown, ...] | dict[Unknown, Unknown]:
+@gptooldoc("ClassifyLasByHeight_3d", None)
+def ClassifyLasByHeight(
+    in_las_dataset=...,
+    ground_source=...,
+    height_classification=...,
+    noise=...,
+    compute_stats=...,
+    extent=...,
+    process_entire_files=...,
+    boundary=...,
+    update_pyramid=...,
+):  # -> conversion | int | float | complex | basestring | list[Unknown] | tuple[Unknown, ...] | dict[Unknown, Unknown]:
     """ClassifyLasByHeight(in_las_dataset, ground_source, height_classification;height_classification..., {noise}, {compute_stats}, {extent}, {process_entire_files}, {boundary}, {update_pyramid})
 
-        Reclassifies lidar points based on their height from the ground
-        surface.
+       Reclassifies lidar points based on their height from the ground
+       surface.
 
-     INPUTS:
-      in_las_dataset (LAS Dataset Layer):
-          The LAS dataset that will be processed. Only LAS points with class
-          code values of 0 and 1 will be evaluated.
-      ground_source (String):
-          Specifies the source of ground measurements that will be used to
-          determine height above ground.
+    INPUTS:
+     in_las_dataset (LAS Dataset Layer):
+         The LAS dataset that will be processed. Only LAS points with class
+         code values of 0 and 1 will be evaluated.
+     ground_source (String):
+         Specifies the source of ground measurements that will be used to
+         determine height above ground.
 
-          * GROUND-LAS points designated with the ground classification code
-          value of 2 and model key code value of 8 will be used.
+         * GROUND-LAS points designated with the ground classification code
+         value of 2 and model key code value of 8 will be used.
 
-          * MODEL_KEY-Only LAS points designated with the model key
-          classification code value of 8 will be used.
-      height_classification (Value Table):
-          The class code value that will be assigned to LAS points that fall
-          within the range of values derived from the specified height from
-          ground. The order of entry influences the height ranges that will be
-          used to define the reclassification of LAS points. The z-range of the
-          first entry will span from the ground surface to the specified
-          height_from_ground value. The z-range of subsequent entries will span
-          from the upper limit of the preceding entry to its own
-          height_from_ground value.
-      noise {String}:
-          Specifies whether and how points will be reclassified as noise based
-          on their proximity from the ground. Noise artifacts in lidar data can
-          be introduced by sensor errors and the inadvertent interception of
-          aerial obstructions, such as birds, in the path of the lidar pulse.
+         * MODEL_KEY-Only LAS points designated with the model key
+         classification code value of 8 will be used.
+     height_classification (Value Table):
+         The class code value that will be assigned to LAS points that fall
+         within the range of values derived from the specified height from
+         ground. The order of entry influences the height ranges that will be
+         used to define the reclassification of LAS points. The z-range of the
+         first entry will span from the ground surface to the specified
+         height_from_ground value. The z-range of subsequent entries will span
+         from the upper limit of the preceding entry to its own
+         height_from_ground value.
+     noise {String}:
+         Specifies whether and how points will be reclassified as noise based
+         on their proximity from the ground. Noise artifacts in lidar data can
+         be introduced by sensor errors and the inadvertent interception of
+         aerial obstructions, such as birds, in the path of the lidar pulse.
 
-          * ALL_NOISE-Both low and high noise will be classified.
+         * ALL_NOISE-Both low and high noise will be classified.
 
-          * HIGH_NOISE-Only points that are above the maximum height in the LAS
-          classification table will be reclassified as high noise.
+         * HIGH_NOISE-Only points that are above the maximum height in the LAS
+         classification table will be reclassified as high noise.
 
-          * LOW_NOISE-Only points below the ground surface will be reclassified
-          as noise. This option is only available when all ground points are
-          used to define the ground surface.
+         * LOW_NOISE-Only points below the ground surface will be reclassified
+         as noise. This option is only available when all ground points are
+         used to define the ground surface.
 
-          * NONE-No points will be reclassified as noise.
-      compute_stats {Boolean}:
-          Specifies whether statistics will be computed for the .las files
-          referenced by the LAS dataset. Computing statistics provides a spatial
-          index for each .las file, which improves analysis and display
-          performance. Statistics also enhance the filtering and symbology
-          experience by limiting the display of LAS attributes, such as
-          classification codes and return information, to values that are
-          present in the .las file.
+         * NONE-No points will be reclassified as noise.
+     compute_stats {Boolean}:
+         Specifies whether statistics will be computed for the .las files
+         referenced by the LAS dataset. Computing statistics provides a spatial
+         index for each .las file, which improves analysis and display
+         performance. Statistics also enhance the filtering and symbology
+         experience by limiting the display of LAS attributes, such as
+         classification codes and return information, to values that are
+         present in the .las file.
 
-          * COMPUTE_STATS-Statistics will be computed. This is the default.
+         * COMPUTE_STATS-Statistics will be computed. This is the default.
 
-          * NO_COMPUTE_STATS-Statistics will not be computed.
-      extent {Extent}:
-          The extent of the data that will be evaluated.
+         * NO_COMPUTE_STATS-Statistics will not be computed.
+     extent {Extent}:
+         The extent of the data that will be evaluated.
 
-          * MAXOF-The maximum extent of all inputs will be used.
+         * MAXOF-The maximum extent of all inputs will be used.
 
-          * MINOF-The minimum area common to all inputs will be used.
+         * MINOF-The minimum area common to all inputs will be used.
 
-          * DISPLAY-The extent is equal to the visible display.
+         * DISPLAY-The extent is equal to the visible display.
 
-          * Layer name-The extent of the specified layer will be used.
+         * Layer name-The extent of the specified layer will be used.
 
-          * Extent object-The extent of the specified object will be used.
+         * Extent object-The extent of the specified object will be used.
 
-          * Space delimited string of coordinates-The extent of the specified
-          string will be used. Coordinates are expressed in the order of x-min,
-          y-min, x-max, y-max.
-      process_entire_files {Boolean}:
-          Specifies how the processing extent will be applied.
+         * Space delimited string of coordinates-The extent of the specified
+         string will be used. Coordinates are expressed in the order of x-min,
+         y-min, x-max, y-max.
+     process_entire_files {Boolean}:
+         Specifies how the processing extent will be applied.
 
-          * PROCESS_ENTIRE_FILES-Only LAS points that are within the processing
-          extent will be evaluated. This is the default.
+         * PROCESS_ENTIRE_FILES-Only LAS points that are within the processing
+         extent will be evaluated. This is the default.
 
-          * PROCESS_EXTENT-All points in the .las files that intersect the
-          processing extent will be evaluated.
-      boundary {Feature Layer}:
-          A polygon feature that defines the region for which LAS ground points
-          will be evaluated.
-      update_pyramid {Boolean}:
-          Specifies whether the LAS dataset pyramid will be updated after the
-          class codes are modified.
+         * PROCESS_EXTENT-All points in the .las files that intersect the
+         processing extent will be evaluated.
+     boundary {Feature Layer}:
+         A polygon feature that defines the region for which LAS ground points
+         will be evaluated.
+     update_pyramid {Boolean}:
+         Specifies whether the LAS dataset pyramid will be updated after the
+         class codes are modified.
 
-          * UPDATE_PYRAMID-The LAS dataset pyramid will be updated. This is the
-          default.
+         * UPDATE_PYRAMID-The LAS dataset pyramid will be updated. This is the
+         default.
 
-          * NO_UPDATE_PYRAMID-The LAS dataset pyramid will not be updated."""
+         * NO_UPDATE_PYRAMID-The LAS dataset pyramid will not be updated."""
     ...
 
-@gptooldoc('ClassifyLasGround_3d', None)
-def ClassifyLasGround(in_las_dataset=..., method=..., reuse_ground=..., dem_resolution=..., compute_stats=..., extent=..., boundary=..., process_entire_files=..., update_pyramid=..., algorithm=...): # -> conversion | int | float | complex | basestring | list[Unknown] | tuple[Unknown, ...] | dict[Unknown, Unknown]:
+@gptooldoc("ClassifyLasGround_3d", None)
+def ClassifyLasGround(
+    in_las_dataset=...,
+    method=...,
+    reuse_ground=...,
+    dem_resolution=...,
+    compute_stats=...,
+    extent=...,
+    boundary=...,
+    process_entire_files=...,
+    update_pyramid=...,
+    algorithm=...,
+):  # -> conversion | int | float | complex | basestring | list[Unknown] | tuple[Unknown, ...] | dict[Unknown, Unknown]:
     """ClassifyLasGround(in_las_dataset, {method}, {reuse_ground}, {dem_resolution}, {compute_stats}, {extent}, {boundary}, {process_entire_files}, {update_pyramid}, {algorithm})
 
-        Classifies ground points from LAS data.
+       Classifies ground points from LAS data.
 
-     INPUTS:
-      in_las_dataset (LAS Dataset Layer):
-          The LAS dataset that will be processed. Only the last return of LAS
-          points with class code values of 0, 1, and 2 will be evaluated.
-      method {String}:
-          Specifies the method that will be used to detect ground points.
+    INPUTS:
+     in_las_dataset (LAS Dataset Layer):
+         The LAS dataset that will be processed. Only the last return of LAS
+         points with class code values of 0, 1, and 2 will be evaluated.
+     method {String}:
+         Specifies the method that will be used to detect ground points.
 
-          * STANDARD-This method has a tolerance for slope variation that allows
-          it to capture gradual undulations in the ground's topography that
-          would typically be missed by the conservative option but not capture
-          the type of sharp reliefs that would be captured by the aggressive
-          option. This is the default.
+         * STANDARD-This method has a tolerance for slope variation that allows
+         it to capture gradual undulations in the ground's topography that
+         would typically be missed by the conservative option but not capture
+         the type of sharp reliefs that would be captured by the aggressive
+         option. This is the default.
 
-          * CONSERVATIVE-When compared to other options, this method uses a
-          tighter restriction on the variation of the ground's slope that allows
-          it to differentiate the ground from low-lying vegetation such as grass
-          and shrubbery. It is best suited for topography with minimal
-          curvature.
+         * CONSERVATIVE-When compared to other options, this method uses a
+         tighter restriction on the variation of the ground's slope that allows
+         it to differentiate the ground from low-lying vegetation such as grass
+         and shrubbery. It is best suited for topography with minimal
+         curvature.
 
-          * AGGRESSIVE-This method detects ground areas with sharper reliefs,
-          such as ridges and hill tops, that may be ignored by the STANDARD
-          method. This method is best used in a second iteration of this tool
-          with the reuse_ground parameter set to REUSE_GROUND. Avoid using this
-          method in urban areas or flat, rural areas, as it may result in the
-          misclassification of taller objects-such as utility towers,
-          vegetation, and portions of buildings-as ground.
-      reuse_ground {Boolean}:
-          Specifies whether existing ground points will be reclassified or
-          reused.
+         * AGGRESSIVE-This method detects ground areas with sharper reliefs,
+         such as ridges and hill tops, that may be ignored by the STANDARD
+         method. This method is best used in a second iteration of this tool
+         with the reuse_ground parameter set to REUSE_GROUND. Avoid using this
+         method in urban areas or flat, rural areas, as it may result in the
+         misclassification of taller objects-such as utility towers,
+         vegetation, and portions of buildings-as ground.
+     reuse_ground {Boolean}:
+         Specifies whether existing ground points will be reclassified or
+         reused.
 
-          * RECLASSIFY_GROUND-Existing ground points will be reclassified.
-          Points that are not found to be a part of the ground will be
-          reassigned a class code value of 1, which represents unclassified
-          points. This is the default.
+         * RECLASSIFY_GROUND-Existing ground points will be reclassified.
+         Points that are not found to be a part of the ground will be
+         reassigned a class code value of 1, which represents unclassified
+         points. This is the default.
 
-          * REUSE_GROUND-Existing ground points will be accepted and reused
-          without scrutiny and contribute to the determination of unclassified
-          points.
-      dem_resolution {Linear Unit}:
-          A distance that will result in only a subset of points being evaluated
-          for classification as ground, thereby making the process faster.
-          Consider using this parameter when a faster method for generating a
-          DEM surface is needed. The minimum distance is 0.3 meters, but the
-          specified distance must be at least 1.5 times the average point
-          spacing of the lidar data for this process to take effect.
-      compute_stats {Boolean}:
-          Specifies whether statistics will be computed for the .las files
-          referenced by the LAS dataset. Computing statistics provides a spatial
-          index for each .las file, which improves analysis and display
-          performance. Statistics also enhance the filtering and symbology
-          experience by limiting the display of LAS attributes, such as
-          classification codes and return information, to values that are
-          present in the .las file.
+         * REUSE_GROUND-Existing ground points will be accepted and reused
+         without scrutiny and contribute to the determination of unclassified
+         points.
+     dem_resolution {Linear Unit}:
+         A distance that will result in only a subset of points being evaluated
+         for classification as ground, thereby making the process faster.
+         Consider using this parameter when a faster method for generating a
+         DEM surface is needed. The minimum distance is 0.3 meters, but the
+         specified distance must be at least 1.5 times the average point
+         spacing of the lidar data for this process to take effect.
+     compute_stats {Boolean}:
+         Specifies whether statistics will be computed for the .las files
+         referenced by the LAS dataset. Computing statistics provides a spatial
+         index for each .las file, which improves analysis and display
+         performance. Statistics also enhance the filtering and symbology
+         experience by limiting the display of LAS attributes, such as
+         classification codes and return information, to values that are
+         present in the .las file.
 
-          * COMPUTE_STATS-Statistics will be computed. This is the default.
+         * COMPUTE_STATS-Statistics will be computed. This is the default.
 
-          * NO_COMPUTE_STATS-Statistics will not be computed.
-      extent {Extent}:
-          The extent of the data that will be evaluated.
+         * NO_COMPUTE_STATS-Statistics will not be computed.
+     extent {Extent}:
+         The extent of the data that will be evaluated.
 
-          * MAXOF-The maximum extent of all inputs will be used.
+         * MAXOF-The maximum extent of all inputs will be used.
 
-          * MINOF-The minimum area common to all inputs will be used.
+         * MINOF-The minimum area common to all inputs will be used.
 
-          * DISPLAY-The extent is equal to the visible display.
+         * DISPLAY-The extent is equal to the visible display.
 
-          * Layer name-The extent of the specified layer will be used.
+         * Layer name-The extent of the specified layer will be used.
 
-          * Extent object-The extent of the specified object will be used.
+         * Extent object-The extent of the specified object will be used.
 
-          * Space delimited string of coordinates-The extent of the specified
-          string will be used. Coordinates are expressed in the order of x-min,
-          y-min, x-max, y-max.
-      boundary {Feature Layer}:
-          A polygon feature that defines the area of interest to be processed.
-      process_entire_files {Boolean}:
-          Specifies how the processing extent will be applied.
+         * Space delimited string of coordinates-The extent of the specified
+         string will be used. Coordinates are expressed in the order of x-min,
+         y-min, x-max, y-max.
+     boundary {Feature Layer}:
+         A polygon feature that defines the area of interest to be processed.
+     process_entire_files {Boolean}:
+         Specifies how the processing extent will be applied.
 
-          * PROCESS_EXTENT-Only LAS points that intersect the area of interest
-          will be processed. This is the default.
+         * PROCESS_EXTENT-Only LAS points that intersect the area of interest
+         will be processed. This is the default.
 
-          * PROCESS_ENTIRE_FILES-If any portion of a .las file intersects the
-          area of interest, all the points in that .las file, including those
-          outside the area of interest, will be processed.
-      update_pyramid {Boolean}:
-          Specifies whether the LAS dataset pyramid will be updated after the
-          class codes are modified.
+         * PROCESS_ENTIRE_FILES-If any portion of a .las file intersects the
+         area of interest, all the points in that .las file, including those
+         outside the area of interest, will be processed.
+     update_pyramid {Boolean}:
+         Specifies whether the LAS dataset pyramid will be updated after the
+         class codes are modified.
 
-          * UPDATE_PYRAMID-The LAS dataset pyramid will be updated. This is the
-          default.
+         * UPDATE_PYRAMID-The LAS dataset pyramid will be updated. This is the
+         default.
 
-          * NO_UPDATE_PYRAMID-The LAS dataset pyramid will not be updated.
-      algorithm {String}:
-          Specifies the version of the ground detection algorithm that will be
-          used to classify the ground points.
+         * NO_UPDATE_PYRAMID-The LAS dataset pyramid will not be updated.
+     algorithm {String}:
+         Specifies the version of the ground detection algorithm that will be
+         used to classify the ground points.
 
-          * LATEST-The most recent version of the ground-detection algorithm
-          will be used. This option improves the handling of noise and outlier
-          points, especially for photogrammetrically derived point clouds. It is
-          also produces better results and faster performance in most cases.
-          This is the default.
+         * LATEST-The most recent version of the ground-detection algorithm
+         will be used. This option improves the handling of noise and outlier
+         points, especially for photogrammetrically derived point clouds. It is
+         also produces better results and faster performance in most cases.
+         This is the default.
 
-          * FIRST-The initial version of the ground-detection algorithm will be
-          used. This option should only be used if the results from the latest
-          version are not suitable."""
+         * FIRST-The initial version of the ground-detection algorithm will be
+         used. This option should only be used if the results from the latest
+         version are not suitable."""
     ...
 
-@gptooldoc('ClassifyLasNoise_3d', None)
-def ClassifyLasNoise(in_las_dataset=..., method=..., edit_las=..., withheld=..., compute_stats=..., ground=..., low_z=..., high_z=..., max_neighbors=..., step_width=..., step_height=..., extent=..., process_entire_files=..., out_feature_class=..., update_pyramid=...): # -> conversion | int | float | complex | basestring | list[Unknown] | tuple[Unknown, ...] | dict[Unknown, Unknown]:
+@gptooldoc("ClassifyLasNoise_3d", None)
+def ClassifyLasNoise(
+    in_las_dataset=...,
+    method=...,
+    edit_las=...,
+    withheld=...,
+    compute_stats=...,
+    ground=...,
+    low_z=...,
+    high_z=...,
+    max_neighbors=...,
+    step_width=...,
+    step_height=...,
+    extent=...,
+    process_entire_files=...,
+    out_feature_class=...,
+    update_pyramid=...,
+):  # -> conversion | int | float | complex | basestring | list[Unknown] | tuple[Unknown, ...] | dict[Unknown, Unknown]:
     """ClassifyLasNoise(in_las_dataset, {method}, {edit_las}, {withheld}, {compute_stats}, {ground}, {low_z}, {high_z}, {max_neighbors}, {step_width}, {step_height}, {extent}, {process_entire_files}, {out_feature_class}, {update_pyramid})
 
-        Classifies LAS points with anomalous spatial characteristics as noise.
+       Classifies LAS points with anomalous spatial characteristics as noise.
 
-     INPUTS:
-      in_las_dataset (LAS Dataset Layer):
-          The LAS dataset to process.
-      method {String}:
-          Specifies the noise detection method that will be used.
+    INPUTS:
+     in_las_dataset (LAS Dataset Layer):
+         The LAS dataset to process.
+     method {String}:
+         Specifies the noise detection method that will be used.
 
-          * ISOLATION-The spatial proximity of LAS points will be analyzed in
-          tiled volumes to determine noise measurements along with height-based
-          noise detection. This is the default.
+         * ISOLATION-The spatial proximity of LAS points will be analyzed in
+         tiled volumes to determine noise measurements along with height-based
+         noise detection. This is the default.
 
-          * RELATIVE_HEIGHT-All points below the specified minimum height from
-          the ground surface and above the maximum height from the ground
-          surface will be identified as noise.
+         * RELATIVE_HEIGHT-All points below the specified minimum height from
+         the ground surface and above the maximum height from the ground
+         surface will be identified as noise.
 
-          * ABSOLUTE_HEIGHT-All points below the specified minimum height and
-          above the maximum height in relation to mean sea level will be
-          identified as noise.
-      edit_las {Boolean}:
-          Specifies whether LAS points that are identified as noise will be
-          reclassified.
+         * ABSOLUTE_HEIGHT-All points below the specified minimum height and
+         above the maximum height in relation to mean sea level will be
+         identified as noise.
+     edit_las {Boolean}:
+         Specifies whether LAS points that are identified as noise will be
+         reclassified.
 
-          * CLASSIFY-Noise points will be reclassified. This is the default.
+         * CLASSIFY-Noise points will be reclassified. This is the default.
 
-          * NO_CLASSIFY-Noise points will not be classified.
-      withheld {Boolean}:
-          Specifies whether the withheld classification flag will be assigned to
-          noise points. This option is only enforced if the edit_las parameter
-          is set to CLASSIFY.
+         * NO_CLASSIFY-Noise points will not be classified.
+     withheld {Boolean}:
+         Specifies whether the withheld classification flag will be assigned to
+         noise points. This option is only enforced if the edit_las parameter
+         is set to CLASSIFY.
 
-          * WITHHELD-The withheld classification flag will be assigned to noise
-          points.
+         * WITHHELD-The withheld classification flag will be assigned to noise
+         points.
 
-          * NO_WITHHELD-The withheld classification flag will not be assigned to
-          noise points. This is the default.
-      compute_stats {Boolean}:
-          Specifies whether statistics will be computed for the .las files
-          referenced by the LAS dataset. Computing statistics provides a spatial
-          index for each .las file, which improves analysis and display
-          performance. Statistics also enhance the filtering and symbology
-          experience by limiting the display of LAS attributes, such as
-          classification codes and return information, to values that are
-          present in the .las file.
+         * NO_WITHHELD-The withheld classification flag will not be assigned to
+         noise points. This is the default.
+     compute_stats {Boolean}:
+         Specifies whether statistics will be computed for the .las files
+         referenced by the LAS dataset. Computing statistics provides a spatial
+         index for each .las file, which improves analysis and display
+         performance. Statistics also enhance the filtering and symbology
+         experience by limiting the display of LAS attributes, such as
+         classification codes and return information, to values that are
+         present in the .las file.
 
-          * COMPUTE_STATS-Statistics will be computed. This is the default.
+         * COMPUTE_STATS-Statistics will be computed. This is the default.
 
-          * NO_COMPUTE_STATS-Statistics will not be computed.
-      ground {Raster Layer}:
-          The ground surface that will be used to define relative height.
-      low_z {Linear Unit}:
-          The height that will define the lowest z-value threshold for
-          identifying noise points. Any point that is lower than the specified
-          value will be classified as noise. If a ground surface is specified,
-          this threshold will be based on an offset from the ground such that a
-          value of -3 feet means any points that are 3 feet below the ground
-          surface will be classified as noise.
-      high_z {Linear Unit}:
-          The height that will define the highest z-value threshold for
-          identifying noise points. Any point that is higher than the specified
-          value will be classified as noise. If a ground surface is provided,
-          this threshold will be based on an offset from the ground such that a
-          value of 250 meters means any points that are higher than 250 meters
-          above the ground surface will be classified as noise.
-      max_neighbors {Long}:
-          The maximum number of points in the analysis volume that can be
-          qualified as noise when using the Isolation method. If the analysis
-          volume contains any number of LAS points that are equal to or less
-          than this value, those points will be classified as noise.
-      step_width {Linear Unit}:
-          The size of each dimension in the XY space of the analysis volume when
-          using the Isolation method.
-      step_height {Linear Unit}:
-          The height of the analysis volume when using the Isolation method.
-      extent {Extent}:
-          The extent of the data that will be evaluated.
+         * NO_COMPUTE_STATS-Statistics will not be computed.
+     ground {Raster Layer}:
+         The ground surface that will be used to define relative height.
+     low_z {Linear Unit}:
+         The height that will define the lowest z-value threshold for
+         identifying noise points. Any point that is lower than the specified
+         value will be classified as noise. If a ground surface is specified,
+         this threshold will be based on an offset from the ground such that a
+         value of -3 feet means any points that are 3 feet below the ground
+         surface will be classified as noise.
+     high_z {Linear Unit}:
+         The height that will define the highest z-value threshold for
+         identifying noise points. Any point that is higher than the specified
+         value will be classified as noise. If a ground surface is provided,
+         this threshold will be based on an offset from the ground such that a
+         value of 250 meters means any points that are higher than 250 meters
+         above the ground surface will be classified as noise.
+     max_neighbors {Long}:
+         The maximum number of points in the analysis volume that can be
+         qualified as noise when using the Isolation method. If the analysis
+         volume contains any number of LAS points that are equal to or less
+         than this value, those points will be classified as noise.
+     step_width {Linear Unit}:
+         The size of each dimension in the XY space of the analysis volume when
+         using the Isolation method.
+     step_height {Linear Unit}:
+         The height of the analysis volume when using the Isolation method.
+     extent {Extent}:
+         The extent of the data that will be evaluated.
 
-          * MAXOF-The maximum extent of all inputs will be used.
+         * MAXOF-The maximum extent of all inputs will be used.
 
-          * MINOF-The minimum area common to all inputs will be used.
+         * MINOF-The minimum area common to all inputs will be used.
 
-          * DISPLAY-The extent is equal to the visible display.
+         * DISPLAY-The extent is equal to the visible display.
 
-          * Layer name-The extent of the specified layer will be used.
+         * Layer name-The extent of the specified layer will be used.
 
-          * Extent object-The extent of the specified object will be used.
+         * Extent object-The extent of the specified object will be used.
 
-          * Space delimited string of coordinates-The extent of the specified
-          string will be used. Coordinates are expressed in the order of x-min,
-          y-min, x-max, y-max.
-      process_entire_files {Boolean}:
-          Specifies how the processing extent will be applied.
+         * Space delimited string of coordinates-The extent of the specified
+         string will be used. Coordinates are expressed in the order of x-min,
+         y-min, x-max, y-max.
+     process_entire_files {Boolean}:
+         Specifies how the processing extent will be applied.
 
-          * PROCESS_EXTENT-Only LAS points that intersect the area of interest
-          will be processed. This is the default.
+         * PROCESS_EXTENT-Only LAS points that intersect the area of interest
+         will be processed. This is the default.
 
-          * PROCESS_ENTIRE_FILES-If any portion of a .las file intersects the
-          area of interest, all the points in that .las file, including those
-          outside the area of interest, will be processed.
-      update_pyramid {Boolean}:
-          Specifies whether the LAS dataset pyramid will be updated after the
-          class codes are modified.
+         * PROCESS_ENTIRE_FILES-If any portion of a .las file intersects the
+         area of interest, all the points in that .las file, including those
+         outside the area of interest, will be processed.
+     update_pyramid {Boolean}:
+         Specifies whether the LAS dataset pyramid will be updated after the
+         class codes are modified.
 
-          * UPDATE_PYRAMID-The LAS dataset pyramid will be updated. This is the
-          default.
+         * UPDATE_PYRAMID-The LAS dataset pyramid will be updated. This is the
+         default.
 
-          * NO_UPDATE_PYRAMID-The LAS dataset pyramid will not be updated.
+         * NO_UPDATE_PYRAMID-The LAS dataset pyramid will not be updated.
 
-     OUTPUTS:
-      out_feature_class {Feature Class}:
-          The output point features that represent the LAS points identified as
-          noise."""
+    OUTPUTS:
+     out_feature_class {Feature Class}:
+         The output point features that represent the LAS points identified as
+         noise."""
     ...
 
-@gptooldoc('ClassifyLasOverlap_3d', None)
-def ClassifyLasOverlap(in_las_dataset=..., sample_distance=..., extent=..., process_entire_files=..., compute_stats=..., update_pyramid=...): # -> conversion | int | float | complex | basestring | list[Unknown] | tuple[Unknown, ...] | dict[Unknown, Unknown]:
+@gptooldoc("ClassifyLasOverlap_3d", None)
+def ClassifyLasOverlap(
+    in_las_dataset=...,
+    sample_distance=...,
+    extent=...,
+    process_entire_files=...,
+    compute_stats=...,
+    update_pyramid=...,
+):  # -> conversion | int | float | complex | basestring | list[Unknown] | tuple[Unknown, ...] | dict[Unknown, Unknown]:
     """ClassifyLasOverlap(in_las_dataset, {sample_distance}, {extent}, {process_entire_files}, {compute_stats}, {update_pyramid})
 
-        Classifies LAS points from overlapping scans of aerial lidar surveys.
+       Classifies LAS points from overlapping scans of aerial lidar surveys.
 
-     INPUTS:
-      in_las_dataset (LAS Dataset Layer):
-          The tiled LAS dataset to process.
-      sample_distance {Linear Unit}:
-          The distance of either dimension of the square area that will be used
-          to evaluate the LAS data. This value can be expressed as a number and
-          a linear unit value, such as 3 meters. If linear units are not
-          specified or are entered as Unknown, the unit will be defined by the
-          spatial reference of the input .las file.
-      extent {Extent}:
-          The extent of the data that will be evaluated.
+    INPUTS:
+     in_las_dataset (LAS Dataset Layer):
+         The tiled LAS dataset to process.
+     sample_distance {Linear Unit}:
+         The distance of either dimension of the square area that will be used
+         to evaluate the LAS data. This value can be expressed as a number and
+         a linear unit value, such as 3 meters. If linear units are not
+         specified or are entered as Unknown, the unit will be defined by the
+         spatial reference of the input .las file.
+     extent {Extent}:
+         The extent of the data that will be evaluated.
 
-          * MAXOF-The maximum extent of all inputs will be used.
+         * MAXOF-The maximum extent of all inputs will be used.
 
-          * MINOF-The minimum area common to all inputs will be used.
+         * MINOF-The minimum area common to all inputs will be used.
 
-          * DISPLAY-The extent is equal to the visible display.
+         * DISPLAY-The extent is equal to the visible display.
 
-          * Layer name-The extent of the specified layer will be used.
+         * Layer name-The extent of the specified layer will be used.
 
-          * Extent object-The extent of the specified object will be used.
+         * Extent object-The extent of the specified object will be used.
 
-          * Space delimited string of coordinates-The extent of the specified
-          string will be used. Coordinates are expressed in the order of x-min,
-          y-min, x-max, y-max.
-      process_entire_files {Boolean}:
-          Specifies how the processing extent will be applied.
+         * Space delimited string of coordinates-The extent of the specified
+         string will be used. Coordinates are expressed in the order of x-min,
+         y-min, x-max, y-max.
+     process_entire_files {Boolean}:
+         Specifies how the processing extent will be applied.
 
-          * PROCESS_EXTENT-Only LAS points that intersect the area of interest
-          will be processed. This is the default.
+         * PROCESS_EXTENT-Only LAS points that intersect the area of interest
+         will be processed. This is the default.
 
-          * PROCESS_ENTIRE_FILES-If any portion of a .las file intersects the
-          area of interest, all the points in that .las file, including those
-          outside the area of interest, will be processed.
-      compute_stats {Boolean}:
-          Specifies whether statistics will be computed for the .las files
-          referenced by the LAS dataset. Computing statistics provides a spatial
-          index for each .las file, which improves analysis and display
-          performance. Statistics also enhance the filtering and symbology
-          experience by limiting the display of LAS attributes, such as
-          classification codes and return information, to values that are
-          present in the .las file.
+         * PROCESS_ENTIRE_FILES-If any portion of a .las file intersects the
+         area of interest, all the points in that .las file, including those
+         outside the area of interest, will be processed.
+     compute_stats {Boolean}:
+         Specifies whether statistics will be computed for the .las files
+         referenced by the LAS dataset. Computing statistics provides a spatial
+         index for each .las file, which improves analysis and display
+         performance. Statistics also enhance the filtering and symbology
+         experience by limiting the display of LAS attributes, such as
+         classification codes and return information, to values that are
+         present in the .las file.
 
-          * COMPUTE_STATS-Statistics will be computed. This is the default.
+         * COMPUTE_STATS-Statistics will be computed. This is the default.
 
-          * NO_COMPUTE_STATS-Statistics will not be computed.
-      update_pyramid {Boolean}:
-          Specifies whether the LAS dataset pyramid will be updated after the
-          class codes are modified.
+         * NO_COMPUTE_STATS-Statistics will not be computed.
+     update_pyramid {Boolean}:
+         Specifies whether the LAS dataset pyramid will be updated after the
+         class codes are modified.
 
-          * UPDATE_PYRAMID-The LAS dataset pyramid will be updated. This is the
-          default.
+         * UPDATE_PYRAMID-The LAS dataset pyramid will be updated. This is the
+         default.
 
-          * NO_UPDATE_PYRAMID-The LAS dataset pyramid will not be updated."""
+         * NO_UPDATE_PYRAMID-The LAS dataset pyramid will not be updated."""
     ...
 
-@gptooldoc('SetLasClassCodesUsingFeatures_3d', None)
-def SetLasClassCodesUsingFeatures(in_las_dataset=..., feature_class=..., compute_stats=..., update_pyramid=...): # -> conversion | int | float | complex | basestring | list[Unknown] | tuple[Unknown, ...] | dict[Unknown, Unknown]:
+@gptooldoc("SetLasClassCodesUsingFeatures_3d", None)
+def SetLasClassCodesUsingFeatures(
+    in_las_dataset=..., feature_class=..., compute_stats=..., update_pyramid=...
+):  # -> conversion | int | float | complex | basestring | list[Unknown] | tuple[Unknown, ...] | dict[Unknown, Unknown]:
     """SetLasClassCodesUsingFeatures(in_las_dataset, feature_class;feature_class..., {compute_stats}, {update_pyramid})
 
-        Classifies LAS points that intersect the two-dimensional extent of
-        input features.
+       Classifies LAS points that intersect the two-dimensional extent of
+       input features.
 
-     INPUTS:
-      in_las_dataset (LAS Dataset Layer):
-          The LAS dataset to process.
-      feature_class (Value Table):
-          Enter each feature and its associated options that will be used to
-          define the classification operation as a list of lists, for example,
-          [['feature1', 6, 9, 'NO_CHANGE', 'SET', 'CLEAR', 'NO_CHANGE'],
-          ['feature 2', 0, 6, 'NO_CHANGE', 'NO_CHANGE', 'NO_CHANGE',
-          'NO_CHANGE']]. Each feature has the following options:
+    INPUTS:
+     in_las_dataset (LAS Dataset Layer):
+         The LAS dataset to process.
+     feature_class (Value Table):
+         Enter each feature and its associated options that will be used to
+         define the classification operation as a list of lists, for example,
+         [['feature1', 6, 9, 'NO_CHANGE', 'SET', 'CLEAR', 'NO_CHANGE'],
+         ['feature 2', 0, 6, 'NO_CHANGE', 'NO_CHANGE', 'NO_CHANGE',
+         'NO_CHANGE']]. Each feature has the following options:
 
-          * features-The features used for reclassifying LAS points.
+         * features-The features used for reclassifying LAS points.
 
-          * buffer_distance-The buffer distance applied to the input features
-          prior to determining the LAS points that intersect its area.
+         * buffer_distance-The buffer distance applied to the input features
+         prior to determining the LAS points that intersect its area.
 
-          * new_class-The class code to be assigned.
+         * new_class-The class code to be assigned.
 
-          * synthetic-The Synthetic classification flag is used to identify
-          points that were not obtained from a lidar sensor.
+         * synthetic-The Synthetic classification flag is used to identify
+         points that were not obtained from a lidar sensor.
 
-          * key_point-The Model Key Point classification flag represents a
-          subset of points that can be used to capture a desired level of detail
-          of a given class code.
+         * key_point-The Model Key Point classification flag represents a
+         subset of points that can be used to capture a desired level of detail
+         of a given class code.
 
-          * withheld-The Withheld classification flag signifies erroneous data
-          that should be excluded from analysis and visualization.
+         * withheld-The Withheld classification flag signifies erroneous data
+         that should be excluded from analysis and visualization.
 
-          * overlap-The Overlap designation identifies points from overlapping
-          scans and is only supported in LAS 1.4 files.
-      compute_stats {Boolean}:
-          Specifies whether statistics will be computed for the .las files
-          referenced by the LAS dataset. Computing statistics provides a spatial
-          index for each .las file, which improves analysis and display
-          performance. Statistics also enhance the filtering and symbology
-          experience by limiting the display of LAS attributes, such as
-          classification codes and return information, to values that are
-          present in the .las file.
+         * overlap-The Overlap designation identifies points from overlapping
+         scans and is only supported in LAS 1.4 files.
+     compute_stats {Boolean}:
+         Specifies whether statistics will be computed for the .las files
+         referenced by the LAS dataset. Computing statistics provides a spatial
+         index for each .las file, which improves analysis and display
+         performance. Statistics also enhance the filtering and symbology
+         experience by limiting the display of LAS attributes, such as
+         classification codes and return information, to values that are
+         present in the .las file.
 
-          * COMPUTE_STATS-Statistics will be computed. This is the default.
+         * COMPUTE_STATS-Statistics will be computed. This is the default.
 
-          * NO_COMPUTE_STATS-Statistics will not be computed.
-      update_pyramid {Boolean}:
-          Specifies whether the LAS dataset pyramid will be updated after the
-          class codes are modified.
+         * NO_COMPUTE_STATS-Statistics will not be computed.
+     update_pyramid {Boolean}:
+         Specifies whether the LAS dataset pyramid will be updated after the
+         class codes are modified.
 
-          * UPDATE_PYRAMID-The LAS dataset pyramid will be updated. This is the
-          default.
+         * UPDATE_PYRAMID-The LAS dataset pyramid will be updated. This is the
+         default.
 
-          * NO_UPDATE_PYRAMID-The LAS dataset pyramid will not be updated."""
+         * NO_UPDATE_PYRAMID-The LAS dataset pyramid will not be updated."""
     ...
 
-@gptooldoc('SetLasClassCodesUsingRaster_3d', None)
-def SetLasClassCodesUsingRaster(in_las_dataset=..., in_raster=..., compute_stats=..., extent=..., boundary=..., process_entire_files=..., update_pyramid=...): # -> conversion | int | float | complex | basestring | list[Unknown] | tuple[Unknown, ...] | dict[Unknown, Unknown]:
+@gptooldoc("SetLasClassCodesUsingRaster_3d", None)
+def SetLasClassCodesUsingRaster(
+    in_las_dataset=...,
+    in_raster=...,
+    compute_stats=...,
+    extent=...,
+    boundary=...,
+    process_entire_files=...,
+    update_pyramid=...,
+):  # -> conversion | int | float | complex | basestring | list[Unknown] | tuple[Unknown, ...] | dict[Unknown, Unknown]:
     """SetLasClassCodesUsingRaster(in_las_dataset, in_raster, {compute_stats}, {extent}, {boundary}, {process_entire_files}, {update_pyramid})
 
-        Classifies LAS points using cell values from a raster dataset.
+       Classifies LAS points using cell values from a raster dataset.
 
-     INPUTS:
-      in_las_dataset (LAS Dataset Layer):
-          The LAS dataset to process.
-      in_raster (Raster Layer / Mosaic Layer):
-          The integer raster with cell values that will be used to assign
-          classification codes for LAS points. The cell values must not exceed
-          the class codes that are supported by the input LAS files.
-      compute_stats {Boolean}:
-          Specifies whether statistics will be computed for the .las files
-          referenced by the LAS dataset. Computing statistics provides a spatial
-          index for each .las file, which improves analysis and display
-          performance. Statistics also enhance the filtering and symbology
-          experience by limiting the display of LAS attributes, such as
-          classification codes and return information, to values that are
-          present in the .las file.
+    INPUTS:
+     in_las_dataset (LAS Dataset Layer):
+         The LAS dataset to process.
+     in_raster (Raster Layer / Mosaic Layer):
+         The integer raster with cell values that will be used to assign
+         classification codes for LAS points. The cell values must not exceed
+         the class codes that are supported by the input LAS files.
+     compute_stats {Boolean}:
+         Specifies whether statistics will be computed for the .las files
+         referenced by the LAS dataset. Computing statistics provides a spatial
+         index for each .las file, which improves analysis and display
+         performance. Statistics also enhance the filtering and symbology
+         experience by limiting the display of LAS attributes, such as
+         classification codes and return information, to values that are
+         present in the .las file.
 
-          * COMPUTE_STATS-Statistics will be computed. This is the default.
+         * COMPUTE_STATS-Statistics will be computed. This is the default.
 
-          * NO_COMPUTE_STATS-Statistics will not be computed.
-      extent {Extent}:
-          The extent of the data that will be evaluated.
+         * NO_COMPUTE_STATS-Statistics will not be computed.
+     extent {Extent}:
+         The extent of the data that will be evaluated.
 
-          * MAXOF-The maximum extent of all inputs will be used.
+         * MAXOF-The maximum extent of all inputs will be used.
 
-          * MINOF-The minimum area common to all inputs will be used.
+         * MINOF-The minimum area common to all inputs will be used.
 
-          * DISPLAY-The extent is equal to the visible display.
+         * DISPLAY-The extent is equal to the visible display.
 
-          * Layer name-The extent of the specified layer will be used.
+         * Layer name-The extent of the specified layer will be used.
 
-          * Extent object-The extent of the specified object will be used.
+         * Extent object-The extent of the specified object will be used.
 
-          * Space delimited string of coordinates-The extent of the specified
-          string will be used. Coordinates are expressed in the order of x-min,
-          y-min, x-max, y-max.
-      boundary {Feature Layer}:
-          A polygon feature that defines the area of interest to be processed.
-      process_entire_files {Boolean}:
-          Specifies how the processing extent will be applied.
+         * Space delimited string of coordinates-The extent of the specified
+         string will be used. Coordinates are expressed in the order of x-min,
+         y-min, x-max, y-max.
+     boundary {Feature Layer}:
+         A polygon feature that defines the area of interest to be processed.
+     process_entire_files {Boolean}:
+         Specifies how the processing extent will be applied.
 
-          * PROCESS_EXTENT-Only LAS points that intersect the area of interest
-          will be processed. This is the default.
+         * PROCESS_EXTENT-Only LAS points that intersect the area of interest
+         will be processed. This is the default.
 
-          * PROCESS_ENTIRE_FILES-If any portion of a .las file intersects the
-          area of interest, all the points in that .las file, including those
-          outside the area of interest, will be processed.
-      update_pyramid {Boolean}:
-          Specifies whether the LAS dataset pyramid will be updated after the
-          class codes are modified.
+         * PROCESS_ENTIRE_FILES-If any portion of a .las file intersects the
+         area of interest, all the points in that .las file, including those
+         outside the area of interest, will be processed.
+     update_pyramid {Boolean}:
+         Specifies whether the LAS dataset pyramid will be updated after the
+         class codes are modified.
 
-          * UPDATE_PYRAMID-The LAS dataset pyramid will be updated. This is the
-          default.
+         * UPDATE_PYRAMID-The LAS dataset pyramid will be updated. This is the
+         default.
 
-          * NO_UPDATE_PYRAMID-The LAS dataset pyramid will not be updated."""
+         * NO_UPDATE_PYRAMID-The LAS dataset pyramid will not be updated."""
     ...
 
-@gptooldoc('ClassifyPointCloudUsingTrainedModel_3d', None)
-def ClassifyPointCloudUsingTrainedModel(in_point_cloud=..., in_trained_model=..., output_classes=..., in_class_mode=..., target_classes=..., compute_stats=..., boundary=..., update_pyramid=..., reference_height=..., excluded_class_codes=..., batch_size=...): # -> conversion | int | float | complex | basestring | list[Unknown] | tuple[Unknown, ...] | dict[Unknown, Unknown]:
+@gptooldoc("ClassifyPointCloudUsingTrainedModel_3d", None)
+def ClassifyPointCloudUsingTrainedModel(
+    in_point_cloud=...,
+    in_trained_model=...,
+    output_classes=...,
+    in_class_mode=...,
+    target_classes=...,
+    compute_stats=...,
+    boundary=...,
+    update_pyramid=...,
+    reference_height=...,
+    excluded_class_codes=...,
+    batch_size=...,
+):  # -> conversion | int | float | complex | basestring | list[Unknown] | tuple[Unknown, ...] | dict[Unknown, Unknown]:
     """ClassifyPointCloudUsingTrainedModel(in_point_cloud, in_trained_model, output_classes;output_classes..., {in_class_mode}, {target_classes;target_classes...}, {compute_stats}, {boundary}, {update_pyramid}, {reference_height}, {excluded_class_codes;excluded_class_codes...}, {batch_size})
 
-        Classifies a point cloud using a PointCNN classification model.
+       Classifies a point cloud using a PointCNN classification model.
 
-     INPUTS:
-      in_point_cloud (LAS Dataset Layer):
-          The point cloud that will be classified.
-      in_trained_model (File / String):
-          The input Esri model definition file (*.emd) or deep learning package
-          (*.dlpk) that will be used to classify the point cloud. A web address
-          for a deep learning package that is published on ArcGIS Online or
-          ArcGIS Living Atlas can also be used.
-      output_classes (String):
-          The class codes from the trained model that will be used to classify
-          the input point cloud. All classes from the input model will be used
-          by default unless a subset is specified.
-      in_class_mode {String}:
-          Specifies how the editable points from the input point cloud will be
-          defined.
+    INPUTS:
+     in_point_cloud (LAS Dataset Layer):
+         The point cloud that will be classified.
+     in_trained_model (File / String):
+         The input Esri model definition file (*.emd) or deep learning package
+         (*.dlpk) that will be used to classify the point cloud. A web address
+         for a deep learning package that is published on ArcGIS Online or
+         ArcGIS Living Atlas can also be used.
+     output_classes (String):
+         The class codes from the trained model that will be used to classify
+         the input point cloud. All classes from the input model will be used
+         by default unless a subset is specified.
+     in_class_mode {String}:
+         Specifies how the editable points from the input point cloud will be
+         defined.
 
-          * EDIT_ALL-All points in the input point cloud will be edited. This is
-          the default.
+         * EDIT_ALL-All points in the input point cloud will be edited. This is
+         the default.
 
-          * EDIT_SELECTED-Only points with class codes specified in the
-          target_classes parameter will be edited; all other points will remain
-          unchanged.
+         * EDIT_SELECTED-Only points with class codes specified in the
+         target_classes parameter will be edited; all other points will remain
+         unchanged.
 
-          * PRESERVE_SELECTED-Points with class codes specified in the
-          target_classes parameter will be preserved; the remaining points will
-          be edited.
-      target_classes {Long}:
-          The classes for which points will be edited or have their original
-          class code designation preserved based on the in_class_mode parameter
-          value.
-      compute_stats {Boolean}:
-          Specifies whether statistics will be computed for the .las files
-          referenced by the LAS dataset. Computing statistics provides a spatial
-          index for each .las file, which improves analysis and display
-          performance. Statistics also enhance the filtering and symbology
-          experience by limiting the display of LAS attributes, such as
-          classification codes and return information, to values that are
-          present in the .las file.
+         * PRESERVE_SELECTED-Points with class codes specified in the
+         target_classes parameter will be preserved; the remaining points will
+         be edited.
+     target_classes {Long}:
+         The classes for which points will be edited or have their original
+         class code designation preserved based on the in_class_mode parameter
+         value.
+     compute_stats {Boolean}:
+         Specifies whether statistics will be computed for the .las files
+         referenced by the LAS dataset. Computing statistics provides a spatial
+         index for each .las file, which improves analysis and display
+         performance. Statistics also enhance the filtering and symbology
+         experience by limiting the display of LAS attributes, such as
+         classification codes and return information, to values that are
+         present in the .las file.
 
-          * COMPUTE_STATS-Statistics will be computed. This is the default.
+         * COMPUTE_STATS-Statistics will be computed. This is the default.
 
-          * NO_COMPUTE_STATS-Statistics will not be computed.
-      boundary {Feature Layer}:
-          The polygon boundary that defines the subset of points to be processed
-          from the input point cloud. Points outside the boundary features will
-          not be evaluated.
-      update_pyramid {Boolean}:
-          Specifies whether the LAS dataset pyramid will be updated after the
-          class codes are modified.
+         * NO_COMPUTE_STATS-Statistics will not be computed.
+     boundary {Feature Layer}:
+         The polygon boundary that defines the subset of points to be processed
+         from the input point cloud. Points outside the boundary features will
+         not be evaluated.
+     update_pyramid {Boolean}:
+         Specifies whether the LAS dataset pyramid will be updated after the
+         class codes are modified.
 
-          * UPDATE_PYRAMID-The LAS dataset pyramid will be updated. This is the
-          default.
+         * UPDATE_PYRAMID-The LAS dataset pyramid will be updated. This is the
+         default.
 
-          * NO_UPDATE_PYRAMID-The LAS dataset pyramid will not be updated.
-      reference_height {Raster Layer}:
-          The raster surface that will be used to provide relative height values
-          for each point in the point cloud data. Points that do not overlap
-          with the raster will be omitted from the analysis.
-      excluded_class_codes {Long}:
-          The class codes that will be excluded from processing. Any value in
-          the range of 0 to 255 can be specified.
-      batch_size {Long}:
-          The point cloud data blocks that will be simultaneously processed by
-          the neural network during the inferencing operation. When no value is
-          specified, the optimal batch size will be calculated based on the
-          available GPU memory. The amount of GPU memory used by a given block
-          depends on the block point limit and point cloud attributes required
-          by the model."""
+         * NO_UPDATE_PYRAMID-The LAS dataset pyramid will not be updated.
+     reference_height {Raster Layer}:
+         The raster surface that will be used to provide relative height values
+         for each point in the point cloud data. Points that do not overlap
+         with the raster will be omitted from the analysis.
+     excluded_class_codes {Long}:
+         The class codes that will be excluded from processing. Any value in
+         the range of 0 to 255 can be specified.
+     batch_size {Long}:
+         The point cloud data blocks that will be simultaneously processed by
+         the neural network during the inferencing operation. When no value is
+         specified, the optimal batch size will be calculated based on the
+         available GPU memory. The amount of GPU memory used by a given block
+         depends on the block point limit and point cloud attributes required
+         by the model."""
     ...
 
-@gptooldoc('EvaluatePointCloudClassificationModel_3d', None)
-def EvaluatePointCloudClassificationModel(in_trained_model=..., in_point_cloud=..., target_folder=..., base_name=..., boundary=..., class_remap=..., reference_height=..., excluded_class_codes=...): # -> conversion | int | float | complex | basestring | list[Unknown] | tuple[Unknown, ...] | dict[Unknown, Unknown]:
+@gptooldoc("EvaluatePointCloudClassificationModel_3d", None)
+def EvaluatePointCloudClassificationModel(
+    in_trained_model=...,
+    in_point_cloud=...,
+    target_folder=...,
+    base_name=...,
+    boundary=...,
+    class_remap=...,
+    reference_height=...,
+    excluded_class_codes=...,
+):  # -> conversion | int | float | complex | basestring | list[Unknown] | tuple[Unknown, ...] | dict[Unknown, Unknown]:
     """EvaluatePointCloudClassificationModel(in_trained_model;in_trained_model..., in_point_cloud, target_folder, base_name, {boundary}, {class_remap;class_remap...}, {reference_height}, {excluded_class_codes;excluded_class_codes...})
 
-        Evaluates the quality of one or more point cloud classification models
-        using a well-classified point cloud as a baseline for comparing the
-        classification results obtained from each model.
+       Evaluates the quality of one or more point cloud classification models
+       using a well-classified point cloud as a baseline for comparing the
+       classification results obtained from each model.
 
-     INPUTS:
-      in_trained_model (Value Table):
-          The point cloud classification models and batch sizes that will be
-          used during the evaluation process.
-      in_point_cloud (LAS Dataset Layer / File):
-          The point cloud that will be used to evaluate the classification
-          models.
-      target_folder (Folder):
-          The directory that will store the files which summarize the evaluation
-          results.
-      base_name (String):
-          The file name prefix that will be used for each of the output files
-          summarizing the evaluation results.
-      boundary {Feature Layer}:
-          The polygon feature that delineates the portions of the reference
-          point cloud that will be used for evaluating the classification
-          models.
-      class_remap {Value Table}:
-          The class codes from the reference point cloud must match the class
-          codes in the models being evaluated. When the class codes do not
-          match, use this parameter to associate the differing class codes in
-          the point cloud with the classes that are supported in the models
-          being evaluated.
-      reference_height {Raster Layer}:
-          The raster surface that will be used to provide relative height values
-          for each point in the point cloud data. Points that do not overlap
-          with the raster will be omitted from the analysis.
-      excluded_class_codes {Long}:
-          The class codes that will be excluded from processing. Any value in
-          the range of 0 to 255 can be specified."""
+    INPUTS:
+     in_trained_model (Value Table):
+         The point cloud classification models and batch sizes that will be
+         used during the evaluation process.
+     in_point_cloud (LAS Dataset Layer / File):
+         The point cloud that will be used to evaluate the classification
+         models.
+     target_folder (Folder):
+         The directory that will store the files which summarize the evaluation
+         results.
+     base_name (String):
+         The file name prefix that will be used for each of the output files
+         summarizing the evaluation results.
+     boundary {Feature Layer}:
+         The polygon feature that delineates the portions of the reference
+         point cloud that will be used for evaluating the classification
+         models.
+     class_remap {Value Table}:
+         The class codes from the reference point cloud must match the class
+         codes in the models being evaluated. When the class codes do not
+         match, use this parameter to associate the differing class codes in
+         the point cloud with the classes that are supported in the models
+         being evaluated.
+     reference_height {Raster Layer}:
+         The raster surface that will be used to provide relative height values
+         for each point in the point cloud data. Points that do not overlap
+         with the raster will be omitted from the analysis.
+     excluded_class_codes {Long}:
+         The class codes that will be excluded from processing. Any value in
+         the range of 0 to 255 can be specified."""
     ...
 
-@gptooldoc('PreparePointCloudTrainingData_3d', None)
-def PreparePointCloudTrainingData(in_point_cloud=..., block_size=..., out_training_data=..., training_boundary=..., validation_point_cloud=..., validation_boundary=..., class_codes_of_interest=..., block_point_limit=..., reference_height=..., excluded_class_codes=...): # -> conversion | int | float | complex | basestring | list[Unknown] | tuple[Unknown, ...] | dict[Unknown, Unknown]:
+@gptooldoc("PreparePointCloudTrainingData_3d", None)
+def PreparePointCloudTrainingData(
+    in_point_cloud=...,
+    block_size=...,
+    out_training_data=...,
+    training_boundary=...,
+    validation_point_cloud=...,
+    validation_boundary=...,
+    class_codes_of_interest=...,
+    block_point_limit=...,
+    reference_height=...,
+    excluded_class_codes=...,
+):  # -> conversion | int | float | complex | basestring | list[Unknown] | tuple[Unknown, ...] | dict[Unknown, Unknown]:
     """PreparePointCloudTrainingData(in_point_cloud, block_size, out_training_data, {training_boundary}, {validation_point_cloud}, {validation_boundary}, {class_codes_of_interest;class_codes_of_interest...}, {block_point_limit}, {reference_height}, {excluded_class_codes;excluded_class_codes...})
 
-        Generates the data that will be used to train and validate a PointCNN
-        model for point cloud classification.
+       Generates the data that will be used to train and validate a PointCNN
+       model for point cloud classification.
 
-     INPUTS:
-      in_point_cloud (LAS Dataset Layer / File):
-          The point cloud that will be used to create the training data and,
-          potentially, the validation data if no validation point cloud is
-          specified. In this case, both the training boundary and the validation
-          boundary must be defined.
-      block_size (Linear Unit):
-          The diameter size of each circular HDF5 tile created from the input
-          point cloud. As a general rule, the block size should be large enough
-          to capture the objects of interest and their surrounding context.
-      training_boundary {Feature Layer}:
-          The boundary polygons that will delineate the subset of points from
-          the input point cloud that will be used to train the deep learning
-          model.
-      validation_point_cloud {LAS Dataset Layer / File}:
-          The source of the point cloud that will be used to validate the deep
-          learning model. This dataset must reference a different set of points
-          than the input point cloud to ensure the quality of the trained model.
-          If a validation point cloud is not specified, the input point cloud
-          can be used to define the training and validation datasets by
-          providing polygon feature classes for the training_boundary and
-          validation_boundary parameters.
-      validation_boundary {Feature Layer}:
-          The polygon features that will delineate the subset of points to be
-          used for evaluating the model during the training process. If a
-          validation point cloud is not specified, the points will be sourced
-          from the input point cloud.
-      class_codes_of_interest {Value Table}:
-          The class codes that will be used to limit the exported training data
-          blocks. All points in the blocks that contain at least one of the
-          values listed for this parameter will be exported, except the classes
-          specified in the excluded_class_codes parameter or the points that are
-          flagged as Withheld. Any value in the range of 0 to 255 can be
-          specified.
-      block_point_limit {Long}:
-          The maximum number of points that will be allowed in each block of the
-          training data. When a block contains points in excess of this value,
-          multiple blocks will be created for the same location to ensure that
-          all of the points are used when training.
-      reference_height {Raster Layer}:
-          The raster surface that will be used to provide relative height values
-          for each point in the point cloud data. Points that do not overlap
-          with the raster will be omitted from the analysis.
-      excluded_class_codes {Long}:
-          The class codes that will be excluded from the training data. Any
-          value in the range of 0 to 255 can be specified.
+    INPUTS:
+     in_point_cloud (LAS Dataset Layer / File):
+         The point cloud that will be used to create the training data and,
+         potentially, the validation data if no validation point cloud is
+         specified. In this case, both the training boundary and the validation
+         boundary must be defined.
+     block_size (Linear Unit):
+         The diameter size of each circular HDF5 tile created from the input
+         point cloud. As a general rule, the block size should be large enough
+         to capture the objects of interest and their surrounding context.
+     training_boundary {Feature Layer}:
+         The boundary polygons that will delineate the subset of points from
+         the input point cloud that will be used to train the deep learning
+         model.
+     validation_point_cloud {LAS Dataset Layer / File}:
+         The source of the point cloud that will be used to validate the deep
+         learning model. This dataset must reference a different set of points
+         than the input point cloud to ensure the quality of the trained model.
+         If a validation point cloud is not specified, the input point cloud
+         can be used to define the training and validation datasets by
+         providing polygon feature classes for the training_boundary and
+         validation_boundary parameters.
+     validation_boundary {Feature Layer}:
+         The polygon features that will delineate the subset of points to be
+         used for evaluating the model during the training process. If a
+         validation point cloud is not specified, the points will be sourced
+         from the input point cloud.
+     class_codes_of_interest {Value Table}:
+         The class codes that will be used to limit the exported training data
+         blocks. All points in the blocks that contain at least one of the
+         values listed for this parameter will be exported, except the classes
+         specified in the excluded_class_codes parameter or the points that are
+         flagged as Withheld. Any value in the range of 0 to 255 can be
+         specified.
+     block_point_limit {Long}:
+         The maximum number of points that will be allowed in each block of the
+         training data. When a block contains points in excess of this value,
+         multiple blocks will be created for the same location to ensure that
+         all of the points are used when training.
+     reference_height {Raster Layer}:
+         The raster surface that will be used to provide relative height values
+         for each point in the point cloud data. Points that do not overlap
+         with the raster will be omitted from the analysis.
+     excluded_class_codes {Long}:
+         The class codes that will be excluded from the training data. Any
+         value in the range of 0 to 255 can be specified.
 
-     OUTPUTS:
-      out_training_data (File):
-          The location and name of the output training data (*.pctd)."""
+    OUTPUTS:
+     out_training_data (File):
+         The location and name of the output training data (*.pctd)."""
     ...
 
-@gptooldoc('TrainPointCloudClassificationModel_3d', None)
-def TrainPointCloudClassificationModel(in_training_data=..., out_model_location=..., out_model_name=..., pretrained_model=..., attributes=..., min_points=..., class_remap=..., target_classes=..., background_class=..., class_descriptions=..., model_selection_criteria=..., max_epochs=..., epoch_iterations=..., learning_rate=..., batch_size=..., early_stop=..., learning_rate_strategy=..., architecture=...): # -> conversion | int | float | complex | basestring | list[Unknown] | tuple[Unknown, ...] | dict[Unknown, Unknown]:
+@gptooldoc("TrainPointCloudClassificationModel_3d", None)
+def TrainPointCloudClassificationModel(
+    in_training_data=...,
+    out_model_location=...,
+    out_model_name=...,
+    pretrained_model=...,
+    attributes=...,
+    min_points=...,
+    class_remap=...,
+    target_classes=...,
+    background_class=...,
+    class_descriptions=...,
+    model_selection_criteria=...,
+    max_epochs=...,
+    epoch_iterations=...,
+    learning_rate=...,
+    batch_size=...,
+    early_stop=...,
+    learning_rate_strategy=...,
+    architecture=...,
+):  # -> conversion | int | float | complex | basestring | list[Unknown] | tuple[Unknown, ...] | dict[Unknown, Unknown]:
     """TrainPointCloudClassificationModel(in_training_data, out_model_location, out_model_name, {pretrained_model}, {attributes;attributes...}, {min_points}, {class_remap;class_remap...}, {target_classes;target_classes...}, {background_class}, {class_descriptions;class_descriptions...}, {model_selection_criteria}, {max_epochs}, {epoch_iterations}, {learning_rate}, {batch_size}, {early_stop}, {learning_rate_strategy}, {architecture})
 
-        Trains a deep learning model for point cloud classification using the
-        PointCNN architecture.
+       Trains a deep learning model for point cloud classification using the
+       PointCNN architecture.
 
-     INPUTS:
-      in_training_data (File):
-          The point cloud training data (*.pctd file) that will be used to train
-          the classification model.
-      out_model_location (Folder):
-          The existing folder that will store the new directory containing the
-          deep learning model.
-      out_model_name (String):
-          The name of the output Esri model definition file (*.emd), deep
-          learning package (*.dlpk), and the new directory that will be created
-          to store them.
-      pretrained_model {File}:
-          The pretrained model that will be refined. When a pretrained model is
-          provided, the input training data must have the same attributes, class
-          codes, and maximum number of points that were used by the training
-          data that generated this model.
-      attributes {String}:
-          Specifies the point attributes that will be used with the
-          classification code when training the model. Only the attributes that
-          are present in the point cloud training data will be available. No
-          additional attributes are included by default.
+    INPUTS:
+     in_training_data (File):
+         The point cloud training data (*.pctd file) that will be used to train
+         the classification model.
+     out_model_location (Folder):
+         The existing folder that will store the new directory containing the
+         deep learning model.
+     out_model_name (String):
+         The name of the output Esri model definition file (*.emd), deep
+         learning package (*.dlpk), and the new directory that will be created
+         to store them.
+     pretrained_model {File}:
+         The pretrained model that will be refined. When a pretrained model is
+         provided, the input training data must have the same attributes, class
+         codes, and maximum number of points that were used by the training
+         data that generated this model.
+     attributes {String}:
+         Specifies the point attributes that will be used with the
+         classification code when training the model. Only the attributes that
+         are present in the point cloud training data will be available. No
+         additional attributes are included by default.
 
-          * INTENSITY-The measure of the magnitude of the lidar pulse return
-          will be used.
+         * INTENSITY-The measure of the magnitude of the lidar pulse return
+         will be used.
 
-          * RETURN_NUMBER-The ordinal position of the point obtained from a
-          given lidar pulse will be used.
+         * RETURN_NUMBER-The ordinal position of the point obtained from a
+         given lidar pulse will be used.
 
-          * NUMBER_OF_RETURNS-The total number of lidar returns that were
-          identified as points from the pulse associated with a given point will
-          be used.
+         * NUMBER_OF_RETURNS-The total number of lidar returns that were
+         identified as points from the pulse associated with a given point will
+         be used.
 
-          * RED-The red band's value from a point cloud with color information
-          will be used.
+         * RED-The red band's value from a point cloud with color information
+         will be used.
 
-          * GREEN-The green band's value from a point cloud with color
-          information will be used.
+         * GREEN-The green band's value from a point cloud with color
+         information will be used.
 
-          * BLUE-The blue band's value from a point cloud with color information
-          will be used.
+         * BLUE-The blue band's value from a point cloud with color information
+         will be used.
 
-          * NEAR_INFRARED-The near infrared band's value from a point cloud with
-          near infrared information will be used.
+         * NEAR_INFRARED-The near infrared band's value from a point cloud with
+         near infrared information will be used.
 
-          * RELATIVE_HEIGHT-The relative height of each point in relation to a
-          reference surface, which would typically be a bare earth DEM.
-      min_points {Long}:
-          The minimum number of points that must be present in a given block for
-          it to be used when training the model. The default is 0.
-      class_remap {Value Table}:
-          Defines how class code values will map to new values prior to training
-          the deep learning model.
-      target_classes {Long}:
-          The class codes that will be used to filter the blocks in the training
-          data. When class codes of interest are specified, all other class
-          codes are remapped to the background class code.
-      background_class {Long}:
-          The class code value that will be used for all other class codes when
-          class codes of interest have been specified.
-      class_descriptions {Value Table}:
-          The descriptions of what each class code in the training data
-          represents.
-      model_selection_criteria {String}:
-          Specifies the statistical basis that will be used to determine the
-          final model.
+         * RELATIVE_HEIGHT-The relative height of each point in relation to a
+         reference surface, which would typically be a bare earth DEM.
+     min_points {Long}:
+         The minimum number of points that must be present in a given block for
+         it to be used when training the model. The default is 0.
+     class_remap {Value Table}:
+         Defines how class code values will map to new values prior to training
+         the deep learning model.
+     target_classes {Long}:
+         The class codes that will be used to filter the blocks in the training
+         data. When class codes of interest are specified, all other class
+         codes are remapped to the background class code.
+     background_class {Long}:
+         The class code value that will be used for all other class codes when
+         class codes of interest have been specified.
+     class_descriptions {Value Table}:
+         The descriptions of what each class code in the training data
+         represents.
+     model_selection_criteria {String}:
+         Specifies the statistical basis that will be used to determine the
+         final model.
 
-          * VALIDATION_LOSS-The model that achieves the lowest result when the
-          entropy loss function is applied to the validation data will be used.
+         * VALIDATION_LOSS-The model that achieves the lowest result when the
+         entropy loss function is applied to the validation data will be used.
 
-          * RECALL-The model that achieves the best macro average of the recall
-          for all class codes will be used. Each class code's recall value is
-          determined by the ratio of correctly classified points (true
-          positives) over all the points that should have been classified with
-          this value (expected positives). This is the default.
+         * RECALL-The model that achieves the best macro average of the recall
+         for all class codes will be used. Each class code's recall value is
+         determined by the ratio of correctly classified points (true
+         positives) over all the points that should have been classified with
+         this value (expected positives). This is the default.
 
-          * F1_SCORE-The model that achieves the best harmonic mean between the
-          macro average of the precision and recall values for all class codes
-          will be used. This provides a balance between precision and recall,
-          which favors better overall performance.
+         * F1_SCORE-The model that achieves the best harmonic mean between the
+         macro average of the precision and recall values for all class codes
+         will be used. This provides a balance between precision and recall,
+         which favors better overall performance.
 
-          * PRECISION-The model that achieves the best macro average of the
-          precision for all class codes will be used. Each class code's
-          precision is determined by the ratio of points that are correctly
-          classified (true positives) over all the points that are classified
-          (true positives and false positives).
+         * PRECISION-The model that achieves the best macro average of the
+         precision for all class codes will be used. Each class code's
+         precision is determined by the ratio of points that are correctly
+         classified (true positives) over all the points that are classified
+         (true positives and false positives).
 
-          * ACCURACY-The model that achieves the highest ratio of corrected
-          classified points over all the points in the validation data will be
-          used.
-      max_epochs {Long}:
-          The number of times each block of data will be passed forward and
-          backward through the neural network. The default is 25.
-      epoch_iterations {Double}:
-          The percentage of the data that will be processed in each training
-          epoch. The default is 100.
-      learning_rate {Double}:
-          The rate at which existing information will be overwritten with new
-          information. If no value is specified, the optimal learning rate will
-          be extracted from the learning curve during the training process. This
-          is the default.
-      batch_size {Long}:
-          The number of training data blocks that will be processed at any given
-          time. The default is 2.
-      early_stop {Boolean}:
-          Specifies whether the model training will stop when the metric
-          specified in the model_selection_criteria parameter does not register
-          any improvement after five consecutive epochs.
+         * ACCURACY-The model that achieves the highest ratio of corrected
+         classified points over all the points in the validation data will be
+         used.
+     max_epochs {Long}:
+         The number of times each block of data will be passed forward and
+         backward through the neural network. The default is 25.
+     epoch_iterations {Double}:
+         The percentage of the data that will be processed in each training
+         epoch. The default is 100.
+     learning_rate {Double}:
+         The rate at which existing information will be overwritten with new
+         information. If no value is specified, the optimal learning rate will
+         be extracted from the learning curve during the training process. This
+         is the default.
+     batch_size {Long}:
+         The number of training data blocks that will be processed at any given
+         time. The default is 2.
+     early_stop {Boolean}:
+         Specifies whether the model training will stop when the metric
+         specified in the model_selection_criteria parameter does not register
+         any improvement after five consecutive epochs.
 
-          * EARLY_STOP-The model training will stop when the model is no longer
-          improving. This is the default.
+         * EARLY_STOP-The model training will stop when the model is no longer
+         improving. This is the default.
 
-          * NO_EARLY_STOP-The model training will continue until the maximum
-          number of epochs has been reached.
-      learning_rate_strategy {String}:
-          Specifies how the learning rate will be modified during training.
+         * NO_EARLY_STOP-The model training will continue until the maximum
+         number of epochs has been reached.
+     learning_rate_strategy {String}:
+         Specifies how the learning rate will be modified during training.
 
-          * ONE_CYCLE-The learning rate will be cycled throughout each epoch
-          using Fast.AI's implementation of the 1cycle technique for training
-          neural networks to help improve the training of a convolutional neural
-          network. This is the default.
+         * ONE_CYCLE-The learning rate will be cycled throughout each epoch
+         using Fast.AI's implementation of the 1cycle technique for training
+         neural networks to help improve the training of a convolutional neural
+         network. This is the default.
 
-          * FIXED-The same learning rate will be used throughout the training
-          process.
-      architecture {String}:
-          Specifies the neural network architecture that will be used to train
-          the model. When a pretrained model is specified, the architecture used
-          for creating the pretrained model will be automatically set.
+         * FIXED-The same learning rate will be used throughout the training
+         process.
+     architecture {String}:
+         Specifies the neural network architecture that will be used to train
+         the model. When a pretrained model is specified, the architecture used
+         for creating the pretrained model will be automatically set.
 
-          * POINTCNN-PointCNN will be used.
+         * POINTCNN-PointCNN will be used.
 
-          * RANDLANET-RandLA-Net will be used. RandLA-Net is built on the
-          principles of simple random sampling and local feature aggregation.
-          This is the default.
+         * RANDLANET-RandLA-Net will be used. RandLA-Net is built on the
+         principles of simple random sampling and local feature aggregation.
+         This is the default.
 
-          * SQN-Semantic Query Network (SQN) will be used. SQN does not require
-          a comprehensive classification of the training data the way other
-          neural network architectures do."""
+         * SQN-Semantic Query Network (SQN) will be used. SQN does not require
+         a comprehensive classification of the training data the way other
+         neural network architectures do."""
     ...
 
-@gptooldoc('LASToMultipoint_3d', None)
-def LASToMultipoint(input=..., out_feature_class=..., average_point_spacing=..., class_code=..., _return=..., attribute=..., input_coordinate_system=..., file_suffix=..., z_factor=..., folder_recursion=...): # -> conversion | int | float | complex | basestring | list[Unknown] | tuple[Unknown, ...] | dict[Unknown, Unknown]:
+@gptooldoc("LASToMultipoint_3d", None)
+def LASToMultipoint(
+    input=...,
+    out_feature_class=...,
+    average_point_spacing=...,
+    class_code=...,
+    _return=...,
+    attribute=...,
+    input_coordinate_system=...,
+    file_suffix=...,
+    z_factor=...,
+    folder_recursion=...,
+):  # -> conversion | int | float | complex | basestring | list[Unknown] | tuple[Unknown, ...] | dict[Unknown, Unknown]:
     """LASToMultipoint(input;input..., out_feature_class, average_point_spacing, {class_code;class_code...}, {_return;_return...}, {attribute;attribute...}, {input_coordinate_system}, {file_suffix}, {z_factor}, {folder_recursion})
 
-        Creates multipoint features using one or more lidar files.
+       Creates multipoint features using one or more lidar files.
 
-     INPUTS:
-      input (File / Folder):
-          The LAS or ZLAS files that will be imported to a multipoint feature
-          class. If a folder is specified, all the LAS files that reside therein
-          will be imported.In the tool dialog box, a folder can also be
-          specified as an input by
-          selecting the folder in Windows Explorer and dragging it onto the
-          parameter's input box.
-      average_point_spacing (Double):
-          The average 2D distance between points in the input file or files.
-          This can be an approximation. If areas have been sampled at different
-          densities, specify the smaller spacing. The value needs to be provided
-          in the projection units of the output coordinate system.
-      class_code {Long}:
-          The classification codes to use as a query filter for LAS data points.
-          Valid values range from 1 to 32. No filter is applied by default.
-      return {String}:
-          The return values that will be used to filter the LAS points that get
-          imported to multipoint features.
+    INPUTS:
+     input (File / Folder):
+         The LAS or ZLAS files that will be imported to a multipoint feature
+         class. If a folder is specified, all the LAS files that reside therein
+         will be imported.In the tool dialog box, a folder can also be
+         specified as an input by
+         selecting the folder in Windows Explorer and dragging it onto the
+         parameter's input box.
+     average_point_spacing (Double):
+         The average 2D distance between points in the input file or files.
+         This can be an approximation. If areas have been sampled at different
+         densities, specify the smaller spacing. The value needs to be provided
+         in the projection units of the output coordinate system.
+     class_code {Long}:
+         The classification codes to use as a query filter for LAS data points.
+         Valid values range from 1 to 32. No filter is applied by default.
+     return {String}:
+         The return values that will be used to filter the LAS points that get
+         imported to multipoint features.
 
-          * ANY_RETURNS-Any returns
+         * ANY_RETURNS-Any returns
 
-          * 1-1
+         * 1-1
 
-          * 2-2
+         * 2-2
 
-          * 3-3
+         * 3-3
 
-          * 4-4
+         * 4-4
 
-          * 5-5
+         * 5-5
 
-          * 6-6
+         * 6-6
 
-          * 7-7
+         * 7-7
 
-          * 8-8
+         * 8-8
 
-          * LAST_RETURNS-Last returns
-      attribute {Value Table}:
-          The LAS point properties whose values will be stored in binary large
-          object (BLOB) fields in the attribute table of the output. If the
-          resulting features will participate in a terrain dataset, the stored
-          attributes can be used to symbolize the terrain. The Name column
-          indicates the name of the field that will be used to store the
-          specified attributes. The following LAS properties are supported:
+         * LAST_RETURNS-Last returns
+     attribute {Value Table}:
+         The LAS point properties whose values will be stored in binary large
+         object (BLOB) fields in the attribute table of the output. If the
+         resulting features will participate in a terrain dataset, the stored
+         attributes can be used to symbolize the terrain. The Name column
+         indicates the name of the field that will be used to store the
+         specified attributes. The following LAS properties are supported:
 
-          * INTENSITY-Intensity
+         * INTENSITY-Intensity
 
-          * RETURN_NUMBER-Return number
+         * RETURN_NUMBER-Return number
 
-          * NUMBER_OF_RETURNS-Number of returns per pulse
+         * NUMBER_OF_RETURNS-Number of returns per pulse
 
-          * SCAN_DIRECTION_FLAG-Scan direction flag
+         * SCAN_DIRECTION_FLAG-Scan direction flag
 
-          * EDGE_OF_FLIGHTLINE-Edge of flightline
+         * EDGE_OF_FLIGHTLINE-Edge of flightline
 
-          * CLASSIFICATION-Classification
+         * CLASSIFICATION-Classification
 
-          * SCAN_ANGLE_RANK-Scan angle rank
+         * SCAN_ANGLE_RANK-Scan angle rank
 
-          * FILE_MARKER-File marker
+         * FILE_MARKER-File marker
 
-          * USER_BIT_FIELD-User data value
+         * USER_BIT_FIELD-User data value
 
-          * GPS_TIME-GPS time
+         * GPS_TIME-GPS time
 
-          * COLOR_RED-Red band
+         * COLOR_RED-Red band
 
-          * COLOR_GREEN-Green band
+         * COLOR_GREEN-Green band
 
-          * COLOR_BLUE-Blue band
-      input_coordinate_system {Coordinate System}:
-          The coordinate system of the input LAS file.
-      file_suffix {String}:
-          The suffix of the files that will be imported from an input folder.
-          This parameter is required when a folder is specified as input.
-      z_factor {Double}:
-          The factor by which z-values will be multiplied. This is typically
-          used to convert z linear units to match x,y linear units. The default
-          is 1, which leaves elevation values unchanged. This parameter is not
-          available if the spatial reference of the input surface has a z datum
-          with a specified linear unit.
-      folder_recursion {Boolean}:
-          Scans through subfolders when an input folder is selected containing
-          data in a subfolders directory. The output feature class will be
-          generated with a row for each file encountered in the directory
-          structure.
+         * COLOR_BLUE-Blue band
+     input_coordinate_system {Coordinate System}:
+         The coordinate system of the input LAS file.
+     file_suffix {String}:
+         The suffix of the files that will be imported from an input folder.
+         This parameter is required when a folder is specified as input.
+     z_factor {Double}:
+         The factor by which z-values will be multiplied. This is typically
+         used to convert z linear units to match x,y linear units. The default
+         is 1, which leaves elevation values unchanged. This parameter is not
+         available if the spatial reference of the input surface has a z datum
+         with a specified linear unit.
+     folder_recursion {Boolean}:
+         Scans through subfolders when an input folder is selected containing
+         data in a subfolders directory. The output feature class will be
+         generated with a row for each file encountered in the directory
+         structure.
 
-          * NO_RECURSION-Only LAS files found in an input folder will be
-          converted to multipoint features. This is the default.
+         * NO_RECURSION-Only LAS files found in an input folder will be
+         converted to multipoint features. This is the default.
 
-          * RECURSION-All LAS files residing in the subdirectories of an input
-          folder will be converted to multipoint features.
+         * RECURSION-All LAS files residing in the subdirectories of an input
+         folder will be converted to multipoint features.
 
-     OUTPUTS:
-      out_feature_class (Feature Class):
-          The feature class that will be produced."""
+    OUTPUTS:
+     out_feature_class (Feature Class):
+         The feature class that will be produced."""
     ...
 
-@gptooldoc('LasDatasetToTin_3d', None)
-def LasDatasetToTin(in_las_dataset=..., out_tin=..., thinning_type=..., thinning_method=..., thinning_value=..., max_nodes=..., z_factor=..., clip_to_extent=...): # -> conversion | int | float | complex | basestring | list[Unknown] | tuple[Unknown, ...] | dict[Unknown, Unknown]:
+@gptooldoc("LasDatasetToTin_3d", None)
+def LasDatasetToTin(
+    in_las_dataset=...,
+    out_tin=...,
+    thinning_type=...,
+    thinning_method=...,
+    thinning_value=...,
+    max_nodes=...,
+    z_factor=...,
+    clip_to_extent=...,
+):  # -> conversion | int | float | complex | basestring | list[Unknown] | tuple[Unknown, ...] | dict[Unknown, Unknown]:
     """LasDatasetToTin(in_las_dataset, out_tin, {thinning_type}, {thinning_method}, {thinning_value}, {max_nodes}, {z_factor}, {clip_to_extent})
 
-        Exports a triangulated irregular network (TIN) from a LAS dataset.
+       Exports a triangulated irregular network (TIN) from a LAS dataset.
 
-     INPUTS:
-      in_las_dataset (LAS Dataset Layer):
-          The LAS dataset to process.
-      thinning_type {String}:
-          Specifies the technique to be used to select a subset of LAS data
-          points that will be exported to TIN.
+    INPUTS:
+     in_las_dataset (LAS Dataset Layer):
+         The LAS dataset to process.
+     thinning_type {String}:
+         Specifies the technique to be used to select a subset of LAS data
+         points that will be exported to TIN.
 
-          * NONE-No thinning is applied. This is the default.
+         * NONE-No thinning is applied. This is the default.
 
-          * RANDOM-LAS data points are randomly selected based on the
-          corresponding thinning_method selection and thinning_value entry.
+         * RANDOM-LAS data points are randomly selected based on the
+         corresponding thinning_method selection and thinning_value entry.
 
-          * WINDOW_SIZE-The LAS dataset is divided into square tiles defined by
-          the thinning_value, and LAS points are selected using the
-          thinning_method.
-      thinning_method {String}:
-          Specifies the technique to be used to reduce the LAS data points,
-          which impacts the interpretation of Thinning Value. The available
-          options depend on the selected Thinning Type.
+         * WINDOW_SIZE-The LAS dataset is divided into square tiles defined by
+         the thinning_value, and LAS points are selected using the
+         thinning_method.
+     thinning_method {String}:
+         Specifies the technique to be used to reduce the LAS data points,
+         which impacts the interpretation of Thinning Value. The available
+         options depend on the selected Thinning Type.
 
-          * PERCENT-Thinning value will reflect the percentage of LAS points
-          that will be preserved in the output
+         * PERCENT-Thinning value will reflect the percentage of LAS points
+         that will be preserved in the output
 
-          * NODE_COUNT-Thinning value will reflect the total number of nodes
-          that are allowed in the output
+         * NODE_COUNT-Thinning value will reflect the total number of nodes
+         that are allowed in the output
 
-          * MIN-Selects the LAS data point with the lowest elevation in each
-          window size area
+         * MIN-Selects the LAS data point with the lowest elevation in each
+         window size area
 
-          * MAX-Selects the LAS data point with the highest elevation in each of
-          the automatically determined window size areas
+         * MAX-Selects the LAS data point with the highest elevation in each of
+         the automatically determined window size areas
 
-          * CLOSEST_TO_MEAN-Selects the LAS data point with the elevation
-          closest to the average value found in the automatically determined
-          window size areas
-          Specifies the technique to be used to reduce the LAS data points,
-          which impacts the interpretation of the thinning_value. The available
-          options depend on the selected thinning_type.
+         * CLOSEST_TO_MEAN-Selects the LAS data point with the elevation
+         closest to the average value found in the automatically determined
+         window size areas
+         Specifies the technique to be used to reduce the LAS data points,
+         which impacts the interpretation of the thinning_value. The available
+         options depend on the selected thinning_type.
 
-          * PERCENT-The thinning_value will reflect a percentage of the total
-          points in the LAS dataset. This option is only available when
-          thinning_type="RANDOM".
+         * PERCENT-The thinning_value will reflect a percentage of the total
+         points in the LAS dataset. This option is only available when
+         thinning_type="RANDOM".
 
-          * NODE_COUNT-The thinning_value will reflect the total number of nodes
-          that are allowed in the output. This option is only available when
-          thinning_type="RANDOM".
+         * NODE_COUNT-The thinning_value will reflect the total number of nodes
+         that are allowed in the output. This option is only available when
+         thinning_type="RANDOM".
 
-          * MIN-Selects the LAS point with the lowest elevation in each window
-          size area. This option is only available when
-          thinning_type="WINDOW_SIZE".
+         * MIN-Selects the LAS point with the lowest elevation in each window
+         size area. This option is only available when
+         thinning_type="WINDOW_SIZE".
 
-          * MAX-Selects the LAS point with the highest elevation in each window
-          size area. This option is only available when
-          thinning_type="WINDOW_SIZE".
+         * MAX-Selects the LAS point with the highest elevation in each window
+         size area. This option is only available when
+         thinning_type="WINDOW_SIZE".
 
-          * CLOSEST_TO_MEAN-Selects the LAS point with the elevation closest to
-          the average value of all LAS points in each window size area. This
-          option is only available when thinning_type="WINDOW_SIZE".
-      thinning_value {Double}:
-          If thinning_type="WINDOW_SIZE", this value represents the sampling
-          area by which the LAS dataset will be divided.If
-          thinning_type="RANDOM" and thinning_method="PERCENT", this value
-          represents the percentage of points from the LAS dataset that will be
-          exported to the TIN.If thinning_type="RANDOM" and
-          thinning_method="NODE_COUNT", this value
-          represents the total number of LAS points that can be exported to the
-          TIN.
-      max_nodes {Double}:
-          The maximum number of nodes permitted in the output TIN. The default
-          is 5 million.
-      z_factor {Double}:
-          The factor by which z-values will be multiplied. This is typically
-          used to convert z linear units to match x,y linear units. The default
-          is 1, which leaves elevation values unchanged. This parameter is not
-          available if the spatial reference of the input surface has a z datum
-          with a specified linear unit.
-      clip_to_extent {Boolean}:
-          Specifies whether the resulting TIN will be clipped against the
-          analysis extent. This only has an effect if the analysis extent is a
-          subset of the input LAS dataset.
+         * CLOSEST_TO_MEAN-Selects the LAS point with the elevation closest to
+         the average value of all LAS points in each window size area. This
+         option is only available when thinning_type="WINDOW_SIZE".
+     thinning_value {Double}:
+         If thinning_type="WINDOW_SIZE", this value represents the sampling
+         area by which the LAS dataset will be divided.If
+         thinning_type="RANDOM" and thinning_method="PERCENT", this value
+         represents the percentage of points from the LAS dataset that will be
+         exported to the TIN.If thinning_type="RANDOM" and
+         thinning_method="NODE_COUNT", this value
+         represents the total number of LAS points that can be exported to the
+         TIN.
+     max_nodes {Double}:
+         The maximum number of nodes permitted in the output TIN. The default
+         is 5 million.
+     z_factor {Double}:
+         The factor by which z-values will be multiplied. This is typically
+         used to convert z linear units to match x,y linear units. The default
+         is 1, which leaves elevation values unchanged. This parameter is not
+         available if the spatial reference of the input surface has a z datum
+         with a specified linear unit.
+     clip_to_extent {Boolean}:
+         Specifies whether the resulting TIN will be clipped against the
+         analysis extent. This only has an effect if the analysis extent is a
+         subset of the input LAS dataset.
 
-          * CLIP-Clips the output TIN against the analysis extent. This is the
-          default.
+         * CLIP-Clips the output TIN against the analysis extent. This is the
+         default.
 
-          * NO_CLIP-Does not clip the output TIN against the analysis extent.
+         * NO_CLIP-Does not clip the output TIN against the analysis extent.
 
-     OUTPUTS:
-      out_tin (TIN):
-          The TIN dataset that will be generated."""
+    OUTPUTS:
+     out_tin (TIN):
+         The TIN dataset that will be generated."""
     ...
 
-@gptooldoc('RasterDomain_3d', None)
-def RasterDomain(in_raster=..., out_feature_class=..., out_geometry_type=...): # -> conversion | int | float | complex | basestring | list[Unknown] | tuple[Unknown, ...] | dict[Unknown, Unknown]:
+@gptooldoc("RasterDomain_3d", None)
+def RasterDomain(
+    in_raster=..., out_feature_class=..., out_geometry_type=...
+):  # -> conversion | int | float | complex | basestring | list[Unknown] | tuple[Unknown, ...] | dict[Unknown, Unknown]:
     """RasterDomain(in_raster, out_feature_class, out_geometry_type)
 
-        Constructs a 3D polygon or polyline delineating the height along the
-        boundary of a raster surface.
+       Constructs a 3D polygon or polyline delineating the height along the
+       boundary of a raster surface.
 
-     INPUTS:
-      in_raster (Raster Layer / Mosaic Layer):
-          The raster to process.
-      out_geometry_type (String):
-          The geometry of the output feature class.
+    INPUTS:
+     in_raster (Raster Layer / Mosaic Layer):
+         The raster to process.
+     out_geometry_type (String):
+         The geometry of the output feature class.
 
-          * LINE-The output will be a z-enabled line feature class.
+         * LINE-The output will be a z-enabled line feature class.
 
-          * POLYGON-The output will be a z-enabled polygon feature class.
+         * POLYGON-The output will be a z-enabled polygon feature class.
 
-     OUTPUTS:
-      out_feature_class (Feature Class):
-          The feature class that will be produced."""
+    OUTPUTS:
+     out_feature_class (Feature Class):
+         The feature class that will be produced."""
     ...
 
-@gptooldoc('RasterTin_3d', None)
-def RasterTin(in_raster=..., out_tin=..., z_tolerance=..., max_points=..., z_factor=...): # -> conversion | int | float | complex | basestring | list[Unknown] | tuple[Unknown, ...] | dict[Unknown, Unknown]:
+@gptooldoc("RasterTin_3d", None)
+def RasterTin(
+    in_raster=..., out_tin=..., z_tolerance=..., max_points=..., z_factor=...
+):  # -> conversion | int | float | complex | basestring | list[Unknown] | tuple[Unknown, ...] | dict[Unknown, Unknown]:
     """RasterTin(in_raster, out_tin, {z_tolerance}, {max_points}, {z_factor})
 
-        Converts a raster to a triangulated irregular network (TIN) dataset.
+       Converts a raster to a triangulated irregular network (TIN) dataset.
 
-     INPUTS:
-      in_raster (Raster Layer / Mosaic Layer):
-          The raster to process.
-      z_tolerance {Double}:
-          The maximum allowable difference in (z units) between the height of
-          the input raster and the height of the output TIN. By default, the z
-          tolerance is 1/10 of the z range of the input raster.
-      max_points {Long}:
-          The maximum number of points that will be added to the TIN before the
-          process is terminated. By default, the process will continue until all
-          the points are added.
-      z_factor {Double}:
-          The factor that the height values of the raster will be multiplied by
-          in the resulting TIN dataset. This is typically used to convert Z
-          units to match XY units.
+    INPUTS:
+     in_raster (Raster Layer / Mosaic Layer):
+         The raster to process.
+     z_tolerance {Double}:
+         The maximum allowable difference in (z units) between the height of
+         the input raster and the height of the output TIN. By default, the z
+         tolerance is 1/10 of the z range of the input raster.
+     max_points {Long}:
+         The maximum number of points that will be added to the TIN before the
+         process is terminated. By default, the process will continue until all
+         the points are added.
+     z_factor {Double}:
+         The factor that the height values of the raster will be multiplied by
+         in the resulting TIN dataset. This is typically used to convert Z
+         units to match XY units.
 
-     OUTPUTS:
-      out_tin (TIN):
-          The TIN dataset that will be generated."""
+    OUTPUTS:
+     out_tin (TIN):
+         The TIN dataset that will be generated."""
     ...
 
-@gptooldoc('RasterToMultipoint_3d', None)
-def RasterToMultipoint(in_raster=..., out_feature_class=..., out_vip_table=..., method=..., kernel_method=..., z_factor=..., thinning_value=...): # -> conversion | int | float | complex | basestring | list[Unknown] | tuple[Unknown, ...] | dict[Unknown, Unknown]:
+@gptooldoc("RasterToMultipoint_3d", None)
+def RasterToMultipoint(
+    in_raster=...,
+    out_feature_class=...,
+    out_vip_table=...,
+    method=...,
+    kernel_method=...,
+    z_factor=...,
+    thinning_value=...,
+):  # -> conversion | int | float | complex | basestring | list[Unknown] | tuple[Unknown, ...] | dict[Unknown, Unknown]:
     """RasterToMultipoint(in_raster, out_feature_class, {out_vip_table}, {method}, {kernel_method}, {z_factor}, {thinning_value})
 
-        Converts raster cell centers to 3D multipoint features with z-values
-        that reflect the raster cell value.
+       Converts raster cell centers to 3D multipoint features with z-values
+       that reflect the raster cell value.
 
-     INPUTS:
-      in_raster (Raster Layer / Mosaic Layer):
-          The raster that will be processed.
-      method {String}:
-          Specifies the thinning method that will be applied to the input raster
-          to select a subset of cells that will be exported to the multipoint
-          feature class.
+    INPUTS:
+     in_raster (Raster Layer / Mosaic Layer):
+         The raster that will be processed.
+     method {String}:
+         Specifies the thinning method that will be applied to the input raster
+         to select a subset of cells that will be exported to the multipoint
+         feature class.
 
-          * NO_THIN-No thinning will be applied. This is the default.
+         * NO_THIN-No thinning will be applied. This is the default.
 
-          * ZTOLERANCE-Only the cells that are required for maintaining a
-          surface within a specified z-range of the input raster will be
-          exported.
+         * ZTOLERANCE-Only the cells that are required for maintaining a
+         surface within a specified z-range of the input raster will be
+         exported.
 
-          * KERNEL-The raster will be divided into equal-sized tiles based on
-          the Thinning Value parameter value, and one or two cells that meet the
-          Kernel Method parameter value will be exported.
+         * KERNEL-The raster will be divided into equal-sized tiles based on
+         the Thinning Value parameter value, and one or two cells that meet the
+         Kernel Method parameter value will be exported.
 
-          * VIP-A roving 3-cell-by-3-cell window will be used to create a three-
-          dimensional best fit plane. Each cell is given a significance score
-          based on its absolute deviation from this plane. A histogram of these
-          scores is then used to determine the cells that will be exported based
-          on the Thinning Value parameter value.
+         * VIP-A roving 3-cell-by-3-cell window will be used to create a three-
+         dimensional best fit plane. Each cell is given a significance score
+         based on its absolute deviation from this plane. A histogram of these
+         scores is then used to determine the cells that will be exported based
+         on the Thinning Value parameter value.
 
-          * VIP_HISTOGRAM-A table will be created containing the significance
-          values and the corresponding number of points associated with those
-          values.
-      kernel_method {String}:
-          Specifies the selection method that will be used in each kernel
-          neighborhood when kernel thinning is applied on the input raster.
+         * VIP_HISTOGRAM-A table will be created containing the significance
+         values and the corresponding number of points associated with those
+         values.
+     kernel_method {String}:
+         Specifies the selection method that will be used in each kernel
+         neighborhood when kernel thinning is applied on the input raster.
 
-          * MIN-A point will be created at the cell with the smallest elevation
-          value found in the kernel neighborhood. This is the default.
+         * MIN-A point will be created at the cell with the smallest elevation
+         value found in the kernel neighborhood. This is the default.
 
-          * MAX-A point will be created at the cell with the largest elevation
-          value found in the kernel neighborhood.
+         * MAX-A point will be created at the cell with the largest elevation
+         value found in the kernel neighborhood.
 
-          * MINMAX-Two points will be created at the cells with the smallest and
-          largest z-values found in the kernel neighborhood.
+         * MINMAX-Two points will be created at the cells with the smallest and
+         largest z-values found in the kernel neighborhood.
 
-          * MEAN-A point will be created at the cell whose elevation value is
-          closest to the average of the cells in the kernel neighborhood.
-      z_factor {Double}:
-          The factor by which z-values will be multiplied. This is typically
-          used to convert z linear units to match x,y linear units. The default
-          is 1, which leaves elevation values unchanged. This parameter is not
-          available if the spatial reference of the input surface has a z datum
-          with a specified linear unit.
-      thinning_value {Double}:
-          The thinning value associated with the method parameter value.
+         * MEAN-A point will be created at the cell whose elevation value is
+         closest to the average of the cells in the kernel neighborhood.
+     z_factor {Double}:
+         The factor by which z-values will be multiplied. This is typically
+         used to convert z linear units to match x,y linear units. The default
+         is 1, which leaves elevation values unchanged. This parameter is not
+         available if the spatial reference of the input surface has a z datum
+         with a specified linear unit.
+     thinning_value {Double}:
+         The thinning value associated with the method parameter value.
 
-          * ZTolerance-The maximum allowable difference in z-units between the
-          input raster and the surface created from the output multipoint
-          feature class. The default value is one-tenth of the z-range of the
-          input raster.
+         * ZTolerance-The maximum allowable difference in z-units between the
+         input raster and the surface created from the output multipoint
+         feature class. The default value is one-tenth of the z-range of the
+         input raster.
 
-          * KERNEL-The number of raster cells along the edge of each tile. The
-          default value is 3, which means that the raster will be divided into
-          3-cell-by-3-cell windows.
+         * KERNEL-The number of raster cells along the edge of each tile. The
+         default value is 3, which means that the raster will be divided into
+         3-cell-by-3-cell windows.
 
-          * VIP-The percentile rank of the histogram of significance scores. The
-          default value is 5.0, which means that the cells with scores within
-          the top 5 percent of the histogram will be exported.
+         * VIP-The percentile rank of the histogram of significance scores. The
+         default value is 5.0, which means that the cells with scores within
+         the top 5 percent of the histogram will be exported.
 
-     OUTPUTS:
-      out_feature_class (Feature Class):
-          The feature class that will be produced.
-      out_vip_table {Table}:
-          The histogram table that will be created when VIP Histogram is
-          specified for the Thinning Method parameter.The histogram table that
-          will be created when VIP_HISTOGRAM is
-          specified for the method parameter."""
+    OUTPUTS:
+     out_feature_class (Feature Class):
+         The feature class that will be produced.
+     out_vip_table {Table}:
+         The histogram table that will be created when VIP Histogram is
+         specified for the Thinning Method parameter.The histogram table that
+         will be created when VIP_HISTOGRAM is
+         specified for the method parameter."""
     ...
 
-@gptooldoc('Idw_3d', None)
-def Idw(in_point_features=..., z_field=..., out_raster=..., cell_size=..., power=..., search_radius=..., in_barrier_polyline_features=...): # -> conversion | int | float | complex | basestring | list[Unknown] | tuple[Unknown, ...] | dict[Unknown, Unknown]:
+@gptooldoc("Idw_3d", None)
+def Idw(
+    in_point_features=...,
+    z_field=...,
+    out_raster=...,
+    cell_size=...,
+    power=...,
+    search_radius=...,
+    in_barrier_polyline_features=...,
+):  # -> conversion | int | float | complex | basestring | list[Unknown] | tuple[Unknown, ...] | dict[Unknown, Unknown]:
     """Idw(in_point_features, z_field, out_raster, {cell_size}, {power}, {search_radius}, {in_barrier_polyline_features})
 
-        Interpolates a raster surface from points using an inverse distance
-        weighted (IDW) technique.
+       Interpolates a raster surface from points using an inverse distance
+       weighted (IDW) technique.
 
-     INPUTS:
-      in_point_features (Composite Geodataset):
-          The input point features containing the z-values to be interpolated
-          into a surface raster.
-      z_field (Field):
-          The field that holds a height or magnitude value for each point.This
-          can be a numeric field or the Shape field if the input point
-          features contain z-values.
-      cell_size {Analysis Cell Size}:
-          The cell size of the output raster that will be created.This parameter
-          can be defined by a numeric value or obtained from an
-          existing raster dataset. If the cell size hasn't been explicitly
-          specified as the parameter value, the environment cell size value will
-          be used if specified; otherwise, additional rules will be used to
-          calculate it from the other inputs. See the usage section for more
-          detail.
-      power {Double}:
-          The exponent of distance.Controls the significance of surrounding
-          points on the interpolated
-          value. A higher power results in less influence from distant points.
-          It can be any real number greater than 0, but the most reasonable
-          results will be obtained using values from 0.5 to 3. The default is 2.
-      search_radius {Radius}:
-          Defines which of the input points will be used to interpolate the
-          value for each cell in the output raster.There are two ways to specify
-          the searching neighborhood: Variable and
-          Fixed.Variable uses a variable search radius in order to find a
-          specified
-          number of input sample points for the interpolation. Fixed uses a
-          specified fixed distance within which all input points will be used.
-          Variable is the default.The syntax for these parameters are:
+    INPUTS:
+     in_point_features (Composite Geodataset):
+         The input point features containing the z-values to be interpolated
+         into a surface raster.
+     z_field (Field):
+         The field that holds a height or magnitude value for each point.This
+         can be a numeric field or the Shape field if the input point
+         features contain z-values.
+     cell_size {Analysis Cell Size}:
+         The cell size of the output raster that will be created.This parameter
+         can be defined by a numeric value or obtained from an
+         existing raster dataset. If the cell size hasn't been explicitly
+         specified as the parameter value, the environment cell size value will
+         be used if specified; otherwise, additional rules will be used to
+         calculate it from the other inputs. See the usage section for more
+         detail.
+     power {Double}:
+         The exponent of distance.Controls the significance of surrounding
+         points on the interpolated
+         value. A higher power results in less influence from distant points.
+         It can be any real number greater than 0, but the most reasonable
+         results will be obtained using values from 0.5 to 3. The default is 2.
+     search_radius {Radius}:
+         Defines which of the input points will be used to interpolate the
+         value for each cell in the output raster.There are two ways to specify
+         the searching neighborhood: Variable and
+         Fixed.Variable uses a variable search radius in order to find a
+         specified
+         number of input sample points for the interpolation. Fixed uses a
+         specified fixed distance within which all input points will be used.
+         Variable is the default.The syntax for these parameters are:
 
-          * Variable, number_of_points, maximum_distance, where
+         * Variable, number_of_points, maximum_distance, where
 
-          * number_of_points-An integer value specifying the number of nearest
-          input sample points to be used to perform interpolation. The default
-          is 12 points.
+         * number_of_points-An integer value specifying the number of nearest
+         input sample points to be used to perform interpolation. The default
+         is 12 points.
 
-          * maximum_distance-Specifies the distance, in map units, by which to
-          limit the search for the nearest input sample points. The default
-          value is the length of the extent's diagonal.
+         * maximum_distance-Specifies the distance, in map units, by which to
+         limit the search for the nearest input sample points. The default
+         value is the length of the extent's diagonal.
 
-          * Fixed, distance, minimum_number_of_points, where
+         * Fixed, distance, minimum_number_of_points, where
 
-          * distance-Specifies the distance as a radius within which input
-          sample points will be used to perform the interpolation. The value of
-          the radius is expressed in map units. The default radius is five times
-          the cell size of the output raster.
+         * distance-Specifies the distance as a radius within which input
+         sample points will be used to perform the interpolation. The value of
+         the radius is expressed in map units. The default radius is five times
+         the cell size of the output raster.
 
-          * minimum_number_of_points-An integer defining the minimum
-          number of points to be used for interpolation. The default value is 0.
-          If the required number of points is not found within the specified
-          distance, the search distance will be increased until the specified
-          minimum number of points is found. When the search radius needs to be
-          increased it is done so until the
-          minimum_number_of_points fall within that radius, or the extent of the
-          radius crosses the lower (southern) and/or upper (northern) extent of
-          the output raster. NoData is assigned to all locations that do not
-          satisfy the above condition.
-      in_barrier_polyline_features {Composite Geodataset}:
-          Polyline features to be used as a break or limit in searching for the
-          input sample points.
+         * minimum_number_of_points-An integer defining the minimum
+         number of points to be used for interpolation. The default value is 0.
+         If the required number of points is not found within the specified
+         distance, the search distance will be increased until the specified
+         minimum number of points is found. When the search radius needs to be
+         increased it is done so until the
+         minimum_number_of_points fall within that radius, or the extent of the
+         radius crosses the lower (southern) and/or upper (northern) extent of
+         the output raster. NoData is assigned to all locations that do not
+         satisfy the above condition.
+     in_barrier_polyline_features {Composite Geodataset}:
+         Polyline features to be used as a break or limit in searching for the
+         input sample points.
 
-     OUTPUTS:
-      out_raster (Raster Dataset):
-          The output interpolated surface raster.It is always a floating-point
-          raster."""
+    OUTPUTS:
+     out_raster (Raster Dataset):
+         The output interpolated surface raster.It is always a floating-point
+         raster."""
     ...
 
-@gptooldoc('Kriging_3d', None)
-def Kriging(in_point_features=..., z_field=..., out_surface_raster=..., semiVariogram_props=..., cell_size=..., search_radius=..., out_variance_prediction_raster=...): # -> conversion | int | float | complex | basestring | list[Unknown] | tuple[Unknown, ...] | dict[Unknown, Unknown]:
+@gptooldoc("Kriging_3d", None)
+def Kriging(
+    in_point_features=...,
+    z_field=...,
+    out_surface_raster=...,
+    semiVariogram_props=...,
+    cell_size=...,
+    search_radius=...,
+    out_variance_prediction_raster=...,
+):  # -> conversion | int | float | complex | basestring | list[Unknown] | tuple[Unknown, ...] | dict[Unknown, Unknown]:
     """Kriging(in_point_features, z_field, out_surface_raster, semiVariogram_props, {cell_size}, {search_radius}, {out_variance_prediction_raster})
 
-        Interpolates a raster surface from points using kriging.
+       Interpolates a raster surface from points using kriging.
 
-     INPUTS:
-      in_point_features (Composite Geodataset):
-          The input point features containing the z-values to be interpolated
-          into a surface raster.
-      z_field (Field):
-          The field that holds a height or magnitude value for each point.This
-          can be a numeric field or the Shape field if the input point
-          features contain z-values.
-      semiVariogram_props (Semivariogram):
-          The Semivariogram model to be used.There are two models for kriging:
-          Ordinary and Universal. The Ordinary
-          model has five types of semivariograms available. The Universal model
-          has two types of semivariograms available. Each semivariogram has
-          several optional parameters that can also be set.
+    INPUTS:
+     in_point_features (Composite Geodataset):
+         The input point features containing the z-values to be interpolated
+         into a surface raster.
+     z_field (Field):
+         The field that holds a height or magnitude value for each point.This
+         can be a numeric field or the Shape field if the input point
+         features contain z-values.
+     semiVariogram_props (Semivariogram):
+         The Semivariogram model to be used.There are two models for kriging:
+         Ordinary and Universal. The Ordinary
+         model has five types of semivariograms available. The Universal model
+         has two types of semivariograms available. Each semivariogram has
+         several optional parameters that can also be set.
 
-          * Ordinary model semivariograms
+         * Ordinary model semivariograms
 
-          * Spherical-Spherical semivariogram model. This is the default.
+         * Spherical-Spherical semivariogram model. This is the default.
 
-          * Circular-Circular semivariogram model.
+         * Circular-Circular semivariogram model.
 
-          * Exponential-Exponential semivariogram model.
+         * Exponential-Exponential semivariogram model.
 
-          * Gaussian-Gaussian (or normal distribution) semivariogram model.
+         * Gaussian-Gaussian (or normal distribution) semivariogram model.
 
-          * Linear-Linear semivariogram model with a sill.
+         * Linear-Linear semivariogram model with a sill.
 
-          * Universal model semivariograms
+         * Universal model semivariograms
 
-          * LinearDrift-Universal Kriging with linear drift.
+         * LinearDrift-Universal Kriging with linear drift.
 
-          * QuadraticDrift-Universal Kriging with quadratic drift.
+         * QuadraticDrift-Universal Kriging with quadratic drift.
 
-          * After the semivariogram model is defined, the remaining
-          parameters are common between Ordinary and Universal kriging. These
-          include the following:
+         * After the semivariogram model is defined, the remaining
+         parameters are common between Ordinary and Universal kriging. These
+         include the following:
 
-          * Lag size-The default is the output raster cell size.
+         * Lag size-The default is the output raster cell size.
 
-          * MajorRange-Represents a distance beyond which there is little or no
-          correlation.
+         * MajorRange-Represents a distance beyond which there is little or no
+         correlation.
 
-          * PartialSill-The difference between the nugget and the sill.
+         * PartialSill-The difference between the nugget and the sill.
 
-          * Nugget-Represents the error and variation at spatial scales too fine
-          to detect. The nugget effect is seen as a discontinuity at the origin.
+         * Nugget-Represents the error and variation at spatial scales too fine
+         to detect. The nugget effect is seen as a discontinuity at the origin.
 
-          The form of the semivariogram is a text string:"{semivariogramType},{l
-          agSize},{majorRange},{partialSill},{nugget}"For example:"Circular,
-          2000, 2.6, 542"
-      cell_size {Analysis Cell Size}:
-          The cell size of the output raster that will be created.This parameter
-          can be defined by a numeric value or obtained from an
-          existing raster dataset. If the cell size hasn't been explicitly
-          specified as the parameter value, the environment cell size value will
-          be used if specified; otherwise, additional rules will be used to
-          calculate it from the other inputs. See the usage section for more
-          detail.
-      search_radius {Radius}:
-          Defines which of the input points will be used to interpolate the
-          value for each cell in the output raster.There are two ways to specify
-          the searching neighborhood: Variable and
-          Fixed.Variable uses a variable search radius in order to find a
-          specified
-          number of input sample points for the interpolation. Fixed uses a
-          specified fixed distance within which all input points will be used.
-          Variable is the default.The syntax for these parameters are:
+         The form of the semivariogram is a text string:"{semivariogramType},{l
+         agSize},{majorRange},{partialSill},{nugget}"For example:"Circular,
+         2000, 2.6, 542"
+     cell_size {Analysis Cell Size}:
+         The cell size of the output raster that will be created.This parameter
+         can be defined by a numeric value or obtained from an
+         existing raster dataset. If the cell size hasn't been explicitly
+         specified as the parameter value, the environment cell size value will
+         be used if specified; otherwise, additional rules will be used to
+         calculate it from the other inputs. See the usage section for more
+         detail.
+     search_radius {Radius}:
+         Defines which of the input points will be used to interpolate the
+         value for each cell in the output raster.There are two ways to specify
+         the searching neighborhood: Variable and
+         Fixed.Variable uses a variable search radius in order to find a
+         specified
+         number of input sample points for the interpolation. Fixed uses a
+         specified fixed distance within which all input points will be used.
+         Variable is the default.The syntax for these parameters are:
 
-          * Variable, number_of_points, maximum_distance, where
+         * Variable, number_of_points, maximum_distance, where
 
-          * number_of_points-An integer value specifying the number of nearest
-          input sample points to be used to perform interpolation. The default
-          is 12 points.
+         * number_of_points-An integer value specifying the number of nearest
+         input sample points to be used to perform interpolation. The default
+         is 12 points.
 
-          * maximum_distance-Specifies the distance, in map units, by which to
-          limit the search for the nearest input sample points. The default
-          value is the length of the extent's diagonal.
+         * maximum_distance-Specifies the distance, in map units, by which to
+         limit the search for the nearest input sample points. The default
+         value is the length of the extent's diagonal.
 
-          * Fixed, distance, minimum_number_of_points, where
+         * Fixed, distance, minimum_number_of_points, where
 
-          * distance-Specifies the distance as a radius within which input
-          sample points will be used to perform the interpolation. The value of
-          the radius is expressed in map units. The default radius is five times
-          the cell size of the output raster.
+         * distance-Specifies the distance as a radius within which input
+         sample points will be used to perform the interpolation. The value of
+         the radius is expressed in map units. The default radius is five times
+         the cell size of the output raster.
 
-          * minimum_number_of_points-An integer defining the minimum
-          number of points to be used for interpolation. The default value is 0.
-          If the required number of points is not found within the specified
-          distance, the search distance will be increased until the specified
-          minimum number of points is found. When the search radius needs to be
-          increased it is done so until the
-          minimum_number_of_points fall within that radius, or the extent of the
-          radius crosses the lower (southern) and/or upper (northern) extent of
-          the output raster. NoData is assigned to all locations that do not
-          satisfy the above condition.
+         * minimum_number_of_points-An integer defining the minimum
+         number of points to be used for interpolation. The default value is 0.
+         If the required number of points is not found within the specified
+         distance, the search distance will be increased until the specified
+         minimum number of points is found. When the search radius needs to be
+         increased it is done so until the
+         minimum_number_of_points fall within that radius, or the extent of the
+         radius crosses the lower (southern) and/or upper (northern) extent of
+         the output raster. NoData is assigned to all locations that do not
+         satisfy the above condition.
 
-     OUTPUTS:
-      out_surface_raster (Raster Dataset):
-          The output interpolated surface raster.It is always a floating-point
-          raster.
-      out_variance_prediction_raster {Raster Dataset}:
-          Optional output raster where each cell contains the predicted variance
-          values for that location."""
+    OUTPUTS:
+     out_surface_raster (Raster Dataset):
+         The output interpolated surface raster.It is always a floating-point
+         raster.
+     out_variance_prediction_raster {Raster Dataset}:
+         Optional output raster where each cell contains the predicted variance
+         values for that location."""
     ...
 
-@gptooldoc('NaturalNeighbor_3d', None)
-def NaturalNeighbor(in_point_features=..., z_field=..., out_raster=..., cell_size=...): # -> conversion | int | float | complex | basestring | list[Unknown] | tuple[Unknown, ...] | dict[Unknown, Unknown]:
+@gptooldoc("NaturalNeighbor_3d", None)
+def NaturalNeighbor(
+    in_point_features=..., z_field=..., out_raster=..., cell_size=...
+):  # -> conversion | int | float | complex | basestring | list[Unknown] | tuple[Unknown, ...] | dict[Unknown, Unknown]:
     """NaturalNeighbor(in_point_features, z_field, out_raster, {cell_size})
 
-        Interpolates a raster surface from points using a natural neighbor
-        technique.
+       Interpolates a raster surface from points using a natural neighbor
+       technique.
 
-     INPUTS:
-      in_point_features (Composite Geodataset):
-          The input point features containing the z-values to be interpolated
-          into a surface raster.
-      z_field (Field):
-          The field that holds a height or magnitude value for each point.This
-          can be a numeric field or the Shape field if the input point
-          features contain z-values.
-      cell_size {Analysis Cell Size}:
-          The cell size of the output raster that will be created.This parameter
-          can be defined by a numeric value or obtained from an
-          existing raster dataset. If the cell size hasn't been explicitly
-          specified as the parameter value, the environment cell size value will
-          be used if specified; otherwise, additional rules will be used to
-          calculate it from the other inputs. See the usage section for more
-          detail.
+    INPUTS:
+     in_point_features (Composite Geodataset):
+         The input point features containing the z-values to be interpolated
+         into a surface raster.
+     z_field (Field):
+         The field that holds a height or magnitude value for each point.This
+         can be a numeric field or the Shape field if the input point
+         features contain z-values.
+     cell_size {Analysis Cell Size}:
+         The cell size of the output raster that will be created.This parameter
+         can be defined by a numeric value or obtained from an
+         existing raster dataset. If the cell size hasn't been explicitly
+         specified as the parameter value, the environment cell size value will
+         be used if specified; otherwise, additional rules will be used to
+         calculate it from the other inputs. See the usage section for more
+         detail.
 
-     OUTPUTS:
-      out_raster (Raster Dataset):
-          The output interpolated surface raster.It is always a floating-point
-          raster."""
+    OUTPUTS:
+     out_raster (Raster Dataset):
+         The output interpolated surface raster.It is always a floating-point
+         raster."""
     ...
 
-@gptooldoc('Spline_3d', None)
-def Spline(in_point_features=..., z_field=..., out_raster=..., cell_size=..., spline_type=..., weight=..., number_points=...): # -> conversion | int | float | complex | basestring | list[Unknown] | tuple[Unknown, ...] | dict[Unknown, Unknown]:
+@gptooldoc("Spline_3d", None)
+def Spline(
+    in_point_features=...,
+    z_field=...,
+    out_raster=...,
+    cell_size=...,
+    spline_type=...,
+    weight=...,
+    number_points=...,
+):  # -> conversion | int | float | complex | basestring | list[Unknown] | tuple[Unknown, ...] | dict[Unknown, Unknown]:
     """Spline(in_point_features, z_field, out_raster, {cell_size}, {spline_type}, {weight}, {number_points})
 
-        Interpolates a raster surface from points using a two-dimensional
-        minimum curvature spline technique.
+       Interpolates a raster surface from points using a two-dimensional
+       minimum curvature spline technique.
 
-     INPUTS:
-      in_point_features (Composite Geodataset):
-          The input point features containing the z-values to be interpolated
-          into a surface raster.
-      z_field (Field):
-          The field that holds a height or magnitude value for each point.This
-          can be a numeric field or the Shape field if the input point
-          features contain z-values.
-      cell_size {Analysis Cell Size}:
-          The cell size of the output raster that will be created.This parameter
-          can be defined by a numeric value or obtained from an
-          existing raster dataset. If the cell size hasn't been explicitly
-          specified as the parameter value, the environment cell size value will
-          be used if specified; otherwise, additional rules will be used to
-          calculate it from the other inputs. See the usage section for more
-          detail.
-      spline_type {String}:
-          The type of spline to be used.
+    INPUTS:
+     in_point_features (Composite Geodataset):
+         The input point features containing the z-values to be interpolated
+         into a surface raster.
+     z_field (Field):
+         The field that holds a height or magnitude value for each point.This
+         can be a numeric field or the Shape field if the input point
+         features contain z-values.
+     cell_size {Analysis Cell Size}:
+         The cell size of the output raster that will be created.This parameter
+         can be defined by a numeric value or obtained from an
+         existing raster dataset. If the cell size hasn't been explicitly
+         specified as the parameter value, the environment cell size value will
+         be used if specified; otherwise, additional rules will be used to
+         calculate it from the other inputs. See the usage section for more
+         detail.
+     spline_type {String}:
+         The type of spline to be used.
 
-          * REGULARIZED-Yields a smooth surface and smooth first derivatives.
+         * REGULARIZED-Yields a smooth surface and smooth first derivatives.
 
-          * TENSION-Tunes the stiffness of the interpolant according to the
-          character of the modeled phenomenon.
-      weight {Double}:
-          Parameter influencing the character of the surface interpolation.When
-          the REGULARIZED option is used, it defines the weight of the
-          third derivatives of the surface in the curvature minimization
-          expression. If the TENSION option is used, it defines the weight of
-          tension.The default weight is 0.1.
-      number_points {Long}:
-          The number of points per region used for local approximation.The
-          default is 12.
+         * TENSION-Tunes the stiffness of the interpolant according to the
+         character of the modeled phenomenon.
+     weight {Double}:
+         Parameter influencing the character of the surface interpolation.When
+         the REGULARIZED option is used, it defines the weight of the
+         third derivatives of the surface in the curvature minimization
+         expression. If the TENSION option is used, it defines the weight of
+         tension.The default weight is 0.1.
+     number_points {Long}:
+         The number of points per region used for local approximation.The
+         default is 12.
 
-     OUTPUTS:
-      out_raster (Raster Dataset):
-          The output interpolated surface raster.It is always a floating-point
-          raster."""
+    OUTPUTS:
+     out_raster (Raster Dataset):
+         The output interpolated surface raster.It is always a floating-point
+         raster."""
     ...
 
-@gptooldoc('SplineWithBarriers_3d', None)
-def SplineWithBarriers(Input_point_features=..., Z_value_field=..., Input_barrier_features=..., Output_cell_size=..., Output_raster=..., Smoothing_Factor=...): # -> conversion | int | float | complex | basestring | list[Unknown] | tuple[Unknown, ...] | dict[Unknown, Unknown]:
+@gptooldoc("SplineWithBarriers_3d", None)
+def SplineWithBarriers(
+    Input_point_features=...,
+    Z_value_field=...,
+    Input_barrier_features=...,
+    Output_cell_size=...,
+    Output_raster=...,
+    Smoothing_Factor=...,
+):  # -> conversion | int | float | complex | basestring | list[Unknown] | tuple[Unknown, ...] | dict[Unknown, Unknown]:
     """SplineWithBarriers(Input_point_features, Z_value_field, {Input_barrier_features}, {Output_cell_size}, Output_raster, {Smoothing_Factor})
 
-        Interpolates a raster surface, using barriers, from points using a
-        minimum curvature spline technique. The barriers are entered as either
-        polygon or polyline features.
+       Interpolates a raster surface, using barriers, from points using a
+       minimum curvature spline technique. The barriers are entered as either
+       polygon or polyline features.
 
-     INPUTS:
-      Input_point_features (Composite Geodataset):
-          The input point features containing the z-values to be interpolated
-          into a surface raster.
-      Z_value_field (Field):
-          The field that holds a height or magnitude value for each point.This
-          can be a numeric field or the Shape field if the input point
-          features contain z-values.
-      Input_barrier_features {Composite Geodataset}:
-          The optional input barrier features to constrain the interpolation.
-      Output_cell_size {Analysis Cell Size}:
-          The cell size of the output raster that will be created.This parameter
-          can be defined by a numeric value or obtained from an
-          existing raster dataset. If the cell size hasn't been explicitly
-          specified as the parameter value, the environment cell size value will
-          be used if specified; otherwise, additional rules will be used to
-          calculate it from the other inputs. See the usage section for more
-          detail.
-      Smoothing_Factor {Double}:
-          The parameter that influences the smoothing of the output surface.No
-          smoothing is applied when the value is zero and the maximum amount
-          of smoothing is applied when the factor equals 1.The default is 0.0.
+    INPUTS:
+     Input_point_features (Composite Geodataset):
+         The input point features containing the z-values to be interpolated
+         into a surface raster.
+     Z_value_field (Field):
+         The field that holds a height or magnitude value for each point.This
+         can be a numeric field or the Shape field if the input point
+         features contain z-values.
+     Input_barrier_features {Composite Geodataset}:
+         The optional input barrier features to constrain the interpolation.
+     Output_cell_size {Analysis Cell Size}:
+         The cell size of the output raster that will be created.This parameter
+         can be defined by a numeric value or obtained from an
+         existing raster dataset. If the cell size hasn't been explicitly
+         specified as the parameter value, the environment cell size value will
+         be used if specified; otherwise, additional rules will be used to
+         calculate it from the other inputs. See the usage section for more
+         detail.
+     Smoothing_Factor {Double}:
+         The parameter that influences the smoothing of the output surface.No
+         smoothing is applied when the value is zero and the maximum amount
+         of smoothing is applied when the factor equals 1.The default is 0.0.
 
-     OUTPUTS:
-      Output_raster (Raster Dataset):
-          The output interpolated surface raster.It is always a floating-point
-          raster."""
+    OUTPUTS:
+     Output_raster (Raster Dataset):
+         The output interpolated surface raster.It is always a floating-point
+         raster."""
     ...
 
-@gptooldoc('TopoToRaster_3d', None)
-def TopoToRaster(in_topo_features=..., out_surface_raster=..., cell_size=..., extent=..., Margin=..., minimum_z_value=..., maximum_z_value=..., enforce=..., data_type=..., maximum_iterations=..., roughness_penalty=..., discrete_error_factor=..., vertical_standard_error=..., tolerance_1=..., tolerance_2=..., out_stream_features=..., out_sink_features=..., out_diagnostic_file=..., out_parameter_file=..., profile_penalty=..., out_residual_feature=..., out_stream_cliff_error_feature=..., out_contour_error_feature=...): # -> conversion | int | float | complex | basestring | list[Unknown] | tuple[Unknown, ...] | dict[Unknown, Unknown]:
+@gptooldoc("TopoToRaster_3d", None)
+def TopoToRaster(
+    in_topo_features=...,
+    out_surface_raster=...,
+    cell_size=...,
+    extent=...,
+    Margin=...,
+    minimum_z_value=...,
+    maximum_z_value=...,
+    enforce=...,
+    data_type=...,
+    maximum_iterations=...,
+    roughness_penalty=...,
+    discrete_error_factor=...,
+    vertical_standard_error=...,
+    tolerance_1=...,
+    tolerance_2=...,
+    out_stream_features=...,
+    out_sink_features=...,
+    out_diagnostic_file=...,
+    out_parameter_file=...,
+    profile_penalty=...,
+    out_residual_feature=...,
+    out_stream_cliff_error_feature=...,
+    out_contour_error_feature=...,
+):  # -> conversion | int | float | complex | basestring | list[Unknown] | tuple[Unknown, ...] | dict[Unknown, Unknown]:
     """TopoToRaster(in_topo_features, out_surface_raster, {cell_size}, {extent}, {Margin}, {minimum_z_value}, {maximum_z_value}, {enforce}, {data_type}, {maximum_iterations}, {roughness_penalty}, {discrete_error_factor}, {vertical_standard_error}, {tolerance_1}, {tolerance_2}, {out_stream_features}, {out_sink_features}, {out_diagnostic_file}, {out_parameter_file}, {profile_penalty}, {out_residual_feature}, {out_stream_cliff_error_feature}, {out_contour_error_feature})
 
-        Interpolates a hydrologically correct raster surface from point, line,
-        and polygon data.
+       Interpolates a hydrologically correct raster surface from point, line,
+       and polygon data.
 
-     INPUTS:
-      in_topo_features (Topo Features):
-          The input features containing the z-values to be interpolated into a
-          surface raster.Each feature input can have a field specified that
-          contains the
-          z-values and one of six types specified.
+    INPUTS:
+     in_topo_features (Topo Features):
+         The input features containing the z-values to be interpolated into a
+         surface raster.Each feature input can have a field specified that
+         contains the
+         z-values and one of six types specified.
 
-          * <Feature Layer>-The input feature dataset.
+         * <Feature Layer>-The input feature dataset.
 
-          * {Field}-The name of the field that stores the attributes, where
-          appropriate.
+         * {Field}-The name of the field that stores the attributes, where
+         appropriate.
 
-          * {Type}-The type of input feature dataset.
-          There are six types of accepted inputs:
+         * {Type}-The type of input feature dataset.
+         There are six types of accepted inputs:
 
-          * POINTELEVATION-A point feature class representing surface
-          elevations. The Field stores the elevations of the points.
+         * POINTELEVATION-A point feature class representing surface
+         elevations. The Field stores the elevations of the points.
 
-          * CONTOUR-A line feature class that represents elevation contours. The
-          Field stores the elevations of the contour lines.
+         * CONTOUR-A line feature class that represents elevation contours. The
+         Field stores the elevations of the contour lines.
 
-          * STREAM-A line feature class of stream locations. All arcs must be
-          oriented to point downstream. The feature class should only contain
-          single arc streams. There is no Field option for this input type.
+         * STREAM-A line feature class of stream locations. All arcs must be
+         oriented to point downstream. The feature class should only contain
+         single arc streams. There is no Field option for this input type.
 
-          * SINK-A point feature class that represents known topographic
-          depressions. Topo to Raster will not attempt to remove from the
-          analysis any points explicitly identified as sinks. The Field used
-          should be one that stores the elevation of the legitimate sink. If
-          NONE is selected, only the location of the sink is used.
+         * SINK-A point feature class that represents known topographic
+         depressions. Topo to Raster will not attempt to remove from the
+         analysis any points explicitly identified as sinks. The Field used
+         should be one that stores the elevation of the legitimate sink. If
+         NONE is selected, only the location of the sink is used.
 
-          * BOUNDARY-A feature class containing a single polygon that represents
-          the outer boundary of the output raster. Cells in the output raster
-          outside this boundary will be NoData. This option can be used for
-          clipping out water areas along coastlines before making the final
-          output raster. There is no Field option for this input type.
+         * BOUNDARY-A feature class containing a single polygon that represents
+         the outer boundary of the output raster. Cells in the output raster
+         outside this boundary will be NoData. This option can be used for
+         clipping out water areas along coastlines before making the final
+         output raster. There is no Field option for this input type.
 
-          * LAKE-A polygon feature class that specifies the location of lakes.
-          All output raster cells within a lake will be assigned to the minimum
-          elevation value of all cells along the shoreline. There is no Field
-          option for this input type.
+         * LAKE-A polygon feature class that specifies the location of lakes.
+         All output raster cells within a lake will be assigned to the minimum
+         elevation value of all cells along the shoreline. There is no Field
+         option for this input type.
 
-          * CLIFF-A line feature class of the cliffs. The cliff line features
-          must be oriented so that the left-hand side of the line is on the low
-          side of the cliff and the right-hand side is the high side of the
-          cliff. There is no Field option for this input type.
+         * CLIFF-A line feature class of the cliffs. The cliff line features
+         must be oriented so that the left-hand side of the line is on the low
+         side of the cliff and the right-hand side is the high side of the
+         cliff. There is no Field option for this input type.
 
-          * COAST-A polygon feature class containing the outline of a coastal
-          area. Cells in the final output raster that lie outside these polygons
-          are set to a value that is less than the user-specified minimum height
-          limit. There is no Field option for this input type.
+         * COAST-A polygon feature class containing the outline of a coastal
+         area. Cells in the final output raster that lie outside these polygons
+         are set to a value that is less than the user-specified minimum height
+         limit. There is no Field option for this input type.
 
-          * EXCLUSION-A polygon feature class of the areas in which the input
-          data should be ignored. These polygons permit removal of elevation
-          data from the interpolation process. This is typically used to remove
-          elevation data associated with dam walls and bridges. This enables
-          interpolation of the underlying valley with connected drainage
-          structure. There is no Field option for this input type.
-          Multiple input feature datasets should be enclosed by double quotes.
-          The individual inputs are separated by a semicolon, with a space
-          between each component. See the first Code Sample below for an
-          example.
-      cell_size {Analysis Cell Size}:
-          The cell size of the output raster that will be created.This parameter
-          can be defined by a numeric value or obtained from an
-          existing raster dataset. If the cell size hasn't been explicitly
-          specified as the parameter value, the environment cell size value will
-          be used if specified; otherwise, additional rules will be used to
-          calculate it from the other inputs. See the usage section for more
-          detail.
-      extent {Extent}:
-          Extent for the output raster dataset.Interpolation will occur out to
-          the x and y limits, and cells outside
-          that extent will be NoData. For best interpolation results along the
-          edges of the output raster, the x and y limits should be smaller than
-          the extent of the input data by at least 10 cells on each side.
+         * EXCLUSION-A polygon feature class of the areas in which the input
+         data should be ignored. These polygons permit removal of elevation
+         data from the interpolation process. This is typically used to remove
+         elevation data associated with dam walls and bridges. This enables
+         interpolation of the underlying valley with connected drainage
+         structure. There is no Field option for this input type.
+         Multiple input feature datasets should be enclosed by double quotes.
+         The individual inputs are separated by a semicolon, with a space
+         between each component. See the first Code Sample below for an
+         example.
+     cell_size {Analysis Cell Size}:
+         The cell size of the output raster that will be created.This parameter
+         can be defined by a numeric value or obtained from an
+         existing raster dataset. If the cell size hasn't been explicitly
+         specified as the parameter value, the environment cell size value will
+         be used if specified; otherwise, additional rules will be used to
+         calculate it from the other inputs. See the usage section for more
+         detail.
+     extent {Extent}:
+         Extent for the output raster dataset.Interpolation will occur out to
+         the x and y limits, and cells outside
+         that extent will be NoData. For best interpolation results along the
+         edges of the output raster, the x and y limits should be smaller than
+         the extent of the input data by at least 10 cells on each side.
 
-          * X_Minimum-The default is the smallest x coordinate of all inputs.
+         * X_Minimum-The default is the smallest x coordinate of all inputs.
 
-          * Y_Minimum-The default is the smallest y coordinate of all inputs.
+         * Y_Minimum-The default is the smallest y coordinate of all inputs.
 
-          * X_Maximum-The default is the largest x coordinate of all inputs.
+         * X_Maximum-The default is the largest x coordinate of all inputs.
 
-          * Y_Maximum-The default is the largest y coordinate of all inputs.
-          The default extent is the largest of all extents of the input feature
-          data.
-      Margin {Long}:
-          Distance in cells to interpolate beyond the specified output extent
-          and boundary.The value must be greater than or equal to 0 (zero). The
-          default value
-          is 20.If the {extent} and Boundary feature dataset are the same as the
-          limit
-          of the input data (the default), values interpolated along the edge of
-          the DEM will not match well with adjacent DEM data. This is because
-          they have been interpolated using one-half as much data as the points
-          inside the raster, which are surrounded on all sides by input data.
-          The {margin} option allows input data beyond these limits to be used
-          in the interpolation.
-      minimum_z_value {Double}:
-          The minimum z-value to be used in the interpolation.The default is 20
-          percent below the smallest of all the input values.
-      maximum_z_value {Double}:
-          The maximum z-value to be used in the interpolation.The default is 20
-          percent above the largest of all input values.
-      enforce {String}:
-          The type of drainage enforcement to apply.The drainage enforcement
-          option can be set to attempt to remove all
-          sinks or depressions so a hydrologically correct DEM can be created.
-          If sink points have been explicitly identified in the input feature
-          data, these depressions will not be filled.
+         * Y_Maximum-The default is the largest y coordinate of all inputs.
+         The default extent is the largest of all extents of the input feature
+         data.
+     Margin {Long}:
+         Distance in cells to interpolate beyond the specified output extent
+         and boundary.The value must be greater than or equal to 0 (zero). The
+         default value
+         is 20.If the {extent} and Boundary feature dataset are the same as the
+         limit
+         of the input data (the default), values interpolated along the edge of
+         the DEM will not match well with adjacent DEM data. This is because
+         they have been interpolated using one-half as much data as the points
+         inside the raster, which are surrounded on all sides by input data.
+         The {margin} option allows input data beyond these limits to be used
+         in the interpolation.
+     minimum_z_value {Double}:
+         The minimum z-value to be used in the interpolation.The default is 20
+         percent below the smallest of all the input values.
+     maximum_z_value {Double}:
+         The maximum z-value to be used in the interpolation.The default is 20
+         percent above the largest of all input values.
+     enforce {String}:
+         The type of drainage enforcement to apply.The drainage enforcement
+         option can be set to attempt to remove all
+         sinks or depressions so a hydrologically correct DEM can be created.
+         If sink points have been explicitly identified in the input feature
+         data, these depressions will not be filled.
 
-          * ENFORCE-The algorithm will attempt to remove all sinks it
-          encounters, whether they are real or spurious. This is the default.
+         * ENFORCE-The algorithm will attempt to remove all sinks it
+         encounters, whether they are real or spurious. This is the default.
 
-          * NO_ENFORCE-No sinks will be filled.
+         * NO_ENFORCE-No sinks will be filled.
 
-          * ENFORCE_WITH_SINK-Points identified as sinks in Input feature data
-          represent known topographic depressions and will not be altered. Any
-          sink not identified in input feature data is considered spurious, and
-          the algorithm will attempt to fill it.Having more than 8,000 spurious
-          sinks causes the tool to fail.
-      data_type {String}:
-          The dominant elevation data type of the input feature data.
+         * ENFORCE_WITH_SINK-Points identified as sinks in Input feature data
+         represent known topographic depressions and will not be altered. Any
+         sink not identified in input feature data is considered spurious, and
+         the algorithm will attempt to fill it.Having more than 8,000 spurious
+         sinks causes the tool to fail.
+     data_type {String}:
+         The dominant elevation data type of the input feature data.
 
-          * CONTOUR-The dominant type of input data will be elevation contours.
-          This is the default.
+         * CONTOUR-The dominant type of input data will be elevation contours.
+         This is the default.
 
-          * SPOT-The dominant type of input will be point.
-          Specifying the relevant selection optimizes the search method used
-          during the generation of streams and ridges.
-      maximum_iterations {Long}:
-          The maximum number of interpolation iterations.The number of
-          iterations must be greater than zero. A default of 20 is
-          normally adequate for both contour and line data.A value of 30 will
-          clear fewer sinks. Rarely, higher values (45-50)
-          may be useful to clear more sinks or to set more ridges and streams.
-          Iteration ceases for each grid resolution when the maximum number of
-          iterations has been reached.
-      roughness_penalty {Double}:
-          The integrated squared second derivative as a measure of roughness.The
-          roughness penalty must be zero or greater. If the primary input
-          data type is Contour, the default is zero. If the primary data type is
-          Spot, the default is 0.5. Larger values are not normally recommended.
-      discrete_error_factor {Double}:
-          The discrete error factor is used to adjust the amount of smoothing
-          when converting the input data to a raster.The value must be greater
-          than zero. The normal range of adjustment is
-          0.25 to 4, and the default is 1. A smaller value results in less data
-          smoothing; a larger value causes greater smoothing.
-      vertical_standard_error {Double}:
-          The amount of random error in the z-values of the input data.The value
-          must be zero or greater. The default is zero.The vertical standard
-          error may be set to a small positive value if
-          the data has significant random (non-systematic) vertical errors with
-          uniform variance. In this case, set the vertical standard error to the
-          standard deviation of these errors. For most elevation datasets, the
-          vertical error should be set to zero, but it may be set to a small
-          positive value to stabilize convergence when rasterizing point data
-          with stream line data.
-      tolerance_1 {Double}:
-          This tolerance reflects the accuracy and density of the elevation
-          points in relation to surface drainage.For point datasets, set the
-          tolerance to the standard error of the
-          data heights. For contour datasets, use one-half the average contour
-          interval.The value must be zero or greater. The default is 2.5 if the
-          data type
-          is Contour and zero if the data type is Spot.
-      tolerance_2 {Double}:
-          This tolerance prevents drainage clearance through unrealistically
-          high barriers.The value must be greater than zero. The default is 100
-          if the data
-          type is Contour and 200 if the data type is Spot.
-      profile_penalty {Double}:
-          The profile curvature roughness penalty is a locally adaptive penalty
-          that can be used to partly replace total curvature.It can yield good
-          results with high-quality contour data but can lead
-          to instability in convergence with poor data. Set to 0.0 for no
-          profile curvature (the default), set to 0.5 for moderate profile
-          curvature, and set to 0.8 for maximum profile curvature. Values larger
-          than 0.8 are not recommended and should not be used.
+         * SPOT-The dominant type of input will be point.
+         Specifying the relevant selection optimizes the search method used
+         during the generation of streams and ridges.
+     maximum_iterations {Long}:
+         The maximum number of interpolation iterations.The number of
+         iterations must be greater than zero. A default of 20 is
+         normally adequate for both contour and line data.A value of 30 will
+         clear fewer sinks. Rarely, higher values (45-50)
+         may be useful to clear more sinks or to set more ridges and streams.
+         Iteration ceases for each grid resolution when the maximum number of
+         iterations has been reached.
+     roughness_penalty {Double}:
+         The integrated squared second derivative as a measure of roughness.The
+         roughness penalty must be zero or greater. If the primary input
+         data type is Contour, the default is zero. If the primary data type is
+         Spot, the default is 0.5. Larger values are not normally recommended.
+     discrete_error_factor {Double}:
+         The discrete error factor is used to adjust the amount of smoothing
+         when converting the input data to a raster.The value must be greater
+         than zero. The normal range of adjustment is
+         0.25 to 4, and the default is 1. A smaller value results in less data
+         smoothing; a larger value causes greater smoothing.
+     vertical_standard_error {Double}:
+         The amount of random error in the z-values of the input data.The value
+         must be zero or greater. The default is zero.The vertical standard
+         error may be set to a small positive value if
+         the data has significant random (non-systematic) vertical errors with
+         uniform variance. In this case, set the vertical standard error to the
+         standard deviation of these errors. For most elevation datasets, the
+         vertical error should be set to zero, but it may be set to a small
+         positive value to stabilize convergence when rasterizing point data
+         with stream line data.
+     tolerance_1 {Double}:
+         This tolerance reflects the accuracy and density of the elevation
+         points in relation to surface drainage.For point datasets, set the
+         tolerance to the standard error of the
+         data heights. For contour datasets, use one-half the average contour
+         interval.The value must be zero or greater. The default is 2.5 if the
+         data type
+         is Contour and zero if the data type is Spot.
+     tolerance_2 {Double}:
+         This tolerance prevents drainage clearance through unrealistically
+         high barriers.The value must be greater than zero. The default is 100
+         if the data
+         type is Contour and 200 if the data type is Spot.
+     profile_penalty {Double}:
+         The profile curvature roughness penalty is a locally adaptive penalty
+         that can be used to partly replace total curvature.It can yield good
+         results with high-quality contour data but can lead
+         to instability in convergence with poor data. Set to 0.0 for no
+         profile curvature (the default), set to 0.5 for moderate profile
+         curvature, and set to 0.8 for maximum profile curvature. Values larger
+         than 0.8 are not recommended and should not be used.
 
-     OUTPUTS:
-      out_surface_raster (Raster Dataset):
-          The output interpolated surface raster.It is always a floating-point
-          raster.
-      out_stream_features {Feature Class}:
-          The output line feature class of stream polyline features and ridge
-          line features.The line features are created at the beginning of the
-          interpolation
-          process. It provides the general morphology of the surface for
-          interpolation. It can be used to verify correct drainage and
-          morphology by comparing known stream and ridge data.The polyline
-          features are coded as follows:1. Input stream line not over cliff.2.
-          Input stream line over cliff (waterfall).3. Drainage enforcement
-          clearing a spurious sink.4. Stream line determined from contour
-          corner.5. Ridge line determined from contour corner.6. Code not
-          used.7. Data stream line side conditions.8. Code not used.9. Line
-          indicating large elevation data clearance.
-      out_sink_features {Feature Class}:
-          The output point feature class of the remaining sink point
-          features.These are the sinks that were not specified in the sink input
-          feature
-          data and were not cleared during drainage enforcement. Adjusting the
-          values of the tolerances, tolerance_1 and tolerance_2, can reduce the
-          number of remaining sinks. Remaining sinks often indicate errors in
-          the input data that the drainage enforcement algorithm could not
-          resolve. This can be an efficient way of detecting subtle elevation
-          errors.
-      out_diagnostic_file {File}:
-          The output diagnostic file listing all inputs and parameters used and
-          the number of sinks cleared at each resolution and iteration.
-      out_parameter_file {File}:
-          The output parameter file listing all inputs and parameters used,
-          which can be used with Topo to Raster by File to run the interpolation
-          again.
-      out_residual_feature {Feature Class}:
-          The output point feature class of all the large elevation residuals as
-          scaled by the local discretisation error.All the scaled residuals
-          larger than 10 should be inspected for
-          possible errors in input elevation and stream data. Large-scaled
-          residuals indicate conflicts between input elevation data and
-          streamline data. These may also be associated with poor automatic
-          drainage enforcements. These conflicts can be remedied by providing
-          additional streamline and/or point elevation data after first checking
-          and correcting errors in existing input data. Large unscaled residuals
-          usually indicate input elevation errors.
-      out_stream_cliff_error_feature {Feature Class}:
-          The output point feature class of locations where possible stream and
-          cliff errors occur.The locations where the streams have closed loops,
-          distributaries, and
-          streams over cliffs can be identified from the point feature class.
-          Cliffs with neighboring cells that are inconsistent with the high and
-          low sides of the cliff are also indicated. This can be a good
-          indicator of cliffs with incorrect direction.Points are coded as
-          follows:1. True circuit in data streamline network.2. Circuit in
-          stream network as encoded on the out raster.3. Circuit in stream
-          network via connecting lakes.4. Distributaries point.5. Stream over a
-          cliff (waterfall).6. Points indicating multiple stream outflows from
-          lakes.7. Code not used.8. Points beside cliffs with heights
-          inconsistent with cliff
-          direction.9. Code not used.10. Circular distributary removed.11.
-          Distributary with no inflowing stream.12. Rasterized distributary in
-          output cell different to where the data
-          stream line distributary occurs.13. Error processing side
-          conditions-an indicator of very complex
-          streamline data.
-      out_contour_error_feature {Feature Class}:
-          The output point feature class of possible errors pertaining to the
-          input contour data.Contours with bias in height exceeding five times
-          the standard
-          deviation of the contour values as represented on the output raster
-          are reported to this feature class. Contours that join other contours
-          with a different elevation are flagged in this feature class by the
-          code 1; this is a sure sign of a contour label error."""
+    OUTPUTS:
+     out_surface_raster (Raster Dataset):
+         The output interpolated surface raster.It is always a floating-point
+         raster.
+     out_stream_features {Feature Class}:
+         The output line feature class of stream polyline features and ridge
+         line features.The line features are created at the beginning of the
+         interpolation
+         process. It provides the general morphology of the surface for
+         interpolation. It can be used to verify correct drainage and
+         morphology by comparing known stream and ridge data.The polyline
+         features are coded as follows:1. Input stream line not over cliff.2.
+         Input stream line over cliff (waterfall).3. Drainage enforcement
+         clearing a spurious sink.4. Stream line determined from contour
+         corner.5. Ridge line determined from contour corner.6. Code not
+         used.7. Data stream line side conditions.8. Code not used.9. Line
+         indicating large elevation data clearance.
+     out_sink_features {Feature Class}:
+         The output point feature class of the remaining sink point
+         features.These are the sinks that were not specified in the sink input
+         feature
+         data and were not cleared during drainage enforcement. Adjusting the
+         values of the tolerances, tolerance_1 and tolerance_2, can reduce the
+         number of remaining sinks. Remaining sinks often indicate errors in
+         the input data that the drainage enforcement algorithm could not
+         resolve. This can be an efficient way of detecting subtle elevation
+         errors.
+     out_diagnostic_file {File}:
+         The output diagnostic file listing all inputs and parameters used and
+         the number of sinks cleared at each resolution and iteration.
+     out_parameter_file {File}:
+         The output parameter file listing all inputs and parameters used,
+         which can be used with Topo to Raster by File to run the interpolation
+         again.
+     out_residual_feature {Feature Class}:
+         The output point feature class of all the large elevation residuals as
+         scaled by the local discretisation error.All the scaled residuals
+         larger than 10 should be inspected for
+         possible errors in input elevation and stream data. Large-scaled
+         residuals indicate conflicts between input elevation data and
+         streamline data. These may also be associated with poor automatic
+         drainage enforcements. These conflicts can be remedied by providing
+         additional streamline and/or point elevation data after first checking
+         and correcting errors in existing input data. Large unscaled residuals
+         usually indicate input elevation errors.
+     out_stream_cliff_error_feature {Feature Class}:
+         The output point feature class of locations where possible stream and
+         cliff errors occur.The locations where the streams have closed loops,
+         distributaries, and
+         streams over cliffs can be identified from the point feature class.
+         Cliffs with neighboring cells that are inconsistent with the high and
+         low sides of the cliff are also indicated. This can be a good
+         indicator of cliffs with incorrect direction.Points are coded as
+         follows:1. True circuit in data streamline network.2. Circuit in
+         stream network as encoded on the out raster.3. Circuit in stream
+         network via connecting lakes.4. Distributaries point.5. Stream over a
+         cliff (waterfall).6. Points indicating multiple stream outflows from
+         lakes.7. Code not used.8. Points beside cliffs with heights
+         inconsistent with cliff
+         direction.9. Code not used.10. Circular distributary removed.11.
+         Distributary with no inflowing stream.12. Rasterized distributary in
+         output cell different to where the data
+         stream line distributary occurs.13. Error processing side
+         conditions-an indicator of very complex
+         streamline data.
+     out_contour_error_feature {Feature Class}:
+         The output point feature class of possible errors pertaining to the
+         input contour data.Contours with bias in height exceeding five times
+         the standard
+         deviation of the contour values as represented on the output raster
+         are reported to this feature class. Contours that join other contours
+         with a different elevation are flagged in this feature class by the
+         code 1; this is a sure sign of a contour label error."""
     ...
 
-@gptooldoc('TopoToRasterByFile_3d', None)
-def TopoToRasterByFile(in_parameter_file=..., out_surface_raster=..., out_stream_features=..., out_sink_features=..., out_residual_feature=..., out_stream_cliff_error_feature=..., out_contour_error_feature=...): # -> conversion | int | float | complex | basestring | list[Unknown] | tuple[Unknown, ...] | dict[Unknown, Unknown]:
+@gptooldoc("TopoToRasterByFile_3d", None)
+def TopoToRasterByFile(
+    in_parameter_file=...,
+    out_surface_raster=...,
+    out_stream_features=...,
+    out_sink_features=...,
+    out_residual_feature=...,
+    out_stream_cliff_error_feature=...,
+    out_contour_error_feature=...,
+):  # -> conversion | int | float | complex | basestring | list[Unknown] | tuple[Unknown, ...] | dict[Unknown, Unknown]:
     """TopoToRasterByFile(in_parameter_file, out_surface_raster, {out_stream_features}, {out_sink_features}, {out_residual_feature}, {out_stream_cliff_error_feature}, {out_contour_error_feature})
 
-        Interpolates a hydrologically correct raster surface from point, line,
-        and polygon data using parameters specified in a file.
+       Interpolates a hydrologically correct raster surface from point, line,
+       and polygon data using parameters specified in a file.
 
-     INPUTS:
-      in_parameter_file (File):
-          The input ASCII text file containing the inputs and parameters to use
-          for the interpolation.The file is typically created from a previous
-          run of Topo to Raster
-          with the optional output parameter file specified.In order to test the
-          outcome of changing the parameters, it is easier
-          to make edits to this file and rerun the interpolation than to
-          correctly issue the Topo to Raster tool each time.
+    INPUTS:
+     in_parameter_file (File):
+         The input ASCII text file containing the inputs and parameters to use
+         for the interpolation.The file is typically created from a previous
+         run of Topo to Raster
+         with the optional output parameter file specified.In order to test the
+         outcome of changing the parameters, it is easier
+         to make edits to this file and rerun the interpolation than to
+         correctly issue the Topo to Raster tool each time.
 
-     OUTPUTS:
-      out_surface_raster (Raster Dataset):
-          The output interpolated surface raster.It is always a floating-point
-          raster.
-      out_stream_features {Feature Class}:
-          Output feature class of stream polyline features.The polyline features
-          are coded as follows:1. Input stream line not over cliff.2. Input
-          stream line over cliff (waterfall).3. Drainage enforcement clearing a
-          spurious sink.4. Stream line determined from contour corner.5. Ridge
-          line determined from contour corner.6. Code not used.7. Data stream
-          line side conditions.8. Code not used.9. Line indicating large
-          elevation data clearance.
-      out_sink_features {Feature Class}:
-          Output feature class of remaining sink point features.
-      out_residual_feature {Feature Class}:
-          The output point feature class of all the large elevation residuals as
-          scaled by the local discretisation error.All the scaled residuals
-          larger than 10 should be inspected for
-          possible errors in input elevation and stream data. Large-scaled
-          residuals indicate conflicts between input elevation data and
-          streamline data. These may also be associated with poor automatic
-          drainage enforcements. These conflicts can be remedied by providing
-          additional streamline and/or point elevation data after first checking
-          and correcting errors in existing input data. Large unscaled residuals
-          usually indicate input elevation errors.
-      out_stream_cliff_error_feature {Feature Class}:
-          The output point feature class of locations where possible stream and
-          cliff errors occur.The locations where the streams have closed loops,
-          distributaries, and
-          streams over cliffs can be identified from the point feature class.
-          Cliffs with neighboring cells that are inconsistent with the high and
-          low sides of the cliff are also indicated. This can be a good
-          indicator of cliffs with incorrect direction.Points are coded as
-          follows:1. True circuit in data streamline network.2. Circuit in
-          stream network as encoded on the out raster.3. Circuit in stream
-          network via connecting lakes.4. Distributaries point.5. Stream over a
-          cliff (waterfall).6. Points indicating multiple stream outflows from
-          lakes.7. Code not used.8. Points beside cliffs with heights
-          inconsistent with cliff
-          direction.9. Code not used.10. Circular distributary removed.11.
-          Distributary with no inflowing stream.12. Rasterized distributary in
-          output cell different to where the data
-          stream line distributary occurs.13. Error processing side
-          conditions-an indicator of very complex
-          streamline data.
-      out_contour_error_feature {Feature Class}:
-          The output point feature class of possible errors pertaining to the
-          input contour data.Contours with bias in height exceeding five times
-          the standard
-          deviation of the contour values as represented on the output raster
-          are reported to this feature class. Contours that join other contours
-          with a different elevation are flagged in this feature class by the
-          code 1; this is a sure sign of a contour label error."""
+    OUTPUTS:
+     out_surface_raster (Raster Dataset):
+         The output interpolated surface raster.It is always a floating-point
+         raster.
+     out_stream_features {Feature Class}:
+         Output feature class of stream polyline features.The polyline features
+         are coded as follows:1. Input stream line not over cliff.2. Input
+         stream line over cliff (waterfall).3. Drainage enforcement clearing a
+         spurious sink.4. Stream line determined from contour corner.5. Ridge
+         line determined from contour corner.6. Code not used.7. Data stream
+         line side conditions.8. Code not used.9. Line indicating large
+         elevation data clearance.
+     out_sink_features {Feature Class}:
+         Output feature class of remaining sink point features.
+     out_residual_feature {Feature Class}:
+         The output point feature class of all the large elevation residuals as
+         scaled by the local discretisation error.All the scaled residuals
+         larger than 10 should be inspected for
+         possible errors in input elevation and stream data. Large-scaled
+         residuals indicate conflicts between input elevation data and
+         streamline data. These may also be associated with poor automatic
+         drainage enforcements. These conflicts can be remedied by providing
+         additional streamline and/or point elevation data after first checking
+         and correcting errors in existing input data. Large unscaled residuals
+         usually indicate input elevation errors.
+     out_stream_cliff_error_feature {Feature Class}:
+         The output point feature class of locations where possible stream and
+         cliff errors occur.The locations where the streams have closed loops,
+         distributaries, and
+         streams over cliffs can be identified from the point feature class.
+         Cliffs with neighboring cells that are inconsistent with the high and
+         low sides of the cliff are also indicated. This can be a good
+         indicator of cliffs with incorrect direction.Points are coded as
+         follows:1. True circuit in data streamline network.2. Circuit in
+         stream network as encoded on the out raster.3. Circuit in stream
+         network via connecting lakes.4. Distributaries point.5. Stream over a
+         cliff (waterfall).6. Points indicating multiple stream outflows from
+         lakes.7. Code not used.8. Points beside cliffs with heights
+         inconsistent with cliff
+         direction.9. Code not used.10. Circular distributary removed.11.
+         Distributary with no inflowing stream.12. Rasterized distributary in
+         output cell different to where the data
+         stream line distributary occurs.13. Error processing side
+         conditions-an indicator of very complex
+         streamline data.
+     out_contour_error_feature {Feature Class}:
+         The output point feature class of possible errors pertaining to the
+         input contour data.Contours with bias in height exceeding five times
+         the standard
+         deviation of the contour values as represented on the output raster
+         are reported to this feature class. Contours that join other contours
+         with a different elevation are flagged in this feature class by the
+         code 1; this is a sure sign of a contour label error."""
     ...
 
-@gptooldoc('Trend_3d', None)
-def Trend(in_point_features=..., z_field=..., out_raster=..., cell_size=..., order=..., regression_type=..., out_rms_file=...): # -> conversion | int | float | complex | basestring | list[Unknown] | tuple[Unknown, ...] | dict[Unknown, Unknown]:
+@gptooldoc("Trend_3d", None)
+def Trend(
+    in_point_features=...,
+    z_field=...,
+    out_raster=...,
+    cell_size=...,
+    order=...,
+    regression_type=...,
+    out_rms_file=...,
+):  # -> conversion | int | float | complex | basestring | list[Unknown] | tuple[Unknown, ...] | dict[Unknown, Unknown]:
     """Trend(in_point_features, z_field, out_raster, {cell_size}, {order}, {regression_type}, {out_rms_file})
 
-        Interpolates a raster surface from points using a trend technique.
+       Interpolates a raster surface from points using a trend technique.
 
-     INPUTS:
-      in_point_features (Composite Geodataset):
-          The input point features containing the z-values to be interpolated
-          into a surface raster.
-      z_field (Field):
-          The field that holds a height or magnitude value for each point.This
-          can be a numeric field or the Shape field if the input point
-          features contain z-values.If the regression type is Logistic, the
-          values in the field can only
-          be 0 or 1.
-      cell_size {Analysis Cell Size}:
-          The cell size of the output raster that will be created.This parameter
-          can be defined by a numeric value or obtained from an
-          existing raster dataset. If the cell size hasn't been explicitly
-          specified as the parameter value, the environment cell size value will
-          be used if specified; otherwise, additional rules will be used to
-          calculate it from the other inputs. See the usage section for more
-          detail.
-      order {Long}:
-          The order of the polynomial.This must be an integer between 1 and 12.
-          A value of 1 will fit a flat
-          plane to the points, and a higher value will fit a more complex
-          surface. The default is 1.
-      regression_type {String}:
-          The type of regression to be performed.
+    INPUTS:
+     in_point_features (Composite Geodataset):
+         The input point features containing the z-values to be interpolated
+         into a surface raster.
+     z_field (Field):
+         The field that holds a height or magnitude value for each point.This
+         can be a numeric field or the Shape field if the input point
+         features contain z-values.If the regression type is Logistic, the
+         values in the field can only
+         be 0 or 1.
+     cell_size {Analysis Cell Size}:
+         The cell size of the output raster that will be created.This parameter
+         can be defined by a numeric value or obtained from an
+         existing raster dataset. If the cell size hasn't been explicitly
+         specified as the parameter value, the environment cell size value will
+         be used if specified; otherwise, additional rules will be used to
+         calculate it from the other inputs. See the usage section for more
+         detail.
+     order {Long}:
+         The order of the polynomial.This must be an integer between 1 and 12.
+         A value of 1 will fit a flat
+         plane to the points, and a higher value will fit a more complex
+         surface. The default is 1.
+     regression_type {String}:
+         The type of regression to be performed.
 
-          * LINEAR-Polynomial regression is performed to fit a least-squares
-          surface to the set of input points. This is applicable for continuous
-          types of data.
+         * LINEAR-Polynomial regression is performed to fit a least-squares
+         surface to the set of input points. This is applicable for continuous
+         types of data.
 
-          * LOGISTIC-Logistic trend surface analysis is performed. It generates
-          a continuous probability surface for binary, or dichotomous, types of
-          data.
+         * LOGISTIC-Logistic trend surface analysis is performed. It generates
+         a continuous probability surface for binary, or dichotomous, types of
+         data.
 
-     OUTPUTS:
-      out_raster (Raster Dataset):
-          The output interpolated surface raster.It is always a floating-point
-          raster.
-      out_rms_file {File}:
-          File name for the output text file that contains information about the
-          RMS error and the Chi-Square of the interpolation.The extension must
-          be .txt."""
+    OUTPUTS:
+     out_raster (Raster Dataset):
+         The output interpolated surface raster.It is always a floating-point
+         raster.
+     out_rms_file {File}:
+         File name for the output text file that contains information about the
+         RMS error and the Chi-Square of the interpolation.The extension must
+         be .txt."""
     ...
 
-@gptooldoc('Divide_3d', None)
-def Divide(in_raster_or_constant1=..., in_raster_or_constant2=..., out_raster=...): # -> conversion | int | float | complex | basestring | list[Unknown] | tuple[Unknown, ...] | dict[Unknown, Unknown]:
+@gptooldoc("Divide_3d", None)
+def Divide(
+    in_raster_or_constant1=..., in_raster_or_constant2=..., out_raster=...
+):  # -> conversion | int | float | complex | basestring | list[Unknown] | tuple[Unknown, ...] | dict[Unknown, Unknown]:
     """Divide(in_raster_or_constant1, in_raster_or_constant2, out_raster)
 
-        Divides the values of two rasters on a cell-by-cell basis.
+       Divides the values of two rasters on a cell-by-cell basis.
 
-     INPUTS:
-      in_raster_or_constant1 (Composite Geodataset):
-          The input whose values will be divided by the second input.A number
-          can be used as an input for this parameter, provided a raster
-          is specified for the other parameter. To specify a number for both
-          inputs, the cell size and extent must first be set in the environment.
-      in_raster_or_constant2 (Composite Geodataset):
-          The input whose values the first input are to be divided by.A number
-          can be used as an input for this parameter, provided a raster
-          is specified for the other parameter. To specify a number for both
-          inputs, the cell size and extent must first be set in the environment.
+    INPUTS:
+     in_raster_or_constant1 (Composite Geodataset):
+         The input whose values will be divided by the second input.A number
+         can be used as an input for this parameter, provided a raster
+         is specified for the other parameter. To specify a number for both
+         inputs, the cell size and extent must first be set in the environment.
+     in_raster_or_constant2 (Composite Geodataset):
+         The input whose values the first input are to be divided by.A number
+         can be used as an input for this parameter, provided a raster
+         is specified for the other parameter. To specify a number for both
+         inputs, the cell size and extent must first be set in the environment.
 
-     OUTPUTS:
-      out_raster (Raster Dataset):
-          The output raster.The cell values are the quotient of the first input
-          raster (dividend)
-          divided by the second input (divisor)."""
+    OUTPUTS:
+     out_raster (Raster Dataset):
+         The output raster.The cell values are the quotient of the first input
+         raster (dividend)
+         divided by the second input (divisor)."""
     ...
 
-@gptooldoc('Float_3d', None)
-def Float(in_raster_or_constant=..., out_raster=...): # -> conversion | int | float | complex | basestring | list[Unknown] | tuple[Unknown, ...] | dict[Unknown, Unknown]:
+@gptooldoc("Float_3d", None)
+def Float(
+    in_raster_or_constant=..., out_raster=...
+):  # -> conversion | int | float | complex | basestring | list[Unknown] | tuple[Unknown, ...] | dict[Unknown, Unknown]:
     """Float(in_raster_or_constant, out_raster)
 
-        Converts each cell value of a raster into a floating-point
-        representation.
+       Converts each cell value of a raster into a floating-point
+       representation.
 
-     INPUTS:
-      in_raster_or_constant (Composite Geodataset):
-          The input raster to be converted to floating point.To use a number as
-          an input for this parameter, the cell size and
-          extent must first be set in the environment.
+    INPUTS:
+     in_raster_or_constant (Composite Geodataset):
+         The input raster to be converted to floating point.To use a number as
+         an input for this parameter, the cell size and
+         extent must first be set in the environment.
 
-     OUTPUTS:
-      out_raster (Raster Dataset):
-          The output raster.The cell values are the floating-point
-          representation of the input
-          values."""
+    OUTPUTS:
+     out_raster (Raster Dataset):
+         The output raster.The cell values are the floating-point
+         representation of the input
+         values."""
     ...
 
-@gptooldoc('Int_3d', None)
-def Int(in_raster_or_constant=..., out_raster=...): # -> conversion | int | float | complex | basestring | list[Unknown] | tuple[Unknown, ...] | dict[Unknown, Unknown]:
+@gptooldoc("Int_3d", None)
+def Int(
+    in_raster_or_constant=..., out_raster=...
+):  # -> conversion | int | float | complex | basestring | list[Unknown] | tuple[Unknown, ...] | dict[Unknown, Unknown]:
     """Int(in_raster_or_constant, out_raster)
 
-        Converts each cell value of a raster to an integer by truncation.
+       Converts each cell value of a raster to an integer by truncation.
 
-     INPUTS:
-      in_raster_or_constant (Composite Geodataset):
-          The input raster to be converted to integer.To use a number as an
-          input for this parameter, the cell size and
-          extent must first be set in the environment.
+    INPUTS:
+     in_raster_or_constant (Composite Geodataset):
+         The input raster to be converted to integer.To use a number as an
+         input for this parameter, the cell size and
+         extent must first be set in the environment.
 
-     OUTPUTS:
-      out_raster (Raster Dataset):
-          The output raster.The cell values are the input values converted to
-          integers by
-          truncation."""
+    OUTPUTS:
+     out_raster (Raster Dataset):
+         The output raster.The cell values are the input values converted to
+         integers by
+         truncation."""
     ...
 
-@gptooldoc('Minus_3d', None)
-def Minus(in_raster_or_constant1=..., in_raster_or_constant2=..., out_raster=...): # -> conversion | int | float | complex | basestring | list[Unknown] | tuple[Unknown, ...] | dict[Unknown, Unknown]:
+@gptooldoc("Minus_3d", None)
+def Minus(
+    in_raster_or_constant1=..., in_raster_or_constant2=..., out_raster=...
+):  # -> conversion | int | float | complex | basestring | list[Unknown] | tuple[Unknown, ...] | dict[Unknown, Unknown]:
     """Minus(in_raster_or_constant1, in_raster_or_constant2, out_raster)
 
-        Subtracts the value of the second input raster from the value of the
-        first input raster on a cell-by-cell basis.
+       Subtracts the value of the second input raster from the value of the
+       first input raster on a cell-by-cell basis.
 
-     INPUTS:
-      in_raster_or_constant1 (Composite Geodataset):
-          The input from which to subtract the values in the second input.A
-          number can be used as an input for this parameter, provided a raster
-          is specified for the other parameter. To specify a number for both
-          inputs, the cell size and extent must first be set in the environment.
-      in_raster_or_constant2 (Composite Geodataset):
-          The input values to subtract from the values in the first input.A
-          number can be used as an input for this parameter, provided a raster
-          is specified for the other parameter. To specify a number for both
-          inputs, the cell size and extent must first be set in the environment.
+    INPUTS:
+     in_raster_or_constant1 (Composite Geodataset):
+         The input from which to subtract the values in the second input.A
+         number can be used as an input for this parameter, provided a raster
+         is specified for the other parameter. To specify a number for both
+         inputs, the cell size and extent must first be set in the environment.
+     in_raster_or_constant2 (Composite Geodataset):
+         The input values to subtract from the values in the first input.A
+         number can be used as an input for this parameter, provided a raster
+         is specified for the other parameter. To specify a number for both
+         inputs, the cell size and extent must first be set in the environment.
 
-     OUTPUTS:
-      out_raster (Raster Dataset):
-          The output raster.The cell values are the result of subtracting the
-          second input from
-          the first."""
+    OUTPUTS:
+     out_raster (Raster Dataset):
+         The output raster.The cell values are the result of subtracting the
+         second input from
+         the first."""
     ...
 
-@gptooldoc('Plus_3d', None)
-def Plus(in_raster_or_constant1=..., in_raster_or_constant2=..., out_raster=...): # -> conversion | int | float | complex | basestring | list[Unknown] | tuple[Unknown, ...] | dict[Unknown, Unknown]:
+@gptooldoc("Plus_3d", None)
+def Plus(
+    in_raster_or_constant1=..., in_raster_or_constant2=..., out_raster=...
+):  # -> conversion | int | float | complex | basestring | list[Unknown] | tuple[Unknown, ...] | dict[Unknown, Unknown]:
     """Plus(in_raster_or_constant1, in_raster_or_constant2, out_raster)
 
-        Adds (sums) the values of two rasters on a cell-by-cell basis.
+       Adds (sums) the values of two rasters on a cell-by-cell basis.
 
-     INPUTS:
-      in_raster_or_constant1 (Composite Geodataset):
-          The input whose values will be added to.A number can be used as an
-          input for this parameter, provided a raster
-          is specified for the other parameter. To specify a number for both
-          inputs, the cell size and extent must first be set in the environment.
-      in_raster_or_constant2 (Composite Geodataset):
-          The input whose values will be added to the first input.A number can
-          be used as an input for this parameter, provided a raster
-          is specified for the other parameter. To specify a number for both
-          inputs, the cell size and extent must first be set in the environment.
+    INPUTS:
+     in_raster_or_constant1 (Composite Geodataset):
+         The input whose values will be added to.A number can be used as an
+         input for this parameter, provided a raster
+         is specified for the other parameter. To specify a number for both
+         inputs, the cell size and extent must first be set in the environment.
+     in_raster_or_constant2 (Composite Geodataset):
+         The input whose values will be added to the first input.A number can
+         be used as an input for this parameter, provided a raster
+         is specified for the other parameter. To specify a number for both
+         inputs, the cell size and extent must first be set in the environment.
 
-     OUTPUTS:
-      out_raster (Raster Dataset):
-          The output raster.The cell values are the sum of the first input added
-          to the second."""
+    OUTPUTS:
+     out_raster (Raster Dataset):
+         The output raster.The cell values are the sum of the first input added
+         to the second."""
     ...
 
-@gptooldoc('Times_3d', None)
-def Times(in_raster_or_constant1=..., in_raster_or_constant2=..., out_raster=...): # -> conversion | int | float | complex | basestring | list[Unknown] | tuple[Unknown, ...] | dict[Unknown, Unknown]:
+@gptooldoc("Times_3d", None)
+def Times(
+    in_raster_or_constant1=..., in_raster_or_constant2=..., out_raster=...
+):  # -> conversion | int | float | complex | basestring | list[Unknown] | tuple[Unknown, ...] | dict[Unknown, Unknown]:
     """Times(in_raster_or_constant1, in_raster_or_constant2, out_raster)
 
-        Multiplies the values of two rasters on a cell-by-cell basis.
+       Multiplies the values of two rasters on a cell-by-cell basis.
 
-     INPUTS:
-      in_raster_or_constant1 (Composite Geodataset):
-          The input containing the values to be multiplied.A number can be used
-          as an input for this parameter, provided a raster
-          is specified for the other parameter. To specify a number for both
-          inputs, the cell size and extent must first be set in the environment.
-      in_raster_or_constant2 (Composite Geodataset):
-          The input containing the values by which the first input will be
-          multiplied.A number can be used as an input for this parameter,
-          provided a raster
-          is specified for the other parameter. To specify a number for both
-          inputs, the cell size and extent must first be set in the environment.
+    INPUTS:
+     in_raster_or_constant1 (Composite Geodataset):
+         The input containing the values to be multiplied.A number can be used
+         as an input for this parameter, provided a raster
+         is specified for the other parameter. To specify a number for both
+         inputs, the cell size and extent must first be set in the environment.
+     in_raster_or_constant2 (Composite Geodataset):
+         The input containing the values by which the first input will be
+         multiplied.A number can be used as an input for this parameter,
+         provided a raster
+         is specified for the other parameter. To specify a number for both
+         inputs, the cell size and extent must first be set in the environment.
 
-     OUTPUTS:
-      out_raster (Raster Dataset):
-          The output raster.The cell values are the product of the first input
-          multiplied by the
-          second."""
+    OUTPUTS:
+     out_raster (Raster Dataset):
+         The output raster.The cell values are the product of the first input
+         multiplied by the
+         second."""
     ...
 
-@gptooldoc('Lookup_3d', None)
-def Lookup(in_raster=..., lookup_field=..., out_raster=...): # -> conversion | int | float | complex | basestring | list[Unknown] | tuple[Unknown, ...] | dict[Unknown, Unknown]:
+@gptooldoc("Lookup_3d", None)
+def Lookup(
+    in_raster=..., lookup_field=..., out_raster=...
+):  # -> conversion | int | float | complex | basestring | list[Unknown] | tuple[Unknown, ...] | dict[Unknown, Unknown]:
     """Lookup(in_raster, lookup_field, out_raster)
 
-        Creates a raster by looking up values in another field in the table of
-        the input raster.
+       Creates a raster by looking up values in another field in the table of
+       the input raster.
 
-     INPUTS:
-      in_raster (Composite Geodataset):
-          The input raster that contains a field from which to create a new
-          raster.
-      lookup_field (Field):
-          Field containing the desired values for the new raster.It can be a
-          numeric or string type.
+    INPUTS:
+     in_raster (Composite Geodataset):
+         The input raster that contains a field from which to create a new
+         raster.
+     lookup_field (Field):
+         Field containing the desired values for the new raster.It can be a
+         numeric or string type.
 
-     OUTPUTS:
-      out_raster (Raster Dataset):
-          The output raster whose values are determined by the specified field
-          of the input raster."""
+    OUTPUTS:
+     out_raster (Raster Dataset):
+         The output raster whose values are determined by the specified field
+         of the input raster."""
     ...
 
-@gptooldoc('ReclassByASCIIFile_3d', None)
-def ReclassByASCIIFile(in_raster=..., in_remap_file=..., out_raster=..., missing_values=...): # -> conversion | int | float | complex | basestring | list[Unknown] | tuple[Unknown, ...] | dict[Unknown, Unknown]:
+@gptooldoc("ReclassByASCIIFile_3d", None)
+def ReclassByASCIIFile(
+    in_raster=..., in_remap_file=..., out_raster=..., missing_values=...
+):  # -> conversion | int | float | complex | basestring | list[Unknown] | tuple[Unknown, ...] | dict[Unknown, Unknown]:
     """ReclassByASCIIFile(in_raster, in_remap_file, out_raster, {missing_values})
 
-        Reclassifies (or changes) the values of the input cells of a raster
-        using an ASCII remap file.
+       Reclassifies (or changes) the values of the input cells of a raster
+       using an ASCII remap file.
 
-     INPUTS:
-      in_raster (Composite Geodataset):
-          The input raster to be reclassified.
-      in_remap_file (File):
-          ASCII remap file defining the single values or ranges to be
-          reclassified and the values they will become.Allowed extensions for
-          the ASCII remap files are .rmp, .txt, and .asc.
-      missing_values {Boolean}:
-          Denotes whether missing values in the reclass file retain their value
-          or get mapped to NoData.
+    INPUTS:
+     in_raster (Composite Geodataset):
+         The input raster to be reclassified.
+     in_remap_file (File):
+         ASCII remap file defining the single values or ranges to be
+         reclassified and the values they will become.Allowed extensions for
+         the ASCII remap files are .rmp, .txt, and .asc.
+     missing_values {Boolean}:
+         Denotes whether missing values in the reclass file retain their value
+         or get mapped to NoData.
 
-          * DATA-Signifies that if any cell location on the input raster
-          contains a value that is not present or reclassed in the remap file,
-          the value should remain intact and be written for that location to the
-          output raster. This is the default.
+         * DATA-Signifies that if any cell location on the input raster
+         contains a value that is not present or reclassed in the remap file,
+         the value should remain intact and be written for that location to the
+         output raster. This is the default.
 
-          * NODATA-Signifies that if any cell location on the input raster
-          contains a value that is not present or reclassed in the remap file,
-          the value will be reclassed to NoData for that location on the output
-          raster.
+         * NODATA-Signifies that if any cell location on the input raster
+         contains a value that is not present or reclassed in the remap file,
+         the value will be reclassed to NoData for that location on the output
+         raster.
 
-     OUTPUTS:
-      out_raster (Raster Dataset):
-          The output reclassified raster.The output will always be of integer
-          type."""
+    OUTPUTS:
+     out_raster (Raster Dataset):
+         The output reclassified raster.The output will always be of integer
+         type."""
     ...
 
-@gptooldoc('ReclassByTable_3d', None)
-def ReclassByTable(in_raster=..., in_remap_table=..., from_value_field=..., to_value_field=..., output_value_field=..., out_raster=..., missing_values=...): # -> conversion | int | float | complex | basestring | list[Unknown] | tuple[Unknown, ...] | dict[Unknown, Unknown]:
+@gptooldoc("ReclassByTable_3d", None)
+def ReclassByTable(
+    in_raster=...,
+    in_remap_table=...,
+    from_value_field=...,
+    to_value_field=...,
+    output_value_field=...,
+    out_raster=...,
+    missing_values=...,
+):  # -> conversion | int | float | complex | basestring | list[Unknown] | tuple[Unknown, ...] | dict[Unknown, Unknown]:
     """ReclassByTable(in_raster, in_remap_table, from_value_field, to_value_field, output_value_field, out_raster, {missing_values})
 
-        Reclassifies (or changes) the values of the input cells of a raster
-        using a remap table.
+       Reclassifies (or changes) the values of the input cells of a raster
+       using a remap table.
 
-     INPUTS:
-      in_raster (Composite Geodataset):
-          The input raster to be reclassified.
-      in_remap_table (Table View):
-          Table holding fields defining value ranges to be reclassified and the
-          values they will become.
-      from_value_field (Field):
-          Field holding the beginning value for each value range to be
-          reclassified.This is a numeric field of the input remap table.
-      to_value_field (Field):
-          Field holding the ending value for each value range to be
-          reclassified.This is a numeric field of the input remap table.
-      output_value_field (Field):
-          Field holding the integer values to which each range should be
-          changed.This is an integer field of the input remap table.
-      missing_values {Boolean}:
-          Denotes whether missing values in the reclass table retain their value
-          or get mapped to NoData.
+    INPUTS:
+     in_raster (Composite Geodataset):
+         The input raster to be reclassified.
+     in_remap_table (Table View):
+         Table holding fields defining value ranges to be reclassified and the
+         values they will become.
+     from_value_field (Field):
+         Field holding the beginning value for each value range to be
+         reclassified.This is a numeric field of the input remap table.
+     to_value_field (Field):
+         Field holding the ending value for each value range to be
+         reclassified.This is a numeric field of the input remap table.
+     output_value_field (Field):
+         Field holding the integer values to which each range should be
+         changed.This is an integer field of the input remap table.
+     missing_values {Boolean}:
+         Denotes whether missing values in the reclass table retain their value
+         or get mapped to NoData.
 
-          * DATA-Signifies that if any cell location on the input raster
-          contains a value not present or reclassed in a remap table, the value
-          should remain intact and be written for that location to the output
-          raster. This is the default.
+         * DATA-Signifies that if any cell location on the input raster
+         contains a value not present or reclassed in a remap table, the value
+         should remain intact and be written for that location to the output
+         raster. This is the default.
 
-          * NODATA-Signifies that if any cell location on the input raster
-          contains a value not present or reclassed in a remap table, the value
-          will be reclassed to NoData for that location on the output raster.
+         * NODATA-Signifies that if any cell location on the input raster
+         contains a value not present or reclassed in a remap table, the value
+         will be reclassed to NoData for that location on the output raster.
 
-     OUTPUTS:
-      out_raster (Raster Dataset):
-          The output reclassified raster.The output will always be of integer
-          type."""
+    OUTPUTS:
+     out_raster (Raster Dataset):
+         The output reclassified raster.The output will always be of integer
+         type."""
     ...
 
-@gptooldoc('Reclassify_3d', None)
-def Reclassify(in_raster=..., reclass_field=..., remap=..., out_raster=..., missing_values=...): # -> conversion | int | float | complex | basestring | list[Unknown] | tuple[Unknown, ...] | dict[Unknown, Unknown]:
+@gptooldoc("Reclassify_3d", None)
+def Reclassify(
+    in_raster=..., reclass_field=..., remap=..., out_raster=..., missing_values=...
+):  # -> conversion | int | float | complex | basestring | list[Unknown] | tuple[Unknown, ...] | dict[Unknown, Unknown]:
     """Reclassify(in_raster, reclass_field, remap, out_raster, {missing_values})
 
-        Reclassifies (or changes) the values in a raster.
+       Reclassifies (or changes) the values in a raster.
 
-     INPUTS:
-      in_raster (Composite Geodataset):
-          The input raster to be reclassified.
-      reclass_field (Field):
-          Field denoting the values that will be reclassified.
-      remap (Remap):
-          A remap list that defines how the values will be reclassified.The
-          remap list is composed of three components: From, To, and New
-          values. Each row in the remap list is separated by a semicolon, and
-          the three components are separated by spaces. For example"0 5 1;5.01
-          7.5 2;7.5 10 3"
-      missing_values {Boolean}:
-          Denotes whether missing values in the reclass table retain their value
-          or get mapped to NoData.
+    INPUTS:
+     in_raster (Composite Geodataset):
+         The input raster to be reclassified.
+     reclass_field (Field):
+         Field denoting the values that will be reclassified.
+     remap (Remap):
+         A remap list that defines how the values will be reclassified.The
+         remap list is composed of three components: From, To, and New
+         values. Each row in the remap list is separated by a semicolon, and
+         the three components are separated by spaces. For example"0 5 1;5.01
+         7.5 2;7.5 10 3"
+     missing_values {Boolean}:
+         Denotes whether missing values in the reclass table retain their value
+         or get mapped to NoData.
 
-          * DATA-Signifies that if any cell location on the input raster
-          contains a value that is not present or reclassed in a remap table,
-          the value should remain intact and be written for that location to the
-          output raster. This is the default.
+         * DATA-Signifies that if any cell location on the input raster
+         contains a value that is not present or reclassed in a remap table,
+         the value should remain intact and be written for that location to the
+         output raster. This is the default.
 
-          * NODATA-Signifies that if any cell location on the input raster
-          contains a value that is not present or reclassed in a remap table,
-          the value will be reclassed to NoData for that location on the output
-          raster.
+         * NODATA-Signifies that if any cell location on the input raster
+         contains a value that is not present or reclassed in a remap table,
+         the value will be reclassed to NoData for that location on the output
+         raster.
 
-     OUTPUTS:
-      out_raster (Raster Dataset):
-          The output reclassified raster.The output will always be of integer
-          type."""
+    OUTPUTS:
+     out_raster (Raster Dataset):
+         The output reclassified raster.The output will always be of integer
+         type."""
     ...
 
-@gptooldoc('Slice_3d', None)
-def Slice(in_raster=..., out_raster=..., number_zones=..., slice_type=..., base_output_zone=..., nodata_to_value=..., class_interval_size=...): # -> conversion | int | float | complex | basestring | list[Unknown] | tuple[Unknown, ...] | dict[Unknown, Unknown]:
+@gptooldoc("Slice_3d", None)
+def Slice(
+    in_raster=...,
+    out_raster=...,
+    number_zones=...,
+    slice_type=...,
+    base_output_zone=...,
+    nodata_to_value=...,
+    class_interval_size=...,
+):  # -> conversion | int | float | complex | basestring | list[Unknown] | tuple[Unknown, ...] | dict[Unknown, Unknown]:
     """Slice(in_raster, out_raster, {number_zones}, {slice_type}, {base_output_zone}, {nodata_to_value}, {class_interval_size})
 
-        Slices or reclassifies the range of values of the input cells into
-        zones (classes). The available data classification methods are equal
-        interval, equal area (quantile), natural breaks, standard deviation
-        (mean-centered), standard deviation (mean as a break), defined
-        interval, and geometric interval.
+       Slices or reclassifies the range of values of the input cells into
+       zones (classes). The available data classification methods are equal
+       interval, equal area (quantile), natural breaks, standard deviation
+       (mean-centered), standard deviation (mean as a break), defined
+       interval, and geometric interval.
 
-     INPUTS:
-      in_raster (Composite Geodataset):
-          The input raster to be reclassified.
-      number_zones {Long}:
-          The number of zones that the input raster will be reclassified
-          into.This parameter is required when the slice_type parameter value is
-          EQUAL_AREA, EQUAL_INTERVAL, NATURAL_BREAKS, or GEOMETRIC_INTERVAL.When
-          the slice_type parameter value is
-          STANDARD_DEVIATION_MEAN_CENTERED, STANDARD_DEVIATION_MEAN_BREAK, or
-          DEFINED_INTERVAL, the number_zones parameter is not supported. The
-          number of output zones will be determined by the class_interval_size
-          parameter value.
-      slice_type {String}:
-          Specifies the manner in which the input raster will be reclassified
-          into zones.
+    INPUTS:
+     in_raster (Composite Geodataset):
+         The input raster to be reclassified.
+     number_zones {Long}:
+         The number of zones that the input raster will be reclassified
+         into.This parameter is required when the slice_type parameter value is
+         EQUAL_AREA, EQUAL_INTERVAL, NATURAL_BREAKS, or GEOMETRIC_INTERVAL.When
+         the slice_type parameter value is
+         STANDARD_DEVIATION_MEAN_CENTERED, STANDARD_DEVIATION_MEAN_BREAK, or
+         DEFINED_INTERVAL, the number_zones parameter is not supported. The
+         number of output zones will be determined by the class_interval_size
+         parameter value.
+     slice_type {String}:
+         Specifies the manner in which the input raster will be reclassified
+         into zones.
 
-          * EQUAL_INTERVAL-The range of input values will be equally divided
-          into the specified number of output zones to determine the class
-          breaks. This is the default.
+         * EQUAL_INTERVAL-The range of input values will be equally divided
+         into the specified number of output zones to determine the class
+         breaks. This is the default.
 
-          * EQUAL_AREA-The number of input cells will be equally divided into
-          the specified number of output zones to determine the class breaks.
-          Each zone will have a similar number of cells, indicating a similar
-          amount of area.
+         * EQUAL_AREA-The number of input cells will be equally divided into
+         the specified number of output zones to determine the class breaks.
+         Each zone will have a similar number of cells, indicating a similar
+         amount of area.
 
-          * NATURAL_BREAKS-The class breaks will be determined in a way that
-          minimizes the variance within classes and maximizes the variance
-          between classes. The breaks are usually set at relatively big changes
-          in the data values.
+         * NATURAL_BREAKS-The class breaks will be determined in a way that
+         minimizes the variance within classes and maximizes the variance
+         between classes. The breaks are usually set at relatively big changes
+         in the data values.
 
-          * STANDARD_DEVIATION_MEAN_CENTERED-The class breaks will be placed
-          above and below the mean value at a specified interval size, such as
-          2, 1, or 0.5, in the unit of standard deviation, until reaching the
-          minimum and maximum values of the input raster. Mean is not used as a
-          break but centered by two class breaks. One break is at half of the
-          specified interval size above the mean and the other is at half of the
-          specified interval size below the mean. Standard deviation is
-          calculated with the n-1 denominator, where n is the number of pixels
-          with value.
+         * STANDARD_DEVIATION_MEAN_CENTERED-The class breaks will be placed
+         above and below the mean value at a specified interval size, such as
+         2, 1, or 0.5, in the unit of standard deviation, until reaching the
+         minimum and maximum values of the input raster. Mean is not used as a
+         break but centered by two class breaks. One break is at half of the
+         specified interval size above the mean and the other is at half of the
+         specified interval size below the mean. Standard deviation is
+         calculated with the n-1 denominator, where n is the number of pixels
+         with value.
 
-          * STANDARD_DEVIATION_MEAN_BREAK-The mean value will be used as a class
-          break. Other class breaks will be placed above and below the mean
-          value at a specified interval size, such as 2, 1, or 0.5, in the unit
-          of standard deviation, until reaching the minimum and maximum values
-          of the input raster. Standard deviation is calculated with the n-1
-          denominator, where n is the number of pixels with value.
+         * STANDARD_DEVIATION_MEAN_BREAK-The mean value will be used as a class
+         break. Other class breaks will be placed above and below the mean
+         value at a specified interval size, such as 2, 1, or 0.5, in the unit
+         of standard deviation, until reaching the minimum and maximum values
+         of the input raster. Standard deviation is calculated with the n-1
+         denominator, where n is the number of pixels with value.
 
-          * DEFINED_INTERVAL-The class breaks will be set to zero and a multiple
-          of the specified interval size relative to zero. They will then be
-          clipped to the minimum and maximum values of the input data for the
-          first and last classes. For a value range that contains zero, zero
-          will always be included as a break point.
+         * DEFINED_INTERVAL-The class breaks will be set to zero and a multiple
+         of the specified interval size relative to zero. They will then be
+         clipped to the minimum and maximum values of the input data for the
+         first and last classes. For a value range that contains zero, zero
+         will always be included as a break point.
 
-          * GEOMETRIC_INTERVAL-The class breaks will be created based on class
-          intervals that have a geometric series. This is a pattern in which the
-          current value equals the previous value divided by a geometric
-          coefficient. The geometric coefficient in this classifier can change
-          once (to its inverse) to optimize the class ranges. The algorithm
-          creates these geometrical intervals by minimizing the sum of squares
-          of the number of elements in each class. This ensures that each class
-          has approximately the same number of values and that the change
-          between intervals is consistent.
-      base_output_zone {Long}:
-          The starting value that will be used for zones (classes) on the output
-          raster dataset.Classes will be assigned integer values, increasing by
-          1 from the
-          starting value.The default starting value is 1.
-      nodata_to_value {Long}:
-          Replace NoData with a value in the output.If this parameter is not
-          set, NoData cells will remain as NoData in
-          the output raster.
-      class_interval_size {Double}:
-          The size of the interval between classes.This parameter is required
-          when the slice_type parameter is set to
-          DEFINED_INTERVAL, STANDARD_DEVIATION_MEAN_CENTERED, or
-          STANDARD_DEVIATION_MEAN_BREAK.If DEFINED_INTERVAL is used, the
-          interval size indicates the actual
-          value range of a class used to calculate class breaks.If
-          STANDARD_DEVIATION_MEAN_CENTERED or STANDARD_DEVIATION_MEAN_BREAK
-          is used, the interval size indicates the number of standard deviations
-          used to calculate class breaks.
+         * GEOMETRIC_INTERVAL-The class breaks will be created based on class
+         intervals that have a geometric series. This is a pattern in which the
+         current value equals the previous value divided by a geometric
+         coefficient. The geometric coefficient in this classifier can change
+         once (to its inverse) to optimize the class ranges. The algorithm
+         creates these geometrical intervals by minimizing the sum of squares
+         of the number of elements in each class. This ensures that each class
+         has approximately the same number of values and that the change
+         between intervals is consistent.
+     base_output_zone {Long}:
+         The starting value that will be used for zones (classes) on the output
+         raster dataset.Classes will be assigned integer values, increasing by
+         1 from the
+         starting value.The default starting value is 1.
+     nodata_to_value {Long}:
+         Replace NoData with a value in the output.If this parameter is not
+         set, NoData cells will remain as NoData in
+         the output raster.
+     class_interval_size {Double}:
+         The size of the interval between classes.This parameter is required
+         when the slice_type parameter is set to
+         DEFINED_INTERVAL, STANDARD_DEVIATION_MEAN_CENTERED, or
+         STANDARD_DEVIATION_MEAN_BREAK.If DEFINED_INTERVAL is used, the
+         interval size indicates the actual
+         value range of a class used to calculate class breaks.If
+         STANDARD_DEVIATION_MEAN_CENTERED or STANDARD_DEVIATION_MEAN_BREAK
+         is used, the interval size indicates the number of standard deviations
+         used to calculate class breaks.
 
-     OUTPUTS:
-      out_raster (Raster Dataset):
-          The output reclassified raster.The output will always be of integer
-          type.The attribute table of the output raster will have two new fields
-          in
-          addition to the standard ObjectID, Value, and Count fields. The Value
-          field indicates the class value. The ZoneMin and ZoneMax fields record
-          the minimum and maximum values, respectively, used for generating a
-          class."""
+    OUTPUTS:
+     out_raster (Raster Dataset):
+         The output reclassified raster.The output will always be of integer
+         type.The attribute table of the output raster will have two new fields
+         in
+         addition to the standard ObjectID, Value, and Count fields. The Value
+         field indicates the class value. The ZoneMin and ZoneMax fields record
+         the minimum and maximum values, respectively, used for generating a
+         class."""
     ...
 
-@gptooldoc('Aspect_3d', None)
-def Aspect(in_raster=..., out_raster=..., method=..., z_unit=..., project_geodesic_azimuths=..., analysis_target_device=...): # -> conversion | int | float | complex | basestring | list[Unknown] | tuple[Unknown, ...] | dict[Unknown, Unknown]:
+@gptooldoc("Aspect_3d", None)
+def Aspect(
+    in_raster=...,
+    out_raster=...,
+    method=...,
+    z_unit=...,
+    project_geodesic_azimuths=...,
+    analysis_target_device=...,
+):  # -> conversion | int | float | complex | basestring | list[Unknown] | tuple[Unknown, ...] | dict[Unknown, Unknown]:
     """Aspect(in_raster, out_raster, {method}, {z_unit}, {project_geodesic_azimuths}, {analysis_target_device})
 
-        Derives the aspect from each cell of a raster surface.
+       Derives the aspect from each cell of a raster surface.
 
-     INPUTS:
-      in_raster (Composite Geodataset):
-          The input surface raster.
-      method {String}:
-          Specifies whether the calculation will be based on a planar (flat
-          earth) or a geodesic (ellipsoid) method.
+    INPUTS:
+     in_raster (Composite Geodataset):
+         The input surface raster.
+     method {String}:
+         Specifies whether the calculation will be based on a planar (flat
+         earth) or a geodesic (ellipsoid) method.
 
-          * PLANAR-The calculation will be performed on a projected flat plane
-          using a 2D Cartesian coordinate system. This is the default method.
+         * PLANAR-The calculation will be performed on a projected flat plane
+         using a 2D Cartesian coordinate system. This is the default method.
 
-          * GEODESIC-The calculation will be performed in a 3D Cartesian
-          coordinate system by considering the shape of the earth as an
-          ellipsoid.
-          The planar method is appropriate to use on local areas in a projection
-          that maintains correct distance and area. It is suitable for analyses
-          that cover areas such cities, counties, or smaller states in area. The
-          geodesic method produces a more accurate result, at the potential cost
-          of an increase in processing time.
-      z_unit {String}:
-          Specifies the linear unit that will be used for vertical z-values.It
-          is defined by a vertical coordinate system if it exists. If a
-          vertical coordinate system does not exist, define the z-unit using the
-          unit list to ensure correct geodesic computation. The default is
-          meter.
+         * GEODESIC-The calculation will be performed in a 3D Cartesian
+         coordinate system by considering the shape of the earth as an
+         ellipsoid.
+         The planar method is appropriate to use on local areas in a projection
+         that maintains correct distance and area. It is suitable for analyses
+         that cover areas such cities, counties, or smaller states in area. The
+         geodesic method produces a more accurate result, at the potential cost
+         of an increase in processing time.
+     z_unit {String}:
+         Specifies the linear unit that will be used for vertical z-values.It
+         is defined by a vertical coordinate system if it exists. If a
+         vertical coordinate system does not exist, define the z-unit using the
+         unit list to ensure correct geodesic computation. The default is
+         meter.
 
-          * INCH-The linear unit will be inches.
+         * INCH-The linear unit will be inches.
 
-          * FOOT-The linear unit will be feet.
+         * FOOT-The linear unit will be feet.
 
-          * YARD-The linear unit will be yards.
+         * YARD-The linear unit will be yards.
 
-          * MILE_US-The linear unit will be miles.
+         * MILE_US-The linear unit will be miles.
 
-          * NAUTICAL_MILE-The linear unit will be nautical miles.
+         * NAUTICAL_MILE-The linear unit will be nautical miles.
 
-          * MILLIMETER-The linear unit will be millimeters.
+         * MILLIMETER-The linear unit will be millimeters.
 
-          * CENTIMETER-The linear unit will be centimeters.
+         * CENTIMETER-The linear unit will be centimeters.
 
-          * METER-The linear unit will be meters.
+         * METER-The linear unit will be meters.
 
-          * KILOMETER-The linear unit will be kilometers.
+         * KILOMETER-The linear unit will be kilometers.
 
-          * DECIMETER-The linear unit will be decimeters.
-      project_geodesic_azimuths {Boolean}:
-          Specifies whether geodesic azimuths will be projected to correct the
-          angle distortion caused by the output spatial reference.
+         * DECIMETER-The linear unit will be decimeters.
+     project_geodesic_azimuths {Boolean}:
+         Specifies whether geodesic azimuths will be projected to correct the
+         angle distortion caused by the output spatial reference.
 
-          * GEODESIC_AZIMUTHS-Geodesic azimuths will not be projected. This is
-          the default.
+         * GEODESIC_AZIMUTHS-Geodesic azimuths will not be projected. This is
+         the default.
 
-          * PROJECT_GEODESIC_AZIMUTHS-Geodesic azimuths will be projected.
-      analysis_target_device {String}:
-          Specifies the device that will be used to perform the calculation.
+         * PROJECT_GEODESIC_AZIMUTHS-Geodesic azimuths will be projected.
+     analysis_target_device {String}:
+         Specifies the device that will be used to perform the calculation.
 
-          * GPU_THEN_CPU-If a compatible GPU is found, it will be used to
-          perform the calculation. Otherwise, the CPU will be used. This is the
-          default.
+         * GPU_THEN_CPU-If a compatible GPU is found, it will be used to
+         perform the calculation. Otherwise, the CPU will be used. This is the
+         default.
 
-          * CPU_ONLY-The calculation will only be performed on the CPU.
+         * CPU_ONLY-The calculation will only be performed on the CPU.
 
-          * GPU_ONLY-The calculation will only be performed on the GPU.
+         * GPU_ONLY-The calculation will only be performed on the GPU.
 
-     OUTPUTS:
-      out_raster (Raster Dataset):
-          The output aspect raster.It will be floating-point type."""
+    OUTPUTS:
+     out_raster (Raster Dataset):
+         The output aspect raster.It will be floating-point type."""
     ...
 
-@gptooldoc('Contour_3d', None)
-def Contour(in_raster=..., out_polyline_features=..., contour_interval=..., base_contour=..., z_factor=..., contour_type=..., max_vertices_per_feature=...): # -> conversion | int | float | complex | basestring | list[Unknown] | tuple[Unknown, ...] | dict[Unknown, Unknown]:
+@gptooldoc("Contour_3d", None)
+def Contour(
+    in_raster=...,
+    out_polyline_features=...,
+    contour_interval=...,
+    base_contour=...,
+    z_factor=...,
+    contour_type=...,
+    max_vertices_per_feature=...,
+):  # -> conversion | int | float | complex | basestring | list[Unknown] | tuple[Unknown, ...] | dict[Unknown, Unknown]:
     """Contour(in_raster, out_polyline_features, contour_interval, {base_contour}, {z_factor}, {contour_type}, {max_vertices_per_feature})
 
-        Creates a feature class of contours from a raster surface.
+       Creates a feature class of contours from a raster surface.
 
-     INPUTS:
-      in_raster (Composite Geodataset):
-          The input surface raster.
-      contour_interval (Double):
-          The interval, or distance, between contour lines.This can be any
-          positive number.
-      base_contour {Double}:
-          The base contour value.Contours are generated above and below this
-          value as needed to cover
-          the entire value range of the input raster. The default is zero.
-      z_factor {Double}:
-          The unit conversion factor used when generating contours. The default
-          value is 1.The contour lines are generated based on the z-values in
-          the input
-          raster, which are often measured in units of meters or feet. With the
-          default value of 1, the contours will be in the same units as the
-          z-values of the input raster. To create contours in a unit other than
-          that of the z-values, set an appropriate value for the z-factor. It is
-          not necessary to have the ground x,y and surface z-units be consistent
-          for this tool.For example, if the elevation values in the input raster
-          are in feet,
-          but you want the contours to be generated based on units of meters,
-          set the z-factor to 0.3048 (1 foot = 0.3048 meter).For another
-          example, consider an input raster in WGS84 geographic
-          coordinates and elevation units of meters for which you want to
-          generate contour lines every 100 feet with a base of 50 feet (so the
-          contours will be 50 ft, 150 ft, 250 ft, and so on). To do this, set
-          contour_interval to 100, base_contour to 50, and z_factor to 3.2808 (1
-          meter = 3.2808 feet).
-      contour_type {String}:
-          Specifies the type of output. The output can represent the contours as
-          either lines or polygons. There are several options for polygons.
+    INPUTS:
+     in_raster (Composite Geodataset):
+         The input surface raster.
+     contour_interval (Double):
+         The interval, or distance, between contour lines.This can be any
+         positive number.
+     base_contour {Double}:
+         The base contour value.Contours are generated above and below this
+         value as needed to cover
+         the entire value range of the input raster. The default is zero.
+     z_factor {Double}:
+         The unit conversion factor used when generating contours. The default
+         value is 1.The contour lines are generated based on the z-values in
+         the input
+         raster, which are often measured in units of meters or feet. With the
+         default value of 1, the contours will be in the same units as the
+         z-values of the input raster. To create contours in a unit other than
+         that of the z-values, set an appropriate value for the z-factor. It is
+         not necessary to have the ground x,y and surface z-units be consistent
+         for this tool.For example, if the elevation values in the input raster
+         are in feet,
+         but you want the contours to be generated based on units of meters,
+         set the z-factor to 0.3048 (1 foot = 0.3048 meter).For another
+         example, consider an input raster in WGS84 geographic
+         coordinates and elevation units of meters for which you want to
+         generate contour lines every 100 feet with a base of 50 feet (so the
+         contours will be 50 ft, 150 ft, 250 ft, and so on). To do this, set
+         contour_interval to 100, base_contour to 50, and z_factor to 3.2808 (1
+         meter = 3.2808 feet).
+     contour_type {String}:
+         Specifies the type of output. The output can represent the contours as
+         either lines or polygons. There are several options for polygons.
 
-          * CONTOUR-A polyline feature class of contours (isolines). This is the
-          default.
+         * CONTOUR-A polyline feature class of contours (isolines). This is the
+         default.
 
-          * CONTOUR_POLYGON-A polygon feature class of filled contours.
+         * CONTOUR_POLYGON-A polygon feature class of filled contours.
 
-          * CONTOUR_SHELL-A polygon feature class in which the upper bound of
-          the polygon increases cumulatively by the interval value. The lower
-          bound remains constant at the raster minimum.
+         * CONTOUR_SHELL-A polygon feature class in which the upper bound of
+         the polygon increases cumulatively by the interval value. The lower
+         bound remains constant at the raster minimum.
 
-          * CONTOUR_SHELL_UP-A polygon feature class in which the lower bound of
-          the polygon increases cumulatively, from the raster minimum, by the
-          interval value. The upper bound remains constant at the raster
-          maximum.
-      max_vertices_per_feature {Long}:
-          The vertex limit when subdividing a feature. This should only be used
-          when output features contain a very large number of vertices (many
-          millions).This parameter is intended as a way to subdivide extremely
-          large
-          features that can cause issues later on, for example, when storing,
-          analyzing, or drawing the features.If left empty, the output features
-          will not be split. The default is
-          empty.
+         * CONTOUR_SHELL_UP-A polygon feature class in which the lower bound of
+         the polygon increases cumulatively, from the raster minimum, by the
+         interval value. The upper bound remains constant at the raster
+         maximum.
+     max_vertices_per_feature {Long}:
+         The vertex limit when subdividing a feature. This should only be used
+         when output features contain a very large number of vertices (many
+         millions).This parameter is intended as a way to subdivide extremely
+         large
+         features that can cause issues later on, for example, when storing,
+         analyzing, or drawing the features.If left empty, the output features
+         will not be split. The default is
+         empty.
 
-     OUTPUTS:
-      out_polyline_features (Feature Class):
-          The output contour features."""
+    OUTPUTS:
+     out_polyline_features (Feature Class):
+         The output contour features."""
     ...
 
-@gptooldoc('ContourList_3d', None)
-def ContourList(in_raster=..., out_polyline_features=..., contour_values=...): # -> conversion | int | float | complex | basestring | list[Unknown] | tuple[Unknown, ...] | dict[Unknown, Unknown]:
+@gptooldoc("ContourList_3d", None)
+def ContourList(
+    in_raster=..., out_polyline_features=..., contour_values=...
+):  # -> conversion | int | float | complex | basestring | list[Unknown] | tuple[Unknown, ...] | dict[Unknown, Unknown]:
     """ContourList(in_raster, out_polyline_features, contour_values;contour_values...)
 
-        Creates a feature class of selected contour values from a raster
-        surface.
+       Creates a feature class of selected contour values from a raster
+       surface.
 
-     INPUTS:
-      in_raster (Composite Geodataset):
-          The input surface raster.
-      contour_values (Double):
-          List of z-values for which to create contours.
+    INPUTS:
+     in_raster (Composite Geodataset):
+         The input surface raster.
+     contour_values (Double):
+         List of z-values for which to create contours.
 
-     OUTPUTS:
-      out_polyline_features (Feature Class):
-          The output contour polyline features."""
+    OUTPUTS:
+     out_polyline_features (Feature Class):
+         The output contour polyline features."""
     ...
 
-@gptooldoc('ContourWithBarriers_3d', None)
-def ContourWithBarriers(in_raster=..., out_contour_feature_class=..., in_barrier_features=..., in_contour_type=..., in_contour_values_file=..., explicit_only=..., in_base_contour=..., in_contour_interval=..., in_indexed_contour_interval=..., in_contour_list=..., in_z_factor=...): # -> conversion | int | float | complex | basestring | list[Unknown] | tuple[Unknown, ...] | dict[Unknown, Unknown]:
+@gptooldoc("ContourWithBarriers_3d", None)
+def ContourWithBarriers(
+    in_raster=...,
+    out_contour_feature_class=...,
+    in_barrier_features=...,
+    in_contour_type=...,
+    in_contour_values_file=...,
+    explicit_only=...,
+    in_base_contour=...,
+    in_contour_interval=...,
+    in_indexed_contour_interval=...,
+    in_contour_list=...,
+    in_z_factor=...,
+):  # -> conversion | int | float | complex | basestring | list[Unknown] | tuple[Unknown, ...] | dict[Unknown, Unknown]:
     """ContourWithBarriers(in_raster, out_contour_feature_class, {in_barrier_features}, {in_contour_type}, {in_contour_values_file}, {explicit_only}, {in_base_contour}, {in_contour_interval}, {in_indexed_contour_interval}, {in_contour_list;in_contour_list...}, {in_z_factor})
 
-        Creates contours from a raster surface. The inclusion of barrier
-        features allows you to independently generate contours on either side
-        of a barrier.
+       Creates contours from a raster surface. The inclusion of barrier
+       features allows you to independently generate contours on either side
+       of a barrier.
 
-     INPUTS:
-      in_raster (Mosaic Dataset / Mosaic Layer / Raster Dataset / Raster Layer):
-          The input surface raster.
-      in_barrier_features {Feature Layer}:
-          The input barrier features.The features can be polyline or polygon
-          type.
-      in_contour_type {String}:
-          The type of contour to create.
+    INPUTS:
+     in_raster (Mosaic Dataset / Mosaic Layer / Raster Dataset / Raster Layer):
+         The input surface raster.
+     in_barrier_features {Feature Layer}:
+         The input barrier features.The features can be polyline or polygon
+         type.
+     in_contour_type {String}:
+         The type of contour to create.
 
-          * POLYLINES-The contour or isoline representation of the input
-          raster.
+         * POLYLINES-The contour or isoline representation of the input
+         raster.
 
-          * POLYGONS-Closed polygons representing the contours.
-          The current version of this tool only supports polyline output. If the
-          polygon output option is used, it will be ignored and polyline output
-          will be created.
-      in_contour_values_file {File}:
-          The base contour, contour interval, indexed contour interval, and
-          explicit contour values can also be specified via a text file.
-      explicit_only {Boolean}:
-          Only explicit contour values are used. Base contour, contour interval,
-          and indexed contour intervals are not specified.
+         * POLYGONS-Closed polygons representing the contours.
+         The current version of this tool only supports polyline output. If the
+         polygon output option is used, it will be ignored and polyline output
+         will be created.
+     in_contour_values_file {File}:
+         The base contour, contour interval, indexed contour interval, and
+         explicit contour values can also be specified via a text file.
+     explicit_only {Boolean}:
+         Only explicit contour values are used. Base contour, contour interval,
+         and indexed contour intervals are not specified.
 
-          * NO_EXPLICIT_VALUES_ONLY-The default, contour interval must be
-          specified.
+         * NO_EXPLICIT_VALUES_ONLY-The default, contour interval must be
+         specified.
 
-          * EXPLICIT_VALUES_ONLY-Only explicit contour values are specified.
-      in_base_contour {Double}:
-          The base contour value.Contours are generated above and below this
-          value as needed to cover
-          the entire value range of the input raster. The default is zero.
-      in_contour_interval {Double}:
-          The interval, or distance, between contour lines.This can be any
-          positive number.
-      in_indexed_contour_interval {Double}:
-          Contours will also be generated for this interval and will be flagged
-          accordingly in the output feature class.
-      in_contour_list {Double}:
-          Explicit values at which to create contours.
-      in_z_factor {Double}:
-          The unit conversion factor used when generating contours. The default
-          value is 1.The contour lines are generated based on the z-values in
-          the input
-          raster, which are often measured in units of meters or feet. With the
-          default value of 1, the contours will be in the same units as the
-          z-values of the input raster. To create contours in a unit other than
-          that of the z-values, set an appropriate value for the z-factor. It is
-          not necessary to have the ground x,y and surface z-units be consistent
-          for this tool.For example, if the elevation values in the input raster
-          are in feet,
-          but you want the contours to be generated based on units of meters,
-          set the z-factor to 0.3048 (1 foot = 0.3048 meter).
+         * EXPLICIT_VALUES_ONLY-Only explicit contour values are specified.
+     in_base_contour {Double}:
+         The base contour value.Contours are generated above and below this
+         value as needed to cover
+         the entire value range of the input raster. The default is zero.
+     in_contour_interval {Double}:
+         The interval, or distance, between contour lines.This can be any
+         positive number.
+     in_indexed_contour_interval {Double}:
+         Contours will also be generated for this interval and will be flagged
+         accordingly in the output feature class.
+     in_contour_list {Double}:
+         Explicit values at which to create contours.
+     in_z_factor {Double}:
+         The unit conversion factor used when generating contours. The default
+         value is 1.The contour lines are generated based on the z-values in
+         the input
+         raster, which are often measured in units of meters or feet. With the
+         default value of 1, the contours will be in the same units as the
+         z-values of the input raster. To create contours in a unit other than
+         that of the z-values, set an appropriate value for the z-factor. It is
+         not necessary to have the ground x,y and surface z-units be consistent
+         for this tool.For example, if the elevation values in the input raster
+         are in feet,
+         but you want the contours to be generated based on units of meters,
+         set the z-factor to 0.3048 (1 foot = 0.3048 meter).
 
-     OUTPUTS:
-      out_contour_feature_class (Feature Class):
-          The output contour features."""
+    OUTPUTS:
+     out_contour_feature_class (Feature Class):
+         The output contour features."""
     ...
 
-@gptooldoc('Curvature_3d', None)
-def Curvature(in_raster=..., out_curvature_raster=..., z_factor=..., out_profile_curve_raster=..., out_plan_curve_raster=...): # -> conversion | int | float | complex | basestring | list[Unknown] | tuple[Unknown, ...] | dict[Unknown, Unknown]:
+@gptooldoc("Curvature_3d", None)
+def Curvature(
+    in_raster=...,
+    out_curvature_raster=...,
+    z_factor=...,
+    out_profile_curve_raster=...,
+    out_plan_curve_raster=...,
+):  # -> conversion | int | float | complex | basestring | list[Unknown] | tuple[Unknown, ...] | dict[Unknown, Unknown]:
     """Curvature(in_raster, out_curvature_raster, {z_factor}, {out_profile_curve_raster}, {out_plan_curve_raster})
 
-        Calculates the curvature of a raster surface, optionally including
-        profile and plan curvature.
+       Calculates the curvature of a raster surface, optionally including
+       profile and plan curvature.
 
-     INPUTS:
-      in_raster (Composite Geodataset):
-          The input surface raster.
-      z_factor {Double}:
-          The number of ground x,y units in one surface z-unit.The z-factor
-          adjusts the units of measure for the z-units when they
-          are different from the x,y units of the input surface. The z-values of
-          the input surface are multiplied by the z-factor when calculating the
-          final output surface.If the x,y units and z-units are in the same
-          units of measure, the
-          z-factor is 1. This is the default.If the x,y units and z-units are in
-          different units of measure, the
-          z-factor must be set to the appropriate factor or the results will be
-          incorrect. For example, if the z-units are feet and the x,y units are
-          meters, you would use a z-factor of 0.3048 to convert the z-units from
-          feet to meters (1 foot = 0.3048 meter).
+    INPUTS:
+     in_raster (Composite Geodataset):
+         The input surface raster.
+     z_factor {Double}:
+         The number of ground x,y units in one surface z-unit.The z-factor
+         adjusts the units of measure for the z-units when they
+         are different from the x,y units of the input surface. The z-values of
+         the input surface are multiplied by the z-factor when calculating the
+         final output surface.If the x,y units and z-units are in the same
+         units of measure, the
+         z-factor is 1. This is the default.If the x,y units and z-units are in
+         different units of measure, the
+         z-factor must be set to the appropriate factor or the results will be
+         incorrect. For example, if the z-units are feet and the x,y units are
+         meters, you would use a z-factor of 0.3048 to convert the z-units from
+         feet to meters (1 foot = 0.3048 meter).
 
-     OUTPUTS:
-      out_curvature_raster (Raster Dataset):
-          The output curvature raster.It will be floating-point type.
-      out_profile_curve_raster {Raster Dataset}:
-          Output profile curve raster dataset.This is the curvature of the
-          surface in the direction of slope.It will be floating-point type.
-      out_plan_curve_raster {Raster Dataset}:
-          Output plan curve raster dataset.This is the curvature of the surface
-          perpendicular to the slope
-          direction.It will be floating-point type."""
+    OUTPUTS:
+     out_curvature_raster (Raster Dataset):
+         The output curvature raster.It will be floating-point type.
+     out_profile_curve_raster {Raster Dataset}:
+         Output profile curve raster dataset.This is the curvature of the
+         surface in the direction of slope.It will be floating-point type.
+     out_plan_curve_raster {Raster Dataset}:
+         Output plan curve raster dataset.This is the curvature of the surface
+         perpendicular to the slope
+         direction.It will be floating-point type."""
     ...
 
-@gptooldoc('HillShade_3d', None)
-def HillShade(in_raster=..., out_raster=..., azimuth=..., altitude=..., model_shadows=..., z_factor=...): # -> conversion | int | float | complex | basestring | list[Unknown] | tuple[Unknown, ...] | dict[Unknown, Unknown]:
+@gptooldoc("HillShade_3d", None)
+def HillShade(
+    in_raster=...,
+    out_raster=...,
+    azimuth=...,
+    altitude=...,
+    model_shadows=...,
+    z_factor=...,
+):  # -> conversion | int | float | complex | basestring | list[Unknown] | tuple[Unknown, ...] | dict[Unknown, Unknown]:
     """HillShade(in_raster, out_raster, {azimuth}, {altitude}, {model_shadows}, {z_factor})
 
-        Creates a shaded relief from a surface raster by considering the
-        illumination source angle and shadows.
+       Creates a shaded relief from a surface raster by considering the
+       illumination source angle and shadows.
 
-     INPUTS:
-      in_raster (Composite Geodataset):
-          The input surface raster.
-      azimuth {Double}:
-          Azimuth angle of the light source.The azimuth is expressed in positive
-          degrees from 0 to 360, measured
-          clockwise from north.The default is 315 degrees.
-      altitude {Double}:
-          Altitude angle of the light source above the horizon.The altitude is
-          expressed in positive degrees, with 0 degrees at the
-          horizon and 90 degrees directly overhead.The default is 45 degrees.
-      model_shadows {Boolean}:
-          Type of shaded relief to be generated.
+    INPUTS:
+     in_raster (Composite Geodataset):
+         The input surface raster.
+     azimuth {Double}:
+         Azimuth angle of the light source.The azimuth is expressed in positive
+         degrees from 0 to 360, measured
+         clockwise from north.The default is 315 degrees.
+     altitude {Double}:
+         Altitude angle of the light source above the horizon.The altitude is
+         expressed in positive degrees, with 0 degrees at the
+         horizon and 90 degrees directly overhead.The default is 45 degrees.
+     model_shadows {Boolean}:
+         Type of shaded relief to be generated.
 
-          * NO_SHADOWS-The output raster only considers local illumination
-          angles; the effects of shadows are not considered.The output values
-          can range from 0 to 255, with 0 representing the darkest areas, and
-          255 the brightest. This is the default.
+         * NO_SHADOWS-The output raster only considers local illumination
+         angles; the effects of shadows are not considered.The output values
+         can range from 0 to 255, with 0 representing the darkest areas, and
+         255 the brightest. This is the default.
 
-          * SHADOWS-The output shaded raster considers both local illumination
-          angles and shadows.The output values range from 0 to 255, with 0
-          representing the shadow areas, and 255 the brightest.
-      z_factor {Double}:
-          The number of ground x,y units in one surface z-unit.The z-factor
-          adjusts the units of measure for the z-units when they
-          are different from the x,y units of the input surface. The z-values of
-          the input surface are multiplied by the z-factor when calculating the
-          final output surface.If the x,y units and z-units are in the same
-          units of measure, the
-          z-factor is 1. This is the default.If the x,y units and z-units are in
-          different units of measure, the
-          z-factor must be set to the appropriate factor or the results will be
-          incorrect. For example, if the z-units are feet and the x,y units are
-          meters, you would use a z-factor of 0.3048 to convert the z-units from
-          feet to meters (1 foot = 0.3048 meter).
+         * SHADOWS-The output shaded raster considers both local illumination
+         angles and shadows.The output values range from 0 to 255, with 0
+         representing the shadow areas, and 255 the brightest.
+     z_factor {Double}:
+         The number of ground x,y units in one surface z-unit.The z-factor
+         adjusts the units of measure for the z-units when they
+         are different from the x,y units of the input surface. The z-values of
+         the input surface are multiplied by the z-factor when calculating the
+         final output surface.If the x,y units and z-units are in the same
+         units of measure, the
+         z-factor is 1. This is the default.If the x,y units and z-units are in
+         different units of measure, the
+         z-factor must be set to the appropriate factor or the results will be
+         incorrect. For example, if the z-units are feet and the x,y units are
+         meters, you would use a z-factor of 0.3048 to convert the z-units from
+         feet to meters (1 foot = 0.3048 meter).
 
-     OUTPUTS:
-      out_raster (Raster Dataset):
-          The output hillshade raster.The hillshade raster has an integer value
-          range of 0 to 255."""
+    OUTPUTS:
+     out_raster (Raster Dataset):
+         The output hillshade raster.The hillshade raster has an integer value
+         range of 0 to 255."""
     ...
 
-@gptooldoc('Slope_3d', None)
-def Slope(in_raster=..., out_raster=..., output_measurement=..., z_factor=..., method=..., z_unit=..., analysis_target_device=...): # -> conversion | int | float | complex | basestring | list[Unknown] | tuple[Unknown, ...] | dict[Unknown, Unknown]:
+@gptooldoc("Slope_3d", None)
+def Slope(
+    in_raster=...,
+    out_raster=...,
+    output_measurement=...,
+    z_factor=...,
+    method=...,
+    z_unit=...,
+    analysis_target_device=...,
+):  # -> conversion | int | float | complex | basestring | list[Unknown] | tuple[Unknown, ...] | dict[Unknown, Unknown]:
     """Slope(in_raster, out_raster, {output_measurement}, {z_factor}, {method}, {z_unit}, {analysis_target_device})
 
-        Identifies the slope (gradient or steepness) from each cell of a
-        raster.
+       Identifies the slope (gradient or steepness) from each cell of a
+       raster.
 
-     INPUTS:
-      in_raster (Composite Geodataset):
-          The input surface raster.
-      output_measurement {String}:
-          Specifies the measurement units (degrees or percentages) of the output
-          slope raster.
+    INPUTS:
+     in_raster (Composite Geodataset):
+         The input surface raster.
+     output_measurement {String}:
+         Specifies the measurement units (degrees or percentages) of the output
+         slope raster.
 
-          * DEGREE-The inclination of slope will be calculated in degrees.
+         * DEGREE-The inclination of slope will be calculated in degrees.
 
-          * PERCENT_RISE-The inclination of slope will be calculated as percent
-          rise, also referred to as the percent slope.
-      z_factor {Double}:
-          The number of ground x,y units in one surface z-unit.The z-factor
-          adjusts the units of measure for the z-units when they
-          are different from the x,y units of the input surface. The z-values of
-          the input surface are multiplied by the z-factor when calculating the
-          final output surface.If the x,y units and z-units are in the same
-          units of measure, the
-          z-factor is 1. This is the default.If the x,y units and z-units are in
-          different units of measure, the
-          z-factor must be set to the appropriate factor or the results will be
-          incorrect. For example, if the z-units are feet and the x,y units are
-          meters, you would use a z-factor of 0.3048 to convert the z-units from
-          feet to meters (1 foot = 0.3048 meter).
-      method {String}:
-          Specifies whether the calculation will be based on a planar (flat
-          earth) or a geodesic (ellipsoid) method.
+         * PERCENT_RISE-The inclination of slope will be calculated as percent
+         rise, also referred to as the percent slope.
+     z_factor {Double}:
+         The number of ground x,y units in one surface z-unit.The z-factor
+         adjusts the units of measure for the z-units when they
+         are different from the x,y units of the input surface. The z-values of
+         the input surface are multiplied by the z-factor when calculating the
+         final output surface.If the x,y units and z-units are in the same
+         units of measure, the
+         z-factor is 1. This is the default.If the x,y units and z-units are in
+         different units of measure, the
+         z-factor must be set to the appropriate factor or the results will be
+         incorrect. For example, if the z-units are feet and the x,y units are
+         meters, you would use a z-factor of 0.3048 to convert the z-units from
+         feet to meters (1 foot = 0.3048 meter).
+     method {String}:
+         Specifies whether the calculation will be based on a planar (flat
+         earth) or a geodesic (ellipsoid) method.
 
-          * PLANAR-The calculation will be performed on a projected flat plane
-          using a 2D Cartesian coordinate system. This is the default method.
+         * PLANAR-The calculation will be performed on a projected flat plane
+         using a 2D Cartesian coordinate system. This is the default method.
 
-          * GEODESIC-The calculation will be performed in a 3D Cartesian
-          coordinate system by considering the shape of the earth as an
-          ellipsoid.
-          The planar method is appropriate to use on local areas in a projection
-          that maintains correct distance and area. It is suitable for analyses
-          that cover areas such cities, counties, or smaller states in area. The
-          geodesic method produces a more accurate result, at the potential cost
-          of an increase in processing time.
-      z_unit {String}:
-          Specifies the linear unit that will be used for vertical z-values.It
-          is defined by a vertical coordinate system if it exists. If a
-          vertical coordinate system does not exist, define the z-unit using the
-          unit list to ensure correct geodesic computation. The default is
-          meter.
+         * GEODESIC-The calculation will be performed in a 3D Cartesian
+         coordinate system by considering the shape of the earth as an
+         ellipsoid.
+         The planar method is appropriate to use on local areas in a projection
+         that maintains correct distance and area. It is suitable for analyses
+         that cover areas such cities, counties, or smaller states in area. The
+         geodesic method produces a more accurate result, at the potential cost
+         of an increase in processing time.
+     z_unit {String}:
+         Specifies the linear unit that will be used for vertical z-values.It
+         is defined by a vertical coordinate system if it exists. If a
+         vertical coordinate system does not exist, define the z-unit using the
+         unit list to ensure correct geodesic computation. The default is
+         meter.
 
-          * INCH-The linear unit will be inches.
+         * INCH-The linear unit will be inches.
 
-          * FOOT-The linear unit will be feet.
+         * FOOT-The linear unit will be feet.
 
-          * YARD-The linear unit will be yards.
+         * YARD-The linear unit will be yards.
 
-          * MILE_US-The linear unit will be miles.
+         * MILE_US-The linear unit will be miles.
 
-          * NAUTICAL_MILE-The linear unit will be nautical miles.
+         * NAUTICAL_MILE-The linear unit will be nautical miles.
 
-          * MILLIMETER-The linear unit will be millimeters.
+         * MILLIMETER-The linear unit will be millimeters.
 
-          * CENTIMETER-The linear unit will be centimeters.
+         * CENTIMETER-The linear unit will be centimeters.
 
-          * METER-The linear unit will be meters.
+         * METER-The linear unit will be meters.
 
-          * KILOMETER-The linear unit will be kilometers.
+         * KILOMETER-The linear unit will be kilometers.
 
-          * DECIMETER-The linear unit will be decimeters.
-      analysis_target_device {String}:
-          Specifies the device that will be used to perform the calculation.
+         * DECIMETER-The linear unit will be decimeters.
+     analysis_target_device {String}:
+         Specifies the device that will be used to perform the calculation.
 
-          * GPU_THEN_CPU-If a compatible GPU is found, it will be used to
-          perform the calculation. Otherwise, the CPU will be used. This is the
-          default.
+         * GPU_THEN_CPU-If a compatible GPU is found, it will be used to
+         perform the calculation. Otherwise, the CPU will be used. This is the
+         default.
 
-          * CPU_ONLY-The calculation will only be performed on the CPU.
+         * CPU_ONLY-The calculation will only be performed on the CPU.
 
-          * GPU_ONLY-The calculation will only be performed on the GPU.
+         * GPU_ONLY-The calculation will only be performed on the GPU.
 
-     OUTPUTS:
-      out_raster (Raster Dataset):
-          The output slope raster.It will be floating-point type."""
+    OUTPUTS:
+     out_raster (Raster Dataset):
+         The output slope raster.It will be floating-point type."""
     ...
 
-@gptooldoc('SurfaceParameters_3d', None)
-def SurfaceParameters(in_raster=..., out_raster=..., parameter_type=..., local_surface_type=..., neighborhood_distance=..., use_adaptive_neighborhood=..., z_unit=..., output_slope_measurement=..., project_geodesic_azimuths=..., use_equatorial_aspect=..., in_analysis_mask=...): # -> conversion | int | float | complex | basestring | list[Unknown] | tuple[Unknown, ...] | dict[Unknown, Unknown]:
+@gptooldoc("SurfaceParameters_3d", None)
+def SurfaceParameters(
+    in_raster=...,
+    out_raster=...,
+    parameter_type=...,
+    local_surface_type=...,
+    neighborhood_distance=...,
+    use_adaptive_neighborhood=...,
+    z_unit=...,
+    output_slope_measurement=...,
+    project_geodesic_azimuths=...,
+    use_equatorial_aspect=...,
+    in_analysis_mask=...,
+):  # -> conversion | int | float | complex | basestring | list[Unknown] | tuple[Unknown, ...] | dict[Unknown, Unknown]:
     """SurfaceParameters(in_raster, out_raster, {parameter_type}, {local_surface_type}, {neighborhood_distance}, {use_adaptive_neighborhood}, {z_unit}, {output_slope_measurement}, {project_geodesic_azimuths}, {use_equatorial_aspect}, {in_analysis_mask})
 
-        Determines parameters of a raster surface such as aspect, slope, and
-        curvatures.
+       Determines parameters of a raster surface such as aspect, slope, and
+       curvatures.
 
-     INPUTS:
-      in_raster (Composite Geodataset):
-          The input surface raster.
-      parameter_type {String}:
-          Specifies the output surface parameter type that will be computed.
+    INPUTS:
+     in_raster (Composite Geodataset):
+         The input surface raster.
+     parameter_type {String}:
+         Specifies the output surface parameter type that will be computed.
 
-          * SLOPE-The rate of change in elevation will be computed. This is the
-          default.
+         * SLOPE-The rate of change in elevation will be computed. This is the
+         default.
 
-          * ASPECT-The downslope direction of the maximum rate of change for
-          each cell will be computed.
+         * ASPECT-The downslope direction of the maximum rate of change for
+         each cell will be computed.
 
-          * MEAN_CURVATURE-The overall curvature of the surface will be
-          measured. It is computed as the average of the minimum and maximum
-          curvature. This curvature describes the intrinsic convexity or
-          concavity of the surface, independent of direction or gravity
-          influence.
+         * MEAN_CURVATURE-The overall curvature of the surface will be
+         measured. It is computed as the average of the minimum and maximum
+         curvature. This curvature describes the intrinsic convexity or
+         concavity of the surface, independent of direction or gravity
+         influence.
 
-          * TANGENTIAL_CURVATURE-The geometric normal curvature perpendicular to
-          the slope line, tangent to the contour line will be measured. This
-          curvature is typically applied to characterize the convergence or
-          divergence of flow across the surface.
+         * TANGENTIAL_CURVATURE-The geometric normal curvature perpendicular to
+         the slope line, tangent to the contour line will be measured. This
+         curvature is typically applied to characterize the convergence or
+         divergence of flow across the surface.
 
-          * PROFILE_CURVATURE-The geometric normal curvature along the slope
-          line will be measured. This curvature is typically applied to
-          characterize the acceleration and deceleration of flow down the
-          surface.
+         * PROFILE_CURVATURE-The geometric normal curvature along the slope
+         line will be measured. This curvature is typically applied to
+         characterize the acceleration and deceleration of flow down the
+         surface.
 
-          * CONTOUR_CURVATURE-The curvature along contour lines will be
-          measured.
+         * CONTOUR_CURVATURE-The curvature along contour lines will be
+         measured.
 
-          * CONTOUR_GEODESIC_TORSION-The rate of change in slope angle along
-          contour lines will be measured.
+         * CONTOUR_GEODESIC_TORSION-The rate of change in slope angle along
+         contour lines will be measured.
 
-          * GAUSSIAN_CURVATURE-The overall curvature of the surface will be
-          measured. It is computed as the product of the minimum and maximum
-          curvature.
+         * GAUSSIAN_CURVATURE-The overall curvature of the surface will be
+         measured. It is computed as the product of the minimum and maximum
+         curvature.
 
-          * CASORATI_CURVATURE-The general curvature of the surface will be
-          measured. It can be zero or any other positive number.
-      local_surface_type {String}:
-          Specifies the type of surface function that will be fitted around the
-          target cell.
+         * CASORATI_CURVATURE-The general curvature of the surface will be
+         measured. It can be zero or any other positive number.
+     local_surface_type {String}:
+         Specifies the type of surface function that will be fitted around the
+         target cell.
 
-          * QUADRATIC-A quadratic surface function will be fitted to the
-          neighborhood cells. This is the default.
+         * QUADRATIC-A quadratic surface function will be fitted to the
+         neighborhood cells. This is the default.
 
-          * BIQUADRATIC-A biquadratic surface function will be fitted to the
-          neighborhood cells.
-      neighborhood_distance {Linear Unit}:
-          The output will be calculated over this distance from the target cell
-          center. It determines the neighborhood size.The default value is the
-          input raster cell size, resulting in a 3 by 3
-          neighborhood.
-      use_adaptive_neighborhood {Boolean}:
-          Specifies whether neighborhood distance will vary with landscape
-          changes (adaptive). The maximum distance is determined by the
-          neighborhood distance. The minimum distance is the input raster cell
-          size.
+         * BIQUADRATIC-A biquadratic surface function will be fitted to the
+         neighborhood cells.
+     neighborhood_distance {Linear Unit}:
+         The output will be calculated over this distance from the target cell
+         center. It determines the neighborhood size.The default value is the
+         input raster cell size, resulting in a 3 by 3
+         neighborhood.
+     use_adaptive_neighborhood {Boolean}:
+         Specifies whether neighborhood distance will vary with landscape
+         changes (adaptive). The maximum distance is determined by the
+         neighborhood distance. The minimum distance is the input raster cell
+         size.
 
-          * FIXED_NEIGHBORHOOD-A single (fixed) neighborhood distance will be
-          used at all locations. This is the default.
+         * FIXED_NEIGHBORHOOD-A single (fixed) neighborhood distance will be
+         used at all locations. This is the default.
 
-          * ADAPTIVE_NEIGHBORHOOD-An adaptive neighborhood distance will be used
-          at all locations.
-      z_unit {String}:
-          Specifies the linear unit that will be used for vertical z-values.It
-          is defined by a vertical coordinate system if it exists. If a
-          vertical coordinate system does not exist, define the z-unit using the
-          unit list to ensure correct geodesic computation. The default is
-          meter.
+         * ADAPTIVE_NEIGHBORHOOD-An adaptive neighborhood distance will be used
+         at all locations.
+     z_unit {String}:
+         Specifies the linear unit that will be used for vertical z-values.It
+         is defined by a vertical coordinate system if it exists. If a
+         vertical coordinate system does not exist, define the z-unit using the
+         unit list to ensure correct geodesic computation. The default is
+         meter.
 
-          * INCH-The linear unit will be inches.
+         * INCH-The linear unit will be inches.
 
-          * FOOT-The linear unit will be feet.
+         * FOOT-The linear unit will be feet.
 
-          * YARD-The linear unit will be yards.
+         * YARD-The linear unit will be yards.
 
-          * MILE_US-The linear unit will be miles.
+         * MILE_US-The linear unit will be miles.
 
-          * NAUTICAL_MILE-The linear unit will be nautical miles.
+         * NAUTICAL_MILE-The linear unit will be nautical miles.
 
-          * MILLIMETER-The linear unit will be millimeters.
+         * MILLIMETER-The linear unit will be millimeters.
 
-          * CENTIMETER-The linear unit will be centimeters.
+         * CENTIMETER-The linear unit will be centimeters.
 
-          * METER-The linear unit will be meters.
+         * METER-The linear unit will be meters.
 
-          * KILOMETER-The linear unit will be kilometers.
+         * KILOMETER-The linear unit will be kilometers.
 
-          * DECIMETER-The linear unit will be decimeters.
-      output_slope_measurement {String}:
-          The measurement units (degrees or percentages) that will be used for
-          the output slope raster.
+         * DECIMETER-The linear unit will be decimeters.
+     output_slope_measurement {String}:
+         The measurement units (degrees or percentages) that will be used for
+         the output slope raster.
 
-          * DEGREE-The inclination of slope will be calculated in degrees.
+         * DEGREE-The inclination of slope will be calculated in degrees.
 
-          * PERCENT_RISE-The inclination of slope will be calculated as percent
-          rise, also referred to as the percent slope.
-          This parameter is only supported if the parameter_type parameter is
-          set to SLOPE.
-      project_geodesic_azimuths {Boolean}:
-          Specifies whether geodesic azimuths will be projected to correct the
-          angle distortion caused by the output spatial reference.
+         * PERCENT_RISE-The inclination of slope will be calculated as percent
+         rise, also referred to as the percent slope.
+         This parameter is only supported if the parameter_type parameter is
+         set to SLOPE.
+     project_geodesic_azimuths {Boolean}:
+         Specifies whether geodesic azimuths will be projected to correct the
+         angle distortion caused by the output spatial reference.
 
-          * GEODESIC_AZIMUTHS-Geodesic azimuths will not be projected. This is
-          the default.
+         * GEODESIC_AZIMUTHS-Geodesic azimuths will not be projected. This is
+         the default.
 
-          * PROJECT_GEODESIC_AZIMUTHS-Geodesic azimuths will be projected.
-          This parameter is only supported if the parameter_type parameter is
-          set to ASPECT.
-      use_equatorial_aspect {Boolean}:
-          Specifies whether aspect will be measured from a point on the equator
-          or from the north pole.
+         * PROJECT_GEODESIC_AZIMUTHS-Geodesic azimuths will be projected.
+         This parameter is only supported if the parameter_type parameter is
+         set to ASPECT.
+     use_equatorial_aspect {Boolean}:
+         Specifies whether aspect will be measured from a point on the equator
+         or from the north pole.
 
-          * NORTH_POLE_ASPECT-Aspect will be measured from the north pole. This
-          is the default.
+         * NORTH_POLE_ASPECT-Aspect will be measured from the north pole. This
+         is the default.
 
-          * EQUATORIAL_ASPECT-Aspect will be measured from a point on the
-          equator.
-          This parameter is only supported if the parameter_type parameter is
-          set to ASPECT.
-      in_analysis_mask {Composite Geodataset}:
-          The input data defining the locations where the analysis will occur.It
-          can be a raster or feature dataset. If the input is a raster, it
-          can be integer or floating-point type. If the input is feature data,
-          it can be point, line, or polygon type.When the input mask data is a
-          raster, the analysis will occur at
-          locations that have a valid value, including zero. Cells that are
-          NoData in the mask input will be NoData in the output.
+         * EQUATORIAL_ASPECT-Aspect will be measured from a point on the
+         equator.
+         This parameter is only supported if the parameter_type parameter is
+         set to ASPECT.
+     in_analysis_mask {Composite Geodataset}:
+         The input data defining the locations where the analysis will occur.It
+         can be a raster or feature dataset. If the input is a raster, it
+         can be integer or floating-point type. If the input is feature data,
+         it can be point, line, or polygon type.When the input mask data is a
+         raster, the analysis will occur at
+         locations that have a valid value, including zero. Cells that are
+         NoData in the mask input will be NoData in the output.
 
-     OUTPUTS:
-      out_raster (Raster Dataset):
-          The output raster.It will be floating-point type."""
+    OUTPUTS:
+     out_raster (Raster Dataset):
+         The output raster.It will be floating-point type."""
     ...
 
-@gptooldoc('AddSurfaceInformation_3d', None)
-def AddSurfaceInformation(in_feature_class=..., in_surface=..., out_property=..., method=..., sample_distance=..., z_factor=..., pyramid_level_resolution=..., noise_filtering=...): # -> conversion | int | float | complex | basestring | list[Unknown] | tuple[Unknown, ...] | dict[Unknown, Unknown]:
+@gptooldoc("AddSurfaceInformation_3d", None)
+def AddSurfaceInformation(
+    in_feature_class=...,
+    in_surface=...,
+    out_property=...,
+    method=...,
+    sample_distance=...,
+    z_factor=...,
+    pyramid_level_resolution=...,
+    noise_filtering=...,
+):  # -> conversion | int | float | complex | basestring | list[Unknown] | tuple[Unknown, ...] | dict[Unknown, Unknown]:
     """AddSurfaceInformation(in_feature_class, in_surface, out_property;out_property..., {method}, {sample_distance}, {z_factor}, {pyramid_level_resolution}, {noise_filtering})
 
-        Attributes input features with height-based statistical information
-        derived from the overlapping portions of a surface.
+       Attributes input features with height-based statistical information
+       derived from the overlapping portions of a surface.
 
-     INPUTS:
-      in_feature_class (Feature Layer):
-          The point, multipoint, polyline, or polygon features that define the
-          locations for determining one or more surface properties.
-      in_surface (TIN Layer / Raster Layer / Mosaic Layer / LAS Dataset Layer / Terrain Layer / Image Service):
-          The LAS dataset, mosaic, raster, terrain, or TIN surface used for
-          interpolating z-values.
-      out_property (String):
-          Specifies the surface elevation properties that will be added to the
-          attribute table of the input feature class.
+    INPUTS:
+     in_feature_class (Feature Layer):
+         The point, multipoint, polyline, or polygon features that define the
+         locations for determining one or more surface properties.
+     in_surface (TIN Layer / Raster Layer / Mosaic Layer / LAS Dataset Layer / Terrain Layer / Image Service):
+         The LAS dataset, mosaic, raster, terrain, or TIN surface used for
+         interpolating z-values.
+     out_property (String):
+         Specifies the surface elevation properties that will be added to the
+         attribute table of the input feature class.
 
-          * Z-The surface z-values interpolated for the x,y-location of each
-          single-point feature will be added.
+         * Z-The surface z-values interpolated for the x,y-location of each
+         single-point feature will be added.
 
-          * Z_MIN-The lowest surface z-values in the area defined by the
-          polygon, along the length of a line, or among the interpolated values
-          for points in a multipoint record will be added.
+         * Z_MIN-The lowest surface z-values in the area defined by the
+         polygon, along the length of a line, or among the interpolated values
+         for points in a multipoint record will be added.
 
-          * Z_MAX-The highest surface elevation in the area defined by the
-          polygon, along the length of a line, or among the interpolated values
-          for points in a multipoint record will be added.
+         * Z_MAX-The highest surface elevation in the area defined by the
+         polygon, along the length of a line, or among the interpolated values
+         for points in a multipoint record will be added.
 
-          * Z_MEAN-The average surface elevation of the area defined by the
-          polygon, along the length of a line, or among the interpolated values
-          for points in a multipoint record will be added.
+         * Z_MEAN-The average surface elevation of the area defined by the
+         polygon, along the length of a line, or among the interpolated values
+         for points in a multipoint record will be added.
 
-          * SURFACE_AREA-The 3D surface area for the region defined by each
-          polygon will be added.
+         * SURFACE_AREA-The 3D surface area for the region defined by each
+         polygon will be added.
 
-          * SURFACE_LENGTH-The 3D distance of the line along the surface will be
-          added.
+         * SURFACE_LENGTH-The 3D distance of the line along the surface will be
+         added.
 
-          * MIN_SLOPE-The slope value closest to zero along the line or within
-          the area defined by the polygon will be added.
+         * MIN_SLOPE-The slope value closest to zero along the line or within
+         the area defined by the polygon will be added.
 
-          * MAX_SLOPE-The highest slope value along the line or within the area
-          defined by the polygon will be added.
+         * MAX_SLOPE-The highest slope value along the line or within the area
+         defined by the polygon will be added.
 
-          * AVG_SLOPE-The average slope value along the line or within the area
-          defined by the polygon will be added.
-      method {String}:
-          Specifies the interpolation method that will be used to determine
-          information about the surface.
+         * AVG_SLOPE-The average slope value along the line or within the area
+         defined by the polygon will be added.
+     method {String}:
+         Specifies the interpolation method that will be used to determine
+         information about the surface.
 
-          * BILINEAR-An interpolation method exclusive to the raster surface
-          that determines cell values from the four nearest cells will be used.
-          This is the only option available for a raster surface.
+         * BILINEAR-An interpolation method exclusive to the raster surface
+         that determines cell values from the four nearest cells will be used.
+         This is the only option available for a raster surface.
 
-          * LINEAR-Elevation will be obtained from the plane defined by the
-          triangle that contains the x,y-location of a query point. This is the
-          default interpolation method for TINs, terrains, and LAS datasets.
+         * LINEAR-Elevation will be obtained from the plane defined by the
+         triangle that contains the x,y-location of a query point. This is the
+         default interpolation method for TINs, terrains, and LAS datasets.
 
-          * NATURAL_NEIGHBORS-Elevation will be obtained by applying area-based
-          weights to the natural neighbors of a query point.
+         * NATURAL_NEIGHBORS-Elevation will be obtained by applying area-based
+         weights to the natural neighbors of a query point.
 
-          * CONFLATE_ZMIN-Elevation will be obtained from the smallest z-value
-          found among the natural neighbors of a query point.
+         * CONFLATE_ZMIN-Elevation will be obtained from the smallest z-value
+         found among the natural neighbors of a query point.
 
-          * CONFLATE_ZMAX-Elevation will be obtained from the largest z-value
-          found among the natural neighbors of a query point.
+         * CONFLATE_ZMAX-Elevation will be obtained from the largest z-value
+         found among the natural neighbors of a query point.
 
-          * CONFLATE_NEAREST-Elevation will be obtained from the nearest value
-          among the natural neighbors of a query point.
+         * CONFLATE_NEAREST-Elevation will be obtained from the nearest value
+         among the natural neighbors of a query point.
 
-          * CONFLATE_CLOSEST_TO_MEAN-Elevation will be obtained from the
-          z-value that is closest to the average of all the natural neighbors of
-          a query point.
-      sample_distance {Double}:
-          The spacing at which z-values will be interpolated. By default, the
-          raster cell size is used when the input surface is a raster, and the
-          natural densification of the triangulated surface is used when the
-          input is a terrain or TIN dataset.
-      z_factor {Double}:
-          The factor by which z-values will be multiplied. This is typically
-          used to convert z linear units to match x,y linear units. The default
-          is 1, which leaves elevation values unchanged. This parameter is not
-          available if the spatial reference of the input surface has a z datum
-          with a specified linear unit.
-      pyramid_level_resolution {Double}:
-          The z-tolerance or window-size resolution of the terrain pyramid level
-          that will be used. The default is 0, or full resolution.
-      noise_filtering {String}:
-          Defines whether portions of the surface that are potentially
-          characterized by anomalous measurements will be excluded from
-          contributing to slope calculations. Other properties are not affected
-          by this parameter.Line features offer a length filter in which line
-          segments with 3D
-          lengths that are shorter than the specified value will be excluded
-          from slope calculations. Polygon features offer an area filter in
-          which polygons covering a surface area smaller than the specified
-          value will be excluded."""
+         * CONFLATE_CLOSEST_TO_MEAN-Elevation will be obtained from the
+         z-value that is closest to the average of all the natural neighbors of
+         a query point.
+     sample_distance {Double}:
+         The spacing at which z-values will be interpolated. By default, the
+         raster cell size is used when the input surface is a raster, and the
+         natural densification of the triangulated surface is used when the
+         input is a terrain or TIN dataset.
+     z_factor {Double}:
+         The factor by which z-values will be multiplied. This is typically
+         used to convert z linear units to match x,y linear units. The default
+         is 1, which leaves elevation values unchanged. This parameter is not
+         available if the spatial reference of the input surface has a z datum
+         with a specified linear unit.
+     pyramid_level_resolution {Double}:
+         The z-tolerance or window-size resolution of the terrain pyramid level
+         that will be used. The default is 0, or full resolution.
+     noise_filtering {String}:
+         Defines whether portions of the surface that are potentially
+         characterized by anomalous measurements will be excluded from
+         contributing to slope calculations. Other properties are not affected
+         by this parameter.Line features offer a length filter in which line
+         segments with 3D
+         lengths that are shorter than the specified value will be excluded
+         from slope calculations. Polygon features offer an area filter in
+         which polygons covering a surface area smaller than the specified
+         value will be excluded."""
     ...
 
-@gptooldoc('AddZInformation_3d', None)
-def AddZInformation(in_feature_class=..., out_property=..., noise_filtering=...): # -> conversion | int | float | complex | basestring | list[Unknown] | tuple[Unknown, ...] | dict[Unknown, Unknown]:
+@gptooldoc("AddZInformation_3d", None)
+def AddZInformation(
+    in_feature_class=..., out_property=..., noise_filtering=...
+):  # -> conversion | int | float | complex | basestring | list[Unknown] | tuple[Unknown, ...] | dict[Unknown, Unknown]:
     """AddZInformation(in_feature_class, out_property;out_property..., {noise_filtering})
 
-        Adds information about elevation properties of features in a z-enabled
-        feature class.
+       Adds information about elevation properties of features in a z-enabled
+       feature class.
 
-     INPUTS:
-      in_feature_class (Feature Layer):
-          The input features to process.
-      out_property (String):
-          Specifies the z-properties that will be added to the attribute table
-          of the input feature class.
+    INPUTS:
+     in_feature_class (Feature Layer):
+         The input features to process.
+     out_property (String):
+         Specifies the z-properties that will be added to the attribute table
+         of the input feature class.
 
-          * Z-Spot elevation of single-point feature.
+         * Z-Spot elevation of single-point feature.
 
-          * POINT_COUNT-Number of points in each multipoint feature.
+         * POINT_COUNT-Number of points in each multipoint feature.
 
-          * Z_MIN-Lowest z-value found in each multipoint, polyline, polygon, or
-          multipatch feature.
+         * Z_MIN-Lowest z-value found in each multipoint, polyline, polygon, or
+         multipatch feature.
 
-          * Z_MAX-Highest z-value found in each multipoint, polyline, polygon,
-          or multipatch feature.
+         * Z_MAX-Highest z-value found in each multipoint, polyline, polygon,
+         or multipatch feature.
 
-          * Z_MEAN-Average z-value found in each multipoint, polyline, polygon,
-          or multipatch feature.
+         * Z_MEAN-Average z-value found in each multipoint, polyline, polygon,
+         or multipatch feature.
 
-          * LENGTH_3D-3-dimensional length of each polyline or polygon feature.
+         * LENGTH_3D-3-dimensional length of each polyline or polygon feature.
 
-          * SURFACE_AREA-Total area of the surface of a multipatch feature.
+         * SURFACE_AREA-Total area of the surface of a multipatch feature.
 
-          * VERTEX_COUNT-Total number of vertices in each polyline or polygon
-          feature.
+         * VERTEX_COUNT-Total number of vertices in each polyline or polygon
+         feature.
 
-          * MIN_SLOPE-Lowest slope value calculated for each polyline, polygon,
-          or multipatch feature.
+         * MIN_SLOPE-Lowest slope value calculated for each polyline, polygon,
+         or multipatch feature.
 
-          * MAX_SLOPE-Highest slope value calculated for each polyline, polygon,
-          or multipatch feature.
+         * MAX_SLOPE-Highest slope value calculated for each polyline, polygon,
+         or multipatch feature.
 
-          * AVG_SLOPE-Average slope value calculated for each polyline, polygon,
-          or multipatch feature.
+         * AVG_SLOPE-Average slope value calculated for each polyline, polygon,
+         or multipatch feature.
 
-          * VOLUME-Volume of space enclosed by each multipatch feature.
-      noise_filtering {String}:
-          An numeric value that will be used to exclude portions of features
-          from the resulting calculations. This can be useful when the 3D input
-          contains relatively small features with extreme slopes which may bias
-          statistical results. If the 3D input's linear units are meters,
-          specifying a value of 0.001 will result in the exclusion of lines or
-          polygon edges that are shorter than 0.001 meters. For multipatch
-          features, the same value will result in the exclusion of its subparts
-          that have an area less than 0.001 square meters. This parameter does
-          not apply to point and multipoint features."""
+         * VOLUME-Volume of space enclosed by each multipatch feature.
+     noise_filtering {String}:
+         An numeric value that will be used to exclude portions of features
+         from the resulting calculations. This can be useful when the 3D input
+         contains relatively small features with extreme slopes which may bias
+         statistical results. If the 3D input's linear units are meters,
+         specifying a value of 0.001 will result in the exclusion of lines or
+         polygon edges that are shorter than 0.001 meters. For multipatch
+         features, the same value will result in the exclusion of its subparts
+         that have an area less than 0.001 square meters. This parameter does
+         not apply to point and multipoint features."""
     ...
 
-@gptooldoc('LasHeightMetrics_3d', None)
-def LasHeightMetrics(in_las_dataset=..., out_location=..., base_name=..., statistics=..., height_percentiles=..., min_height=..., min_points=..., cell_size=..., raster_format=...): # -> conversion | int | float | complex | basestring | list[Unknown] | tuple[Unknown, ...] | dict[Unknown, Unknown]:
+@gptooldoc("LasHeightMetrics_3d", None)
+def LasHeightMetrics(
+    in_las_dataset=...,
+    out_location=...,
+    base_name=...,
+    statistics=...,
+    height_percentiles=...,
+    min_height=...,
+    min_points=...,
+    cell_size=...,
+    raster_format=...,
+):  # -> conversion | int | float | complex | basestring | list[Unknown] | tuple[Unknown, ...] | dict[Unknown, Unknown]:
     """LasHeightMetrics(in_las_dataset, out_location, {base_name}, {statistics;statistics...}, {height_percentiles;height_percentiles...}, {min_height}, {min_points}, {cell_size}, {raster_format})
 
-        Calculates statistics about the distribution of elevation measurements
-        of vegetation points captured in LAS data.
+       Calculates statistics about the distribution of elevation measurements
+       of vegetation points captured in LAS data.
 
-     INPUTS:
-      in_las_dataset (LAS Dataset Layer):
-          The LAS dataset to process.
-      out_location (Workspace):
-          The folder or geodatabase where the output raster datasets will
-          reside. When the output location is a folder, the resulting raster
-          datasets will be in the TIFF format.
-      base_name {String}:
-          The base name for the output raster datasets.
-      statistics {String}:
-          Specifies the statistics calculated for the unclassified and
-          vegetation points above the ground that are within the area of each
-          cell in the output raster.
+    INPUTS:
+     in_las_dataset (LAS Dataset Layer):
+         The LAS dataset to process.
+     out_location (Workspace):
+         The folder or geodatabase where the output raster datasets will
+         reside. When the output location is a folder, the resulting raster
+         datasets will be in the TIFF format.
+     base_name {String}:
+         The base name for the output raster datasets.
+     statistics {String}:
+         Specifies the statistics calculated for the unclassified and
+         vegetation points above the ground that are within the area of each
+         cell in the output raster.
 
-          * MEAN-The average height of the LAS points.
+         * MEAN-The average height of the LAS points.
 
-          * KURTOSIS-The sharpness of the change in the height of the LAS
-          points.
+         * KURTOSIS-The sharpness of the change in the height of the LAS
+         points.
 
-          * SKEWNESS-The direction of deviation from the nominal height of the
-          LAS points, which indicates the level and direction of asymmetry.
+         * SKEWNESS-The direction of deviation from the nominal height of the
+         LAS points, which indicates the level and direction of asymmetry.
 
-          * STANDARD_DEVIATION-The variation of the height of the points.
+         * STANDARD_DEVIATION-The variation of the height of the points.
 
-          * MEDIAN_ABSOLUTE_DEVIATION-The median value of the deviation from the
-          median height.
-      height_percentiles {Long}:
-          The height at which the specified percentage of points in the cell
-          fall below. For example, a value of 95 means the resulting cell values
-          indicate the height at which 95 percent of points above the ground
-          occur.
-      min_height {Linear Unit}:
-          The minimum height above ground for points that will be evaluated.
-      min_points {Long}:
-          The minimum number of points that must be present in a given cell to
-          calculate height metrics. Cells with fewer points than the specified
-          minimum will have no data in the output.
-      cell_size {Linear Unit}:
-          The cell size of the output raster datasets.
-      raster_format {String}:
-          Specifies the raster format that will be created when the output
-          location is a folder.
+         * MEDIAN_ABSOLUTE_DEVIATION-The median value of the deviation from the
+         median height.
+     height_percentiles {Long}:
+         The height at which the specified percentage of points in the cell
+         fall below. For example, a value of 95 means the resulting cell values
+         indicate the height at which 95 percent of points above the ground
+         occur.
+     min_height {Linear Unit}:
+         The minimum height above ground for points that will be evaluated.
+     min_points {Long}:
+         The minimum number of points that must be present in a given cell to
+         calculate height metrics. Cells with fewer points than the specified
+         minimum will have no data in the output.
+     cell_size {Linear Unit}:
+         The cell size of the output raster datasets.
+     raster_format {String}:
+         Specifies the raster format that will be created when the output
+         location is a folder.
 
-          * TIFF-Output will be created in the GeoTIFF format. This is the
-          default.
+         * TIFF-Output will be created in the GeoTIFF format. This is the
+         default.
 
-          * IMG-Output will be created in the ERDAS IMAGINE format.
+         * IMG-Output will be created in the ERDAS IMAGINE format.
 
-          * ESRI_GRID-Output will be created in the Esri Grid format."""
+         * ESRI_GRID-Output will be created in the Esri Grid format."""
     ...
 
-@gptooldoc('LasPointStatsByArea_3d', None)
-def LasPointStatsByArea(in_las_dataset=..., in_features=..., out_property=...): # -> conversion | int | float | complex | basestring | list[Unknown] | tuple[Unknown, ...] | dict[Unknown, Unknown]:
+@gptooldoc("LasPointStatsByArea_3d", None)
+def LasPointStatsByArea(
+    in_las_dataset=..., in_features=..., out_property=...
+):  # -> conversion | int | float | complex | basestring | list[Unknown] | tuple[Unknown, ...] | dict[Unknown, Unknown]:
     """LasPointStatsByArea(in_las_dataset, in_features, {out_property;out_property...})
 
-        Evaluates the statistics of LAS points that overlay the area defined
-        by polygon features.
+       Evaluates the statistics of LAS points that overlay the area defined
+       by polygon features.
 
-     INPUTS:
-      in_las_dataset (LAS Dataset Layer):
-          The LAS dataset to process.
-      in_features (Feature Layer):
-          The polygon that defines the area for which statistics will be
-          reported.
-      out_property {String}:
-          The properties that will be calculated.
+    INPUTS:
+     in_las_dataset (LAS Dataset Layer):
+         The LAS dataset to process.
+     in_features (Feature Layer):
+         The polygon that defines the area for which statistics will be
+         reported.
+     out_property {String}:
+         The properties that will be calculated.
 
-          * Z_MIN-The lowest Z value of LAS points overlapping the feature.
+         * Z_MIN-The lowest Z value of LAS points overlapping the feature.
 
-          * Z_MAX-The highest Z value of LAS points overlapping the feature.
+         * Z_MAX-The highest Z value of LAS points overlapping the feature.
 
-          * Z_MEAN-The average Z value of LAS points overlapping the feature.
+         * Z_MEAN-The average Z value of LAS points overlapping the feature.
 
-          * POINT_COUNT-The tally of LAS points that were evaluated.
+         * POINT_COUNT-The tally of LAS points that were evaluated.
 
-          * STANDARD_DEVIATION-The standard deviation of Z values."""
+         * STANDARD_DEVIATION-The standard deviation of Z values."""
     ...
 
-@gptooldoc('PointFileInformation_3d', None)
-def PointFileInformation(input=..., out_feature_class=..., in_file_type=..., file_suffix=..., input_coordinate_system=..., folder_recursion=..., extrude_geometry=..., decimal_separator=..., summarize_by_class_code=..., improve_las_point_spacing=...): # -> conversion | int | float | complex | basestring | list[Unknown] | tuple[Unknown, ...] | dict[Unknown, Unknown]:
+@gptooldoc("PointFileInformation_3d", None)
+def PointFileInformation(
+    input=...,
+    out_feature_class=...,
+    in_file_type=...,
+    file_suffix=...,
+    input_coordinate_system=...,
+    folder_recursion=...,
+    extrude_geometry=...,
+    decimal_separator=...,
+    summarize_by_class_code=...,
+    improve_las_point_spacing=...,
+):  # -> conversion | int | float | complex | basestring | list[Unknown] | tuple[Unknown, ...] | dict[Unknown, Unknown]:
     """PointFileInformation(input;input..., out_feature_class, in_file_type, {file_suffix}, {input_coordinate_system}, {folder_recursion}, {extrude_geometry}, {decimal_separator}, {summarize_by_class_code}, {improve_las_point_spacing})
 
-        Creates polygon or multipatch output that captures the spatial extent
-        and statistical information about one or more ASCII or LAS format
-        point files.
+       Creates polygon or multipatch output that captures the spatial extent
+       and statistical information about one or more ASCII or LAS format
+       point files.
 
-     INPUTS:
-      input (File):
-          The point data that will be processed. Supported inputs include LAS
-          datasets, .las files, .zlas files, and ASCII files containing point
-          records. One or more folders containing the files can also be
-          specified as input. When a folder is included, the file suffix of the
-          point files must be specified in the file_suffix parameter.
-      in_file_type (String):
-          Specifies the format of the input files.
+    INPUTS:
+     input (File):
+         The point data that will be processed. Supported inputs include LAS
+         datasets, .las files, .zlas files, and ASCII files containing point
+         records. One or more folders containing the files can also be
+         specified as input. When a folder is included, the file suffix of the
+         point files must be specified in the file_suffix parameter.
+     in_file_type (String):
+         Specifies the format of the input files.
 
-          * LAS-The format of the input files is LAS format lidar.
+         * LAS-The format of the input files is LAS format lidar.
 
-          * XYZ-The format of the input files is ASCII files with XYZ.
+         * XYZ-The format of the input files is ASCII files with XYZ.
 
-          * XYZI-The format of the input files is ASCII files with XYZI.
+         * XYZI-The format of the input files is ASCII files with XYZI.
 
-          * GENERATE-The format of the input files is ASCII files in Generate
-          format.
-      file_suffix {String}:
-          The suffix of the files that will be imported when a folder is
-          specified in the input.
-      input_coordinate_system {Coordinate System}:
-          The coordinate system of the input data.
-      folder_recursion {Boolean}:
-          Specifies whether data in subfolders will be used to generate results.
-          The tool scans subfolders when an input folder is selected containing
-          data in a subfolders directory. The output feature class will be
-          generated with a row for each file found in the directory structure.
+         * GENERATE-The format of the input files is ASCII files in Generate
+         format.
+     file_suffix {String}:
+         The suffix of the files that will be imported when a folder is
+         specified in the input.
+     input_coordinate_system {Coordinate System}:
+         The coordinate system of the input data.
+     folder_recursion {Boolean}:
+         Specifies whether data in subfolders will be used to generate results.
+         The tool scans subfolders when an input folder is selected containing
+         data in a subfolders directory. The output feature class will be
+         generated with a row for each file found in the directory structure.
 
-          * NO_RECURSION-Only the data found in the input folder will be used
-          to generate results. This is the default.
+         * NO_RECURSION-Only the data found in the input folder will be used
+         to generate results. This is the default.
 
-          * RECURSION-Any data found in the input folder and its subdirectories
-          will be used to generate results.
-      extrude_geometry {Boolean}:
-          Specifies whether the output will be created as a 2D polygon or
-          multipatch feature class with extruded features that reflect the
-          elevation range found in each file.
+         * RECURSION-Any data found in the input folder and its subdirectories
+         will be used to generate results.
+     extrude_geometry {Boolean}:
+         Specifies whether the output will be created as a 2D polygon or
+         multipatch feature class with extruded features that reflect the
+         elevation range found in each file.
 
-          * NO_EXTRUSION-The output will be created as a 2D polygon feature
-          class. This is the default.
+         * NO_EXTRUSION-The output will be created as a 2D polygon feature
+         class. This is the default.
 
-          * EXTRUSION-The output will be created as a multipatch feature class.
-      decimal_separator {String}:
-          The decimal character that will be used in the text file to
-          differentiate the integer of a number from its fractional part.
+         * EXTRUSION-The output will be created as a multipatch feature class.
+     decimal_separator {String}:
+         The decimal character that will be used in the text file to
+         differentiate the integer of a number from its fractional part.
 
-          * DECIMAL_POINT-A point will be used as the decimal character. This is
-          the default.
+         * DECIMAL_POINT-A point will be used as the decimal character. This is
+         the default.
 
-          * DECIMAL_COMMA-A comma will be used as the decimal character.
-      summarize_by_class_code {Boolean}:
-          Specifies whether the results will summarize .las files by class code
-          or by file.
+         * DECIMAL_COMMA-A comma will be used as the decimal character.
+     summarize_by_class_code {Boolean}:
+         Specifies whether the results will summarize .las files by class code
+         or by file.
 
-          * NO_SUMMARIZE-Each output feature will represent all the class codes
-          found in a .las file. This is the default.
+         * NO_SUMMARIZE-Each output feature will represent all the class codes
+         found in a .las file. This is the default.
 
-          * SUMMARIZE-Each output feature will represent a single class code
-          found in a .las file.
-      improve_las_point_spacing {Boolean}:
-          Specifies whether enhanced assessment of the point spacing in .las
-          files, which can reduce over-estimation caused by irregular data
-          distribution, will be used.
+         * SUMMARIZE-Each output feature will represent a single class code
+         found in a .las file.
+     improve_las_point_spacing {Boolean}:
+         Specifies whether enhanced assessment of the point spacing in .las
+         files, which can reduce over-estimation caused by irregular data
+         distribution, will be used.
 
-          * LAS_SPACING-A regular point spacing estimate will be used for .las
-          files in which the extent is equally divided by the number of points.
-          This is the default.
+         * LAS_SPACING-A regular point spacing estimate will be used for .las
+         files in which the extent is equally divided by the number of points.
+         This is the default.
 
-          * NO_LAS_SPACING-Binning will be used to obtain a more precise point
-          spacing estimate for .las files. This may increase tool run time.
+         * NO_LAS_SPACING-Binning will be used to obtain a more precise point
+         spacing estimate for .las files. This may increase tool run time.
 
-     OUTPUTS:
-      out_feature_class (Feature Class):
-          The feature class that will be produced."""
+    OUTPUTS:
+     out_feature_class (Feature Class):
+         The feature class that will be produced."""
     ...
 
-@gptooldoc('CopyTin_3d', None)
-def CopyTin(in_tin=..., out_tin=..., version=...): # -> conversion | int | float | complex | basestring | list[Unknown] | tuple[Unknown, ...] | dict[Unknown, Unknown]:
+@gptooldoc("CopyTin_3d", None)
+def CopyTin(
+    in_tin=..., out_tin=..., version=...
+):  # -> conversion | int | float | complex | basestring | list[Unknown] | tuple[Unknown, ...] | dict[Unknown, Unknown]:
     """CopyTin(in_tin, out_tin, {version})
 
-        Creates a copy of a triangulated irregular network (TIN) dataset.
+       Creates a copy of a triangulated irregular network (TIN) dataset.
 
-     INPUTS:
-      in_tin (TIN Layer):
-          The TIN that will be copied.
-      version {String}:
-          The version of the output TIN.
+    INPUTS:
+     in_tin (TIN Layer):
+         The TIN that will be copied.
+     version {String}:
+         The version of the output TIN.
 
-          * CURRENT-The current TIN version, which supports constrained Delaunay
-          triangulation, enhanced spatial reference information, and storage of
-          node source and edge tag values. The resulting TIN will not be
-          backward compatible with versions of ArcGIS prior to 10.0. This is the
-          default.
+         * CURRENT-The current TIN version, which supports constrained Delaunay
+         triangulation, enhanced spatial reference information, and storage of
+         node source and edge tag values. The resulting TIN will not be
+         backward compatible with versions of ArcGIS prior to 10.0. This is the
+         default.
 
-          * PRE_10.0-The TIN will be backward compatible with versions of ArcGIS
-          prior to 10.0, which only supports conforming Delaunay triangulation.
+         * PRE_10.0-The TIN will be backward compatible with versions of ArcGIS
+         prior to 10.0, which only supports conforming Delaunay triangulation.
 
-     OUTPUTS:
-      out_tin (TIN):
-          The TIN dataset that will be generated."""
+    OUTPUTS:
+     out_tin (TIN):
+         The TIN dataset that will be generated."""
     ...
 
-@gptooldoc('CreateTin_3d', None)
-def CreateTin(out_tin=..., spatial_reference=..., in_features=..., constrained_delaunay=...): # -> conversion | int | float | complex | basestring | list[Unknown] | tuple[Unknown, ...] | dict[Unknown, Unknown]:
+@gptooldoc("CreateTin_3d", None)
+def CreateTin(
+    out_tin=..., spatial_reference=..., in_features=..., constrained_delaunay=...
+):  # -> conversion | int | float | complex | basestring | list[Unknown] | tuple[Unknown, ...] | dict[Unknown, Unknown]:
     """CreateTin(out_tin, {spatial_reference}, {in_features;in_features...}, {constrained_delaunay})
 
-        Creates a triangulated irregular network (TIN) dataset.
+       Creates a triangulated irregular network (TIN) dataset.
 
-     INPUTS:
-      spatial_reference {Coordinate System}:
-          The spatial reference of the output TIN. Set the spatial reference to
-          a projected coordinate system. Geographic coordinate systems are not
-          recommended because Delaunay triangulation cannot be guaranteed when
-          the x,y coordinates are expressed in angular units, which could have
-          an adverse impact on the accuracy of distance-based calculations, such
-          as slope, volume, and line of sight.
-      in_features {Value Table}:
-          The input features and their related properties that will contribute
-          to the definition of the TIN.
+    INPUTS:
+     spatial_reference {Coordinate System}:
+         The spatial reference of the output TIN. Set the spatial reference to
+         a projected coordinate system. Geographic coordinate systems are not
+         recommended because Delaunay triangulation cannot be guaranteed when
+         the x,y coordinates are expressed in angular units, which could have
+         an adverse impact on the accuracy of distance-based calculations, such
+         as slope, volume, and line of sight.
+     in_features {Value Table}:
+         The input features and their related properties that will contribute
+         to the definition of the TIN.
 
-          * in_features-The feature with the geometry that will be imported to
-          the TIN.
+         * in_features-The feature with the geometry that will be imported to
+         the TIN.
 
-          * height_field-The source of elevation for the input features. Any
-          numeric field from the input feature's attribute table can be
-          specified, along with Shape.Z for the z-values of 3D features and
-          Shape.M for the m-values stored with the geometry. Choosing the <None>
-          keyword will result in the feature's elevation being interpolated from
-          the surrounding surface.
+         * height_field-The source of elevation for the input features. Any
+         numeric field from the input feature's attribute table can be
+         specified, along with Shape.Z for the z-values of 3D features and
+         Shape.M for the m-values stored with the geometry. Choosing the <None>
+         keyword will result in the feature's elevation being interpolated from
+         the surrounding surface.
 
-          * sf_type-The input feature's role in defining the TIN surface will be
-          defined. The valid options depend on the geometry of the input
-          features. Point and multipoint features can be defined as Mass_Points,
-          which contribute elevation values that are stored as TIN data nodes.
-          Line features can be designated as Mass_Points or breaklines by
-          specifying Hard_Line or Soft_Line. Polygon features can represent the
-          interpolation boundary by specifying Hard_Clip or Soft_Clip, interior
-          portions with no data by choosing Hard_Erase or Soft_Erase, or areas
-          of constant height by specifying Hard_Replace or Soft_Replace.
-          Additionally, polygons can also be used to assign integer attribute
-          values by specifying Hardvalue_Fill or Softvalue_Fill.
+         * sf_type-The input feature's role in defining the TIN surface will be
+         defined. The valid options depend on the geometry of the input
+         features. Point and multipoint features can be defined as Mass_Points,
+         which contribute elevation values that are stored as TIN data nodes.
+         Line features can be designated as Mass_Points or breaklines by
+         specifying Hard_Line or Soft_Line. Polygon features can represent the
+         interpolation boundary by specifying Hard_Clip or Soft_Clip, interior
+         portions with no data by choosing Hard_Erase or Soft_Erase, or areas
+         of constant height by specifying Hard_Replace or Soft_Replace.
+         Additionally, polygons can also be used to assign integer attribute
+         values by specifying Hardvalue_Fill or Softvalue_Fill.
 
-          * tag_field-A numeric attribute will be derived from an integer field
-          in the input feature's attribute table whose values can be used to
-          assign a basic form of attribution to the TIN's data elements.
-          Specifying <None> will result in no tag values being assigned.
-      constrained_delaunay {Boolean}:
-          Specifies the triangulation technique that will be used along the
-          breaklines of the TIN.
+         * tag_field-A numeric attribute will be derived from an integer field
+         in the input feature's attribute table whose values can be used to
+         assign a basic form of attribution to the TIN's data elements.
+         Specifying <None> will result in no tag values being assigned.
+     constrained_delaunay {Boolean}:
+         Specifies the triangulation technique that will be used along the
+         breaklines of the TIN.
 
-          * DELAUNAY-The TIN will use Delaunay conforming triangulation, which
-          may densify each segment of the breaklines to produce multiple
-          triangle edges. This is the default.
+         * DELAUNAY-The TIN will use Delaunay conforming triangulation, which
+         may densify each segment of the breaklines to produce multiple
+         triangle edges. This is the default.
 
-          * CONSTRAINED_DELAUNAY-The TIN will use constrained Delaunay
-          triangulation, which will add each segment as a single edge. Delaunay
-          triangulation rules are honored everywhere except along breaklines,
-          which will not be densified.
+         * CONSTRAINED_DELAUNAY-The TIN will use constrained Delaunay
+         triangulation, which will add each segment as a single edge. Delaunay
+         triangulation rules are honored everywhere except along breaklines,
+         which will not be densified.
 
-     OUTPUTS:
-      out_tin (TIN):
-          The TIN dataset that will be generated."""
+    OUTPUTS:
+     out_tin (TIN):
+         The TIN dataset that will be generated."""
     ...
 
-@gptooldoc('DecimateTinNodes_3d', None)
-def DecimateTinNodes(in_tin=..., out_tin=..., method=..., copy_breaklines=..., z_tolerance_value=..., max_node_value=...): # -> conversion | int | float | complex | basestring | list[Unknown] | tuple[Unknown, ...] | dict[Unknown, Unknown]:
+@gptooldoc("DecimateTinNodes_3d", None)
+def DecimateTinNodes(
+    in_tin=...,
+    out_tin=...,
+    method=...,
+    copy_breaklines=...,
+    z_tolerance_value=...,
+    max_node_value=...,
+):  # -> conversion | int | float | complex | basestring | list[Unknown] | tuple[Unknown, ...] | dict[Unknown, Unknown]:
     """DecimateTinNodes(in_tin, out_tin, method, {copy_breaklines}, {z_tolerance_value}, {max_node_value})
 
-        Creates a triangulated irregular network (TIN) dataset using a subset
-        of nodes from a source TIN.
+       Creates a triangulated irregular network (TIN) dataset using a subset
+       of nodes from a source TIN.
 
-     INPUTS:
-      in_tin (TIN Layer):
-          The TIN dataset to process.
-      method (String):
-          Specifies the thinning method used for selecting a subset of nodes
-          from the input TIN.
+    INPUTS:
+     in_tin (TIN Layer):
+         The TIN dataset to process.
+     method (String):
+         Specifies the thinning method used for selecting a subset of nodes
+         from the input TIN.
 
-          * Z_TOLERANCE-Creates a TIN that will maintain the vertical accuracy
-          specified in the z_tolerance_value parameter. This is the default.
+         * Z_TOLERANCE-Creates a TIN that will maintain the vertical accuracy
+         specified in the z_tolerance_value parameter. This is the default.
 
-          * COUNT-Creates a TIN that will not exceed the node limit specified in
-          the max_node_value parameter.
-      copy_breaklines {Boolean}:
-          Indicates whether breaklines from the input TIN are copied over to the
-          output.
+         * COUNT-Creates a TIN that will not exceed the node limit specified in
+         the max_node_value parameter.
+     copy_breaklines {Boolean}:
+         Indicates whether breaklines from the input TIN are copied over to the
+         output.
 
-          * BREAKLINES-Breaklines will be copied.
+         * BREAKLINES-Breaklines will be copied.
 
-          * NO_BREAKLINES-Breaklines will not be copied. This is the default.
-      z_tolerance_value {Double}:
-          The maximum deviation from the source TIN's Z-value that will be
-          allowed in the output TIN, which defaults to the lesser of either one-
-          tenth of the Z-range or the number 10.
-      max_node_value {Long}:
-          The maximum number of nodes that can be stored in the output TIN,
-          which defaults to the total number of nodes in the source TIN minus 1.
-          If the Z-tolerance method is used, the tool will stop processing if
-          the Z tolerance value causes the resulting TIN to exceed the maximum
-          number of nodes.
+         * NO_BREAKLINES-Breaklines will not be copied. This is the default.
+     z_tolerance_value {Double}:
+         The maximum deviation from the source TIN's Z-value that will be
+         allowed in the output TIN, which defaults to the lesser of either one-
+         tenth of the Z-range or the number 10.
+     max_node_value {Long}:
+         The maximum number of nodes that can be stored in the output TIN,
+         which defaults to the total number of nodes in the source TIN minus 1.
+         If the Z-tolerance method is used, the tool will stop processing if
+         the Z tolerance value causes the resulting TIN to exceed the maximum
+         number of nodes.
 
-     OUTPUTS:
-      out_tin (TIN):
-          The TIN dataset that will be generated."""
+    OUTPUTS:
+     out_tin (TIN):
+         The TIN dataset that will be generated."""
     ...
 
-@gptooldoc('DelineateTinDataArea_3d', None)
-def DelineateTinDataArea(in_tin=..., max_edge_length=..., method=...): # -> conversion | int | float | complex | basestring | list[Unknown] | tuple[Unknown, ...] | dict[Unknown, Unknown]:
+@gptooldoc("DelineateTinDataArea_3d", None)
+def DelineateTinDataArea(
+    in_tin=..., max_edge_length=..., method=...
+):  # -> conversion | int | float | complex | basestring | list[Unknown] | tuple[Unknown, ...] | dict[Unknown, Unknown]:
     """DelineateTinDataArea(in_tin, max_edge_length, {method})
 
-        Redefines the data area, or interpolation zone, of a triangulated
-        irregular network (TIN) based on its triangle edge length.
+       Redefines the data area, or interpolation zone, of a triangulated
+       irregular network (TIN) based on its triangle edge length.
 
-     INPUTS:
-      in_tin (TIN Layer):
-          The TIN dataset to process.
-      max_edge_length (Double):
-          The two-dimensional distance that defines the maximum length of a TIN
-          triangle edge in the TIN's data area. Triangles with one or more edges
-          that exceed this value will be considered outside the TIN's
-          interpolation zone and will not be rendered in maps or used in surface
-          analysis.
-      method {String}:
-          The TIN edges that will be evaluated when delineating the TIN's data
-          area.
+    INPUTS:
+     in_tin (TIN Layer):
+         The TIN dataset to process.
+     max_edge_length (Double):
+         The two-dimensional distance that defines the maximum length of a TIN
+         triangle edge in the TIN's data area. Triangles with one or more edges
+         that exceed this value will be considered outside the TIN's
+         interpolation zone and will not be rendered in maps or used in surface
+         analysis.
+     method {String}:
+         The TIN edges that will be evaluated when delineating the TIN's data
+         area.
 
-          * PERIMETER_ONLY-Iterates through triangles from the TIN's outer
-          extent inward and will stop when the current iteration of boundary
-          triangle edges does not exceed the Maximum Edge Length. This is the
-          default.
+         * PERIMETER_ONLY-Iterates through triangles from the TIN's outer
+         extent inward and will stop when the current iteration of boundary
+         triangle edges does not exceed the Maximum Edge Length. This is the
+         default.
 
-          * ALL-Classifies the entire collection of TIN triangles by edge
-          length."""
+         * ALL-Classifies the entire collection of TIN triangles by edge
+         length."""
     ...
 
-@gptooldoc('EditTin_3d', None)
-def EditTin(in_tin=..., in_features=..., constrained_delaunay=...): # -> conversion | int | float | complex | basestring | list[Unknown] | tuple[Unknown, ...] | dict[Unknown, Unknown]:
+@gptooldoc("EditTin_3d", None)
+def EditTin(
+    in_tin=..., in_features=..., constrained_delaunay=...
+):  # -> conversion | int | float | complex | basestring | list[Unknown] | tuple[Unknown, ...] | dict[Unknown, Unknown]:
     """EditTin(in_tin, in_features;in_features..., {constrained_delaunay})
 
-        Loads data from one or more input features to modify the surface of an
-        existing triangulated irregular network (TIN).
+       Loads data from one or more input features to modify the surface of an
+       existing triangulated irregular network (TIN).
 
-     INPUTS:
-      in_tin (TIN Layer):
-          The TIN dataset to process.
-      in_features (Value Table):
-          The input features and their related properties that will contribute
-          to the definition of the TIN.
+    INPUTS:
+     in_tin (TIN Layer):
+         The TIN dataset to process.
+     in_features (Value Table):
+         The input features and their related properties that will contribute
+         to the definition of the TIN.
 
-          * in_features-The feature with the geometry that will be imported to
-          the TIN.
+         * in_features-The feature with the geometry that will be imported to
+         the TIN.
 
-          * height_field-The source of elevation for the input features. Any
-          numeric field from the input feature's attribute table can be used,
-          along with the Z or M values stored in the Shape field. Choosing the
-          <None> keyword will result in the feature's elevation being
-          interpolated from the surrounding surface.
+         * height_field-The source of elevation for the input features. Any
+         numeric field from the input feature's attribute table can be used,
+         along with the Z or M values stored in the Shape field. Choosing the
+         <None> keyword will result in the feature's elevation being
+         interpolated from the surrounding surface.
 
-          * tag_field-A numeric attribute will be derived from an integer field
-          in the input feature's attribute table whose values can be used to
-          assign a basic form of attribution to the TIN's data elements.
-          Specifying <None> will result in no tag values being assigned.
+         * tag_field-A numeric attribute will be derived from an integer field
+         in the input feature's attribute table whose values can be used to
+         assign a basic form of attribution to the TIN's data elements.
+         Specifying <None> will result in no tag values being assigned.
 
-          * sf_type-The input feature's role in defining the TIN surface will be
-          defined. The valid options depend on the geometry of the input
-          features. Point and multipoint features can be defined as Mass_Points,
-          which contribute elevation values that are stored as TIN data nodes.
-          Line features can be designated as Mass_Points or breaklines by
-          specifying Hard_Line or Soft_Line. Polygon features can represent the
-          interpolation boundary by specifying Hard_Clip or Soft_Clip, interior
-          portions with no data by choosing Hard_Erase or Soft_Erase, or areas
-          of constant height by specifying Hard_Replace or Soft_Replace.
-          Additionally, polygons can also be used to assign integer attribute
-          values by specifying Hardvalue_Fill or Softvalue_Fill.
+         * sf_type-The input feature's role in defining the TIN surface will be
+         defined. The valid options depend on the geometry of the input
+         features. Point and multipoint features can be defined as Mass_Points,
+         which contribute elevation values that are stored as TIN data nodes.
+         Line features can be designated as Mass_Points or breaklines by
+         specifying Hard_Line or Soft_Line. Polygon features can represent the
+         interpolation boundary by specifying Hard_Clip or Soft_Clip, interior
+         portions with no data by choosing Hard_Erase or Soft_Erase, or areas
+         of constant height by specifying Hard_Replace or Soft_Replace.
+         Additionally, polygons can also be used to assign integer attribute
+         values by specifying Hardvalue_Fill or Softvalue_Fill.
 
-          * use_z-Indicates whether Z or M values are used when the SHAPE field
-          is specified as the height source. Setting this option to True
-          indicates Z values will be used, whereas setting it to False results
-          in M values being used.
-      constrained_delaunay {Boolean}:
-          Specifies the triangulation technique that will be used along the
-          breaklines of the TIN.
+         * use_z-Indicates whether Z or M values are used when the SHAPE field
+         is specified as the height source. Setting this option to True
+         indicates Z values will be used, whereas setting it to False results
+         in M values being used.
+     constrained_delaunay {Boolean}:
+         Specifies the triangulation technique that will be used along the
+         breaklines of the TIN.
 
-          * DELAUNAY-The TIN will use Delaunay conforming triangulation, which
-          may densify each segment of the breaklines to produce multiple
-          triangle edges. This is the default.
+         * DELAUNAY-The TIN will use Delaunay conforming triangulation, which
+         may densify each segment of the breaklines to produce multiple
+         triangle edges. This is the default.
 
-          * CONSTRAINED_DELAUNAY-The TIN will use constrained Delaunay
-          triangulation, which will add each segment as a single edge. Delaunay
-          triangulation rules are honored everywhere except along breaklines,
-          which will not be densified."""
+         * CONSTRAINED_DELAUNAY-The TIN will use constrained Delaunay
+         triangulation, which will add each segment as a single edge. Delaunay
+         triangulation rules are honored everywhere except along breaklines,
+         which will not be densified."""
     ...
 
-@gptooldoc('LandXMLToTin_3d', None)
-def LandXMLToTin(in_landxml_path=..., out_tin_folder=..., tin_basename=..., tinnames=...): # -> conversion | int | float | complex | basestring | list[Unknown] | tuple[Unknown, ...] | dict[Unknown, Unknown]:
+@gptooldoc("LandXMLToTin_3d", None)
+def LandXMLToTin(
+    in_landxml_path=..., out_tin_folder=..., tin_basename=..., tinnames=...
+):  # -> conversion | int | float | complex | basestring | list[Unknown] | tuple[Unknown, ...] | dict[Unknown, Unknown]:
     """LandXMLToTin(in_landxml_path, out_tin_folder, tin_basename, {tinnames;tinnames...})
 
-        This tool imports one or more triangulated irregular network (TIN)
-        surfaces from a LandXML file to output Esri TINs.
+       This tool imports one or more triangulated irregular network (TIN)
+       surfaces from a LandXML file to output Esri TINs.
 
-     INPUTS:
-      in_landxml_path (File):
-          The input LandXML file.
-      out_tin_folder (Folder):
-          The folder that the output TINs will be created in.
-      tin_basename (String):
-          The basename of the resulting TIN. When several TINs will be exported
-          from the LandXML file, the basename is used to define a unique name
-          for each output TIN. If <basename> already exists, the tool will not
-          write anything. If <basename> does not exist but <basename>2 exists,
-          the tool will create <basename> and <basename>2_1, instead of
-          <basename>2.
-      tinnames {String}:
-          The one or more LandXML TIN surfaces that will be exported to an Esri
-          TIN. Each LandXML TIN can be specified by its name or its index
-          position in the LandXML file, where the number 1 represents the first
-          TIN, 2 identifies the second, and so on."""
+    INPUTS:
+     in_landxml_path (File):
+         The input LandXML file.
+     out_tin_folder (Folder):
+         The folder that the output TINs will be created in.
+     tin_basename (String):
+         The basename of the resulting TIN. When several TINs will be exported
+         from the LandXML file, the basename is used to define a unique name
+         for each output TIN. If <basename> already exists, the tool will not
+         write anything. If <basename> does not exist but <basename>2 exists,
+         the tool will create <basename> and <basename>2_1, instead of
+         <basename>2.
+     tinnames {String}:
+         The one or more LandXML TIN surfaces that will be exported to an Esri
+         TIN. Each LandXML TIN can be specified by its name or its index
+         position in the LandXML file, where the number 1 represents the first
+         TIN, 2 identifies the second, and so on."""
     ...
 
-@gptooldoc('TinDomain_3d', None)
-def TinDomain(in_tin=..., out_feature_class=..., out_geometry_type=...): # -> conversion | int | float | complex | basestring | list[Unknown] | tuple[Unknown, ...] | dict[Unknown, Unknown]:
+@gptooldoc("TinDomain_3d", None)
+def TinDomain(
+    in_tin=..., out_feature_class=..., out_geometry_type=...
+):  # -> conversion | int | float | complex | basestring | list[Unknown] | tuple[Unknown, ...] | dict[Unknown, Unknown]:
     """TinDomain(in_tin, out_feature_class, out_geometry_type)
 
-        Creates a line or polygon feature class representing the interpolation
-        zone of a triangulated irregular network (TIN) dataset.
+       Creates a line or polygon feature class representing the interpolation
+       zone of a triangulated irregular network (TIN) dataset.
 
-     INPUTS:
-      in_tin (TIN Layer):
-          The TIN dataset to process.
-      out_geometry_type (String):
-          The geometry of the output feature class.
+    INPUTS:
+     in_tin (TIN Layer):
+         The TIN dataset to process.
+     out_geometry_type (String):
+         The geometry of the output feature class.
 
-          * LINE-The output will be a z-enabled line feature class.
+         * LINE-The output will be a z-enabled line feature class.
 
-          * POLYGON-The output will be a z-enabled polygon feature class.
+         * POLYGON-The output will be a z-enabled polygon feature class.
 
-     OUTPUTS:
-      out_feature_class (Feature Class):
-          The feature class that will be produced."""
+    OUTPUTS:
+     out_feature_class (Feature Class):
+         The feature class that will be produced."""
     ...
 
-@gptooldoc('TinEdge_3d', None)
-def TinEdge(in_tin=..., out_feature_class=..., edge_type=...): # -> conversion | int | float | complex | basestring | list[Unknown] | tuple[Unknown, ...] | dict[Unknown, Unknown]:
+@gptooldoc("TinEdge_3d", None)
+def TinEdge(
+    in_tin=..., out_feature_class=..., edge_type=...
+):  # -> conversion | int | float | complex | basestring | list[Unknown] | tuple[Unknown, ...] | dict[Unknown, Unknown]:
     """TinEdge(in_tin, out_feature_class, {edge_type})
 
-        Creates 3D line features using the triangle edges of a triangulated
-        irregular network (TIN) dataset.
+       Creates 3D line features using the triangle edges of a triangulated
+       irregular network (TIN) dataset.
 
-     INPUTS:
-      in_tin (TIN Layer):
-          The TIN dataset to process.
-      edge_type {String}:
-          The triangle edge that will be exported.
+    INPUTS:
+     in_tin (TIN Layer):
+         The TIN dataset to process.
+     edge_type {String}:
+         The triangle edge that will be exported.
 
-          * DATA-Edges representing the interpolation zone. This is the default.
+         * DATA-Edges representing the interpolation zone. This is the default.
 
-          * SOFT-Edges representing gradual breaks in slope.
+         * SOFT-Edges representing gradual breaks in slope.
 
-          * HARD-Edges representing distinct breaks in slope.
+         * HARD-Edges representing distinct breaks in slope.
 
-          * ENFORCED-Edges that were not introduced by the TIN's triangulation.
+         * ENFORCED-Edges that were not introduced by the TIN's triangulation.
 
-          * REGULAR-Edges that were created by the TIN's triangulation.
+         * REGULAR-Edges that were created by the TIN's triangulation.
 
-          * OUTSIDE-Edges that are excluded from the interpolation zone.
+         * OUTSIDE-Edges that are excluded from the interpolation zone.
 
-          * ALL-All edges, included those that were excluded from the
-          interpolation zone.
+         * ALL-All edges, included those that were excluded from the
+         interpolation zone.
 
-     OUTPUTS:
-      out_feature_class (Feature Class):
-          The feature class that will be produced."""
+    OUTPUTS:
+     out_feature_class (Feature Class):
+         The feature class that will be produced."""
     ...
 
-@gptooldoc('TinLine_3d', None)
-def TinLine(in_tin=..., out_feature_class=..., code_field=...): # -> conversion | int | float | complex | basestring | list[Unknown] | tuple[Unknown, ...] | dict[Unknown, Unknown]:
+@gptooldoc("TinLine_3d", None)
+def TinLine(
+    in_tin=..., out_feature_class=..., code_field=...
+):  # -> conversion | int | float | complex | basestring | list[Unknown] | tuple[Unknown, ...] | dict[Unknown, Unknown]:
     """TinLine(in_tin, out_feature_class, {code_field})
 
-        Exports breaklines from a triangulated irregular network (TIN) dataset
-        to a 3D line feature class.
+       Exports breaklines from a triangulated irregular network (TIN) dataset
+       to a 3D line feature class.
 
-     INPUTS:
-      in_tin (TIN Layer):
-          The TIN dataset to process.
-      code_field {String}:
-          The name of the field in the output feature class that defines the
-          breakline type. The default field name is Code.
+    INPUTS:
+     in_tin (TIN Layer):
+         The TIN dataset to process.
+     code_field {String}:
+         The name of the field in the output feature class that defines the
+         breakline type. The default field name is Code.
 
-     OUTPUTS:
-      out_feature_class (Feature Class):
-          The feature class that will be produced."""
+    OUTPUTS:
+     out_feature_class (Feature Class):
+         The feature class that will be produced."""
     ...
 
-@gptooldoc('TinNode_3d', None)
-def TinNode(in_tin=..., out_feature_class=..., spot_field=..., tag_field=...): # -> conversion | int | float | complex | basestring | list[Unknown] | tuple[Unknown, ...] | dict[Unknown, Unknown]:
+@gptooldoc("TinNode_3d", None)
+def TinNode(
+    in_tin=..., out_feature_class=..., spot_field=..., tag_field=...
+):  # -> conversion | int | float | complex | basestring | list[Unknown] | tuple[Unknown, ...] | dict[Unknown, Unknown]:
     """TinNode(in_tin, out_feature_class, {spot_field}, {tag_field})
 
-        Exports the nodes of a triangulated irregular network (TIN) dataset to
-        a point feature class.
+       Exports the nodes of a triangulated irregular network (TIN) dataset to
+       a point feature class.
 
-     INPUTS:
-      in_tin (TIN Layer):
-          The TIN dataset to process.
-      spot_field {String}:
-          The name of the elevation attribute field of the output feature class.
-          If a name is given, the feature class will be 2D; otherwise, it will
-          be 3D. No name is provided by default, which results in the creation
-          of 3D point features.
-      tag_field {String}:
-          The name of the field storing the tag attribute in the output feature
-          class. By default, no tag value field is created.
+    INPUTS:
+     in_tin (TIN Layer):
+         The TIN dataset to process.
+     spot_field {String}:
+         The name of the elevation attribute field of the output feature class.
+         If a name is given, the feature class will be 2D; otherwise, it will
+         be 3D. No name is provided by default, which results in the creation
+         of 3D point features.
+     tag_field {String}:
+         The name of the field storing the tag attribute in the output feature
+         class. By default, no tag value field is created.
 
-     OUTPUTS:
-      out_feature_class (Feature Class):
-          The feature class that will be produced."""
+    OUTPUTS:
+     out_feature_class (Feature Class):
+         The feature class that will be produced."""
     ...
 
-@gptooldoc('TinPolygonTag_3d', None)
-def TinPolygonTag(in_tin=..., out_feature_class=..., tag_field=...): # -> conversion | int | float | complex | basestring | list[Unknown] | tuple[Unknown, ...] | dict[Unknown, Unknown]:
+@gptooldoc("TinPolygonTag_3d", None)
+def TinPolygonTag(
+    in_tin=..., out_feature_class=..., tag_field=...
+):  # -> conversion | int | float | complex | basestring | list[Unknown] | tuple[Unknown, ...] | dict[Unknown, Unknown]:
     """TinPolygonTag(in_tin, out_feature_class, {tag_field})
 
-        Creates polygon features using tag values in a triangulated irregular
-        network (TIN) dataset.
+       Creates polygon features using tag values in a triangulated irregular
+       network (TIN) dataset.
 
-     INPUTS:
-      in_tin (TIN Layer):
-          The TIN dataset to process.
-      tag_field {String}:
-          The name of the field storing the tag attribute in the output feature
-          class. The default field name is Tag_Value.
+    INPUTS:
+     in_tin (TIN Layer):
+         The TIN dataset to process.
+     tag_field {String}:
+         The name of the field storing the tag attribute in the output feature
+         class. The default field name is Tag_Value.
 
-     OUTPUTS:
-      out_feature_class (Feature Class):
-          The feature class that will be produced."""
+    OUTPUTS:
+     out_feature_class (Feature Class):
+         The feature class that will be produced."""
     ...
 
-@gptooldoc('TinRaster_3d', None)
-def TinRaster(in_tin=..., out_raster=..., data_type=..., method=..., sample_distance=..., z_factor=..., sample_value=...): # -> conversion | int | float | complex | basestring | list[Unknown] | tuple[Unknown, ...] | dict[Unknown, Unknown]:
+@gptooldoc("TinRaster_3d", None)
+def TinRaster(
+    in_tin=...,
+    out_raster=...,
+    data_type=...,
+    method=...,
+    sample_distance=...,
+    z_factor=...,
+    sample_value=...,
+):  # -> conversion | int | float | complex | basestring | list[Unknown] | tuple[Unknown, ...] | dict[Unknown, Unknown]:
     """TinRaster(in_tin, out_raster, {data_type}, {method}, {sample_distance}, {z_factor}, {sample_value})
 
-        Interpolates a raster using z-values from the input TIN.
+       Interpolates a raster using z-values from the input TIN.
 
-     INPUTS:
-      in_tin (TIN Layer):
-          The TIN dataset to process.
-      data_type {String}:
-          Specifies the type of numeric values stored in the output raster.
+    INPUTS:
+     in_tin (TIN Layer):
+         The TIN dataset to process.
+     data_type {String}:
+         Specifies the type of numeric values stored in the output raster.
 
-          * FLOAT-The output raster will use 32-bit floating point, which
-          supports values ranging from -3.402823466e+38 to 3.402823466e+38. This
-          is the default.
+         * FLOAT-The output raster will use 32-bit floating point, which
+         supports values ranging from -3.402823466e+38 to 3.402823466e+38. This
+         is the default.
 
-          * INT-The output raster will use an appropriate integer bit depth.
-          This option will round z-values to the nearest whole number and write
-          an integer to each raster cell value.
-      method {String}:
-          The interpolation method used to create the raster.
+         * INT-The output raster will use an appropriate integer bit depth.
+         This option will round z-values to the nearest whole number and write
+         an integer to each raster cell value.
+     method {String}:
+         The interpolation method used to create the raster.
 
-          * LINEAR-Calculates cell values by applying linear interpolation to
-          the TIN triangles. This is the default.
+         * LINEAR-Calculates cell values by applying linear interpolation to
+         the TIN triangles. This is the default.
 
-          * NATURAL_NEIGHBORS-Calculates cell values by using natural neighbors
-          interpolation of TIN triangles
-      sample_distance {String}:
-          The sampling method and distance used to define the cell size of the
-          output raster.
+         * NATURAL_NEIGHBORS-Calculates cell values by using natural neighbors
+         interpolation of TIN triangles
+     sample_distance {String}:
+         The sampling method and distance used to define the cell size of the
+         output raster.
 
-          * OBSERVATIONS-Defines the number of cells that divide the longest
-          side of the output raster. This method is used by default with the
-          value of 250.
+         * OBSERVATIONS-Defines the number of cells that divide the longest
+         side of the output raster. This method is used by default with the
+         value of 250.
 
-          * CELLSIZE-Defines the cell size of the output raster.
-      z_factor {Double}:
-          The factor by which z-values will be multiplied. This is typically
-          used to convert z linear units to match x,y linear units. The default
-          is 1, which leaves elevation values unchanged. This parameter is not
-          available if the spatial reference of the input surface has a z datum
-          with a specified linear unit.
-      sample_value {Double}:
-          The value that corresponds with the Sampling Distance for specifying
-          the output raster's cell size.
+         * CELLSIZE-Defines the cell size of the output raster.
+     z_factor {Double}:
+         The factor by which z-values will be multiplied. This is typically
+         used to convert z linear units to match x,y linear units. The default
+         is 1, which leaves elevation values unchanged. This parameter is not
+         available if the spatial reference of the input surface has a z datum
+         with a specified linear unit.
+     sample_value {Double}:
+         The value that corresponds with the Sampling Distance for specifying
+         the output raster's cell size.
 
-     OUTPUTS:
-      out_raster (Raster Dataset):
-          The location and name of the output raster. When storing a raster
-          dataset in a geodatabase or in a folder such as an Esri Grid, do not
-          add a file extension to the name of the raster dataset. A file
-          extension can be provided to define the raster's format when storing
-          it in a folder, such as .tif to generate a GeoTIFF or .img to generate
-          an ERDAS IMAGINE format file.If the raster is stored as a TIFF file or
-          in a geodatabase, its raster
-          compression type and quality can be specified using geoprocessing
-          environment settings."""
+    OUTPUTS:
+     out_raster (Raster Dataset):
+         The location and name of the output raster. When storing a raster
+         dataset in a geodatabase or in a folder such as an Esri Grid, do not
+         add a file extension to the name of the raster dataset. A file
+         extension can be provided to define the raster's format when storing
+         it in a folder, such as .tif to generate a GeoTIFF or .img to generate
+         an ERDAS IMAGINE format file.If the raster is stored as a TIFF file or
+         in a geodatabase, its raster
+         compression type and quality can be specified using geoprocessing
+         environment settings."""
     ...
 
-@gptooldoc('TinTriangle_3d', None)
-def TinTriangle(in_tin=..., out_feature_class=..., units=..., z_factor=..., hillshade=..., tag_field=...): # -> conversion | int | float | complex | basestring | list[Unknown] | tuple[Unknown, ...] | dict[Unknown, Unknown]:
+@gptooldoc("TinTriangle_3d", None)
+def TinTriangle(
+    in_tin=...,
+    out_feature_class=...,
+    units=...,
+    z_factor=...,
+    hillshade=...,
+    tag_field=...,
+):  # -> conversion | int | float | complex | basestring | list[Unknown] | tuple[Unknown, ...] | dict[Unknown, Unknown]:
     """TinTriangle(in_tin, out_feature_class, {units}, {z_factor}, {hillshade}, {tag_field})
 
-        Exports triangle faces from a TIN dataset to polygon features and
-        provides slope, aspect, and optional attributes of hillshade and tag
-        values for each triangle.
+       Exports triangle faces from a TIN dataset to polygon features and
+       provides slope, aspect, and optional attributes of hillshade and tag
+       values for each triangle.
 
-     INPUTS:
-      in_tin (TIN Layer):
-          The TIN dataset to process.
-      units {String}:
-          The units of measure to be used in calculating slope.
+    INPUTS:
+     in_tin (TIN Layer):
+         The TIN dataset to process.
+     units {String}:
+         The units of measure to be used in calculating slope.
 
-          * PERCENT-Slope is expressed as a percentage value. This is the
-          default.
+         * PERCENT-Slope is expressed as a percentage value. This is the
+         default.
 
-          * DEGREE-Slope is expressed as the angle of inclination from a
-          horizontal plane.
-      z_factor {Double}:
-          The factor by which z-values will be multiplied. This is typically
-          used to convert z linear units to match x,y linear units. The default
-          is 1, which leaves elevation values unchanged. This parameter is not
-          available if the spatial reference of the input surface has a z datum
-          with a specified linear unit.
-      hillshade {String}:
-          Specifies the azimuth and altitude angles of the light source when
-          applying a hillshade effect for the feature layer output. Azimuth can
-          range from 0 to 360 degrees, whereas altitude can range from 0 to 90.
-          An azimuth of 45 degrees and altitude of 30 degrees would be entered
-          as "HILLSHADE 45, 30".
-      tag_field {String}:
-          The field name in the output feature that will store the triangle tag
-          value. This parameter is empty by default, which will result in tag
-          values not being written to the output.
+         * DEGREE-Slope is expressed as the angle of inclination from a
+         horizontal plane.
+     z_factor {Double}:
+         The factor by which z-values will be multiplied. This is typically
+         used to convert z linear units to match x,y linear units. The default
+         is 1, which leaves elevation values unchanged. This parameter is not
+         available if the spatial reference of the input surface has a z datum
+         with a specified linear unit.
+     hillshade {String}:
+         Specifies the azimuth and altitude angles of the light source when
+         applying a hillshade effect for the feature layer output. Azimuth can
+         range from 0 to 360 degrees, whereas altitude can range from 0 to 90.
+         An azimuth of 45 degrees and altitude of 30 degrees would be entered
+         as "HILLSHADE 45, 30".
+     tag_field {String}:
+         The field name in the output feature that will store the triangle tag
+         value. This parameter is empty by default, which will result in tag
+         values not being written to the output.
 
-     OUTPUTS:
-      out_feature_class (Feature Class):
-          The feature class that will be produced."""
+    OUTPUTS:
+     out_feature_class (Feature Class):
+         The feature class that will be produced."""
     ...
 
-@gptooldoc('AddFeatureClassToTerrain_3d', None)
-def AddFeatureClassToTerrain(in_terrain=..., in_features=...): # -> conversion | int | float | complex | basestring | list[Unknown] | tuple[Unknown, ...] | dict[Unknown, Unknown]:
+@gptooldoc("AddFeatureClassToTerrain_3d", None)
+def AddFeatureClassToTerrain(
+    in_terrain=..., in_features=...
+):  # -> conversion | int | float | complex | basestring | list[Unknown] | tuple[Unknown, ...] | dict[Unknown, Unknown]:
     """AddFeatureClassToTerrain(in_terrain, in_features;in_features...)
 
-        Adds one or more feature classes to a terrain dataset.
+       Adds one or more feature classes to a terrain dataset.
 
-     INPUTS:
-      in_terrain (Terrain Layer):
-          The terrain to which feature classes will be added. The terrain
-          dataset must already have one or more pyramid levels created.
-      in_features (Value Table):
-          Identifies features being added to the terrain. Each feature must
-          reside in the same feature dataset as the terrain and have its role
-          defined through the following properties:
+    INPUTS:
+     in_terrain (Terrain Layer):
+         The terrain to which feature classes will be added. The terrain
+         dataset must already have one or more pyramid levels created.
+     in_features (Value Table):
+         Identifies features being added to the terrain. Each feature must
+         reside in the same feature dataset as the terrain and have its role
+         defined through the following properties:
 
-          * Input Features-Name of the feature class being added to the terrain.
+         * Input Features-Name of the feature class being added to the terrain.
 
-          * Height Field-Field containing the feature's height information. Any
-          numeric field can be specified, and z-enabled features can also choose
-          the geometry field. If the <none> option is chosen, z-values are
-          interpolated from the surface.
+         * Height Field-Field containing the feature's height information. Any
+         numeric field can be specified, and z-enabled features can also choose
+         the geometry field. If the <none> option is chosen, z-values are
+         interpolated from the surface.
 
-          * Type-Surface feature type that defines how the features contributes
-          to the terrain. Mass points denote features that contribute
-          z-measurements; breaklines denote linear features with known
-          z-measurements, and several polygon types. Breaklines and polygon-
-          based feature types also have hard and soft qualifiers that define the
-          interpolation behavior around the feature's edges when exporting to
-          raster. Soft features exhibit gradual changes in slope, whereas hard
-          features represent sharp discontinuities.
+         * Type-Surface feature type that defines how the features contributes
+         to the terrain. Mass points denote features that contribute
+         z-measurements; breaklines denote linear features with known
+         z-measurements, and several polygon types. Breaklines and polygon-
+         based feature types also have hard and soft qualifiers that define the
+         interpolation behavior around the feature's edges when exporting to
+         raster. Soft features exhibit gradual changes in slope, whereas hard
+         features represent sharp discontinuities.
 
-          * Group-Defines the group of each contributing feature.
-          Unspecification of breaklines and polygon surface features
-          representing the same geographic features at different levels of
-          detail are intended for display at certain scale ranges. Data
-          representing the same geographic features at different levels of
-          detail can be grouped by assigning the same numeric value. For
-          example, assigning two boundary features with a high and low level of
-          detail to the same group would ensure there is no overlap in their
-          associated display scale range.
+         * Group-Defines the group of each contributing feature.
+         Unspecification of breaklines and polygon surface features
+         representing the same geographic features at different levels of
+         detail are intended for display at certain scale ranges. Data
+         representing the same geographic features at different levels of
+         detail can be grouped by assigning the same numeric value. For
+         example, assigning two boundary features with a high and low level of
+         detail to the same group would ensure there is no overlap in their
+         associated display scale range.
 
-          * Min/Max Resolution-Defines the range of pyramid resolutions at which
-          the feature is enforced in the terrain. Mass points must use the
-          smallest and largest range of values.
+         * Min/Max Resolution-Defines the range of pyramid resolutions at which
+         the feature is enforced in the terrain. Mass points must use the
+         smallest and largest range of values.
 
-          * Overview-Indicates whether the feature is enforced at the coarsest
-          representation of the terrain dataset. To maximize display
-          performance, make sure that feature classes represented in the
-          overview contain simplified geometry. Only valid for feature types
-          other than mass points.
+         * Overview-Indicates whether the feature is enforced at the coarsest
+         representation of the terrain dataset. To maximize display
+         performance, make sure that feature classes represented in the
+         overview contain simplified geometry. Only valid for feature types
+         other than mass points.
 
-          * Embed-Setting this option to TRUE indicates the source features will
-          be copied to a hidden feature class that will be referenced by and
-          only available to the terrain. Embedded features will not be directly
-          viewable, as they can only be accessed through terrain tools. Only
-          valid for multipoint features.
+         * Embed-Setting this option to TRUE indicates the source features will
+         be copied to a hidden feature class that will be referenced by and
+         only available to the terrain. Embedded features will not be directly
+         viewable, as they can only be accessed through terrain tools. Only
+         valid for multipoint features.
 
-          * Embed Name-Name of the embedded feature class. Only applies if the
-          feature is being embedded.
+         * Embed Name-Name of the embedded feature class. Only applies if the
+         feature is being embedded.
 
-          * Embed Fields-Specifies BLOB field attributes to be retained in the
-          embedded feature class. These attributes can be used to symbolize the
-          terrain. LAS attribution can be stored in BLOB fields of multipoint
-          features through the LAS To Multipoint tool.
+         * Embed Fields-Specifies BLOB field attributes to be retained in the
+         embedded feature class. These attributes can be used to symbolize the
+         terrain. LAS attribution can be stored in BLOB fields of multipoint
+         features through the LAS To Multipoint tool.
 
-          * Anchor-Specifies whether the point feature class will be anchored
-          through all terrain pyramid levels. Anchor points are never filtered
-          or thinned away to ensure they persist in the terrain surface. This
-          option only applies to single-point feature classes."""
+         * Anchor-Specifies whether the point feature class will be anchored
+         through all terrain pyramid levels. Anchor points are never filtered
+         or thinned away to ensure they persist in the terrain surface. This
+         option only applies to single-point feature classes."""
     ...
 
-@gptooldoc('AddTerrainPyramidLevel_3d', None)
-def AddTerrainPyramidLevel(in_terrain=..., pyramid_type=..., pyramid_level_definition=...): # -> conversion | int | float | complex | basestring | list[Unknown] | tuple[Unknown, ...] | dict[Unknown, Unknown]:
+@gptooldoc("AddTerrainPyramidLevel_3d", None)
+def AddTerrainPyramidLevel(
+    in_terrain=..., pyramid_type=..., pyramid_level_definition=...
+):  # -> conversion | int | float | complex | basestring | list[Unknown] | tuple[Unknown, ...] | dict[Unknown, Unknown]:
     """AddTerrainPyramidLevel(in_terrain, {pyramid_type}, pyramid_level_definition;pyramid_level_definition...)
 
-        Adds one or more pyramid levels to an existing terrain dataset.
+       Adds one or more pyramid levels to an existing terrain dataset.
 
-     INPUTS:
-      in_terrain (Terrain Layer):
-          The terrain dataset to process.
-      pyramid_type {String}:
-          The pyramid type used by the terrain dataset. This parameter is not
-          used in ArcGIS 9.3 and beyond, as its purpose is to ensure backward-
-          compatibility with scripts and models written using ArcGIS 9.2.
-      pyramid_level_definition (String):
-          The z-tolerance or window size and its associated reference scale for
-          each pyramid level being added to the terrain. Each pyramid level is
-          entered as a space-delimited pair of the pyramid level resolution and
-          reference scale (for example, "20 24000" for a window size of 20 and
-          reference scale of 1:24000, or "1.5 10000" for a z-tolerance of 1.5
-          and reference scale of 1:10000). The pyramid level resolution can be
-          provided as a floating-point value, while the reference scale must be
-          entered as a whole number.The z-tolerance value represents the maximum
-          deviation that can occur
-          from the elevation of the terrain at full resolution, whereas the
-          window size value defines the area of the terrain tile used in
-          thinning elevation points by selecting one or two points from the area
-          based on the window size method defined during the creation of the
-          terrain. The reference scale represents the largest map scale at which
-          the pyramid level is enforced. When the terrain is displayed at a
-          scale larger than this value, the next highest pyramid level is
-          displayed."""
+    INPUTS:
+     in_terrain (Terrain Layer):
+         The terrain dataset to process.
+     pyramid_type {String}:
+         The pyramid type used by the terrain dataset. This parameter is not
+         used in ArcGIS 9.3 and beyond, as its purpose is to ensure backward-
+         compatibility with scripts and models written using ArcGIS 9.2.
+     pyramid_level_definition (String):
+         The z-tolerance or window size and its associated reference scale for
+         each pyramid level being added to the terrain. Each pyramid level is
+         entered as a space-delimited pair of the pyramid level resolution and
+         reference scale (for example, "20 24000" for a window size of 20 and
+         reference scale of 1:24000, or "1.5 10000" for a z-tolerance of 1.5
+         and reference scale of 1:10000). The pyramid level resolution can be
+         provided as a floating-point value, while the reference scale must be
+         entered as a whole number.The z-tolerance value represents the maximum
+         deviation that can occur
+         from the elevation of the terrain at full resolution, whereas the
+         window size value defines the area of the terrain tile used in
+         thinning elevation points by selecting one or two points from the area
+         based on the window size method defined during the creation of the
+         terrain. The reference scale represents the largest map scale at which
+         the pyramid level is enforced. When the terrain is displayed at a
+         scale larger than this value, the next highest pyramid level is
+         displayed."""
     ...
 
-@gptooldoc('AppendTerrainPoints_3d', None)
-def AppendTerrainPoints(in_terrain=..., terrain_feature_class=..., in_point_features=..., polygon_features_or_extent=...): # -> conversion | int | float | complex | basestring | list[Unknown] | tuple[Unknown, ...] | dict[Unknown, Unknown]:
+@gptooldoc("AppendTerrainPoints_3d", None)
+def AppendTerrainPoints(
+    in_terrain=...,
+    terrain_feature_class=...,
+    in_point_features=...,
+    polygon_features_or_extent=...,
+):  # -> conversion | int | float | complex | basestring | list[Unknown] | tuple[Unknown, ...] | dict[Unknown, Unknown]:
     """AppendTerrainPoints(in_terrain, terrain_feature_class, in_point_features, {polygon_features_or_extent})
 
-        Appends points to a point feature referenced by a terrain dataset.
+       Appends points to a point feature referenced by a terrain dataset.
 
-     INPUTS:
-      in_terrain (Terrain Layer):
-          The terrain dataset to process.
-      terrain_feature_class (String):
-          The feature class that contributes to the terrain dataset into which
-          the points or multipoints will be added.This parameter only requires
-          the name of the feature class and not its
-          full path.
-      in_point_features (Feature Layer):
-          The feature class of points or multipoints to add as an additional
-          data source for the terrain dataset.
-      polygon_features_or_extent {Feature Layer / Extent}:
-          Specify a polygon feature class or arcpy.Extent object to define the
-          area where point features will be added. This parameter is empty by
-          default, which results in all the points from the input feature class
-          being loaded to the terrain feature."""
+    INPUTS:
+     in_terrain (Terrain Layer):
+         The terrain dataset to process.
+     terrain_feature_class (String):
+         The feature class that contributes to the terrain dataset into which
+         the points or multipoints will be added.This parameter only requires
+         the name of the feature class and not its
+         full path.
+     in_point_features (Feature Layer):
+         The feature class of points or multipoints to add as an additional
+         data source for the terrain dataset.
+     polygon_features_or_extent {Feature Layer / Extent}:
+         Specify a polygon feature class or arcpy.Extent object to define the
+         area where point features will be added. This parameter is empty by
+         default, which results in all the points from the input feature class
+         being loaded to the terrain feature."""
     ...
 
-@gptooldoc('BuildTerrain_3d', None)
-def BuildTerrain(in_terrain=..., update_extent=...): # -> conversion | int | float | complex | basestring | list[Unknown] | tuple[Unknown, ...] | dict[Unknown, Unknown]:
+@gptooldoc("BuildTerrain_3d", None)
+def BuildTerrain(
+    in_terrain=..., update_extent=...
+):  # -> conversion | int | float | complex | basestring | list[Unknown] | tuple[Unknown, ...] | dict[Unknown, Unknown]:
     """BuildTerrain(in_terrain, {update_extent})
 
-        Performs tasks required for analyzing and displaying a terrain
-        dataset.
+       Performs tasks required for analyzing and displaying a terrain
+       dataset.
 
-     INPUTS:
-      in_terrain (Terrain Layer):
-          The terrain dataset to process.
-      update_extent {String}:
-          Recalculates the data extent of a window-size-based terrain dataset
-          when the data area has been reduced through editing. It is not needed
-          if the data extent has increased or if the terrain dataset is
-          z-tolerance based. It will scan through all the terrain data to
-          determine the new extent.
+    INPUTS:
+     in_terrain (Terrain Layer):
+         The terrain dataset to process.
+     update_extent {String}:
+         Recalculates the data extent of a window-size-based terrain dataset
+         when the data area has been reduced through editing. It is not needed
+         if the data extent has increased or if the terrain dataset is
+         z-tolerance based. It will scan through all the terrain data to
+         determine the new extent.
 
-          * NO_UPDATE_EXTENT-The extent of the terrain dataset will not be
-          recalculated. This is the default.
+         * NO_UPDATE_EXTENT-The extent of the terrain dataset will not be
+         recalculated. This is the default.
 
-          * UPDATE_EXTENT-The extent of the terrain dataset will be
-          recalculated."""
+         * UPDATE_EXTENT-The extent of the terrain dataset will be
+         recalculated."""
     ...
 
-@gptooldoc('ChangeTerrainReferenceScale_3d', None)
-def ChangeTerrainReferenceScale(in_terrain=..., old_refscale=..., new_refscale=...): # -> conversion | int | float | complex | basestring | list[Unknown] | tuple[Unknown, ...] | dict[Unknown, Unknown]:
+@gptooldoc("ChangeTerrainReferenceScale_3d", None)
+def ChangeTerrainReferenceScale(
+    in_terrain=..., old_refscale=..., new_refscale=...
+):  # -> conversion | int | float | complex | basestring | list[Unknown] | tuple[Unknown, ...] | dict[Unknown, Unknown]:
     """ChangeTerrainReferenceScale(in_terrain, old_refscale, new_refscale)
 
-        Changes the reference scale associated with a terrain pyramid level.
+       Changes the reference scale associated with a terrain pyramid level.
 
-     INPUTS:
-      in_terrain (Terrain Layer):
-          The terrain dataset to process.
-      old_refscale (Long):
-          The reference scale of an existing pyramid level.
-      new_refscale (Long):
-          The new reference scale for the pyramid level."""
+    INPUTS:
+     in_terrain (Terrain Layer):
+         The terrain dataset to process.
+     old_refscale (Long):
+         The reference scale of an existing pyramid level.
+     new_refscale (Long):
+         The new reference scale for the pyramid level."""
     ...
 
-@gptooldoc('ChangeTerrainResolutionBounds_3d', None)
-def ChangeTerrainResolutionBounds(in_terrain=..., feature_class=..., lower_pyramid_resolution=..., upper_pyramid_resolution=..., overview=...): # -> conversion | int | float | complex | basestring | list[Unknown] | tuple[Unknown, ...] | dict[Unknown, Unknown]:
+@gptooldoc("ChangeTerrainResolutionBounds_3d", None)
+def ChangeTerrainResolutionBounds(
+    in_terrain=...,
+    feature_class=...,
+    lower_pyramid_resolution=...,
+    upper_pyramid_resolution=...,
+    overview=...,
+):  # -> conversion | int | float | complex | basestring | list[Unknown] | tuple[Unknown, ...] | dict[Unknown, Unknown]:
     """ChangeTerrainResolutionBounds(in_terrain, feature_class, {lower_pyramid_resolution}, {upper_pyramid_resolution}, {overview})
 
-        Changes the pyramid levels at which a feature class will be enforced
-        for a given terrain dataset.
+       Changes the pyramid levels at which a feature class will be enforced
+       for a given terrain dataset.
 
-     INPUTS:
-      in_terrain (Terrain Layer):
-          The terrain dataset to process.
-      feature_class (String):
-          The feature class referenced by the terrain that will have its
-          pyramid-level resolutions modified.
-      lower_pyramid_resolution {Double}:
-          The new lower pyramid-level resolution for the chosen feature class.
-      upper_pyramid_resolution {Double}:
-          The new upper pyramid-level resolution for the chosen feature class.
-      overview {Boolean}:
-          Specifies whether the feature class will contribute to the overview of
-          the terrain dataset.
+    INPUTS:
+     in_terrain (Terrain Layer):
+         The terrain dataset to process.
+     feature_class (String):
+         The feature class referenced by the terrain that will have its
+         pyramid-level resolutions modified.
+     lower_pyramid_resolution {Double}:
+         The new lower pyramid-level resolution for the chosen feature class.
+     upper_pyramid_resolution {Double}:
+         The new upper pyramid-level resolution for the chosen feature class.
+     overview {Boolean}:
+         Specifies whether the feature class will contribute to the overview of
+         the terrain dataset.
 
-          * OVERVIEW-Enforces the feature class at the overview display of the
-          terrain dataset. This is the default.
+         * OVERVIEW-Enforces the feature class at the overview display of the
+         terrain dataset. This is the default.
 
-          * NO_OVERVIEW-Omits the feature class from the overview display of the
-          terrain dataset."""
+         * NO_OVERVIEW-Omits the feature class from the overview display of the
+         terrain dataset."""
     ...
 
-@gptooldoc('CreateTerrain_3d', None)
-def CreateTerrain(in_feature_dataset=..., out_terrain_name=..., average_point_spacing=..., max_overview_size=..., config_keyword=..., pyramid_type=..., windowsize_method=..., secondary_thinning_method=..., secondary_thinning_threshold=..., triangulation_method=...): # -> conversion | int | float | complex | basestring | list[Unknown] | tuple[Unknown, ...] | dict[Unknown, Unknown]:
+@gptooldoc("CreateTerrain_3d", None)
+def CreateTerrain(
+    in_feature_dataset=...,
+    out_terrain_name=...,
+    average_point_spacing=...,
+    max_overview_size=...,
+    config_keyword=...,
+    pyramid_type=...,
+    windowsize_method=...,
+    secondary_thinning_method=...,
+    secondary_thinning_threshold=...,
+    triangulation_method=...,
+):  # -> conversion | int | float | complex | basestring | list[Unknown] | tuple[Unknown, ...] | dict[Unknown, Unknown]:
     """CreateTerrain(in_feature_dataset, out_terrain_name, average_point_spacing, {max_overview_size}, {config_keyword}, {pyramid_type}, {windowsize_method}, {secondary_thinning_method}, {secondary_thinning_threshold}, {triangulation_method})
 
-        Creates a terrain dataset.
+       Creates a terrain dataset.
 
-     INPUTS:
-      in_feature_dataset (Feature Dataset):
-          The feature dataset that will contain the terrain dataset.
-      out_terrain_name (String):
-          The name of the terrain dataset.
-      average_point_spacing (Double):
-          The average horizontal distance between the data points that will be
-          used in modeling the terrain. Sensor based measurements-such as
-          photogrammetric, lidar, and sonar surveys-typically have a known
-          spacing that should be used. Use the horizontal units of the feature
-          dataset's coordinate system for the spacing.
-      max_overview_size {Long}:
-          The terrain overview is similar to the image thumbnail concept. It is
-          the coarsest representation of the terrain dataset, and the maximum
-          size represents the upper limit of the number of measurement points
-          that can be sampled to create the overview.
-      config_keyword {String}:
-          The configuration keyword that will be used to optimize the terrain's
-          storage in an enterprise database.
-      pyramid_type {String}:
-          Specifies the point thinning method that will be used to construct the
-          terrain pyramids.
+    INPUTS:
+     in_feature_dataset (Feature Dataset):
+         The feature dataset that will contain the terrain dataset.
+     out_terrain_name (String):
+         The name of the terrain dataset.
+     average_point_spacing (Double):
+         The average horizontal distance between the data points that will be
+         used in modeling the terrain. Sensor based measurements-such as
+         photogrammetric, lidar, and sonar surveys-typically have a known
+         spacing that should be used. Use the horizontal units of the feature
+         dataset's coordinate system for the spacing.
+     max_overview_size {Long}:
+         The terrain overview is similar to the image thumbnail concept. It is
+         the coarsest representation of the terrain dataset, and the maximum
+         size represents the upper limit of the number of measurement points
+         that can be sampled to create the overview.
+     config_keyword {String}:
+         The configuration keyword that will be used to optimize the terrain's
+         storage in an enterprise database.
+     pyramid_type {String}:
+         Specifies the point thinning method that will be used to construct the
+         terrain pyramids.
 
-          * WINDOWSIZE-Data points in the area defined by a given window size
-          for each pyramid level will be selected using the windowsize_method
-          parameter value. This is the default.
+         * WINDOWSIZE-Data points in the area defined by a given window size
+         for each pyramid level will be selected using the windowsize_method
+         parameter value. This is the default.
 
-          * ZTOLERANCE-The vertical accuracy of each pyramid level relative to
-          the full resolution of the data points will be specified.
-      windowsize_method {String}:
-          Specifies how points in the area defined by the window size will be
-          selected. This parameter is only applicable when WINDOWSIZE is
-          specified for the pyramid_type parameter.
+         * ZTOLERANCE-The vertical accuracy of each pyramid level relative to
+         the full resolution of the data points will be specified.
+     windowsize_method {String}:
+         Specifies how points in the area defined by the window size will be
+         selected. This parameter is only applicable when WINDOWSIZE is
+         specified for the pyramid_type parameter.
 
-          * ZMIN-The point with the smallest elevation value will be selected.
-          This is the default.
+         * ZMIN-The point with the smallest elevation value will be selected.
+         This is the default.
 
-          * ZMAX-The point with the largest elevation value will be selected.
+         * ZMAX-The point with the largest elevation value will be selected.
 
-          * ZMEAN-The point with the elevation value closest to the average of
-          all values will be selected.
+         * ZMEAN-The point with the elevation value closest to the average of
+         all values will be selected.
 
-          * ZMINMAX-The points with the smallest and largest elevation values
-          will be selected.
-      secondary_thinning_method {String}:
-          Specifies additional thinning that will be performed to reduce the
-          number of points used over flat areas when window size pyramids are
-          used. An area is considered flat if the heights of points in that area
-          are within the secondary_thinning_threshold parameter value. Its
-          effect is more evident at higher-resolution pyramid levels, since
-          smaller areas are more likely to be flat than larger areas.
+         * ZMINMAX-The points with the smallest and largest elevation values
+         will be selected.
+     secondary_thinning_method {String}:
+         Specifies additional thinning that will be performed to reduce the
+         number of points used over flat areas when window size pyramids are
+         used. An area is considered flat if the heights of points in that area
+         are within the secondary_thinning_threshold parameter value. Its
+         effect is more evident at higher-resolution pyramid levels, since
+         smaller areas are more likely to be flat than larger areas.
 
-          * NONE-No secondary thinning will be performed. This is the default.
+         * NONE-No secondary thinning will be performed. This is the default.
 
-          * MILD-Mild thinning will be performed to preserve linear
-          discontinuities (for example, building sides and forest boundaries).
-          This method is recommended for lidar that includes both ground and
-          nonground points. It will thin the fewest points.
+         * MILD-Mild thinning will be performed to preserve linear
+         discontinuities (for example, building sides and forest boundaries).
+         This method is recommended for lidar that includes both ground and
+         nonground points. It will thin the fewest points.
 
-          * MODERATE-Moderate thinning will be performed, which provides a
-          balance between performance and accuracy. This method does not
-          preserve as much detail as mild thinning but comes close while
-          eliminating more points overall.
+         * MODERATE-Moderate thinning will be performed, which provides a
+         balance between performance and accuracy. This method does not
+         preserve as much detail as mild thinning but comes close while
+         eliminating more points overall.
 
-          * STRONG-Strong thinning will be performed, which removes the most
-          points but is less likely to preserve sharply delineated features.
-          Limit its use to surfaces where slope tends to change gradually. For
-          example, strong thinning is efficient for bare-earth lidar and
-          bathymetry.
-      secondary_thinning_threshold {Double}:
-          The vertical threshold that will be used to activate secondary
-          thinning when the pyramid_type parameter is set to WINDOWSIZE. Set the
-          value equal to or larger than the vertical accuracy of the data.
-      triangulation_method {String}:
-          Specifies whether breakline features will be incorporated into the
-          terrain surface by densifying their segments to conform to Delaunay
-          triangulation rules for constructing a TIN surface.Delaunay
-          triangulation will densify breakline features to accommodate
-          the points surrounding them in a manner that avoids the creation of
-          long, thin triangles that typically yield undesirable results when
-          analyzing a TIN-based surface. Additionally, natural neighbor
-          interpolation and Thiessen (Voronoi) polygon generation can only be
-          performed on conforming Delaunay triangulations.A constrained Delaunay
-          triangulation will avoid densifying breakline
-          features, incorporating breakline segments as edges into the TIN
-          surface. Consider this option when you need to explicitly define
-          certain edges that are guaranteed not to be modified (that is, split
-          into multiple edges) by the triangulator.
+         * STRONG-Strong thinning will be performed, which removes the most
+         points but is less likely to preserve sharply delineated features.
+         Limit its use to surfaces where slope tends to change gradually. For
+         example, strong thinning is efficient for bare-earth lidar and
+         bathymetry.
+     secondary_thinning_threshold {Double}:
+         The vertical threshold that will be used to activate secondary
+         thinning when the pyramid_type parameter is set to WINDOWSIZE. Set the
+         value equal to or larger than the vertical accuracy of the data.
+     triangulation_method {String}:
+         Specifies whether breakline features will be incorporated into the
+         terrain surface by densifying their segments to conform to Delaunay
+         triangulation rules for constructing a TIN surface.Delaunay
+         triangulation will densify breakline features to accommodate
+         the points surrounding them in a manner that avoids the creation of
+         long, thin triangles that typically yield undesirable results when
+         analyzing a TIN-based surface. Additionally, natural neighbor
+         interpolation and Thiessen (Voronoi) polygon generation can only be
+         performed on conforming Delaunay triangulations.A constrained Delaunay
+         triangulation will avoid densifying breakline
+         features, incorporating breakline segments as edges into the TIN
+         surface. Consider this option when you need to explicitly define
+         certain edges that are guaranteed not to be modified (that is, split
+         into multiple edges) by the triangulator.
 
-          * DELAUNAY-Breaklines will be densified to construct Delaunay
-          triangles that accommodate the points surrounding them. This is the
-          default.
+         * DELAUNAY-Breaklines will be densified to construct Delaunay
+         triangles that accommodate the points surrounding them. This is the
+         default.
 
-          * CONSTRAINED_DELAUNAY-Breaklines will not be densified."""
+         * CONSTRAINED_DELAUNAY-Breaklines will not be densified."""
     ...
 
-@gptooldoc('DeleteTerrainPoints_3d', None)
-def DeleteTerrainPoints(in_terrain=..., data_source=..., polygon_features_or_extent=...): # -> conversion | int | float | complex | basestring | list[Unknown] | tuple[Unknown, ...] | dict[Unknown, Unknown]:
+@gptooldoc("DeleteTerrainPoints_3d", None)
+def DeleteTerrainPoints(
+    in_terrain=..., data_source=..., polygon_features_or_extent=...
+):  # -> conversion | int | float | complex | basestring | list[Unknown] | tuple[Unknown, ...] | dict[Unknown, Unknown]:
     """DeleteTerrainPoints(in_terrain, data_source;data_source..., polygon_features_or_extent)
 
-        Deletes points within a specified area of interest from one or more
-        features that participate in a terrain dataset.
+       Deletes points within a specified area of interest from one or more
+       features that participate in a terrain dataset.
 
-     INPUTS:
-      in_terrain (Terrain Layer):
-          The terrain dataset to process.
-      data_source (String):
-          One or more feature classes from which points will be removed.
-      polygon_features_or_extent (Feature Layer / Extent):
-          Specifies the area from which points will be removed. A polygon
-          feature class or an extent can be used.If extent values are desired,
-          use an arcpy.Extent object."""
+    INPUTS:
+     in_terrain (Terrain Layer):
+         The terrain dataset to process.
+     data_source (String):
+         One or more feature classes from which points will be removed.
+     polygon_features_or_extent (Feature Layer / Extent):
+         Specifies the area from which points will be removed. A polygon
+         feature class or an extent can be used.If extent values are desired,
+         use an arcpy.Extent object."""
     ...
 
-@gptooldoc('RemoveFeatureClassFromTerrain_3d', None)
-def RemoveFeatureClassFromTerrain(in_terrain=..., feature_class=...): # -> conversion | int | float | complex | basestring | list[Unknown] | tuple[Unknown, ...] | dict[Unknown, Unknown]:
+@gptooldoc("RemoveFeatureClassFromTerrain_3d", None)
+def RemoveFeatureClassFromTerrain(
+    in_terrain=..., feature_class=...
+):  # -> conversion | int | float | complex | basestring | list[Unknown] | tuple[Unknown, ...] | dict[Unknown, Unknown]:
     """RemoveFeatureClassFromTerrain(in_terrain, feature_class)
 
-        Removes reference to a feature class participating in a terrain
-        dataset.
+       Removes reference to a feature class participating in a terrain
+       dataset.
 
-     INPUTS:
-      in_terrain (Terrain Layer):
-          The terrain dataset to process.
-      feature_class (String):
-          The feature class to be removed."""
+    INPUTS:
+     in_terrain (Terrain Layer):
+         The terrain dataset to process.
+     feature_class (String):
+         The feature class to be removed."""
     ...
 
-@gptooldoc('RemoveTerrainPoints_3d', None)
-def RemoveTerrainPoints(in_terrain=..., data_source=..., aoi_extents=...): # -> conversion | int | float | complex | basestring | list[Unknown] | tuple[Unknown, ...] | dict[Unknown, Unknown]:
+@gptooldoc("RemoveTerrainPoints_3d", None)
+def RemoveTerrainPoints(
+    in_terrain=..., data_source=..., aoi_extents=...
+):  # -> conversion | int | float | complex | basestring | list[Unknown] | tuple[Unknown, ...] | dict[Unknown, Unknown]:
     """RemoveTerrainPoints(in_terrain, data_source;data_source..., aoi_extents)
 
-        This tool removes points within an area of interest from one or more
-        embedded feature classes.
+       This tool removes points within an area of interest from one or more
+       embedded feature classes.
 
-     INPUTS:
-      in_terrain (Terrain Layer):
-          The terrain dataset to be modified
-      data_source (String):
-          One or more embedded feature classes from which points will be removed
-      aoi_extents (Extent):
-          The XY extent defining the area from which points will be removed"""
+    INPUTS:
+     in_terrain (Terrain Layer):
+         The terrain dataset to be modified
+     data_source (String):
+         One or more embedded feature classes from which points will be removed
+     aoi_extents (Extent):
+         The XY extent defining the area from which points will be removed"""
     ...
 
-@gptooldoc('RemoveTerrainPyramidLevel_3d', None)
-def RemoveTerrainPyramidLevel(in_terrain=..., pyramid_level_resolution=...): # -> conversion | int | float | complex | basestring | list[Unknown] | tuple[Unknown, ...] | dict[Unknown, Unknown]:
+@gptooldoc("RemoveTerrainPyramidLevel_3d", None)
+def RemoveTerrainPyramidLevel(
+    in_terrain=..., pyramid_level_resolution=...
+):  # -> conversion | int | float | complex | basestring | list[Unknown] | tuple[Unknown, ...] | dict[Unknown, Unknown]:
     """RemoveTerrainPyramidLevel(in_terrain, pyramid_level_resolution)
 
-        Removes a pyramid level from a terrain dataset.
+       Removes a pyramid level from a terrain dataset.
 
-     INPUTS:
-      in_terrain (Terrain Layer):
-          The terrain dataset to process.
-      pyramid_level_resolution (Double):
-          The pyramid level to be removed as specified by its resolution."""
+    INPUTS:
+     in_terrain (Terrain Layer):
+         The terrain dataset to process.
+     pyramid_level_resolution (Double):
+         The pyramid level to be removed as specified by its resolution."""
     ...
 
-@gptooldoc('ReplaceTerrainPoints_3d', None)
-def ReplaceTerrainPoints(in_terrain=..., terrain_feature_class=..., in_point_features=..., polygon_features_or_extent=...): # -> conversion | int | float | complex | basestring | list[Unknown] | tuple[Unknown, ...] | dict[Unknown, Unknown]:
+@gptooldoc("ReplaceTerrainPoints_3d", None)
+def ReplaceTerrainPoints(
+    in_terrain=...,
+    terrain_feature_class=...,
+    in_point_features=...,
+    polygon_features_or_extent=...,
+):  # -> conversion | int | float | complex | basestring | list[Unknown] | tuple[Unknown, ...] | dict[Unknown, Unknown]:
     """ReplaceTerrainPoints(in_terrain, terrain_feature_class, in_point_features, {polygon_features_or_extent})
 
-        Replaces points referenced by a terrain dataset with points from a
-        specified feature class.
+       Replaces points referenced by a terrain dataset with points from a
+       specified feature class.
 
-     INPUTS:
-      in_terrain (Terrain Layer):
-          The terrain dataset to process.
-      terrain_feature_class (String):
-          The name of the terrain point feature class that will have some or all
-          of its points replaced.
-      in_point_features (Feature Layer):
-          The point or multipoint features that will replace the terrain point
-          features.
-      polygon_features_or_extent {Feature Layer / Extent}:
-          An optional area of interest can be used to define the extent of the
-          area in which the terrain points would be replaced."""
+    INPUTS:
+     in_terrain (Terrain Layer):
+         The terrain dataset to process.
+     terrain_feature_class (String):
+         The name of the terrain point feature class that will have some or all
+         of its points replaced.
+     in_point_features (Feature Layer):
+         The point or multipoint features that will replace the terrain point
+         features.
+     polygon_features_or_extent {Feature Layer / Extent}:
+         An optional area of interest can be used to define the extent of the
+         area in which the terrain points would be replaced."""
     ...
 
-@gptooldoc('TerrainToPoints_3d', None)
-def TerrainToPoints(in_terrain=..., out_feature_class=..., pyramid_level_resolution=..., source_embedded_feature_class=..., out_geometry_type=...): # -> conversion | int | float | complex | basestring | list[Unknown] | tuple[Unknown, ...] | dict[Unknown, Unknown]:
+@gptooldoc("TerrainToPoints_3d", None)
+def TerrainToPoints(
+    in_terrain=...,
+    out_feature_class=...,
+    pyramid_level_resolution=...,
+    source_embedded_feature_class=...,
+    out_geometry_type=...,
+):  # -> conversion | int | float | complex | basestring | list[Unknown] | tuple[Unknown, ...] | dict[Unknown, Unknown]:
     """TerrainToPoints(in_terrain, out_feature_class, {pyramid_level_resolution}, {source_embedded_feature_class}, {out_geometry_type})
 
-        Converts a terrain dataset into a new point or multipoint feature
-        class.
+       Converts a terrain dataset into a new point or multipoint feature
+       class.
 
-     INPUTS:
-      in_terrain (Terrain Layer):
-          The terrain dataset to process.
-      pyramid_level_resolution {Double}:
-          The z-tolerance or window-size resolution of the terrain pyramid level
-          that will be used. The default is 0, or full resolution.
-      source_embedded_feature_class {String}:
-          The name of the terrain dataset's embedded points to be exported. If
-          an embedded feature is specified, only the points from the feature
-          will be written to the output. Otherwise, all points from all data
-          sources in the terrain will be exported.
-      out_geometry_type {String}:
-          The geometry of the output feature class.
+    INPUTS:
+     in_terrain (Terrain Layer):
+         The terrain dataset to process.
+     pyramid_level_resolution {Double}:
+         The z-tolerance or window-size resolution of the terrain pyramid level
+         that will be used. The default is 0, or full resolution.
+     source_embedded_feature_class {String}:
+         The name of the terrain dataset's embedded points to be exported. If
+         an embedded feature is specified, only the points from the feature
+         will be written to the output. Otherwise, all points from all data
+         sources in the terrain will be exported.
+     out_geometry_type {String}:
+         The geometry of the output feature class.
 
-          * MULTIPOINT-The output point features will be written to a multipoint
-          feature class. This is the default.
+         * MULTIPOINT-The output point features will be written to a multipoint
+         feature class. This is the default.
 
-          * POINT-The output point features will be written to a point feature
-          class.
+         * POINT-The output point features will be written to a point feature
+         class.
 
-     OUTPUTS:
-      out_feature_class (Feature Class):
-          The feature class that will be produced."""
+    OUTPUTS:
+     out_feature_class (Feature Class):
+         The feature class that will be produced."""
     ...
 
-@gptooldoc('TerrainToRaster_3d', None)
-def TerrainToRaster(in_terrain=..., out_raster=..., data_type=..., method=..., sample_distance=..., pyramid_level_resolution=..., sample_value=...): # -> conversion | int | float | complex | basestring | list[Unknown] | tuple[Unknown, ...] | dict[Unknown, Unknown]:
+@gptooldoc("TerrainToRaster_3d", None)
+def TerrainToRaster(
+    in_terrain=...,
+    out_raster=...,
+    data_type=...,
+    method=...,
+    sample_distance=...,
+    pyramid_level_resolution=...,
+    sample_value=...,
+):  # -> conversion | int | float | complex | basestring | list[Unknown] | tuple[Unknown, ...] | dict[Unknown, Unknown]:
     """TerrainToRaster(in_terrain, out_raster, {data_type}, {method}, {sample_distance}, {pyramid_level_resolution}, {sample_value})
 
-        Interpolates a raster using z-values from a terrain dataset.
+       Interpolates a raster using z-values from a terrain dataset.
 
-     INPUTS:
-      in_terrain (Terrain Layer):
-          The terrain dataset to process.
-      data_type {String}:
-          Specifies the type of numeric values stored in the output raster.
+    INPUTS:
+     in_terrain (Terrain Layer):
+         The terrain dataset to process.
+     data_type {String}:
+         Specifies the type of numeric values stored in the output raster.
 
-          * FLOAT-The output raster will use 32-bit floating point, which
-          supports values ranging from -3.402823466e+38 to 3.402823466e+38. This
-          is the default.
+         * FLOAT-The output raster will use 32-bit floating point, which
+         supports values ranging from -3.402823466e+38 to 3.402823466e+38. This
+         is the default.
 
-          * INT-The output raster will use an appropriate integer bit depth.
-          This option will round z-values to the nearest whole number and write
-          an integer to each raster cell value.
-      method {String}:
-          The interpolation method that will be used to calculate cell values.
+         * INT-The output raster will use an appropriate integer bit depth.
+         This option will round z-values to the nearest whole number and write
+         an integer to each raster cell value.
+     method {String}:
+         The interpolation method that will be used to calculate cell values.
 
-          * LINEAR-Applies a distance based weight to the Z of each node in the
-          triangle encompassing the center of a given cell, then sums the
-          weighted values to assign the cell value. This is the default.
+         * LINEAR-Applies a distance based weight to the Z of each node in the
+         triangle encompassing the center of a given cell, then sums the
+         weighted values to assign the cell value. This is the default.
 
-          * NATURAL_NEIGHBORS-Applies an area based weighting scheme that uses
-          Voronoi polygons to determine cell values.
-      sample_distance {String}:
-          The sampling method and distance used to define the cell size of the
-          output raster.
+         * NATURAL_NEIGHBORS-Applies an area based weighting scheme that uses
+         Voronoi polygons to determine cell values.
+     sample_distance {String}:
+         The sampling method and distance used to define the cell size of the
+         output raster.
 
-          * OBSERVATIONS-Defines the number of cells that divide the longest
-          side of the output raster. This method is used by default with the
-          value of 250.
+         * OBSERVATIONS-Defines the number of cells that divide the longest
+         side of the output raster. This method is used by default with the
+         value of 250.
 
-          * CELLSIZE-Defines the cell size of the output raster.
-      pyramid_level_resolution {Double}:
-          The z-tolerance or window-size resolution of the terrain pyramid level
-          that will be used. The default is 0, or full resolution.
-      sample_value {Double}:
-          The value that corresponds with the Sampling Distance for specifying
-          the output raster's cell size.
+         * CELLSIZE-Defines the cell size of the output raster.
+     pyramid_level_resolution {Double}:
+         The z-tolerance or window-size resolution of the terrain pyramid level
+         that will be used. The default is 0, or full resolution.
+     sample_value {Double}:
+         The value that corresponds with the Sampling Distance for specifying
+         the output raster's cell size.
 
-     OUTPUTS:
-      out_raster (Raster Dataset):
-          The location and name of the output raster. When storing a raster
-          dataset in a geodatabase or in a folder such as an Esri Grid, do not
-          add a file extension to the name of the raster dataset. A file
-          extension can be provided to define the raster's format when storing
-          it in a folder, such as .tif to generate a GeoTIFF or .img to generate
-          an ERDAS IMAGINE format file.If the raster is stored as a TIFF file or
-          in a geodatabase, its raster
-          compression type and quality can be specified using geoprocessing
-          environment settings."""
+    OUTPUTS:
+     out_raster (Raster Dataset):
+         The location and name of the output raster. When storing a raster
+         dataset in a geodatabase or in a folder such as an Esri Grid, do not
+         add a file extension to the name of the raster dataset. A file
+         extension can be provided to define the raster's format when storing
+         it in a folder, such as .tif to generate a GeoTIFF or .img to generate
+         an ERDAS IMAGINE format file.If the raster is stored as a TIFF file or
+         in a geodatabase, its raster
+         compression type and quality can be specified using geoprocessing
+         environment settings."""
     ...
 
-@gptooldoc('TerrainToTin_3d', None)
-def TerrainToTin(in_terrain=..., out_tin=..., pyramid_level_resolution=..., max_nodes=..., clip_to_extent=...): # -> conversion | int | float | complex | basestring | list[Unknown] | tuple[Unknown, ...] | dict[Unknown, Unknown]:
+@gptooldoc("TerrainToTin_3d", None)
+def TerrainToTin(
+    in_terrain=...,
+    out_tin=...,
+    pyramid_level_resolution=...,
+    max_nodes=...,
+    clip_to_extent=...,
+):  # -> conversion | int | float | complex | basestring | list[Unknown] | tuple[Unknown, ...] | dict[Unknown, Unknown]:
     """TerrainToTin(in_terrain, out_tin, {pyramid_level_resolution}, {max_nodes}, {clip_to_extent})
 
-        Converts a terrain dataset to a triangulated irregular network (TIN)
-        dataset.
+       Converts a terrain dataset to a triangulated irregular network (TIN)
+       dataset.
 
-     INPUTS:
-      in_terrain (Terrain Layer):
-          The terrain dataset to process.
-      pyramid_level_resolution {Double}:
-          The z-tolerance or window-size resolution of the terrain pyramid level
-          that will be used. The default is 0, or full resolution.
-      max_nodes {Long}:
-          The maximum number of nodes permitted in the output TIN. The tool will
-          return an error if the analysis extent and pyramid level would produce
-          a TIN that exceeds this size. The default is 5 million.
-      clip_to_extent {Boolean}:
-          Specifies whether the resulting TIN will be clipped against the
-          analysis extent. This only has an effect if the analysis extent is
-          defined and it's smaller than the extent of the input terrain.
+    INPUTS:
+     in_terrain (Terrain Layer):
+         The terrain dataset to process.
+     pyramid_level_resolution {Double}:
+         The z-tolerance or window-size resolution of the terrain pyramid level
+         that will be used. The default is 0, or full resolution.
+     max_nodes {Long}:
+         The maximum number of nodes permitted in the output TIN. The tool will
+         return an error if the analysis extent and pyramid level would produce
+         a TIN that exceeds this size. The default is 5 million.
+     clip_to_extent {Boolean}:
+         Specifies whether the resulting TIN will be clipped against the
+         analysis extent. This only has an effect if the analysis extent is
+         defined and it's smaller than the extent of the input terrain.
 
-          * CLIP-Clips the output TIN against the analysis extent. This is the
-          default.
+         * CLIP-Clips the output TIN against the analysis extent. This is the
+         default.
 
-          * NO_CLIP-Does not clip the output TIN against the analysis extent.
+         * NO_CLIP-Does not clip the output TIN against the analysis extent.
 
-     OUTPUTS:
-      out_tin (TIN):
-          The TIN dataset that will be generated."""
+    OUTPUTS:
+     out_tin (TIN):
+         The TIN dataset that will be generated."""
     ...
 
-@gptooldoc('LocateOutliers_3d', None)
-def LocateOutliers(in_surface=..., out_feature_class=..., apply_hard_limit=..., absolute_z_min=..., absolute_z_max=..., apply_comparison_filter=..., z_tolerance=..., slope_tolerance=..., exceed_tolerance_ratio=..., outlier_cap=...): # -> conversion | int | float | complex | basestring | list[Unknown] | tuple[Unknown, ...] | dict[Unknown, Unknown]:
+@gptooldoc("LocateOutliers_3d", None)
+def LocateOutliers(
+    in_surface=...,
+    out_feature_class=...,
+    apply_hard_limit=...,
+    absolute_z_min=...,
+    absolute_z_max=...,
+    apply_comparison_filter=...,
+    z_tolerance=...,
+    slope_tolerance=...,
+    exceed_tolerance_ratio=...,
+    outlier_cap=...,
+):  # -> conversion | int | float | complex | basestring | list[Unknown] | tuple[Unknown, ...] | dict[Unknown, Unknown]:
     """LocateOutliers(in_surface, out_feature_class, {apply_hard_limit}, {absolute_z_min}, {absolute_z_max}, {apply_comparison_filter}, {z_tolerance}, {slope_tolerance}, {exceed_tolerance_ratio}, {outlier_cap})
 
-        Identifies anomalous elevation measurements from terrain, TIN, or LAS
-        datasets that exceed a defined range of elevation values or have slope
-        characteristics that are inconsistent with the surrounding surface.
+       Identifies anomalous elevation measurements from terrain, TIN, or LAS
+       datasets that exceed a defined range of elevation values or have slope
+       characteristics that are inconsistent with the surrounding surface.
 
-     INPUTS:
-      in_surface (TIN Layer / Terrain Layer / LAS Dataset Layer):
-          The terrain, TIN, or LAS dataset that will be analyzed.
-      apply_hard_limit {Boolean}:
-          Specifies use of absolute z minimum and maximum to find outliers.
+    INPUTS:
+     in_surface (TIN Layer / Terrain Layer / LAS Dataset Layer):
+         The terrain, TIN, or LAS dataset that will be analyzed.
+     apply_hard_limit {Boolean}:
+         Specifies use of absolute z minimum and maximum to find outliers.
 
-          * APPLY_HARD_LIMIT-Use the absolute z minimum and maximum to find
-          outliers.
+         * APPLY_HARD_LIMIT-Use the absolute z minimum and maximum to find
+         outliers.
 
-          * NO_APPLY_HARD_LIMIT-Do not use the absolute z minimum and maximum to
-          find outliers. This is the default.
-      absolute_z_min {Double}:
-          If hard limits are applied, any point with an elevation below this
-          value will be considered an outlier. The default is 0.
-      absolute_z_max {Double}:
-          If hard limits are applied, any point with an elevation above this
-          value will be considered an outlier. The default is 0.
-      apply_comparison_filter {Boolean}:
-          The comparison filter consists of three parameters for determining
-          outliers: z_tolerance, slope_tolerance, and exceed_tolerance_ratio.
+         * NO_APPLY_HARD_LIMIT-Do not use the absolute z minimum and maximum to
+         find outliers. This is the default.
+     absolute_z_min {Double}:
+         If hard limits are applied, any point with an elevation below this
+         value will be considered an outlier. The default is 0.
+     absolute_z_max {Double}:
+         If hard limits are applied, any point with an elevation above this
+         value will be considered an outlier. The default is 0.
+     apply_comparison_filter {Boolean}:
+         The comparison filter consists of three parameters for determining
+         outliers: z_tolerance, slope_tolerance, and exceed_tolerance_ratio.
 
-          * APPLY_COMPARISON_FILTER-Use the three comparison parameters
-          (z_tolerance, slope_tolerance, and exceed_tolerance_ratio) in
-          assessing points. This is the default.
+         * APPLY_COMPARISON_FILTER-Use the three comparison parameters
+         (z_tolerance, slope_tolerance, and exceed_tolerance_ratio) in
+         assessing points. This is the default.
 
-          * NO_APPLY_COMPARISON_FILTER-Do not use the three comparison
-          parameters (z_tolerance, slope_tolerance, and exceed_tolerance_ratio)
-          in assessing points.
-      z_tolerance {Double}:
-          Compares z-values of neighboring points if the comparison filter is
-          applied. The default is 0.
-      slope_tolerance {Double}:
-          The threshold of slope variance between consecutive points that will
-          be used to identify outlier points. Slope is expressed as a
-          percentage, with the default being 150.
-      exceed_tolerance_ratio {Double}:
-          Defines the criteria for determining each outlier point as a function
-          of the ratio of points in its natural neighborhood that must exceed
-          the specified comparison filters. For example, the default value of
-          0.5 means at least half of the points surrounding the query point must
-          exceed the comparison filters for the query point to be considered an
-          outlier. A value of 0.7 means at least 70 percent of the neighbor
-          points must exceed the tolerances.
-      outlier_cap {Long}:
-          The maximum number of outlier points that can be written to the
-          output. Once this value is reached, no further outliers are sought.
-          The default is 2,500.
+         * NO_APPLY_COMPARISON_FILTER-Do not use the three comparison
+         parameters (z_tolerance, slope_tolerance, and exceed_tolerance_ratio)
+         in assessing points.
+     z_tolerance {Double}:
+         Compares z-values of neighboring points if the comparison filter is
+         applied. The default is 0.
+     slope_tolerance {Double}:
+         The threshold of slope variance between consecutive points that will
+         be used to identify outlier points. Slope is expressed as a
+         percentage, with the default being 150.
+     exceed_tolerance_ratio {Double}:
+         Defines the criteria for determining each outlier point as a function
+         of the ratio of points in its natural neighborhood that must exceed
+         the specified comparison filters. For example, the default value of
+         0.5 means at least half of the points surrounding the query point must
+         exceed the comparison filters for the query point to be considered an
+         outlier. A value of 0.7 means at least 70 percent of the neighbor
+         points must exceed the tolerances.
+     outlier_cap {Long}:
+         The maximum number of outlier points that can be written to the
+         output. Once this value is reached, no further outliers are sought.
+         The default is 2,500.
 
-     OUTPUTS:
-      out_feature_class (Feature Class):
-          The feature class that will be produced."""
+    OUTPUTS:
+     out_feature_class (Feature Class):
+         The feature class that will be produced."""
     ...
 
-@gptooldoc('SurfaceAspect_3d', None)
-def SurfaceAspect(in_surface=..., out_feature_class=..., class_breaks_table=..., aspect_field=..., pyramid_level_resolution=...): # -> conversion | int | float | complex | basestring | list[Unknown] | tuple[Unknown, ...] | dict[Unknown, Unknown]:
+@gptooldoc("SurfaceAspect_3d", None)
+def SurfaceAspect(
+    in_surface=...,
+    out_feature_class=...,
+    class_breaks_table=...,
+    aspect_field=...,
+    pyramid_level_resolution=...,
+):  # -> conversion | int | float | complex | basestring | list[Unknown] | tuple[Unknown, ...] | dict[Unknown, Unknown]:
     """SurfaceAspect(in_surface, out_feature_class, {class_breaks_table}, {aspect_field}, {pyramid_level_resolution})
 
-        Creates polygon features that represent aspect measurements derived
-        from a TIN, terrain, or LAS dataset surface.
+       Creates polygon features that represent aspect measurements derived
+       from a TIN, terrain, or LAS dataset surface.
 
-     INPUTS:
-      in_surface (TIN Layer / Terrain Layer / LAS Dataset Layer):
-          The TIN, terrain, or LAS dataset surface to process.
-      class_breaks_table {Table}:
-          A table containing the classification breaks that will be used to
-          define the aspect ranges in the output feature class.
-      aspect_field {String}:
-          The field containing aspect code values.
-      pyramid_level_resolution {Double}:
-          The z-tolerance or window-size resolution of the terrain pyramid level
-          that will be used. The default is 0, or full resolution.
+    INPUTS:
+     in_surface (TIN Layer / Terrain Layer / LAS Dataset Layer):
+         The TIN, terrain, or LAS dataset surface to process.
+     class_breaks_table {Table}:
+         A table containing the classification breaks that will be used to
+         define the aspect ranges in the output feature class.
+     aspect_field {String}:
+         The field containing aspect code values.
+     pyramid_level_resolution {Double}:
+         The z-tolerance or window-size resolution of the terrain pyramid level
+         that will be used. The default is 0, or full resolution.
 
-     OUTPUTS:
-      out_feature_class (Feature Class):
-          The feature class that will be produced."""
+    OUTPUTS:
+     out_feature_class (Feature Class):
+         The feature class that will be produced."""
     ...
 
-@gptooldoc('SurfaceContour_3d', None)
-def SurfaceContour(in_surface=..., out_feature_class=..., interval=..., base_contour=..., contour_field=..., contour_field_precision=..., index_interval=..., index_interval_field=..., z_factor=..., pyramid_level_resolution=...): # -> conversion | int | float | complex | basestring | list[Unknown] | tuple[Unknown, ...] | dict[Unknown, Unknown]:
+@gptooldoc("SurfaceContour_3d", None)
+def SurfaceContour(
+    in_surface=...,
+    out_feature_class=...,
+    interval=...,
+    base_contour=...,
+    contour_field=...,
+    contour_field_precision=...,
+    index_interval=...,
+    index_interval_field=...,
+    z_factor=...,
+    pyramid_level_resolution=...,
+):  # -> conversion | int | float | complex | basestring | list[Unknown] | tuple[Unknown, ...] | dict[Unknown, Unknown]:
     """SurfaceContour(in_surface, out_feature_class, interval, {base_contour}, {contour_field}, {contour_field_precision}, {index_interval}, {index_interval_field}, {z_factor}, {pyramid_level_resolution})
 
-        Creates contour lines derived from a terrain, TIN, or LAS dataset
-        surface.
+       Creates contour lines derived from a terrain, TIN, or LAS dataset
+       surface.
 
-     INPUTS:
-      in_surface (TIN Layer / Terrain Layer / LAS Dataset Layer):
-          The TIN, terrain, or LAS dataset surface to process.
-      interval (Double):
-          The interval between the contours.
-      base_contour {Double}:
-          Defines the starting Z value from which the contour interval is either
-          added or subtracted to delineate contours. The default value is 0.0.
-      contour_field {String}:
-          The field that stores the contour value associated with each line in
-          the output feature class.
-      contour_field_precision {Long}:
-          The precision of the contour field. Zero specifies an integer, and the
-          numbers 1-9 indicate how many decimal places the field will contain.
-          By default, the field will be an integer (0).
-      index_interval {Double}:
-          Index contours are commonly used as a cartographic aid for assisting
-          in the visualization of contour lines. The index interval is typically
-          five times larger than the contour interval. Use of this parameter
-          adds an integer field defined by the index_interval_field to the
-          attribute table of the output feature class, where a value of 1
-          denotes the index contours.
-      index_interval_field {String}:
-          The name of the field used to identify index contours. This will only
-          be used if the index_interval is defined. By default, the field name
-          is Index.
-      z_factor {Double}:
-          The factor by which z-values will be multiplied. This is typically
-          used to convert z linear units to match x,y linear units. The default
-          is 1, which leaves elevation values unchanged. This parameter is not
-          available if the spatial reference of the input surface has a z datum
-          with a specified linear unit.
-      pyramid_level_resolution {Double}:
-          The z-tolerance or window-size resolution of the terrain pyramid level
-          that will be used. The default is 0, or full resolution.
+    INPUTS:
+     in_surface (TIN Layer / Terrain Layer / LAS Dataset Layer):
+         The TIN, terrain, or LAS dataset surface to process.
+     interval (Double):
+         The interval between the contours.
+     base_contour {Double}:
+         Defines the starting Z value from which the contour interval is either
+         added or subtracted to delineate contours. The default value is 0.0.
+     contour_field {String}:
+         The field that stores the contour value associated with each line in
+         the output feature class.
+     contour_field_precision {Long}:
+         The precision of the contour field. Zero specifies an integer, and the
+         numbers 1-9 indicate how many decimal places the field will contain.
+         By default, the field will be an integer (0).
+     index_interval {Double}:
+         Index contours are commonly used as a cartographic aid for assisting
+         in the visualization of contour lines. The index interval is typically
+         five times larger than the contour interval. Use of this parameter
+         adds an integer field defined by the index_interval_field to the
+         attribute table of the output feature class, where a value of 1
+         denotes the index contours.
+     index_interval_field {String}:
+         The name of the field used to identify index contours. This will only
+         be used if the index_interval is defined. By default, the field name
+         is Index.
+     z_factor {Double}:
+         The factor by which z-values will be multiplied. This is typically
+         used to convert z linear units to match x,y linear units. The default
+         is 1, which leaves elevation values unchanged. This parameter is not
+         available if the spatial reference of the input surface has a z datum
+         with a specified linear unit.
+     pyramid_level_resolution {Double}:
+         The z-tolerance or window-size resolution of the terrain pyramid level
+         that will be used. The default is 0, or full resolution.
 
-     OUTPUTS:
-      out_feature_class (Feature Class):
-          The feature class that will be produced."""
+    OUTPUTS:
+     out_feature_class (Feature Class):
+         The feature class that will be produced."""
     ...
 
-@gptooldoc('SurfaceSlope_3d', None)
-def SurfaceSlope(in_surface=..., out_feature_class=..., units=..., class_breaks_table=..., slope_field=..., z_factor=..., pyramid_level_resolution=...): # -> conversion | int | float | complex | basestring | list[Unknown] | tuple[Unknown, ...] | dict[Unknown, Unknown]:
+@gptooldoc("SurfaceSlope_3d", None)
+def SurfaceSlope(
+    in_surface=...,
+    out_feature_class=...,
+    units=...,
+    class_breaks_table=...,
+    slope_field=...,
+    z_factor=...,
+    pyramid_level_resolution=...,
+):  # -> conversion | int | float | complex | basestring | list[Unknown] | tuple[Unknown, ...] | dict[Unknown, Unknown]:
     """SurfaceSlope(in_surface, out_feature_class, {units}, {class_breaks_table}, {slope_field}, {z_factor}, {pyramid_level_resolution})
 
-        Creates polygon features that represent ranges of slope values for
-        triangulated surfaces.
+       Creates polygon features that represent ranges of slope values for
+       triangulated surfaces.
 
-     INPUTS:
-      in_surface (TIN Layer / Terrain Layer / LAS Dataset Layer):
-          The TIN, terrain, or LAS dataset whose slope measurements will be
-          written to the output polygon feature.
-      units {String}:
-          The units of measure to be used in calculating slope.
+    INPUTS:
+     in_surface (TIN Layer / Terrain Layer / LAS Dataset Layer):
+         The TIN, terrain, or LAS dataset whose slope measurements will be
+         written to the output polygon feature.
+     units {String}:
+         The units of measure to be used in calculating slope.
 
-          * PERCENT-Slope is expressed as a percentage value. This is the
-          default.
+         * PERCENT-Slope is expressed as a percentage value. This is the
+         default.
 
-          * DEGREE-Slope is expressed as the angle of inclination from a
-          horizontal plane.
-      class_breaks_table {Table}:
-          A table containing classification breaks that will be used to group
-          the output features. The first column of this table will indicate the
-          break point, whereas the second will provide the classification code.
-      slope_field {String}:
-          The field containing slope values.
-      z_factor {Double}:
-          The factor by which z-values will be multiplied. This is typically
-          used to convert z linear units to match x,y linear units. The default
-          is 1, which leaves elevation values unchanged. This parameter is not
-          available if the spatial reference of the input surface has a z datum
-          with a specified linear unit.
-      pyramid_level_resolution {Double}:
-          The z-tolerance or window-size resolution of the terrain pyramid level
-          that will be used. The default is 0, or full resolution.
+         * DEGREE-Slope is expressed as the angle of inclination from a
+         horizontal plane.
+     class_breaks_table {Table}:
+         A table containing classification breaks that will be used to group
+         the output features. The first column of this table will indicate the
+         break point, whereas the second will provide the classification code.
+     slope_field {String}:
+         The field containing slope values.
+     z_factor {Double}:
+         The factor by which z-values will be multiplied. This is typically
+         used to convert z linear units to match x,y linear units. The default
+         is 1, which leaves elevation values unchanged. This parameter is not
+         available if the spatial reference of the input surface has a z datum
+         with a specified linear unit.
+     pyramid_level_resolution {Double}:
+         The z-tolerance or window-size resolution of the terrain pyramid level
+         that will be used. The default is 0, or full resolution.
 
-     OUTPUTS:
-      out_feature_class (Feature Class):
-          The feature class that will be produced."""
+    OUTPUTS:
+     out_feature_class (Feature Class):
+         The feature class that will be produced."""
     ...
 
-@gptooldoc('ConstructSightLines_3d', None)
-def ConstructSightLines(in_observer_points=..., in_target_features=..., out_line_feature_class=..., observer_height_field=..., target_height_field=..., join_field=..., sample_distance=..., output_the_direction=..., sampling_method=...): # -> conversion | int | float | complex | basestring | list[Unknown] | tuple[Unknown, ...] | dict[Unknown, Unknown]:
+@gptooldoc("ConstructSightLines_3d", None)
+def ConstructSightLines(
+    in_observer_points=...,
+    in_target_features=...,
+    out_line_feature_class=...,
+    observer_height_field=...,
+    target_height_field=...,
+    join_field=...,
+    sample_distance=...,
+    output_the_direction=...,
+    sampling_method=...,
+):  # -> conversion | int | float | complex | basestring | list[Unknown] | tuple[Unknown, ...] | dict[Unknown, Unknown]:
     """ConstructSightLines(in_observer_points, in_target_features, out_line_feature_class, {observer_height_field}, {target_height_field}, {join_field}, {sample_distance}, {output_the_direction}, {sampling_method})
 
-        Creates line features that represent sight lines from one or more
-        observer points to features in a target feature class.
+       Creates line features that represent sight lines from one or more
+       observer points to features in a target feature class.
 
-     INPUTS:
-      in_observer_points (Feature Layer):
-          The single-point features that represent observer points. Multipoint
-          features are not supported.
-      in_target_features (Feature Layer):
-          The target features (points, multipoints, lines, and polygons).
-      observer_height_field {String}:
-          The source of the height values for the observer points obtained from
-          its attribute table.A default Observer Height Field field is selected
-          from among the
-          options listed below by order of priority. If multiple fields exist,
-          and the desired field does not have a higher priority in the default
-          field selection, the desired field will need to be specified.
+    INPUTS:
+     in_observer_points (Feature Layer):
+         The single-point features that represent observer points. Multipoint
+         features are not supported.
+     in_target_features (Feature Layer):
+         The target features (points, multipoints, lines, and polygons).
+     observer_height_field {String}:
+         The source of the height values for the observer points obtained from
+         its attribute table.A default Observer Height Field field is selected
+         from among the
+         options listed below by order of priority. If multiple fields exist,
+         and the desired field does not have a higher priority in the default
+         field selection, the desired field will need to be specified.
 
-          * <None>-No Z values will be assigned to the resulting sight line
-          features.
+         * <None>-No Z values will be assigned to the resulting sight line
+         features.
 
-          * Shape.Z
+         * Shape.Z
 
-          * Spot
+         * Spot
 
-          * Z
+         * Z
 
-          * Z_Value
+         * Z_Value
 
-          * Height
+         * Height
 
-          * Elev
+         * Elev
 
-          * Elevation
+         * Elevation
 
-          * Contour
-      target_height_field {String}:
-          The height field for the target.A default Target Height Field field is
-          selected from among the options
-          listed below by order of priority. If multiple fields exist, and the
-          desired field does not have a higher priority in the default field
-          selection, the desired field will need to be specified.
+         * Contour
+     target_height_field {String}:
+         The height field for the target.A default Target Height Field field is
+         selected from among the options
+         listed below by order of priority. If multiple fields exist, and the
+         desired field does not have a higher priority in the default field
+         selection, the desired field will need to be specified.
 
-          * <None>-No Z values will be assigned to the resulting sight line
-          features.
+         * <None>-No Z values will be assigned to the resulting sight line
+         features.
 
-          * Shape.Z
+         * Shape.Z
 
-          * Spot
+         * Spot
 
-          * Z
+         * Z
 
-          * Z_Value
+         * Z_Value
 
-          * Height
+         * Height
 
-          * Elev
+         * Elev
 
-          * Elevation
+         * Elevation
 
-          * Contour
-      join_field {String}:
-          The join field is used to match observers to specific targets.
+         * Contour
+     join_field {String}:
+         The join field is used to match observers to specific targets.
 
-          * <None>-No Z values will be assigned to the resulting sight line
-          features.
-      sample_distance {Double}:
-          The distance between samples when the target is either a line or
-          polygon feature class. The Sampling Distance units are interpreted in
-          the XY units of the output feature class.
-      output_the_direction {Boolean}:
-          Specifies whether to add direction attributes to the output sight
-          lines. Two additional fields will be added and populated to indicate
-          direction: AZIMUTH and VERT_ANGLE (vertical angle).
+         * <None>-No Z values will be assigned to the resulting sight line
+         features.
+     sample_distance {Double}:
+         The distance between samples when the target is either a line or
+         polygon feature class. The Sampling Distance units are interpreted in
+         the XY units of the output feature class.
+     output_the_direction {Boolean}:
+         Specifies whether to add direction attributes to the output sight
+         lines. Two additional fields will be added and populated to indicate
+         direction: AZIMUTH and VERT_ANGLE (vertical angle).
 
-          * NOT_OUTPUT_THE_DIRECTION-No direction attributes will be added to
-          the output sight lines. This is the default.
+         * NOT_OUTPUT_THE_DIRECTION-No direction attributes will be added to
+         the output sight lines. This is the default.
 
-          * OUTPUT_THE_DIRECTION-Two additional fields will be added and
-          populated to indicate direction: AZIMUTH and VERT_ANGLE (vertical
-          angle).
-      sampling_method {String}:
-          Specifies how the sampling distance will be used to establish sight
-          lines along the target feature.
+         * OUTPUT_THE_DIRECTION-Two additional fields will be added and
+         populated to indicate direction: AZIMUTH and VERT_ANGLE (vertical
+         angle).
+     sampling_method {String}:
+         Specifies how the sampling distance will be used to establish sight
+         lines along the target feature.
 
-          * 2D_DISTANCE-The distance will be evaluated in two-dimensional
-          Cartesian space. This is the default.
+         * 2D_DISTANCE-The distance will be evaluated in two-dimensional
+         Cartesian space. This is the default.
 
-          * 3D_DISTANCE-The distance will be evaluated in three-dimensional
-          length.
+         * 3D_DISTANCE-The distance will be evaluated in three-dimensional
+         length.
 
-     OUTPUTS:
-      out_line_feature_class (Feature Class):
-          The output feature class containing the sight lines."""
+    OUTPUTS:
+     out_line_feature_class (Feature Class):
+         The output feature class containing the sight lines."""
     ...
 
-@gptooldoc('Intervisibility_3d', None)
-def Intervisibility(sight_lines=..., obstructions=..., visible_field=...): # -> conversion | int | float | complex | basestring | list[Unknown] | tuple[Unknown, ...] | dict[Unknown, Unknown]:
+@gptooldoc("Intervisibility_3d", None)
+def Intervisibility(
+    sight_lines=..., obstructions=..., visible_field=...
+):  # -> conversion | int | float | complex | basestring | list[Unknown] | tuple[Unknown, ...] | dict[Unknown, Unknown]:
     """Intervisibility(sight_lines, obstructions;obstructions..., {visible_field})
 
-        Determines the visibility of sight lines using potential obstructions
-        defined by any combination of 3D features and surfaces.
+       Determines the visibility of sight lines using potential obstructions
+       defined by any combination of 3D features and surfaces.
 
-     INPUTS:
-      sight_lines (Feature Layer):
-          The 3D sight lines whose visibility will be evaluated.
-      obstructions (Feature Layer / TIN Layer / Raster Layer / Mosaic Layer / Scene Layer / File):
-          The 3D features, integrated mesh scene layers, and surfaces that
-          provide potential obstructions for the sight lines.
-      visible_field {String}:
-          The name of the field that will store the visibility results. A
-          resulting value of 0 indicates that the sight line's start and end
-          points are not visible to one another. A value of 1 indicates that the
-          sight line's start and end points are visible to one another. The
-          default field name is VISIBLE. If the field already exists, its values
-          will be overwritten."""
+    INPUTS:
+     sight_lines (Feature Layer):
+         The 3D sight lines whose visibility will be evaluated.
+     obstructions (Feature Layer / TIN Layer / Raster Layer / Mosaic Layer / Scene Layer / File):
+         The 3D features, integrated mesh scene layers, and surfaces that
+         provide potential obstructions for the sight lines.
+     visible_field {String}:
+         The name of the field that will store the visibility results. A
+         resulting value of 0 indicates that the sight line's start and end
+         points are not visible to one another. A value of 1 indicates that the
+         sight line's start and end points are visible to one another. The
+         default field name is VISIBLE. If the field already exists, its values
+         will be overwritten."""
     ...
 
-@gptooldoc('LineOfSight_3d', None)
-def LineOfSight(in_surface=..., in_line_feature_class=..., out_los_feature_class=..., out_obstruction_feature_class=..., use_curvature=..., use_refraction=..., refraction_factor=..., pyramid_level_resolution=..., in_features=...): # -> conversion | int | float | complex | basestring | list[Unknown] | tuple[Unknown, ...] | dict[Unknown, Unknown]:
+@gptooldoc("LineOfSight_3d", None)
+def LineOfSight(
+    in_surface=...,
+    in_line_feature_class=...,
+    out_los_feature_class=...,
+    out_obstruction_feature_class=...,
+    use_curvature=...,
+    use_refraction=...,
+    refraction_factor=...,
+    pyramid_level_resolution=...,
+    in_features=...,
+):  # -> conversion | int | float | complex | basestring | list[Unknown] | tuple[Unknown, ...] | dict[Unknown, Unknown]:
     """LineOfSight(in_surface, in_line_feature_class, out_los_feature_class, {out_obstruction_feature_class}, {use_curvature}, {use_refraction}, {refraction_factor}, {pyramid_level_resolution}, {in_features})
 
-        Determines the visibility of sight lines over obstructions consisting
-        of a surface and an optional multipatch dataset.
+       Determines the visibility of sight lines over obstructions consisting
+       of a surface and an optional multipatch dataset.
 
-     INPUTS:
-      in_surface (TIN Layer / Raster Layer / Mosaic Layer / Terrain Layer / LAS Dataset Layer / Scene Layer / File):
-          The integrated mesh scene layer, LAS dataset, raster, TIN, or terrain
-          surface used to determine visibility.
-      in_line_feature_class (Feature Layer):
-          The line features whose first vertex defines the observation point and
-          last vertex identifies the target location. The heights of the
-          observation and target locations are obtained from the z-values of 3D
-          features and interpolated from the surface for 2D features.2D lines
-          also have a default offset of 1 added to their elevation to
-          raise the points above the surface. If the feature has an OffsetA
-          field, its value will be added to the height of the observation point.
-          If the OffsetB field is present, its value will be added to the height
-          of the target position.
-      use_curvature {Boolean}:
-          Specifies whether the earth's curvature will be taken into
-          consideration for the line-of-sight analysis. For this parameter to be
-          enabled, the surface must have a defined spatial reference in
-          projected coordinates with defined z-units.
+    INPUTS:
+     in_surface (TIN Layer / Raster Layer / Mosaic Layer / Terrain Layer / LAS Dataset Layer / Scene Layer / File):
+         The integrated mesh scene layer, LAS dataset, raster, TIN, or terrain
+         surface used to determine visibility.
+     in_line_feature_class (Feature Layer):
+         The line features whose first vertex defines the observation point and
+         last vertex identifies the target location. The heights of the
+         observation and target locations are obtained from the z-values of 3D
+         features and interpolated from the surface for 2D features.2D lines
+         also have a default offset of 1 added to their elevation to
+         raise the points above the surface. If the feature has an OffsetA
+         field, its value will be added to the height of the observation point.
+         If the OffsetB field is present, its value will be added to the height
+         of the target position.
+     use_curvature {Boolean}:
+         Specifies whether the earth's curvature will be taken into
+         consideration for the line-of-sight analysis. For this parameter to be
+         enabled, the surface must have a defined spatial reference in
+         projected coordinates with defined z-units.
 
-          * CURVATURE-The earth's curvature will be taken into consideration.
+         * CURVATURE-The earth's curvature will be taken into consideration.
 
-          * NO_CURVATURE-The earth's curvature will not be taken into
-          consideration. This is the default.
-      use_refraction {Boolean}:
-          Specifies whether atmospheric refraction will be taken into
-          consideration when generating a line of sight from a functional
-          surface. This parameter does not apply if multipatch features are
-          used.
+         * NO_CURVATURE-The earth's curvature will not be taken into
+         consideration. This is the default.
+     use_refraction {Boolean}:
+         Specifies whether atmospheric refraction will be taken into
+         consideration when generating a line of sight from a functional
+         surface. This parameter does not apply if multipatch features are
+         used.
 
-          * REFRACTION-Atmospheric refraction will be taken into consideration.
+         * REFRACTION-Atmospheric refraction will be taken into consideration.
 
-          * NO_REFRACTION-Atmospheric refraction will not be taken into
-          consideration. This is the default.
-      refraction_factor {Double}:
-          The value to be used in the refraction factor. The default value is
-          0.13.
-      pyramid_level_resolution {Double}:
-          The z-tolerance or window-size resolution of the terrain pyramid level
-          that will be used. The default value is 0, or full resolution.
-      in_features {Feature Layer}:
-          A multipatch feature that may define additional obstructing elements,
-          such as buildings. Refraction options are not honored for this input.
+         * NO_REFRACTION-Atmospheric refraction will not be taken into
+         consideration. This is the default.
+     refraction_factor {Double}:
+         The value to be used in the refraction factor. The default value is
+         0.13.
+     pyramid_level_resolution {Double}:
+         The z-tolerance or window-size resolution of the terrain pyramid level
+         that will be used. The default value is 0, or full resolution.
+     in_features {Feature Layer}:
+         A multipatch feature that may define additional obstructing elements,
+         such as buildings. Refraction options are not honored for this input.
 
-     OUTPUTS:
-      out_los_feature_class (Feature Class):
-          The output line feature class along which visibility has been
-          determined. Two attribute fields are created. The VisCode field
-          indicates visibility along the line: 1 being visible and 2 not
-          visible. The TarIsVis field indicates the target visibility: 0 being
-          not visible and 1 being visible.
-      out_obstruction_feature_class {Feature Class}:
-          An optional point feature class identifying the location of the first
-          obstruction on the observer's sight line to its target."""
+    OUTPUTS:
+     out_los_feature_class (Feature Class):
+         The output line feature class along which visibility has been
+         determined. Two attribute fields are created. The VisCode field
+         indicates visibility along the line: 1 being visible and 2 not
+         visible. The TarIsVis field indicates the target visibility: 0 being
+         not visible and 1 being visible.
+     out_obstruction_feature_class {Feature Class}:
+         An optional point feature class identifying the location of the first
+         obstruction on the observer's sight line to its target."""
     ...
 
-@gptooldoc('ObserverPoints_3d', None)
-def ObserverPoints(in_raster=..., in_observer_point_features=..., out_raster=..., z_factor=..., curvature_correction=..., refractivity_coefficient=..., out_agl_raster=...): # -> conversion | int | float | complex | basestring | list[Unknown] | tuple[Unknown, ...] | dict[Unknown, Unknown]:
+@gptooldoc("ObserverPoints_3d", None)
+def ObserverPoints(
+    in_raster=...,
+    in_observer_point_features=...,
+    out_raster=...,
+    z_factor=...,
+    curvature_correction=...,
+    refractivity_coefficient=...,
+    out_agl_raster=...,
+):  # -> conversion | int | float | complex | basestring | list[Unknown] | tuple[Unknown, ...] | dict[Unknown, Unknown]:
     """ObserverPoints(in_raster, in_observer_point_features, out_raster, {z_factor}, {curvature_correction}, {refractivity_coefficient}, {out_agl_raster})
 
-        Identifies which observer points are visible from each raster surface
-        location.
+       Identifies which observer points are visible from each raster surface
+       location.
 
-     INPUTS:
-      in_raster (Composite Geodataset):
-          The input surface raster.
-      in_observer_point_features (Composite Geodataset):
-          The point feature class that identifies the observer locations.The
-          maximum number of points allowed is 16.
-      z_factor {Double}:
-          The number of ground x,y units in one surface z-unit.The z-factor
-          adjusts the units of measure for the z-units when they
-          are different from the x,y units of the input surface. The z-values of
-          the input surface are multiplied by the z-factor when calculating the
-          final output surface.If the x,y units and z-units are in the same
-          units of measure, the
-          z-factor is 1. This is the default.If the x,y units and z-units are in
-          different units of measure, the
-          z-factor must be set to the appropriate factor or the results will be
-          incorrect. For example, if the z-units are feet and the x,y units are
-          meters, you would use a z-factor of 0.3048 to convert the z-units from
-          feet to meters (1 foot = 0.3048 meter).
-      curvature_correction {Boolean}:
-          Specifies whether correction for the earth's curvature will be
-          applied.
+    INPUTS:
+     in_raster (Composite Geodataset):
+         The input surface raster.
+     in_observer_point_features (Composite Geodataset):
+         The point feature class that identifies the observer locations.The
+         maximum number of points allowed is 16.
+     z_factor {Double}:
+         The number of ground x,y units in one surface z-unit.The z-factor
+         adjusts the units of measure for the z-units when they
+         are different from the x,y units of the input surface. The z-values of
+         the input surface are multiplied by the z-factor when calculating the
+         final output surface.If the x,y units and z-units are in the same
+         units of measure, the
+         z-factor is 1. This is the default.If the x,y units and z-units are in
+         different units of measure, the
+         z-factor must be set to the appropriate factor or the results will be
+         incorrect. For example, if the z-units are feet and the x,y units are
+         meters, you would use a z-factor of 0.3048 to convert the z-units from
+         feet to meters (1 foot = 0.3048 meter).
+     curvature_correction {Boolean}:
+         Specifies whether correction for the earth's curvature will be
+         applied.
 
-          * FLAT_EARTH-No curvature correction will be applied. This is the
-          default.
+         * FLAT_EARTH-No curvature correction will be applied. This is the
+         default.
 
-          * CURVED_EARTH-Curvature correction will be applied.
-      refractivity_coefficient {Double}:
-          The coefficient of the refraction of visible light in air.The default
-          value is 0.13.
+         * CURVED_EARTH-Curvature correction will be applied.
+     refractivity_coefficient {Double}:
+         The coefficient of the refraction of visible light in air.The default
+         value is 0.13.
 
-     OUTPUTS:
-      out_raster (Raster Dataset):
-          The output raster.The output identifies exactly which observer points
-          are visible from
-          each raster surface location.
-      out_agl_raster {Raster Dataset}:
-          The output above ground level (AGL) raster.The AGL result is a raster
-          where each cell value is the minimum height
-          that must be added to an otherwise nonvisible cell to make it visible
-          by at least one observer.Cells that were already visible will have a
-          value of 0 in this output
-          raster."""
+    OUTPUTS:
+     out_raster (Raster Dataset):
+         The output raster.The output identifies exactly which observer points
+         are visible from
+         each raster surface location.
+     out_agl_raster {Raster Dataset}:
+         The output above ground level (AGL) raster.The AGL result is a raster
+         where each cell value is the minimum height
+         that must be added to an otherwise nonvisible cell to make it visible
+         by at least one observer.Cells that were already visible will have a
+         value of 0 in this output
+         raster."""
     ...
 
-@gptooldoc('Skyline_3d', None)
-def Skyline(in_observer_point_features=..., out_feature_class=..., in_surface=..., virtual_surface_radius=..., virtual_surface_elevation=..., in_features=..., feature_lod=..., from_azimuth_value_or_field=..., to_azimuth_value_or_field=..., azimuth_increment_value_or_field=..., max_horizon_radius=..., segment_skyline=..., scale_to_percent=..., scale_according_to=..., scale_method=..., use_curvature=..., use_refraction=..., refraction_factor=..., pyramid_level_resolution=..., create_silhouettes=..., apply_max_radius_to_features=...): # -> conversion | int | float | complex | basestring | list[Unknown] | tuple[Unknown, ...] | dict[Unknown, Unknown]:
+@gptooldoc("Skyline_3d", None)
+def Skyline(
+    in_observer_point_features=...,
+    out_feature_class=...,
+    in_surface=...,
+    virtual_surface_radius=...,
+    virtual_surface_elevation=...,
+    in_features=...,
+    feature_lod=...,
+    from_azimuth_value_or_field=...,
+    to_azimuth_value_or_field=...,
+    azimuth_increment_value_or_field=...,
+    max_horizon_radius=...,
+    segment_skyline=...,
+    scale_to_percent=...,
+    scale_according_to=...,
+    scale_method=...,
+    use_curvature=...,
+    use_refraction=...,
+    refraction_factor=...,
+    pyramid_level_resolution=...,
+    create_silhouettes=...,
+    apply_max_radius_to_features=...,
+):  # -> conversion | int | float | complex | basestring | list[Unknown] | tuple[Unknown, ...] | dict[Unknown, Unknown]:
     """Skyline(in_observer_point_features, out_feature_class, {in_surface}, {virtual_surface_radius}, {virtual_surface_elevation}, {in_features;in_features...}, {feature_lod}, {from_azimuth_value_or_field}, {to_azimuth_value_or_field}, {azimuth_increment_value_or_field}, {max_horizon_radius}, {segment_skyline}, {scale_to_percent}, {scale_according_to}, {scale_method}, {use_curvature}, {use_refraction}, {refraction_factor}, {pyramid_level_resolution}, {create_silhouettes}, {apply_max_radius_to_features})
 
-        Generates a line or multipatch feature class containing the results
-        from a skyline or silhouette analysis.
+       Generates a line or multipatch feature class containing the results
+       from a skyline or silhouette analysis.
 
-     INPUTS:
-      in_observer_point_features (Feature Layer):
-          The 3D points representing observers. Each feature will have its own
-          output.
-      in_surface {TIN Layer / Raster Layer / Mosaic Layer / Terrain Layer / LAS Dataset Layer}:
-          The topographic surface that will be used to define the horizon. If no
-          surface is provided, a virtual surface will be used, defined by the
-          virtual_surface_radius and virtual_surface_elevation parameter values.
-      virtual_surface_radius {Linear Unit}:
-          The radius of the virtual surface that will be used to define the
-          horizon when no input surface is provided. The default is 1,000
-          meters.
-      virtual_surface_elevation {Linear Unit}:
-          The elevation of the virtual surface that will be used to define the
-          horizon in lieu of an actual surface. This parameter is ignored if an
-          actual surface is provided. The default is 0.
-      in_features {Feature Layer}:
-          The features that will be used to determine the skyline. If no
-          features are specified, the skyline will consist solely of the horizon
-          line as defined by the topographic or virtual surface.
-      feature_lod {String}:
-          Specifies the level of detail at which each feature will be examined.
+    INPUTS:
+     in_observer_point_features (Feature Layer):
+         The 3D points representing observers. Each feature will have its own
+         output.
+     in_surface {TIN Layer / Raster Layer / Mosaic Layer / Terrain Layer / LAS Dataset Layer}:
+         The topographic surface that will be used to define the horizon. If no
+         surface is provided, a virtual surface will be used, defined by the
+         virtual_surface_radius and virtual_surface_elevation parameter values.
+     virtual_surface_radius {Linear Unit}:
+         The radius of the virtual surface that will be used to define the
+         horizon when no input surface is provided. The default is 1,000
+         meters.
+     virtual_surface_elevation {Linear Unit}:
+         The elevation of the virtual surface that will be used to define the
+         horizon in lieu of an actual surface. This parameter is ignored if an
+         actual surface is provided. The default is 0.
+     in_features {Feature Layer}:
+         The features that will be used to determine the skyline. If no
+         features are specified, the skyline will consist solely of the horizon
+         line as defined by the topographic or virtual surface.
+     feature_lod {String}:
+         Specifies the level of detail at which each feature will be examined.
 
-          * FULL_DETAIL-Every edge in the feature will be considered in the
-          skyline analysis (only edges of triangles and exterior rings are
-          considered). This time-intensive operation is the most precise. This
-          is the default.
+         * FULL_DETAIL-Every edge in the feature will be considered in the
+         skyline analysis (only edges of triangles and exterior rings are
+         considered). This time-intensive operation is the most precise. This
+         is the default.
 
-          * CONVEX_FOOTPRINT-The skyline analysis will use the upper perimeter
-          of the convex hull of each feature's footprint extruded to the
-          elevation of the highest vertex in the feature.
+         * CONVEX_FOOTPRINT-The skyline analysis will use the upper perimeter
+         of the convex hull of each feature's footprint extruded to the
+         elevation of the highest vertex in the feature.
 
-          * ENVELOPE-The skyline analysis will use the perimeter of the three-
-          dimensional feature envelope. This is the fastest technique.
-      from_azimuth_value_or_field {Double / Field}:
-          The direction from which the skyline analysis will start.This value is
-          a geometric angle in degrees in the range of -360° to
-          360°. The default is 0°, which is due north. Angular values increment
-          in a clockwise direction so that 90° is due east, 180° is due south,
-          and 270° is due west. Likewise, -90° is due west, -180° is due south,
-          and -270° is due east. A numeric field from the
-          in_observer_point_features parameter value can also be used to provide
-          a distinct starting direction for each observer. The analysis extends
-          until the to_azimuth_value_or_field parameter value is reached.
-      to_azimuth_value_or_field {Double / Field}:
-          The direction at which the skyline analysis will complete.This value
-          is a geometric angle in degrees that can be specified as
-          any number in the range of -360° to 360°. The analysis starts from the
-          observer point and increments from the from_azimuth_value_or_field
-          parameter value until the to_azimuth_value_or_field parameter value is
-          reached. This value cannot deviate more than 360° from the
-          from_azimuth_value_or_field parameter value. The default is 360°,
-          which is due north.For example, a starting azimuth of 0° with an
-          ending azimuth of 360°
-          will result in a full circular skyline around the observer, and a
-          starting azimuth of 90° with an ending azimuth of 270° will cover the
-          southern half of the radial range around the observer.A numeric field
-          from the in_observer_point_features parameter value
-          can be used to provide a distinct terminal direction for each
-          observer.
-      azimuth_increment_value_or_field {Double / Field}:
-          The angular interval, in degrees, at which the horizon will be
-          evaluated while conducting the skyline analysis between the
-          from_azimuth_value_or_field and to_azimuth_value_or_field parameter
-          values. The value must be no greater than the
-          to_azimuth_value_or_field value minus the from_azimuth_value_or_field
-          value. The default is 1.
-      max_horizon_radius {Linear Unit}:
-          The maximum distance from the observer location that a horizon will be
-          sought. A value of zero indicates that no limit will be imposed. The
-          default is 0.
-      segment_skyline {Boolean}:
-          Specifies whether the resulting skyline will have one feature for each
-          observer point or each observer's skyline will be segmented by the
-          unique elements that contribute to the skyline. This parameter is only
-          available if multipatch features are specified for the in_features
-          parameter.If silhouettes are being generated, this parameter will
-          indicate
-          whether divergent rays will be used. For sun shadows, use the
-          NO_SEGMENT_SKYLINE option.
+         * ENVELOPE-The skyline analysis will use the perimeter of the three-
+         dimensional feature envelope. This is the fastest technique.
+     from_azimuth_value_or_field {Double / Field}:
+         The direction from which the skyline analysis will start.This value is
+         a geometric angle in degrees in the range of -360° to
+         360°. The default is 0°, which is due north. Angular values increment
+         in a clockwise direction so that 90° is due east, 180° is due south,
+         and 270° is due west. Likewise, -90° is due west, -180° is due south,
+         and -270° is due east. A numeric field from the
+         in_observer_point_features parameter value can also be used to provide
+         a distinct starting direction for each observer. The analysis extends
+         until the to_azimuth_value_or_field parameter value is reached.
+     to_azimuth_value_or_field {Double / Field}:
+         The direction at which the skyline analysis will complete.This value
+         is a geometric angle in degrees that can be specified as
+         any number in the range of -360° to 360°. The analysis starts from the
+         observer point and increments from the from_azimuth_value_or_field
+         parameter value until the to_azimuth_value_or_field parameter value is
+         reached. This value cannot deviate more than 360° from the
+         from_azimuth_value_or_field parameter value. The default is 360°,
+         which is due north.For example, a starting azimuth of 0° with an
+         ending azimuth of 360°
+         will result in a full circular skyline around the observer, and a
+         starting azimuth of 90° with an ending azimuth of 270° will cover the
+         southern half of the radial range around the observer.A numeric field
+         from the in_observer_point_features parameter value
+         can be used to provide a distinct terminal direction for each
+         observer.
+     azimuth_increment_value_or_field {Double / Field}:
+         The angular interval, in degrees, at which the horizon will be
+         evaluated while conducting the skyline analysis between the
+         from_azimuth_value_or_field and to_azimuth_value_or_field parameter
+         values. The value must be no greater than the
+         to_azimuth_value_or_field value minus the from_azimuth_value_or_field
+         value. The default is 1.
+     max_horizon_radius {Linear Unit}:
+         The maximum distance from the observer location that a horizon will be
+         sought. A value of zero indicates that no limit will be imposed. The
+         default is 0.
+     segment_skyline {Boolean}:
+         Specifies whether the resulting skyline will have one feature for each
+         observer point or each observer's skyline will be segmented by the
+         unique elements that contribute to the skyline. This parameter is only
+         available if multipatch features are specified for the in_features
+         parameter.If silhouettes are being generated, this parameter will
+         indicate
+         whether divergent rays will be used. For sun shadows, use the
+         NO_SEGMENT_SKYLINE option.
 
-          * NO_SEGMENT_SKYLINE-Each skyline feature will represent one observer.
-          This is the default.
+         * NO_SEGMENT_SKYLINE-Each skyline feature will represent one observer.
+         This is the default.
 
-          * SEGMENT_SKYLINE-Each observer's skyline will be segmented by the
-          unique elements that contribute to the skyline.
-      scale_to_percent {Double}:
-          The percent of the original vertical angle (angle above the horizon or
-          angle of elevation) or elevation each skyline vertex will be placed.
-          If a value of 0 or 100 is used, scaling will not occur. The default is
-          100.
-      scale_according_to {String}:
-          Specifies how scaling will be performed.
+         * SEGMENT_SKYLINE-Each observer's skyline will be segmented by the
+         unique elements that contribute to the skyline.
+     scale_to_percent {Double}:
+         The percent of the original vertical angle (angle above the horizon or
+         angle of elevation) or elevation each skyline vertex will be placed.
+         If a value of 0 or 100 is used, scaling will not occur. The default is
+         100.
+     scale_according_to {String}:
+         Specifies how scaling will be performed.
 
-          * VERTICAL_ANGLE-Scaling will be performed based on the vertical angle
-          of each vertex relative to the observer point. This is the default.
+         * VERTICAL_ANGLE-Scaling will be performed based on the vertical angle
+         of each vertex relative to the observer point. This is the default.
 
-          * ELEVATION-Scaling will be performed based on the elevation of each
-          vertex relative to the observer point.
-      scale_method {String}:
-          Specifies the vertex that will be used for scale calculation.
+         * ELEVATION-Scaling will be performed based on the elevation of each
+         vertex relative to the observer point.
+     scale_method {String}:
+         Specifies the vertex that will be used for scale calculation.
 
-          * SKYLINE_MAXIMUM-Vertices will be scaled relative to the vertical
-          angle (or the elevation) of the vertex with the highest vertical angle
-          (or elevation). This is the default.
+         * SKYLINE_MAXIMUM-Vertices will be scaled relative to the vertical
+         angle (or the elevation) of the vertex with the highest vertical angle
+         (or elevation). This is the default.
 
-          * EACH_VERTEX-Vertices will be scaled relative to the original
-          vertical angle (or elevation) of each vertex.
-      use_curvature {Boolean}:
-          Specifies whether the curvature of the earth will be used when
-          generating the ridgeline from a functional surface. This parameter is
-          only available when a raster surface is specified for the in_surface
-          parameter.
+         * EACH_VERTEX-Vertices will be scaled relative to the original
+         vertical angle (or elevation) of each vertex.
+     use_curvature {Boolean}:
+         Specifies whether the curvature of the earth will be used when
+         generating the ridgeline from a functional surface. This parameter is
+         only available when a raster surface is specified for the in_surface
+         parameter.
 
-          * CURVATURE-The curvature of the earth will be used.
+         * CURVATURE-The curvature of the earth will be used.
 
-          * NO_CURVATURE-The curvature of the earth will not be used. This is
-          the default.
-      use_refraction {Boolean}:
-          Specifies whether atmospheric refraction will be applied when
-          generating the ridgeline from a functional surface. This option is
-          only available when a raster surface is specified for the in_surface
-          parameter.
+         * NO_CURVATURE-The curvature of the earth will not be used. This is
+         the default.
+     use_refraction {Boolean}:
+         Specifies whether atmospheric refraction will be applied when
+         generating the ridgeline from a functional surface. This option is
+         only available when a raster surface is specified for the in_surface
+         parameter.
 
-          * NO_REFRACTION-Atmospheric refraction will not be applied. This is
-          the default.
+         * NO_REFRACTION-Atmospheric refraction will not be applied. This is
+         the default.
 
-          * REFRACTION-Atmospheric refraction will be applied.
-      refraction_factor {Double}:
-          The refraction coefficient that will be used if atmospheric refraction
-          is applied. The default is 0.13.
-      pyramid_level_resolution {Double}:
-          The z-tolerance or window-size resolution of the terrain pyramid level
-          that will be used. The default is 0, or full resolution.
-      create_silhouettes {Boolean}:
-          Specifies whether output features will represent skylines defining the
-          barrier between the input data and the open sky or silhouettes
-          representing the facade of observable input features. This option is
-          only available if one or more multipatch features are specified for
-          the in_features parameter.
+         * REFRACTION-Atmospheric refraction will be applied.
+     refraction_factor {Double}:
+         The refraction coefficient that will be used if atmospheric refraction
+         is applied. The default is 0.13.
+     pyramid_level_resolution {Double}:
+         The z-tolerance or window-size resolution of the terrain pyramid level
+         that will be used. The default is 0, or full resolution.
+     create_silhouettes {Boolean}:
+         Specifies whether output features will represent skylines defining the
+         barrier between the input data and the open sky or silhouettes
+         representing the facade of observable input features. This option is
+         only available if one or more multipatch features are specified for
+         the in_features parameter.
 
-          * NO_CREATE_SILHOUETTES-The output polyline features will represent
-          the skyline. This is the default.
+         * NO_CREATE_SILHOUETTES-The output polyline features will represent
+         the skyline. This is the default.
 
-          * CREATE_SILHOUETTES-The output multipatch features will represent
-          silhouettes.
-      apply_max_radius_to_features {Boolean}:
-          Specifies whether the max_horizon_radius parameter value will be
-          applied to the input features.
+         * CREATE_SILHOUETTES-The output multipatch features will represent
+         silhouettes.
+     apply_max_radius_to_features {Boolean}:
+         Specifies whether the max_horizon_radius parameter value will be
+         applied to the input features.
 
-          * NO_APPLY_MAX_RADIUS_TO_FEATURES-The radius will not apply to the
-          input features. This is the default.
+         * NO_APPLY_MAX_RADIUS_TO_FEATURES-The radius will not apply to the
+         input features. This is the default.
 
-          * APPLY_MAX_RADIUS_TO_FEATURES-The radius will apply to the input
-          features.
+         * APPLY_MAX_RADIUS_TO_FEATURES-The radius will apply to the input
+         features.
 
-     OUTPUTS:
-      out_feature_class (Feature Class):
-          The 3D features that will either be lines that represent the skyline
-          or multipatches that represent silhouettes."""
+    OUTPUTS:
+     out_feature_class (Feature Class):
+         The 3D features that will either be lines that represent the skyline
+         or multipatches that represent silhouettes."""
     ...
 
-@gptooldoc('SkylineBarrier_3d', None)
-def SkylineBarrier(in_observer_point_features=..., in_features=..., out_feature_class=..., min_radius_value_or_field=..., max_radius_value_or_field=..., closed=..., base_elevation=..., project_to_plane=...): # -> conversion | int | float | complex | basestring | list[Unknown] | tuple[Unknown, ...] | dict[Unknown, Unknown]:
+@gptooldoc("SkylineBarrier_3d", None)
+def SkylineBarrier(
+    in_observer_point_features=...,
+    in_features=...,
+    out_feature_class=...,
+    min_radius_value_or_field=...,
+    max_radius_value_or_field=...,
+    closed=...,
+    base_elevation=...,
+    project_to_plane=...,
+):  # -> conversion | int | float | complex | basestring | list[Unknown] | tuple[Unknown, ...] | dict[Unknown, Unknown]:
     """SkylineBarrier(in_observer_point_features, in_features, out_feature_class, {min_radius_value_or_field}, {max_radius_value_or_field}, {closed}, {base_elevation}, {project_to_plane})
 
-        Generates a multipatch feature class representing a skyline barrier or
-        shadow volume.
+       Generates a multipatch feature class representing a skyline barrier or
+       shadow volume.
 
-     INPUTS:
-      in_observer_point_features (Feature Layer):
-          The point feature class containing the observer points.
-      in_features (Feature Layer):
-          The input line feature class that represents the skylines, or the
-          input multipatch feature class that represents the silhouettes.
-      min_radius_value_or_field {Linear Unit / Field}:
-          The minimum radius that the triangle edges will be extended from the
-          observer point. For example, value of 10 meters means that all output
-          barrier features will extend at least 10 meters from their point of
-          origin. The default is 0, meaning no minimum distance is enforced.
-      max_radius_value_or_field {Linear Unit / Field}:
-          The maximum radius that the triangle edges will be extended from the
-          observer point. The default is 0, meaning no maximum distance is
-          enforced.
-      closed {Boolean}:
-          Specifies whether a skirt and a base will be added to the skyline
-          barrier so that the resulting multipatch will appear to be a closed
-          solid.
+    INPUTS:
+     in_observer_point_features (Feature Layer):
+         The point feature class containing the observer points.
+     in_features (Feature Layer):
+         The input line feature class that represents the skylines, or the
+         input multipatch feature class that represents the silhouettes.
+     min_radius_value_or_field {Linear Unit / Field}:
+         The minimum radius that the triangle edges will be extended from the
+         observer point. For example, value of 10 meters means that all output
+         barrier features will extend at least 10 meters from their point of
+         origin. The default is 0, meaning no minimum distance is enforced.
+     max_radius_value_or_field {Linear Unit / Field}:
+         The maximum radius that the triangle edges will be extended from the
+         observer point. The default is 0, meaning no maximum distance is
+         enforced.
+     closed {Boolean}:
+         Specifies whether a skirt and a base will be added to the skyline
+         barrier so that the resulting multipatch will appear to be a closed
+         solid.
 
-          * NO_CLOSED-No skirt or base will be added to the multipatch; only the
-          multipatch representing the surface going from the observer to the
-          skyline will be represented. This is the default.
+         * NO_CLOSED-No skirt or base will be added to the multipatch; only the
+         multipatch representing the surface going from the observer to the
+         skyline will be represented. This is the default.
 
-          * CLOSED-A skirt and a base will be added to the multipatch to form
-          the appearance of a closed solid.
-      base_elevation {Linear Unit / Field}:
-          The elevation of the base of the closed multipatch. This parameter is
-          ignored if the closed parameter is set to NO_CLOSED. The default is 0.
-      project_to_plane {Boolean}:
-          Specifies whether the front (nearer to the observer) and back (farther
-          from the observer) ends of the barrier should each be projected onto a
-          vertical plane. This is typically set to PROJECT_TO_PLANE to create a
-          shadow volume.
+         * CLOSED-A skirt and a base will be added to the multipatch to form
+         the appearance of a closed solid.
+     base_elevation {Linear Unit / Field}:
+         The elevation of the base of the closed multipatch. This parameter is
+         ignored if the closed parameter is set to NO_CLOSED. The default is 0.
+     project_to_plane {Boolean}:
+         Specifies whether the front (nearer to the observer) and back (farther
+         from the observer) ends of the barrier should each be projected onto a
+         vertical plane. This is typically set to PROJECT_TO_PLANE to create a
+         shadow volume.
 
-          * NO_PROJECT_TO_PLANE-The barrier will extend from the observer point
-          to the skyline (or nearer or farther if nonzero values are provided
-          for minimum radius and maximum radius). This is the default.
+         * NO_PROJECT_TO_PLANE-The barrier will extend from the observer point
+         to the skyline (or nearer or farther if nonzero values are provided
+         for minimum radius and maximum radius). This is the default.
 
-          * PROJECT_TO_PLANE-The barrier will extend from a vertical plane to a
-          vertical plane.
+         * PROJECT_TO_PLANE-The barrier will extend from a vertical plane to a
+         vertical plane.
 
-     OUTPUTS:
-      out_feature_class (Feature Class):
-          The output feature class into which the skyline barrier or shadow
-          volume will be placed."""
+    OUTPUTS:
+     out_feature_class (Feature Class):
+         The output feature class into which the skyline barrier or shadow
+         volume will be placed."""
     ...
 
-@gptooldoc('SkylineGraph_3d', None)
-def SkylineGraph(in_observer_point_features=..., in_line_features=..., base_visibility_angle=..., additional_fields=..., out_angles_table=..., out_graph=..., out_image_file=...): # -> conversion | int | float | complex | basestring | list[Unknown] | tuple[Unknown, ...] | dict[Unknown, Unknown]:
+@gptooldoc("SkylineGraph_3d", None)
+def SkylineGraph(
+    in_observer_point_features=...,
+    in_line_features=...,
+    base_visibility_angle=...,
+    additional_fields=...,
+    out_angles_table=...,
+    out_graph=...,
+    out_image_file=...,
+):  # -> conversion | int | float | complex | basestring | list[Unknown] | tuple[Unknown, ...] | dict[Unknown, Unknown]:
     """SkylineGraph(in_observer_point_features, in_line_features, {base_visibility_angle}, {additional_fields}, {out_angles_table}, {out_graph}, {out_image_file})
 
-        Calculates the sky visibility ratio and generates an optional table
-        and a polar graph.
+       Calculates the sky visibility ratio and generates an optional table
+       and a polar graph.
 
-     INPUTS:
-      in_observer_point_features (Feature Layer):
-          The input features containing one or more observer points.
-      in_line_features (Feature Layer):
-          The line features that represent the skyline.
-      base_visibility_angle {Double}:
-          The baseline vertical angle that will be used to calculate the
-          percentage of visible sky. Zero is the horizon, 90 is straight up, and
-          -90 is straight down. The default is 0.
-      additional_fields {Boolean}:
-          Specifies whether additional fields will be included in the angles
-          table.
+    INPUTS:
+     in_observer_point_features (Feature Layer):
+         The input features containing one or more observer points.
+     in_line_features (Feature Layer):
+         The line features that represent the skyline.
+     base_visibility_angle {Double}:
+         The baseline vertical angle that will be used to calculate the
+         percentage of visible sky. Zero is the horizon, 90 is straight up, and
+         -90 is straight down. The default is 0.
+     additional_fields {Boolean}:
+         Specifies whether additional fields will be included in the angles
+         table.
 
-          * NO_ADDITIONAL_FIELDS-Additional fields will not be included. This is
-          the default.
+         * NO_ADDITIONAL_FIELDS-Additional fields will not be included. This is
+         the default.
 
-          * ADDITIONAL_FIELDS-Additional fields will be included.
+         * ADDITIONAL_FIELDS-Additional fields will be included.
 
-     OUTPUTS:
-      out_angles_table {Table}:
-          The table that will be created for outputting the horizontal and
-          vertical angles from the observer point to each of the vertices on the
-          skyline.
-      out_graph {Graph}:
-          This parameter is not supported.
-      out_image_file {File}:
-          The image of the polar chart depicting the radial view of the visible
-          skyline. The image can be created in PNG, JPG, JPEG, or SVG format."""
+    OUTPUTS:
+     out_angles_table {Table}:
+         The table that will be created for outputting the horizontal and
+         vertical angles from the observer point to each of the vertices on the
+         skyline.
+     out_graph {Graph}:
+         This parameter is not supported.
+     out_image_file {File}:
+         The image of the polar chart depicting the radial view of the visible
+         skyline. The image can be created in PNG, JPG, JPEG, or SVG format."""
     ...
 
-@gptooldoc('SunShadowFrequency_3d', None)
-def SunShadowFrequency(in_features=..., ground=..., out_raster=..., cell_size=..., start_time=..., end_time=..., time_interval=..., time_zone=..., dst=..., max_shadow_length=...): # -> conversion | int | float | complex | basestring | list[Unknown] | tuple[Unknown, ...] | dict[Unknown, Unknown]:
+@gptooldoc("SunShadowFrequency_3d", None)
+def SunShadowFrequency(
+    in_features=...,
+    ground=...,
+    out_raster=...,
+    cell_size=...,
+    start_time=...,
+    end_time=...,
+    time_interval=...,
+    time_zone=...,
+    dst=...,
+    max_shadow_length=...,
+):  # -> conversion | int | float | complex | basestring | list[Unknown] | tuple[Unknown, ...] | dict[Unknown, Unknown]:
     """SunShadowFrequency(in_features;in_features..., ground, out_raster, {cell_size}, {start_time}, {end_time}, {time_interval}, {time_zone}, {dst}, {max_shadow_length})
 
-        Calculates the number of times a fixed position on a surface has its
-        direct sight line to the sun obstructed by multipatch features.
+       Calculates the number of times a fixed position on a surface has its
+       direct sight line to the sun obstructed by multipatch features.
 
-     INPUTS:
-      in_features (Feature Layer):
-          The multipatch features that will constitute the source of obstruction
-          for sunlight.
-      ground (Raster Layer):
-          The ground surface that will define the positions where sunlight
-          obstruction will be evaluated.
-      cell_size {Linear Unit}:
-          The cell size of the output raster.
-      start_time {Date}:
-          The date and time sun position calculations will begin. The default
-          value is the date and time the tool is initialized.
-      end_time {Date}:
-          The date and time sun position calculations will end.
-      time_interval {Time Unit}:
-          The interval that will be used to calculate sun positions from the
-          start date and time to the end date and time.
-      time_zone {String}:
-          The time zone that corresponds with the specified input times used to
-          determine the relative position of the sun. The list of available
-          values is defined by the operating system but will default to the time
-          zone of the current time on the computer.
-      dst {Boolean}:
-          Specifies whether the specified times will be adjusted for daylight
-          saving time.
+    INPUTS:
+     in_features (Feature Layer):
+         The multipatch features that will constitute the source of obstruction
+         for sunlight.
+     ground (Raster Layer):
+         The ground surface that will define the positions where sunlight
+         obstruction will be evaluated.
+     cell_size {Linear Unit}:
+         The cell size of the output raster.
+     start_time {Date}:
+         The date and time sun position calculations will begin. The default
+         value is the date and time the tool is initialized.
+     end_time {Date}:
+         The date and time sun position calculations will end.
+     time_interval {Time Unit}:
+         The interval that will be used to calculate sun positions from the
+         start date and time to the end date and time.
+     time_zone {String}:
+         The time zone that corresponds with the specified input times used to
+         determine the relative position of the sun. The list of available
+         values is defined by the operating system but will default to the time
+         zone of the current time on the computer.
+     dst {Boolean}:
+         Specifies whether the specified times will be adjusted for daylight
+         saving time.
 
-          * DST-The input times will be adjusted for daylight saving time.
+         * DST-The input times will be adjusted for daylight saving time.
 
-          * NO_DST-The input times will not be adjusted for daylight saving
-          time. This is the default.
-      max_shadow_length {Linear Unit}:
-          The maximum distance that a shadow will be cast from an input feature
-          during calculation. Consider defining this value when processing times
-          where the sun position has a low altitude angle, as the resulting
-          shadows will be long and potentially add unnecessary processing time.
+         * NO_DST-The input times will not be adjusted for daylight saving
+         time. This is the default.
+     max_shadow_length {Linear Unit}:
+         The maximum distance that a shadow will be cast from an input feature
+         during calculation. Consider defining this value when processing times
+         where the sun position has a low altitude angle, as the resulting
+         shadows will be long and potentially add unnecessary processing time.
 
-     OUTPUTS:
-      out_raster (Raster Dataset):
-          The output raster whose cell values reflect the number of times the
-          corresponding ground height position was obstructed by the input
-          features."""
+    OUTPUTS:
+     out_raster (Raster Dataset):
+         The output raster whose cell values reflect the number of times the
+         corresponding ground height position was obstructed by the input
+         features."""
     ...
 
-@gptooldoc('SunShadowVolume_3d', None)
-def SunShadowVolume(in_features=..., start_date_and_time=..., out_feature_class=..., adjusted_for_dst=..., time_zone=..., end_date_and_time=..., iteration_interval=..., iteration_unit=...): # -> conversion | int | float | complex | basestring | list[Unknown] | tuple[Unknown, ...] | dict[Unknown, Unknown]:
+@gptooldoc("SunShadowVolume_3d", None)
+def SunShadowVolume(
+    in_features=...,
+    start_date_and_time=...,
+    out_feature_class=...,
+    adjusted_for_dst=...,
+    time_zone=...,
+    end_date_and_time=...,
+    iteration_interval=...,
+    iteration_unit=...,
+):  # -> conversion | int | float | complex | basestring | list[Unknown] | tuple[Unknown, ...] | dict[Unknown, Unknown]:
     """SunShadowVolume(in_features;in_features..., start_date_and_time, out_feature_class, {adjusted_for_dst}, {time_zone}, {end_date_and_time}, {iteration_interval}, {iteration_unit})
 
-        Creates closed volumes that model shadows cast by each feature using
-        sunlight for a given date and time.
+       Creates closed volumes that model shadows cast by each feature using
+       sunlight for a given date and time.
 
-     INPUTS:
-      in_features (Feature Layer):
-          The multipatch features that will be used to model shadows.
-      start_date_and_time (Date):
-          The date and time that the trajectory of sunlight will be calculated
-          for modeling the shadows.
-      adjusted_for_dst {Boolean}:
-          Specifies whether time value is adjusted for Daylight Savings Time
-          (DST).
+    INPUTS:
+     in_features (Feature Layer):
+         The multipatch features that will be used to model shadows.
+     start_date_and_time (Date):
+         The date and time that the trajectory of sunlight will be calculated
+         for modeling the shadows.
+     adjusted_for_dst {Boolean}:
+         Specifies whether time value is adjusted for Daylight Savings Time
+         (DST).
 
-          * ADJUSTED_FOR_DST-DST is observed.
+         * ADJUSTED_FOR_DST-DST is observed.
 
-          * NOT_ADJUSTED_FOR_DST-DST is not observed. This is the default.
-      time_zone {String}:
-          The time zone in which the participating input is located. The default
-          setting is the time zone to which the operating system is set.
-      end_date_and_time {Date}:
-          The final date and time for calculating sun position. If only a date
-          is provided, the final time is presumed to be sunset.
-      iteration_interval {Double}:
-          The value used to define the iteration of time from the start date.
-      iteration_unit {String}:
-          The unit that defines the iteration value applied to the Start Date
-          and Time.
+         * NOT_ADJUSTED_FOR_DST-DST is not observed. This is the default.
+     time_zone {String}:
+         The time zone in which the participating input is located. The default
+         setting is the time zone to which the operating system is set.
+     end_date_and_time {Date}:
+         The final date and time for calculating sun position. If only a date
+         is provided, the final time is presumed to be sunset.
+     iteration_interval {Double}:
+         The value used to define the iteration of time from the start date.
+     iteration_unit {String}:
+         The unit that defines the iteration value applied to the Start Date
+         and Time.
 
-          * DAYS-Iteration value will represent days. This is the default.
+         * DAYS-Iteration value will represent days. This is the default.
 
-          * HOURS-Iteration value will represent one or more hours.
+         * HOURS-Iteration value will represent one or more hours.
 
-          * MINUTES-Iteration value will represent one or more minutes.
+         * MINUTES-Iteration value will represent one or more minutes.
 
-     OUTPUTS:
-      out_feature_class (Feature Class):
-          The multipatch feature class that will store the resulting shadow
-          volumes."""
+    OUTPUTS:
+     out_feature_class (Feature Class):
+         The multipatch feature class that will store the resulting shadow
+         volumes."""
     ...
 
-@gptooldoc('Viewshed_3d', None)
-def Viewshed(in_raster=..., in_observer_features=..., out_raster=..., z_factor=..., curvature_correction=..., refractivity_coefficient=..., out_agl_raster=...): # -> conversion | int | float | complex | basestring | list[Unknown] | tuple[Unknown, ...] | dict[Unknown, Unknown]:
+@gptooldoc("Viewshed_3d", None)
+def Viewshed(
+    in_raster=...,
+    in_observer_features=...,
+    out_raster=...,
+    z_factor=...,
+    curvature_correction=...,
+    refractivity_coefficient=...,
+    out_agl_raster=...,
+):  # -> conversion | int | float | complex | basestring | list[Unknown] | tuple[Unknown, ...] | dict[Unknown, Unknown]:
     """Viewshed(in_raster, in_observer_features, out_raster, {z_factor}, {curvature_correction}, {refractivity_coefficient}, {out_agl_raster})
 
-        Determines the raster surface locations visible to a set of observer
-        features.
+       Determines the raster surface locations visible to a set of observer
+       features.
 
-     INPUTS:
-      in_raster (Composite Geodataset):
-          The input surface raster.
-      in_observer_features (Composite Geodataset):
-          The feature class that identifies the observer locations.The input can
-          be point or polyline features.
-      z_factor {Double}:
-          The number of ground x,y units in one surface z-unit.The z-factor
-          adjusts the units of measure for the z-units when they
-          are different from the x,y units of the input surface. The z-values of
-          the input surface are multiplied by the z-factor when calculating the
-          final output surface.If the x,y units and z-units are in the same
-          units of measure, the
-          z-factor is 1. This is the default.If the x,y units and z-units are in
-          different units of measure, the
-          z-factor must be set to the appropriate factor or the results will be
-          incorrect. For example, if the z-units are feet and the x,y units are
-          meters, you would use a z-factor of 0.3048 to convert the z-units from
-          feet to meters (1 foot = 0.3048 meter).
-      curvature_correction {Boolean}:
-          Specifies whether correction for the earth's curvature will be
-          applied.
+    INPUTS:
+     in_raster (Composite Geodataset):
+         The input surface raster.
+     in_observer_features (Composite Geodataset):
+         The feature class that identifies the observer locations.The input can
+         be point or polyline features.
+     z_factor {Double}:
+         The number of ground x,y units in one surface z-unit.The z-factor
+         adjusts the units of measure for the z-units when they
+         are different from the x,y units of the input surface. The z-values of
+         the input surface are multiplied by the z-factor when calculating the
+         final output surface.If the x,y units and z-units are in the same
+         units of measure, the
+         z-factor is 1. This is the default.If the x,y units and z-units are in
+         different units of measure, the
+         z-factor must be set to the appropriate factor or the results will be
+         incorrect. For example, if the z-units are feet and the x,y units are
+         meters, you would use a z-factor of 0.3048 to convert the z-units from
+         feet to meters (1 foot = 0.3048 meter).
+     curvature_correction {Boolean}:
+         Specifies whether correction for the earth's curvature will be
+         applied.
 
-          * FLAT_EARTH-No curvature correction will be applied. This is the
-          default.
+         * FLAT_EARTH-No curvature correction will be applied. This is the
+         default.
 
-          * CURVED_EARTH-Curvature correction will be applied.
-      refractivity_coefficient {Double}:
-          The coefficient of the refraction of visible light in air.The default
-          value is 0.13.
+         * CURVED_EARTH-Curvature correction will be applied.
+     refractivity_coefficient {Double}:
+         The coefficient of the refraction of visible light in air.The default
+         value is 0.13.
 
-     OUTPUTS:
-      out_raster (Raster Dataset):
-          The output raster.The output will only record the number of times that
-          each cell
-          location in the input surface raster can be seen by the input
-          observation points (or vertices for polylines). The observation
-          frequency will be recorded in the VALUE item in the output raster's
-          attribute table.
-      out_agl_raster {Raster Dataset}:
-          The output above ground level (AGL) raster.The AGL result is a raster
-          where each cell value is the minimum height
-          that must be added to an otherwise nonvisible cell to make it visible
-          by at least one observer.Cells that were already visible will have a
-          value of 0 in this output
-          raster."""
+    OUTPUTS:
+     out_raster (Raster Dataset):
+         The output raster.The output will only record the number of times that
+         each cell
+         location in the input surface raster can be seen by the input
+         observation points (or vertices for polylines). The observation
+         frequency will be recorded in the VALUE item in the output raster's
+         attribute table.
+     out_agl_raster {Raster Dataset}:
+         The output above ground level (AGL) raster.The AGL result is a raster
+         where each cell value is the minimum height
+         that must be added to an otherwise nonvisible cell to make it visible
+         by at least one observer.Cells that were already visible will have a
+         value of 0 in this output
+         raster."""
     ...
 
-@gptooldoc('Viewshed2_3d', None)
-def Viewshed2(in_raster=..., in_observer_features=..., out_raster=..., out_agl_raster=..., analysis_type=..., vertical_error=..., out_observer_region_relationship_table=..., refractivity_coefficient=..., surface_offset=..., observer_elevation=..., observer_offset=..., inner_radius=..., inner_radius_is_3d=..., outer_radius=..., outer_radius_is_3d=..., horizontal_start_angle=..., horizontal_end_angle=..., vertical_upper_angle=..., vertical_lower_angle=..., analysis_method=..., analysis_target_device=...): # -> conversion | int | float | complex | basestring | list[Unknown] | tuple[Unknown, ...] | dict[Unknown, Unknown]:
+@gptooldoc("Viewshed2_3d", None)
+def Viewshed2(
+    in_raster=...,
+    in_observer_features=...,
+    out_raster=...,
+    out_agl_raster=...,
+    analysis_type=...,
+    vertical_error=...,
+    out_observer_region_relationship_table=...,
+    refractivity_coefficient=...,
+    surface_offset=...,
+    observer_elevation=...,
+    observer_offset=...,
+    inner_radius=...,
+    inner_radius_is_3d=...,
+    outer_radius=...,
+    outer_radius_is_3d=...,
+    horizontal_start_angle=...,
+    horizontal_end_angle=...,
+    vertical_upper_angle=...,
+    vertical_lower_angle=...,
+    analysis_method=...,
+    analysis_target_device=...,
+):  # -> conversion | int | float | complex | basestring | list[Unknown] | tuple[Unknown, ...] | dict[Unknown, Unknown]:
     """Viewshed2(in_raster, in_observer_features, out_raster, {out_agl_raster}, {analysis_type}, {vertical_error}, {out_observer_region_relationship_table}, {refractivity_coefficient}, {surface_offset}, {observer_elevation}, {observer_offset}, {inner_radius}, {inner_radius_is_3d}, {outer_radius}, {outer_radius_is_3d}, {horizontal_start_angle}, {horizontal_end_angle}, {vertical_upper_angle}, {vertical_lower_angle}, {analysis_method}, {analysis_target_device})
 
-        Determines the raster surface locations visible to a set of observer
-        features using geodesic methods.
+       Determines the raster surface locations visible to a set of observer
+       features using geodesic methods.
 
-     INPUTS:
-      in_raster (Composite Geodataset):
-          The input surface raster. It can be an integer or a floating-point
-          raster.The input raster is transformed into a 3D geocentric coordinate
-          system
-          during the visibility calculation. NoData cells on the input raster do
-          not block the visibility determination.
-      in_observer_features (Composite Geodataset):
-          The input feature class that identifies the observer locations. It can
-          be point, multipoint, or polyline features.The input feature class is
-          transformed into a 3D geocentric coordinate
-          system during the visibility calculation. Observers outside of the
-          extent of the surface raster or located on NoData cells will be
-          ignored in the calculation.
-      analysis_type {String}:
-          Specifies the type of visibility analysis you wish to perform, either
-          determining how visible each cell is to the observers, or identifying
-          for each surface location which observers are visible.
+    INPUTS:
+     in_raster (Composite Geodataset):
+         The input surface raster. It can be an integer or a floating-point
+         raster.The input raster is transformed into a 3D geocentric coordinate
+         system
+         during the visibility calculation. NoData cells on the input raster do
+         not block the visibility determination.
+     in_observer_features (Composite Geodataset):
+         The input feature class that identifies the observer locations. It can
+         be point, multipoint, or polyline features.The input feature class is
+         transformed into a 3D geocentric coordinate
+         system during the visibility calculation. Observers outside of the
+         extent of the surface raster or located on NoData cells will be
+         ignored in the calculation.
+     analysis_type {String}:
+         Specifies the type of visibility analysis you wish to perform, either
+         determining how visible each cell is to the observers, or identifying
+         for each surface location which observers are visible.
 
-          * FREQUENCY-The output records the number of times that each cell
-          location in the input surface raster can be seen by the input
-          observation locations (as points or as vertices for polyline observer
-          features). This is the default.
+         * FREQUENCY-The output records the number of times that each cell
+         location in the input surface raster can be seen by the input
+         observation locations (as points or as vertices for polyline observer
+         features). This is the default.
 
-          * OBSERVERS-The output identifies exactly which observer points are
-          visible from each raster surface location. The allowed maximum number
-          of input observers is 32 with this analysis type.
-      vertical_error {Linear Unit}:
-          The amount of uncertainty (the Root Mean Square error, or RMSE) in the
-          surface elevation values. It is a floating-point value representing
-          the expected error of the input elevation values. When this parameter
-          is assigned a value greater than 0, the output visibility raster will
-          be floating point. In this case, each cell value on the output
-          visibility raster represents the sum of probabilities that the cell is
-          visible to any of the observers.When the analysis type is Observers or
-          the analysis method is
-          Perimeter Sightlines, this parameter is disabled.
-      refractivity_coefficient {Double}:
-          The coefficient of the refraction of visible light in air.The default
-          value is 0.13.
-      surface_offset {Linear Unit / Field}:
-          A vertical distance to be added to the z-value of each cell as it is
-          considered for visibility. It must be a positive integer or floating-
-          point value.You can select a field in the input observers dataset, or
-          you can
-          specify a numerical value.For example, if the object to be observed is
-          a vehicle, the height of
-          the vehicle should be specified here.If this parameter is set to a
-          value, that value will be used by all
-          the observers. To specify different values for each observer, set this
-          parameter to a field in the input observer features dataset.The
-          default value is 0.
-      observer_elevation {Linear Unit / Field}:
-          The surface elevations of the observer points or vertices.You can
-          select a field in the input observers dataset, or you can
-          specify a numerical value.If this parameter is not specified, the
-          observer elevation will be
-          obtained from the surface raster using bilinear interpolation. If this
-          parameter is set to a value, that value will be applied to all the
-          observers. To specify different values for each observer, set this
-          parameter to a field in the input observer features dataset.
-      observer_offset {Linear Unit / Field}:
-          A vertical distance to be added to the observer elevation. It must be
-          a positive integer or floating-point value.You can select a field in
-          the input observers dataset, or you can
-          specify a numerical value.For example, if an observer is looking from
-          a tower, the height of
-          that tower should be specified here.If this parameter is set to a
-          value, that value will be applied to all
-          the observers. To specify different values for each observer, set this
-          parameter to a field in the input observer features dataset.The
-          default value is 1 meter.
-      inner_radius {Linear Unit / Field}:
-          The start distance from which visibility is determined. Cells closer
-          than this distance are not visible in the output but can still block
-          visibility of the cells between inner radius and outer radius.You can
-          select a field in the input observers dataset, or you can
-          specify a numerical value.If this parameter is set to a value, that
-          value will be applied to all
-          the observers. To specify different values for each observer, set this
-          parameter to a field in the input observer features dataset.The
-          default value is 0.
-      inner_radius_is_3d {Boolean}:
-          Specifies the type of distance for the inner radius parameter.
+         * OBSERVERS-The output identifies exactly which observer points are
+         visible from each raster surface location. The allowed maximum number
+         of input observers is 32 with this analysis type.
+     vertical_error {Linear Unit}:
+         The amount of uncertainty (the Root Mean Square error, or RMSE) in the
+         surface elevation values. It is a floating-point value representing
+         the expected error of the input elevation values. When this parameter
+         is assigned a value greater than 0, the output visibility raster will
+         be floating point. In this case, each cell value on the output
+         visibility raster represents the sum of probabilities that the cell is
+         visible to any of the observers.When the analysis type is Observers or
+         the analysis method is
+         Perimeter Sightlines, this parameter is disabled.
+     refractivity_coefficient {Double}:
+         The coefficient of the refraction of visible light in air.The default
+         value is 0.13.
+     surface_offset {Linear Unit / Field}:
+         A vertical distance to be added to the z-value of each cell as it is
+         considered for visibility. It must be a positive integer or floating-
+         point value.You can select a field in the input observers dataset, or
+         you can
+         specify a numerical value.For example, if the object to be observed is
+         a vehicle, the height of
+         the vehicle should be specified here.If this parameter is set to a
+         value, that value will be used by all
+         the observers. To specify different values for each observer, set this
+         parameter to a field in the input observer features dataset.The
+         default value is 0.
+     observer_elevation {Linear Unit / Field}:
+         The surface elevations of the observer points or vertices.You can
+         select a field in the input observers dataset, or you can
+         specify a numerical value.If this parameter is not specified, the
+         observer elevation will be
+         obtained from the surface raster using bilinear interpolation. If this
+         parameter is set to a value, that value will be applied to all the
+         observers. To specify different values for each observer, set this
+         parameter to a field in the input observer features dataset.
+     observer_offset {Linear Unit / Field}:
+         A vertical distance to be added to the observer elevation. It must be
+         a positive integer or floating-point value.You can select a field in
+         the input observers dataset, or you can
+         specify a numerical value.For example, if an observer is looking from
+         a tower, the height of
+         that tower should be specified here.If this parameter is set to a
+         value, that value will be applied to all
+         the observers. To specify different values for each observer, set this
+         parameter to a field in the input observer features dataset.The
+         default value is 1 meter.
+     inner_radius {Linear Unit / Field}:
+         The start distance from which visibility is determined. Cells closer
+         than this distance are not visible in the output but can still block
+         visibility of the cells between inner radius and outer radius.You can
+         select a field in the input observers dataset, or you can
+         specify a numerical value.If this parameter is set to a value, that
+         value will be applied to all
+         the observers. To specify different values for each observer, set this
+         parameter to a field in the input observer features dataset.The
+         default value is 0.
+     inner_radius_is_3d {Boolean}:
+         Specifies the type of distance for the inner radius parameter.
 
-          * GROUND-The inner radius is to be interpreted as a 2D distance. This
-          is the default.
+         * GROUND-The inner radius is to be interpreted as a 2D distance. This
+         is the default.
 
-          * 3D-The inner radius is to be interpreted as a 3D distance.
-      outer_radius {Linear Unit / Field}:
-          The maximum distance from which visibility is determined. Cells beyond
-          this distance are excluded from the analysis.You can select a field in
-          the input observers dataset, or you can
-          specify a numerical value.If this parameter is set to a value, that
-          value will be applied to all
-          the observers. To specify different values for each observer, set this
-          parameter to a field in the input observer features dataset.
-      outer_radius_is_3d {Boolean}:
-          Specifies the type of distance for the outer radius parameter.
+         * 3D-The inner radius is to be interpreted as a 3D distance.
+     outer_radius {Linear Unit / Field}:
+         The maximum distance from which visibility is determined. Cells beyond
+         this distance are excluded from the analysis.You can select a field in
+         the input observers dataset, or you can
+         specify a numerical value.If this parameter is set to a value, that
+         value will be applied to all
+         the observers. To specify different values for each observer, set this
+         parameter to a field in the input observer features dataset.
+     outer_radius_is_3d {Boolean}:
+         Specifies the type of distance for the outer radius parameter.
 
-          * GROUND-The outer radius is to be interpreted as a 2D distance. This
-          is the default.
+         * GROUND-The outer radius is to be interpreted as a 2D distance. This
+         is the default.
 
-          * 3D-The outer radius is to be interpreted as a 3D distance.
-      horizontal_start_angle {Double / Field}:
-          The start angle of the horizontal scan range. Specify the value in
-          degrees from 0 to 360, either as integer or floating point, with 0
-          oriented to north. The default value is 0.You can select a field in
-          the input observers dataset, or you can
-          specify a numerical value.If this parameter is set to a value, that
-          value will be applied to all
-          the observers. To specify different values for each observer, set this
-          parameter to a field in the input observer features dataset.
-      horizontal_end_angle {Double / Field}:
-          The end angle of the horizontal scan range. Specify the value in
-          degrees from 0 to 360, either as integer or floating point, with 0
-          oriented to north. The default value is 360.You can select a field in
-          the input observers dataset, or you can
-          specify a numerical value.If this parameter is set to a value, that
-          value will be applied to all
-          the observers. To specify different values for each observer, set this
-          parameter to a field in the input observer features dataset.
-      vertical_upper_angle {Double / Field}:
-          The upper vertical angle limit of the scan relative to the horizontal
-          plane. The value is specified in degrees and can be integer or
-          floating point. The allowed range is from above -90 up to and
-          including 90.This parameter value must be greater than the Vertical
-          lower angle
-          parameter value.You can select a field in the input observers dataset,
-          or you can
-          specify a numerical value.If this parameter is set to a value, that
-          value will be applied to all
-          the observers. To specify different values for each observer, set this
-          parameter to a field in the input observer features dataset.The
-          default value is 90 (straight up).
-      vertical_lower_angle {Double / Field}:
-          The lower vertical angle limit of the scan relative to the horizontal
-          plane. The value is specified in degrees and can be integer or
-          floating point. The allowed range is from -90 up to but not including
-          90.This parameter value must be less than the Vertical upper angle
-          parameter value.You can select a field in the input observers dataset,
-          or you can
-          specify a numerical value.If this parameter is set to a value, that
-          value will be applied to all
-          the observers. To specify different values for each observer, set this
-          parameter to a field in the input observer features dataset.The
-          default value is -90 (straight down).
-      analysis_method {String}:
-          Specifies the method by which the visibility will be calculated. This
-          option allows you to trade some accuracy for increased performance.
+         * 3D-The outer radius is to be interpreted as a 3D distance.
+     horizontal_start_angle {Double / Field}:
+         The start angle of the horizontal scan range. Specify the value in
+         degrees from 0 to 360, either as integer or floating point, with 0
+         oriented to north. The default value is 0.You can select a field in
+         the input observers dataset, or you can
+         specify a numerical value.If this parameter is set to a value, that
+         value will be applied to all
+         the observers. To specify different values for each observer, set this
+         parameter to a field in the input observer features dataset.
+     horizontal_end_angle {Double / Field}:
+         The end angle of the horizontal scan range. Specify the value in
+         degrees from 0 to 360, either as integer or floating point, with 0
+         oriented to north. The default value is 360.You can select a field in
+         the input observers dataset, or you can
+         specify a numerical value.If this parameter is set to a value, that
+         value will be applied to all
+         the observers. To specify different values for each observer, set this
+         parameter to a field in the input observer features dataset.
+     vertical_upper_angle {Double / Field}:
+         The upper vertical angle limit of the scan relative to the horizontal
+         plane. The value is specified in degrees and can be integer or
+         floating point. The allowed range is from above -90 up to and
+         including 90.This parameter value must be greater than the Vertical
+         lower angle
+         parameter value.You can select a field in the input observers dataset,
+         or you can
+         specify a numerical value.If this parameter is set to a value, that
+         value will be applied to all
+         the observers. To specify different values for each observer, set this
+         parameter to a field in the input observer features dataset.The
+         default value is 90 (straight up).
+     vertical_lower_angle {Double / Field}:
+         The lower vertical angle limit of the scan relative to the horizontal
+         plane. The value is specified in degrees and can be integer or
+         floating point. The allowed range is from -90 up to but not including
+         90.This parameter value must be less than the Vertical upper angle
+         parameter value.You can select a field in the input observers dataset,
+         or you can
+         specify a numerical value.If this parameter is set to a value, that
+         value will be applied to all
+         the observers. To specify different values for each observer, set this
+         parameter to a field in the input observer features dataset.The
+         default value is -90 (straight down).
+     analysis_method {String}:
+         Specifies the method by which the visibility will be calculated. This
+         option allows you to trade some accuracy for increased performance.
 
-          * ALL_SIGHTLINES-A sightline is run to every cell on the raster in
-          order to establish visible areas. This is the default method.
+         * ALL_SIGHTLINES-A sightline is run to every cell on the raster in
+         order to establish visible areas. This is the default method.
 
-          * PERIMETER_SIGHTLINES-Sightlines are only run to the cells on the
-          perimeter of the visible areas in order to establish visibility areas.
-          This method has a better performance than the All Sightlines method
-          since less sightlines are run in the calculation.
-      analysis_target_device {String}:
-          Specifies the device that will be used to perform the calculation.
+         * PERIMETER_SIGHTLINES-Sightlines are only run to the cells on the
+         perimeter of the visible areas in order to establish visibility areas.
+         This method has a better performance than the All Sightlines method
+         since less sightlines are run in the calculation.
+     analysis_target_device {String}:
+         Specifies the device that will be used to perform the calculation.
 
-          * GPU_THEN_CPU-If a compatible GPU is found, it will be used to
-          perform the calculation. Otherwise, the CPU will be used. This is the
-          default.
+         * GPU_THEN_CPU-If a compatible GPU is found, it will be used to
+         perform the calculation. Otherwise, the CPU will be used. This is the
+         default.
 
-          * CPU_ONLY-The calculation will only be performed on the CPU.
+         * CPU_ONLY-The calculation will only be performed on the CPU.
 
-          * GPU_ONLY-The calculation will only be performed on the GPU.
+         * GPU_ONLY-The calculation will only be performed on the GPU.
 
-     OUTPUTS:
-      out_raster (Raster Dataset):
-          The output raster.For the FREQUENCY analysis type, when the vertical
-          error parameter is
-          0 or not specified, the output raster records the number of times that
-          each cell location in the input surface raster can be seen by the
-          input observation points. When the vertical error parameter is greater
-          than 0, each cell on the output raster records the sum of
-          probabilities that the cell is visible to any of the observers. For
-          the OBSERVERS analysis type, the output raster records the unique
-          region IDs for the visible areas, which can be related back to the
-          observer features through the output observer-region relationship
-          table.
-      out_agl_raster {Raster Dataset}:
-          The output above ground level (AGL) raster.The AGL result is a raster
-          where each cell value is the minimum height
-          that must be added to an otherwise nonvisible cell to make it visible
-          by at least one observer. Cells that were already visible will be
-          assigned 0 in this output raster.When the vertical error parameter is
-          0, the output AGL raster is a
-          one-band raster. When vertical error is greater than 0, to account for
-          the random effects from the input raster, the output AGL raster is
-          created as a three-band raster. The first band represents the mean AGL
-          values, the second band represents the minimum AGL values, and the
-          third band represents the maximum AGL values.
-      out_observer_region_relationship_table {Table}:
-          The output table for identifying the regions that are visible to each
-          observer. This table can be related to the input observer feature
-          class and the output visibility raster for identifying the regions
-          visible to given observers.This output is only created when the
-          analysis type is OBSERVERS."""
+    OUTPUTS:
+     out_raster (Raster Dataset):
+         The output raster.For the FREQUENCY analysis type, when the vertical
+         error parameter is
+         0 or not specified, the output raster records the number of times that
+         each cell location in the input surface raster can be seen by the
+         input observation points. When the vertical error parameter is greater
+         than 0, each cell on the output raster records the sum of
+         probabilities that the cell is visible to any of the observers. For
+         the OBSERVERS analysis type, the output raster records the unique
+         region IDs for the visible areas, which can be related back to the
+         observer features through the output observer-region relationship
+         table.
+     out_agl_raster {Raster Dataset}:
+         The output above ground level (AGL) raster.The AGL result is a raster
+         where each cell value is the minimum height
+         that must be added to an otherwise nonvisible cell to make it visible
+         by at least one observer. Cells that were already visible will be
+         assigned 0 in this output raster.When the vertical error parameter is
+         0, the output AGL raster is a
+         one-band raster. When vertical error is greater than 0, to account for
+         the random effects from the input raster, the output AGL raster is
+         created as a three-band raster. The first band represents the mean AGL
+         values, the second band represents the minimum AGL values, and the
+         third band represents the maximum AGL values.
+     out_observer_region_relationship_table {Table}:
+         The output table for identifying the regions that are visible to each
+         observer. This table can be related to the input observer feature
+         class and the output visibility raster for identifying the regions
+         visible to given observers.This output is only created when the
+         analysis type is OBSERVERS."""
     ...
 
-@gptooldoc('Visibility_3d', None)
-def Visibility(in_raster=..., in_observer_features=..., out_raster=..., out_agl_raster=..., analysis_type=..., nonvisible_cell_value=..., z_factor=..., curvature_correction=..., refractivity_coefficient=..., surface_offset=..., observer_elevation=..., observer_offset=..., inner_radius=..., outer_radius=..., horizontal_start_angle=..., horizontal_end_angle=..., vertical_upper_angle=..., vertical_lower_angle=...): # -> conversion | int | float | complex | basestring | list[Unknown] | tuple[Unknown, ...] | dict[Unknown, Unknown]:
+@gptooldoc("Visibility_3d", None)
+def Visibility(
+    in_raster=...,
+    in_observer_features=...,
+    out_raster=...,
+    out_agl_raster=...,
+    analysis_type=...,
+    nonvisible_cell_value=...,
+    z_factor=...,
+    curvature_correction=...,
+    refractivity_coefficient=...,
+    surface_offset=...,
+    observer_elevation=...,
+    observer_offset=...,
+    inner_radius=...,
+    outer_radius=...,
+    horizontal_start_angle=...,
+    horizontal_end_angle=...,
+    vertical_upper_angle=...,
+    vertical_lower_angle=...,
+):  # -> conversion | int | float | complex | basestring | list[Unknown] | tuple[Unknown, ...] | dict[Unknown, Unknown]:
     """Visibility(in_raster, in_observer_features, out_raster, {out_agl_raster}, {analysis_type}, {nonvisible_cell_value}, {z_factor}, {curvature_correction}, {refractivity_coefficient}, {surface_offset}, {observer_elevation}, {observer_offset}, {inner_radius}, {outer_radius}, {horizontal_start_angle}, {horizontal_end_angle}, {vertical_upper_angle}, {vertical_lower_angle})
 
-        Determines the raster surface locations visible to a set of observer
-        features, or identifies which observer points are visible from each
-        raster surface location.
+       Determines the raster surface locations visible to a set of observer
+       features, or identifies which observer points are visible from each
+       raster surface location.
 
-     INPUTS:
-      in_raster (Composite Geodataset):
-          The input surface raster.
-      in_observer_features (Composite Geodataset):
-          The feature class that identifies the observer locations.The input can
-          be point or polyline features.
-      analysis_type {String}:
-          The visibility analysis type.
+    INPUTS:
+     in_raster (Composite Geodataset):
+         The input surface raster.
+     in_observer_features (Composite Geodataset):
+         The feature class that identifies the observer locations.The input can
+         be point or polyline features.
+     analysis_type {String}:
+         The visibility analysis type.
 
-          * FREQUENCY-The output records the number of times that each cell
-          location in the input surface raster can be seen by the input
-          observation locations (as points, or as vertices for polyline observer
-          features). This is the default.
+         * FREQUENCY-The output records the number of times that each cell
+         location in the input surface raster can be seen by the input
+         observation locations (as points, or as vertices for polyline observer
+         features). This is the default.
 
-          * OBSERVERS-The output identifies exactly which observer points are
-          visible from each raster surface location.
-      nonvisible_cell_value {Boolean}:
-          Value assigned to non-visible cells.
+         * OBSERVERS-The output identifies exactly which observer points are
+         visible from each raster surface location.
+     nonvisible_cell_value {Boolean}:
+         Value assigned to non-visible cells.
 
-          * ZERO-0 is assigned to nonvisible cells. This is the default.
+         * ZERO-0 is assigned to nonvisible cells. This is the default.
 
-          * NODATA-NoData is assigned to nonvisible cells.
-      z_factor {Double}:
-          Number of ground x,y units in one surface z unit.The z-factor adjusts
-          the units of measure for the z units when they
-          are different from the x,y units of the input surface. The z-values of
-          the input surface are multiplied by the z-factor when calculating the
-          final output surface.If the x,y units and z units are in the same
-          units of measure, the
-          z-factor is 1. This is the default.If the x,y units and z units are in
-          different units of measure, the
-          z-factor must be set to the appropriate factor, or the results will be
-          incorrect. For example, if your z units are feet and your x,y units
-          are meters, you would use a z-factor of 0.3048 to convert your z units
-          from feet to meters (1 foot = 0.3048 meter).
-      curvature_correction {Boolean}:
-          Specifies whether correction for the earth's curvature will be
-          applied.
+         * NODATA-NoData is assigned to nonvisible cells.
+     z_factor {Double}:
+         Number of ground x,y units in one surface z unit.The z-factor adjusts
+         the units of measure for the z units when they
+         are different from the x,y units of the input surface. The z-values of
+         the input surface are multiplied by the z-factor when calculating the
+         final output surface.If the x,y units and z units are in the same
+         units of measure, the
+         z-factor is 1. This is the default.If the x,y units and z units are in
+         different units of measure, the
+         z-factor must be set to the appropriate factor, or the results will be
+         incorrect. For example, if your z units are feet and your x,y units
+         are meters, you would use a z-factor of 0.3048 to convert your z units
+         from feet to meters (1 foot = 0.3048 meter).
+     curvature_correction {Boolean}:
+         Specifies whether correction for the earth's curvature will be
+         applied.
 
-          * FLAT_EARTH-No curvature correction will be applied. This is the
-          default.
+         * FLAT_EARTH-No curvature correction will be applied. This is the
+         default.
 
-          * CURVED_EARTH-Curvature correction will be applied.
-      refractivity_coefficient {Double}:
-          The coefficient of the refraction of visible light in air.The default
-          value is 0.13.
-      surface_offset {String}:
-          A vertical distance to be added to the z-value of each cell as it is
-          considered for visibility. It must be a positive integer or floating-
-          point value.You can select a field in the input observers dataset, or
-          you can
-          specify a numerical value.By default, a numerical field OFFSETB is
-          used if it exists in the
-          input observer features attribute table. You may overwrite it by
-          specifying another numerical field or a value.If this parameter is
-          unspecified and the default field does not exist
-          in the input observer features attribute table, the default value is
-          0.
-      observer_elevation {String}:
-          The surface elevations of the observer points or vertices.You can
-          select a field in the input observers dataset, or you can
-          specify a numerical value.By default, a numerical field SPOT is used
-          if it exists in the input
-          observer features attribute table. You may overwrite it by specifying
-          another numerical field or a value.If this parameter is unspecified
-          and the default field does not exist
-          in the input observer features attribute table, it will be estimated
-          through bilinear interpolation with the surface elevation values in
-          the neighboring cells of the observer location.
-      observer_offset {String}:
-          A vertical distance to be added to the observer elevation. It must be
-          a positive integer or floating-point value.You can select a field in
-          the input observers dataset, or you can
-          specify a numerical value.By default, a numerical field OFFSETA is
-          used if it exists in the
-          input observer features attribute table. You may overwrite it by
-          specifying another numerical field or a value.If this parameter is
-          unspecified and the default field does not exist
-          in the input observer features attribute table, it defaults to 1.
-      inner_radius {String}:
-          The start distance from which visibility is determined. Cells closer
-          than this distance are not visible in the output but can still block
-          visibility of the cells between inner radius and outer radius.It can
-          be a positive or negative integer or floating point value. If
-          it is a positive value, then it is interpreted as three-dimensional,
-          line-of-sight distance. If it is a negative value, then it is
-          interpreted as two-dimensional planimetric distance.You can select a
-          field in the input observers dataset, or you can
-          specify a numerical value.By default, a numerical field RADIUS1 is
-          used if it exists in the
-          input observer features attribute table. You may overwrite it by
-          specifying another numerical field or a value.If this parameter is
-          unspecified and the default field does not exist
-          in the input observer features attribute table, the default value is
-          0.
-      outer_radius {String}:
-          The maximum distance from which visibility is determined. Cells beyond
-          this distance are excluded from the analysis.It can be a positive or
-          negative integer or floating point value. If
-          it is a positive value, then it is interpreted as three-dimensional,
-          line-of-sight distance. If it is a negative value, then it is
-          interpreted as two-dimensional planimetric distance.You can select a
-          field in the input observers dataset, or you can
-          specify a numerical value.By default, a numerical field RADIUS2 is
-          used if it exists in the
-          input observer features attribute table. You may overwrite it by
-          specifying another numerical field or a value.If this parameter is
-          unspecified and the default field does not exist
-          in the input observer features attribute table, it defaults to
-          infinity.
-      horizontal_start_angle {String}:
-          The start angle of the horizontal scan range. Specify the value in
-          degrees from 0 to 360, either as integer or floating point, with 0
-          oriented to north. The default value is 0.You can select a field in
-          the input observers dataset, or you can
-          specify a numerical value.By default, a numerical field AZIMUTH1 is
-          used if it exists in the
-          input observer features attribute table. You may overwrite it by
-          specifying another numerical field or a value.If this parameter is
-          unspecified and the default field does not exist
-          in the input observer features attribute table, the default value is
-          0.
-      horizontal_end_angle {String}:
-          The end angle of the horizontal scan range. Specify the value in
-          degrees from 0 to 360, either as integer or floating point, with 0
-          oriented to north. The default value is 360.You can select a field in
-          the input observers dataset, or you can
-          specify a numerical value.By default, a numerical field AZIMUTH2 is
-          used if it exists in the
-          input observer features attribute table. You may overwrite it by
-          specifying another numerical field or a value.If this parameter is
-          unspecified and the default field does not exist
-          in the input observer features attribute table, it defaults to 360.
-      vertical_upper_angle {String}:
-          The upper vertical angle limit of the scan relative to the horizontal
-          plane. The value is specified in degrees and can be integer or
-          floating point. The allowed range is from above -90 up to and
-          including 90.This parameter value must be greater than the Vertical
-          lower angle
-          parameter value.You can select a field in the input observers dataset,
-          or you can
-          specify a numerical value.By default, a numerical field VERT1 is used
-          if it exists in the input
-          observer features attribute table. You may overwrite it by specifying
-          another numerical field or a value.If this parameter is unspecified
-          and the default field does not exist
-          in the input observer features attribute table, it defaults to 90.
-      vertical_lower_angle {String}:
-          The lower vertical angle limit of the scan relative to the horizontal
-          plane. The value is specified in degrees and can be integer or
-          floating point. The allowed range is from -90 up to but not including
-          90.This parameter value must be less than the Vertical upper angle
-          parameter value.You can select a field in the input observers dataset,
-          or you can
-          specify a numerical value.By default, a numerical field VERT2 is used
-          if it exists in the input
-          observer features attribute table. You may overwrite it by specifying
-          another numerical field or a value.If this parameter is unspecified
-          and the default field does not exist
-          in the input observer features attribute table, it defaults to -90.
+         * CURVED_EARTH-Curvature correction will be applied.
+     refractivity_coefficient {Double}:
+         The coefficient of the refraction of visible light in air.The default
+         value is 0.13.
+     surface_offset {String}:
+         A vertical distance to be added to the z-value of each cell as it is
+         considered for visibility. It must be a positive integer or floating-
+         point value.You can select a field in the input observers dataset, or
+         you can
+         specify a numerical value.By default, a numerical field OFFSETB is
+         used if it exists in the
+         input observer features attribute table. You may overwrite it by
+         specifying another numerical field or a value.If this parameter is
+         unspecified and the default field does not exist
+         in the input observer features attribute table, the default value is
+         0.
+     observer_elevation {String}:
+         The surface elevations of the observer points or vertices.You can
+         select a field in the input observers dataset, or you can
+         specify a numerical value.By default, a numerical field SPOT is used
+         if it exists in the input
+         observer features attribute table. You may overwrite it by specifying
+         another numerical field or a value.If this parameter is unspecified
+         and the default field does not exist
+         in the input observer features attribute table, it will be estimated
+         through bilinear interpolation with the surface elevation values in
+         the neighboring cells of the observer location.
+     observer_offset {String}:
+         A vertical distance to be added to the observer elevation. It must be
+         a positive integer or floating-point value.You can select a field in
+         the input observers dataset, or you can
+         specify a numerical value.By default, a numerical field OFFSETA is
+         used if it exists in the
+         input observer features attribute table. You may overwrite it by
+         specifying another numerical field or a value.If this parameter is
+         unspecified and the default field does not exist
+         in the input observer features attribute table, it defaults to 1.
+     inner_radius {String}:
+         The start distance from which visibility is determined. Cells closer
+         than this distance are not visible in the output but can still block
+         visibility of the cells between inner radius and outer radius.It can
+         be a positive or negative integer or floating point value. If
+         it is a positive value, then it is interpreted as three-dimensional,
+         line-of-sight distance. If it is a negative value, then it is
+         interpreted as two-dimensional planimetric distance.You can select a
+         field in the input observers dataset, or you can
+         specify a numerical value.By default, a numerical field RADIUS1 is
+         used if it exists in the
+         input observer features attribute table. You may overwrite it by
+         specifying another numerical field or a value.If this parameter is
+         unspecified and the default field does not exist
+         in the input observer features attribute table, the default value is
+         0.
+     outer_radius {String}:
+         The maximum distance from which visibility is determined. Cells beyond
+         this distance are excluded from the analysis.It can be a positive or
+         negative integer or floating point value. If
+         it is a positive value, then it is interpreted as three-dimensional,
+         line-of-sight distance. If it is a negative value, then it is
+         interpreted as two-dimensional planimetric distance.You can select a
+         field in the input observers dataset, or you can
+         specify a numerical value.By default, a numerical field RADIUS2 is
+         used if it exists in the
+         input observer features attribute table. You may overwrite it by
+         specifying another numerical field or a value.If this parameter is
+         unspecified and the default field does not exist
+         in the input observer features attribute table, it defaults to
+         infinity.
+     horizontal_start_angle {String}:
+         The start angle of the horizontal scan range. Specify the value in
+         degrees from 0 to 360, either as integer or floating point, with 0
+         oriented to north. The default value is 0.You can select a field in
+         the input observers dataset, or you can
+         specify a numerical value.By default, a numerical field AZIMUTH1 is
+         used if it exists in the
+         input observer features attribute table. You may overwrite it by
+         specifying another numerical field or a value.If this parameter is
+         unspecified and the default field does not exist
+         in the input observer features attribute table, the default value is
+         0.
+     horizontal_end_angle {String}:
+         The end angle of the horizontal scan range. Specify the value in
+         degrees from 0 to 360, either as integer or floating point, with 0
+         oriented to north. The default value is 360.You can select a field in
+         the input observers dataset, or you can
+         specify a numerical value.By default, a numerical field AZIMUTH2 is
+         used if it exists in the
+         input observer features attribute table. You may overwrite it by
+         specifying another numerical field or a value.If this parameter is
+         unspecified and the default field does not exist
+         in the input observer features attribute table, it defaults to 360.
+     vertical_upper_angle {String}:
+         The upper vertical angle limit of the scan relative to the horizontal
+         plane. The value is specified in degrees and can be integer or
+         floating point. The allowed range is from above -90 up to and
+         including 90.This parameter value must be greater than the Vertical
+         lower angle
+         parameter value.You can select a field in the input observers dataset,
+         or you can
+         specify a numerical value.By default, a numerical field VERT1 is used
+         if it exists in the input
+         observer features attribute table. You may overwrite it by specifying
+         another numerical field or a value.If this parameter is unspecified
+         and the default field does not exist
+         in the input observer features attribute table, it defaults to 90.
+     vertical_lower_angle {String}:
+         The lower vertical angle limit of the scan relative to the horizontal
+         plane. The value is specified in degrees and can be integer or
+         floating point. The allowed range is from -90 up to but not including
+         90.This parameter value must be less than the Vertical upper angle
+         parameter value.You can select a field in the input observers dataset,
+         or you can
+         specify a numerical value.By default, a numerical field VERT2 is used
+         if it exists in the input
+         observer features attribute table. You may overwrite it by specifying
+         another numerical field or a value.If this parameter is unspecified
+         and the default field does not exist
+         in the input observer features attribute table, it defaults to -90.
 
-     OUTPUTS:
-      out_raster (Raster Dataset):
-          The output raster.The output will either record the number of times
-          that each cell
-          location in the input surface raster can be seen by the input
-          observation locations (the frequency analysis type), or record which
-          observer locations are visible from each cell in the raster surface
-          (the observers type option).
-      out_agl_raster {Raster Dataset}:
-          The output above-ground-level (AGL) raster.The AGL result is a raster
-          where each cell value is the minimum height
-          that must be added to an otherwise nonvisible cell to make it visible
-          by at least one observer.Cells that were already visible will have a
-          value of 0 in this output
-          raster."""
+    OUTPUTS:
+     out_raster (Raster Dataset):
+         The output raster.The output will either record the number of times
+         that each cell
+         location in the input surface raster can be seen by the input
+         observation locations (the frequency analysis type), or record which
+         observer locations are visible from each cell in the raster surface
+         (the observers type option).
+     out_agl_raster {Raster Dataset}:
+         The output above-ground-level (AGL) raster.The AGL result is a raster
+         where each cell value is the minimum height
+         that must be added to an otherwise nonvisible cell to make it visible
+         by at least one observer.Cells that were already visible will have a
+         value of 0 in this output
+         raster."""
     ...
-

@@ -6,16 +6,38 @@ from arcgisscripting import charts
 from arcpy.arcobjects._base import _ObjectWithoutInitCall
 
 """Charts Module"""
-__all__ = [item for item in dir(charts) if notitem.startswith('_')]
-__all__ += ["Bar", "Box", "CalendarHeat", "DataClock", "Histogram", "Line", "MatrixHeat", "Pie", "QQPlot", "Scatter", "ScatterMatrix"]
+__all__ = [item for item in dir(charts) if notitem.startswith("_")]
+__all__ += [
+    "Bar",
+    "Box",
+    "CalendarHeat",
+    "DataClock",
+    "Histogram",
+    "Line",
+    "MatrixHeat",
+    "Pie",
+    "QQPlot",
+    "Scatter",
+    "ScatterMatrix",
+]
+
 class Chart(_ObjectWithoutInitCall):
     """The Chart class defines an ArcGIS Pro chart. The class allows you to create different types of charts, including
     bar charts, line charts, histograms, and scatter plots. Also, you can use the class to define the chart title, axes,
     and other properties.
     """
-    def __init__(self, name, title=..., description=..., xTitle=..., yTitle=..., dataSource=..., displaySize=...) -> None:
-        ...
-    
+
+    def __init__(
+        self,
+        name,
+        title=...,
+        description=...,
+        xTitle=...,
+        yTitle=...,
+        dataSource=...,
+        displaySize=...,
+    ) -> None: ...
+
     _hId = ...
     _vId = ...
     _chartType = ...
@@ -23,24 +45,15 @@ class Chart(_ObjectWithoutInitCall):
     description = ...
     color = ...
     dataSource = ...
+
     class _arc_base:
-        def __init__(self, parent) -> None:
-            ...
-        
-    
-    
+        def __init__(self, parent) -> None: ...
+
     class _seriesType(_arc_base):
-        def __init__(self, parent) -> None:
-            ...
-        
-        def __repr__(self): # -> str:
-            ...
-        
-        def __str__(self) -> str:
-            ...
-        
-    
-    
+        def __init__(self, parent) -> None: ...
+        def __repr__(self): ...
+        def __str__(self) -> str: ...
+
     class _axis(_arc_base):
         """Sets additional properties that apply to axis only.
         field
@@ -52,44 +65,26 @@ class Chart(_ObjectWithoutInitCall):
 
         title
             The label of the axis that displays on the chart.
-        
+
         useAdaptiveBounds
             Indicates whether grid chart series are displayed with adaptive axes, i.e. using series axis minimum and maximum.
         """
+
         _axisType = ...
+
         class _guide:
-            def __init__(self, _name) -> None:
-                ...
-            
-        
-        
+            def __init__(self, _name) -> None: ...
+
         class _Guides:
-            def new(self, name, valueFrom, valueTo=..., label=...):
-                ...
-            
-            def get(self, index):
-                ...
-            
-            def update(self, _guides): # -> None:
-                ...
-            
-            def remove(self, guide): # -> None:
-                ...
-            
-            def removeByIndex(self, index): # -> None:
-                ...
-            
-            def removeAll(self): # -> None:
-                ...
-            
-            def length(self): # -> int:
-                ...
-            
-            def __init__(self, axis) -> None:
-                ...
-            
-        
-        
+            def new(self, name, valueFrom, valueTo=..., label=...): ...
+            def get(self, index): ...
+            def update(self, _guides): ...
+            def remove(self, guide): ...
+            def removeByIndex(self, index): ...
+            def removeAll(self): ...
+            def length(self): ...
+            def __init__(self, axis) -> None: ...
+
         _guides = ...
         title = ...
         field = ...
@@ -98,51 +93,38 @@ class Chart(_ObjectWithoutInitCall):
         maximum = ...
         logarithmic = ...
         useAdaptiveBounds = ...
-        def __repr__(self): # -> str:
-            ...
-        
-        def __str__(self) -> str:
-            ...
-        
-        def __init__(self, parent, i) -> None:
-            ...
-        
-    
-    
+        def __repr__(self): ...
+        def __str__(self) -> str: ...
+        def __init__(self, parent, i) -> None: ...
+
     _helpGen = ...
+
     class _bar(_seriesType):
-        def __init__(self, parent) -> None:
-            ...
-        
+        def __init__(self, parent) -> None: ...
+
         aggregation = ...
         splitCategory = ...
         multiSeriesDisplay = ...
         rotated = ...
         showMovingAverage = ...
         movingAveragePeriod = ...
-    
-    
+
     class _scatterPlot(_seriesType):
-        def __init__(self, parent) -> None:
-            ...
-        
+        def __init__(self, parent) -> None: ...
+
         showTrendLine = ...
         bubbleMinSize = ...
         bubbleMaxSize = ...
-    
-    
+
     class _qqPlot(_seriesType):
-        def __init__(self, parent) -> None:
-            ...
-        
+        def __init__(self, parent) -> None: ...
+
         showReferenceLine = ...
         dataTransformationType = ...
-    
-    
+
     class _line(_seriesType):
-        def __init__(self, parent) -> None:
-            ...
-        
+        def __init__(self, parent) -> None: ...
+
         aggregation = ...
         splitCategory = ...
         timeIntervalUnits = ...
@@ -151,103 +133,84 @@ class Chart(_ObjectWithoutInitCall):
         timeAggregationType = ...
         nullPolicy = ...
         rotated = ...
-    
-    
+
     class _histogram(_seriesType):
-        def __init__(self, parent) -> None:
-            ...
-        
+        def __init__(self, parent) -> None: ...
+
         binCount = ...
         showMean = ...
         showMedian = ...
         showStandardDeviation = ...
         showComparisonDistribution = ...
         dataTransformationType = ...
-    
-    
+
     class _boxPlot(_seriesType):
-        def __init__(self, parent) -> None:
-            ...
-        
+        def __init__(self, parent) -> None: ...
+
         showOutliers = ...
         standardizeValues = ...
         splitCategory = ...
         splitCategoryAsMeanLine = ...
         rotated = ...
-    
-    
+
     class _dataClock(_seriesType):
-        def __init__(self, parent) -> None:
-            ...
-        
+        def __init__(self, parent) -> None: ...
+
         aggregation = ...
         timeUnitsRingWedge = ...
         nullPolicy = ...
         classificationMethod = ...
         classCount = ...
-    
-    
+
     class _calendarHeatChart(_seriesType):
-        def __init__(self, parent) -> None:
-            ...
-        
+        def __init__(self, parent) -> None: ...
+
         aggregation = ...
         calendarType = ...
         nullPolicy = ...
         classificationMethod = ...
         classCount = ...
         includeLeapDay = ...
-    
-    
+
     class _matrixHeatChart(_seriesType):
-        def __init__(self, parent) -> None:
-            ...
-        
+        def __init__(self, parent) -> None: ...
+
         aggregation = ...
         nullPolicy = ...
         classificationMethod = ...
         classCount = ...
-    
-    
+
     class _scatterPlotMatrix(_seriesType):
-        def __init__(self, parent) -> None:
-            ...
-        
+        def __init__(self, parent) -> None: ...
+
         fields = ...
         showTrendLine = ...
         showHistograms = ...
         showAsRSquared = ...
-    
-    
+
     class _pie(_seriesType):
-        def __init__(self, parent) -> None:
-            ...
-        
+        def __init__(self, parent) -> None: ...
+
         categoryField = ...
         numberFields = ...
         donutSize = ...
         groupingPercent = ...
         sort = ...
-    
-    
+
     class _legend(_arc_base):
         """Sets properties of the chart legend.
         visible
             Toggles if the legend is visible in the chart view. True displays the legend, False hides the legend.
         """
-        def __init__(self, parent) -> None:
-            ...
-        
+
+        def __init__(self, parent) -> None: ...
+
         visible = ...
         title = ...
-    
-    
     @property
-    def type(self): # -> Any:
-        ...
-    
+    def type(self): ...
     @type.setter
-    def type(self, val): # -> None:
+    def type(self, val):  # -> None:
         """Chart.type{String}
         Sets the type of chart to create. Valid options:.
             bar
@@ -263,18 +226,13 @@ class Chart(_ObjectWithoutInitCall):
             scatterMatrix
         """
         ...
-    
     @property
-    def legend(self):
-        ...
-    
-    def getSVG(self, width, height): # -> conversion | int | float | complex | basestring | list[Unknown] | tuple[Unknown, ...] | dict[Unknown, Unknown]:
-        ...
-    
-    def exportToSVG(self, path, width=..., height=...): # -> None:
-        ...
-    
-    def addToLayer(self, layer_or_layerfile): # -> conversion | int | float | complex | basestring | list[Unknown] | tuple[Unknown, ...] | dict[Unknown, Unknown]:
+    def legend(self): ...
+    def getSVG(self, width, height): ...
+    def exportToSVG(self, path, width=..., height=...): ...
+    def addToLayer(
+        self, layer_or_layerfile
+    ):  # -> conversion | int | float | complex | basestring | list[Unknown] | tuple[Unknown, ...] | dict[Unknown, Unknown]:
         """Chart.addToLayer(layer_or_layerfile)
         Adds the chart class to a layer.
 
@@ -284,8 +242,9 @@ class Chart(_ObjectWithoutInitCall):
         The chart object properties will be set into the layer definition.
         """
         ...
-    
-    def updateChart(self): # -> conversion | int | float | complex | basestring | list[Unknown] | tuple[Unknown, ...] | dict[Unknown, Unknown]:
+    def updateChart(
+        self,
+    ):  # -> conversion | int | float | complex | basestring | list[Unknown] | tuple[Unknown, ...] | dict[Unknown, Unknown]:
         """Chart.updateChart()
         Updates chart properties to sync changes between the class and the chart associated with a layer.
 
@@ -297,42 +256,38 @@ class Chart(_ObjectWithoutInitCall):
         layer.
         """
         ...
-    
     @property
-    def displaySize(self):
-        ...
-    
+    def displaySize(self): ...
     @displaySize.setter
-    def displaySize(self, val): # -> None:
+    def displaySize(self, val):  # -> None:
         """Chart.displaySize
         Sets dimensions of a chart for visualization purposes in Python Notebooks or export. Does not affect charts in UI.
         'displaySize' is tuple or a list with 2 positive numeric values. For ex., (400, 300) or [80.5, 60.5].
         """
         ...
-    
-
 
 ob_conversion = ...
+
 class Bar(Chart):
     """Sets bar chart properties.
 
     x
-        The field name for the x-axis variable. The field must be a category or a 
+        The field name for the x-axis variable. The field must be a category or a
         date field.
     y
-        The field names for the numeric fields. Specify a single field name or a 
+        The field names for the numeric fields. Specify a single field name or a
         list of field names.
     aggregation
-        The statistical calculation applied to values that occur at the same value 
-        along the x-axis. 
-        Supported statistics are 'COUNT', 'SUM', 'MEAN', 'MEDIAN', 'MIN', and 'MAX'. 
-        No aggregation means that each value will be plotted on the chart regardless 
+        The statistical calculation applied to values that occur at the same value
+        along the x-axis.
+        Supported statistics are 'COUNT', 'SUM', 'MEAN', 'MEDIAN', 'MIN', and 'MAX'.
+        No aggregation means that each value will be plotted on the chart regardless
         of overlap or recurring values.
     splitCategory
-        A second categorical field that adds a separate series or bar for each unique 
+        A second categorical field that adds a separate series or bar for each unique
         value in the field.
     multiSeriesDisplay
-        The display type for a bar chart with multiple series. 
+        The display type for a bar chart with multiple series.
         Valid options are 'sideBySide', 'stacked', 'stacked100', and "grid".
     miniChartsPerRow
         Sets the number of mini charts per row when multiSeriesDisplay parameter is set to 'grid'
@@ -341,33 +296,52 @@ class Bar(Chart):
     showMovingAverage
         Indicates whether the moving average is displayed for temporal bar charts.
     movingAveragePeriod
-        The size of the moving average period.    
+        The size of the moving average period.
     rotated
-        Indicates whether lines are viewed horizontally or vertically. Lines display 
+        Indicates whether lines are viewed horizontally or vertically. Lines display
         horizontally by default.
-    title 
-        Sets the title of the chart. The title text appears at the top of the chart view and 
+    title
+        Sets the title of the chart. The title text appears at the top of the chart view and
         is used as the label for the chart in the Contents pane.
     description
-        Sets the description of the chart. The description text appears at the bottom of the 
+        Sets the description of the chart. The description text appears at the bottom of the
         chart view.
     xTitle
         Sets the title for the x-axis of the chart.
     yTitle
         Sets the title for the y-axis of the chart.
     dataSource
-        Sets the data source of the chart. When a chart is exported using the exportToSVG method 
-        or displayed in an ArcGIS Notebook, the data source is read and rendered on the chart. 
-        Valid data sources include paths to datasets, including local datasets, UNC paths, and 
+        Sets the data source of the chart. When a chart is exported using the exportToSVG method
+        or displayed in an ArcGIS Notebook, the data source is read and rendered on the chart.
+        Valid data sources include paths to datasets, including local datasets, UNC paths, and
         service URLs, and arcpy.mp Layer objects.
     displaySize
-        Sets the size of the chart when exported using the exportToSVG method or displayed in an 
-        ArcGIS Notebook. The value must be specified as a two-item list, where the first item is 
-        the width of the chart and the second item is the height of the chart.    
+        Sets the size of the chart when exported using the exportToSVG method or displayed in an
+        ArcGIS Notebook. The value must be specified as a two-item list, where the first item is
+        the width of the chart and the second item is the height of the chart.
     """
-    def __init__(self, x, *, y=..., aggregation=..., splitCategory=..., multiSeriesDisplay=..., miniChartsPerRow=..., showPreviewChart=..., showMovingAverage=..., movingAveragePeriod=..., rotated=..., title=..., description=..., xTitle=..., yTitle=..., dataSource=..., displaySize=...) -> None:
-        ...
-    
+
+    def __init__(
+        self,
+        x,
+        *,
+        y=...,
+        aggregation=...,
+        splitCategory=...,
+        multiSeriesDisplay=...,
+        miniChartsPerRow=...,
+        showPreviewChart=...,
+        showMovingAverage=...,
+        movingAveragePeriod=...,
+        rotated=...,
+        title=...,
+        description=...,
+        xTitle=...,
+        yTitle=...,
+        dataSource=...,
+        displaySize=...
+    ) -> None: ...
+
     x = ...
     y = ...
     aggregation = ...
@@ -380,55 +354,70 @@ class Bar(Chart):
     showMovingAverage = ...
     movingAveragePeriod = ...
 
-
 class Box(Chart):
     """Sets bar chart properties.
 
     y
-        The fields to display as boxes. Specify a single field name or a list 
+        The fields to display as boxes. Specify a single field name or a list
         of field names.
     x
-        The x-axis field is used to create multiple series box plots by setting 
-        the category. 
+        The x-axis field is used to create multiple series box plots by setting
+        the category.
     splitCategory
-        A second categorical field that adds a separate series for each 
+        A second categorical field that adds a separate series for each
         unique value in the field.
     splitCategoryAsMeanLine
-        Multiple-series box plots created with a split field can be displayed as 
-        mean lines or as side-by-side boxes. True displays split multiple series 
+        Multiple-series box plots created with a split field can be displayed as
+        mean lines or as side-by-side boxes. True displays split multiple series
         as mean lines. False displays multiple series as side-by-side boxes.
     standardizeValues
-        Box plots created from multiple fields are standardized by default. 
-        True displays standardized values. False displays nonstandardized values.  
+        Box plots created from multiple fields are standardized by default.
+        True displays standardized values. False displays nonstandardized values.
     showOutliers
-        Indicates whether outliers are shown as points extending beyond the whiskers. 
+        Indicates whether outliers are shown as points extending beyond the whiskers.
         True displays outliers as points. False includes outliers in whiskers.
     rotated
-        Indicates whether lines are viewed horizontally or vertically. Lines display 
+        Indicates whether lines are viewed horizontally or vertically. Lines display
         horizontally by default.
-    title 
-        Sets the title of the chart. The title text appears at the top of the chart view and 
+    title
+        Sets the title of the chart. The title text appears at the top of the chart view and
         is used as the label for the chart in the Contents pane.
     description
-        Sets the description of the chart. The description text appears at the bottom of the 
+        Sets the description of the chart. The description text appears at the bottom of the
         chart view.
     xTitle
         Sets the title for the x-axis of the chart.
     yTitle
         Sets the title for the y-axis of the chart.
     dataSource
-        Sets the data source of the chart. When a chart is exported using the exportToSVG method 
-        or displayed in an ArcGIS Notebook, the data source is read and rendered on the chart. 
-        Valid data sources include paths to datasets, including local datasets, UNC paths, and 
+        Sets the data source of the chart. When a chart is exported using the exportToSVG method
+        or displayed in an ArcGIS Notebook, the data source is read and rendered on the chart.
+        Valid data sources include paths to datasets, including local datasets, UNC paths, and
         service URLs, and arcpy.mp Layer objects.
     displaySize
-        Sets the size of the chart when exported using the exportToSVG method or displayed in an 
-        ArcGIS Notebook. The value must be specified as a two-item list, where the first item is 
+        Sets the size of the chart when exported using the exportToSVG method or displayed in an
+        ArcGIS Notebook. The value must be specified as a two-item list, where the first item is
         the width of the chart and the second item is the height of the chart.
     """
-    def __init__(self, y, *, x=..., splitCategory=..., splitCategoryAsMeanLine=..., standardizeValues=..., showOutliers=..., rotated=..., title=..., description=..., xTitle=..., yTitle=..., dataSource=..., displaySize=...) -> None:
-        ...
-    
+
+    def __init__(
+        self,
+        y,
+        *,
+        x=...,
+        splitCategory=...,
+        splitCategoryAsMeanLine=...,
+        standardizeValues=...,
+        showOutliers=...,
+        rotated=...,
+        title=...,
+        description=...,
+        xTitle=...,
+        yTitle=...,
+        dataSource=...,
+        displaySize=...
+    ) -> None: ...
+
     x = ...
     y = ...
     showOutliers = ...
@@ -438,14 +427,13 @@ class Box(Chart):
     sortSeries = ...
     rotated = ...
 
-
 class Pie(Chart):
     """Sets pie chart properties.
 
     categoryField
         The field name for the category variable.
     numberFields
-        The field names for the numeric fields. Specify a single field name or a 
+        The field names for the numeric fields. Specify a single field name or a
         list of field names.
     groupingPercent
         The threshold for determining the “Other” group (0 - 100).
@@ -459,25 +447,38 @@ class Pie(Chart):
     dataLabelsDisplay
         Sets the format of slice labels.
         Supported options are: 'VALUE', 'PERCENTAGE', 'PERCENTAGE_AND_VALUE'
-    title 
-        Sets the title of the chart. The title text appears at the top of the chart view and 
+    title
+        Sets the title of the chart. The title text appears at the top of the chart view and
         is used as the label for the chart in the Contents pane.
     description
-        Sets the description of the chart. The description text appears at the bottom of the 
+        Sets the description of the chart. The description text appears at the bottom of the
         chart view.
     dataSource
-        Sets the data source of the chart. When a chart is exported using the exportToSVG method 
-        or displayed in an ArcGIS Notebook, the data source is read and rendered on the chart. 
-        Valid data sources include paths to datasets, including local datasets, UNC paths, and 
+        Sets the data source of the chart. When a chart is exported using the exportToSVG method
+        or displayed in an ArcGIS Notebook, the data source is read and rendered on the chart.
+        Valid data sources include paths to datasets, including local datasets, UNC paths, and
         service URLs, and arcpy.mp Layer objects.
     displaySize
-        Sets the size of the chart when exported using the exportToSVG method or displayed in an 
-        ArcGIS Notebook. The value must be specified as a two-item list, where the first item is 
-        the width of the chart and the second item is the height of the chart.    
+        Sets the size of the chart when exported using the exportToSVG method or displayed in an
+        ArcGIS Notebook. The value must be specified as a two-item list, where the first item is
+        the width of the chart and the second item is the height of the chart.
     """
-    def __init__(self, categoryField=..., numberFields=..., groupingPercent=..., donutSize=..., sort=..., showDataLabels=..., dataLabelsDisplay=..., title=..., description=..., dataSource=..., displaySize=...) -> None:
-        ...
-    
+
+    def __init__(
+        self,
+        categoryField=...,
+        numberFields=...,
+        groupingPercent=...,
+        donutSize=...,
+        sort=...,
+        showDataLabels=...,
+        dataLabelsDisplay=...,
+        title=...,
+        description=...,
+        dataSource=...,
+        displaySize=...,
+    ) -> None: ...
+
     categoryField = ...
     numberFields = ...
     groupingPercent = ...
@@ -486,76 +487,97 @@ class Pie(Chart):
     showDataLabels = ...
     dataLabelsDisplay = ...
 
-
 class Line(Chart):
     """Sets bar chart properties.
 
     x
-        The field name for the x-axis variable. The field must be a numeric or 
+        The field name for the x-axis variable. The field must be a numeric or
         date field.
     y
-        The field names for the y-axis variables. The value must be a numeric 
+        The field names for the y-axis variables. The value must be a numeric
         field or a list of numeric fields.
     splitCategory
-        A second categorical field that adds a separate series for each 
+        A second categorical field that adds a separate series for each
         unique value in the field.
     multiSeriesDisplay
-        The display type for a bar chart with multiple series. 
+        The display type for a bar chart with multiple series.
         Valid options are 'singleChart' and "grid".
     miniChartsPerRow
         Sets the number of mini charts per row when multiSeriesDisplay parameter is set to 'grid'
     showPreviewChart
         Indicates whether the preview chart is displayed when multiSeriesDisplay parameter is set to 'grid'.
     aggregation
-        The statistical calculation applied to values aggregated into each temporal bin. 
-        Supported statistics are 'COUNT', 'SUM', 'MEAN', 'MEDIAN', 'MIN', and 'MAX'. 
-        No aggregation means that each value will be plotted on the chart regardless of 
+        The statistical calculation applied to values aggregated into each temporal bin.
+        Supported statistics are 'COUNT', 'SUM', 'MEAN', 'MEDIAN', 'MIN', and 'MAX'.
+        No aggregation means that each value will be plotted on the chart regardless of
         overlap or recurring values.
     timeIntervalUnits
-        The time unit that corresponds to the timeIntervalSize. 
+        The time unit that corresponds to the timeIntervalSize.
         Valid options include 'SECONDS', 'MINUTES', 'HOURS', 'DAYS', 'WEEKS', 'MONTHS', and 'YEARS'.
     timeIntervalSize
-        The span of time that will be binned or aggregated together. This argument must 
+        The span of time that will be binned or aggregated together. This argument must
         be used in conjunction with `timeIntervalUnit`.
     timeAggregationType
-        The time interval alignment type. 
-        Valid options include 'equalIntervalsFromStartTime' and 'equalIntervalsFromEndTime'.    
+        The time interval alignment type.
+        Valid options include 'equalIntervalsFromStartTime' and 'equalIntervalsFromEndTime'.
     trimIncompleteInterval
-        Determines whether incomplete time intervals at the start or end of the data span 
-        (depending on the timeAggregationType) will be removed from the chart. Incomplete 
-        intervals on a chart can cause misleading results in which the period in question 
-        is under- or overreported due to a different amount of time in the interval. True 
-        indicates to trim these incomplete intervals. False does not trim incomplete 
+        Determines whether incomplete time intervals at the start or end of the data span
+        (depending on the timeAggregationType) will be removed from the chart. Incomplete
+        intervals on a chart can cause misleading results in which the period in question
+        is under- or overreported due to a different amount of time in the interval. True
+        indicates to trim these incomplete intervals. False does not trim incomplete
         intervals.
     nullPolicy
-        How summarized bins returning a null value are displayed. 
+        How summarized bins returning a null value are displayed.
         Supported options are 'null', 'zero', and 'interpolate'.
     rotated
-        Indicates whether lines are viewed horizontally or vertically. Lines display 
+        Indicates whether lines are viewed horizontally or vertically. Lines display
         horizontally by default.
-    title 
-        Sets the title of the chart. The title text appears at the top of the chart view and 
+    title
+        Sets the title of the chart. The title text appears at the top of the chart view and
         is used as the label for the chart in the Contents pane.
     description
-        Sets the description of the chart. The description text appears at the bottom of the 
+        Sets the description of the chart. The description text appears at the bottom of the
         chart view.
     xTitle
         Sets the title for the x-axis of the chart.
     yTitle
         Sets the title for the y-axis of the chart.
     dataSource
-        Sets the data source of the chart. When a chart is exported using the exportToSVG method 
-        or displayed in an ArcGIS Notebook, the data source is read and rendered on the chart. 
-        Valid data sources include paths to datasets, including local datasets, UNC paths, and 
+        Sets the data source of the chart. When a chart is exported using the exportToSVG method
+        or displayed in an ArcGIS Notebook, the data source is read and rendered on the chart.
+        Valid data sources include paths to datasets, including local datasets, UNC paths, and
         service URLs, and arcpy.mp Layer objects.
     displaySize
-        Sets the size of the chart when exported using the exportToSVG method or displayed in an 
-        ArcGIS Notebook. The value must be specified as a two-item list, where the first item is 
+        Sets the size of the chart when exported using the exportToSVG method or displayed in an
+        ArcGIS Notebook. The value must be specified as a two-item list, where the first item is
         the width of the chart and the second item is the height of the chart.
     """
-    def __init__(self, x, *, y=..., splitCategory=..., multiSeriesDisplay=..., miniChartsPerRow=..., showPreviewChart=..., aggregation=..., timeIntervalUnits=..., timeIntervalSize=..., trimIncompleteTimeInterval=..., timeAggregationType=..., nullPolicy=..., rotated=..., title=..., description=..., xTitle=..., yTitle=..., dataSource=..., displaySize=...) -> None:
-        ...
-    
+
+    def __init__(
+        self,
+        x,
+        *,
+        y=...,
+        splitCategory=...,
+        multiSeriesDisplay=...,
+        miniChartsPerRow=...,
+        showPreviewChart=...,
+        aggregation=...,
+        timeIntervalUnits=...,
+        timeIntervalSize=...,
+        trimIncompleteTimeInterval=...,
+        timeAggregationType=...,
+        nullPolicy=...,
+        rotated=...,
+        title=...,
+        description=...,
+        xTitle=...,
+        yTitle=...,
+        dataSource=...,
+        displaySize=...
+    ) -> None: ...
+
     x = ...
     y = ...
     aggregation = ...
@@ -571,7 +593,6 @@ class Line(Chart):
     nullPolicy = ...
     rotated = ...
 
-
 class Histogram(Chart):
     """Sets histogram chart properties.
 
@@ -580,47 +601,64 @@ class Histogram(Chart):
     binCount
         The number of bins to display in the histogram.
     showMean
-        Indicates whether the mean statistical line is visible in the histogram. 
+        Indicates whether the mean statistical line is visible in the histogram.
         True displays the line. False hides the line.
     showMedian
-        Indicates whether the median statistical line is visible in the histogram. 
+        Indicates whether the median statistical line is visible in the histogram.
         True displays the line. False hides the line.
     showStandardDeviation
-        Indicates whether the standard deviation statistical line is visible in the histogram. 
+        Indicates whether the standard deviation statistical line is visible in the histogram.
         True displays the line. False hides the line.
     showComparisonDistribution
-        Indicates whether the normal distribution comparison line is visible in the histogram. 
+        Indicates whether the normal distribution comparison line is visible in the histogram.
         True displays the line. False hides the line.
     dataTransformationType
-        The data transformation type. 
+        The data transformation type.
         Supported transformations are 'none', 'logarithmic', 'squareRoot', 'inverse', and 'boxCox'.
     dataTransformationParameters
-        The data transformation parameters for the Box-Cox transformation. This parameter 
-        accepts a two-item list where the first item is the power parameter and the 
+        The data transformation parameters for the Box-Cox transformation. This parameter
+        accepts a two-item list where the first item is the power parameter and the
         second item is the shift parameter.
-    title 
-        Sets the title of the chart. The title text appears at the top of the chart view and 
+    title
+        Sets the title of the chart. The title text appears at the top of the chart view and
         is used as the label for the chart in the Contents pane.
     description
-        Sets the description of the chart. The description text appears at the bottom of the 
+        Sets the description of the chart. The description text appears at the bottom of the
         chart view.
     xTitle
         Sets the title for the x-axis of the chart.
     yTitle
         Sets the title for the y-axis of the chart.
     dataSource
-        Sets the data source of the chart. When a chart is exported using the exportToSVG method 
-        or displayed in an ArcGIS Notebook, the data source is read and rendered on the chart. 
-        Valid data sources include paths to datasets, including local datasets, UNC paths, and 
+        Sets the data source of the chart. When a chart is exported using the exportToSVG method
+        or displayed in an ArcGIS Notebook, the data source is read and rendered on the chart.
+        Valid data sources include paths to datasets, including local datasets, UNC paths, and
         service URLs, and arcpy.mp Layer objects.
     displaySize
-        Sets the size of the chart when exported using the exportToSVG method or displayed in an 
-        ArcGIS Notebook. The value must be specified as a two-item list, where the first item is 
+        Sets the size of the chart when exported using the exportToSVG method or displayed in an
+        ArcGIS Notebook. The value must be specified as a two-item list, where the first item is
         the width of the chart and the second item is the height of the chart.
     """
-    def __init__(self, x, *, binCount=..., showMean=..., showMedian=..., showStandardDeviation=..., showComparisonDistribution=..., dataTransformationType=..., dataTransformationParameters=..., title=..., description=..., xTitle=..., yTitle=..., dataSource=..., displaySize=...) -> None:
-        ...
-    
+
+    def __init__(
+        self,
+        x,
+        *,
+        binCount=...,
+        showMean=...,
+        showMedian=...,
+        showStandardDeviation=...,
+        showComparisonDistribution=...,
+        dataTransformationType=...,
+        dataTransformationParameters=...,
+        title=...,
+        description=...,
+        xTitle=...,
+        yTitle=...,
+        dataSource=...,
+        displaySize=...
+    ) -> None: ...
+
     x = ...
     binCount = ...
     showMean = ...
@@ -630,7 +668,6 @@ class Histogram(Chart):
     dataTransformationType = ...
     dataTransformationParameters = ...
 
-
 class Scatter(Chart):
     """Sets scatter plot properties.
 
@@ -639,48 +676,67 @@ class Scatter(Chart):
     y
         The field name for the y-axis variable. The field must be a numeric field.
     splitCategory
-        A second categorical field that adds a separate series for each unique 
+        A second categorical field that adds a separate series for each unique
         value in the field.
     sizeField
-        The field used to determine the size of the proportional symbol when creating 
+        The field used to determine the size of the proportional symbol when creating
         a bubble plot.
     sizeMin
         The minimum size for points in a bubble plot.
     sizeMax
         The maximum size for points in a bubble plot.
     multiSeriesDisplay
-        The display type for a bar chart with multiple series. 
+        The display type for a bar chart with multiple series.
         Valid options are 'sideBySide', 'stacked', 'stacked100', and "grid".
     miniChartsPerRow
         Sets the number of mini charts per row when multiSeriesDisplay parameter is set to 'grid'
     showPreviewChart
         Indicates whether the preview chart is displayed when multiSeriesDisplay parameter is set to 'grid'.
     showTrendLine
-        Indicates whether the trend line is visible in the scatter plot. 
+        Indicates whether the trend line is visible in the scatter plot.
         True displays the line. False hides the line.
-    title 
-        Sets the title of the chart. The title text appears at the top of the chart view and 
+    title
+        Sets the title of the chart. The title text appears at the top of the chart view and
         is used as the label for the chart in the Contents pane.
     description
-        Sets the description of the chart. The description text appears at the bottom of the 
+        Sets the description of the chart. The description text appears at the bottom of the
         chart view.
     xTitle
         Sets the title for the x-axis of the chart.
     yTitle
         Sets the title for the y-axis of the chart.
     dataSource
-        Sets the data source of the chart. When a chart is exported using the exportToSVG method 
-        or displayed in an ArcGIS Notebook, the data source is read and rendered on the chart. 
-        Valid data sources include paths to datasets, including local datasets, UNC paths, and 
+        Sets the data source of the chart. When a chart is exported using the exportToSVG method
+        or displayed in an ArcGIS Notebook, the data source is read and rendered on the chart.
+        Valid data sources include paths to datasets, including local datasets, UNC paths, and
         service URLs, and arcpy.mp Layer objects.
     displaySize
-        Sets the size of the chart when exported using the exportToSVG method or displayed in an 
-        ArcGIS Notebook. The value must be specified as a two-item list, where the first item is 
+        Sets the size of the chart when exported using the exportToSVG method or displayed in an
+        ArcGIS Notebook. The value must be specified as a two-item list, where the first item is
         the width of the chart and the second item is the height of the chart.
     """
-    def __init__(self, x, y, *, splitCategory=..., sizeField=..., sizeMin=..., sizeMax=..., multiSeriesDisplay=..., miniChartsPerRow=..., showPreviewChart=..., showTrendLine=..., title=..., description=..., xTitle=..., yTitle=..., dataSource=..., displaySize=...) -> None:
-        ...
-    
+
+    def __init__(
+        self,
+        x,
+        y,
+        *,
+        splitCategory=...,
+        sizeField=...,
+        sizeMin=...,
+        sizeMax=...,
+        multiSeriesDisplay=...,
+        miniChartsPerRow=...,
+        showPreviewChart=...,
+        showTrendLine=...,
+        title=...,
+        description=...,
+        xTitle=...,
+        yTitle=...,
+        dataSource=...,
+        displaySize=...
+    ) -> None: ...
+
     x = ...
     y = ...
     splitCategory = ...
@@ -693,54 +749,66 @@ class Scatter(Chart):
     showPreviewChart = ...
     showTrendLine = ...
 
-
 class QQPlot(Chart):
     """Sets scatter plot properties.
 
     x
-        The field name for the x-axis variable. The field must be a numeric field.    
+        The field name for the x-axis variable. The field must be a numeric field.
     y
-        The field name for the y-axis variable, which is used to compare against 
+        The field name for the y-axis variable, which is used to compare against
         the distribution of the x-axis variable. The field must be a numeric field.
     showReferenceLine
-        Indicates whether the reference line is visible in the QQ plot. True displays 
+        Indicates whether the reference line is visible in the QQ plot. True displays
         the line. False hides the line.
     dataTransformationType
-        The data transformation type. 
+        The data transformation type.
         Supported transformations are 'none', 'logarithmic', 'squareRoot', 'inverse', and 'boxCox'.
     dataTransformationParameters
-        The data transformation parameters for the Box-Cox transformation. This parameter 
-        accepts a two-item list where the first item is the power parameter and the 
+        The data transformation parameters for the Box-Cox transformation. This parameter
+        accepts a two-item list where the first item is the power parameter and the
         second item is the shift parameter.
-    title 
-        Sets the title of the chart. The title text appears at the top of the chart view and 
-        is used as the label for the chart in the Contents pane.        
+    title
+        Sets the title of the chart. The title text appears at the top of the chart view and
+        is used as the label for the chart in the Contents pane.
     description
-        Sets the description of the chart. The description text appears at the bottom of the 
-        chart view.        
+        Sets the description of the chart. The description text appears at the bottom of the
+        chart view.
     xTitle
-        Sets the title for the x-axis of the chart.        
+        Sets the title for the x-axis of the chart.
     yTitle
-        Sets the title for the y-axis of the chart. 
+        Sets the title for the y-axis of the chart.
     dataSource
-        Sets the data source of the chart. When a chart is exported using the exportToSVG method 
-        or displayed in an ArcGIS Notebook, the data source is read and rendered on the chart. 
-        Valid data sources include paths to datasets, including local datasets, UNC paths, and 
-        service URLs, and arcpy.mp Layer objects.       
+        Sets the data source of the chart. When a chart is exported using the exportToSVG method
+        or displayed in an ArcGIS Notebook, the data source is read and rendered on the chart.
+        Valid data sources include paths to datasets, including local datasets, UNC paths, and
+        service URLs, and arcpy.mp Layer objects.
     displaySize
-        Sets the size of the chart when exported using the exportToSVG method or displayed in an 
-        ArcGIS Notebook. The value must be specified as a two-item list, where the first item is 
+        Sets the size of the chart when exported using the exportToSVG method or displayed in an
+        ArcGIS Notebook. The value must be specified as a two-item list, where the first item is
         the width of the chart and the second item is the height of the chart.
-   """
-    def __init__(self, x, *, y=..., showReferenceLine=..., dataTransformationType=..., dataTransformationParameters=..., title=..., description=..., xTitle=..., yTitle=..., dataSource=..., displaySize=...) -> None:
-        ...
-    
+    """
+
+    def __init__(
+        self,
+        x,
+        *,
+        y=...,
+        showReferenceLine=...,
+        dataTransformationType=...,
+        dataTransformationParameters=...,
+        title=...,
+        description=...,
+        xTitle=...,
+        yTitle=...,
+        dataSource=...,
+        displaySize=...
+    ) -> None: ...
+
     x = ...
     y = ...
     showReferenceLine = ...
     dataTransformationType = ...
     dataTransformationParameters = ...
-
 
 class ScatterMatrix(Chart):
     """Sets scatter plot matrix properties.
@@ -748,50 +816,64 @@ class ScatterMatrix(Chart):
     fields
         A list of field names to display in the matrix. A minimum of three fields is required.
     showTrendLine
-        Indicates whether trend lines are visible in the scatter plots. 
+        Indicates whether trend lines are visible in the scatter plots.
         True displays the lines. False hides the lines.
     lowerLeft
-        Sets the display of the lower left half of the matrix. 
+        Sets the display of the lower left half of the matrix.
         Supported options are 'R_SQUARED', 'PEARSONS_R', and 'SCATTERPLOTS'.
     upperRight
-        Sets the display of the upper right half of the matrix. 
-        Supported options are 'R_SQUARED', 'PEARSONS_R', 'SCATTERPLOTS', 'PREVIEW_PLOT', 
+        Sets the display of the upper right half of the matrix.
+        Supported options are 'R_SQUARED', 'PEARSONS_R', 'SCATTERPLOTS', 'PREVIEW_PLOT',
         and 'NONE'.
     diagonal
-        Sets the display of the diagonal view. 
+        Sets the display of the diagonal view.
         Supported options are 'FIELD_NAMES', 'HISTOGRAMS', and 'NONE'.
     sort
-        The sorting method that is applied to the matrix. 
-        Supported options are 'ASC', 'DESC', and 'NONE'. 
-        Use ASC or DESC to specify a sorting direction when sortBy is set to 'R_SQUARED' or 
-        'PEARSONS_R'. When 'NONE' is chosen, the matrix will be sorted by the order of the 
+        The sorting method that is applied to the matrix.
+        Supported options are 'ASC', 'DESC', and 'NONE'.
+        Use ASC or DESC to specify a sorting direction when sortBy is set to 'R_SQUARED' or
+        'PEARSONS_R'. When 'NONE' is chosen, the matrix will be sorted by the order of the
         fields list.
     sortBy
-        The method that is used to sort the matrix when you want to sort the rows according 
-        to the metric scores for a target field. 
-        Supported options are 'R_SQUARED' and 'PEARSONS_R'. 
-        When 'R_SQUARED' or 'PEARSONS_R' are chosen, the matrix will be sorted by metrics for the 
-        field specified by the first item in the fields list. When this property is not explicitly 
-        set, the matrix will be sorted by the order of the fields list.       
-    title 
-        Sets the title of the chart. The title text appears at the top of the chart view and 
-        is used as the label for the chart in the Contents pane.  
+        The method that is used to sort the matrix when you want to sort the rows according
+        to the metric scores for a target field.
+        Supported options are 'R_SQUARED' and 'PEARSONS_R'.
+        When 'R_SQUARED' or 'PEARSONS_R' are chosen, the matrix will be sorted by metrics for the
+        field specified by the first item in the fields list. When this property is not explicitly
+        set, the matrix will be sorted by the order of the fields list.
+    title
+        Sets the title of the chart. The title text appears at the top of the chart view and
+        is used as the label for the chart in the Contents pane.
     description
-        Sets the description of the chart. The description text appears at the bottom of the 
-        chart view.    
+        Sets the description of the chart. The description text appears at the bottom of the
+        chart view.
     dataSource
-        Sets the data source of the chart. When a chart is exported using the exportToSVG method 
-        or displayed in an ArcGIS Notebook, the data source is read and rendered on the chart. 
-        Valid data sources include paths to datasets, including local datasets, UNC paths, and 
+        Sets the data source of the chart. When a chart is exported using the exportToSVG method
+        or displayed in an ArcGIS Notebook, the data source is read and rendered on the chart.
+        Valid data sources include paths to datasets, including local datasets, UNC paths, and
         service URLs, and arcpy.mp Layer objects.
     displaySize
-        Sets the size of the chart when exported using the exportToSVG method or displayed in an 
-        ArcGIS Notebook. The value must be specified as a two-item list, where the first item is 
+        Sets the size of the chart when exported using the exportToSVG method or displayed in an
+        ArcGIS Notebook. The value must be specified as a two-item list, where the first item is
         the width of the chart and the second item is the height of the chart.
     """
-    def __init__(self, fields, *, showTrendLine=..., lowerLeft=..., upperRight=..., diagonal=..., sort=..., sortBy=..., title=..., description=..., dataSource=..., displaySize=...) -> None:
-        ...
-    
+
+    def __init__(
+        self,
+        fields,
+        *,
+        showTrendLine=...,
+        lowerLeft=...,
+        upperRight=...,
+        diagonal=...,
+        sort=...,
+        sortBy=...,
+        title=...,
+        description=...,
+        dataSource=...,
+        displaySize=...
+    ) -> None: ...
+
     fields = ...
     showTrendLine = ...
     lowerLeft = ...
@@ -800,50 +882,63 @@ class ScatterMatrix(Chart):
     sort = ...
     sortBy = ...
 
-
 class DataClock(Chart):
     """Sets data clock chart properties.
 
     dateField
         The name of the date field that is used to create the chart.
     numberField
-        The name of the field that is aggregated and used to determine the 
+        The name of the field that is aggregated and used to determine the
         color of the chart cells.
     timeUnitsRingWedge
-        The description for the time-unit pair supported in the data clock chart. 
+        The description for the time-unit pair supported in the data clock chart.
         The following options are supported: 'YEARS_MONTHS', 'YEARS_WEEKS', 'YEARS_DAYS',
         'WEEKS_DAYS', 'DAYS_HOURS'.
     aggregation
-        The statistical calculation applied to values aggregated into each cell. 
+        The statistical calculation applied to values aggregated into each cell.
         Supported statistics are 'COUNT', 'SUM', 'MEAN', 'MEDIAN', 'MIN', and 'MAX'.
     nullPolicy
-        How summarized cells returning a null value are displayed. 
+        How summarized cells returning a null value are displayed.
         Supported options are 'null' and 'zero'.
     classificationMethod
-        The classification method used to visualize cell color. 
-        Supported options are 'equalIntervals', 'geometricalIntervals', 'naturalBreaks', 
+        The classification method used to visualize cell color.
+        Supported options are 'equalIntervals', 'geometricalIntervals', 'naturalBreaks',
         and 'quantiles'.
     classCount
         The number of classes used in the classification method.
-    title 
-        Sets the title of the chart. The title text appears at the top of the chart view and 
+    title
+        Sets the title of the chart. The title text appears at the top of the chart view and
         is used as the label for the chart in the Contents pane.
     description
-        Sets the description of the chart. The description text appears at the bottom of the 
+        Sets the description of the chart. The description text appears at the bottom of the
         chart view.
     dataSource
-        Sets the data source of the chart. When a chart is exported using the exportToSVG method 
-        or displayed in an ArcGIS Notebook, the data source is read and rendered on the chart. 
-        Valid data sources include paths to datasets, including local datasets, UNC paths, and 
+        Sets the data source of the chart. When a chart is exported using the exportToSVG method
+        or displayed in an ArcGIS Notebook, the data source is read and rendered on the chart.
+        Valid data sources include paths to datasets, including local datasets, UNC paths, and
         service URLs, and arcpy.mp Layer objects.
     displaySize
-        Sets the size of the chart when exported using the exportToSVG method or displayed in an 
-        ArcGIS Notebook. The value must be specified as a two-item list, where the first item is 
+        Sets the size of the chart when exported using the exportToSVG method or displayed in an
+        ArcGIS Notebook. The value must be specified as a two-item list, where the first item is
         the width of the chart and the second item is the height of the chart.
     """
-    def __init__(self, dateField, *, numberField=..., timeUnitsRingWedge=..., aggregation=..., nullPolicy=..., classificationMethod=..., classCount=..., title=..., description=..., dataSource=..., displaySize=...) -> None:
-        ...
-    
+
+    def __init__(
+        self,
+        dateField,
+        *,
+        numberField=...,
+        timeUnitsRingWedge=...,
+        aggregation=...,
+        nullPolicy=...,
+        classificationMethod=...,
+        classCount=...,
+        title=...,
+        description=...,
+        dataSource=...,
+        displaySize=...
+    ) -> None: ...
+
     dateField = ...
     numberField = ...
     aggregation = ...
@@ -852,7 +947,6 @@ class DataClock(Chart):
     classificationMethod = ...
     classCount = ...
 
-
 class CalendarHeat(Chart):
     """
     Sets calendar heat chart properties.
@@ -860,10 +954,10 @@ class CalendarHeat(Chart):
     dateField
         The name of the date field that is used to create the chart.
     numberField
-        The name of the field that is aggregated and used to determine the color 
+        The name of the field that is aggregated and used to determine the color
         of the chart cells.
     calendarType
-        The description for the time-unit pair supported in the data clock chart. 
+        The description for the time-unit pair supported in the data clock chart.
         Supported options are 'YEAR_MONTHSDAYS' and 'WEEK_DAYSHOURS'.
     viewType
         Sets calendar heat chart view type to be de-aggregated into consecutive calendars or aggregated into a single calendar.
@@ -871,40 +965,58 @@ class CalendarHeat(Chart):
     includeLeapDay
         Indicates whether to include the leap day (February 29) cell in the chart.
     aggregation
-        The statistical calculation applied to values aggregated into each cell. 
+        The statistical calculation applied to values aggregated into each cell.
         Supported statistics are 'COUNT', 'SUM', 'MEAN', 'MEDIAN', 'MIN', and 'MAX'.
     nullPolicy
-        How summarized cells returning a null value are displayed. 
+        How summarized cells returning a null value are displayed.
         Supported options are 'null' and 'zero'.
     classificationMethod
-        The classification method used to visualize cell color. 
-        Supported options are 'equalIntervals', 'geometricalIntervals', 'naturalBreaks', 
+        The classification method used to visualize cell color.
+        Supported options are 'equalIntervals', 'geometricalIntervals', 'naturalBreaks',
         and 'quantiles'
     classCount
         The number of classes used in the classification method.
-    title 
-        Sets the title of the chart. The title text appears at the top of the chart view and 
+    title
+        Sets the title of the chart. The title text appears at the top of the chart view and
         is used as the label for the chart in the Contents pane.
     description
-        Sets the description of the chart. The description text appears at the bottom of the 
-        chart view.    
+        Sets the description of the chart. The description text appears at the bottom of the
+        chart view.
     xTitle
         Sets the title for the x-axis of the chart.
     yTitle
         Sets the title for the y-axis of the chart.
     dataSource
-        Sets the data source of the chart. When a chart is exported using the exportToSVG method 
-        or displayed in an ArcGIS Notebook, the data source is read and rendered on the chart. 
-        Valid data sources include paths to datasets, including local datasets, UNC paths, and 
-        service URLs, and arcpy.mp Layer objects.  
+        Sets the data source of the chart. When a chart is exported using the exportToSVG method
+        or displayed in an ArcGIS Notebook, the data source is read and rendered on the chart.
+        Valid data sources include paths to datasets, including local datasets, UNC paths, and
+        service URLs, and arcpy.mp Layer objects.
     displaySize
-        Sets the size of the chart when exported using the exportToSVG method or displayed in an 
-        ArcGIS Notebook. The value must be specified as a two-item list, where the first item is 
-        the width of the chart and the second item is the height of the chart.        
+        Sets the size of the chart when exported using the exportToSVG method or displayed in an
+        ArcGIS Notebook. The value must be specified as a two-item list, where the first item is
+        the width of the chart and the second item is the height of the chart.
     """
-    def __init__(self, dateField, *, numberField=..., calendarType=..., viewType=..., includeLeapDay=..., aggregation=..., nullPolicy=..., classificationMethod=..., classCount=..., title=..., description=..., xTitle=..., yTitle=..., dataSource=..., displaySize=...) -> None:
-        ...
-    
+
+    def __init__(
+        self,
+        dateField,
+        *,
+        numberField=...,
+        calendarType=...,
+        viewType=...,
+        includeLeapDay=...,
+        aggregation=...,
+        nullPolicy=...,
+        classificationMethod=...,
+        classCount=...,
+        title=...,
+        description=...,
+        xTitle=...,
+        yTitle=...,
+        dataSource=...,
+        displaySize=...
+    ) -> None: ...
+
     dateField = ...
     numberField = ...
     aggregation = ...
@@ -915,51 +1027,66 @@ class CalendarHeat(Chart):
     includeLeapDay = ...
     viewType = ...
 
-
 class MatrixHeat(Chart):
     """Sets matrix heat chart properties.
 
-    x     	
+    x
         The name of the field that determines the column categories.
     y
         The name of the field that determines the row categories.
     numberField
         The name of the field that is aggregated and used to determine the color of the chart cells.
     aggregation
-        The statistical calculation applied to values aggregated into each cell. 
+        The statistical calculation applied to values aggregated into each cell.
         Supported statistics are 'COUNT', 'SUM', 'MEAN', 'MEDIAN', 'MIN', and 'MAX'.
     nullPolicy
-       How summarized cells returning a null value are displayed. 
+       How summarized cells returning a null value are displayed.
        Supported options are 'null' and 'zero'.
     classificationMethod
-        The classification method used to visualize cell color. 
-        Supported options are 'equalIntervals', 'geometricalIntervals', 'naturalBreaks', 
+        The classification method used to visualize cell color.
+        Supported options are 'equalIntervals', 'geometricalIntervals', 'naturalBreaks',
         and 'quantiles'.
     classCount
         The number of classes used in the classification method.
-    title 
-        Sets the title of the chart. The title text appears at the top of the chart view and 
+    title
+        Sets the title of the chart. The title text appears at the top of the chart view and
         is used as the label for the chart in the Contents pane.
     description
-        Sets the description of the chart. The description text appears at the bottom of the 
-        chart view.   
+        Sets the description of the chart. The description text appears at the bottom of the
+        chart view.
     xTitle
         Sets the title for the x-axis of the chart.
     yTitle
         Sets the title for the y-axis of the chart.
     dataSource
-        Sets the data source of the chart. When a chart is exported using the exportToSVG method 
-        or displayed in an ArcGIS Notebook, the data source is read and rendered on the chart. 
-        Valid data sources include paths to datasets, including local datasets, UNC paths, and 
-        service URLs, and arcpy.mp Layer objects.        
+        Sets the data source of the chart. When a chart is exported using the exportToSVG method
+        or displayed in an ArcGIS Notebook, the data source is read and rendered on the chart.
+        Valid data sources include paths to datasets, including local datasets, UNC paths, and
+        service URLs, and arcpy.mp Layer objects.
     displaySize
-        Sets the size of the chart when exported using the exportToSVG method or displayed in an 
-        ArcGIS Notebook. The value must be specified as a two-item list, where the first item is 
+        Sets the size of the chart when exported using the exportToSVG method or displayed in an
+        ArcGIS Notebook. The value must be specified as a two-item list, where the first item is
         the width of the chart and the second item is the height of the chart.
     """
-    def __init__(self, x, y, *, numberField=..., aggregation=..., nullPolicy=..., classificationMethod=..., classCount=..., title=..., description=..., xTitle=..., yTitle=..., dataSource=..., displaySize=...) -> None:
-        ...
-    
+
+    def __init__(
+        self,
+        x,
+        y,
+        *,
+        numberField=...,
+        aggregation=...,
+        nullPolicy=...,
+        classificationMethod=...,
+        classCount=...,
+        title=...,
+        description=...,
+        xTitle=...,
+        yTitle=...,
+        dataSource=...,
+        displaySize=...
+    ) -> None: ...
+
     x = ...
     y = ...
     numberField = ...
@@ -967,5 +1094,3 @@ class MatrixHeat(Chart):
     nullPolicy = ...
     classificationMethod = ...
     classCount = ...
-
-

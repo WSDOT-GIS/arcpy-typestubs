@@ -9,2603 +9,2935 @@ performing spatial analysis on big data. GeoAnalytics Tools are
 powered by your ArcGIS GeoAnalytics Server. ArcGIS GeoAnalytics Server
 distributes the analysis between multiple server nodes. By using
 distributed processing, you can process large datasets in less time."""
-__all__ = ['AggregatePoints', 'AppendData', 'CalculateDensity', 'CalculateField', 'CalculateMotionStatistics', 'ClipLayer', 'CopyToDataStore', 'CreateBuffers', 'CreateSpaceTimeCube', 'DescribeDataset', 'DetectIncidents', 'DissolveBoundaries', 'FindDwellLocations', 'FindHotSpots', 'FindPointClusters', 'FindSimilarLocations', 'Forest', 'GWR', 'GeneralizedLinearRegression', 'GroupByProximity', 'JoinFeatures', 'MergeLayers', 'OverlayLayers', 'ReconstructTracks', 'SnapTracks', 'SummarizeAttributes', 'SummarizeCenterAndDispersion', 'SummarizeWithin', 'TraceProximityEvents']
+__all__ = [
+    "AggregatePoints",
+    "AppendData",
+    "CalculateDensity",
+    "CalculateField",
+    "CalculateMotionStatistics",
+    "ClipLayer",
+    "CopyToDataStore",
+    "CreateBuffers",
+    "CreateSpaceTimeCube",
+    "DescribeDataset",
+    "DetectIncidents",
+    "DissolveBoundaries",
+    "FindDwellLocations",
+    "FindHotSpots",
+    "FindPointClusters",
+    "FindSimilarLocations",
+    "Forest",
+    "GWR",
+    "GeneralizedLinearRegression",
+    "GroupByProximity",
+    "JoinFeatures",
+    "MergeLayers",
+    "OverlayLayers",
+    "ReconstructTracks",
+    "SnapTracks",
+    "SummarizeAttributes",
+    "SummarizeCenterAndDispersion",
+    "SummarizeWithin",
+    "TraceProximityEvents",
+]
 __alias__ = ...
-@gptooldoc('CalculateDensity_geoanalytics', None)
-def CalculateDensity(input_layer=..., output_name=..., bin_type=..., bin_size=..., weight=..., neighborhood_size=..., fields=..., area_unit_scale_factor=..., time_step_interval=..., time_step_repeat=..., time_step_reference=..., data_store=...): # -> conversion | int | float | complex | basestring | list[Unknown] | tuple[Unknown, ...] | dict[Unknown, Unknown]:
+
+@gptooldoc("CalculateDensity_geoanalytics", None)
+def CalculateDensity(
+    input_layer=...,
+    output_name=...,
+    bin_type=...,
+    bin_size=...,
+    weight=...,
+    neighborhood_size=...,
+    fields=...,
+    area_unit_scale_factor=...,
+    time_step_interval=...,
+    time_step_repeat=...,
+    time_step_reference=...,
+    data_store=...,
+):  # -> conversion | int | float | complex | basestring | list[Unknown] | tuple[Unknown, ...] | dict[Unknown, Unknown]:
     """CalculateDensity_geoanalytics(input_layer, output_name, bin_type, bin_size, weight, neighborhood_size, {fields;fields...}, {area_unit_scale_factor}, {time_step_interval}, {time_step_repeat}, {time_step_reference}, {data_store})
 
-        Calculates a magnitude-per-unit area from point features that fall
-        within a neighborhood around each cell.
+       Calculates a magnitude-per-unit area from point features that fall
+       within a neighborhood around each cell.
 
-     INPUTS:
-      input_layer (Feature Set):
-          The points that will be used to calculate the density.
-      output_name (String):
-          The name of the output feature service.
-      bin_type (String):
-          Specifies the bin shape that will be used in the analysis.
+    INPUTS:
+     input_layer (Feature Set):
+         The points that will be used to calculate the density.
+     output_name (String):
+         The name of the output feature service.
+     bin_type (String):
+         Specifies the bin shape that will be used in the analysis.
 
-          * SQUARE-The bin shape will be square. This is the default.
+         * SQUARE-The bin shape will be square. This is the default.
 
-          * HEXAGON-The bin shape will be hexagonal.
-      bin_size (Linear Unit):
-          The size of the bins used to aggregate input features. When generating
-          bins for squares, the number and units specified determine the height
-          and length of the square. For hexagons, the number and units specified
-          determine the distance between parallel sides.
-      weight (String):
-          Specifies the weighting that will be applied to the density function.
+         * HEXAGON-The bin shape will be hexagonal.
+     bin_size (Linear Unit):
+         The size of the bins used to aggregate input features. When generating
+         bins for squares, the number and units specified determine the height
+         and length of the square. For hexagons, the number and units specified
+         determine the distance between parallel sides.
+     weight (String):
+         Specifies the weighting that will be applied to the density function.
 
-          * UNIFORM-A magnitude-per-area calculation in which each bin is
-          equally weighted will be used. This is the default.
+         * UNIFORM-A magnitude-per-area calculation in which each bin is
+         equally weighted will be used. This is the default.
 
-          * KERNEL-A magnitude-per-area calculation with a smoothing algorithm
-          applied (kernel) that weights bins closer to the points more heavily
-          will be used.
-      neighborhood_size (Linear Unit):
-          The search radius that will be applied to density calculations.
-      fields {Field}:
-          One or more fields denoting population values for each feature. The
-          population field is the count or quantity to be spread across the
-          landscape to create a continuous surface.Values in the population
-          field must be numeric. By default, the
-          density of the count of input points will always be calculated.
-      area_unit_scale_factor {String}:
-          Specifies the areal units that will be used for the output density
-          values. The default unit is based on the units of the output spatial
-          reference.
+         * KERNEL-A magnitude-per-area calculation with a smoothing algorithm
+         applied (kernel) that weights bins closer to the points more heavily
+         will be used.
+     neighborhood_size (Linear Unit):
+         The search radius that will be applied to density calculations.
+     fields {Field}:
+         One or more fields denoting population values for each feature. The
+         population field is the count or quantity to be spread across the
+         landscape to create a continuous surface.Values in the population
+         field must be numeric. By default, the
+         density of the count of input points will always be calculated.
+     area_unit_scale_factor {String}:
+         Specifies the areal units that will be used for the output density
+         values. The default unit is based on the units of the output spatial
+         reference.
 
-          * ACRES-The areal units will be international acres.
+         * ACRES-The areal units will be international acres.
 
-          * HECTARES-The areal units will be hectares.
+         * HECTARES-The areal units will be hectares.
 
-          * SQUARE_MILES-The areal units will be square statute miles.
+         * SQUARE_MILES-The areal units will be square statute miles.
 
-          * SQUARE_KILOMETERS-The areal units will be square kilometers.
+         * SQUARE_KILOMETERS-The areal units will be square kilometers.
 
-          * SQUARE_METERS-The areal units will be square meters.
+         * SQUARE_METERS-The areal units will be square meters.
 
-          * SQUARE_FEET-The areal units will be square feet.
+         * SQUARE_FEET-The areal units will be square feet.
 
-          * SQUARE_YARDS-The areal units will be square yards.
+         * SQUARE_YARDS-The areal units will be square yards.
 
-          * SQUARE_MILES_US-The areal units will be square US survey miles.
+         * SQUARE_MILES_US-The areal units will be square US survey miles.
 
-          * SQUARE_FEET_US-The areal units will be square US survey feet.
+         * SQUARE_FEET_US-The areal units will be square US survey feet.
 
-          * SQUARE_YARDS_US-The areal units will be square US survey yards.
+         * SQUARE_YARDS_US-The areal units will be square US survey yards.
 
-          * ACRES_US-The areal units will be US survey acres.
-      time_step_interval {Time Unit}:
-          A value that specifies the duration of the time step. This parameter
-          is only available if the input points are time enabled and represent
-          an instant in time.Time stepping can only be applied if time is
-          enabled on the input.
-      time_step_repeat {Time Unit}:
-          A value that specifies how often the time-step interval occurs. This
-          parameter is only available if the input points are time enabled and
-          represent an instant in time.
-      time_step_reference {Date}:
-          A date that specifies the reference time with which to align the time
-          steps. The default is January 1, 1970, at 12:00 a.m. This parameter is
-          only available if the input points are time enabled and represent an
-          instant in time.
-      data_store {String}:
-          Specifies the ArcGIS Data Store where the output will be saved. The
-          default is SPATIOTEMPORAL_DATA_STORE. All results stored in a
-          spatiotemporal big data store will be stored in WGS84. Results stored
-          in a relational data store will maintain their coordinate system.
+         * ACRES_US-The areal units will be US survey acres.
+     time_step_interval {Time Unit}:
+         A value that specifies the duration of the time step. This parameter
+         is only available if the input points are time enabled and represent
+         an instant in time.Time stepping can only be applied if time is
+         enabled on the input.
+     time_step_repeat {Time Unit}:
+         A value that specifies how often the time-step interval occurs. This
+         parameter is only available if the input points are time enabled and
+         represent an instant in time.
+     time_step_reference {Date}:
+         A date that specifies the reference time with which to align the time
+         steps. The default is January 1, 1970, at 12:00 a.m. This parameter is
+         only available if the input points are time enabled and represent an
+         instant in time.
+     data_store {String}:
+         Specifies the ArcGIS Data Store where the output will be saved. The
+         default is SPATIOTEMPORAL_DATA_STORE. All results stored in a
+         spatiotemporal big data store will be stored in WGS84. Results stored
+         in a relational data store will maintain their coordinate system.
 
-          * SPATIOTEMPORAL_DATA_STORE-Output will be stored in a spatiotemporal
-          big data store. This is the default.
+         * SPATIOTEMPORAL_DATA_STORE-Output will be stored in a spatiotemporal
+         big data store. This is the default.
 
-          * RELATIONAL_DATA_STORE-Output will be stored in a relational data
-          store."""
+         * RELATIONAL_DATA_STORE-Output will be stored in a relational data
+         store."""
     ...
 
-@gptooldoc('CreateSpaceTimeCube_geoanalytics', None)
-def CreateSpaceTimeCube(point_layer=..., output_name=..., distance_interval=..., time_step_interval=..., time_step_interval_alignment=..., reference_time=..., summary_fields=...): # -> conversion | int | float | complex | basestring | list[Unknown] | tuple[Unknown, ...] | dict[Unknown, Unknown]:
+@gptooldoc("CreateSpaceTimeCube_geoanalytics", None)
+def CreateSpaceTimeCube(
+    point_layer=...,
+    output_name=...,
+    distance_interval=...,
+    time_step_interval=...,
+    time_step_interval_alignment=...,
+    reference_time=...,
+    summary_fields=...,
+):  # -> conversion | int | float | complex | basestring | list[Unknown] | tuple[Unknown, ...] | dict[Unknown, Unknown]:
     """CreateSpaceTimeCube_geoanalytics(point_layer, output_name, distance_interval, time_step_interval, {time_step_interval_alignment}, {reference_time}, {summary_fields;summary_fields...})
 
-        Summarizes a set of points into a netCDF data structure by aggregating
-        them into space-time bins. Within each bin, the points are counted,
-        and specified attributes are aggregated. For all bin locations, the
-        trend for counts and summary field values are evaluated.
+       Summarizes a set of points into a netCDF data structure by aggregating
+       them into space-time bins. Within each bin, the points are counted,
+       and specified attributes are aggregated. For all bin locations, the
+       trend for counts and summary field values are evaluated.
 
-     INPUTS:
-      point_layer (Feature Set):
-          The input point feature class that will be aggregated into space-time
-          bins.
-      output_name (String):
-          The output netCDF data cube that will be created to contain counts and
-          summaries of the input feature point data.
-      distance_interval (Linear Unit):
-          The distance that will determine the bin size.The size of the bins
-          will be used to aggregate the point_layer. All
-          points that fall within the same distance_interval and
-          time_step_interval will be aggregated.
-      time_step_interval (Time Unit):
-          The number of seconds, minutes, hours, days, weeks, or years that will
-          represent a single time step. All points within the same
-          time_step_interval and distance_interval will be aggregated. Examples
-          of valid entries for this parameter are 1 Weeks, 13 Days, or 1 Months.
-      time_step_interval_alignment {String}:
-          Specifies how aggregation will occur based on the Time Interval
-          (time_step_interval in Python) parameter.
+    INPUTS:
+     point_layer (Feature Set):
+         The input point feature class that will be aggregated into space-time
+         bins.
+     output_name (String):
+         The output netCDF data cube that will be created to contain counts and
+         summaries of the input feature point data.
+     distance_interval (Linear Unit):
+         The distance that will determine the bin size.The size of the bins
+         will be used to aggregate the point_layer. All
+         points that fall within the same distance_interval and
+         time_step_interval will be aggregated.
+     time_step_interval (Time Unit):
+         The number of seconds, minutes, hours, days, weeks, or years that will
+         represent a single time step. All points within the same
+         time_step_interval and distance_interval will be aggregated. Examples
+         of valid entries for this parameter are 1 Weeks, 13 Days, or 1 Months.
+     time_step_interval_alignment {String}:
+         Specifies how aggregation will occur based on the Time Interval
+         (time_step_interval in Python) parameter.
 
-          * END_TIME-Time steps will align to the last time event and aggregate
-          back in time.
+         * END_TIME-Time steps will align to the last time event and aggregate
+         back in time.
 
-          * START_TIME-Time steps will align to the first time event and
-          aggregate forward in time.
+         * START_TIME-Time steps will align to the first time event and
+         aggregate forward in time.
 
-          * REFERENCE_TIME-Time steps will align to a specified date or time. If
-          all points in the input features have a time stamp larger than the
-          specified reference time (or it falls exactly on the start time of the
-          input features), the time-step interval will begin with that reference
-          time and aggregate forward in time (as occurs with the Start time
-          alignment). If all points in the input features have a time stamp
-          smaller than the specified reference time (or it falls exactly on the
-          end time of the input features), the time-step interval will end with
-          that reference time and aggregate backward in time (as occurs with the
-          End time alignment). If the specified reference time is in the middle
-          of the time extent of the data, a time-step interval will be created
-          ending with the reference time provided (as occurs with the End time
-          alignment); additional intervals will be created both before and after
-          the reference time until the full time extent of the data is covered.
-      reference_time {Date}:
-          The date or time that will be used to align the time-step intervals.
-          For example, to bin the data weekly, Monday to Sunday, set a reference
-          time of Sunday at midnight to ensure that bins break between Sunday
-          and Monday at midnight.
-      summary_fields {Value Table}:
-          The numeric field containing attribute values that will be used to
-          calculate the specified statistic when aggregating into a space time
-          cube. Multiple statistic and field combinations can be specified. Null
-          values are excluded from all statistical calculations.
-          Available statistic types are the following:
+         * REFERENCE_TIME-Time steps will align to a specified date or time. If
+         all points in the input features have a time stamp larger than the
+         specified reference time (or it falls exactly on the start time of the
+         input features), the time-step interval will begin with that reference
+         time and aggregate forward in time (as occurs with the Start time
+         alignment). If all points in the input features have a time stamp
+         smaller than the specified reference time (or it falls exactly on the
+         end time of the input features), the time-step interval will end with
+         that reference time and aggregate backward in time (as occurs with the
+         End time alignment). If the specified reference time is in the middle
+         of the time extent of the data, a time-step interval will be created
+         ending with the reference time provided (as occurs with the End time
+         alignment); additional intervals will be created both before and after
+         the reference time until the full time extent of the data is covered.
+     reference_time {Date}:
+         The date or time that will be used to align the time-step intervals.
+         For example, to bin the data weekly, Monday to Sunday, set a reference
+         time of Sunday at midnight to ensure that bins break between Sunday
+         and Monday at midnight.
+     summary_fields {Value Table}:
+         The numeric field containing attribute values that will be used to
+         calculate the specified statistic when aggregating into a space time
+         cube. Multiple statistic and field combinations can be specified. Null
+         values are excluded from all statistical calculations.
+         Available statistic types are the following:
 
-          * Sum-Adds the total value for the specified field within each bin.
+         * Sum-Adds the total value for the specified field within each bin.
 
-          * Mean-Calculates the average for the specified field within each bin.
+         * Mean-Calculates the average for the specified field within each bin.
 
-          * Minimum-Finds the smallest value for all records of the specified
-          field within each bin.
+         * Minimum-Finds the smallest value for all records of the specified
+         field within each bin.
 
-          * Maximum-Finds the largest value for all records of the specified
-          field within each bin.
+         * Maximum-Finds the largest value for all records of the specified
+         field within each bin.
 
-          * Standard deviation-Finds the standard deviation on values in the
-          specified field within each bin.
-                  Available fill types are the following:
+         * Standard deviation-Finds the standard deviation on values in the
+         specified field within each bin.
+                 Available fill types are the following:
 
-          * Zeros-Fills empty bins with zeros.
+         * Zeros-Fills empty bins with zeros.
 
-          * Spatial_Neighbors-Fills empty bins with the average value of spatial
-          neighbors.
+         * Spatial_Neighbors-Fills empty bins with the average value of spatial
+         neighbors.
 
-          * Space Time Neighbors-Fills empty bins with the average value of
-          space-time neighbors.
+         * Space Time Neighbors-Fills empty bins with the average value of
+         space-time neighbors.
 
-          * Temporal Trend-Fills empty bins using an interpolated univariate
-          spline algorithm.
-          Null values present in any of the summary fields will result in those
-          features being excluded from the analysis. If count of points in each
-          bin is part of your analysis strategy, consider creating separate
-          cubes, one for the count (without summary fields) and one for summary
-          fields. If the set of null values is different for each summary field,
-          consider creating a separate cube for each summary field."""
+         * Temporal Trend-Fills empty bins using an interpolated univariate
+         spline algorithm.
+         Null values present in any of the summary fields will result in those
+         features being excluded from the analysis. If count of points in each
+         bin is part of your analysis strategy, consider creating separate
+         cubes, one for the count (without summary fields) and one for summary
+         fields. If the set of null values is different for each summary field,
+         consider creating a separate cube for each summary field."""
     ...
 
-@gptooldoc('FindHotSpots_geoanalytics', None)
-def FindHotSpots(point_layer=..., output_name=..., bin_size=..., neighborhood_size=..., time_step_interval=..., time_step_alignment=..., time_step_reference=..., data_store=...): # -> conversion | int | float | complex | basestring | list[Unknown] | tuple[Unknown, ...] | dict[Unknown, Unknown]:
+@gptooldoc("FindHotSpots_geoanalytics", None)
+def FindHotSpots(
+    point_layer=...,
+    output_name=...,
+    bin_size=...,
+    neighborhood_size=...,
+    time_step_interval=...,
+    time_step_alignment=...,
+    time_step_reference=...,
+    data_store=...,
+):  # -> conversion | int | float | complex | basestring | list[Unknown] | tuple[Unknown, ...] | dict[Unknown, Unknown]:
     """FindHotSpots_geoanalytics(point_layer, output_name, {bin_size}, {neighborhood_size}, {time_step_interval}, {time_step_alignment}, {time_step_reference}, {data_store})
 
-        Given a set of features, identifies statistically significant hot
-        spots and cold spots using the Getis-Ord Gi* statistic.
+       Given a set of features, identifies statistically significant hot
+       spots and cold spots using the Getis-Ord Gi* statistic.
 
-     INPUTS:
-      point_layer (Feature Set):
-          The point feature class for which hot spot analysis will be performed.
-      output_name (String):
-          The name of the output layer with the z-score and p-value results.
-      bin_size {Linear Unit}:
-          The distance interval that represents the bin size and units into
-          which the point_layer will be aggregated. The distance interval must
-          be a linear unit.
-      neighborhood_size {Linear Unit}:
-          The spatial extent of the analysis neighborhood. This value determines
-          which features are analyzed together to assess local clustering.
-      time_step_interval {Time Unit}:
-          The interval that will be used for the time step. This parameter is
-          only used if time is enabled for point_layer.
-      time_step_alignment {String}:
-          Specifies how time steps will be aligned. This parameter is only
-          available if the input points are time enabled and represent an
-          instant in time.
+    INPUTS:
+     point_layer (Feature Set):
+         The point feature class for which hot spot analysis will be performed.
+     output_name (String):
+         The name of the output layer with the z-score and p-value results.
+     bin_size {Linear Unit}:
+         The distance interval that represents the bin size and units into
+         which the point_layer will be aggregated. The distance interval must
+         be a linear unit.
+     neighborhood_size {Linear Unit}:
+         The spatial extent of the analysis neighborhood. This value determines
+         which features are analyzed together to assess local clustering.
+     time_step_interval {Time Unit}:
+         The interval that will be used for the time step. This parameter is
+         only used if time is enabled for point_layer.
+     time_step_alignment {String}:
+         Specifies how time steps will be aligned. This parameter is only
+         available if the input points are time enabled and represent an
+         instant in time.
 
-          * END_TIME-Time steps will align to the last time event and aggregate
-          back in time.
+         * END_TIME-Time steps will align to the last time event and aggregate
+         back in time.
 
-          * START_TIME-Time steps will align to the first time event and
-          aggregate forward in time. This is the default.
+         * START_TIME-Time steps will align to the first time event and
+         aggregate forward in time. This is the default.
 
-          * REFERENCE_TIME-Time steps will align to a specified date or time. If
-          all points in the input features have a time stamp larger than the
-          specified reference time (or it falls exactly on the start time of the
-          input features), the time-step interval will begin with that reference
-          time and aggregate forward in time (as occurs with the Start time
-          alignment). If all points in the input features have a time stamp
-          smaller than the specified reference time (or it falls exactly on the
-          end time of the input features), the time-step interval will end with
-          that reference time and aggregate backward in time (as occurs with the
-          End time alignment). If the specified reference time is in the middle
-          of the time extent of the data, a time-step interval will be created
-          ending with the reference time provided (as occurs with the End time
-          alignment); additional intervals will be created both before and after
-          the reference time until the full time extent of the data is covered.
-      time_step_reference {Date}:
-          The time that will be used to align the time steps and time intervals.
-          This parameter is only used if time is enabled for point_layer.
-      data_store {String}:
-          Specifies the ArcGIS Data Store where the output will be saved. The
-          default is SPATIOTEMPORAL_DATA_STORE. All results stored in a
-          spatiotemporal big data store will be stored in WGS84. Results stored
-          in a relational data store will maintain their coordinate system.
+         * REFERENCE_TIME-Time steps will align to a specified date or time. If
+         all points in the input features have a time stamp larger than the
+         specified reference time (or it falls exactly on the start time of the
+         input features), the time-step interval will begin with that reference
+         time and aggregate forward in time (as occurs with the Start time
+         alignment). If all points in the input features have a time stamp
+         smaller than the specified reference time (or it falls exactly on the
+         end time of the input features), the time-step interval will end with
+         that reference time and aggregate backward in time (as occurs with the
+         End time alignment). If the specified reference time is in the middle
+         of the time extent of the data, a time-step interval will be created
+         ending with the reference time provided (as occurs with the End time
+         alignment); additional intervals will be created both before and after
+         the reference time until the full time extent of the data is covered.
+     time_step_reference {Date}:
+         The time that will be used to align the time steps and time intervals.
+         This parameter is only used if time is enabled for point_layer.
+     data_store {String}:
+         Specifies the ArcGIS Data Store where the output will be saved. The
+         default is SPATIOTEMPORAL_DATA_STORE. All results stored in a
+         spatiotemporal big data store will be stored in WGS84. Results stored
+         in a relational data store will maintain their coordinate system.
 
-          * SPATIOTEMPORAL_DATA_STORE-Output will be stored in a spatiotemporal
-          big data store. This is the default.
+         * SPATIOTEMPORAL_DATA_STORE-Output will be stored in a spatiotemporal
+         big data store. This is the default.
 
-          * RELATIONAL_DATA_STORE-Output will be stored in a relational data
-          store."""
+         * RELATIONAL_DATA_STORE-Output will be stored in a relational data
+         store."""
     ...
 
-@gptooldoc('FindPointClusters_geoanalytics', None)
-def FindPointClusters(input_points=..., output_name=..., minimum_points=..., search_distance=..., data_store=..., clustering_method=..., use_time=..., search_duration=...): # -> conversion | int | float | complex | basestring | list[Unknown] | tuple[Unknown, ...] | dict[Unknown, Unknown]:
+@gptooldoc("FindPointClusters_geoanalytics", None)
+def FindPointClusters(
+    input_points=...,
+    output_name=...,
+    minimum_points=...,
+    search_distance=...,
+    data_store=...,
+    clustering_method=...,
+    use_time=...,
+    search_duration=...,
+):  # -> conversion | int | float | complex | basestring | list[Unknown] | tuple[Unknown, ...] | dict[Unknown, Unknown]:
     """FindPointClusters_geoanalytics(input_points, output_name, minimum_points, {search_distance}, {data_store}, {clustering_method}, {use_time}, {search_duration})
 
-        Finds clusters of point features in surrounding noise based on their
-        spatial or spatiotemporal distribution.
+       Finds clusters of point features in surrounding noise based on their
+       spatial or spatiotemporal distribution.
 
-     INPUTS:
-      input_points (Feature Set):
-          The point feature class containing the point clusters.
-      output_name (String):
-          The name of the output feature service.
-      minimum_points (Long):
-          This parameter is used differently depending on the clustering method
-          chosen as follows:
+    INPUTS:
+     input_points (Feature Set):
+         The point feature class containing the point clusters.
+     output_name (String):
+         The name of the output feature service.
+     minimum_points (Long):
+         This parameter is used differently depending on the clustering method
+         chosen as follows:
 
-          * Defined distance (DBSCAN)-Specifies the number of features that must
-          be found within a certain distance of a point for that point to start
-          to form a cluster. The distance is defined using the Search Distance
-          parameter.
+         * Defined distance (DBSCAN)-Specifies the number of features that must
+         be found within a certain distance of a point for that point to start
+         to form a cluster. The distance is defined using the Search Distance
+         parameter.
 
-          * Self-adjusting (HDBSCAN)-Specifies the number of features
-          neighboring each point (including the point) that will be considered
-          when estimating density. This number is also the minimum cluster size
-          allowed when extracting clusters.
-      search_distance {Linear Unit}:
-          The maximum distance to be considered.The Minimum Features per Cluster
-          specified must be found within this
-          distance for cluster membership. Individual clusters will be separated
-          by at least this distance. If a feature is located farther than this
-          distance from the next closest feature in the cluster, it will not be
-          included in the cluster.
-      data_store {String}:
-          Specifies the ArcGIS Data Store where the output will be saved. The
-          default is SPATIOTEMPORAL_DATA_STORE. All results stored in a
-          spatiotemporal big data store will be stored in WGS84. Results stored
-          in a relational data store will maintain their coordinate system.
+         * Self-adjusting (HDBSCAN)-Specifies the number of features
+         neighboring each point (including the point) that will be considered
+         when estimating density. This number is also the minimum cluster size
+         allowed when extracting clusters.
+     search_distance {Linear Unit}:
+         The maximum distance to be considered.The Minimum Features per Cluster
+         specified must be found within this
+         distance for cluster membership. Individual clusters will be separated
+         by at least this distance. If a feature is located farther than this
+         distance from the next closest feature in the cluster, it will not be
+         included in the cluster.
+     data_store {String}:
+         Specifies the ArcGIS Data Store where the output will be saved. The
+         default is SPATIOTEMPORAL_DATA_STORE. All results stored in a
+         spatiotemporal big data store will be stored in WGS84. Results stored
+         in a relational data store will maintain their coordinate system.
 
-          * SPATIOTEMPORAL_DATA_STORE-Output will be stored in a spatiotemporal
-          big data store. This is the default.
+         * SPATIOTEMPORAL_DATA_STORE-Output will be stored in a spatiotemporal
+         big data store. This is the default.
 
-          * RELATIONAL_DATA_STORE-Output will be stored in a relational data
-          store.
-      clustering_method {String}:
-          Specifies the method that will be used to define clusters.
+         * RELATIONAL_DATA_STORE-Output will be stored in a relational data
+         store.
+     clustering_method {String}:
+         Specifies the method that will be used to define clusters.
 
-          * DBSCAN-Uses a specified distance to separate dense clusters from
-          sparser noise. DBSCAN is the fastest of the clustering methods but is
-          only appropriate if there is a clear distance that works well to
-          define all clusters that may be present. This results in clusters that
-          have similar densities. This is the default.
+         * DBSCAN-Uses a specified distance to separate dense clusters from
+         sparser noise. DBSCAN is the fastest of the clustering methods but is
+         only appropriate if there is a clear distance that works well to
+         define all clusters that may be present. This results in clusters that
+         have similar densities. This is the default.
 
-          * HDBSCAN-Uses varying distances to separate clusters of varying
-          densities from sparser noise. HDBSCAN is the most data driven of the
-          clustering methods and requires the least user input.
-      use_time {Boolean}:
-          Specifies whether or not time will be used to discover clusters with
-          DBSCAN.
+         * HDBSCAN-Uses varying distances to separate clusters of varying
+         densities from sparser noise. HDBSCAN is the most data driven of the
+         clustering methods and requires the least user input.
+     use_time {Boolean}:
+         Specifies whether or not time will be used to discover clusters with
+         DBSCAN.
 
-          * TIME-Spatiotemporal clusters will be found using both a search
-          distance and a search duration.
+         * TIME-Spatiotemporal clusters will be found using both a search
+         distance and a search duration.
 
-          * NO_TIME-Spatial clusters will be found using a search distance and
-          time will be ignored. This is the default.
-      search_duration {Time Unit}:
-          When searching for cluster members, the specified minimum number of
-          points must be found within this time duration to form a cluster."""
+         * NO_TIME-Spatial clusters will be found using a search distance and
+         time will be ignored. This is the default.
+     search_duration {Time Unit}:
+         When searching for cluster members, the specified minimum number of
+         points must be found within this time duration to form a cluster."""
     ...
 
-@gptooldoc('Forest_geoanalytics', None)
-def Forest(prediction_type=..., in_features=..., output_trained_name=..., variable_predict=..., treat_variable_as_categorical=..., explanatory_variables=..., create_variable_importance_table=..., features_to_predict=..., explanatory_variable_matching=..., number_of_trees=..., minimum_leaf_size=..., maximum_tree_depth=..., sample_size=..., random_variables=..., percentage_for_validation=..., data_store=...): # -> conversion | int | float | complex | basestring | list[Unknown] | tuple[Unknown, ...] | dict[Unknown, Unknown]:
+@gptooldoc("Forest_geoanalytics", None)
+def Forest(
+    prediction_type=...,
+    in_features=...,
+    output_trained_name=...,
+    variable_predict=...,
+    treat_variable_as_categorical=...,
+    explanatory_variables=...,
+    create_variable_importance_table=...,
+    features_to_predict=...,
+    explanatory_variable_matching=...,
+    number_of_trees=...,
+    minimum_leaf_size=...,
+    maximum_tree_depth=...,
+    sample_size=...,
+    random_variables=...,
+    percentage_for_validation=...,
+    data_store=...,
+):  # -> conversion | int | float | complex | basestring | list[Unknown] | tuple[Unknown, ...] | dict[Unknown, Unknown]:
     """Forest_geoanalytics(prediction_type, in_features, output_trained_name, variable_predict, {treat_variable_as_categorical}, {explanatory_variables;explanatory_variables...}, {create_variable_importance_table}, {features_to_predict}, {explanatory_variable_matching;explanatory_variable_matching...}, {number_of_trees}, {minimum_leaf_size}, {maximum_tree_depth}, {sample_size}, {random_variables}, {percentage_for_validation}, {data_store})
 
-        Creates models and generates predictions using an adaptation of the
-        random forest algorithm, which is a supervised machine learning method
-        developed by Leo Breiman and Adele Cutler. Predictions can be
-        performed for both categorical variables (classification) and
-        continuous variables (regression). Explanatory variables can take the
-        form of fields in the attribute table of the training features. In
-        addition to validation of model performance based on the training
-        data, predictions can be made to features.
+       Creates models and generates predictions using an adaptation of the
+       random forest algorithm, which is a supervised machine learning method
+       developed by Leo Breiman and Adele Cutler. Predictions can be
+       performed for both categorical variables (classification) and
+       continuous variables (regression). Explanatory variables can take the
+       form of fields in the attribute table of the training features. In
+       addition to validation of model performance based on the training
+       data, predictions can be made to features.
 
-     INPUTS:
-      prediction_type (String):
-          Specifies the operation mode of the tool. The tool can be run to train
-          a model to only assess performance, predict features, or create a
-          prediction surface.
+    INPUTS:
+     prediction_type (String):
+         Specifies the operation mode of the tool. The tool can be run to train
+         a model to only assess performance, predict features, or create a
+         prediction surface.
 
-          * TRAIN-A model will be trained, but no predictions will be generated.
-          Use this option to assess the accuracy of your model before generating
-          predictions. This option will output model diagnostics in the messages
-          window and a chart of variable importance. This is the default
+         * TRAIN-A model will be trained, but no predictions will be generated.
+         Use this option to assess the accuracy of your model before generating
+         predictions. This option will output model diagnostics in the messages
+         window and a chart of variable importance. This is the default
 
-          * TRAIN_AND_PREDICT-Predictions or classifications will be generated
-          for features. Explanatory variables must be provided for both the
-          training features and the features to be predicted. The output of this
-          option will be a feature class, model diagnostics in the messages
-          window, and an optional table of variable importance.
-      in_features (Record Set):
-          The feature class containing the variable_predict parameter and the
-          explanatory training variables fields.
-      output_trained_name (String):
-          The output feature layer name.
-      variable_predict (Field):
-          The variable from the in_features parameter containing the values to
-          be used to train the model. This field contains known (training)
-          values of the variable that will be used to predict at unknown
-          locations.
-      treat_variable_as_categorical {Boolean}:
-          * CATEGORICAL-variable_predict is a categorical variable and the tool
-          will perform classification.
+         * TRAIN_AND_PREDICT-Predictions or classifications will be generated
+         for features. Explanatory variables must be provided for both the
+         training features and the features to be predicted. The output of this
+         option will be a feature class, model diagnostics in the messages
+         window, and an optional table of variable importance.
+     in_features (Record Set):
+         The feature class containing the variable_predict parameter and the
+         explanatory training variables fields.
+     output_trained_name (String):
+         The output feature layer name.
+     variable_predict (Field):
+         The variable from the in_features parameter containing the values to
+         be used to train the model. This field contains known (training)
+         values of the variable that will be used to predict at unknown
+         locations.
+     treat_variable_as_categorical {Boolean}:
+         * CATEGORICAL-variable_predict is a categorical variable and the tool
+         will perform classification.
 
-          * NUMERIC-variable_predict is continuous and the tool will perform
-          regression. This is the default.
-      explanatory_variables {Value Table}:
-          A list of fields representing the explanatory variables that help
-          predict the value or category of variable_predict. Use the
-          treat_variable_as_categorical parameter for any variables that
-          represent classes or categories (such as land cover or presence or
-          absence). Specify the variable as true for any that represent classes
-          or categories such as land cover or presence or absence and false if
-          the variable is continuous.
-      create_variable_importance_table {Boolean}:
-          Specifies whether the output table will contain information describing
-          the importance of each explanatory variable used in the model.
+         * NUMERIC-variable_predict is continuous and the tool will perform
+         regression. This is the default.
+     explanatory_variables {Value Table}:
+         A list of fields representing the explanatory variables that help
+         predict the value or category of variable_predict. Use the
+         treat_variable_as_categorical parameter for any variables that
+         represent classes or categories (such as land cover or presence or
+         absence). Specify the variable as true for any that represent classes
+         or categories such as land cover or presence or absence and false if
+         the variable is continuous.
+     create_variable_importance_table {Boolean}:
+         Specifies whether the output table will contain information describing
+         the importance of each explanatory variable used in the model.
 
-          * CREATE_TABLE-The output table will contain information for each
-          explanatory variable.
+         * CREATE_TABLE-The output table will contain information for each
+         explanatory variable.
 
-          * NO_TABLE-The output table will not contain information for each
-          explanatory variable. This is the default.
-      features_to_predict {Record Set}:
-          A feature layer representing locations where predictions will be made.
-          This feature layer must also contain any explanatory variables
-          provided as fields that correspond to those used from the training
-          data.
-      explanatory_variable_matching {Value Table}:
-          A list of explanatory_variables specified from in_features on the
-          right and their corresponding fields from features_to_predict on the
-          left, for example, [["LandCover2000", "LandCover2010"], ["Income",
-          "PerCapitaIncome"]].
-      number_of_trees {Long}:
-          The number of trees to create in the forest model. More trees will
-          generally result in more accurate model prediction, but the model will
-          take longer to calculate. The default number of trees is 100.
-      minimum_leaf_size {Long}:
-          The minimum number of observations required to keep a leaf (that is,
-          the terminal node on a tree without further splits). The default
-          minimum for regression is 5, and the default for classification is 1.
-          For very large data, increasing these numbers will decrease the run
-          time of the tool.
-      maximum_tree_depth {Long}:
-          The maximum number of splits that will be made down a tree. Using a
-          large maximum depth, more splits will be created, which may increase
-          the chances of overfitting the model. The default is data driven and
-          depends on the number of trees created and the number of variables
-          included.
-      sample_size {Long}:
-          The percentage of in_features used for each decision tree. The default
-          is 100 percent of the data. Samples for each tree are taken randomly
-          from two-thirds of the data specified.Each decision tree in the forest
-          is created using a random sample or
-          subset (approximately two-thirds) of the training data available.
-          Using a lower percentage of the input data for each decision tree
-          increases the speed of the tool for very large datasets.
-      random_variables {Long}:
-          The number of explanatory variables used to create each decision
-          tree.Each decision tree in the forest is created using a random subset
-          of
-          the explanatory variables specified. Increasing the number of
-          variables used in each decision tree will increase the chances of
-          overfitting your model, particularly if there is one or more dominant
-          variables. A common practice is to use the square root of the total
-          number of explanatory variables if variable_predict is numeric, or
-          divide the total number of explanatory variables by 3 if
-          variable_predict is categorical.
-      percentage_for_validation {Long}:
-          The percentage (between 10 percent and 50 percent) of in_features to
-          reserve as the test dataset for validation. The model will be trained
-          without this random subset of data, and the observed values for those
-          features will be compared to the predicted value. The default is 10
-          percent.
-      data_store {String}:
-          Specifies the ArcGIS Data Store where the output will be saved. The
-          default is SPATIOTEMPORAL_DATA_STORE. All results stored in a
-          spatiotemporal big data store will be stored in WGS84. Results stored
-          in a relational data store will maintain their coordinate system.
+         * NO_TABLE-The output table will not contain information for each
+         explanatory variable. This is the default.
+     features_to_predict {Record Set}:
+         A feature layer representing locations where predictions will be made.
+         This feature layer must also contain any explanatory variables
+         provided as fields that correspond to those used from the training
+         data.
+     explanatory_variable_matching {Value Table}:
+         A list of explanatory_variables specified from in_features on the
+         right and their corresponding fields from features_to_predict on the
+         left, for example, [["LandCover2000", "LandCover2010"], ["Income",
+         "PerCapitaIncome"]].
+     number_of_trees {Long}:
+         The number of trees to create in the forest model. More trees will
+         generally result in more accurate model prediction, but the model will
+         take longer to calculate. The default number of trees is 100.
+     minimum_leaf_size {Long}:
+         The minimum number of observations required to keep a leaf (that is,
+         the terminal node on a tree without further splits). The default
+         minimum for regression is 5, and the default for classification is 1.
+         For very large data, increasing these numbers will decrease the run
+         time of the tool.
+     maximum_tree_depth {Long}:
+         The maximum number of splits that will be made down a tree. Using a
+         large maximum depth, more splits will be created, which may increase
+         the chances of overfitting the model. The default is data driven and
+         depends on the number of trees created and the number of variables
+         included.
+     sample_size {Long}:
+         The percentage of in_features used for each decision tree. The default
+         is 100 percent of the data. Samples for each tree are taken randomly
+         from two-thirds of the data specified.Each decision tree in the forest
+         is created using a random sample or
+         subset (approximately two-thirds) of the training data available.
+         Using a lower percentage of the input data for each decision tree
+         increases the speed of the tool for very large datasets.
+     random_variables {Long}:
+         The number of explanatory variables used to create each decision
+         tree.Each decision tree in the forest is created using a random subset
+         of
+         the explanatory variables specified. Increasing the number of
+         variables used in each decision tree will increase the chances of
+         overfitting your model, particularly if there is one or more dominant
+         variables. A common practice is to use the square root of the total
+         number of explanatory variables if variable_predict is numeric, or
+         divide the total number of explanatory variables by 3 if
+         variable_predict is categorical.
+     percentage_for_validation {Long}:
+         The percentage (between 10 percent and 50 percent) of in_features to
+         reserve as the test dataset for validation. The model will be trained
+         without this random subset of data, and the observed values for those
+         features will be compared to the predicted value. The default is 10
+         percent.
+     data_store {String}:
+         Specifies the ArcGIS Data Store where the output will be saved. The
+         default is SPATIOTEMPORAL_DATA_STORE. All results stored in a
+         spatiotemporal big data store will be stored in WGS84. Results stored
+         in a relational data store will maintain their coordinate system.
 
-          * SPATIOTEMPORAL_DATA_STORE-Output will be stored in a spatiotemporal
-          big data store. This is the default.
+         * SPATIOTEMPORAL_DATA_STORE-Output will be stored in a spatiotemporal
+         big data store. This is the default.
 
-          * RELATIONAL_DATA_STORE-Output will be stored in a relational data
-          store."""
+         * RELATIONAL_DATA_STORE-Output will be stored in a relational data
+         store."""
     ...
 
-@gptooldoc('GWR_geoanalytics', None)
-def GWR(in_features=..., dependent_variable=..., model_type=..., explanatory_variables=..., output_features=..., neighborhood_type=..., neighborhood_selection_method=..., number_of_neighbors=..., distance_band=..., local_weighting_scheme=..., data_store=...): # -> conversion | int | float | complex | basestring | list[Unknown] | tuple[Unknown, ...] | dict[Unknown, Unknown]:
+@gptooldoc("GWR_geoanalytics", None)
+def GWR(
+    in_features=...,
+    dependent_variable=...,
+    model_type=...,
+    explanatory_variables=...,
+    output_features=...,
+    neighborhood_type=...,
+    neighborhood_selection_method=...,
+    number_of_neighbors=...,
+    distance_band=...,
+    local_weighting_scheme=...,
+    data_store=...,
+):  # -> conversion | int | float | complex | basestring | list[Unknown] | tuple[Unknown, ...] | dict[Unknown, Unknown]:
     """GWR_geoanalytics(in_features, dependent_variable, model_type, explanatory_variables;explanatory_variables..., output_features, neighborhood_type, neighborhood_selection_method, {number_of_neighbors}, {distance_band}, {local_weighting_scheme}, {data_store})
 
-        Performs Geographically Weighted Regression (GWR), which is a local
-        form of linear regression that is used to model spatially varying
-        relationships.
+       Performs Geographically Weighted Regression (GWR), which is a local
+       form of linear regression that is used to model spatially varying
+       relationships.
 
-     INPUTS:
-      in_features (Feature Set):
-          The point feature class containing the dependent and explanatory
-          variables.
-      dependent_variable (Field):
-          The numeric field containing the observed values that will be modeled.
-      model_type (String):
-          Specifies the type of data that will be modeled.
+    INPUTS:
+     in_features (Feature Set):
+         The point feature class containing the dependent and explanatory
+         variables.
+     dependent_variable (Field):
+         The numeric field containing the observed values that will be modeled.
+     model_type (String):
+         Specifies the type of data that will be modeled.
 
-          * CONTINUOUS-The dependent_variable value is continuous. The Gaussian
-          model will be used, and the tool will perform ordinary least squares
-          regression.
-      explanatory_variables (Field):
-          A list of fields representing independent explanatory variables in the
-          regression model.
-      output_features (String):
-          The name of the output feature service.
-      neighborhood_type (String):
-          Specifies whether the neighborhood used is constructed as a fixed
-          distance or allowed to vary in spatial extent depending on the density
-          of the features.
+         * CONTINUOUS-The dependent_variable value is continuous. The Gaussian
+         model will be used, and the tool will perform ordinary least squares
+         regression.
+     explanatory_variables (Field):
+         A list of fields representing independent explanatory variables in the
+         regression model.
+     output_features (String):
+         The name of the output feature service.
+     neighborhood_type (String):
+         Specifies whether the neighborhood used is constructed as a fixed
+         distance or allowed to vary in spatial extent depending on the density
+         of the features.
 
-          * NUMBER_OF_NEIGHBORS-The neighborhood size is a function of a
-          specified number of neighbors included in calculations for each
-          feature. Where features are dense, the spatial extent of the
-          neighborhood is smaller; where features are sparse, the spatial extent
-          of the neighborhood is larger.
+         * NUMBER_OF_NEIGHBORS-The neighborhood size is a function of a
+         specified number of neighbors included in calculations for each
+         feature. Where features are dense, the spatial extent of the
+         neighborhood is smaller; where features are sparse, the spatial extent
+         of the neighborhood is larger.
 
-          * DISTANCE_BAND-The neighborhood size is a constant or fixed distance
-          for each feature.
-      neighborhood_selection_method (String):
-          Specifies how the neighborhood size will be determined.
+         * DISTANCE_BAND-The neighborhood size is a constant or fixed distance
+         for each feature.
+     neighborhood_selection_method (String):
+         Specifies how the neighborhood size will be determined.
 
-          * USER_DEFINED-The neighborhood size will be determined by either the
-          number_of_neighbors or distance_band parameter.
-      number_of_neighbors {Long}:
-          The closest number of neighbors (up to 1000) to consider for each
-          feature. The number must be an integer between 2 and 1000.
-      distance_band {Linear Unit}:
-          The spatial extent of the neighborhood.
-      local_weighting_scheme {String}:
-          Specifies the kernel type that will be used to provide the spatial
-          weighting in the model. The kernel defines how each feature is related
-          to other features within its neighborhood.
+         * USER_DEFINED-The neighborhood size will be determined by either the
+         number_of_neighbors or distance_band parameter.
+     number_of_neighbors {Long}:
+         The closest number of neighbors (up to 1000) to consider for each
+         feature. The number must be an integer between 2 and 1000.
+     distance_band {Linear Unit}:
+         The spatial extent of the neighborhood.
+     local_weighting_scheme {String}:
+         Specifies the kernel type that will be used to provide the spatial
+         weighting in the model. The kernel defines how each feature is related
+         to other features within its neighborhood.
 
-          * BISQUARE-A weight of 0 will be assigned to any feature outside the
-          neighborhood specified. This is the default.
+         * BISQUARE-A weight of 0 will be assigned to any feature outside the
+         neighborhood specified. This is the default.
 
-          * GAUSSIAN-All features will receive weights, but weights become
-          exponentially smaller the farther away they are from the target
-          feature.
-      data_store {String}:
-          Specifies the ArcGIS Data Store where the output will be saved. The
-          default is SPATIOTEMPORAL_DATA_STORE. All results stored in a
-          spatiotemporal big data store will be stored in WGS84. Results stored
-          in a relational data store will maintain their coordinate system.
+         * GAUSSIAN-All features will receive weights, but weights become
+         exponentially smaller the farther away they are from the target
+         feature.
+     data_store {String}:
+         Specifies the ArcGIS Data Store where the output will be saved. The
+         default is SPATIOTEMPORAL_DATA_STORE. All results stored in a
+         spatiotemporal big data store will be stored in WGS84. Results stored
+         in a relational data store will maintain their coordinate system.
 
-          * SPATIOTEMPORAL_DATA_STORE-Output will be stored in a spatiotemporal
-          big data store. This is the default.
+         * SPATIOTEMPORAL_DATA_STORE-Output will be stored in a spatiotemporal
+         big data store. This is the default.
 
-          * RELATIONAL_DATA_STORE-Output will be stored in a relational data
-          store."""
+         * RELATIONAL_DATA_STORE-Output will be stored in a relational data
+         store."""
     ...
 
-@gptooldoc('GeneralizedLinearRegression_geoanalytics', None)
-def GeneralizedLinearRegression(input_features=..., dependent_variable=..., model_type=..., explanatory_variables=..., output_features_name=..., generate_coefficient_table=..., input_features_to_predict=..., explanatory_variables_to_match=..., dependent_variable_mapping=..., data_store=...): # -> conversion | int | float | complex | basestring | list[Unknown] | tuple[Unknown, ...] | dict[Unknown, Unknown]:
+@gptooldoc("GeneralizedLinearRegression_geoanalytics", None)
+def GeneralizedLinearRegression(
+    input_features=...,
+    dependent_variable=...,
+    model_type=...,
+    explanatory_variables=...,
+    output_features_name=...,
+    generate_coefficient_table=...,
+    input_features_to_predict=...,
+    explanatory_variables_to_match=...,
+    dependent_variable_mapping=...,
+    data_store=...,
+):  # -> conversion | int | float | complex | basestring | list[Unknown] | tuple[Unknown, ...] | dict[Unknown, Unknown]:
     """GeneralizedLinearRegression_geoanalytics(input_features, dependent_variable, model_type, explanatory_variables;explanatory_variables..., output_features_name, {generate_coefficient_table}, {input_features_to_predict}, {explanatory_variables_to_match;explanatory_variables_to_match...}, {dependent_variable_mapping;dependent_variable_mapping...}, {data_store})
 
-        Performs generalized linear regression (GLR) to generate predictions
-        or to model a dependent variable in terms of its relationship to a set
-        of explanatory variables. This tool can be used to fit continuous
-        (OLS), binary (logistic), and count (Poisson) models.
+       Performs generalized linear regression (GLR) to generate predictions
+       or to model a dependent variable in terms of its relationship to a set
+       of explanatory variables. This tool can be used to fit continuous
+       (OLS), binary (logistic), and count (Poisson) models.
 
-     INPUTS:
-      input_features (Record Set):
-          The layer containing the dependent and independent variables.
-      dependent_variable (Field):
-          The numeric field containing the observed values to be modeled.
-      model_type (String):
-          Specifies the type of data that will be modeled.
+    INPUTS:
+     input_features (Record Set):
+         The layer containing the dependent and independent variables.
+     dependent_variable (Field):
+         The numeric field containing the observed values to be modeled.
+     model_type (String):
+         Specifies the type of data that will be modeled.
 
-          * CONTINUOUS-The dependent_variable value is continuous. The Gaussian
-          model will be used, and the tool will perform ordinary least squares
-          regression. This is the default.
+         * CONTINUOUS-The dependent_variable value is continuous. The Gaussian
+         model will be used, and the tool will perform ordinary least squares
+         regression. This is the default.
 
-          * BINARY-The dependent_variable value represents presence or absence.
-          This can be either conventional ones and zeroes, or string values
-          mapped to zero or ones in the Match Explanatory Variables parameter.
-          The Logistic regression model will be used.
+         * BINARY-The dependent_variable value represents presence or absence.
+         This can be either conventional ones and zeroes, or string values
+         mapped to zero or ones in the Match Explanatory Variables parameter.
+         The Logistic regression model will be used.
 
-          * COUNT-The dependent_variable value is discrete and represents
-          events, for example, crime counts, disease incidents, or traffic
-          accidents. The Poisson regression model will be used.
-      explanatory_variables (Field):
-          A list of fields representing independent explanatory variables in the
-          regression model.
-      output_features_name (String):
-          The name of the feature class that will be created containing the
-          dependent variable estimates and residuals.
-      generate_coefficient_table {Boolean}:
-          Specifies whether an output table with coefficient (Boolean) values
-          will be generated.
+         * COUNT-The dependent_variable value is discrete and represents
+         events, for example, crime counts, disease incidents, or traffic
+         accidents. The Poisson regression model will be used.
+     explanatory_variables (Field):
+         A list of fields representing independent explanatory variables in the
+         regression model.
+     output_features_name (String):
+         The name of the feature class that will be created containing the
+         dependent variable estimates and residuals.
+     generate_coefficient_table {Boolean}:
+         Specifies whether an output table with coefficient (Boolean) values
+         will be generated.
 
-          * CREATE_TABLE-A table with coefficient values will be generated.
+         * CREATE_TABLE-A table with coefficient values will be generated.
 
-          * NO_TABLE-A table with coefficient values will not be generated. This
-          is the default.
-      input_features_to_predict {Record Set}:
-          A layer containing features representing locations where estimates
-          will be computed. Each feature in this dataset should contain values
-          for all the explanatory variables specified. The dependent variable
-          for these features will be estimated using the model calibrated for
-          the input layer data.
-      explanatory_variables_to_match {Value Table}:
-          Matches the explanatory variables in the input_features_to_predict
-          parameter to corresponding explanatory variables from the
-          input_features parameter-for example, [["LandCover2000",
-          "LandCover2010"], ["Income", "PerCapitaIncome"]].
-      dependent_variable_mapping {Value Table}:
-          Two strings representing the values used to map to 0 (absence) and 1
-          (presence) for binary regression. By default, 0 and 1 will be used.
-          For example, to predict an arrest with field values of Arrest and No
-          Arrest, enter No Arrest for False Value (0) and Arrest for True Value
-          (1).
-      data_store {String}:
-          Specifies the ArcGIS Data Store where the output will be saved. The
-          default is SPATIOTEMPORAL_DATA_STORE. All results stored in a
-          spatiotemporal big data store will be stored in WGS84. Results stored
-          in a relational data store will maintain their coordinate system.
+         * NO_TABLE-A table with coefficient values will not be generated. This
+         is the default.
+     input_features_to_predict {Record Set}:
+         A layer containing features representing locations where estimates
+         will be computed. Each feature in this dataset should contain values
+         for all the explanatory variables specified. The dependent variable
+         for these features will be estimated using the model calibrated for
+         the input layer data.
+     explanatory_variables_to_match {Value Table}:
+         Matches the explanatory variables in the input_features_to_predict
+         parameter to corresponding explanatory variables from the
+         input_features parameter-for example, [["LandCover2000",
+         "LandCover2010"], ["Income", "PerCapitaIncome"]].
+     dependent_variable_mapping {Value Table}:
+         Two strings representing the values used to map to 0 (absence) and 1
+         (presence) for binary regression. By default, 0 and 1 will be used.
+         For example, to predict an arrest with field values of Arrest and No
+         Arrest, enter No Arrest for False Value (0) and Arrest for True Value
+         (1).
+     data_store {String}:
+         Specifies the ArcGIS Data Store where the output will be saved. The
+         default is SPATIOTEMPORAL_DATA_STORE. All results stored in a
+         spatiotemporal big data store will be stored in WGS84. Results stored
+         in a relational data store will maintain their coordinate system.
 
-          * SPATIOTEMPORAL_DATA_STORE-Output will be stored in a spatiotemporal
-          big data store. This is the default.
+         * SPATIOTEMPORAL_DATA_STORE-Output will be stored in a spatiotemporal
+         big data store. This is the default.
 
-          * RELATIONAL_DATA_STORE-Output will be stored in a relational data
-          store."""
+         * RELATIONAL_DATA_STORE-Output will be stored in a relational data
+         store."""
     ...
 
-@gptooldoc('CalculateMotionStatistics_geoanalytics', None)
-def CalculateMotionStatistics(input_layer=..., output_name=..., track_fields=..., track_history_window=..., motion_statistics=..., distance_method=..., idle_dist_tolerance=..., idle_time_tolerance=..., time_boundary_split=..., time_boundary_reference=..., distance_unit=..., duration_unit=..., speed_unit=..., acceleration_unit=..., elevation_unit=..., data_store=...): # -> conversion | int | float | complex | basestring | list[Unknown] | tuple[Unknown, ...] | dict[Unknown, Unknown]:
+@gptooldoc("CalculateMotionStatistics_geoanalytics", None)
+def CalculateMotionStatistics(
+    input_layer=...,
+    output_name=...,
+    track_fields=...,
+    track_history_window=...,
+    motion_statistics=...,
+    distance_method=...,
+    idle_dist_tolerance=...,
+    idle_time_tolerance=...,
+    time_boundary_split=...,
+    time_boundary_reference=...,
+    distance_unit=...,
+    duration_unit=...,
+    speed_unit=...,
+    acceleration_unit=...,
+    elevation_unit=...,
+    data_store=...,
+):  # -> conversion | int | float | complex | basestring | list[Unknown] | tuple[Unknown, ...] | dict[Unknown, Unknown]:
     """CalculateMotionStatistics_geoanalytics(input_layer, output_name, track_fields;track_fields..., track_history_window, {motion_statistics;motion_statistics...}, {distance_method}, {idle_dist_tolerance}, {idle_time_tolerance}, {time_boundary_split}, {time_boundary_reference}, {distance_unit}, {duration_unit}, {speed_unit}, {acceleration_unit}, {elevation_unit}, {data_store})
 
-        Calculates motion statistics for points in a time-enabled feature
-        class.
+       Calculates motion statistics for points in a time-enabled feature
+       class.
 
-     INPUTS:
-      input_layer (Feature Set):
-          The time-enabled point features on which motion statistics will be
-          calculated.
-      output_name (String):
-          The name of the result layer.
-      track_fields (Field):
-          One or more fields that will be used to identify distinct entities.
-      track_history_window (Long):
-          The number of observations (including the current observation) that
-          will be used for summary statistics. The default value is 3, which
-          means that the summary statistics will be calculated at each point in
-          a track using the current observation and the previous two
-          observations. This parameter does not affect instantaneous statistics
-          or idle classification.
-      motion_statistics {String}:
-          Specifies the group containing the statistics that will be calculated
-          and written to the result. If no value is specified, all statistics
-          from all groups will be calculated.
+    INPUTS:
+     input_layer (Feature Set):
+         The time-enabled point features on which motion statistics will be
+         calculated.
+     output_name (String):
+         The name of the result layer.
+     track_fields (Field):
+         One or more fields that will be used to identify distinct entities.
+     track_history_window (Long):
+         The number of observations (including the current observation) that
+         will be used for summary statistics. The default value is 3, which
+         means that the summary statistics will be calculated at each point in
+         a track using the current observation and the previous two
+         observations. This parameter does not affect instantaneous statistics
+         or idle classification.
+     motion_statistics {String}:
+         Specifies the group containing the statistics that will be calculated
+         and written to the result. If no value is specified, all statistics
+         from all groups will be calculated.
 
-          * DISTANCE-The distance between the current and previous observation
-          and the maximum, minimum, average, and total distance in the track
-          history window will be calculated.
+         * DISTANCE-The distance between the current and previous observation
+         and the maximum, minimum, average, and total distance in the track
+         history window will be calculated.
 
-          * DURATION-The duration between the current and previous observation
-          and the maximum, minimum, average, and total duration in the track
-          history window will be calculated.
+         * DURATION-The duration between the current and previous observation
+         and the maximum, minimum, average, and total duration in the track
+         history window will be calculated.
 
-          * SPEED-The speed of travel between the current and previous
-          observation and the maximum, minimum, and average speed in the track
-          history window will be calculated.
+         * SPEED-The speed of travel between the current and previous
+         observation and the maximum, minimum, and average speed in the track
+         history window will be calculated.
 
-          * ACCELERATION-The acceleration between the current speed and the
-          previous speed and the maximum, minimum, and average acceleration in
-          the track history window will be calculated.
+         * ACCELERATION-The acceleration between the current speed and the
+         previous speed and the maximum, minimum, and average acceleration in
+         the track history window will be calculated.
 
-          * ELEVATION-The current elevation, the elevation change between the
-          current and previous observation, and the maximum, minimum, average,
-          and total elevation change in the track history window will be
-          calculated.
+         * ELEVATION-The current elevation, the elevation change between the
+         current and previous observation, and the maximum, minimum, average,
+         and total elevation change in the track history window will be
+         calculated.
 
-          * SLOPE-The slope between the current and previous observation and the
-          maximum, minimum, and average slope in the track history window will
-          be calculated.
+         * SLOPE-The slope between the current and previous observation and the
+         maximum, minimum, and average slope in the track history window will
+         be calculated.
 
-          * IDLE-A determination as to whether an entity is currently idling
-          will be made and the percentage of idle time and total idle time in
-          the track history window will be calculated.
+         * IDLE-A determination as to whether an entity is currently idling
+         will be made and the percentage of idle time and total idle time in
+         the track history window will be calculated.
 
-          * BEARING-The angle of travel between the previous observation and the
-          current observation will be calculated.
-      distance_method {String}:
-          Specifies the distance measurement method that will be used when
-          calculating motion statistics.
+         * BEARING-The angle of travel between the previous observation and the
+         current observation will be calculated.
+     distance_method {String}:
+         Specifies the distance measurement method that will be used when
+         calculating motion statistics.
 
-          * GEODESIC-Geodesic distance will be used.
+         * GEODESIC-Geodesic distance will be used.
 
-          * PLANAR-Planar distance will be used. This is the default.
-      idle_dist_tolerance {Linear Unit}:
-          The maximum distance that two sequential points in a track can be
-          apart and still be considered idle. This parameter is used with the
-          idle_time_tolerance parameter to determine whether an entity is
-          idling. The idle_dist_tolerance parameter is required if the IDLE
-          statistic group is specified for the motion_statistics parameter or if
-          statistics in all the groups will be calculated.
-      idle_time_tolerance {Time Unit}:
-          The minimum duration that two sequential points in a track must be
-          near each other to be considered idle. This parameter is used with the
-          idle_dist_tolerance parameter to determine whether an entity is
-          idling. The idle_time_tolerance parameter is required if the IDLE
-          statistic group is specified for the motion_statistics parameter or if
-          statistics in all the groups will be calculated.
-      time_boundary_split {Time Unit}:
-          A time span to split the input data into for analysis. A time boundary
-          allows you to analyze values within a defined time span. For example,
-          if you use a time boundary of 1 day, starting on January 1, 1980,
-          tracks will be split at the beginning of every day. This parameter is
-          only available with ArcGIS Enterprise 10.7 and later.
-      time_boundary_reference {Date}:
-          The reference time used to split the input data into for analysis.
-          Time boundaries will be created for the entire span of the data, and
-          the reference time does not need to occur at the start. If no
-          reference time is specified, January 1, 1970, is used. This parameter
-          is only available with ArcGIS Enterprise 10.7 and later.
-      distance_unit {String}:
-          Specifies the unit of measure that will be used for distance values in
-          the output feature class.
+         * PLANAR-Planar distance will be used. This is the default.
+     idle_dist_tolerance {Linear Unit}:
+         The maximum distance that two sequential points in a track can be
+         apart and still be considered idle. This parameter is used with the
+         idle_time_tolerance parameter to determine whether an entity is
+         idling. The idle_dist_tolerance parameter is required if the IDLE
+         statistic group is specified for the motion_statistics parameter or if
+         statistics in all the groups will be calculated.
+     idle_time_tolerance {Time Unit}:
+         The minimum duration that two sequential points in a track must be
+         near each other to be considered idle. This parameter is used with the
+         idle_dist_tolerance parameter to determine whether an entity is
+         idling. The idle_time_tolerance parameter is required if the IDLE
+         statistic group is specified for the motion_statistics parameter or if
+         statistics in all the groups will be calculated.
+     time_boundary_split {Time Unit}:
+         A time span to split the input data into for analysis. A time boundary
+         allows you to analyze values within a defined time span. For example,
+         if you use a time boundary of 1 day, starting on January 1, 1980,
+         tracks will be split at the beginning of every day. This parameter is
+         only available with ArcGIS Enterprise 10.7 and later.
+     time_boundary_reference {Date}:
+         The reference time used to split the input data into for analysis.
+         Time boundaries will be created for the entire span of the data, and
+         the reference time does not need to occur at the start. If no
+         reference time is specified, January 1, 1970, is used. This parameter
+         is only available with ArcGIS Enterprise 10.7 and later.
+     distance_unit {String}:
+         Specifies the unit of measure that will be used for distance values in
+         the output feature class.
 
-          * METERS-The unit of measure will be meters. This is the default.
+         * METERS-The unit of measure will be meters. This is the default.
 
-          * KILOMETERS-The unit of measure will be kilometers.
+         * KILOMETERS-The unit of measure will be kilometers.
 
-          * MILES-The unit of measure will be US survey miles.
+         * MILES-The unit of measure will be US survey miles.
 
-          * NAUTICAL_MILES-The unit of measure will be US survey nautical miles.
+         * NAUTICAL_MILES-The unit of measure will be US survey nautical miles.
 
-          * YARDS-The unit of measure will be US survey yards.
+         * YARDS-The unit of measure will be US survey yards.
 
-          * FEET-The unit of measure will be US survey feet.
+         * FEET-The unit of measure will be US survey feet.
 
-          * MILES_INT-The unit of measure will be statute miles.
+         * MILES_INT-The unit of measure will be statute miles.
 
-          * NAUTICAL_MILES_INT-The unit of measure will be international
-          nautical miles.
+         * NAUTICAL_MILES_INT-The unit of measure will be international
+         nautical miles.
 
-          * YARDS_INT-The unit of measure will be international yards.
+         * YARDS_INT-The unit of measure will be international yards.
 
-          * FEET_INT-The unit of measure will be international feet.
-      duration_unit {String}:
-          Specifies the unit of measure that will be used for duration values in
-          the output feature class.
+         * FEET_INT-The unit of measure will be international feet.
+     duration_unit {String}:
+         Specifies the unit of measure that will be used for duration values in
+         the output feature class.
 
-          * YEARS-The unit of measure will be years.
+         * YEARS-The unit of measure will be years.
 
-          * MONTHS-The unit of measure will be months.
+         * MONTHS-The unit of measure will be months.
 
-          * WEEKS-The unit of measure will be weeks.
+         * WEEKS-The unit of measure will be weeks.
 
-          * DAYS-The unit of measure will be days.
+         * DAYS-The unit of measure will be days.
 
-          * HOURS-The unit of measure will be hours.
+         * HOURS-The unit of measure will be hours.
 
-          * MINUTES-The unit of measure will be minutes.
+         * MINUTES-The unit of measure will be minutes.
 
-          * SECONDS-The unit of measure will be seconds. This is the default.
+         * SECONDS-The unit of measure will be seconds. This is the default.
 
-          * MILLISECONDS-The unit of measure will be milliseconds.
-      speed_unit {String}:
-          Specifies the unit of measure that will be used for speed values in
-          the output feature class.
+         * MILLISECONDS-The unit of measure will be milliseconds.
+     speed_unit {String}:
+         Specifies the unit of measure that will be used for speed values in
+         the output feature class.
 
-          * METERS_PER_SECOND-The unit of measure will be meters per second.
-          This is the default.
+         * METERS_PER_SECOND-The unit of measure will be meters per second.
+         This is the default.
 
-          * MILES_PER_HOUR-The unit of measure will be miles per hour.
+         * MILES_PER_HOUR-The unit of measure will be miles per hour.
 
-          * KILOMETERS_PER_HOUR-The unit of measure will be kilometers per hour.
+         * KILOMETERS_PER_HOUR-The unit of measure will be kilometers per hour.
 
-          * FEET_PER_SECOND-The unit of measure will be feet per second.
+         * FEET_PER_SECOND-The unit of measure will be feet per second.
 
-          * NAUTICAL_MILES_PER_HOUR-The unit of measure will be nautical miles
-          per hour.
-      acceleration_unit {String}:
-          Specifies the unit of measure that will be used for acceleration
-          values in the output feature class.
+         * NAUTICAL_MILES_PER_HOUR-The unit of measure will be nautical miles
+         per hour.
+     acceleration_unit {String}:
+         Specifies the unit of measure that will be used for acceleration
+         values in the output feature class.
 
-          * METERS_PER_SECOND_SQUARED-The unit of measure will be meters per
-          second squared. This is the default.
+         * METERS_PER_SECOND_SQUARED-The unit of measure will be meters per
+         second squared. This is the default.
 
-          * FEET_PER_SECOND_SQUARED-The unit of measure will be feet per second
-          squared.
-      elevation_unit {String}:
-          Specifies the unit of measure that will be used for elevation values
-          in the output feature class.
+         * FEET_PER_SECOND_SQUARED-The unit of measure will be feet per second
+         squared.
+     elevation_unit {String}:
+         Specifies the unit of measure that will be used for elevation values
+         in the output feature class.
 
-          * METERS-The unit of measure will be meters. This is the default.
+         * METERS-The unit of measure will be meters. This is the default.
 
-          * KILOMETERS-The unit of measure will be US survey kilometers.
+         * KILOMETERS-The unit of measure will be US survey kilometers.
 
-          * MILES-The unit of measure will be US survey miles.
+         * MILES-The unit of measure will be US survey miles.
 
-          * YARDS-The unit of measure will be US survey yards.
+         * YARDS-The unit of measure will be US survey yards.
 
-          * FEET-The unit of measure will be US survey feet.
+         * FEET-The unit of measure will be US survey feet.
 
-          * MILES_INT-The unit of measure will be statute miles.
+         * MILES_INT-The unit of measure will be statute miles.
 
-          * YARDS_INT-The unit of measure will be international yards.
+         * YARDS_INT-The unit of measure will be international yards.
 
-          * FEET_INT-The unit of measure will be international feet.
-      data_store {String}:
-          Specifies the ArcGIS Data Store where the output will be saved. The
-          default is SPATIOTEMPORAL_DATA_STORE. All results stored in a
-          spatiotemporal big data store will be stored in WGS84. Results stored
-          in a relational data store will maintain their coordinate system.
+         * FEET_INT-The unit of measure will be international feet.
+     data_store {String}:
+         Specifies the ArcGIS Data Store where the output will be saved. The
+         default is SPATIOTEMPORAL_DATA_STORE. All results stored in a
+         spatiotemporal big data store will be stored in WGS84. Results stored
+         in a relational data store will maintain their coordinate system.
 
-          * SPATIOTEMPORAL_DATA_STORE-Output will be stored in a spatiotemporal
-          big data store. This is the default.
+         * SPATIOTEMPORAL_DATA_STORE-Output will be stored in a spatiotemporal
+         big data store. This is the default.
 
-          * RELATIONAL_DATA_STORE-Output will be stored in a relational data
-          store."""
+         * RELATIONAL_DATA_STORE-Output will be stored in a relational data
+         store."""
     ...
 
-@gptooldoc('DetectIncidents_geoanalytics', None)
-def DetectIncidents(input_layer=..., output_name=..., track_fields=..., start_condition=..., end_condition=..., output_mode=..., data_store=..., time_boundary_split=..., time_boundary_reference=...): # -> conversion | int | float | complex | basestring | list[Unknown] | tuple[Unknown, ...] | dict[Unknown, Unknown]:
+@gptooldoc("DetectIncidents_geoanalytics", None)
+def DetectIncidents(
+    input_layer=...,
+    output_name=...,
+    track_fields=...,
+    start_condition=...,
+    end_condition=...,
+    output_mode=...,
+    data_store=...,
+    time_boundary_split=...,
+    time_boundary_reference=...,
+):  # -> conversion | int | float | complex | basestring | list[Unknown] | tuple[Unknown, ...] | dict[Unknown, Unknown]:
     """DetectIncidents_geoanalytics(input_layer, output_name, track_fields;track_fields..., start_condition, {end_condition}, {output_mode}, {data_store}, {time_boundary_split}, {time_boundary_reference})
 
-        Creates a layer that detects features that meet a given condition.
+       Creates a layer that detects features that meet a given condition.
 
-     INPUTS:
-      input_layer (Record Set):
-          The input features that contain potential incidents.
-      output_name (String):
-          The name of the output feature service.
-      track_fields (Field):
-          A field or fields that will be used to identify unique tracks.
-      start_condition (Calculator Expression):
-          The condition that will be used to identify incidents. Expressions are
-          written in Arcade and can include [+ - * / ] operators and multiple
-          fields.
-      end_condition {Calculator Expression}:
-          The condition that will be used to end incidents. If no end condition
-          is specified, incidents will end when the start condition is no longer
-          true.
-      output_mode {String}:
-          Specifies the features that will be returned.
+    INPUTS:
+     input_layer (Record Set):
+         The input features that contain potential incidents.
+     output_name (String):
+         The name of the output feature service.
+     track_fields (Field):
+         A field or fields that will be used to identify unique tracks.
+     start_condition (Calculator Expression):
+         The condition that will be used to identify incidents. Expressions are
+         written in Arcade and can include [+ - * / ] operators and multiple
+         fields.
+     end_condition {Calculator Expression}:
+         The condition that will be used to end incidents. If no end condition
+         is specified, incidents will end when the start condition is no longer
+         true.
+     output_mode {String}:
+         Specifies the features that will be returned.
 
-          * ALL_FEATURES-All the input features will be returned. This is the
-          default.
+         * ALL_FEATURES-All the input features will be returned. This is the
+         default.
 
-          * INCIDENTS-Only features that were found to be incidents will be
-          returned.
-      data_store {String}:
-          Specifies the ArcGIS Data Store where the output will be saved. The
-          default is SPATIOTEMPORAL_DATA_STORE. All results stored in a
-          spatiotemporal big data store will be stored in WGS84. Results stored
-          in a relational data store will maintain their coordinate system.
+         * INCIDENTS-Only features that were found to be incidents will be
+         returned.
+     data_store {String}:
+         Specifies the ArcGIS Data Store where the output will be saved. The
+         default is SPATIOTEMPORAL_DATA_STORE. All results stored in a
+         spatiotemporal big data store will be stored in WGS84. Results stored
+         in a relational data store will maintain their coordinate system.
 
-          * SPATIOTEMPORAL_DATA_STORE-Output will be stored in a spatiotemporal
-          big data store. This is the default.
+         * SPATIOTEMPORAL_DATA_STORE-Output will be stored in a spatiotemporal
+         big data store. This is the default.
 
-          * RELATIONAL_DATA_STORE-Output will be stored in a relational data
-          store.
-      time_boundary_split {Time Unit}:
-          A time span to split the input data into for analysis. A time boundary
-          allows you to analyze values within a defined time span. For example,
-          if you use a time boundary of 1 day, starting on January 1, 1980,
-          tracks will be split at the beginning of every day. This parameter is
-          only available with ArcGIS Enterprise 10.7 and later.
-      time_boundary_reference {Date}:
-          The reference time used to split the input data into for analysis.
-          Time boundaries will be created for the entire span of the data, and
-          the reference time does not need to occur at the start. If no
-          reference time is specified, January 1, 1970, is used. This parameter
-          is only available with ArcGIS Enterprise 10.7 and later."""
+         * RELATIONAL_DATA_STORE-Output will be stored in a relational data
+         store.
+     time_boundary_split {Time Unit}:
+         A time span to split the input data into for analysis. A time boundary
+         allows you to analyze values within a defined time span. For example,
+         if you use a time boundary of 1 day, starting on January 1, 1980,
+         tracks will be split at the beginning of every day. This parameter is
+         only available with ArcGIS Enterprise 10.7 and later.
+     time_boundary_reference {Date}:
+         The reference time used to split the input data into for analysis.
+         Time boundaries will be created for the entire span of the data, and
+         the reference time does not need to occur at the start. If no
+         reference time is specified, January 1, 1970, is used. This parameter
+         is only available with ArcGIS Enterprise 10.7 and later."""
     ...
 
-@gptooldoc('FindDwellLocations_geoanalytics', None)
-def FindDwellLocations(input_features=..., output_name=..., track_fields=..., distance_method=..., distance_tolerance=..., time_tolerance=..., output_type=..., summary_statistics=..., data_store=..., time_boundary_split=..., time_boundary_reference=...): # -> conversion | int | float | complex | basestring | list[Unknown] | tuple[Unknown, ...] | dict[Unknown, Unknown]:
+@gptooldoc("FindDwellLocations_geoanalytics", None)
+def FindDwellLocations(
+    input_features=...,
+    output_name=...,
+    track_fields=...,
+    distance_method=...,
+    distance_tolerance=...,
+    time_tolerance=...,
+    output_type=...,
+    summary_statistics=...,
+    data_store=...,
+    time_boundary_split=...,
+    time_boundary_reference=...,
+):  # -> conversion | int | float | complex | basestring | list[Unknown] | tuple[Unknown, ...] | dict[Unknown, Unknown]:
     """FindDwellLocations_geoanalytics(input_features, output_name, track_fields;track_fields..., distance_method, distance_tolerance, time_tolerance, output_type, {summary_statistics;summary_statistics...}, {data_store}, {time_boundary_split}, {time_boundary_reference})
 
-        Finds locations where moving objects have stopped, or dwelled, using
-        given time and distance thresholds.
+       Finds locations where moving objects have stopped, or dwelled, using
+       given time and distance thresholds.
 
-     INPUTS:
-      input_features (Feature Set):
-          The point tracks in which dwells will be found. The input must be a
-          time-enabled layer with features that represent instants in time.
-      output_name (String):
-          The name of the output feature service.
-      track_fields (Field):
-          One or more fields that will be used to identify unique tracks.
-      distance_method (String):
-          Specifies how the distances between dwell features will be calculated.
+    INPUTS:
+     input_features (Feature Set):
+         The point tracks in which dwells will be found. The input must be a
+         time-enabled layer with features that represent instants in time.
+     output_name (String):
+         The name of the output feature service.
+     track_fields (Field):
+         One or more fields that will be used to identify unique tracks.
+     distance_method (String):
+         Specifies how the distances between dwell features will be calculated.
 
-          * GEODESIC-If the spatial reference can be panned, tracks will cross
-          the international date line when appropriate. If the spatial reference
-          cannot be panned, tracks will be limited to the coordinate system
-          extent and may not wrap.
+         * GEODESIC-If the spatial reference can be panned, tracks will cross
+         the international date line when appropriate. If the spatial reference
+         cannot be panned, tracks will be limited to the coordinate system
+         extent and may not wrap.
 
-          * PLANAR-Planar distances will be used.
-      distance_tolerance (Linear Unit):
-          The maximum distance between points to be considered a single dwell
-          location.
-      time_tolerance (Time Unit):
-          The minimum time duration to be considered a single dwell
-          location.Both time and distance are considered when finding dwells.
-          The
-          Distance Tolerance parameter specifies distance.
-      output_type (String):
-          Specifies how the dwell features will be output.
+         * PLANAR-Planar distances will be used.
+     distance_tolerance (Linear Unit):
+         The maximum distance between points to be considered a single dwell
+         location.
+     time_tolerance (Time Unit):
+         The minimum time duration to be considered a single dwell
+         location.Both time and distance are considered when finding dwells.
+         The
+         Distance Tolerance parameter specifies distance.
+     output_type (String):
+         Specifies how the dwell features will be output.
 
-          * DWELL_FEATURES-All of the input point features that are part of a
-          dwell will be returned.
+         * DWELL_FEATURES-All of the input point features that are part of a
+         dwell will be returned.
 
-          * DWELL_MEAN_CENTERS-Points representing the mean centers of each
-          dwell group will be returned. This is the default.
+         * DWELL_MEAN_CENTERS-Points representing the mean centers of each
+         dwell group will be returned. This is the default.
 
-          * DWELL_CONVEX_HULLS-Polygons representing the convex hull of each
-          dwell group will be returned.
+         * DWELL_CONVEX_HULLS-Polygons representing the convex hull of each
+         dwell group will be returned.
 
-          * ALL_FEATURES-All of the input point features will be returned.
-      summary_statistics {Value Table}:
-          The statistics that will be calculated on specified fields.
+         * ALL_FEATURES-All of the input point features will be returned.
+     summary_statistics {Value Table}:
+         The statistics that will be calculated on specified fields.
 
-          * COUNT-The number of nonnull values. It can be used on numeric fields
-          or strings. The count of [null, 0, 2] is 2.
+         * COUNT-The number of nonnull values. It can be used on numeric fields
+         or strings. The count of [null, 0, 2] is 2.
 
-          * SUM-The sum of numeric values in a field. The sum of [null, null, 3]
-          is 3.
+         * SUM-The sum of numeric values in a field. The sum of [null, null, 3]
+         is 3.
 
-          * MEAN-The mean of numeric values. The mean of [0,2, null] is 1.
+         * MEAN-The mean of numeric values. The mean of [0,2, null] is 1.
 
-          * MIN-The minimum value of a numeric field. The minimum of [0, 2,
-          null] is 0.
+         * MIN-The minimum value of a numeric field. The minimum of [0, 2,
+         null] is 0.
 
-          * MAX-The maximum value of a numeric field. The maximum value of [0,
-          2, null] is 2.
+         * MAX-The maximum value of a numeric field. The maximum value of [0,
+         2, null] is 2.
 
-          * STDDEV-The standard deviation of a numeric field. The standard
-          deviation of [1] is null. The standard deviation of [null, 1,1,1] is
-          null.
+         * STDDEV-The standard deviation of a numeric field. The standard
+         deviation of [1] is null. The standard deviation of [null, 1,1,1] is
+         null.
 
-          * VAR-The variance of a numeric field in a track. The variance of [1]
-          is null. The variance of [null, 1,1,1] is null.
+         * VAR-The variance of a numeric field in a track. The variance of [1]
+         is null. The variance of [null, 1,1,1] is null.
 
-          * RANGE-The range of a numeric field. This is calculated as the
-          minimum value subtracted from the maximum value. The range of [0,
-          null, 1] is 1. The range of [null, 4] is 0.
+         * RANGE-The range of a numeric field. This is calculated as the
+         minimum value subtracted from the maximum value. The range of [0,
+         null, 1] is 1. The range of [null, 4] is 0.
 
-          * ANY-A sample string from a field of type string.
+         * ANY-A sample string from a field of type string.
 
-          * FIRST-The first value of a specified field in a track. This option
-          is available with ArcGIS Enterprise 10.8.1.
+         * FIRST-The first value of a specified field in a track. This option
+         is available with ArcGIS Enterprise 10.8.1.
 
-          * LAST-The last value of a specified field in a track. This option is
-          available with ArcGIS Enterprise 10.8.1.
-      data_store {String}:
-          Specifies the ArcGIS Data Store where the output will be saved. The
-          default is SPATIOTEMPORAL_DATA_STORE. All results stored in a
-          spatiotemporal big data store will be stored in WGS84. Results stored
-          in a relational data store will maintain their coordinate system.
+         * LAST-The last value of a specified field in a track. This option is
+         available with ArcGIS Enterprise 10.8.1.
+     data_store {String}:
+         Specifies the ArcGIS Data Store where the output will be saved. The
+         default is SPATIOTEMPORAL_DATA_STORE. All results stored in a
+         spatiotemporal big data store will be stored in WGS84. Results stored
+         in a relational data store will maintain their coordinate system.
 
-          * SPATIOTEMPORAL_DATA_STORE-Output will be stored in a spatiotemporal
-          big data store. This is the default.
+         * SPATIOTEMPORAL_DATA_STORE-Output will be stored in a spatiotemporal
+         big data store. This is the default.
 
-          * RELATIONAL_DATA_STORE-Output will be stored in a relational data
-          store.
-      time_boundary_split {Time Unit}:
-          A time span to split the input data into for analysis. A time boundary
-          allows you to analyze values within a defined time span. For example,
-          if you use a time boundary of 1 day, and set the time boundary
-          reference to January 1, 1980, tracks will be split at the beginning of
-          every day.
-      time_boundary_reference {Date}:
-          The reference time used to split the input data into for analysis.
-          Time boundaries will be created for the entire span of the data, and
-          the reference time does not need to occur at the start. If no
-          reference time is specified, January 1, 1970, is used."""
+         * RELATIONAL_DATA_STORE-Output will be stored in a relational data
+         store.
+     time_boundary_split {Time Unit}:
+         A time span to split the input data into for analysis. A time boundary
+         allows you to analyze values within a defined time span. For example,
+         if you use a time boundary of 1 day, and set the time boundary
+         reference to January 1, 1980, tracks will be split at the beginning of
+         every day.
+     time_boundary_reference {Date}:
+         The reference time used to split the input data into for analysis.
+         Time boundaries will be created for the entire span of the data, and
+         the reference time does not need to occur at the start. If no
+         reference time is specified, January 1, 1970, is used."""
     ...
 
-@gptooldoc('FindSimilarLocations_geoanalytics', None)
-def FindSimilarLocations(input_layer=..., search_layer=..., output_name=..., analysis_fields=..., most_or_least_similar=..., match_method=..., number_of_results=..., append_fields=..., data_store=...): # -> conversion | int | float | complex | basestring | list[Unknown] | tuple[Unknown, ...] | dict[Unknown, Unknown]:
+@gptooldoc("FindSimilarLocations_geoanalytics", None)
+def FindSimilarLocations(
+    input_layer=...,
+    search_layer=...,
+    output_name=...,
+    analysis_fields=...,
+    most_or_least_similar=...,
+    match_method=...,
+    number_of_results=...,
+    append_fields=...,
+    data_store=...,
+):  # -> conversion | int | float | complex | basestring | list[Unknown] | tuple[Unknown, ...] | dict[Unknown, Unknown]:
     """FindSimilarLocations_geoanalytics(input_layer, search_layer, output_name, analysis_fields;analysis_fields..., {most_or_least_similar}, {match_method}, {number_of_results}, {append_fields;append_fields...}, {data_store})
 
-        Identifies the candidate features that are most similar or dissimilar
-        to one or more input features based on feature attributes.
+       Identifies the candidate features that are most similar or dissimilar
+       to one or more input features based on feature attributes.
 
-     INPUTS:
-      input_layer (Record Set):
-          The reference layer (or a selection on a layer) containing the
-          features to be matched. The tool searches for other features similar
-          to these features. When more than one feature is provided, matching is
-          based on attribute averages.
-      search_layer (Record Set):
-          The candidate layer (or a selection on a layer) containing candidate-
-          matching features. The tool searches for features most similar (or
-          dissimilar) to the input_layer parameter among these candidates.
-      output_name (String):
-          The name of the output feature service. The output feature service
-          contains a record for each of the input_layer parameters and for all
-          the solution-matching features found.
-      analysis_fields (String):
-          A list of numeric attributes representing the matching criteria.
-      most_or_least_similar {String}:
-          Specifies whether the features to be found are most similar or least
-          similar to the input_layer parameter.
+    INPUTS:
+     input_layer (Record Set):
+         The reference layer (or a selection on a layer) containing the
+         features to be matched. The tool searches for other features similar
+         to these features. When more than one feature is provided, matching is
+         based on attribute averages.
+     search_layer (Record Set):
+         The candidate layer (or a selection on a layer) containing candidate-
+         matching features. The tool searches for features most similar (or
+         dissimilar) to the input_layer parameter among these candidates.
+     output_name (String):
+         The name of the output feature service. The output feature service
+         contains a record for each of the input_layer parameters and for all
+         the solution-matching features found.
+     analysis_fields (String):
+         A list of numeric attributes representing the matching criteria.
+     most_or_least_similar {String}:
+         Specifies whether the features to be found are most similar or least
+         similar to the input_layer parameter.
 
-          * MOST_SIMILAR-Finds the features that are most similar.
+         * MOST_SIMILAR-Finds the features that are most similar.
 
-          * LEAST_SIMILAR-Finds the features that are least similar.
+         * LEAST_SIMILAR-Finds the features that are least similar.
 
-          * BOTH-Finds the features that are most similar and the features that
-          are least similar.
-      match_method {String}:
-          Specifies whether matches will be based on values or cosine
-          relationships.
+         * BOTH-Finds the features that are most similar and the features that
+         are least similar.
+     match_method {String}:
+         Specifies whether matches will be based on values or cosine
+         relationships.
 
-          * ATTRIBUTE_VALUES-Similarity or dissimilarity will be based on the
-          sum of squared standardized attribute value differences for all the
-          analysis_fields attributes.
+         * ATTRIBUTE_VALUES-Similarity or dissimilarity will be based on the
+         sum of squared standardized attribute value differences for all the
+         analysis_fields attributes.
 
-          * ATTRIBUTE_PROFILES-Similarity or dissimilarity will be computed as a
-          function of cosine similarity for all the analysis_fields attributes.
-      number_of_results {Long}:
-          The number of solution matches to be found. Entering zero or a number
-          larger than the total number of search_layer features will return
-          rankings for all the candidate features, with a maximum of 10,000.
-      append_fields {Field}:
-          An optional list of attributes to include with the output. You can
-          include a name identifier, categorical field, or date field for
-          example. These fields are not used to determine similarity; they are
-          only included in the output parameter attributes for your reference.
-          By default, all fields are added.
-      data_store {String}:
-          Specifies the ArcGIS Data Store where the output will be saved. The
-          default is SPATIOTEMPORAL_DATA_STORE. All results stored in a
-          spatiotemporal big data store will be stored in WGS84. Results stored
-          in a relational data store will maintain their coordinate system.
+         * ATTRIBUTE_PROFILES-Similarity or dissimilarity will be computed as a
+         function of cosine similarity for all the analysis_fields attributes.
+     number_of_results {Long}:
+         The number of solution matches to be found. Entering zero or a number
+         larger than the total number of search_layer features will return
+         rankings for all the candidate features, with a maximum of 10,000.
+     append_fields {Field}:
+         An optional list of attributes to include with the output. You can
+         include a name identifier, categorical field, or date field for
+         example. These fields are not used to determine similarity; they are
+         only included in the output parameter attributes for your reference.
+         By default, all fields are added.
+     data_store {String}:
+         Specifies the ArcGIS Data Store where the output will be saved. The
+         default is SPATIOTEMPORAL_DATA_STORE. All results stored in a
+         spatiotemporal big data store will be stored in WGS84. Results stored
+         in a relational data store will maintain their coordinate system.
 
-          * SPATIOTEMPORAL_DATA_STORE-Output will be stored in a spatiotemporal
-          big data store. This is the default.
+         * SPATIOTEMPORAL_DATA_STORE-Output will be stored in a spatiotemporal
+         big data store. This is the default.
 
-          * RELATIONAL_DATA_STORE-Output will be stored in a relational data
-          store."""
+         * RELATIONAL_DATA_STORE-Output will be stored in a relational data
+         store."""
     ...
 
-@gptooldoc('AppendData_geoanalytics', None)
-def AppendData(input_layer=..., append_layer=..., append_method=..., append_fields=..., append_expressions=...): # -> conversion | int | float | complex | basestring | list[Unknown] | tuple[Unknown, ...] | dict[Unknown, Unknown]:
+@gptooldoc("AppendData_geoanalytics", None)
+def AppendData(
+    input_layer=...,
+    append_layer=...,
+    append_method=...,
+    append_fields=...,
+    append_expressions=...,
+):  # -> conversion | int | float | complex | basestring | list[Unknown] | tuple[Unknown, ...] | dict[Unknown, Unknown]:
     """AppendData_geoanalytics(input_layer, append_layer, append_method, {append_fields;append_fields...}, {append_expressions;append_expressions...})
 
-        Appends features to an existing hosted feature layer.
+       Appends features to an existing hosted feature layer.
 
-     INPUTS:
-      input_layer (Record Set):
-          The hosted feature layer to which features will be appended.
-      append_layer (Record Set):
-          The layer containing features to append to the input layer.
-      append_method (String):
-          Specifies how fields from the Input Layer will be appended with values
-          from the Append Layer.
+    INPUTS:
+     input_layer (Record Set):
+         The hosted feature layer to which features will be appended.
+     append_layer (Record Set):
+         The layer containing features to append to the input layer.
+     append_method (String):
+         Specifies how fields from the Input Layer will be appended with values
+         from the Append Layer.
 
-          * MATCHING_ONLY-Input layer fields will only be appended if they have
-          a matching field in the append layer. Fields without a match will be
-          appended with null values.
+         * MATCHING_ONLY-Input layer fields will only be appended if they have
+         a matching field in the append layer. Fields without a match will be
+         appended with null values.
 
-          * FIELD_MAPPING-Input layer fields can be appended with append layer
-          fields of the same name and different type, or with values calculated
-          from Arcade expressions.
-      append_fields {Value Table}:
-          The append layer fields of the same type and different name as the
-          input layer fields to be appended. Select the Input Field you want to
-          append to, and the Append Field containing the values you want to
-          append.
-      append_expressions {Value Table}:
-          The Arcade expression used to calculate field values for the input
-          field. Expressions are written in Arcade and can include mathematical
-          operators and multiple fields."""
+         * FIELD_MAPPING-Input layer fields can be appended with append layer
+         fields of the same name and different type, or with values calculated
+         from Arcade expressions.
+     append_fields {Value Table}:
+         The append layer fields of the same type and different name as the
+         input layer fields to be appended. Select the Input Field you want to
+         append to, and the Append Field containing the values you want to
+         append.
+     append_expressions {Value Table}:
+         The Arcade expression used to calculate field values for the input
+         field. Expressions are written in Arcade and can include mathematical
+         operators and multiple fields."""
     ...
 
-@gptooldoc('CalculateField_geoanalytics', None)
-def CalculateField(input_layer=..., output_name=..., field_name=..., field_type=..., expression=..., track_aware=..., track_fields=..., data_store=..., time_boundary_split=..., time_boundary_reference=...): # -> conversion | int | float | complex | basestring | list[Unknown] | tuple[Unknown, ...] | dict[Unknown, Unknown]:
+@gptooldoc("CalculateField_geoanalytics", None)
+def CalculateField(
+    input_layer=...,
+    output_name=...,
+    field_name=...,
+    field_type=...,
+    expression=...,
+    track_aware=...,
+    track_fields=...,
+    data_store=...,
+    time_boundary_split=...,
+    time_boundary_reference=...,
+):  # -> conversion | int | float | complex | basestring | list[Unknown] | tuple[Unknown, ...] | dict[Unknown, Unknown]:
     """CalculateField_geoanalytics(input_layer, output_name, field_name, field_type, expression, {track_aware}, {track_fields;track_fields...}, {data_store}, {time_boundary_split}, {time_boundary_reference})
 
-        Creates a layer with calculated field values.
+       Creates a layer with calculated field values.
 
-     INPUTS:
-      input_layer (Record Set):
-          The input features that will have a field calculated.
-      output_name (String):
-          The name of the output feature service.
-      field_name (String):
-          The name of the field that will have values calculated. This can be an
-          existing field or a new field name.
-      field_type (String):
-          Specifies the field type for the calculated field.
+    INPUTS:
+     input_layer (Record Set):
+         The input features that will have a field calculated.
+     output_name (String):
+         The name of the output feature service.
+     field_name (String):
+         The name of the field that will have values calculated. This can be an
+         existing field or a new field name.
+     field_type (String):
+         Specifies the field type for the calculated field.
 
-          * STRING-The new field will be of type text.
+         * STRING-The new field will be of type text.
 
-          * INTEGER-The new field will be of type integer.
+         * INTEGER-The new field will be of type integer.
 
-          * FLOAT-The new field will be of type float.
+         * FLOAT-The new field will be of type float.
 
-          * DATE-The new field will be of type date.
-      expression (Calculator Expression):
-          Calculates values in the field. Expressions are written in Arcade and
-          can include operators and multiple fields. Calculated values are
-          applied in the units of the spatial reference of the input unless you
-          are using a geographic coordinate system, in which case they will be
-          in meters.
-      track_aware {Boolean}:
-          Specifies whether the expression will use a track-aware expression.
+         * DATE-The new field will be of type date.
+     expression (Calculator Expression):
+         Calculates values in the field. Expressions are written in Arcade and
+         can include operators and multiple fields. Calculated values are
+         applied in the units of the spatial reference of the input unless you
+         are using a geographic coordinate system, in which case they will be
+         in meters.
+     track_aware {Boolean}:
+         Specifies whether the expression will use a track-aware expression.
 
-          * TRACK_AWARE-The expression will use a track-aware expression, and a
-          track field must be specified.
+         * TRACK_AWARE-The expression will use a track-aware expression, and a
+         track field must be specified.
 
-          * NOT_TRACK_AWARE-The expression will not use a track-aware
-          expression. This is the default.
-      track_fields {Field}:
-          One or more fields that will be used to identify unique tracks.
-      data_store {String}:
-          Specifies the ArcGIS Data Store where the output will be saved. The
-          default is SPATIOTEMPORAL_DATA_STORE. All results stored in a
-          spatiotemporal big data store will be stored in WGS84. Results stored
-          in a relational data store will maintain their coordinate system.
+         * NOT_TRACK_AWARE-The expression will not use a track-aware
+         expression. This is the default.
+     track_fields {Field}:
+         One or more fields that will be used to identify unique tracks.
+     data_store {String}:
+         Specifies the ArcGIS Data Store where the output will be saved. The
+         default is SPATIOTEMPORAL_DATA_STORE. All results stored in a
+         spatiotemporal big data store will be stored in WGS84. Results stored
+         in a relational data store will maintain their coordinate system.
 
-          * SPATIOTEMPORAL_DATA_STORE-Output will be stored in a spatiotemporal
-          big data store. This is the default.
+         * SPATIOTEMPORAL_DATA_STORE-Output will be stored in a spatiotemporal
+         big data store. This is the default.
 
-          * RELATIONAL_DATA_STORE-Output will be stored in a relational data
-          store.
-      time_boundary_split {Time Unit}:
-          A time span to split the input data into for analysis. A time boundary
-          allows you to analyze values within a defined time span. For example,
-          if you use a time boundary of 1 day, starting on January 1, 1980,
-          tracks will be split at the beginning of every day. This parameter is
-          only available with ArcGIS Enterprise 10.7 and later.
-      time_boundary_reference {Date}:
-          The reference time used to split the input data into for analysis.
-          Time boundaries will be created for the entire span of the data, and
-          the reference time does not need to occur at the start. If no
-          reference time is specified, January 1, 1970, is used. This parameter
-          is only available with ArcGIS Enterprise 10.7 and later."""
+         * RELATIONAL_DATA_STORE-Output will be stored in a relational data
+         store.
+     time_boundary_split {Time Unit}:
+         A time span to split the input data into for analysis. A time boundary
+         allows you to analyze values within a defined time span. For example,
+         if you use a time boundary of 1 day, starting on January 1, 1980,
+         tracks will be split at the beginning of every day. This parameter is
+         only available with ArcGIS Enterprise 10.7 and later.
+     time_boundary_reference {Date}:
+         The reference time used to split the input data into for analysis.
+         Time boundaries will be created for the entire span of the data, and
+         the reference time does not need to occur at the start. If no
+         reference time is specified, January 1, 1970, is used. This parameter
+         is only available with ArcGIS Enterprise 10.7 and later."""
     ...
 
-@gptooldoc('ClipLayer_geoanalytics', None)
-def ClipLayer(input_layer=..., clip_layer=..., output_name=..., data_store=...): # -> conversion | int | float | complex | basestring | list[Unknown] | tuple[Unknown, ...] | dict[Unknown, Unknown]:
+@gptooldoc("ClipLayer_geoanalytics", None)
+def ClipLayer(
+    input_layer=..., clip_layer=..., output_name=..., data_store=...
+):  # -> conversion | int | float | complex | basestring | list[Unknown] | tuple[Unknown, ...] | dict[Unknown, Unknown]:
     """ClipLayer_geoanalytics(input_layer, clip_layer, output_name, {data_store})
 
-        Extracts input features from within specified polygons.
+       Extracts input features from within specified polygons.
 
-     INPUTS:
-      input_layer (Feature Set):
-          The dataset containing the point, line, or polygon features to be
-          clipped.
-      clip_layer (Feature Set):
-          The dataset containing the polygon features used to clip the input
-          features.
-      output_name (String):
-          The name of the output feature service.
-      data_store {String}:
-          Specifies the ArcGIS Data Store where the output will be saved. The
-          default is SPATIOTEMPORAL_DATA_STORE. All results stored in a
-          spatiotemporal big data store will be stored in WGS84. Results stored
-          in a relational data store will maintain their coordinate system.
+    INPUTS:
+     input_layer (Feature Set):
+         The dataset containing the point, line, or polygon features to be
+         clipped.
+     clip_layer (Feature Set):
+         The dataset containing the polygon features used to clip the input
+         features.
+     output_name (String):
+         The name of the output feature service.
+     data_store {String}:
+         Specifies the ArcGIS Data Store where the output will be saved. The
+         default is SPATIOTEMPORAL_DATA_STORE. All results stored in a
+         spatiotemporal big data store will be stored in WGS84. Results stored
+         in a relational data store will maintain their coordinate system.
 
-          * SPATIOTEMPORAL_DATA_STORE-Output will be stored in a spatiotemporal
-          big data store. This is the default.
+         * SPATIOTEMPORAL_DATA_STORE-Output will be stored in a spatiotemporal
+         big data store. This is the default.
 
-          * RELATIONAL_DATA_STORE-Output will be stored in a relational data
-          store."""
+         * RELATIONAL_DATA_STORE-Output will be stored in a relational data
+         store."""
     ...
 
-@gptooldoc('CopyToDataStore_geoanalytics', None)
-def CopyToDataStore(input_layer=..., output_name=..., data_store=...): # -> conversion | int | float | complex | basestring | list[Unknown] | tuple[Unknown, ...] | dict[Unknown, Unknown]:
+@gptooldoc("CopyToDataStore_geoanalytics", None)
+def CopyToDataStore(
+    input_layer=..., output_name=..., data_store=...
+):  # -> conversion | int | float | complex | basestring | list[Unknown] | tuple[Unknown, ...] | dict[Unknown, Unknown]:
     """CopyToDataStore_geoanalytics(input_layer, output_name, {data_store})
 
-        Copies features from the input to a new feature service in your
-        portal.
+       Copies features from the input to a new feature service in your
+       portal.
 
-     INPUTS:
-      input_layer (Record Set):
-          The features to be copied.
-      output_name (String):
-          Name of output feature service.
-      data_store {String}:
-          The ArcGIS Data Store to which the output will be saved. The default
-          is SPATIOTEMPORAL_DATA_STORE. All results stored to the
-          SPATIOTEMPORAL_DATA_STORE will be stored in WGS84. Results stored in a
-          RELATIONAL_DATA_STORE will maintain their coordinate system.
+    INPUTS:
+     input_layer (Record Set):
+         The features to be copied.
+     output_name (String):
+         Name of output feature service.
+     data_store {String}:
+         The ArcGIS Data Store to which the output will be saved. The default
+         is SPATIOTEMPORAL_DATA_STORE. All results stored to the
+         SPATIOTEMPORAL_DATA_STORE will be stored in WGS84. Results stored in a
+         RELATIONAL_DATA_STORE will maintain their coordinate system.
 
-          * SPATIOTEMPORAL_DATA_STORE-Output will be stored in your
-          spatiotemporal big data store. This is the default.
+         * SPATIOTEMPORAL_DATA_STORE-Output will be stored in your
+         spatiotemporal big data store. This is the default.
 
-          * RELATIONAL_DATA_STORE-Output will be stored in your relational data
-          store."""
+         * RELATIONAL_DATA_STORE-Output will be stored in your relational data
+         store."""
     ...
 
-@gptooldoc('DissolveBoundaries_geoanalytics', None)
-def DissolveBoundaries(input_layer=..., output_name=..., multipart=..., dissolve_fields=..., fields=..., summary_fields=..., data_store=...): # -> conversion | int | float | complex | basestring | list[Unknown] | tuple[Unknown, ...] | dict[Unknown, Unknown]:
+@gptooldoc("DissolveBoundaries_geoanalytics", None)
+def DissolveBoundaries(
+    input_layer=...,
+    output_name=...,
+    multipart=...,
+    dissolve_fields=...,
+    fields=...,
+    summary_fields=...,
+    data_store=...,
+):  # -> conversion | int | float | complex | basestring | list[Unknown] | tuple[Unknown, ...] | dict[Unknown, Unknown]:
     """DissolveBoundaries_geoanalytics(input_layer, output_name, {multipart}, {dissolve_fields}, {fields;fields...}, {summary_fields;summary_fields...}, {data_store})
 
-        Finds polygons that intersect or have the same field values and merges
-        them to form a single polygon.
+       Finds polygons that intersect or have the same field values and merges
+       them to form a single polygon.
 
-     INPUTS:
-      input_layer (Feature Set):
-          The layer containing the polygon features that will be dissolved.
-      output_name (String):
-          The name of the output feature service.
-      multipart {Boolean}:
-          Specifies whether multipart features will be created in the output
-          feature class.
+    INPUTS:
+     input_layer (Feature Set):
+         The layer containing the polygon features that will be dissolved.
+     output_name (String):
+         The name of the output feature service.
+     multipart {Boolean}:
+         Specifies whether multipart features will be created in the output
+         feature class.
 
-          * MULTI_PART-Multipart features will be created.
+         * MULTI_PART-Multipart features will be created.
 
-          * SINGLE_PART-Multipart features will not be created. Individual
-          features will be created for each part instead. This is the default.
-      dissolve_fields {Boolean}:
-          Specifies whether features with the same field values will be
-          dissolved.
+         * SINGLE_PART-Multipart features will not be created. Individual
+         features will be created for each part instead. This is the default.
+     dissolve_fields {Boolean}:
+         Specifies whether features with the same field values will be
+         dissolved.
 
-          * NO_DISSOLVE_FIELDS-Polygons that share a common border (that is,
-          they are adjacent) or polygons that overlap will be dissolved into one
-          polygon. This is the default.
+         * NO_DISSOLVE_FIELDS-Polygons that share a common border (that is,
+         they are adjacent) or polygons that overlap will be dissolved into one
+         polygon. This is the default.
 
-          * DISSOLVE_FIELDS-Polygons that have the same field value or values
-          will be dissolved.
-      fields {Field}:
-          The field or fields that will be used to dissolve like features.
-          Features with the same value for each field will be dissolved.
-      summary_fields {Value Table}:
-          The statistics that will be calculated on specified fields.
+         * DISSOLVE_FIELDS-Polygons that have the same field value or values
+         will be dissolved.
+     fields {Field}:
+         The field or fields that will be used to dissolve like features.
+         Features with the same value for each field will be dissolved.
+     summary_fields {Value Table}:
+         The statistics that will be calculated on specified fields.
 
-          * Count-The number of nonnull values. It can be used on numeric fields
-          or strings. The count of [null, 0, 2] is 2.
+         * Count-The number of nonnull values. It can be used on numeric fields
+         or strings. The count of [null, 0, 2] is 2.
 
-          * Sum-The sum of numeric values in a field. The sum of [null, null, 3]
-          is 3.
+         * Sum-The sum of numeric values in a field. The sum of [null, null, 3]
+         is 3.
 
-          * Mean-The mean of numeric values. The mean of [0, 2, null] is 1.
+         * Mean-The mean of numeric values. The mean of [0, 2, null] is 1.
 
-          * Min-The minimum value of a numeric field. The minimum of [0, 2,
-          null] is 0.
+         * Min-The minimum value of a numeric field. The minimum of [0, 2,
+         null] is 0.
 
-          * Max-The maximum value of a numeric field. The maximum value of [0,
-          2, null] is 2.
+         * Max-The maximum value of a numeric field. The maximum value of [0,
+         2, null] is 2.
 
-          * Standard Deviation-The standard deviation of a numeric field. The
-          standard deviation of [1] is null. The standard deviation of [null,
-          1,1,1] is null.
+         * Standard Deviation-The standard deviation of a numeric field. The
+         standard deviation of [1] is null. The standard deviation of [null,
+         1,1,1] is null.
 
-          * Variance-The variance of a numeric field in a track. The variance of
-          [1] is null. The variance of [null, 1, 1, 1] is null.
+         * Variance-The variance of a numeric field in a track. The variance of
+         [1] is null. The variance of [null, 1, 1, 1] is null.
 
-          * Range-The range of a numeric field. This is calculated as the
-          minimum value subtracted from the maximum value. The range of [0,
-          null, 1] is 1. The range of [null, 4] is 0.
+         * Range-The range of a numeric field. This is calculated as the
+         minimum value subtracted from the maximum value. The range of [0,
+         null, 1] is 1. The range of [null, 4] is 0.
 
-          * Any-A sample string from a field of type string.
-          The statistics that will be calculated on specified fields.
+         * Any-A sample string from a field of type string.
+         The statistics that will be calculated on specified fields.
 
-          * COUNT-The number of nonnull values. It can be used on numeric fields
-          or strings. The count of [null, 0, 2] is 2.
+         * COUNT-The number of nonnull values. It can be used on numeric fields
+         or strings. The count of [null, 0, 2] is 2.
 
-          * SUM-The sum of numeric values in a field. The sum of [null, null, 3]
-          is 3.
+         * SUM-The sum of numeric values in a field. The sum of [null, null, 3]
+         is 3.
 
-          * MEAN-The mean of numeric values. The mean of [0,2, null] is 1.
+         * MEAN-The mean of numeric values. The mean of [0,2, null] is 1.
 
-          * MIN-The minimum value of a numeric field. The minimum of [0, 2,
-          null] is 0.
+         * MIN-The minimum value of a numeric field. The minimum of [0, 2,
+         null] is 0.
 
-          * MAX-The maximum value of a numeric field. The maximum value of [0,
-          2, null] is 2.
+         * MAX-The maximum value of a numeric field. The maximum value of [0,
+         2, null] is 2.
 
-          * STDDEV-The standard deviation of a numeric field. The standard
-          deviation of [1] is null. The standard deviation of [null, 1,1,1] is
-          null.
+         * STDDEV-The standard deviation of a numeric field. The standard
+         deviation of [1] is null. The standard deviation of [null, 1,1,1] is
+         null.
 
-          * VAR-The variance of a numeric field in a track. The variance of [1]
-          is null. The variance of [null, 1,1,1] is null.
+         * VAR-The variance of a numeric field in a track. The variance of [1]
+         is null. The variance of [null, 1,1,1] is null.
 
-          * RANGE-The range of a numeric field. This is calculated as the
-          minimum value subtracted from the maximum value. The range of [0,
-          null, 1] is 1. The range of [null, 4] is 0.
+         * RANGE-The range of a numeric field. This is calculated as the
+         minimum value subtracted from the maximum value. The range of [0,
+         null, 1] is 1. The range of [null, 4] is 0.
 
-          * ANY-A sample string from a field of type string.
-      data_store {String}:
-          Specifies the ArcGIS Data Store where the output will be saved. The
-          default is SPATIOTEMPORAL_DATA_STORE. All results stored in a
-          spatiotemporal big data store will be stored in WGS84. Results stored
-          in a relational data store will maintain their coordinate system.
+         * ANY-A sample string from a field of type string.
+     data_store {String}:
+         Specifies the ArcGIS Data Store where the output will be saved. The
+         default is SPATIOTEMPORAL_DATA_STORE. All results stored in a
+         spatiotemporal big data store will be stored in WGS84. Results stored
+         in a relational data store will maintain their coordinate system.
 
-          * SPATIOTEMPORAL_DATA_STORE-Output will be stored in a spatiotemporal
-          big data store. This is the default.
+         * SPATIOTEMPORAL_DATA_STORE-Output will be stored in a spatiotemporal
+         big data store. This is the default.
 
-          * RELATIONAL_DATA_STORE-Output will be stored in a relational data
-          store."""
+         * RELATIONAL_DATA_STORE-Output will be stored in a relational data
+         store."""
     ...
 
-@gptooldoc('MergeLayers_geoanalytics', None)
-def MergeLayers(input_layer=..., merge_layer=..., output_name=..., merging_attributes=..., data_store=...): # -> conversion | int | float | complex | basestring | list[Unknown] | tuple[Unknown, ...] | dict[Unknown, Unknown]:
+@gptooldoc("MergeLayers_geoanalytics", None)
+def MergeLayers(
+    input_layer=...,
+    merge_layer=...,
+    output_name=...,
+    merging_attributes=...,
+    data_store=...,
+):  # -> conversion | int | float | complex | basestring | list[Unknown] | tuple[Unknown, ...] | dict[Unknown, Unknown]:
     """MergeLayers_geoanalytics(input_layer, merge_layer, output_name, {merging_attributes;merging_attributes...}, {data_store})
 
-        Combines feature layers to create a single output layer.
+       Combines feature layers to create a single output layer.
 
-     INPUTS:
-      input_layer (Record Set):
-          The point, line, or polygon features or table to merge with the merge
-          layer.
-      merge_layer (Record Set):
-          The point, line, or polygon features or table to merge with the input
-          layer. The merge layer must contain the same feature type and time
-          type as the input layer.
-      output_name (String):
-          The name of the output feature service.
-      merging_attributes {Value Table}:
-          A list of values that describe how fields from the merge layer are to
-          be modified and matched with fields in the input layer. All fields
-          from the input layer will be written to the output layer. If no
-          merging attributes are defined, all fields from the merge layer will
-          be written to the output layer.If a field exists in one layer but not
-          the other, the output layer
-          will still contain two fields. The output field will contain null
-          values for the input features that did not have the field. For
-          example, if the input layer contains a field named TYPE but the merge
-          layer does not contain TYPE, the output will contain TYPE, but its
-          values will be null for all the features copied from the merge layer.
-          You can control how fields in the merge layer are written to
-          the output layer using the following merge types:
+    INPUTS:
+     input_layer (Record Set):
+         The point, line, or polygon features or table to merge with the merge
+         layer.
+     merge_layer (Record Set):
+         The point, line, or polygon features or table to merge with the input
+         layer. The merge layer must contain the same feature type and time
+         type as the input layer.
+     output_name (String):
+         The name of the output feature service.
+     merging_attributes {Value Table}:
+         A list of values that describe how fields from the merge layer are to
+         be modified and matched with fields in the input layer. All fields
+         from the input layer will be written to the output layer. If no
+         merging attributes are defined, all fields from the merge layer will
+         be written to the output layer.If a field exists in one layer but not
+         the other, the output layer
+         will still contain two fields. The output field will contain null
+         values for the input features that did not have the field. For
+         example, if the input layer contains a field named TYPE but the merge
+         layer does not contain TYPE, the output will contain TYPE, but its
+         values will be null for all the features copied from the merge layer.
+         You can control how fields in the merge layer are written to
+         the output layer using the following merge types:
 
-          * Remove-The merge layer field will be removed from the output layer.
+         * Remove-The merge layer field will be removed from the output layer.
 
-          * Rename-The merge layer field will be renamed in the output. You
-          cannot rename a field from the merge layer to a field from the input
-          layer. To make field names equivalent, use the match option.
+         * Rename-The merge layer field will be renamed in the output. You
+         cannot rename a field from the merge layer to a field from the input
+         layer. To make field names equivalent, use the match option.
 
-          * Match-The merge layer field is renamed and matched to a field from
-          the input layer. For example, the input layer has a field named CODE
-          and the merge layer has a field named STATUS. You can match STATUS to
-          CODE, and the output will contain the CODE field with values of the
-          STATUS field used for features copied from the merge layer. Type
-          casting is supported for numeric values. Matching numeric fields to
-          string fields is not supported.
-      data_store {String}:
-          Specifies the ArcGIS Data Store where the output will be saved. The
-          default is SPATIOTEMPORAL_DATA_STORE. All results stored in a
-          spatiotemporal big data store will be stored in WGS84. Results stored
-          in a relational data store will maintain their coordinate system.
+         * Match-The merge layer field is renamed and matched to a field from
+         the input layer. For example, the input layer has a field named CODE
+         and the merge layer has a field named STATUS. You can match STATUS to
+         CODE, and the output will contain the CODE field with values of the
+         STATUS field used for features copied from the merge layer. Type
+         casting is supported for numeric values. Matching numeric fields to
+         string fields is not supported.
+     data_store {String}:
+         Specifies the ArcGIS Data Store where the output will be saved. The
+         default is SPATIOTEMPORAL_DATA_STORE. All results stored in a
+         spatiotemporal big data store will be stored in WGS84. Results stored
+         in a relational data store will maintain their coordinate system.
 
-          * SPATIOTEMPORAL_DATA_STORE-Output will be stored in a spatiotemporal
-          big data store. This is the default.
+         * SPATIOTEMPORAL_DATA_STORE-Output will be stored in a spatiotemporal
+         big data store. This is the default.
 
-          * RELATIONAL_DATA_STORE-Output will be stored in a relational data
-          store."""
+         * RELATIONAL_DATA_STORE-Output will be stored in a relational data
+         store."""
     ...
 
-@gptooldoc('OverlayLayers_geoanalytics', None)
-def OverlayLayers(input_layer=..., overlay_layer=..., output_name=..., overlay_type=..., include_overlaps=..., data_store=...): # -> conversion | int | float | complex | basestring | list[Unknown] | tuple[Unknown, ...] | dict[Unknown, Unknown]:
+@gptooldoc("OverlayLayers_geoanalytics", None)
+def OverlayLayers(
+    input_layer=...,
+    overlay_layer=...,
+    output_name=...,
+    overlay_type=...,
+    include_overlaps=...,
+    data_store=...,
+):  # -> conversion | int | float | complex | basestring | list[Unknown] | tuple[Unknown, ...] | dict[Unknown, Unknown]:
     """OverlayLayers_geoanalytics(input_layer, overlay_layer, output_name, overlay_type, {include_overlaps}, {data_store})
 
-        Overlays the geometries from multiple layers into a single layer.
-        Overlay can be used to combine, erase, modify, or update spatial
-        features.
+       Overlays the geometries from multiple layers into a single layer.
+       Overlay can be used to combine, erase, modify, or update spatial
+       features.
 
-     INPUTS:
-      input_layer (Feature Set):
-          The point, line, or polygon features that will be overlaid with the
-          overlay layer.
-      overlay_layer (Feature Set):
-          The features that will be overlaid with the input layer features.
-      output_name (String):
-          The name of the output feature service.
-      overlay_type (String):
-          Specifies the type of overlay to be performed.
+    INPUTS:
+     input_layer (Feature Set):
+         The point, line, or polygon features that will be overlaid with the
+         overlay layer.
+     overlay_layer (Feature Set):
+         The features that will be overlaid with the input layer features.
+     output_name (String):
+         The name of the output feature service.
+     overlay_type (String):
+         Specifies the type of overlay to be performed.
 
-          * INTERSECT-A geometric intersection of the input layers will be
-          computed. Features or portions of features that overlap in both the
-          input layer and overlay layer will be written to the output layer.
-          This is the default.
+         * INTERSECT-A geometric intersection of the input layers will be
+         computed. Features or portions of features that overlap in both the
+         input layer and overlay layer will be written to the output layer.
+         This is the default.
 
-          * ERASE-Only those features or portions of features in the input layer
-          that do not overlap the features in the overlay layer will be written
-          to the output.
+         * ERASE-Only those features or portions of features in the input layer
+         that do not overlap the features in the overlay layer will be written
+         to the output.
 
-          * UNION-A geometric union of the input layer and overlay layer will be
-          computed. All features and their attributes will be written to the
-          layer.
+         * UNION-A geometric union of the input layer and overlay layer will be
+         computed. All features and their attributes will be written to the
+         layer.
 
-          * IDENTITY-A geometric intersection of the input features and identity
-          features will be computed. Features or portions of features that
-          overlap in both the input layer and the overlay layer will be written
-          to the output layer.
+         * IDENTITY-A geometric intersection of the input features and identity
+         features will be computed. Features or portions of features that
+         overlap in both the input layer and the overlay layer will be written
+         to the output layer.
 
-          * SYMMETRICAL_DIFFERENCE-Features or portions of features in the
-          input layer and overlay layer that do not overlap will be written to
-          the output layer.
-      include_overlaps {Boolean}:
-          Specifies whether one or both of the input layers have overlapping
-          features. This parameter is only supported for ArcGIS Enterprise
-          10.6.1.
+         * SYMMETRICAL_DIFFERENCE-Features or portions of features in the
+         input layer and overlay layer that do not overlap will be written to
+         the output layer.
+     include_overlaps {Boolean}:
+         Specifies whether one or both of the input layers have overlapping
+         features. This parameter is only supported for ArcGIS Enterprise
+         10.6.1.
 
-          * OVERLAPPING-One or both of the layers have overlapping features.
-          This is the default.
+         * OVERLAPPING-One or both of the layers have overlapping features.
+         This is the default.
 
-          * NOT_OVERLAPPING-Neither layer has overlapping features.
-      data_store {String}:
-          Specifies the ArcGIS Data Store where the output will be saved. The
-          default is SPATIOTEMPORAL_DATA_STORE. All results stored in a
-          spatiotemporal big data store will be stored in WGS84. Results stored
-          in a relational data store will maintain their coordinate system.
+         * NOT_OVERLAPPING-Neither layer has overlapping features.
+     data_store {String}:
+         Specifies the ArcGIS Data Store where the output will be saved. The
+         default is SPATIOTEMPORAL_DATA_STORE. All results stored in a
+         spatiotemporal big data store will be stored in WGS84. Results stored
+         in a relational data store will maintain their coordinate system.
 
-          * SPATIOTEMPORAL_DATA_STORE-Output will be stored in a spatiotemporal
-          big data store. This is the default.
+         * SPATIOTEMPORAL_DATA_STORE-Output will be stored in a spatiotemporal
+         big data store. This is the default.
 
-          * RELATIONAL_DATA_STORE-Output will be stored in a relational data
-          store."""
+         * RELATIONAL_DATA_STORE-Output will be stored in a relational data
+         store."""
     ...
 
-@gptooldoc('AggregatePoints_geoanalytics', None)
-def AggregatePoints(point_layer=..., output_name=..., polygon_or_bin=..., polygon_layer=..., bin_type=..., bin_size=..., time_step_interval=..., time_step_repeat=..., time_step_reference=..., summary_fields=..., data_store=...): # -> conversion | int | float | complex | basestring | list[Unknown] | tuple[Unknown, ...] | dict[Unknown, Unknown]:
+@gptooldoc("AggregatePoints_geoanalytics", None)
+def AggregatePoints(
+    point_layer=...,
+    output_name=...,
+    polygon_or_bin=...,
+    polygon_layer=...,
+    bin_type=...,
+    bin_size=...,
+    time_step_interval=...,
+    time_step_repeat=...,
+    time_step_reference=...,
+    summary_fields=...,
+    data_store=...,
+):  # -> conversion | int | float | complex | basestring | list[Unknown] | tuple[Unknown, ...] | dict[Unknown, Unknown]:
     """AggregatePoints_geoanalytics(point_layer, output_name, polygon_or_bin, {polygon_layer}, {bin_type}, {bin_size}, {time_step_interval}, {time_step_repeat}, {time_step_reference}, {summary_fields;summary_fields...}, {data_store})
 
-        Aggregates points into polygon features or bins. A polygon is returned
-        with a count of points as well as optional statistics at all locations
-        where points exist.
+       Aggregates points into polygon features or bins. A polygon is returned
+       with a count of points as well as optional statistics at all locations
+       where points exist.
 
-     INPUTS:
-      point_layer (Feature Set):
-          The point features to be aggregated into polygons or bins.
-      output_name (String):
-          The name of the output feature service.
-      polygon_or_bin (String):
-          Specifies how the point_layer will be aggregated.
+    INPUTS:
+     point_layer (Feature Set):
+         The point features to be aggregated into polygons or bins.
+     output_name (String):
+         The name of the output feature service.
+     polygon_or_bin (String):
+         Specifies how the point_layer will be aggregated.
 
-          * POLYGON-The point layer will be aggregated into a polygon dataset.
+         * POLYGON-The point layer will be aggregated into a polygon dataset.
 
-          * BIN-The point layer will be aggregated into square or hexagonal bins
-          that are generated when the tool is run.
-      polygon_layer {Feature Set}:
-          The polygon features into which the input points will be aggregated.
-      bin_type {String}:
-          Specifies the bin shape that will be generated to hold the aggregated
-          points.
+         * BIN-The point layer will be aggregated into square or hexagonal bins
+         that are generated when the tool is run.
+     polygon_layer {Feature Set}:
+         The polygon features into which the input points will be aggregated.
+     bin_type {String}:
+         Specifies the bin shape that will be generated to hold the aggregated
+         points.
 
-          * SQUARE-Square bins will be generated. in which bin_size represents
-          the height of a square. This is the default.
+         * SQUARE-Square bins will be generated. in which bin_size represents
+         the height of a square. This is the default.
 
-          * HEXAGON-Hexagonal bins will be generated, in which bin_size
-          represents the height between two parallel sides.
-      bin_size {Linear Unit}:
-          The distance interval that represents the bin size and units into
-          which the point_layer will be aggregated. The distance interval must
-          be a linear unit.
-      time_step_interval {Time Unit}:
-          A value that specifies the duration of the time step. This parameter
-          is only available if the input points are time enabled and represent
-          an instant in time.Time stepping can only be applied if time is
-          enabled on the input.
-      time_step_repeat {Time Unit}:
-          A value that specifies how often the time-step interval occurs. This
-          parameter is only available if the input points are time enabled and
-          represent an instant in time.
-      time_step_reference {Date}:
-          A date that specifies the reference time with which to align the time
-          steps. The default is January 1, 1970, at 12:00 a.m. This parameter is
-          only available if the input points are time enabled and represent an
-          instant in time.
-      summary_fields {Value Table}:
-          The statistics that will be calculated on specified fields.
+         * HEXAGON-Hexagonal bins will be generated, in which bin_size
+         represents the height between two parallel sides.
+     bin_size {Linear Unit}:
+         The distance interval that represents the bin size and units into
+         which the point_layer will be aggregated. The distance interval must
+         be a linear unit.
+     time_step_interval {Time Unit}:
+         A value that specifies the duration of the time step. This parameter
+         is only available if the input points are time enabled and represent
+         an instant in time.Time stepping can only be applied if time is
+         enabled on the input.
+     time_step_repeat {Time Unit}:
+         A value that specifies how often the time-step interval occurs. This
+         parameter is only available if the input points are time enabled and
+         represent an instant in time.
+     time_step_reference {Date}:
+         A date that specifies the reference time with which to align the time
+         steps. The default is January 1, 1970, at 12:00 a.m. This parameter is
+         only available if the input points are time enabled and represent an
+         instant in time.
+     summary_fields {Value Table}:
+         The statistics that will be calculated on specified fields.
 
-          * COUNT-The number of nonnull values. It can be used on numeric fields
-          or strings. The count of [null, 0, 2] is 2.
+         * COUNT-The number of nonnull values. It can be used on numeric fields
+         or strings. The count of [null, 0, 2] is 2.
 
-          * SUM-The sum of numeric values in a field. The sum of [null, null, 3]
-          is 3.
+         * SUM-The sum of numeric values in a field. The sum of [null, null, 3]
+         is 3.
 
-          * MEAN-The mean of numeric values. The mean of [0,2, null] is 1.
+         * MEAN-The mean of numeric values. The mean of [0,2, null] is 1.
 
-          * MIN-The minimum value of a numeric field. The minimum of [0, 2,
-          null] is 0.
+         * MIN-The minimum value of a numeric field. The minimum of [0, 2,
+         null] is 0.
 
-          * MAX-The maximum value of a numeric field. The maximum value of [0,
-          2, null] is 2.
+         * MAX-The maximum value of a numeric field. The maximum value of [0,
+         2, null] is 2.
 
-          * STDDEV-The standard deviation of a numeric field. The standard
-          deviation of [1] is null. The standard deviation of [null, 1,1,1] is
-          null.
+         * STDDEV-The standard deviation of a numeric field. The standard
+         deviation of [1] is null. The standard deviation of [null, 1,1,1] is
+         null.
 
-          * VAR-The variance of a numeric field in a track. The variance of [1]
-          is null. The variance of [null, 1,1,1] is null.
+         * VAR-The variance of a numeric field in a track. The variance of [1]
+         is null. The variance of [null, 1,1,1] is null.
 
-          * RANGE-The range of a numeric field. This is calculated as the
-          minimum value subtracted from the maximum value. The range of [0,
-          null, 1] is 1. The range of [null, 4] is 0.
+         * RANGE-The range of a numeric field. This is calculated as the
+         minimum value subtracted from the maximum value. The range of [0,
+         null, 1] is 1. The range of [null, 4] is 0.
 
-          * ANY-A sample string from a field of type string.
-      data_store {String}:
-          Specifies the ArcGIS Data Store where the output will be saved. The
-          default is SPATIOTEMPORAL_DATA_STORE. All results stored in a
-          spatiotemporal big data store will be stored in WGS84. Results stored
-          in a relational data store will maintain their coordinate system.
+         * ANY-A sample string from a field of type string.
+     data_store {String}:
+         Specifies the ArcGIS Data Store where the output will be saved. The
+         default is SPATIOTEMPORAL_DATA_STORE. All results stored in a
+         spatiotemporal big data store will be stored in WGS84. Results stored
+         in a relational data store will maintain their coordinate system.
 
-          * SPATIOTEMPORAL_DATA_STORE-Output will be stored in a spatiotemporal
-          big data store. This is the default.
+         * SPATIOTEMPORAL_DATA_STORE-Output will be stored in a spatiotemporal
+         big data store. This is the default.
 
-          * RELATIONAL_DATA_STORE-Output will be stored in a relational data
-          store."""
+         * RELATIONAL_DATA_STORE-Output will be stored in a relational data
+         store."""
     ...
 
-@gptooldoc('DescribeDataset_geoanalytics', None)
-def DescribeDataset(input_layer=..., output_name=..., sample_features=..., create_extent_layer=..., data_store=...): # -> conversion | int | float | complex | basestring | list[Unknown] | tuple[Unknown, ...] | dict[Unknown, Unknown]:
+@gptooldoc("DescribeDataset_geoanalytics", None)
+def DescribeDataset(
+    input_layer=...,
+    output_name=...,
+    sample_features=...,
+    create_extent_layer=...,
+    data_store=...,
+):  # -> conversion | int | float | complex | basestring | list[Unknown] | tuple[Unknown, ...] | dict[Unknown, Unknown]:
     """DescribeDataset_geoanalytics(input_layer, output_name, {sample_features}, {create_extent_layer}, {data_store})
 
-        Summarizes features into calculated field statistics, sample features,
-        and extent boundaries.
+       Summarizes features into calculated field statistics, sample features,
+       and extent boundaries.
 
-     INPUTS:
-      input_layer (Record Set):
-          The point, line, polygon, or tabular features to be described.
-      output_name (String):
-          The name of the output feature service.
-      sample_features {Long}:
-          The number of features that will be included in the output sample
-          layer. No sample is returned if you select 0 features or don't provide
-          a number. By default, no sample layer is returned.
-      create_extent_layer {Boolean}:
-          Specifies whether an output extent layer will be created. The extent
-          is a polygon that represents the spatial and temporal extent of the
-          input features.
+    INPUTS:
+     input_layer (Record Set):
+         The point, line, polygon, or tabular features to be described.
+     output_name (String):
+         The name of the output feature service.
+     sample_features {Long}:
+         The number of features that will be included in the output sample
+         layer. No sample is returned if you select 0 features or don't provide
+         a number. By default, no sample layer is returned.
+     create_extent_layer {Boolean}:
+         Specifies whether an output extent layer will be created. The extent
+         is a polygon that represents the spatial and temporal extent of the
+         input features.
 
-          * CREATE_EXTENT-An extent layer will be created.
+         * CREATE_EXTENT-An extent layer will be created.
 
-          * NO_EXTENT-An extent layer will not be created.
-      data_store {String}:
-          Specifies the ArcGIS Data Store where the output will be saved. The
-          default is SPATIOTEMPORAL_DATA_STORE. All results stored in a
-          spatiotemporal big data store will be stored in WGS84. Results stored
-          in a relational data store will maintain their coordinate system.
+         * NO_EXTENT-An extent layer will not be created.
+     data_store {String}:
+         Specifies the ArcGIS Data Store where the output will be saved. The
+         default is SPATIOTEMPORAL_DATA_STORE. All results stored in a
+         spatiotemporal big data store will be stored in WGS84. Results stored
+         in a relational data store will maintain their coordinate system.
 
-          * SPATIOTEMPORAL_DATA_STORE-Output will be stored in a spatiotemporal
-          big data store. This is the default.
+         * SPATIOTEMPORAL_DATA_STORE-Output will be stored in a spatiotemporal
+         big data store. This is the default.
 
-          * RELATIONAL_DATA_STORE-Output will be stored in a relational data
-          store."""
+         * RELATIONAL_DATA_STORE-Output will be stored in a relational data
+         store."""
     ...
 
-@gptooldoc('JoinFeatures_geoanalytics', None)
-def JoinFeatures(target_layer=..., join_layer=..., output_name=..., join_operation=..., spatial_relationship=..., spatial_near_distance=..., temporal_relationship=..., temporal_near_distance=..., attribute_relationship=..., summary_fields=..., join_condition=..., data_store=..., keep_all_target_features=...): # -> conversion | int | float | complex | basestring | list[Unknown] | tuple[Unknown, ...] | dict[Unknown, Unknown]:
+@gptooldoc("JoinFeatures_geoanalytics", None)
+def JoinFeatures(
+    target_layer=...,
+    join_layer=...,
+    output_name=...,
+    join_operation=...,
+    spatial_relationship=...,
+    spatial_near_distance=...,
+    temporal_relationship=...,
+    temporal_near_distance=...,
+    attribute_relationship=...,
+    summary_fields=...,
+    join_condition=...,
+    data_store=...,
+    keep_all_target_features=...,
+):  # -> conversion | int | float | complex | basestring | list[Unknown] | tuple[Unknown, ...] | dict[Unknown, Unknown]:
     """JoinFeatures_geoanalytics(target_layer, join_layer, output_name, join_operation, {spatial_relationship}, {spatial_near_distance}, {temporal_relationship}, {temporal_near_distance}, {attribute_relationship;attribute_relationship...}, {summary_fields;summary_fields...}, {join_condition}, {data_store}, {keep_all_target_features})
 
-        Joins attributes from one layer to another based on spatial, temporal,
-        or attribute relationships, or a combination of those relationships.
+       Joins attributes from one layer to another based on spatial, temporal,
+       or attribute relationships, or a combination of those relationships.
 
-     INPUTS:
-      target_layer (Record Set):
-          Contains the target features. The attributes from the target features
-          and the attributes from the joined features will be transferred to the
-          output.
-      join_layer (Record Set):
-          Contains the join features. The attributes from the join features will
-          be joined to the attributes of the target features. See the
-          explanation of the Join Operation (join_operation in Python) parameter
-          for details about how the aggregation of joined attributes are
-          affected by the type of join operation.
-      output_name (String):
-          The name of the output feature service.
-      join_operation (String):
-          Specifies how joins between the target_layer values and join_layer
-          values will be handled in the output feature if multiple join features
-          are found that have the same spatial relationship with a single target
-          feature.
+    INPUTS:
+     target_layer (Record Set):
+         Contains the target features. The attributes from the target features
+         and the attributes from the joined features will be transferred to the
+         output.
+     join_layer (Record Set):
+         Contains the join features. The attributes from the join features will
+         be joined to the attributes of the target features. See the
+         explanation of the Join Operation (join_operation in Python) parameter
+         for details about how the aggregation of joined attributes are
+         affected by the type of join operation.
+     output_name (String):
+         The name of the output feature service.
+     join_operation (String):
+         Specifies how joins between the target_layer values and join_layer
+         values will be handled in the output feature if multiple join features
+         are found that have the same spatial relationship with a single target
+         feature.
 
-          * JOIN_ONE_TO_ONE-The attributes from the multiple join features will
-          be aggregated. For example, if a point target feature is found in two
-          separate polygon join features, the attributes from the two polygons
-          will be aggregated before being transferred to the output point
-          feature class. If one polygon has an attribute value of 3 and the
-          other has a value of 7, and the summary statistic sum is specified for
-          that field, the aggregated value in the output feature class will be
-          10. This is the default, and only the count statistic is returned.
+         * JOIN_ONE_TO_ONE-The attributes from the multiple join features will
+         be aggregated. For example, if a point target feature is found in two
+         separate polygon join features, the attributes from the two polygons
+         will be aggregated before being transferred to the output point
+         feature class. If one polygon has an attribute value of 3 and the
+         other has a value of 7, and the summary statistic sum is specified for
+         that field, the aggregated value in the output feature class will be
+         10. This is the default, and only the count statistic is returned.
 
-          * JOIN_ONE_TO_MANY-The output feature class will contain multiple
-          copies (records) of the target feature. For example, if a single-point
-          target feature is found in two separate polygon join features, the
-          output feature class will contain two copies of the target feature:
-          one record with the attributes of one polygon and another record with
-          the attributes of the other polygon. There are no summary statistics
-          available with this method.
-      spatial_relationship {String}:
-          Specifies the criteria that will be used to spatially join features.
+         * JOIN_ONE_TO_MANY-The output feature class will contain multiple
+         copies (records) of the target feature. For example, if a single-point
+         target feature is found in two separate polygon join features, the
+         output feature class will contain two copies of the target feature:
+         one record with the attributes of one polygon and another record with
+         the attributes of the other polygon. There are no summary statistics
+         available with this method.
+     spatial_relationship {String}:
+         Specifies the criteria that will be used to spatially join features.
 
-          * INTERSECTS-The features in the join features will be matched if they
-          intersect a target feature. This is the default.
+         * INTERSECTS-The features in the join features will be matched if they
+         intersect a target feature. This is the default.
 
-          * EQUALS-The features in the join features will be matched if they
-          are the same geometry as a target feature.
+         * EQUALS-The features in the join features will be matched if they
+         are the same geometry as a target feature.
 
-          * NEAR-The features in the join features will be matched if they are
-          within a specified distance of a target feature. The distance is
-          measured using planar distance. Specify a distance in the
-          spatial_near_distance parameter.
+         * NEAR-The features in the join features will be matched if they are
+         within a specified distance of a target feature. The distance is
+         measured using planar distance. Specify a distance in the
+         spatial_near_distance parameter.
 
-          * NEAR_GEODESIC-The features in the join features will be matched if
-          they are within a specified distance of a target feature. The distance
-          is measured geodesically. Specify a distance in the
-          spatial_near_distance parameter. This option is available with ArcGIS
-          Enterprise 10.7 or later.
+         * NEAR_GEODESIC-The features in the join features will be matched if
+         they are within a specified distance of a target feature. The distance
+         is measured geodesically. Specify a distance in the
+         spatial_near_distance parameter. This option is available with ArcGIS
+         Enterprise 10.7 or later.
 
-          * CONTAINS-The features in the join features will be matched if a
-          target feature contains them. The target features must be polygons or
-          polylines. The join features can only be polygons when the target
-          features are also polygons. A polygon can contain any feature type. A
-          polyline can contain only polylines and points. A point cannot contain
-          any feature, not even a point. If the join feature is entirely on the
-          boundary of the target feature (no part is properly inside or
-          outside), the feature will not be matched.
+         * CONTAINS-The features in the join features will be matched if a
+         target feature contains them. The target features must be polygons or
+         polylines. The join features can only be polygons when the target
+         features are also polygons. A polygon can contain any feature type. A
+         polyline can contain only polylines and points. A point cannot contain
+         any feature, not even a point. If the join feature is entirely on the
+         boundary of the target feature (no part is properly inside or
+         outside), the feature will not be matched.
 
-          * WITHIN-The features in the join features will be matched if a target
-          feature is within them. It is the opposite of the contains
-          relationship. For this option, the target features can only be
-          polygons when the join features are also polygons. A point can be a
-          join feature only if a point is also a target feature. If the entirety
-          of the feature in the join features is on the boundary of the target
-          feature, the feature will not be matched.
+         * WITHIN-The features in the join features will be matched if a target
+         feature is within them. It is the opposite of the contains
+         relationship. For this option, the target features can only be
+         polygons when the join features are also polygons. A point can be a
+         join feature only if a point is also a target feature. If the entirety
+         of the feature in the join features is on the boundary of the target
+         feature, the feature will not be matched.
 
-          * TOUCHES-The features in the join features will be matched if they
-          have a boundary that touches a target feature. When the target and
-          join features are lines or polygons, the boundary of the join feature
-          can only touch the boundary of the target feature, and no part of the
-          join feature can cross the boundary of the target feature.
+         * TOUCHES-The features in the join features will be matched if they
+         have a boundary that touches a target feature. When the target and
+         join features are lines or polygons, the boundary of the join feature
+         can only touch the boundary of the target feature, and no part of the
+         join feature can cross the boundary of the target feature.
 
-          * CROSSES-The features in the join features will be matched if a
-          target feature is crossed by their outline. The join and target
-          features must be lines or polygons. If polygons are used for the join
-          or target features, the polygon's boundary (line) will be used. Lines
-          that cross at a point will be matched, but lines that share a line
-          segment will not.
+         * CROSSES-The features in the join features will be matched if a
+         target feature is crossed by their outline. The join and target
+         features must be lines or polygons. If polygons are used for the join
+         or target features, the polygon's boundary (line) will be used. Lines
+         that cross at a point will be matched, but lines that share a line
+         segment will not.
 
-          * OVERLAPS-The features in the join features will be matched if they
-          overlap a target feature.
-      spatial_near_distance {Linear Unit}:
-          The distance from a target feature within which join features will be
-          considered for the spatial join. A search radius is only valid when
-          the spatial_relationship parameter value is NEAR or NEAR_GEODESIC.
-      temporal_relationship {String}:
-          Specifies the time criteria that will be used to match features.
+         * OVERLAPS-The features in the join features will be matched if they
+         overlap a target feature.
+     spatial_near_distance {Linear Unit}:
+         The distance from a target feature within which join features will be
+         considered for the spatial join. A search radius is only valid when
+         the spatial_relationship parameter value is NEAR or NEAR_GEODESIC.
+     temporal_relationship {String}:
+         Specifies the time criteria that will be used to match features.
 
-          * MEETS-When a target time interval end is equal to the join time
-          interval start, the target time meets the join time.
+         * MEETS-When a target time interval end is equal to the join time
+         interval start, the target time meets the join time.
 
-          * MET_BY-When a target time interval start is equal to the join time
-          interval end, the target time is met by the join time.
+         * MET_BY-When a target time interval start is equal to the join time
+         interval end, the target time is met by the join time.
 
-          * OVERLAPS-When a target time interval starts and ends before the
-          start and end of the join time interval, the target time overlaps the
-          join time.
+         * OVERLAPS-When a target time interval starts and ends before the
+         start and end of the join time interval, the target time overlaps the
+         join time.
 
-          * OVERLAPPED_BY-When a target time interval starts and ends after the
-          start and end time of the join time interval, the target time is
-          overlapped by the join time.
+         * OVERLAPPED_BY-When a target time interval starts and ends after the
+         start and end time of the join time interval, the target time is
+         overlapped by the join time.
 
-          * DURING-When a target time occurs between the start and end of the
-          join time interval, the target time is during the join time.
+         * DURING-When a target time occurs between the start and end of the
+         join time interval, the target time is during the join time.
 
-          * CONTAINS-When a join feature time occurs between the start and end
-          of the target time interval, the target time contains the join time.
+         * CONTAINS-When a join feature time occurs between the start and end
+         of the target time interval, the target time contains the join time.
 
-          * EQUALS-Two times are considered equal if their instants or intervals
-          are identical.
+         * EQUALS-Two times are considered equal if their instants or intervals
+         are identical.
 
-          * FINISHES-When a target time ends at the same time as a join time,
-          and the target time started after the join time, the target time
-          finishes the join time.
+         * FINISHES-When a target time ends at the same time as a join time,
+         and the target time started after the join time, the target time
+         finishes the join time.
 
-          * FINISHED_BY-When a join feature time ends at the same time as a
-          target time, and the join time started after the target time, the
-          target time is finished by the join time.
+         * FINISHED_BY-When a join feature time ends at the same time as a
+         target time, and the join time started after the target time, the
+         target time is finished by the join time.
 
-          * STARTS-When a target time starts at the same time as the join time
-          interval and ends before the join time interval ends, the target time
-          starts the join time.
+         * STARTS-When a target time starts at the same time as the join time
+         interval and ends before the join time interval ends, the target time
+         starts the join time.
 
-          * STARTED_BY-When a target interval time starts at the same time as
-          the join time and ends after the join time, the target time is started
-          by the join time.
+         * STARTED_BY-When a target interval time starts at the same time as
+         the join time and ends after the join time, the target time is started
+         by the join time.
 
-          * INTERSECTS-When any part of a target time occurs at the same time as
-          the join time, the target time intersects the join time.
+         * INTERSECTS-When any part of a target time occurs at the same time as
+         the join time, the target time intersects the join time.
 
-          * NEAR-When a target time is within a specified range of time from the
-          join time, the target time is near the join time.
+         * NEAR-When a target time is within a specified range of time from the
+         join time, the target time is near the join time.
 
-          * NEAR_BEFORE-When a target time is before the join time but within a
-          specified range of time from the join time, the target time is near
-          before the join time. This option is available with ArcGIS Enterprise
-          10.6 or later.
+         * NEAR_BEFORE-When a target time is before the join time but within a
+         specified range of time from the join time, the target time is near
+         before the join time. This option is available with ArcGIS Enterprise
+         10.6 or later.
 
-          * NEAR_AFTER-When a target time is after the join time but within a
-          specified range of time from the join time, the target time is near
-          after the join time. This option is available with ArcGIS Enterprise
-          10.6 or later.
-      temporal_near_distance {Time Unit}:
-          The distance in time from a target feature within which join features
-          will be considered for the spatial join. A time is only valid when the
-          temporal_relationship parameter value is NEAR, NEAR_BEFORE, or
-          NEAR_AFTER and both feature are time enabled.
-      attribute_relationship {Value Table}:
-          Joins features based on values in an attribute field. Specify
-          the attribute field from the target layer that matches an attribute
-          field from the join layer.
+         * NEAR_AFTER-When a target time is after the join time but within a
+         specified range of time from the join time, the target time is near
+         after the join time. This option is available with ArcGIS Enterprise
+         10.6 or later.
+     temporal_near_distance {Time Unit}:
+         The distance in time from a target feature within which join features
+         will be considered for the spatial join. A time is only valid when the
+         temporal_relationship parameter value is NEAR, NEAR_BEFORE, or
+         NEAR_AFTER and both feature are time enabled.
+     attribute_relationship {Value Table}:
+         Joins features based on values in an attribute field. Specify
+         the attribute field from the target layer that matches an attribute
+         field from the join layer.
 
-          * Target Field-An attribute field from the target layer containing
-          values to match.
+         * Target Field-An attribute field from the target layer containing
+         values to match.
 
-          * Join Field-An attribute field from the join layer containing values
-          to match.
-      summary_fields {Value Table}:
-          The statistics that will be calculated on specified fields.
+         * Join Field-An attribute field from the join layer containing values
+         to match.
+     summary_fields {Value Table}:
+         The statistics that will be calculated on specified fields.
 
-          * COUNT-The number of nonnull values. It can be used on numeric fields
-          or strings. The count of [null, 0, 2] is 2.
+         * COUNT-The number of nonnull values. It can be used on numeric fields
+         or strings. The count of [null, 0, 2] is 2.
 
-          * SUM-The sum of numeric values in a field. The sum of [null, null, 3]
-          is 3.
+         * SUM-The sum of numeric values in a field. The sum of [null, null, 3]
+         is 3.
 
-          * MEAN-The mean of numeric values. The mean of [0,2, null] is 1.
+         * MEAN-The mean of numeric values. The mean of [0,2, null] is 1.
 
-          * MIN-The minimum value of a numeric field. The minimum of [0, 2,
-          null] is 0.
+         * MIN-The minimum value of a numeric field. The minimum of [0, 2,
+         null] is 0.
 
-          * MAX-The maximum value of a numeric field. The maximum value of [0,
-          2, null] is 2.
+         * MAX-The maximum value of a numeric field. The maximum value of [0,
+         2, null] is 2.
 
-          * STDDEV-The standard deviation of a numeric field. The standard
-          deviation of [1] is null. The standard deviation of [null, 1,1,1] is
-          null.
+         * STDDEV-The standard deviation of a numeric field. The standard
+         deviation of [1] is null. The standard deviation of [null, 1,1,1] is
+         null.
 
-          * VAR-The variance of a numeric field in a track. The variance of [1]
-          is null. The variance of [null, 1,1,1] is null.
+         * VAR-The variance of a numeric field in a track. The variance of [1]
+         is null. The variance of [null, 1,1,1] is null.
 
-          * RANGE-The range of a numeric field. This is calculated as the
-          minimum value subtracted from the maximum value. The range of [0,
-          null, 1] is 1. The range of [null, 4] is 0.
+         * RANGE-The range of a numeric field. This is calculated as the
+         minimum value subtracted from the maximum value. The range of [0,
+         null, 1] is 1. The range of [null, 4] is 0.
 
-          * ANY-A sample string from a field of type string.
-      join_condition {String}:
-          Applies a condition to specified fields. Only features with fields
-          that meet these conditions will be joined.For example, you could apply
-          a join condition to features in which the
-          HealthSpending attribute in the join layer is more than 20 percent of
-          the Income attribute in the target layer. In 10.5 and 10.5.1, the join
-          condition to use to apply this expression is join["HealthSpending"] >
-          target["Income"] * .2. In 10.6 and later, use an Arcade expression
-          such as $join["HealthSpending"] > $target["Income"] * .2.
-      data_store {String}:
-          Specifies the ArcGIS Data Store where the output will be saved. The
-          default is SPATIOTEMPORAL_DATA_STORE. All results stored in a
-          spatiotemporal big data store will be stored in WGS84. Results stored
-          in a relational data store will maintain their coordinate system.
+         * ANY-A sample string from a field of type string.
+     join_condition {String}:
+         Applies a condition to specified fields. Only features with fields
+         that meet these conditions will be joined.For example, you could apply
+         a join condition to features in which the
+         HealthSpending attribute in the join layer is more than 20 percent of
+         the Income attribute in the target layer. In 10.5 and 10.5.1, the join
+         condition to use to apply this expression is join["HealthSpending"] >
+         target["Income"] * .2. In 10.6 and later, use an Arcade expression
+         such as $join["HealthSpending"] > $target["Income"] * .2.
+     data_store {String}:
+         Specifies the ArcGIS Data Store where the output will be saved. The
+         default is SPATIOTEMPORAL_DATA_STORE. All results stored in a
+         spatiotemporal big data store will be stored in WGS84. Results stored
+         in a relational data store will maintain their coordinate system.
 
-          * SPATIOTEMPORAL_DATA_STORE-Output will be stored in a spatiotemporal
-          big data store. This is the default.
+         * SPATIOTEMPORAL_DATA_STORE-Output will be stored in a spatiotemporal
+         big data store. This is the default.
 
-          * RELATIONAL_DATA_STORE-Output will be stored in a relational data
-          store.
-      keep_all_target_features {Boolean}:
-          Specifies whether all target features will be maintained in the output
-          feature class (known as a left outer join) or only those that have the
-          specified relationships with the join features (inner join).
+         * RELATIONAL_DATA_STORE-Output will be stored in a relational data
+         store.
+     keep_all_target_features {Boolean}:
+         Specifies whether all target features will be maintained in the output
+         feature class (known as a left outer join) or only those that have the
+         specified relationships with the join features (inner join).
 
-          * KEEP_ALL-All target features will be maintained in the output (left
-          outer join).
+         * KEEP_ALL-All target features will be maintained in the output (left
+         outer join).
 
-          * KEEP_COMMON-Only those target features that have the specified
-          relationships will be maintained in the output feature class (inner
-          join). This is the default."""
+         * KEEP_COMMON-Only those target features that have the specified
+         relationships will be maintained in the output feature class (inner
+         join). This is the default."""
     ...
 
-@gptooldoc('ReconstructTracks_geoanalytics', None)
-def ReconstructTracks(input_layer=..., output_name=..., track_fields=..., method=..., buffer_type=..., buffer_field=..., buffer_expression=..., time_split=..., summary_fields=..., data_store=..., distance_split=..., time_boundary_split=..., time_boundary_reference=..., split_expression=..., split_type=...): # -> conversion | int | float | complex | basestring | list[Unknown] | tuple[Unknown, ...] | dict[Unknown, Unknown]:
+@gptooldoc("ReconstructTracks_geoanalytics", None)
+def ReconstructTracks(
+    input_layer=...,
+    output_name=...,
+    track_fields=...,
+    method=...,
+    buffer_type=...,
+    buffer_field=...,
+    buffer_expression=...,
+    time_split=...,
+    summary_fields=...,
+    data_store=...,
+    distance_split=...,
+    time_boundary_split=...,
+    time_boundary_reference=...,
+    split_expression=...,
+    split_type=...,
+):  # -> conversion | int | float | complex | basestring | list[Unknown] | tuple[Unknown, ...] | dict[Unknown, Unknown]:
     """ReconstructTracks_geoanalytics(input_layer, output_name, track_fields;track_fields..., method, {buffer_type}, {buffer_field}, {buffer_expression}, {time_split}, {summary_fields;summary_fields...}, {data_store}, {distance_split}, {time_boundary_split}, {time_boundary_reference}, {split_expression}, {split_type})
 
-        Creates line or polygon tracks from time-enabled input data.
+       Creates line or polygon tracks from time-enabled input data.
 
-     INPUTS:
-      input_layer (Feature Set):
-          The points or polygons to be reconstructed into tracks. The input must
-          be a time-enabled layer that represents an instant in time.
-      output_name (String):
-          The name of the output feature service.
-      track_fields (Field):
-          One or more fields that will be used to identify unique tracks.
-      method (String):
-          Specifies the criteria that will be used to reconstruct tracks. If a
-          buffer is used, the method parameter determines the type of buffer.
+    INPUTS:
+     input_layer (Feature Set):
+         The points or polygons to be reconstructed into tracks. The input must
+         be a time-enabled layer that represents an instant in time.
+     output_name (String):
+         The name of the output feature service.
+     track_fields (Field):
+         One or more fields that will be used to identify unique tracks.
+     method (String):
+         Specifies the criteria that will be used to reconstruct tracks. If a
+         buffer is used, the method parameter determines the type of buffer.
 
-          * GEODESIC-If the spatial reference can be panned, tracks will cross
-          the date line when appropriate. If the spatial reference cannot be
-          panned, tracks will be limited to the coordinate system extent and may
-          not wrap.
+         * GEODESIC-If the spatial reference can be panned, tracks will cross
+         the date line when appropriate. If the spatial reference cannot be
+         panned, tracks will be limited to the coordinate system extent and may
+         not wrap.
 
-          * PLANAR-The tracks will not cross the date line.
-      buffer_type {String}:
-          Specifies how the buffer distance will be defined.
+         * PLANAR-The tracks will not cross the date line.
+     buffer_type {String}:
+         Specifies how the buffer distance will be defined.
 
-          * FIELD-A single field will be used to define the buffer distance.
+         * FIELD-A single field will be used to define the buffer distance.
 
-          * EXPRESSION-An equation using fields and mathematical operators will
-          be used to define the buffer distance.
-      buffer_field {Field}:
-          The field that will be used to buffer the input features. Field values
-          are applied in the units of the spatial reference of the input unless
-          you are using a geographic coordinate system, in which case they will
-          be in meters.
-      buffer_expression {Calculator Expression}:
-          The expression that will be used to buffer input features. Fields must
-          be numeric, and the expression can include [+ - * / ] operators and
-          multiple fields. Calculated values are applied in the units of the
-          spatial reference of the input unless you are using a geographic
-          coordinate system, in which case they will be in meters.In ArcGIS
-          Enterprise 10.5 and 10.5.1, expressions are formatted as
-          as_kilometers(distance) * 2 + as_meters(15). In ArcGIS Enterprise 10.6
-          or later, use Arcade expressions such as
-          as_kilometers($feature.distance) * 2 + as_meters(15).The expression
-          that will be used to buffer input features. Fields must
-          be numeric, and the expression can include [+ - * / ] operators and
-          multiple fields. Calculated values are applied in the units of the
-          spatial reference of the input unless you are using a geographic
-          coordinate system, in which case they will be in meters.In ArcGIS
-          Enterprise 10.5 and 10.5.1, expressions are formatted as
-          as_kilometers(distance) * 2 + as_meters(15). In ArcGIS Enterprise 10.6
-          or later, use Arcade expressions such as
-          as_kilometers($feature.distance) * 2 + as_meters(15).
-      time_split {Time Unit}:
-          Features that are farther apart in time than the time-split duration
-          will be split into separate tracks.
-      summary_fields {Value Table}:
-          The statistics that will be calculated on specified fields.
+         * EXPRESSION-An equation using fields and mathematical operators will
+         be used to define the buffer distance.
+     buffer_field {Field}:
+         The field that will be used to buffer the input features. Field values
+         are applied in the units of the spatial reference of the input unless
+         you are using a geographic coordinate system, in which case they will
+         be in meters.
+     buffer_expression {Calculator Expression}:
+         The expression that will be used to buffer input features. Fields must
+         be numeric, and the expression can include [+ - * / ] operators and
+         multiple fields. Calculated values are applied in the units of the
+         spatial reference of the input unless you are using a geographic
+         coordinate system, in which case they will be in meters.In ArcGIS
+         Enterprise 10.5 and 10.5.1, expressions are formatted as
+         as_kilometers(distance) * 2 + as_meters(15). In ArcGIS Enterprise 10.6
+         or later, use Arcade expressions such as
+         as_kilometers($feature.distance) * 2 + as_meters(15).The expression
+         that will be used to buffer input features. Fields must
+         be numeric, and the expression can include [+ - * / ] operators and
+         multiple fields. Calculated values are applied in the units of the
+         spatial reference of the input unless you are using a geographic
+         coordinate system, in which case they will be in meters.In ArcGIS
+         Enterprise 10.5 and 10.5.1, expressions are formatted as
+         as_kilometers(distance) * 2 + as_meters(15). In ArcGIS Enterprise 10.6
+         or later, use Arcade expressions such as
+         as_kilometers($feature.distance) * 2 + as_meters(15).
+     time_split {Time Unit}:
+         Features that are farther apart in time than the time-split duration
+         will be split into separate tracks.
+     summary_fields {Value Table}:
+         The statistics that will be calculated on specified fields.
 
-          * COUNT-The number of nonnull values. It can be used on numeric fields
-          or strings. The count of [null, 0, 2] is 2.
+         * COUNT-The number of nonnull values. It can be used on numeric fields
+         or strings. The count of [null, 0, 2] is 2.
 
-          * SUM-The sum of numeric values in a field. The sum of [null, null, 3]
-          is 3.
+         * SUM-The sum of numeric values in a field. The sum of [null, null, 3]
+         is 3.
 
-          * MEAN-The mean of numeric values. The mean of [0,2, null] is 1.
+         * MEAN-The mean of numeric values. The mean of [0,2, null] is 1.
 
-          * MIN-The minimum value of a numeric field. The minimum of [0, 2,
-          null] is 0.
+         * MIN-The minimum value of a numeric field. The minimum of [0, 2,
+         null] is 0.
 
-          * MAX-The maximum value of a numeric field. The maximum value of [0,
-          2, null] is 2.
+         * MAX-The maximum value of a numeric field. The maximum value of [0,
+         2, null] is 2.
 
-          * STDDEV-The standard deviation of a numeric field. The standard
-          deviation of [1] is null. The standard deviation of [null, 1,1,1] is
-          null.
+         * STDDEV-The standard deviation of a numeric field. The standard
+         deviation of [1] is null. The standard deviation of [null, 1,1,1] is
+         null.
 
-          * VAR-The variance of a numeric field in a track. The variance of [1]
-          is null. The variance of [null, 1,1,1] is null.
+         * VAR-The variance of a numeric field in a track. The variance of [1]
+         is null. The variance of [null, 1,1,1] is null.
 
-          * RANGE-The range of a numeric field. This is calculated as the
-          minimum value subtracted from the maximum value. The range of [0,
-          null, 1] is 1. The range of [null, 4] is 0.
+         * RANGE-The range of a numeric field. This is calculated as the
+         minimum value subtracted from the maximum value. The range of [0,
+         null, 1] is 1. The range of [null, 4] is 0.
 
-          * ANY-A sample string from a field of type string.
+         * ANY-A sample string from a field of type string.
 
-          * FIRST-The first value of a specified field in a track. This option
-          is available with ArcGIS Enterprise 10.8.1.
+         * FIRST-The first value of a specified field in a track. This option
+         is available with ArcGIS Enterprise 10.8.1.
 
-          * LAST-The last value of a specified field in a track. This option is
-          available with ArcGIS Enterprise 10.8.1.
-      data_store {String}:
-          Specifies the ArcGIS Data Store where the output will be saved. The
-          default is SPATIOTEMPORAL_DATA_STORE. All results stored in a
-          spatiotemporal big data store will be stored in WGS84. Results stored
-          in a relational data store will maintain their coordinate system.
+         * LAST-The last value of a specified field in a track. This option is
+         available with ArcGIS Enterprise 10.8.1.
+     data_store {String}:
+         Specifies the ArcGIS Data Store where the output will be saved. The
+         default is SPATIOTEMPORAL_DATA_STORE. All results stored in a
+         spatiotemporal big data store will be stored in WGS84. Results stored
+         in a relational data store will maintain their coordinate system.
 
-          * SPATIOTEMPORAL_DATA_STORE-Output will be stored in a spatiotemporal
-          big data store. This is the default.
+         * SPATIOTEMPORAL_DATA_STORE-Output will be stored in a spatiotemporal
+         big data store. This is the default.
 
-          * RELATIONAL_DATA_STORE-Output will be stored in a relational data
-          store.
-      distance_split {Linear Unit}:
-          Features that are farther apart in distance than the distance split
-          value will be split into separate tracks. This parameter is only
-          available with ArcGIS Enterprise 10.6 and later.
-      time_boundary_split {Time Unit}:
-          A time span to split the input data into for analysis. A time boundary
-          allows you to analyze values within a defined time span. For example,
-          if you use a time boundary of 1 day, starting on January 1, 1980,
-          tracks will be split at the beginning of every day. This parameter is
-          only available with ArcGIS Enterprise 10.7 and later.
-      time_boundary_reference {Date}:
-          The reference time used to split the input data into for analysis.
-          Time boundaries will be created for the entire span of the data, and
-          the reference time does not need to occur at the start. If no
-          reference time is specified, January 1, 1970, is used. This parameter
-          is only available with ArcGIS Enterprise 10.7 and later.
-      split_expression {Calculator Expression}:
-          An expression that splits tracks based on values, geometry or time
-          values. Expressions that validate to true will be split. This
-          parameter is only available with ArcGIS Enterprise 10.9 and later.
-      split_type {String}:
-          Specifies how the track segment between two features is created when a
-          track is split. The split type is applied to split expressions,
-          distance splits, and time splits. This parameter is only available
-          with ArcGIS Enterprise 10.9 and later.
+         * RELATIONAL_DATA_STORE-Output will be stored in a relational data
+         store.
+     distance_split {Linear Unit}:
+         Features that are farther apart in distance than the distance split
+         value will be split into separate tracks. This parameter is only
+         available with ArcGIS Enterprise 10.6 and later.
+     time_boundary_split {Time Unit}:
+         A time span to split the input data into for analysis. A time boundary
+         allows you to analyze values within a defined time span. For example,
+         if you use a time boundary of 1 day, starting on January 1, 1980,
+         tracks will be split at the beginning of every day. This parameter is
+         only available with ArcGIS Enterprise 10.7 and later.
+     time_boundary_reference {Date}:
+         The reference time used to split the input data into for analysis.
+         Time boundaries will be created for the entire span of the data, and
+         the reference time does not need to occur at the start. If no
+         reference time is specified, January 1, 1970, is used. This parameter
+         is only available with ArcGIS Enterprise 10.7 and later.
+     split_expression {Calculator Expression}:
+         An expression that splits tracks based on values, geometry or time
+         values. Expressions that validate to true will be split. This
+         parameter is only available with ArcGIS Enterprise 10.9 and later.
+     split_type {String}:
+         Specifies how the track segment between two features is created when a
+         track is split. The split type is applied to split expressions,
+         distance splits, and time splits. This parameter is only available
+         with ArcGIS Enterprise 10.9 and later.
 
-          * GAP-No segment is created between the two features. This is the
-          default.
+         * GAP-No segment is created between the two features. This is the
+         default.
 
-          * FINISH_LAST-A segment is created between the two features that ends
-          after the split.
+         * FINISH_LAST-A segment is created between the two features that ends
+         after the split.
 
-          * START_NEXT-A segment is created between the two features that ends
-          before the split."""
+         * START_NEXT-A segment is created between the two features that ends
+         before the split."""
     ...
 
-@gptooldoc('SummarizeAttributes_geoanalytics', None)
-def SummarizeAttributes(input_layer=..., output_name=..., fields=..., summary_fields=..., data_store=..., time_step_interval=..., time_step_repeat=..., time_step_reference=...): # -> conversion | int | float | complex | basestring | list[Unknown] | tuple[Unknown, ...] | dict[Unknown, Unknown]:
+@gptooldoc("SummarizeAttributes_geoanalytics", None)
+def SummarizeAttributes(
+    input_layer=...,
+    output_name=...,
+    fields=...,
+    summary_fields=...,
+    data_store=...,
+    time_step_interval=...,
+    time_step_repeat=...,
+    time_step_reference=...,
+):  # -> conversion | int | float | complex | basestring | list[Unknown] | tuple[Unknown, ...] | dict[Unknown, Unknown]:
     """SummarizeAttributes_geoanalytics(input_layer, output_name, fields;fields..., {summary_fields;summary_fields...}, {data_store}, {time_step_interval}, {time_step_repeat}, {time_step_reference})
 
-        Calculates summary statistics for fields in a feature class.
+       Calculates summary statistics for fields in a feature class.
 
-     INPUTS:
-      input_layer (Record Set):
-          The point, polyline, or polygon layer to be summarized.
-      output_name (String):
-          The name of the output feature service.
-      fields (Field):
-          A field or fields used to summarize similar features. For example, if
-          you choose a single field called PropertyType with the values of
-          commercial and residential, all of the fields with the value
-          residential fields will be summarized together, with summary
-          statistics calculated, and all of the fields with the value commercial
-          will be summarized together. This example will results in two rows in
-          the output, one for commercial, and one for residential summary
-          values.
-      summary_fields {Value Table}:
-          The statistics that will be calculated on specified fields.
+    INPUTS:
+     input_layer (Record Set):
+         The point, polyline, or polygon layer to be summarized.
+     output_name (String):
+         The name of the output feature service.
+     fields (Field):
+         A field or fields used to summarize similar features. For example, if
+         you choose a single field called PropertyType with the values of
+         commercial and residential, all of the fields with the value
+         residential fields will be summarized together, with summary
+         statistics calculated, and all of the fields with the value commercial
+         will be summarized together. This example will results in two rows in
+         the output, one for commercial, and one for residential summary
+         values.
+     summary_fields {Value Table}:
+         The statistics that will be calculated on specified fields.
 
-          * COUNT-The number of nonnull values. It can be used on numeric fields
-          or strings. The count of [null, 0, 2] is 2.
+         * COUNT-The number of nonnull values. It can be used on numeric fields
+         or strings. The count of [null, 0, 2] is 2.
 
-          * SUM-The sum of numeric values in a field. The sum of [null, null, 3]
-          is 3.
+         * SUM-The sum of numeric values in a field. The sum of [null, null, 3]
+         is 3.
 
-          * MEAN-The mean of numeric values. The mean of [0,2, null] is 1.
+         * MEAN-The mean of numeric values. The mean of [0,2, null] is 1.
 
-          * MIN-The minimum value of a numeric field. The minimum of [0, 2,
-          null] is 0.
+         * MIN-The minimum value of a numeric field. The minimum of [0, 2,
+         null] is 0.
 
-          * MAX-The maximum value of a numeric field. The maximum value of [0,
-          2, null] is 2.
+         * MAX-The maximum value of a numeric field. The maximum value of [0,
+         2, null] is 2.
 
-          * STDDEV-The standard deviation of a numeric field. The standard
-          deviation of [1] is null. The standard deviation of [null, 1,1,1] is
-          null.
+         * STDDEV-The standard deviation of a numeric field. The standard
+         deviation of [1] is null. The standard deviation of [null, 1,1,1] is
+         null.
 
-          * VAR-The variance of a numeric field in a track. The variance of [1]
-          is null. The variance of [null, 1,1,1] is null.
+         * VAR-The variance of a numeric field in a track. The variance of [1]
+         is null. The variance of [null, 1,1,1] is null.
 
-          * RANGE-The range of a numeric field. This is calculated as the
-          minimum value subtracted from the maximum value. The range of [0,
-          null, 1] is 1. The range of [null, 4] is 0.
+         * RANGE-The range of a numeric field. This is calculated as the
+         minimum value subtracted from the maximum value. The range of [0,
+         null, 1] is 1. The range of [null, 4] is 0.
 
-          * ANY-A sample string from a field of type string.
-      data_store {String}:
-          Specifies the ArcGIS Data Store where the output will be saved. The
-          default is SPATIOTEMPORAL_DATA_STORE. All results stored in a
-          spatiotemporal big data store will be stored in WGS84. Results stored
-          in a relational data store will maintain their coordinate system.
+         * ANY-A sample string from a field of type string.
+     data_store {String}:
+         Specifies the ArcGIS Data Store where the output will be saved. The
+         default is SPATIOTEMPORAL_DATA_STORE. All results stored in a
+         spatiotemporal big data store will be stored in WGS84. Results stored
+         in a relational data store will maintain their coordinate system.
 
-          * SPATIOTEMPORAL_DATA_STORE-Output will be stored in a spatiotemporal
-          big data store. This is the default.
+         * SPATIOTEMPORAL_DATA_STORE-Output will be stored in a spatiotemporal
+         big data store. This is the default.
 
-          * RELATIONAL_DATA_STORE-Output will be stored in a relational data
-          store.
-      time_step_interval {Time Unit}:
-          A value that specifies the duration of the time step. This parameter
-          is only available if the input points are time enabled and represent
-          an instant in time.Time stepping can only be applied if time is
-          enabled on the input.
-      time_step_repeat {Time Unit}:
-          A value that specifies how often the time-step interval occurs. This
-          parameter is only available if the input points are time enabled and
-          represent an instant in time.
-      time_step_reference {Date}:
-          A date that specifies the reference time with which to align the time
-          steps. The default is January 1, 1970, at 12:00 a.m. This parameter is
-          only available if the input points are time enabled and represent an
-          instant in time."""
+         * RELATIONAL_DATA_STORE-Output will be stored in a relational data
+         store.
+     time_step_interval {Time Unit}:
+         A value that specifies the duration of the time step. This parameter
+         is only available if the input points are time enabled and represent
+         an instant in time.Time stepping can only be applied if time is
+         enabled on the input.
+     time_step_repeat {Time Unit}:
+         A value that specifies how often the time-step interval occurs. This
+         parameter is only available if the input points are time enabled and
+         represent an instant in time.
+     time_step_reference {Date}:
+         A date that specifies the reference time with which to align the time
+         steps. The default is January 1, 1970, at 12:00 a.m. This parameter is
+         only available if the input points are time enabled and represent an
+         instant in time."""
     ...
 
-@gptooldoc('SummarizeCenterAndDispersion_geoanalytics', None)
-def SummarizeCenterAndDispersion(input_layer=..., output_name=..., generate_types=..., ellipse_size=..., weight_field=..., group_by_field=..., data_store=...): # -> conversion | int | float | complex | basestring | list[Unknown] | tuple[Unknown, ...] | dict[Unknown, Unknown]:
+@gptooldoc("SummarizeCenterAndDispersion_geoanalytics", None)
+def SummarizeCenterAndDispersion(
+    input_layer=...,
+    output_name=...,
+    generate_types=...,
+    ellipse_size=...,
+    weight_field=...,
+    group_by_field=...,
+    data_store=...,
+):  # -> conversion | int | float | complex | basestring | list[Unknown] | tuple[Unknown, ...] | dict[Unknown, Unknown]:
     """SummarizeCenterAndDispersion_geoanalytics(input_layer, output_name, generate_types;generate_types..., {ellipse_size}, {weight_field}, {group_by_field}, {data_store})
 
-        Finds central features and directional distributions and calculates
-        mean and median locations from the input.
+       Finds central features and directional distributions and calculates
+       mean and median locations from the input.
 
-     INPUTS:
-      input_layer (Feature Set):
-          The point, line, or polygon layer to be summarized.
-      output_name (String):
-          The name of the output feature service.
-      generate_types (String):
-          Specifies the summary types to be generated. You can use one or more
-          summary types. A unique layer will be created for each summary type
-          selected.
+    INPUTS:
+     input_layer (Feature Set):
+         The point, line, or polygon layer to be summarized.
+     output_name (String):
+         The name of the output feature service.
+     generate_types (String):
+         Specifies the summary types to be generated. You can use one or more
+         summary types. A unique layer will be created for each summary type
+         selected.
 
-          * CENTRAL_FEATURE-A layer will be created that contains a copy of the
-          most central feature from the input layer.
+         * CENTRAL_FEATURE-A layer will be created that contains a copy of the
+         most central feature from the input layer.
 
-          * MEAN_CENTER-A point layer will be created that represents the mean
-          center of the input layer.
+         * MEAN_CENTER-A point layer will be created that represents the mean
+         center of the input layer.
 
-          * MEDIAN_CENTER-A point layer will be created that represents the
-          median center of the input layer.
+         * MEDIAN_CENTER-A point layer will be created that represents the
+         median center of the input layer.
 
-          * ELLIPSE-A polygon layer will be created that represents the
-          directional ellipse of the input layer.
-      ellipse_size {String}:
-          Specifies the size of output ellipses in standard deviations.
+         * ELLIPSE-A polygon layer will be created that represents the
+         directional ellipse of the input layer.
+     ellipse_size {String}:
+         Specifies the size of output ellipses in standard deviations.
 
-          * 1_STANDARD_DEVIATION-Output ellipses will cover one standard
-          deviation of the input features. This is the default.
+         * 1_STANDARD_DEVIATION-Output ellipses will cover one standard
+         deviation of the input features. This is the default.
 
-          * 2_STANDARD_DEVIATIONS-Output ellipses will cover two standard
-          deviations of the input features.
+         * 2_STANDARD_DEVIATIONS-Output ellipses will cover two standard
+         deviations of the input features.
 
-          * 3_STANDARD_DEVIATIONS-Output ellipses will cover three standard
-          deviations of the input features.
-      weight_field {Field}:
-          A numeric field used to weight locations according to their relative
-          importance. This applies to all summary types.
-      group_by_field {Field}:
-          The field used to group similar features. This applies to all summary
-          types. For example, if you choose a field named PlantType that
-          contains values of tree, bush, and grass, all of the features with the
-          value tree will be analyzed for their own center or dispersion. This
-          example will result in three features, one for each group of tree,
-          bush, and grass.
-      data_store {String}:
-          Specifies the ArcGIS Data Store where the output will be saved. The
-          default is SPATIOTEMPORAL_DATA_STORE. All results stored in a
-          spatiotemporal big data store will be stored in WGS84. Results stored
-          in a relational data store will maintain their coordinate system.
+         * 3_STANDARD_DEVIATIONS-Output ellipses will cover three standard
+         deviations of the input features.
+     weight_field {Field}:
+         A numeric field used to weight locations according to their relative
+         importance. This applies to all summary types.
+     group_by_field {Field}:
+         The field used to group similar features. This applies to all summary
+         types. For example, if you choose a field named PlantType that
+         contains values of tree, bush, and grass, all of the features with the
+         value tree will be analyzed for their own center or dispersion. This
+         example will result in three features, one for each group of tree,
+         bush, and grass.
+     data_store {String}:
+         Specifies the ArcGIS Data Store where the output will be saved. The
+         default is SPATIOTEMPORAL_DATA_STORE. All results stored in a
+         spatiotemporal big data store will be stored in WGS84. Results stored
+         in a relational data store will maintain their coordinate system.
 
-          * SPATIOTEMPORAL_DATA_STORE-Output will be stored in a spatiotemporal
-          big data store. This is the default.
+         * SPATIOTEMPORAL_DATA_STORE-Output will be stored in a spatiotemporal
+         big data store. This is the default.
 
-          * RELATIONAL_DATA_STORE-Output will be stored in a relational data
-          store."""
+         * RELATIONAL_DATA_STORE-Output will be stored in a relational data
+         store."""
     ...
 
-@gptooldoc('SummarizeWithin_geoanalytics', None)
-def SummarizeWithin(summarized_layer=..., output_name=..., polygon_or_bin=..., bin_type=..., bin_size=..., summary_polygons=..., sum_shape=..., shape_units=..., standard_summary_fields=..., weighted_summary_fields=..., data_store=..., group_by_field=..., add_minority_majority=..., add_percentages=...): # -> conversion | int | float | complex | basestring | list[Unknown] | tuple[Unknown, ...] | dict[Unknown, Unknown]:
+@gptooldoc("SummarizeWithin_geoanalytics", None)
+def SummarizeWithin(
+    summarized_layer=...,
+    output_name=...,
+    polygon_or_bin=...,
+    bin_type=...,
+    bin_size=...,
+    summary_polygons=...,
+    sum_shape=...,
+    shape_units=...,
+    standard_summary_fields=...,
+    weighted_summary_fields=...,
+    data_store=...,
+    group_by_field=...,
+    add_minority_majority=...,
+    add_percentages=...,
+):  # -> conversion | int | float | complex | basestring | list[Unknown] | tuple[Unknown, ...] | dict[Unknown, Unknown]:
     """SummarizeWithin_geoanalytics(summarized_layer, output_name, {polygon_or_bin}, {bin_type}, {bin_size}, {summary_polygons}, {sum_shape}, {shape_units}, {standard_summary_fields;standard_summary_fields...}, {weighted_summary_fields;weighted_summary_fields...}, {data_store}, {group_by_field}, {add_minority_majority}, {add_percentages})
 
-        Overlays a polygon layer with another layer to summarize the number of
-        points, length of the lines, or area of the polygons within each
-        polygon and calculates attribute field statistics for those features
-        within the polygons.
+       Overlays a polygon layer with another layer to summarize the number of
+       points, length of the lines, or area of the polygons within each
+       polygon and calculates attribute field statistics for those features
+       within the polygons.
 
-     INPUTS:
-      summarized_layer (Feature Set):
-          The point, line, or polygon features that will be summarized by either
-          polygons or bins.
-      output_name (String):
-          The name of the output polygon feature service containing the
-          intersecting geometries and attributes.
-      polygon_or_bin {String}:
-          Specifies whether the summarized_layer value will be summarized by
-          polygons or bins.
+    INPUTS:
+     summarized_layer (Feature Set):
+         The point, line, or polygon features that will be summarized by either
+         polygons or bins.
+     output_name (String):
+         The name of the output polygon feature service containing the
+         intersecting geometries and attributes.
+     polygon_or_bin {String}:
+         Specifies whether the summarized_layer value will be summarized by
+         polygons or bins.
 
-          * POLYGON-The summarized layer will be aggregated into a polygon
-          dataset.
+         * POLYGON-The summarized layer will be aggregated into a polygon
+         dataset.
 
-          * BIN-The summarized layer will be aggregated into square or hexagonal
-          bins.
-      bin_type {String}:
-          Specifies the bin shape that will be generated to summarize features.
+         * BIN-The summarized layer will be aggregated into square or hexagonal
+         bins.
+     bin_type {String}:
+         Specifies the bin shape that will be generated to summarize features.
 
-          * SQUARE-The bin_size value represents the height of a square. This is
-          the default.
+         * SQUARE-The bin_size value represents the height of a square. This is
+         the default.
 
-          * HEXAGON-The bin_size value represents the height between two
-          parallel sides.
-      bin_size {Linear Unit}:
-          The distance interval that represents the bin size and units by which
-          the input features will be summarized.
-      summary_polygons {Feature Set}:
-          The polygons that will be used to summarize the features in the input
-          summarized layer.
-      sum_shape {Boolean}:
-          Specifies whether the length of lines or area of polygons within the
-          summary layer (polygon or bin) will be calculated. The count of
-          points, lines, and polygons intersecting the summary shape will always
-          be included.
+         * HEXAGON-The bin_size value represents the height between two
+         parallel sides.
+     bin_size {Linear Unit}:
+         The distance interval that represents the bin size and units by which
+         the input features will be summarized.
+     summary_polygons {Feature Set}:
+         The polygons that will be used to summarize the features in the input
+         summarized layer.
+     sum_shape {Boolean}:
+         Specifies whether the length of lines or area of polygons within the
+         summary layer (polygon or bin) will be calculated. The count of
+         points, lines, and polygons intersecting the summary shape will always
+         be included.
 
-          * ADD_SUMMARY-Summary shape values will be calculated. This is the
-          default.
+         * ADD_SUMMARY-Summary shape values will be calculated. This is the
+         default.
 
-          * NO_SUMMARY-Summary shape values will not be calculated.
-      shape_units {String}:
-          Specifies the unit of measurement that will be used to calculate shape
-          summary attributes. If the input summarized_layer value is points, no
-          shape unit is necessary, since only the count of points within each
-          input polygon is added. If the input summary features are lines,
-          specify a linear unit. If the input summary features are polygons,
-          specify an areal unit.
+         * NO_SUMMARY-Summary shape values will not be calculated.
+     shape_units {String}:
+         Specifies the unit of measurement that will be used to calculate shape
+         summary attributes. If the input summarized_layer value is points, no
+         shape unit is necessary, since only the count of points within each
+         input polygon is added. If the input summary features are lines,
+         specify a linear unit. If the input summary features are polygons,
+         specify an areal unit.
 
-          * METERS-The shape units will be meters.
+         * METERS-The shape units will be meters.
 
-          * KILOMETERS-The shape units will be kilometers.
+         * KILOMETERS-The shape units will be kilometers.
 
-          * FEET-The shape units will be US survey feet.
+         * FEET-The shape units will be US survey feet.
 
-          * YARDS-The shape units will be US survey yards.
+         * YARDS-The shape units will be US survey yards.
 
-          * MILES-The shape units will be US survey miles.
+         * MILES-The shape units will be US survey miles.
 
-          * NAUTICAL_MILES-The shape units will be US survey nautical miles.
+         * NAUTICAL_MILES-The shape units will be US survey nautical miles.
 
-          * FEET_INT-The shape units will be international feet.
+         * FEET_INT-The shape units will be international feet.
 
-          * YARDS_INT-The shape units will be international yards.
+         * YARDS_INT-The shape units will be international yards.
 
-          * MILES_INT-The shape units will be statute miles.
+         * MILES_INT-The shape units will be statute miles.
 
-          * NAUTICAL_MILES_INT-The shape units will be international nautical
-          miles.
+         * NAUTICAL_MILES_INT-The shape units will be international nautical
+         miles.
 
-          * ACRES-The shape units will be international acres.
+         * ACRES-The shape units will be international acres.
 
-          * HECTARES-The shape units will be hectares.
+         * HECTARES-The shape units will be hectares.
 
-          * SQUARE_METERS-The shape units will be square meters.
+         * SQUARE_METERS-The shape units will be square meters.
 
-          * SQUARE_KILOMETERS-The shape units will be square kilometers.
+         * SQUARE_KILOMETERS-The shape units will be square kilometers.
 
-          * SQUARE_FEET-The shape units will be square international feet.
+         * SQUARE_FEET-The shape units will be square international feet.
 
-          * SQUARE_YARDS-The shape units will be square international yards.
+         * SQUARE_YARDS-The shape units will be square international yards.
 
-          * SQUARE_MILES-The shape units will be square statute miles.
+         * SQUARE_MILES-The shape units will be square statute miles.
 
-          * SQUARE_FEET_US-The shape units will be square US survey feet.
+         * SQUARE_FEET_US-The shape units will be square US survey feet.
 
-          * SQUARE_YARDS_US-The shape units will be square US survey yards.
+         * SQUARE_YARDS_US-The shape units will be square US survey yards.
 
-          * SQUARE_MILES_US-The shape units will be square US survey miles.
+         * SQUARE_MILES_US-The shape units will be square US survey miles.
 
-          * ACRES_US-The shape units will be US survey acres.
-      standard_summary_fields {Value Table}:
-          The statistics that will be calculated on specified fields.
+         * ACRES_US-The shape units will be US survey acres.
+     standard_summary_fields {Value Table}:
+         The statistics that will be calculated on specified fields.
 
-          * COUNT-The number of nonnull values. It can be used on numeric fields
-          or strings. The count of [null, 0, 2] is 2.
+         * COUNT-The number of nonnull values. It can be used on numeric fields
+         or strings. The count of [null, 0, 2] is 2.
 
-          * SUM-The sum of numeric values in a field. The sum of [null, null, 3]
-          is 3.
+         * SUM-The sum of numeric values in a field. The sum of [null, null, 3]
+         is 3.
 
-          * MEAN-The mean of numeric values. The mean of [0,2, null] is 1.
+         * MEAN-The mean of numeric values. The mean of [0,2, null] is 1.
 
-          * MIN-The minimum value of a numeric field. The minimum of [0, 2,
-          null] is 0.
+         * MIN-The minimum value of a numeric field. The minimum of [0, 2,
+         null] is 0.
 
-          * MAX-The maximum value of a numeric field. The maximum value of [0,
-          2, null] is 2.
+         * MAX-The maximum value of a numeric field. The maximum value of [0,
+         2, null] is 2.
 
-          * STDDEV-The standard deviation of a numeric field. The standard
-          deviation of [1] is null. The standard deviation of [null, 1,1,1] is
-          null.
+         * STDDEV-The standard deviation of a numeric field. The standard
+         deviation of [1] is null. The standard deviation of [null, 1,1,1] is
+         null.
 
-          * VAR-The variance of a numeric field in a track. The variance of [1]
-          is null. The variance of [null, 1,1,1] is null.
+         * VAR-The variance of a numeric field in a track. The variance of [1]
+         is null. The variance of [null, 1,1,1] is null.
 
-          * RANGE-The range of a numeric field. This is calculated as the
-          minimum value subtracted from the maximum value. The range of [0,
-          null, 1] is 1. The range of [null, 4] is 0.
+         * RANGE-The range of a numeric field. This is calculated as the
+         minimum value subtracted from the maximum value. The range of [0,
+         null, 1] is 1. The range of [null, 4] is 0.
 
-          * ANY-A sample string from a field of type string.
-          Specifies whether a field represents a count or a rate.
+         * ANY-A sample string from a field of type string.
+         Specifies whether a field represents a count or a rate.
 
-          * COUNT-For line and polygon layers, the summarized field values will
-          be proportioned by the percentage of the summarized features that
-          intersect the summary polygons prior to calculating statistics. Values
-          will not be proportioned for point layers.
+         * COUNT-For line and polygon layers, the summarized field values will
+         be proportioned by the percentage of the summarized features that
+         intersect the summary polygons prior to calculating statistics. Values
+         will not be proportioned for point layers.
 
-          * RATE-The summarized field values will never be proportioned. The raw
-          field values will be used to calculate statistics.
-      weighted_summary_fields {Value Table}:
-          Specifies the weighted statistics that will be calculated on specified
-          fields.
+         * RATE-The summarized field values will never be proportioned. The raw
+         field values will be used to calculate statistics.
+     weighted_summary_fields {Value Table}:
+         Specifies the weighted statistics that will be calculated on specified
+         fields.
 
-          * MEAN-The weighted mean of each field will be calculated in which the
-          weight applied is the proportion of the summarized layer within the
-          polygons.
+         * MEAN-The weighted mean of each field will be calculated in which the
+         weight applied is the proportion of the summarized layer within the
+         polygons.
 
-          * STDDEV-The weighted standard deviation of each field will be
-          calculated in which the weight applied is the proportion of the
-          summarized layer within the polygons.
+         * STDDEV-The weighted standard deviation of each field will be
+         calculated in which the weight applied is the proportion of the
+         summarized layer within the polygons.
 
-          * VAR-The weighted variance of each field will be calculated in which
-          the weight applied is the proportion of the summarized layer within
-          the polygons.
-          Specifies whether a field represents a count or a rate.
+         * VAR-The weighted variance of each field will be calculated in which
+         the weight applied is the proportion of the summarized layer within
+         the polygons.
+         Specifies whether a field represents a count or a rate.
 
-          * Count-The summarized field values will be proportioned by the
-          percentage of the summarized features that intersect the summary
-          polygons prior to calculating statistics.
+         * Count-The summarized field values will be proportioned by the
+         percentage of the summarized features that intersect the summary
+         polygons prior to calculating statistics.
 
-          * Rate-The summarized field values will never be proportioned. The raw
-          field values will be used to calculate statistics.
-      data_store {String}:
-          Specifies the ArcGIS Data Store where the output will be saved. The
-          default is SPATIOTEMPORAL_DATA_STORE. All results stored in a
-          spatiotemporal big data store will be stored in WGS84. Results stored
-          in a relational data store will maintain their coordinate system.
+         * Rate-The summarized field values will never be proportioned. The raw
+         field values will be used to calculate statistics.
+     data_store {String}:
+         Specifies the ArcGIS Data Store where the output will be saved. The
+         default is SPATIOTEMPORAL_DATA_STORE. All results stored in a
+         spatiotemporal big data store will be stored in WGS84. Results stored
+         in a relational data store will maintain their coordinate system.
 
-          * SPATIOTEMPORAL_DATA_STORE-Output will be stored in a spatiotemporal
-          big data store. This is the default.
+         * SPATIOTEMPORAL_DATA_STORE-Output will be stored in a spatiotemporal
+         big data store. This is the default.
 
-          * RELATIONAL_DATA_STORE-Output will be stored in a relational data
-          store.
-      group_by_field {Field}:
-          A field from the input summary features that will be used to calculate
-          statistics for each unique attribute value. For example, the input
-          summary features contain point locations of businesses that store
-          hazardous materials, and one of the fields is HazardClass, which
-          contains codes that describe the type of hazardous material stored. To
-          calculate summaries by each unique value of HazardClass, use it as the
-          group-by field.
-      add_minority_majority {Boolean}:
-          Specifies whether minority (least dominant) and majority (most
-          dominant) attribute values for each group field within each boundary
-          will be added. When this parameter value is ADD_MIN_MAJ, two new
-          fields will be added to the output layer prefixed with Minority_ and
-          Majority_. This parameter only applies when a value is provided for
-          the group_by_field parameter.
+         * RELATIONAL_DATA_STORE-Output will be stored in a relational data
+         store.
+     group_by_field {Field}:
+         A field from the input summary features that will be used to calculate
+         statistics for each unique attribute value. For example, the input
+         summary features contain point locations of businesses that store
+         hazardous materials, and one of the fields is HazardClass, which
+         contains codes that describe the type of hazardous material stored. To
+         calculate summaries by each unique value of HazardClass, use it as the
+         group-by field.
+     add_minority_majority {Boolean}:
+         Specifies whether minority (least dominant) and majority (most
+         dominant) attribute values for each group field within each boundary
+         will be added. When this parameter value is ADD_MIN_MAJ, two new
+         fields will be added to the output layer prefixed with Minority_ and
+         Majority_. This parameter only applies when a value is provided for
+         the group_by_field parameter.
 
-          * NO_MIN_MAJ-Minority and majority fields will not be added. This is
-          the default.
+         * NO_MIN_MAJ-Minority and majority fields will not be added. This is
+         the default.
 
-          * ADD_MIN_MAJ-Minority and majority fields will be added.
-      add_percentages {Boolean}:
-          Specifies whether percentage fields will be added. When this parameter
-          value is ADD_PERCENT, the percentage of each unique group value will
-          be calculated for each input polygon. This parameter only applies when
-          a value is provided for the group_by_field parameter and a value is
-          specified for the add_minority_majority parameter.
+         * ADD_MIN_MAJ-Minority and majority fields will be added.
+     add_percentages {Boolean}:
+         Specifies whether percentage fields will be added. When this parameter
+         value is ADD_PERCENT, the percentage of each unique group value will
+         be calculated for each input polygon. This parameter only applies when
+         a value is provided for the group_by_field parameter and a value is
+         specified for the add_minority_majority parameter.
 
-          * NO_PERCENT-Percentage fields will not be added. This is the default.
+         * NO_PERCENT-Percentage fields will not be added. This is the default.
 
-          * ADD_PERCENT-Percentage fields will be added."""
+         * ADD_PERCENT-Percentage fields will be added."""
     ...
 
-@gptooldoc('CreateBuffers_geoanalytics', None)
-def CreateBuffers(input_layer=..., output_name=..., method=..., buffer_type=..., buffer_field=..., buffer_distance=..., buffer_expression=..., dissolve_option=..., dissolve_fields=..., summary_fields=..., multipart=..., data_store=...): # -> conversion | int | float | complex | basestring | list[Unknown] | tuple[Unknown, ...] | dict[Unknown, Unknown]:
+@gptooldoc("CreateBuffers_geoanalytics", None)
+def CreateBuffers(
+    input_layer=...,
+    output_name=...,
+    method=...,
+    buffer_type=...,
+    buffer_field=...,
+    buffer_distance=...,
+    buffer_expression=...,
+    dissolve_option=...,
+    dissolve_fields=...,
+    summary_fields=...,
+    multipart=...,
+    data_store=...,
+):  # -> conversion | int | float | complex | basestring | list[Unknown] | tuple[Unknown, ...] | dict[Unknown, Unknown]:
     """CreateBuffers_geoanalytics(input_layer, output_name, method, buffer_type, {buffer_field}, {buffer_distance}, {buffer_expression}, {dissolve_option}, {dissolve_fields;dissolve_fields...}, {summary_fields;summary_fields...}, {multipart}, {data_store})
 
-        Creates buffers around input features to a specified distance.
+       Creates buffers around input features to a specified distance.
 
-     INPUTS:
-      input_layer (Feature Set):
-          The point, polyline, or polygon features that will be buffered.
-      output_name (String):
-          The name of the output feature service.
-      method (String):
-          Specifies the method that will be used to create the buffers.
+    INPUTS:
+     input_layer (Feature Set):
+         The point, polyline, or polygon features that will be buffered.
+     output_name (String):
+         The name of the output feature service.
+     method (String):
+         Specifies the method that will be used to create the buffers.
 
-          * GEODESIC-Buffers will be created using a shape-preserving geodesic
-          buffer method regardless of the input coordinate system. This is the
-          default.
+         * GEODESIC-Buffers will be created using a shape-preserving geodesic
+         buffer method regardless of the input coordinate system. This is the
+         default.
 
-          * PLANAR-If the input features are in a projected coordinate system,
-          Euclidean buffers will be created. If the input features are in a
-          geographic coordinate system, geodesic buffers will be created. The
-          Output Coordinate System environment setting can be used to specify a
-          coordinate system.
-      buffer_type (String):
-          Specifies how the buffer distance will be defined.
+         * PLANAR-If the input features are in a projected coordinate system,
+         Euclidean buffers will be created. If the input features are in a
+         geographic coordinate system, geodesic buffers will be created. The
+         Output Coordinate System environment setting can be used to specify a
+         coordinate system.
+     buffer_type (String):
+         Specifies how the buffer distance will be defined.
 
-          * DISTANCE-The same linear distance will be applied to all features.
+         * DISTANCE-The same linear distance will be applied to all features.
 
-          * FIELD-A numeric or string field will be selected to represent the
-          buffer distance.
+         * FIELD-A numeric or string field will be selected to represent the
+         buffer distance.
 
-          * EXPRESSION-An expression will be built using fields, constants, and
-          mathematical operations to represent the buffer distance.
-      buffer_field {Field}:
-          The field that contains the buffer distance for each feature. If a
-          field value is a number, it is assumed that the distance is in the
-          linear unit of the input_layer value spatial reference, unless the
-          input_layer value is in a geographic coordinate system, in which case,
-          the value is assumed to be in meters. If the linear unit specified in
-          the field values is invalid or not recognized, the linear unit of the
-          input features' spatial reference will be used by default.
-      buffer_distance {Linear Unit}:
-          The distance around the input features that will be buffered.
-      buffer_expression {Calculator Expression}:
-          An equation using fields and mathematical operators that will be
-          applied as a buffer to each feature. Fields must be numeric and the
-          expression can include [+ - * / ] operators and multiple fields.
-          Calculated values are applied in meters unless otherwise specified.
-          For example, to apply a buffer that multiples a numeric field named
-          distance in kilometers by 2 and adds 15 meters.With ArcGIS Enterprise
-          10.5 and 10.5.1 expressions will be formatted
-          as the following:as_kilometers(distance) * 2 + as_meters(15). With
-          ArcGIS Enterprise 10.6 or later, use Arcade expressions such as
-          as_kilometers($feature["distance"]) * 2 + as_meters(15).
-      dissolve_option {String}:
-          Specifies the dissolve option that will be used to remove buffer
-          overlap.
+         * EXPRESSION-An expression will be built using fields, constants, and
+         mathematical operations to represent the buffer distance.
+     buffer_field {Field}:
+         The field that contains the buffer distance for each feature. If a
+         field value is a number, it is assumed that the distance is in the
+         linear unit of the input_layer value spatial reference, unless the
+         input_layer value is in a geographic coordinate system, in which case,
+         the value is assumed to be in meters. If the linear unit specified in
+         the field values is invalid or not recognized, the linear unit of the
+         input features' spatial reference will be used by default.
+     buffer_distance {Linear Unit}:
+         The distance around the input features that will be buffered.
+     buffer_expression {Calculator Expression}:
+         An equation using fields and mathematical operators that will be
+         applied as a buffer to each feature. Fields must be numeric and the
+         expression can include [+ - * / ] operators and multiple fields.
+         Calculated values are applied in meters unless otherwise specified.
+         For example, to apply a buffer that multiples a numeric field named
+         distance in kilometers by 2 and adds 15 meters.With ArcGIS Enterprise
+         10.5 and 10.5.1 expressions will be formatted
+         as the following:as_kilometers(distance) * 2 + as_meters(15). With
+         ArcGIS Enterprise 10.6 or later, use Arcade expressions such as
+         as_kilometers($feature["distance"]) * 2 + as_meters(15).
+     dissolve_option {String}:
+         Specifies the dissolve option that will be used to remove buffer
+         overlap.
 
-          * NONE-An individual buffer for each feature will be maintained
-          regardless of overlap. This is the default.
+         * NONE-An individual buffer for each feature will be maintained
+         regardless of overlap. This is the default.
 
-          * ALL-All buffers will be dissolved together into a single feature,
-          removing any overlap.
+         * ALL-All buffers will be dissolved together into a single feature,
+         removing any overlap.
 
-          * LIST-Any buffers sharing attribute values in the listed fields
-          (carried over from the input features) will be dissolved.
-      dissolve_fields {Field}:
-          A list of one or more fields from the input features on which output
-          buffers will be dissolved. Any buffers sharing attribute values in the
-          listed fields will be dissolved. This parameter is only required when
-          dissolve_option is LIST.
-      summary_fields {Value Table}:
-          Specifies statistics that will be applied to numeric and string
-          fields. If left empty, only count will be calculated. These statistics
-          are only applied when dissolve_option is LIST or ALL.
+         * LIST-Any buffers sharing attribute values in the listed fields
+         (carried over from the input features) will be dissolved.
+     dissolve_fields {Field}:
+         A list of one or more fields from the input features on which output
+         buffers will be dissolved. Any buffers sharing attribute values in the
+         listed fields will be dissolved. This parameter is only required when
+         dissolve_option is LIST.
+     summary_fields {Value Table}:
+         Specifies statistics that will be applied to numeric and string
+         fields. If left empty, only count will be calculated. These statistics
+         are only applied when dissolve_option is LIST or ALL.
 
-          * COUNT-The number of nonnull values. It can be used on numeric fields
-          or strings. The count of [null, 0, 2] is 2.
+         * COUNT-The number of nonnull values. It can be used on numeric fields
+         or strings. The count of [null, 0, 2] is 2.
 
-          * SUM-The sum of numeric values in a field. The sum of [null, null, 3]
-          is 3.
+         * SUM-The sum of numeric values in a field. The sum of [null, null, 3]
+         is 3.
 
-          * MEAN-The mean of numeric values. The mean of [0,2, null] is 1.
+         * MEAN-The mean of numeric values. The mean of [0,2, null] is 1.
 
-          * MIN-The minimum value of a numeric field. The minimum of [0, 2,
-          null] is 0.
+         * MIN-The minimum value of a numeric field. The minimum of [0, 2,
+         null] is 0.
 
-          * MAX-The maximum value of a numeric field. The maximum value of [0,
-          2, null] is 2.
+         * MAX-The maximum value of a numeric field. The maximum value of [0,
+         2, null] is 2.
 
-          * STDDEV-The standard deviation of a numeric field. The standard
-          deviation of [1] is null. The standard deviation of [null, 1,1,1] is
-          null.
+         * STDDEV-The standard deviation of a numeric field. The standard
+         deviation of [1] is null. The standard deviation of [null, 1,1,1] is
+         null.
 
-          * VAR-The variance of a numeric field in a track. The variance of [1]
-          is null. The variance of [null, 1,1,1] is null.
+         * VAR-The variance of a numeric field in a track. The variance of [1]
+         is null. The variance of [null, 1,1,1] is null.
 
-          * RANGE-The range of a numeric field. This is calculated as the
-          minimum value subtracted from the maximum value. The range of [0,
-          null, 1] is 1. The range of [null, 4] is 0.
+         * RANGE-The range of a numeric field. This is calculated as the
+         minimum value subtracted from the maximum value. The range of [0,
+         null, 1] is 1. The range of [null, 4] is 0.
 
-          * ANY-A sample string from a field of type string.
-      multipart {Boolean}:
-          Specifies whether multipart features will be created.
+         * ANY-A sample string from a field of type string.
+     multipart {Boolean}:
+         Specifies whether multipart features will be created.
 
-          * MULTI_PART-Output multipart features will be created where
-          appropriate.
+         * MULTI_PART-Output multipart features will be created where
+         appropriate.
 
-          * SINGLE_PART-Multipart features will not be created; individual
-          features will be created for each part instead. This is the default.
-      data_store {String}:
-          Specifies the ArcGIS Data Store where the output will be saved. The
-          default is SPATIOTEMPORAL_DATA_STORE. All results stored in a
-          spatiotemporal big data store will be stored in WGS84. Results stored
-          in a relational data store will maintain their coordinate system.
+         * SINGLE_PART-Multipart features will not be created; individual
+         features will be created for each part instead. This is the default.
+     data_store {String}:
+         Specifies the ArcGIS Data Store where the output will be saved. The
+         default is SPATIOTEMPORAL_DATA_STORE. All results stored in a
+         spatiotemporal big data store will be stored in WGS84. Results stored
+         in a relational data store will maintain their coordinate system.
 
-          * SPATIOTEMPORAL_DATA_STORE-Output will be stored in a spatiotemporal
-          big data store. This is the default.
+         * SPATIOTEMPORAL_DATA_STORE-Output will be stored in a spatiotemporal
+         big data store. This is the default.
 
-          * RELATIONAL_DATA_STORE-Output will be stored in a relational data
-          store."""
+         * RELATIONAL_DATA_STORE-Output will be stored in a relational data
+         store."""
     ...
 
-@gptooldoc('GroupByProximity_geoanalytics', None)
-def GroupByProximity(input_layer=..., output_name=..., spatial_relationship=..., spatial_near_distance=..., temporal_relationship=..., temporal_near_distance=..., data_store=..., attribute_relationship=...): # -> conversion | int | float | complex | basestring | list[Unknown] | tuple[Unknown, ...] | dict[Unknown, Unknown]:
+@gptooldoc("GroupByProximity_geoanalytics", None)
+def GroupByProximity(
+    input_layer=...,
+    output_name=...,
+    spatial_relationship=...,
+    spatial_near_distance=...,
+    temporal_relationship=...,
+    temporal_near_distance=...,
+    data_store=...,
+    attribute_relationship=...,
+):  # -> conversion | int | float | complex | basestring | list[Unknown] | tuple[Unknown, ...] | dict[Unknown, Unknown]:
     """GroupByProximity_geoanalytics(input_layer, output_name, spatial_relationship, {spatial_near_distance}, {temporal_relationship}, {temporal_near_distance}, {data_store}, {attribute_relationship})
 
-        Groups features that are within spatial or spatiotemporal proximity to
-        each other.
+       Groups features that are within spatial or spatiotemporal proximity to
+       each other.
 
-     INPUTS:
-      input_layer (Feature Set):
-          The point, line, or polygon features that will be grouped.
-      output_name (String):
-          The name of the output feature service.The name of the output feature
-          service with grouped features
-          represented by a new field named group_id
-      spatial_relationship (String):
-          Specifies the type of relationship that features will be grouped by.
+    INPUTS:
+     input_layer (Feature Set):
+         The point, line, or polygon features that will be grouped.
+     output_name (String):
+         The name of the output feature service.The name of the output feature
+         service with grouped features
+         represented by a new field named group_id
+     spatial_relationship (String):
+         Specifies the type of relationship that features will be grouped by.
 
-          * INTERSECTS-Features will be grouped when features or portions of
-          features overlap. This is the default.
+         * INTERSECTS-Features will be grouped when features or portions of
+         features overlap. This is the default.
 
-          * TOUCHES-Features will be grouped with another feature if they have
-          an intersecting vertex, but the features do not overlap.
+         * TOUCHES-Features will be grouped with another feature if they have
+         an intersecting vertex, but the features do not overlap.
 
-          * NEAR_PLANAR-Features will be grouped when a vertex or edge is within
-          a given planar distance of another feature.
+         * NEAR_PLANAR-Features will be grouped when a vertex or edge is within
+         a given planar distance of another feature.
 
-          * NEAR_GEODESIC-Features will be grouped when a vertex or edge is
-          within a given geodesic distance of another feature.
-      spatial_near_distance {Linear Unit}:
-          The distance that will be used to group near features. This parameter
-          is only used when the spatial_relationship parameter value is
-          NEAR_PLANAR or NEAR_GEODESIC.
-      temporal_relationship {String}:
-          Specifies the time criteria that will be used to match features. When
-          the parameter is set to INTERSECTS or NEAR, features are grouped when
-          both the spatial and time criteria are met. Time must be enabled on
-          the input to support this option.
+         * NEAR_GEODESIC-Features will be grouped when a vertex or edge is
+         within a given geodesic distance of another feature.
+     spatial_near_distance {Linear Unit}:
+         The distance that will be used to group near features. This parameter
+         is only used when the spatial_relationship parameter value is
+         NEAR_PLANAR or NEAR_GEODESIC.
+     temporal_relationship {String}:
+         Specifies the time criteria that will be used to match features. When
+         the parameter is set to INTERSECTS or NEAR, features are grouped when
+         both the spatial and time criteria are met. Time must be enabled on
+         the input to support this option.
 
-          * INTERSECTS-Features will be grouped when any part of a feature's
-          time overlaps another feature. This is the default.
+         * INTERSECTS-Features will be grouped when any part of a feature's
+         time overlaps another feature. This is the default.
 
-          * NEAR-Features will be grouped when the feature's time is within a
-          range of time of another feature.
+         * NEAR-Features will be grouped when the feature's time is within a
+         range of time of another feature.
 
-          * NONE-Time will not be used to group features.
-      temporal_near_distance {Time Unit}:
-          The temporal distance that will be used to group near features. This
-          parameter is only used when the temporal_relationship parameter value
-          is Near.
-      data_store {String}:
-          Specifies the ArcGIS Data Store where the output will be saved. The
-          default is SPATIOTEMPORAL_DATA_STORE. All results stored in a
-          spatiotemporal big data store will be stored in WGS84. Results stored
-          in a relational data store will maintain their coordinate system.
+         * NONE-Time will not be used to group features.
+     temporal_near_distance {Time Unit}:
+         The temporal distance that will be used to group near features. This
+         parameter is only used when the temporal_relationship parameter value
+         is Near.
+     data_store {String}:
+         Specifies the ArcGIS Data Store where the output will be saved. The
+         default is SPATIOTEMPORAL_DATA_STORE. All results stored in a
+         spatiotemporal big data store will be stored in WGS84. Results stored
+         in a relational data store will maintain their coordinate system.
 
-          * SPATIOTEMPORAL_DATA_STORE-Output will be stored in a spatiotemporal
-          big data store. This is the default.
+         * SPATIOTEMPORAL_DATA_STORE-Output will be stored in a spatiotemporal
+         big data store. This is the default.
 
-          * RELATIONAL_DATA_STORE-Output will be stored in a relational data
-          store.
-      attribute_relationship {String}:
-          An ArcGIS Arcade expression that will be used to group features by.
-          For example, $a["Amount"] == $b["Amount"] groups features when the
-          Amount field has the same value."""
+         * RELATIONAL_DATA_STORE-Output will be stored in a relational data
+         store.
+     attribute_relationship {String}:
+         An ArcGIS Arcade expression that will be used to group features by.
+         For example, $a["Amount"] == $b["Amount"] groups features when the
+         Amount field has the same value."""
     ...
 
-@gptooldoc('SnapTracks_geoanalytics', None)
-def SnapTracks(input_points=..., input_lines=..., output_name=..., track_fields=..., search_distance=..., connectivity_field_matching=..., line_fields_to_include=..., distance_method=..., direction_value_matching=..., output_mode=..., data_store=..., time_split=..., distance_split=..., time_boundary_split=..., time_boundary_reference=...): # -> conversion | int | float | complex | basestring | list[Unknown] | tuple[Unknown, ...] | dict[Unknown, Unknown]:
+@gptooldoc("SnapTracks_geoanalytics", None)
+def SnapTracks(
+    input_points=...,
+    input_lines=...,
+    output_name=...,
+    track_fields=...,
+    search_distance=...,
+    connectivity_field_matching=...,
+    line_fields_to_include=...,
+    distance_method=...,
+    direction_value_matching=...,
+    output_mode=...,
+    data_store=...,
+    time_split=...,
+    distance_split=...,
+    time_boundary_split=...,
+    time_boundary_reference=...,
+):  # -> conversion | int | float | complex | basestring | list[Unknown] | tuple[Unknown, ...] | dict[Unknown, Unknown]:
     """SnapTracks_geoanalytics(input_points, input_lines, output_name, track_fields;track_fields..., search_distance, connectivity_field_matching;connectivity_field_matching..., {line_fields_to_include;line_fields_to_include...}, {distance_method}, {direction_value_matching;direction_value_matching...}, {output_mode}, {data_store}, {time_split}, {distance_split}, {time_boundary_split}, {time_boundary_reference})
 
-        Snaps input track points to lines. The time-enabled point data must
-        include features that represent an instant in time. Traversable lines
-        with fields indicating the from and to nodes are required for
-        analysis.
+       Snaps input track points to lines. The time-enabled point data must
+       include features that represent an instant in time. Traversable lines
+       with fields indicating the from and to nodes are required for
+       analysis.
 
-     INPUTS:
-      input_points (Feature Set):
-          The points that will be matched to lines. The input must be a time-
-          enabled point layer that represents an instant in time and must
-          contain at least one field that identifies unique tracks.
-      input_lines (Feature Set):
-          The lines to which points will be matched. The input must contain
-          fields with values indicating the from and to nodes of the line.
-      output_name (String):
-          The name of the output feature service.
-      track_fields (Field):
-          One or more fields that will be used to identify unique tracks.
-      search_distance (Linear Unit):
-          The maximum distance allowed between a point and any line to be
-          considered a match. It is recommended that you use values less than or
-          equal to 75 meters. Larger distances will result in a longer process
-          time and less accurate results.
-      connectivity_field_matching (Value Table):
-          The line layer fields that will be used to define the connectivity of
-          the input line features.
+    INPUTS:
+     input_points (Feature Set):
+         The points that will be matched to lines. The input must be a time-
+         enabled point layer that represents an instant in time and must
+         contain at least one field that identifies unique tracks.
+     input_lines (Feature Set):
+         The lines to which points will be matched. The input must contain
+         fields with values indicating the from and to nodes of the line.
+     output_name (String):
+         The name of the output feature service.
+     track_fields (Field):
+         One or more fields that will be used to identify unique tracks.
+     search_distance (Linear Unit):
+         The maximum distance allowed between a point and any line to be
+         considered a match. It is recommended that you use values less than or
+         equal to 75 meters. Larger distances will result in a longer process
+         time and less accurate results.
+     connectivity_field_matching (Value Table):
+         The line layer fields that will be used to define the connectivity of
+         the input line features.
 
-          * Unique ID-The line layer field that contains the unique ID value for
-          each line feature
+         * Unique ID-The line layer field that contains the unique ID value for
+         each line feature
 
-          * From Node-The line layer field that contains the from node values
+         * From Node-The line layer field that contains the from node values
 
-          * To Node-The line layer field that contains the to node values
-      line_fields_to_include {Field}:
-          One or more fields from the input line layer that will be included in
-          the output result.
-      distance_method {String}:
-          Specifies the method that will be used to calculate distances between
-          points and lines.
+         * To Node-The line layer field that contains the to node values
+     line_fields_to_include {Field}:
+         One or more fields from the input line layer that will be included in
+         the output result.
+     distance_method {String}:
+         Specifies the method that will be used to calculate distances between
+         points and lines.
 
-          * GEODESIC-Geodesic distances will be calculated.
+         * GEODESIC-Geodesic distances will be calculated.
 
-          * PLANAR-Planar distances will be calculated.
-      direction_value_matching {Value Table}:
-          The line layer field and attribute values that will be used to
-          define the direction of the input line features. For example, a line
-          layer has a field named direction with values T (backward), F
-          (forward), B (both), and "" (none). If no value is specified, the line
-          is assumed to be bidirectional.
+         * PLANAR-Planar distances will be calculated.
+     direction_value_matching {Value Table}:
+         The line layer field and attribute values that will be used to
+         define the direction of the input line features. For example, a line
+         layer has a field named direction with values T (backward), F
+         (forward), B (both), and "" (none). If no value is specified, the line
+         is assumed to be bidirectional.
 
-          * Direction Field-The field from the line layer that describes the
-          direction of travel.
+         * Direction Field-The field from the line layer that describes the
+         direction of travel.
 
-          * Forward Value-The value from the Direction Field that indicates the
-          supported direction of travel is forward along a line.
+         * Forward Value-The value from the Direction Field that indicates the
+         supported direction of travel is forward along a line.
 
-          * Backward Value-The value from the Direction Field that indicates the
-          supported direction of travel is backward along a line.
+         * Backward Value-The value from the Direction Field that indicates the
+         supported direction of travel is backward along a line.
 
-          * Both Value-The value from the Direction Field that indicates both
-          forward and backward directions of travel are supported along a line.
+         * Both Value-The value from the Direction Field that indicates both
+         forward and backward directions of travel are supported along a line.
 
-          * None Value-The value from the Direction Field that indicates there
-          are no supported directions of travel along a line.
-      output_mode {String}:
-          Specifies whether all input features or only the input features that
-          were matched to a line feature will be returned.
+         * None Value-The value from the Direction Field that indicates there
+         are no supported directions of travel along a line.
+     output_mode {String}:
+         Specifies whether all input features or only the input features that
+         were matched to a line feature will be returned.
 
-          * ALL_FEATURES-All input point features will be returned regardless of
-          whether they were matched to a line feature. This is the default.
+         * ALL_FEATURES-All input point features will be returned regardless of
+         whether they were matched to a line feature. This is the default.
 
-          * MATCHED_FEATURES-Only input point features that were matched to a
-          line feature will be returned.
-      data_store {String}:
-          Specifies the ArcGIS Data Store where the output will be saved. The
-          default is SPATIOTEMPORAL_DATA_STORE. All results stored in a
-          spatiotemporal big data store will be stored in WGS84. Results stored
-          in a relational data store will maintain their coordinate system.
+         * MATCHED_FEATURES-Only input point features that were matched to a
+         line feature will be returned.
+     data_store {String}:
+         Specifies the ArcGIS Data Store where the output will be saved. The
+         default is SPATIOTEMPORAL_DATA_STORE. All results stored in a
+         spatiotemporal big data store will be stored in WGS84. Results stored
+         in a relational data store will maintain their coordinate system.
 
-          * SPATIOTEMPORAL_DATA_STORE-Output will be stored in a spatiotemporal
-          big data store. This is the default.
+         * SPATIOTEMPORAL_DATA_STORE-Output will be stored in a spatiotemporal
+         big data store. This is the default.
 
-          * RELATIONAL_DATA_STORE-Output will be stored in a relational data
-          store.
-      time_split {Time Unit}:
-          Features that are farther apart in time than the time-split duration
-          will be split into separate tracks.
-      distance_split {Linear Unit}:
-          Features that are farther apart in distance than the distance split
-          value will be split into separate tracks. This parameter is only
-          available with ArcGIS Enterprise 10.6 and later.
-      time_boundary_split {Time Unit}:
-          A time span to split the input data into for analysis. A time boundary
-          allows you to analyze values within a defined time span. For example,
-          if you use a time boundary of 1 day, starting on January 1, 1980,
-          tracks will be split at the beginning of every day. This parameter is
-          only available with ArcGIS Enterprise 10.7 and later.
-      time_boundary_reference {Date}:
-          The reference time used to split the input data into for analysis.
-          Time boundaries will be created for the entire span of the data, and
-          the reference time does not need to occur at the start. If no
-          reference time is specified, January 1, 1970, is used. This parameter
-          is only available with ArcGIS Enterprise 10.7 and later."""
+         * RELATIONAL_DATA_STORE-Output will be stored in a relational data
+         store.
+     time_split {Time Unit}:
+         Features that are farther apart in time than the time-split duration
+         will be split into separate tracks.
+     distance_split {Linear Unit}:
+         Features that are farther apart in distance than the distance split
+         value will be split into separate tracks. This parameter is only
+         available with ArcGIS Enterprise 10.6 and later.
+     time_boundary_split {Time Unit}:
+         A time span to split the input data into for analysis. A time boundary
+         allows you to analyze values within a defined time span. For example,
+         if you use a time boundary of 1 day, starting on January 1, 1980,
+         tracks will be split at the beginning of every day. This parameter is
+         only available with ArcGIS Enterprise 10.7 and later.
+     time_boundary_reference {Date}:
+         The reference time used to split the input data into for analysis.
+         Time boundaries will be created for the entire span of the data, and
+         the reference time does not need to occur at the start. If no
+         reference time is specified, January 1, 1970, is used. This parameter
+         is only available with ArcGIS Enterprise 10.7 and later."""
     ...
 
-@gptooldoc('TraceProximityEvents_geoanalytics', None)
-def TraceProximityEvents(in_points=..., entity_id_field=..., output_name=..., distance_method=..., spatial_search_distance=..., temporal_search_distance=..., entities_of_interest_input_type=..., entities_interest_ids=..., entities_interest_layer=..., include_tracks_layer=..., max_trace_depth=..., attribute_match_criteria=..., data_store=...): # -> conversion | int | float | complex | basestring | list[Unknown] | tuple[Unknown, ...] | dict[Unknown, Unknown]:
+@gptooldoc("TraceProximityEvents_geoanalytics", None)
+def TraceProximityEvents(
+    in_points=...,
+    entity_id_field=...,
+    output_name=...,
+    distance_method=...,
+    spatial_search_distance=...,
+    temporal_search_distance=...,
+    entities_of_interest_input_type=...,
+    entities_interest_ids=...,
+    entities_interest_layer=...,
+    include_tracks_layer=...,
+    max_trace_depth=...,
+    attribute_match_criteria=...,
+    data_store=...,
+):  # -> conversion | int | float | complex | basestring | list[Unknown] | tuple[Unknown, ...] | dict[Unknown, Unknown]:
     """TraceProximityEvents_geoanalytics(in_points, entity_id_field, output_name, distance_method, spatial_search_distance, temporal_search_distance, entities_of_interest_input_type, {entities_interest_ids;entities_interest_ids...}, {entities_interest_layer}, {include_tracks_layer}, {max_trace_depth}, {attribute_match_criteria;attribute_match_criteria...}, {data_store})
 
-        Traces events near each other in space (location) and time. The time-
-        enabled point data must include features that represent an instant in
-        time.
+       Traces events near each other in space (location) and time. The time-
+       enabled point data must include features that represent an instant in
+       time.
 
-     INPUTS:
-      in_points (Feature Set):
-          The time-enabled point feature class that will be used to trace
-          proximity events.
-      entity_id_field (Field):
-          The field representing unique IDs for each entity.
-      output_name (String):
-          The name of the output feature service.
-      distance_method (String):
-          Specifies the distance type that will be used with the Spatial Search
-          Distance parameter.
+    INPUTS:
+     in_points (Feature Set):
+         The time-enabled point feature class that will be used to trace
+         proximity events.
+     entity_id_field (Field):
+         The field representing unique IDs for each entity.
+     output_name (String):
+         The name of the output feature service.
+     distance_method (String):
+         Specifies the distance type that will be used with the Spatial Search
+         Distance parameter.
 
-          * PLANAR-Planar distance will be used between features. This is the
-          default.
+         * PLANAR-Planar distance will be used between features. This is the
+         default.
 
-          * GEODESIC-Geodesic distance will be used between features. This line
-          type takes into account the curvature of the spheroid and correctly
-          deals with data near the dateline and poles.
-      spatial_search_distance (Linear Unit):
-          The maximum distance between two points to be considered in proximity.
-          Features within the spatial search distance and temporal search
-          distance criteria are considered to be in proximity of each other.
-      temporal_search_distance (Time Unit):
-          The maximum duration between two points to be considered in proximity.
-          Features within the temporal search distance and that meet the spatial
-          search distance criteria are considered to be in proximity of each
-          other.
-      entities_of_interest_input_type (String):
-          Specifies the entities of interest.
+         * GEODESIC-Geodesic distance will be used between features. This line
+         type takes into account the curvature of the spheroid and correctly
+         deals with data near the dateline and poles.
+     spatial_search_distance (Linear Unit):
+         The maximum distance between two points to be considered in proximity.
+         Features within the spatial search distance and temporal search
+         distance criteria are considered to be in proximity of each other.
+     temporal_search_distance (Time Unit):
+         The maximum duration between two points to be considered in proximity.
+         Features within the temporal search distance and that meet the spatial
+         search distance criteria are considered to be in proximity of each
+         other.
+     entities_of_interest_input_type (String):
+         Specifies the entities of interest.
 
-          * ID_START_TIME-Entity names and times will be used as the entities of
-          interest. This is the default.
+         * ID_START_TIME-Entity names and times will be used as the entities of
+         interest. This is the default.
 
-          * SELECTED_FEATURE-The selected feature in a specified entity of
-          interest layer will be used as the entities of interest.
-      entities_interest_ids {Value Table}:
-          The entity names and start times for the entities of interest. This
-          parameter is supported only when ID_START_TIME is specified for the
-          entities_of_interest_input_type parameter.
+         * SELECTED_FEATURE-The selected feature in a specified entity of
+         interest layer will be used as the entities of interest.
+     entities_interest_ids {Value Table}:
+         The entity names and start times for the entities of interest. This
+         parameter is supported only when ID_START_TIME is specified for the
+         entities_of_interest_input_type parameter.
 
-          * Entity ID-A unique entity name. The names are case sensitive.
+         * Entity ID-A unique entity name. The names are case sensitive.
 
-          * Starting from-An optional starting time to trace an entity of
-          interest. If a time is not specified, January 1, 1970, will be used.
-      entities_interest_layer {Record Set}:
-          The layer or table that contains the entities of interest. This
-          parameter is supported only when SELECTED_FEATURE is specified for the
-          entities_of_interest_input_type parameter.
-      include_tracks_layer {Boolean}:
-          Specifies whether an output layer containing the first trace event and
-          all subsequent features for that specified entity will be generated.
+         * Starting from-An optional starting time to trace an entity of
+         interest. If a time is not specified, January 1, 1970, will be used.
+     entities_interest_layer {Record Set}:
+         The layer or table that contains the entities of interest. This
+         parameter is supported only when SELECTED_FEATURE is specified for the
+         entities_of_interest_input_type parameter.
+     include_tracks_layer {Boolean}:
+         Specifies whether an output layer containing the first trace event and
+         all subsequent features for that specified entity will be generated.
 
-          * TRACKS-An output layer containing the first trace event and all
-          subsequent features will be generated.
+         * TRACKS-An output layer containing the first trace event and all
+         subsequent features will be generated.
 
-          * NO_TRACKS-An output layer containing the first trace event and all
-          subsequent features will not be generated.
-      max_trace_depth {Long}:
-          The maximum degrees of separation between an entity of interest and an
-          entity farther down the trace (downstream).
-      attribute_match_criteria {Field}:
-          The fields used to constrain the proximity event.
-      data_store {String}:
-          Specifies the ArcGIS Data Store where the output will be saved. The
-          default is SPATIOTEMPORAL_DATA_STORE. All results stored in a
-          spatiotemporal big data store will be stored in WGS84. Results stored
-          in a relational data store will maintain their coordinate system.
+         * NO_TRACKS-An output layer containing the first trace event and all
+         subsequent features will not be generated.
+     max_trace_depth {Long}:
+         The maximum degrees of separation between an entity of interest and an
+         entity farther down the trace (downstream).
+     attribute_match_criteria {Field}:
+         The fields used to constrain the proximity event.
+     data_store {String}:
+         Specifies the ArcGIS Data Store where the output will be saved. The
+         default is SPATIOTEMPORAL_DATA_STORE. All results stored in a
+         spatiotemporal big data store will be stored in WGS84. Results stored
+         in a relational data store will maintain their coordinate system.
 
-          * SPATIOTEMPORAL_DATA_STORE-Output will be stored in a spatiotemporal
-          big data store. This is the default.
+         * SPATIOTEMPORAL_DATA_STORE-Output will be stored in a spatiotemporal
+         big data store. This is the default.
 
-          * RELATIONAL_DATA_STORE-Output will be stored in a relational data
-          store."""
+         * RELATIONAL_DATA_STORE-Output will be stored in a relational data
+         store."""
     ...
-

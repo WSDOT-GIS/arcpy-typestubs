@@ -6,880 +6,978 @@ from arcpy.geoprocessing._base import gptooldoc
 
 r"""The Standard Feature Analysis toolbox contains tools for performing
 spatial analysis on feature data in your portal."""
-__all__ = ['AggregatePoints', 'CalculateDensity', 'CreateBuffers', 'DissolveBoundaries', 'FindHotSpots', 'InterpolatePoints', 'MergeLayers', 'OverlayLayers', 'SummarizeNearby', 'SummarizeWithin']
+__all__ = [
+    "AggregatePoints",
+    "CalculateDensity",
+    "CreateBuffers",
+    "DissolveBoundaries",
+    "FindHotSpots",
+    "InterpolatePoints",
+    "MergeLayers",
+    "OverlayLayers",
+    "SummarizeNearby",
+    "SummarizeWithin",
+]
 __alias__ = ...
-@gptooldoc('CalculateDensity_sfa', None)
-def CalculateDensity(inputLayer=..., outputName=..., field=..., cellSize=..., cellSizeUnits=..., radius=..., radiusUnits=..., boundingPolygonLayer=..., areaUnits=..., classificationType=..., numClasses=...): # -> conversion | int | float | complex | basestring | list[Unknown] | tuple[Unknown, ...] | dict[Unknown, Unknown]:
+
+@gptooldoc("CalculateDensity_sfa", None)
+def CalculateDensity(
+    inputLayer=...,
+    outputName=...,
+    field=...,
+    cellSize=...,
+    cellSizeUnits=...,
+    radius=...,
+    radiusUnits=...,
+    boundingPolygonLayer=...,
+    areaUnits=...,
+    classificationType=...,
+    numClasses=...,
+):  # -> conversion | int | float | complex | basestring | list[Unknown] | tuple[Unknown, ...] | dict[Unknown, Unknown]:
     """CalculateDensity_sfa(inputLayer, outputName, {field}, {cellSize}, {cellSizeUnits}, {radius}, {radiusUnits}, {boundingPolygonLayer}, {areaUnits}, {classificationType}, {numClasses})
 
-        Creates a density map from point or line features by spreading known
-        quantities of some phenomenon (represented as attributes of the points
-        or lines) across the map. The result is a layer of areas classified
-        from least dense to most dense.
+       Creates a density map from point or line features by spreading known
+       quantities of some phenomenon (represented as attributes of the points
+       or lines) across the map. The result is a layer of areas classified
+       from least dense to most dense.
 
-     INPUTS:
-      inputLayer (Feature Set):
-          The point or line features from which to calculate density.
-      outputName (String):
-          The name of the output layer to create on your portal.
-      field {Field}:
-          A field specifying the number of incidents at each location. For
-          example, if you have points that represent cities, you can use a field
-          representing the population of the city as the count field, and the
-          resulting population density layer will calculate larger population
-          densities near cities with larger populations.If not specified, each
-          location will be assumed to represent a single
-          count.
-      cellSize {Double}:
-          This value is used to create a mesh of points where density values are
-          calculated. The default is approximately 1/1000th of the smaller of
-          the width and height of the analysis extent as defined in the context
-          parameter. The smaller the value, the smoother the polygon boundaries
-          will be. Conversely, with larger values, the polygon boundaries will
-          be more coarse and jagged.
-      cellSizeUnits {String}:
-          The units of the cell size value. You must provide a value if cell
-          size has been set.
+    INPUTS:
+     inputLayer (Feature Set):
+         The point or line features from which to calculate density.
+     outputName (String):
+         The name of the output layer to create on your portal.
+     field {Field}:
+         A field specifying the number of incidents at each location. For
+         example, if you have points that represent cities, you can use a field
+         representing the population of the city as the count field, and the
+         resulting population density layer will calculate larger population
+         densities near cities with larger populations.If not specified, each
+         location will be assumed to represent a single
+         count.
+     cellSize {Double}:
+         This value is used to create a mesh of points where density values are
+         calculated. The default is approximately 1/1000th of the smaller of
+         the width and height of the analysis extent as defined in the context
+         parameter. The smaller the value, the smoother the polygon boundaries
+         will be. Conversely, with larger values, the polygon boundaries will
+         be more coarse and jagged.
+     cellSizeUnits {String}:
+         The units of the cell size value. You must provide a value if cell
+         size has been set.
 
-          * MILES-Miles
+         * MILES-Miles
 
-          * FEET-Feet
+         * FEET-Feet
 
-          * KILOMETERS-Kilometers
+         * KILOMETERS-Kilometers
 
-          * METERS-Meters
-      radius {Double}:
-          A distance specifying how far to search to find point or line features
-          when calculating density values. For example, if you provide a search
-          distance of 1,800 meters, the density of any location in the output
-          layer is calculated based on features that are within 1,800 meters of
-          the location. Any location that does not have any incidents within
-          1,800 meters will receive a density value of zero.If no distance is
-          provided, a default will be calculated based on the
-          locations of the input features and the values in the count field (if
-          a count field is provided).
-      radiusUnits {String}:
-          The units of the radius value. You must provide a value if a radius
-          has been set.
+         * METERS-Meters
+     radius {Double}:
+         A distance specifying how far to search to find point or line features
+         when calculating density values. For example, if you provide a search
+         distance of 1,800 meters, the density of any location in the output
+         layer is calculated based on features that are within 1,800 meters of
+         the location. Any location that does not have any incidents within
+         1,800 meters will receive a density value of zero.If no distance is
+         provided, a default will be calculated based on the
+         locations of the input features and the values in the count field (if
+         a count field is provided).
+     radiusUnits {String}:
+         The units of the radius value. You must provide a value if a radius
+         has been set.
 
-          * MILES-Miles
+         * MILES-Miles
 
-          * FEET-Feet
+         * FEET-Feet
 
-          * KILOMETERS-Kilometers
+         * KILOMETERS-Kilometers
 
-          * METERS-Meters
-      boundingPolygonLayer {Feature Set}:
-          A layer specifying the polygons where you want densities to be
-          calculated. For example, if you are interpolating densities of fish
-          within a lake, you can use the boundary of the lake in this parameter
-          and the output will only draw within the boundary of the lake.
-      areaUnits {String}:
-          The units of the calculated density values.
+         * METERS-Meters
+     boundingPolygonLayer {Feature Set}:
+         A layer specifying the polygons where you want densities to be
+         calculated. For example, if you are interpolating densities of fish
+         within a lake, you can use the boundary of the lake in this parameter
+         and the output will only draw within the boundary of the lake.
+     areaUnits {String}:
+         The units of the calculated density values.
 
-          * SQUAREMILES-Square miles
+         * SQUAREMILES-Square miles
 
-          * SQUAREKILOMETERS-Square kilometers
-      classificationType {String}:
-          Determines how density values will be classified into polygons.
+         * SQUAREKILOMETERS-Square kilometers
+     classificationType {String}:
+         Determines how density values will be classified into polygons.
 
-          * EQUALINTERVAL-Polygons are created such that the range of density
-          values is equal for each area.
+         * EQUALINTERVAL-Polygons are created such that the range of density
+         values is equal for each area.
 
-          * GEOMETRICINTERVAL-Polygons are based on class intervals that have a
-          geometric series. This method ensures that each class range has
-          approximately the same number of values within each class and that the
-          change between intervals is consistent.
+         * GEOMETRICINTERVAL-Polygons are based on class intervals that have a
+         geometric series. This method ensures that each class range has
+         approximately the same number of values within each class and that the
+         change between intervals is consistent.
 
-          * NATURALBREAKS-Class intervals for polygons are based on natural
-          groupings of the data. Class break values are identified that best
-          group similar values and that maximize the differences between
-          classes.
+         * NATURALBREAKS-Class intervals for polygons are based on natural
+         groupings of the data. Class break values are identified that best
+         group similar values and that maximize the differences between
+         classes.
 
-          * EQUALAREA-Polygons are created such that the size of each area is
-          equal. For example, if the result has more high-density values than
-          low-density values, more polygons will be created for high densities.
+         * EQUALAREA-Polygons are created such that the size of each area is
+         equal. For example, if the result has more high-density values than
+         low-density values, more polygons will be created for high densities.
 
-          * STANDARDDEVIATION-Polygons are created based upon the standard
-          deviation of the predicted density values.
-      numClasses {Long}:
-          This value is used to divide the range of predicted values into
-          distinct classes. The range of values in each class is determined by
-          the classification type. Each class defines the boundaries of the
-          result polygons.The default is 10 and the maximum is 32."""
+         * STANDARDDEVIATION-Polygons are created based upon the standard
+         deviation of the predicted density values.
+     numClasses {Long}:
+         This value is used to divide the range of predicted values into
+         distinct classes. The range of values in each class is determined by
+         the classification type. Each class defines the boundaries of the
+         result polygons.The default is 10 and the maximum is 32."""
     ...
 
-@gptooldoc('FindHotSpots_sfa', None)
-def FindHotSpots(analysisLayer=..., outputName=..., analysisField=..., divideByField=..., boundingPolygonLayer=..., aggregatePolygonLayer=...): # -> conversion | int | float | complex | basestring | list[Unknown] | tuple[Unknown, ...] | dict[Unknown, Unknown]:
+@gptooldoc("FindHotSpots_sfa", None)
+def FindHotSpots(
+    analysisLayer=...,
+    outputName=...,
+    analysisField=...,
+    divideByField=...,
+    boundingPolygonLayer=...,
+    aggregatePolygonLayer=...,
+):  # -> conversion | int | float | complex | basestring | list[Unknown] | tuple[Unknown, ...] | dict[Unknown, Unknown]:
     """FindHotSpots_sfa(analysisLayer, outputName, {analysisField}, {divideByField}, {boundingPolygonLayer}, {aggregatePolygonLayer})
 
-        Identifies statistically significant spatial clustering of high values
-        (hot spots) or low values (cold spots), or data counts, in your data.
-        Use this tool to uncover hot and cold spots of high and low home
-        values, crime densities, traffic accident fatalities, unemployment or
-        biodiversity, for example.
+       Identifies statistically significant spatial clustering of high values
+       (hot spots) or low values (cold spots), or data counts, in your data.
+       Use this tool to uncover hot and cold spots of high and low home
+       values, crime densities, traffic accident fatalities, unemployment or
+       biodiversity, for example.
 
-     INPUTS:
-      analysisLayer (Feature Set):
-          The point or polygon feature layer for which hot spots will be
-          calculated.
-      outputName (String):
-          The name of the output layer to create on your portal.
-      analysisField {Field}:
-          A numeric field (number of incidents, crime rates, test
-          scores, and so on) to be evaluated. The field you select might
-          represent the following:
+    INPUTS:
+     analysisLayer (Feature Set):
+         The point or polygon feature layer for which hot spots will be
+         calculated.
+     outputName (String):
+         The name of the output layer to create on your portal.
+     analysisField {Field}:
+         A numeric field (number of incidents, crime rates, test
+         scores, and so on) to be evaluated. The field you select might
+         represent the following:
 
-          * Counts (such as the number of traffic accidents)
+         * Counts (such as the number of traffic accidents)
 
-          * Rates (such as the number of crimes per square mile)
+         * Rates (such as the number of crimes per square mile)
 
-          * Averages (such as the mean math test score)
+         * Averages (such as the mean math test score)
 
-          * Indices (such as a customer satisfaction score)
-      divideByField {Field}:
-          The numeric field in the input layer that will be used to normalize
-          your data. For example, if your points represent crimes, dividing by
-          total population would result in an analysis of crimes per capita
-          rather than raw crime counts.
-      boundingPolygonLayer {Feature Set}:
-          When the analysis layer is points and no analysis field is specified,
-          you can provide polygon features that define where incidents could
-          have occurred. For example, if you are analyzing boating accidents in
-          a harbor, the outline of the harbor might provide a good boundary for
-          where accidents could occur. When no bounding areas are provided, only
-          locations with at least one point will be included in the analysis.
-      aggregatePolygonLayer {Feature Set}:
-          When the input layer contains points and no analysis field is
-          specified, you can provide polygon features into which the points will
-          be aggregated and analyzed, such as administrative units. The number
-          of points that fall within each polygon is counted and the point count
-          in each polygon is analyzed."""
+         * Indices (such as a customer satisfaction score)
+     divideByField {Field}:
+         The numeric field in the input layer that will be used to normalize
+         your data. For example, if your points represent crimes, dividing by
+         total population would result in an analysis of crimes per capita
+         rather than raw crime counts.
+     boundingPolygonLayer {Feature Set}:
+         When the analysis layer is points and no analysis field is specified,
+         you can provide polygon features that define where incidents could
+         have occurred. For example, if you are analyzing boating accidents in
+         a harbor, the outline of the harbor might provide a good boundary for
+         where accidents could occur. When no bounding areas are provided, only
+         locations with at least one point will be included in the analysis.
+     aggregatePolygonLayer {Feature Set}:
+         When the input layer contains points and no analysis field is
+         specified, you can provide polygon features into which the points will
+         be aggregated and analyzed, such as administrative units. The number
+         of points that fall within each polygon is counted and the point count
+         in each polygon is analyzed."""
     ...
 
-@gptooldoc('InterpolatePoints_sfa', None)
-def InterpolatePoints(inputLayer=..., outputName=..., field=..., interpolateOption=..., outputPredictionError=..., classificationType=..., numClasses=..., classBreaks=..., boundingPolygonLayer=..., predictAtPointLayer=...): # -> conversion | int | float | complex | basestring | list[Unknown] | tuple[Unknown, ...] | dict[Unknown, Unknown]:
+@gptooldoc("InterpolatePoints_sfa", None)
+def InterpolatePoints(
+    inputLayer=...,
+    outputName=...,
+    field=...,
+    interpolateOption=...,
+    outputPredictionError=...,
+    classificationType=...,
+    numClasses=...,
+    classBreaks=...,
+    boundingPolygonLayer=...,
+    predictAtPointLayer=...,
+):  # -> conversion | int | float | complex | basestring | list[Unknown] | tuple[Unknown, ...] | dict[Unknown, Unknown]:
     """InterpolatePoints_sfa(inputLayer, outputName, {field}, {interpolateOption}, {outputPredictionError}, {classificationType}, {numClasses}, {classBreaks;classBreaks...}, {boundingPolygonLayer}, {predictAtPointLayer})
 
-        Predicts values at new locations based on measurements from a
-        collection of points. The tool uses point data with values at each
-        point as input and makes areas classified by predicted values.
+       Predicts values at new locations based on measurements from a
+       collection of points. The tool uses point data with values at each
+       point as input and makes areas classified by predicted values.
 
-     INPUTS:
-      inputLayer (Feature Set):
-          The point features that will be interpolated to a continuous surface
-          layer.
-      outputName (String):
-          The name of the output layer to create on your portal.
-      field {Field}:
-          The numeric field containing the values you want to interpolate.
-      interpolateOption {String}:
-          Controls your preference for speed versus accuracy, from fastest to
-          most accurate. More accurate predictions take longer to calculate.
+    INPUTS:
+     inputLayer (Feature Set):
+         The point features that will be interpolated to a continuous surface
+         layer.
+     outputName (String):
+         The name of the output layer to create on your portal.
+     field {Field}:
+         The numeric field containing the values you want to interpolate.
+     interpolateOption {String}:
+         Controls your preference for speed versus accuracy, from fastest to
+         most accurate. More accurate predictions take longer to calculate.
 
-          * 1-Speed.
+         * 1-Speed.
 
-          * 5-Balanced. This is the default.
+         * 5-Balanced. This is the default.
 
-          * 9-Accuracy.
-      outputPredictionError {Boolean}:
-          If checked, a polygon layer of standard errors for the interpolation
-          predictions will be output.Standard errors are useful because they
-          provide information about the
-          reliability of the predicted values. A simple rule of thumb is that
-          the true value will fall within two standard errors of the predicted
-          value 95 percent of the time. For example, suppose a new location gets
-          a predicted value of 50 with a standard error of 5. This means that
-          this task's best guess is that the true value at that location is 50,
-          but it reasonably could be as low as 40 or as high as 60. To calculate
-          this range of reasonable values, multiply the standard error by 2, add
-          this value to the predicted value to get the upper end of the range,
-          and subtract it from the predicted value to get the lower end of the
-          range.
+         * 9-Accuracy.
+     outputPredictionError {Boolean}:
+         If checked, a polygon layer of standard errors for the interpolation
+         predictions will be output.Standard errors are useful because they
+         provide information about the
+         reliability of the predicted values. A simple rule of thumb is that
+         the true value will fall within two standard errors of the predicted
+         value 95 percent of the time. For example, suppose a new location gets
+         a predicted value of 50 with a standard error of 5. This means that
+         this task's best guess is that the true value at that location is 50,
+         but it reasonably could be as low as 40 or as high as 60. To calculate
+         this range of reasonable values, multiply the standard error by 2, add
+         this value to the predicted value to get the upper end of the range,
+         and subtract it from the predicted value to get the lower end of the
+         range.
 
-          * NO_ERROR-Do not create a prediction error output layer. This is the
-          default.
+         * NO_ERROR-Do not create a prediction error output layer. This is the
+         default.
 
-          * OUTPUT_ERROR-Create a prediction error output layer.
-      classificationType {String}:
-          Determines how predicted values will be classified into polygons.
+         * OUTPUT_ERROR-Create a prediction error output layer.
+     classificationType {String}:
+         Determines how predicted values will be classified into polygons.
 
-          * EQUALINTERVAL-Polygons are created such that the range of density
-          values is equal for each area.
+         * EQUALINTERVAL-Polygons are created such that the range of density
+         values is equal for each area.
 
-          * GEOMETRICINTERVAL-Polygons are based on class intervals that have a
-          geometric series. This method ensures that each class range has
-          approximately the same number of values within each class and that the
-          change between intervals is consistent. This is the default.
+         * GEOMETRICINTERVAL-Polygons are based on class intervals that have a
+         geometric series. This method ensures that each class range has
+         approximately the same number of values within each class and that the
+         change between intervals is consistent. This is the default.
 
-          * EQUALAREA-Polygons are created such that the size of each area is
-          equal. For example, if the result has more high-density values than
-          low-density values, more polygons will be created for high densities.
+         * EQUALAREA-Polygons are created such that the size of each area is
+         equal. For example, if the result has more high-density values than
+         low-density values, more polygons will be created for high densities.
 
-          * MANUAL-You define your own range of values for areas. These values
-          will be entered as class breaks.
-      numClasses {Long}:
-          This value is used to divide the range of predicted values into
-          distinct classes. The range of values in each class is determined by
-          the classification type. Each class defines the boundaries of the
-          result polygons.The default is 10 and the maximum is 32.
-      classBreaks {Double}:
-          To do a manual classification, supply the desired class break values.
-          These values define the upper limit of each class, so the number of
-          classes will equal the number of entered values. Areas will not be
-          created for any locations with predicted values above the largest
-          entered break value. You must enter at least 2 values and no more than
-          32.
-      boundingPolygonLayer {Feature Set}:
-          A layer specifying the polygons where you want values to be
-          interpolated. For example, if you are interpolating densities of fish
-          within a lake, you can use the boundary of the lake in this parameter
-          and the output will only contain polygons within the boundary of the
-          lake.
-      predictAtPointLayer {Feature Set}:
-          An optional layer specifying point locations to calculate prediction
-          values. This allows you to make predictions at specific locations of
-          interest. For example, if the input layer represents measurements of
-          pollution levels, you can use this parameter to predict the pollution
-          levels of locations with large at-risk populations, such as schools or
-          hospitals. You can then use this information to give recommendations
-          to health officials in those locations."""
+         * MANUAL-You define your own range of values for areas. These values
+         will be entered as class breaks.
+     numClasses {Long}:
+         This value is used to divide the range of predicted values into
+         distinct classes. The range of values in each class is determined by
+         the classification type. Each class defines the boundaries of the
+         result polygons.The default is 10 and the maximum is 32.
+     classBreaks {Double}:
+         To do a manual classification, supply the desired class break values.
+         These values define the upper limit of each class, so the number of
+         classes will equal the number of entered values. Areas will not be
+         created for any locations with predicted values above the largest
+         entered break value. You must enter at least 2 values and no more than
+         32.
+     boundingPolygonLayer {Feature Set}:
+         A layer specifying the polygons where you want values to be
+         interpolated. For example, if you are interpolating densities of fish
+         within a lake, you can use the boundary of the lake in this parameter
+         and the output will only contain polygons within the boundary of the
+         lake.
+     predictAtPointLayer {Feature Set}:
+         An optional layer specifying point locations to calculate prediction
+         values. This allows you to make predictions at specific locations of
+         interest. For example, if the input layer represents measurements of
+         pollution levels, you can use this parameter to predict the pollution
+         levels of locations with large at-risk populations, such as schools or
+         hospitals. You can then use this information to give recommendations
+         to health officials in those locations."""
     ...
 
-@gptooldoc('DissolveBoundaries_sfa', None)
-def DissolveBoundaries(inputLayer=..., outputName=..., dissolveFields=..., summaryFields=...): # -> conversion | int | float | complex | basestring | list[Unknown] | tuple[Unknown, ...] | dict[Unknown, Unknown]:
+@gptooldoc("DissolveBoundaries_sfa", None)
+def DissolveBoundaries(
+    inputLayer=..., outputName=..., dissolveFields=..., summaryFields=...
+):  # -> conversion | int | float | complex | basestring | list[Unknown] | tuple[Unknown, ...] | dict[Unknown, Unknown]:
     """DissolveBoundaries_sfa(inputLayer, outputName, {dissolveFields;dissolveFields...}, {summaryFields;summaryFields...})
 
-        Finds polygons that overlap or share a common boundary and merges them
-        together to form a single polygon.
+       Finds polygons that overlap or share a common boundary and merges them
+       together to form a single polygon.
 
-     INPUTS:
-      inputLayer (Feature Set):
-          The layer containing polygon features that will be dissolved or
-          combined.
-      outputName (String):
-          The name of the output layer to create on your portal.
-      dissolveFields {Field}:
-          One or more fields from the input layer that control which polygons
-          are merged. If you don't supply dissolve fields, polygons that share a
-          common border (that is, they are adjacent) or polygon areas that
-          overlap will be dissolved into one polygon.If you do supply fields,
-          polygons that share a common border and
-          contain the same value in one or more fields will be dissolved. For
-          example, if you have a layer of counties and each county has a
-          State_Name attribute, you can dissolve boundaries using the State_Name
-          attribute. Adjacent counties will be merged together if they have the
-          same value for State_Name. The end result is a layer of state
-          boundaries. If two or more fields are specified, the values in these
-          fields must be the same for the boundary to be dissolved.
-      summaryFields {Value Table}:
-          A list of field names and statistical summary type that you
-          wish to calculate for all points within each polygon. The count of
-          points within each polygon is always returned. The following statistic
-          types are supported:
+    INPUTS:
+     inputLayer (Feature Set):
+         The layer containing polygon features that will be dissolved or
+         combined.
+     outputName (String):
+         The name of the output layer to create on your portal.
+     dissolveFields {Field}:
+         One or more fields from the input layer that control which polygons
+         are merged. If you don't supply dissolve fields, polygons that share a
+         common border (that is, they are adjacent) or polygon areas that
+         overlap will be dissolved into one polygon.If you do supply fields,
+         polygons that share a common border and
+         contain the same value in one or more fields will be dissolved. For
+         example, if you have a layer of counties and each county has a
+         State_Name attribute, you can dissolve boundaries using the State_Name
+         attribute. Adjacent counties will be merged together if they have the
+         same value for State_Name. The end result is a layer of state
+         boundaries. If two or more fields are specified, the values in these
+         fields must be the same for the boundary to be dissolved.
+     summaryFields {Value Table}:
+         A list of field names and statistical summary type that you
+         wish to calculate for all points within each polygon. The count of
+         points within each polygon is always returned. The following statistic
+         types are supported:
 
-          * SUM-The total value.
+         * SUM-The total value.
 
-          * MIN-The smallest value.
+         * MIN-The smallest value.
 
-          * MAX-The largest value.
+         * MAX-The largest value.
 
-          * MEAN-The average or mean value.
+         * MEAN-The average or mean value.
 
-          * STDDEV-The standard deviation."""
+         * STDDEV-The standard deviation."""
     ...
 
-@gptooldoc('MergeLayers_sfa', None)
-def MergeLayers(inputLayer=..., mergeLayer=..., outputName=..., mergingAttributes=...): # -> conversion | int | float | complex | basestring | list[Unknown] | tuple[Unknown, ...] | dict[Unknown, Unknown]:
+@gptooldoc("MergeLayers_sfa", None)
+def MergeLayers(
+    inputLayer=..., mergeLayer=..., outputName=..., mergingAttributes=...
+):  # -> conversion | int | float | complex | basestring | list[Unknown] | tuple[Unknown, ...] | dict[Unknown, Unknown]:
     """MergeLayers_sfa(inputLayer, mergeLayer, outputName, {mergingAttributes;mergingAttributes...})
 
-        Copies all features from two layers into a new layer. The layers to be
-        combined must contain the same feature types (points, lines, or
-        polygons). You can control how the fields from the input layers are
-        joined and copied.
+       Copies all features from two layers into a new layer. The layers to be
+       combined must contain the same feature types (points, lines, or
+       polygons). You can control how the fields from the input layers are
+       joined and copied.
 
-     INPUTS:
-      inputLayer (Feature Set):
-          The point, line, or polygon features to merge with the merge layer.
-      mergeLayer (Feature Set):
-          The point, line, or polygon features to merge with the input layer.
-          The merge layer must contain the same feature type (point, line, or
-          polygon) as the input layer.
-      outputName (String):
-          The name of the output layer to create on your portal.
-      mergingAttributes {Value Table}:
-          A list of values that describe how fields from the merge layer are to
-          be modified and matched with fields in the input layer. By default,
-          all fields from both inputs will be carried across to the output
-          layer.If a field exists in one layer but not the other, the output
-          layer
-          will contain both fields. The output field will contain null values
-          for the input features that did not have the field. For example, if
-          the input layer contains a field named TYPE but the merge layer does
-          not contain TYPE, the output will contain TYPE, but its values will be
-          null for all the features copied from the merge layer. You can
-          control the following merge actions (how fields on the
-          merge layer are written to the output).
+    INPUTS:
+     inputLayer (Feature Set):
+         The point, line, or polygon features to merge with the merge layer.
+     mergeLayer (Feature Set):
+         The point, line, or polygon features to merge with the input layer.
+         The merge layer must contain the same feature type (point, line, or
+         polygon) as the input layer.
+     outputName (String):
+         The name of the output layer to create on your portal.
+     mergingAttributes {Value Table}:
+         A list of values that describe how fields from the merge layer are to
+         be modified and matched with fields in the input layer. By default,
+         all fields from both inputs will be carried across to the output
+         layer.If a field exists in one layer but not the other, the output
+         layer
+         will contain both fields. The output field will contain null values
+         for the input features that did not have the field. For example, if
+         the input layer contains a field named TYPE but the merge layer does
+         not contain TYPE, the output will contain TYPE, but its values will be
+         null for all the features copied from the merge layer. You can
+         control the following merge actions (how fields on the
+         merge layer are written to the output).
 
-          * REMOVE-The merge layer field will be removed from the output layer.
+         * REMOVE-The merge layer field will be removed from the output layer.
 
-          * RENAME-The merge layer field will be renamed in the output. You
-          cannot rename a field from the merge layer to a field from the input
-          layer. If you want to make field names equivalent, use the match
-          option.
+         * RENAME-The merge layer field will be renamed in the output. You
+         cannot rename a field from the merge layer to a field from the input
+         layer. If you want to make field names equivalent, use the match
+         option.
 
-          * MATCH-The merge layer field is renamed and matched to a field from
-          the input layer. For example, the input layer has a field named CODE
-          and the merge layer has a field named STATUS. You can match STATUS to
-          CODE, and the output will contain the CODE field with values of the
-          STATUS field used for features copied from the merge layer. Type
-          casting is supported (for example, double to integer, integer to
-          string), except for string to numeric."""
+         * MATCH-The merge layer field is renamed and matched to a field from
+         the input layer. For example, the input layer has a field named CODE
+         and the merge layer has a field named STATUS. You can match STATUS to
+         CODE, and the output will contain the CODE field with values of the
+         STATUS field used for features copied from the merge layer. Type
+         casting is supported (for example, double to integer, integer to
+         string), except for string to numeric."""
     ...
 
-@gptooldoc('OverlayLayers_sfa', None)
-def OverlayLayers(inputLayer=..., overlayLayer=..., outputName=..., overlayType=..., outputType=..., snapToInput=..., tolerance=...): # -> conversion | int | float | complex | basestring | list[Unknown] | tuple[Unknown, ...] | dict[Unknown, Unknown]:
+@gptooldoc("OverlayLayers_sfa", None)
+def OverlayLayers(
+    inputLayer=...,
+    overlayLayer=...,
+    outputName=...,
+    overlayType=...,
+    outputType=...,
+    snapToInput=...,
+    tolerance=...,
+):  # -> conversion | int | float | complex | basestring | list[Unknown] | tuple[Unknown, ...] | dict[Unknown, Unknown]:
     """OverlayLayers_sfa(inputLayer, overlayLayer, outputName, {overlayType}, {outputType}, {snapToInput}, {tolerance})
 
-        Overlays the geometries from multiple layers into one single layer.
-        Overlay can be used to combine, erase, modify, or update spatial
-        features. Overlay is much more than a merging of geometries; all the
-        attributes of the features taking part in the overlay are carried
-        through to the result.
+       Overlays the geometries from multiple layers into one single layer.
+       Overlay can be used to combine, erase, modify, or update spatial
+       features. Overlay is much more than a merging of geometries; all the
+       attributes of the features taking part in the overlay are carried
+       through to the result.
 
-     INPUTS:
-      inputLayer (Feature Set):
-          The point, line, or polygon features that will be overlaid with the
-          overlay layer.
-      overlayLayer (Feature Set):
-          The features that will be overlaid with the input layer features.
-      outputName (String):
-          The name of the output layer to create on your portal.
-      overlayType {String}:
-          The type of overlay to be performed.
+    INPUTS:
+     inputLayer (Feature Set):
+         The point, line, or polygon features that will be overlaid with the
+         overlay layer.
+     overlayLayer (Feature Set):
+         The features that will be overlaid with the input layer features.
+     outputName (String):
+         The name of the output layer to create on your portal.
+     overlayType {String}:
+         The type of overlay to be performed.
 
-          * INTERSECT-Computes a geometric intersection of the input layers.
-          Features or portions of features that overlap in both the input layer
-          and overlay layer will be written to the output layer. This is the
-          default.
+         * INTERSECT-Computes a geometric intersection of the input layers.
+         Features or portions of features that overlap in both the input layer
+         and overlay layer will be written to the output layer. This is the
+         default.
 
-          * UNION-Computes a geometric union of the input layers. All features
-          and their attributes will be written to the output layer. This option
-          is only valid if both the input layer and the overlay layer contain
-          polygon features.
+         * UNION-Computes a geometric union of the input layers. All features
+         and their attributes will be written to the output layer. This option
+         is only valid if both the input layer and the overlay layer contain
+         polygon features.
 
-          * ERASE-Only those features or portions of features in the overlay
-          layer that are not within the features in the input layer are written
-          to the output.
-      outputType {String}:
-          The type of intersection you want to find. This parameter is only
-          valid when the overlay type is Intersect.
+         * ERASE-Only those features or portions of features in the overlay
+         layer that are not within the features in the input layer are written
+         to the output.
+     outputType {String}:
+         The type of intersection you want to find. This parameter is only
+         valid when the overlay type is Intersect.
 
-          * INPUT-The features returned will be the same geometry type as the
-          input layer or overlay layer with the lowest dimension geometry. If
-          all inputs are polygons, the output will contain polygons. If one or
-          more of the inputs are lines and none of the inputs are points, the
-          output will be line. If one or more of the inputs are points, the
-          output will contain points. This is the default.
+         * INPUT-The features returned will be the same geometry type as the
+         input layer or overlay layer with the lowest dimension geometry. If
+         all inputs are polygons, the output will contain polygons. If one or
+         more of the inputs are lines and none of the inputs are points, the
+         output will be line. If one or more of the inputs are points, the
+         output will contain points. This is the default.
 
-          * LINE-Line intersections will be returned. This is only valid if
-          none of the inputs are points.
+         * LINE-Line intersections will be returned. This is only valid if
+         none of the inputs are points.
 
-          * POINT-Point intersections will be returned. If the inputs are line
-          or polygon, the output will be a multipoint layer.
-      snapToInput {Boolean}:
-          Specifies if feature vertices in the input layer are allowed to move.
-          The default is NO_SNAP and means if the distance between features is
-          less than the tolerance value, all features from both layers can move
-          to allow snapping to each other. When the value is SNAP, only features
-          in the overlay layer can move to snap to the input layer features.
+         * POINT-Point intersections will be returned. If the inputs are line
+         or polygon, the output will be a multipoint layer.
+     snapToInput {Boolean}:
+         Specifies if feature vertices in the input layer are allowed to move.
+         The default is NO_SNAP and means if the distance between features is
+         less than the tolerance value, all features from both layers can move
+         to allow snapping to each other. When the value is SNAP, only features
+         in the overlay layer can move to snap to the input layer features.
 
-          * NO_SNAP-Allow features from both layers to snap their vertices to
-          each other. This is the default.
+         * NO_SNAP-Allow features from both layers to snap their vertices to
+         each other. This is the default.
 
-          * SNAP-Only allow features in the overlay layer to move vertices to
-          snap to the input layer.
-      tolerance {Double}:
-          A double value of the minimum distance separating all feature
-          coordinates as well as the distance a coordinate can move in X or Y
-          (or both). The units of tolerance are the same as the units of the
-          input layer's coordinate system."""
+         * SNAP-Only allow features in the overlay layer to move vertices to
+         snap to the input layer.
+     tolerance {Double}:
+         A double value of the minimum distance separating all feature
+         coordinates as well as the distance a coordinate can move in X or Y
+         (or both). The units of tolerance are the same as the units of the
+         input layer's coordinate system."""
     ...
 
-@gptooldoc('AggregatePoints_sfa', None)
-def AggregatePoints(pointLayer=..., polygonLayer=..., outputName=..., keepBoundariesWithNoPoints=..., summaryFields=..., groupByField=..., minorityMajority=..., percentPoints=...): # -> conversion | int | float | complex | basestring | list[Unknown] | tuple[Unknown, ...] | dict[Unknown, Unknown]:
+@gptooldoc("AggregatePoints_sfa", None)
+def AggregatePoints(
+    pointLayer=...,
+    polygonLayer=...,
+    outputName=...,
+    keepBoundariesWithNoPoints=...,
+    summaryFields=...,
+    groupByField=...,
+    minorityMajority=...,
+    percentPoints=...,
+):  # -> conversion | int | float | complex | basestring | list[Unknown] | tuple[Unknown, ...] | dict[Unknown, Unknown]:
     """AggregatePoints_sfa(pointLayer, polygonLayer, outputName, keepBoundariesWithNoPoints, {summaryFields;summaryFields...}, {groupByField}, {minorityMajority}, {percentPoints})
 
-        Uses a layer of point features and a layer of polygon features to
-        determine which points fall within each polygon's area. After
-        determining this point-in-polygon spatial relationship, statistics
-        about all points in the polygon are calculated and assigned to the
-        area.
+       Uses a layer of point features and a layer of polygon features to
+       determine which points fall within each polygon's area. After
+       determining this point-in-polygon spatial relationship, statistics
+       about all points in the polygon are calculated and assigned to the
+       area.
 
-     INPUTS:
-      pointLayer (Feature Set):
-          The point features that will be aggregated into the polygons in the
-          polygon layer.
-      polygonLayer (Feature Set):
-          The polygon features (areas) into which the input points will be
-          aggregated.
-      outputName (String):
-          The name of the output layer to create on your portal.
-      keepBoundariesWithNoPoints (Boolean):
-          Specifies whether the polygons that have no points within them should
-          be returned in the output.
+    INPUTS:
+     pointLayer (Feature Set):
+         The point features that will be aggregated into the polygons in the
+         polygon layer.
+     polygonLayer (Feature Set):
+         The polygon features (areas) into which the input points will be
+         aggregated.
+     outputName (String):
+         The name of the output layer to create on your portal.
+     keepBoundariesWithNoPoints (Boolean):
+         Specifies whether the polygons that have no points within them should
+         be returned in the output.
 
-          * KEEP_EMPTY-Keep polygons that have no points. This is the default.
+         * KEEP_EMPTY-Keep polygons that have no points. This is the default.
 
-          * REMOVE_EMPTY-Do not return polygons with no points in the output.
-      summaryFields {Value Table}:
-          A list of field names and statistical summary type that you
-          wish to calculate for all points within each polygon. The count of
-          points within each polygon is always returned. The following statistic
-          types are supported:
+         * REMOVE_EMPTY-Do not return polygons with no points in the output.
+     summaryFields {Value Table}:
+         A list of field names and statistical summary type that you
+         wish to calculate for all points within each polygon. The count of
+         points within each polygon is always returned. The following statistic
+         types are supported:
 
-          * SUM-The total value.
+         * SUM-The total value.
 
-          * MIN-The smallest value.
+         * MIN-The smallest value.
 
-          * MAX-The largest value.
+         * MAX-The largest value.
 
-          * MEAN-The average or mean value.
+         * MEAN-The average or mean value.
 
-          * STD-The standard deviation.
-      groupByField {Field}:
-          A field name in the pointLayer. Points that have the same value for
-          the group by field will have their own counts and summary field
-          statistics.You can create statistical groups using an attribute in the
-          analysis
-          layer. For example, if you are aggregating crimes to neighborhood
-          boundaries, you may have a Crime_type attribute with five different
-          crime types. Each unique crime type forms a group, and the statistics
-          you choose will be calculated for each unique value of Crime_type.
-          When you choose a grouping attribute, two results are created: the
-          result layer and a related table containing the statistics.
-      minorityMajority {Boolean}:
-          This Boolean parameter is applicable only when a groupByField is
-          specified. If true, the minority (least dominant) or the majority
-          (most dominant) attribute values for each group field within each
-          boundary are calculated. Two new fields are added to the output layer
-          prefixed with Majority_ and Minority_.
+         * STD-The standard deviation.
+     groupByField {Field}:
+         A field name in the pointLayer. Points that have the same value for
+         the group by field will have their own counts and summary field
+         statistics.You can create statistical groups using an attribute in the
+         analysis
+         layer. For example, if you are aggregating crimes to neighborhood
+         boundaries, you may have a Crime_type attribute with five different
+         crime types. Each unique crime type forms a group, and the statistics
+         you choose will be calculated for each unique value of Crime_type.
+         When you choose a grouping attribute, two results are created: the
+         result layer and a related table containing the statistics.
+     minorityMajority {Boolean}:
+         This Boolean parameter is applicable only when a groupByField is
+         specified. If true, the minority (least dominant) or the majority
+         (most dominant) attribute values for each group field within each
+         boundary are calculated. Two new fields are added to the output layer
+         prefixed with Majority_ and Minority_.
 
-          * NO_MIN_MAJ-Do not add minority and majority fields. This is the
-          default.
+         * NO_MIN_MAJ-Do not add minority and majority fields. This is the
+         default.
 
-          * ADD_MIN_MAJ-Add minority and majority fields.
-      percentPoints {Boolean}:
-          This Boolean parameter is applicable only when a groupByField is
-          specified. If set to ADD_PERCENT, the percentage count of points for
-          each unique groupByField value is calculated. A new field is added to
-          the output group summary table containing the percentages of each
-          attribute value within each group. If minorityMajority is true, two
-          additional fields are added to the output containing the percentages
-          of the minority and majority attribute values within each group.
+         * ADD_MIN_MAJ-Add minority and majority fields.
+     percentPoints {Boolean}:
+         This Boolean parameter is applicable only when a groupByField is
+         specified. If set to ADD_PERCENT, the percentage count of points for
+         each unique groupByField value is calculated. A new field is added to
+         the output group summary table containing the percentages of each
+         attribute value within each group. If minorityMajority is true, two
+         additional fields are added to the output containing the percentages
+         of the minority and majority attribute values within each group.
 
-          * NO_PERCENT-Do not add percentage fields. This is the default.
+         * NO_PERCENT-Do not add percentage fields. This is the default.
 
-          * ADD_PERCENT-Add percentage fields."""
+         * ADD_PERCENT-Add percentage fields."""
     ...
 
-@gptooldoc('SummarizeNearby_sfa', None)
-def SummarizeNearby(sumNearbyLayer=..., summaryLayer=..., outputName=..., nearType=..., distances=..., units=..., timeOfDay=..., timeZoneForTimeOfDay=..., returnBoundaries=..., sumShape=..., shapeUnits=..., summaryFields=..., groupByField=..., minorityMajority=..., percentShape=...): # -> conversion | int | float | complex | basestring | list[Unknown] | tuple[Unknown, ...] | dict[Unknown, Unknown]:
+@gptooldoc("SummarizeNearby_sfa", None)
+def SummarizeNearby(
+    sumNearbyLayer=...,
+    summaryLayer=...,
+    outputName=...,
+    nearType=...,
+    distances=...,
+    units=...,
+    timeOfDay=...,
+    timeZoneForTimeOfDay=...,
+    returnBoundaries=...,
+    sumShape=...,
+    shapeUnits=...,
+    summaryFields=...,
+    groupByField=...,
+    minorityMajority=...,
+    percentShape=...,
+):  # -> conversion | int | float | complex | basestring | list[Unknown] | tuple[Unknown, ...] | dict[Unknown, Unknown]:
     """SummarizeNearby_sfa(sumNearbyLayer, summaryLayer, outputName, nearType, distances;distances..., units, {timeOfDay}, {timeZoneForTimeOfDay}, {returnBoundaries}, {sumShape}, {shapeUnits}, {summaryFields;summaryFields...}, {groupByField}, {minorityMajority}, {percentShape})
 
-        Finds features that are within a specified distance of features in the
-        input layer.
+       Finds features that are within a specified distance of features in the
+       input layer.
 
-     INPUTS:
-      sumNearbyLayer (Feature Set):
-          Point, line, or polygon features from which distances will be measured
-          to features in the input summary layer.
-      summaryLayer (Feature Set):
-          Point, line, or polygon features. Features in this layer that are
-          within the specified distance to features in the input nearby layer
-          will be summarized.
-      outputName (String):
-          The name of the output layer to create on your portal.
-      nearType (String):
-          Defines what kind of distance measurement you want to use: straight-
-          line distance or by measuring travel time or travel distance along a
-          street network using various modes of transportation known as travel
-          modes.
+    INPUTS:
+     sumNearbyLayer (Feature Set):
+         Point, line, or polygon features from which distances will be measured
+         to features in the input summary layer.
+     summaryLayer (Feature Set):
+         Point, line, or polygon features. Features in this layer that are
+         within the specified distance to features in the input nearby layer
+         will be summarized.
+     outputName (String):
+         The name of the output layer to create on your portal.
+     nearType (String):
+         Defines what kind of distance measurement you want to use: straight-
+         line distance or by measuring travel time or travel distance along a
+         street network using various modes of transportation known as travel
+         modes.
 
-          * STRAIGHTLINE-Use straight-line Euclidean measurement of distance.
-          This is the default.
+         * STRAIGHTLINE-Use straight-line Euclidean measurement of distance.
+         This is the default.
 
-          * DRIVINGDISTANCE-Use distance as driven in an automobile.
+         * DRIVINGDISTANCE-Use distance as driven in an automobile.
 
-          * DRIVINGTIME-Use distance covered during a specified driving time in
-          an automobile.
+         * DRIVINGTIME-Use distance covered during a specified driving time in
+         an automobile.
 
-          * TRUCKINGDISTANCE-Use distance as driven in a truck.
+         * TRUCKINGDISTANCE-Use distance as driven in a truck.
 
-          * TRUCKINGTIME-Use distance covered during a specified driving time in
-          a truck.
+         * TRUCKINGTIME-Use distance covered during a specified driving time in
+         a truck.
 
-          * WALKINGDISTANCE-Use distance as walked along a street.
+         * WALKINGDISTANCE-Use distance as walked along a street.
 
-          * WALKINGTIME-Use distance covered during a specified walking time.
-      distances (Double):
-          A list of double values that defines the search distance (for
-          straight-line and distance-based travel modes) or time (for time-based
-          travel modes). You can enter a single distance value or multiple
-          values. Features that are within (or equal to) the distances you enter
-          will be summarized. The units of the distance values is supplied by
-          the units parameter.
-      units (String):
-          If the near type is straight-line or a distance-based travel mode,
-          this is the linear unit to be used with the distance values specified
-          in distances. Valid options include meters, kilometers, feet, yards,
-          and miles.If the near type is a time-based travel mode, values include
-          seconds,
-          minutes, and hours.
+         * WALKINGTIME-Use distance covered during a specified walking time.
+     distances (Double):
+         A list of double values that defines the search distance (for
+         straight-line and distance-based travel modes) or time (for time-based
+         travel modes). You can enter a single distance value or multiple
+         values. Features that are within (or equal to) the distances you enter
+         will be summarized. The units of the distance values is supplied by
+         the units parameter.
+     units (String):
+         If the near type is straight-line or a distance-based travel mode,
+         this is the linear unit to be used with the distance values specified
+         in distances. Valid options include meters, kilometers, feet, yards,
+         and miles.If the near type is a time-based travel mode, values include
+         seconds,
+         minutes, and hours.
 
-          * MILES-Miles
+         * MILES-Miles
 
-          * FEET-Feet
+         * FEET-Feet
 
-          * KILOMETERS-Kilometers
+         * KILOMETERS-Kilometers
 
-          * METERS-Meters
+         * METERS-Meters
 
-          * YARDS-Yards
+         * YARDS-Yards
 
-          * SECONDS-Seconds
+         * SECONDS-Seconds
 
-          * MINUTES-Minutes
+         * MINUTES-Minutes
 
-          * HOURS-Hours
-      timeOfDay {Date}:
-          Specify whether travel times should consider traffic conditions. To
-          use traffic in the analysis, you must set the near type to a travel-
-          time-based mode. The time of day value represents the time at which
-          travel begins, or departs, from the input points.Two kinds of traffic
-          are supported: typical and live. Typical traffic
-          references travel speeds that are made up of historical averages for
-          each 5-minute interval spanning a week. Live traffic retrieves speeds
-          from a traffic feed that processes phone probe records, sensors, and
-          other data sources to record actual travel speeds and predict speeds
-          for the near future. To ensure the task uses typical traffic in
-          locations where it
-          is available, choose a time and day of the week and convert the day of
-          the week to one of the following dates from 1990:Although the dates
-          representing days of the week are from 1990, typical traffic is
-          calculated from recent traffic trends-usually over the last several
-          months.
+         * HOURS-Hours
+     timeOfDay {Date}:
+         Specify whether travel times should consider traffic conditions. To
+         use traffic in the analysis, you must set the near type to a travel-
+         time-based mode. The time of day value represents the time at which
+         travel begins, or departs, from the input points.Two kinds of traffic
+         are supported: typical and live. Typical traffic
+         references travel speeds that are made up of historical averages for
+         each 5-minute interval spanning a week. Live traffic retrieves speeds
+         from a traffic feed that processes phone probe records, sensors, and
+         other data sources to record actual travel speeds and predict speeds
+         for the near future. To ensure the task uses typical traffic in
+         locations where it
+         is available, choose a time and day of the week and convert the day of
+         the week to one of the following dates from 1990:Although the dates
+         representing days of the week are from 1990, typical traffic is
+         calculated from recent traffic trends-usually over the last several
+         months.
 
-          * Monday-1/1/1990
+         * Monday-1/1/1990
 
-          * Tuesday-1/2/1990
+         * Tuesday-1/2/1990
 
-          * Wednesday-1/3/1990
+         * Wednesday-1/3/1990
 
-          * Thursday-1/4/1990
+         * Thursday-1/4/1990
 
-          * Friday-1/5/1990
+         * Friday-1/5/1990
 
-          * Saturday-1/6/1990
+         * Saturday-1/6/1990
 
-          * Sunday-1/7/1990
-          To use live traffic when and where it is available, choose a date and
-          time within 12 hours of the current time. Esri saves live traffic data
-          for 12 hours and references predictive data extending 12 hours into
-          the future. If the time and date you specify for this parameter is
-          outside the 24-hour time window, or the travel time in the analysis
-          continues past the predictive data window, the task falls back to
-          typical traffic speeds.
-      timeZoneForTimeOfDay {String}:
-          Specify the time zone or zones of the chosen time of day. There are
-          two options: GeoLocal (default) and UTC.
+         * Sunday-1/7/1990
+         To use live traffic when and where it is available, choose a date and
+         time within 12 hours of the current time. Esri saves live traffic data
+         for 12 hours and references predictive data extending 12 hours into
+         the future. If the time and date you specify for this parameter is
+         outside the 24-hour time window, or the travel time in the analysis
+         continues past the predictive data window, the task falls back to
+         typical traffic speeds.
+     timeZoneForTimeOfDay {String}:
+         Specify the time zone or zones of the chosen time of day. There are
+         two options: GeoLocal (default) and UTC.
 
-          * GEOLOCAL-The time of day value refers to the time zone or zones in
-          which the input points are located. This option causes the analysis to
-          have rolling start times across time zones. This is the default.
+         * GEOLOCAL-The time of day value refers to the time zone or zones in
+         which the input points are located. This option causes the analysis to
+         have rolling start times across time zones. This is the default.
 
-          * UTC-The time of day value refers to Coordinated Universal Time
-          (UTC). The start times for all points are simultaneous, regardless of
-          time zones.
-      returnBoundaries {Boolean}:
-          Specifies whether the input geometries will be returned or the
-          straight-line or travel mode buffer geometry.
+         * UTC-The time of day value refers to Coordinated Universal Time
+         (UTC). The start times for all points are simultaneous, regardless of
+         time zones.
+     returnBoundaries {Boolean}:
+         Specifies whether the input geometries will be returned or the
+         straight-line or travel mode buffer geometry.
 
-          * RETURN_BOUNDARIES-The output layer will contain areas defined by the
-          specified near type. For example, if using a straight-line distance of
-          5 miles, the output will contain areas with a 5-mile radius around the
-          input nearby layer features. This is the default.
+         * RETURN_BOUNDARIES-The output layer will contain areas defined by the
+         specified near type. For example, if using a straight-line distance of
+         5 miles, the output will contain areas with a 5-mile radius around the
+         input nearby layer features. This is the default.
 
-          * RETURN_INPUT-The output layer will contain the same features as the
-          input nearby layer.
-      sumShape {Boolean}:
-          Calculate statistics based on the shape of the input summary features,
-          such as the length of lines or areas of polygons of the summary
-          features within each polygon in the input summary layer.
+         * RETURN_INPUT-The output layer will contain the same features as the
+         input nearby layer.
+     sumShape {Boolean}:
+         Calculate statistics based on the shape of the input summary features,
+         such as the length of lines or areas of polygons of the summary
+         features within each polygon in the input summary layer.
 
-          * ADD_SHAPE_SUM-Calculate the shape summary attributes. This is the
-          default.
+         * ADD_SHAPE_SUM-Calculate the shape summary attributes. This is the
+         default.
 
-          * NO_SHAPE_SUM-Do not calculate the shape summary attributes.
-      shapeUnits {String}:
-          If summarizing the shape of the nearby features, specify the units of
-          the shape summary.When the input summary features are polygons, the
-          valid options are
-          acres, hectares, square meters, square kilometers, square feet, square
-          yards, and square miles.When the input summary features are lines, the
-          valid options are
-          meters, kilometers, feet, yards, and miles.
+         * NO_SHAPE_SUM-Do not calculate the shape summary attributes.
+     shapeUnits {String}:
+         If summarizing the shape of the nearby features, specify the units of
+         the shape summary.When the input summary features are polygons, the
+         valid options are
+         acres, hectares, square meters, square kilometers, square feet, square
+         yards, and square miles.When the input summary features are lines, the
+         valid options are
+         meters, kilometers, feet, yards, and miles.
 
-          * MILES-Miles
+         * MILES-Miles
 
-          * FEET-Feet
+         * FEET-Feet
 
-          * KILOMETERS-Kilometers
+         * KILOMETERS-Kilometers
 
-          * METERS-Meters
+         * METERS-Meters
 
-          * YARDS-Yards
+         * YARDS-Yards
 
-          * ACRES-Acres
+         * ACRES-Acres
 
-          * HECTARES-Hectares
+         * HECTARES-Hectares
 
-          * SQUAREMETERS-Square meters
+         * SQUAREMETERS-Square meters
 
-          * SQUAREKILOMETERS-Square kilometers
+         * SQUAREKILOMETERS-Square kilometers
 
-          * SQUAREFEET-Square feet
+         * SQUAREFEET-Square feet
 
-          * SQUAREYARDS-Square yards
+         * SQUAREYARDS-Square yards
 
-          * SQUAREMILES-Square miles
-      summaryFields {Value Table}:
-          A list of field names and statistical summary type that you
-          wish to calculate for all points within each polygon. The count of
-          points within each polygon is always returned. The following statistic
-          types are supported:
+         * SQUAREMILES-Square miles
+     summaryFields {Value Table}:
+         A list of field names and statistical summary type that you
+         wish to calculate for all points within each polygon. The count of
+         points within each polygon is always returned. The following statistic
+         types are supported:
 
-          * SUM-The total value.
+         * SUM-The total value.
 
-          * MIN-The smallest value.
+         * MIN-The smallest value.
 
-          * MAX-The largest value.
+         * MAX-The largest value.
 
-          * MEAN-The average or mean value.
+         * MEAN-The average or mean value.
 
-          * STD-The standard deviation.
-      groupByField {Field}:
-          This is a field from the input summary features you can use to
-          calculate statistics separately for each unique attribute value. For
-          example, suppose the input summary features contain point locations of
-          businesses that store hazardous materials, and one of the fields is
-          HazardClass containing codes that describe the type of hazardous
-          material stored. To calculate summaries by each unique value of
-          HazardClass, use it as the group by field.
-      minorityMajority {Boolean}:
-          This only applies when using a group by field. If you specify
-          ADD_MIN_MAJ, the minority (least dominant) or the majority (most
-          dominant) attribute values for each group field within each boundary
-          are calculated. Two new fields are added to the output layer prefixed
-          with Majority_ and Minority_.
+         * STD-The standard deviation.
+     groupByField {Field}:
+         This is a field from the input summary features you can use to
+         calculate statistics separately for each unique attribute value. For
+         example, suppose the input summary features contain point locations of
+         businesses that store hazardous materials, and one of the fields is
+         HazardClass containing codes that describe the type of hazardous
+         material stored. To calculate summaries by each unique value of
+         HazardClass, use it as the group by field.
+     minorityMajority {Boolean}:
+         This only applies when using a group by field. If you specify
+         ADD_MIN_MAJ, the minority (least dominant) or the majority (most
+         dominant) attribute values for each group field within each boundary
+         are calculated. Two new fields are added to the output layer prefixed
+         with Majority_ and Minority_.
 
-          * NO_MIN_MAJ-Do not add minority and majority fields. This is the
-          default.
+         * NO_MIN_MAJ-Do not add minority and majority fields. This is the
+         default.
 
-          * ADD_MIN_MAJ-Add minority and majority fields.
-      percentShape {Boolean}:
-          This only applies when using a group by field. If checked, the
-          percentage of each unique group value is calculated for each input
-          nearby feature.
+         * ADD_MIN_MAJ-Add minority and majority fields.
+     percentShape {Boolean}:
+         This only applies when using a group by field. If checked, the
+         percentage of each unique group value is calculated for each input
+         nearby feature.
 
-          * NO_PERCENT-Do not add percentage fields. This is the default.
+         * NO_PERCENT-Do not add percentage fields. This is the default.
 
-          * ADD_PERCENT-Add percentage fields."""
+         * ADD_PERCENT-Add percentage fields."""
     ...
 
-@gptooldoc('SummarizeWithin_sfa', None)
-def SummarizeWithin(sumWithinLayer=..., summaryLayer=..., outputName=..., sumShape=..., shapeUnits=..., summaryFields=..., groupByField=..., minorityMajority=..., percentShape=...): # -> conversion | int | float | complex | basestring | list[Unknown] | tuple[Unknown, ...] | dict[Unknown, Unknown]:
+@gptooldoc("SummarizeWithin_sfa", None)
+def SummarizeWithin(
+    sumWithinLayer=...,
+    summaryLayer=...,
+    outputName=...,
+    sumShape=...,
+    shapeUnits=...,
+    summaryFields=...,
+    groupByField=...,
+    minorityMajority=...,
+    percentShape=...,
+):  # -> conversion | int | float | complex | basestring | list[Unknown] | tuple[Unknown, ...] | dict[Unknown, Unknown]:
     """SummarizeWithin_sfa(sumWithinLayer, summaryLayer, outputName, {sumShape}, {shapeUnits}, {summaryFields;summaryFields...}, {groupByField}, {minorityMajority}, {percentShape})
 
-        Finds the point, line, or polygon features (or portions of these
-        features) that are within the boundaries of polygons in another layer.
+       Finds the point, line, or polygon features (or portions of these
+       features) that are within the boundaries of polygons in another layer.
 
-     INPUTS:
-      sumWithinLayer (Feature Set):
-          Features, or portions of features, in the input summary features that
-          fall within the boundaries of these polygons will be summarized.
-      summaryLayer (Feature Set):
-          The point, line, or polygon features that will be summarized for each
-          input polygon.
-      outputName (String):
-          The name of the output layer to create on your portal.
-      sumShape {Boolean}:
-          Calculate statistics based on the shape of the input summary features,
-          such as the length of lines or areas of polygons of the input summary
-          features within each input polygon.
+    INPUTS:
+     sumWithinLayer (Feature Set):
+         Features, or portions of features, in the input summary features that
+         fall within the boundaries of these polygons will be summarized.
+     summaryLayer (Feature Set):
+         The point, line, or polygon features that will be summarized for each
+         input polygon.
+     outputName (String):
+         The name of the output layer to create on your portal.
+     sumShape {Boolean}:
+         Calculate statistics based on the shape of the input summary features,
+         such as the length of lines or areas of polygons of the input summary
+         features within each input polygon.
 
-          * ADD_SHAPE_SUM-Calculate the shape summary attributes. This is the
-          default.
+         * ADD_SHAPE_SUM-Calculate the shape summary attributes. This is the
+         default.
 
-          * NO_SHAPE_SUM-Do not calculate the shape summary attributes.
-      shapeUnits {String}:
-          If summarizing the shape of the input summary features, specify the
-          units of the shape summary.When the input summary features are
-          polygons, the valid options are
-          acres, hectares, square meters, square kilometers, square feet, square
-          yards, and square miles.When the input summary features are lines, the
-          valid options are
-          meters, kilometers, feet, yards, and miles.
+         * NO_SHAPE_SUM-Do not calculate the shape summary attributes.
+     shapeUnits {String}:
+         If summarizing the shape of the input summary features, specify the
+         units of the shape summary.When the input summary features are
+         polygons, the valid options are
+         acres, hectares, square meters, square kilometers, square feet, square
+         yards, and square miles.When the input summary features are lines, the
+         valid options are
+         meters, kilometers, feet, yards, and miles.
 
-          * MILES-Miles
+         * MILES-Miles
 
-          * FEET-Feet
+         * FEET-Feet
 
-          * KILOMETERS-Kilometers
+         * KILOMETERS-Kilometers
 
-          * METERS-Meters
+         * METERS-Meters
 
-          * YARDS-Yards
+         * YARDS-Yards
 
-          * ACRES-Acres
+         * ACRES-Acres
 
-          * HECTARES-Hectares
+         * HECTARES-Hectares
 
-          * SQUAREMETERS-Square meters
+         * SQUAREMETERS-Square meters
 
-          * SQUAREKILOMETERS-Square kilometers
+         * SQUAREKILOMETERS-Square kilometers
 
-          * SQUAREFEET-Square feet
+         * SQUAREFEET-Square feet
 
-          * SQUAREYARDS-Square yards
+         * SQUAREYARDS-Square yards
 
-          * SQUAREMILES-Square miles
-      summaryFields {Value Table}:
-          A list of field names and statistical summary type that you
-          wish to calculate for all points within each polygon. The count of
-          points within each polygon is always returned. The following statistic
-          types are supported:
+         * SQUAREMILES-Square miles
+     summaryFields {Value Table}:
+         A list of field names and statistical summary type that you
+         wish to calculate for all points within each polygon. The count of
+         points within each polygon is always returned. The following statistic
+         types are supported:
 
-          * SUM-The total value.
+         * SUM-The total value.
 
-          * MIN-The smallest value.
+         * MIN-The smallest value.
 
-          * MAX-The largest value.
+         * MAX-The largest value.
 
-          * MEAN-The average or mean value.
+         * MEAN-The average or mean value.
 
-          * STD-The standard deviation.
-      groupByField {Field}:
-          This is a field from the input summary features that you can use to
-          calculate statistics separately for each unique attribute value. For
-          example, suppose the input summary features contain point locations of
-          businesses that store hazardous materials, and one of the fields is
-          HazardClass containing codes that describe the type of hazardous
-          material stored. To calculate summaries by each unique value of
-          HazardClass, use it as the group by field.
-      minorityMajority {Boolean}:
-          This only applies when using a group by field. If you specify
-          ADD_MIN_MAJ, the minority (least dominant) or the majority (most
-          dominant) attribute values for each group field within each boundary
-          are calculated. Two new fields are added to the output layer prefixed
-          with Majority_ and Minority_.
+         * STD-The standard deviation.
+     groupByField {Field}:
+         This is a field from the input summary features that you can use to
+         calculate statistics separately for each unique attribute value. For
+         example, suppose the input summary features contain point locations of
+         businesses that store hazardous materials, and one of the fields is
+         HazardClass containing codes that describe the type of hazardous
+         material stored. To calculate summaries by each unique value of
+         HazardClass, use it as the group by field.
+     minorityMajority {Boolean}:
+         This only applies when using a group by field. If you specify
+         ADD_MIN_MAJ, the minority (least dominant) or the majority (most
+         dominant) attribute values for each group field within each boundary
+         are calculated. Two new fields are added to the output layer prefixed
+         with Majority_ and Minority_.
 
-          * NO_MIN_MAJ-Do not add minority and majority fields. This is the
-          default.
+         * NO_MIN_MAJ-Do not add minority and majority fields. This is the
+         default.
 
-          * ADD_MIN_MAJ-Add minority and majority fields.
-      percentShape {Boolean}:
-          This only applies when using a group by field. If checked, the
-          percentage of each unique group value is calculated for each input
-          polygon.
+         * ADD_MIN_MAJ-Add minority and majority fields.
+     percentShape {Boolean}:
+         This only applies when using a group by field. If checked, the
+         percentage of each unique group value is calculated for each input
+         polygon.
 
-          * NO_PERCENT-Do not add percentage fields. This is the default.
+         * NO_PERCENT-Do not add percentage fields. This is the default.
 
-          * ADD_PERCENT-Add percentage fields."""
+         * ADD_PERCENT-Add percentage fields."""
     ...
 
-@gptooldoc('CreateBuffers_sfa', None)
-def CreateBuffers(inputLayer=..., outputName=..., distances=..., field=..., units=..., dissolveType=..., ringType=..., sideType=..., endType=...): # -> conversion | int | float | complex | basestring | list[Unknown] | tuple[Unknown, ...] | dict[Unknown, Unknown]:
+@gptooldoc("CreateBuffers_sfa", None)
+def CreateBuffers(
+    inputLayer=...,
+    outputName=...,
+    distances=...,
+    field=...,
+    units=...,
+    dissolveType=...,
+    ringType=...,
+    sideType=...,
+    endType=...,
+):  # -> conversion | int | float | complex | basestring | list[Unknown] | tuple[Unknown, ...] | dict[Unknown, Unknown]:
     """CreateBuffers_sfa(inputLayer, outputName, {distances;distances...}, {field}, {units}, {dissolveType}, {ringType}, {sideType}, {endType})
 
-        Creates polygons that cover a given distance from a point, line, or
-        polygon feature.
+       Creates polygons that cover a given distance from a point, line, or
+       polygon feature.
 
-     INPUTS:
-      inputLayer (Feature Set):
-          The point, line, or polygon features to be buffered.
-      outputName (String):
-          The name of the output layer to create on your portal.
-      distances {Double}:
-          A list of distance values to buffer the input features. You must
-          supply values for either the distances or a distance field. You can
-          enter a single distance value or multiple values. The units of the
-          distance values is supplied by the distance units.
-      field {Field}:
-          A field from the input layer containing one buffer distance per
-          feature.
-      units {String}:
-          The units of the buffer distance. You must provide a value if cell
-          size has been set.
+    INPUTS:
+     inputLayer (Feature Set):
+         The point, line, or polygon features to be buffered.
+     outputName (String):
+         The name of the output layer to create on your portal.
+     distances {Double}:
+         A list of distance values to buffer the input features. You must
+         supply values for either the distances or a distance field. You can
+         enter a single distance value or multiple values. The units of the
+         distance values is supplied by the distance units.
+     field {Field}:
+         A field from the input layer containing one buffer distance per
+         feature.
+     units {String}:
+         The units of the buffer distance. You must provide a value if cell
+         size has been set.
 
-          * MILES-Miles
+         * MILES-Miles
 
-          * FEET-Feet
+         * FEET-Feet
 
-          * KILOMETERS-Kilometers
+         * KILOMETERS-Kilometers
 
-          * METERS-Meters
+         * METERS-Meters
 
-          * NAUTICALMILES-Nautical miles
+         * NAUTICALMILES-Nautical miles
 
-          * YARDS-Yards
-      dissolveType {String}:
-          Determines how overlapping buffers are processed.
+         * YARDS-Yards
+     dissolveType {String}:
+         Determines how overlapping buffers are processed.
 
-          * NONE-Overlapping areas are kept. This is the default.
+         * NONE-Overlapping areas are kept. This is the default.
 
-          * DISSOLVE-Overlapping areas are combined.
-      ringType {String}:
-          Determines how multiple-distance buffers are processed.
+         * DISSOLVE-Overlapping areas are combined.
+     ringType {String}:
+         Determines how multiple-distance buffers are processed.
 
-          * DISKS-Buffers are concentric and will overlap. For example, if your
-          distances are 10 and 14, the result will be two buffers, one from 0 to
-          10 and one from 0 to 14. This is the default.
+         * DISKS-Buffers are concentric and will overlap. For example, if your
+         distances are 10 and 14, the result will be two buffers, one from 0 to
+         10 and one from 0 to 14. This is the default.
 
-          * RINGS-Buffers will not overlap. For example, if your distances are
-          10 and 14, the result will be two buffers, one from 0 to 10 and one
-          from 10 to 14.
-      sideType {String}:
-          When buffering line features, you can choose which side of the line to
-          buffer. Typically, you choose both sides (Full, which is the default).
-          Left and right are determined as if you were walking from the first x,
-          y coordinate of the line (the start coordinate) to the last x,y
-          coordinate of the line (the end coordinate). Choosing left or right
-          usually means you know that your line features were created and stored
-          in a particular direction (for example, upstream or downstream in a
-          river network).When buffering polygon features, you can choose whether
-          the buffer
-          includes or excludes the polygon being buffered.If a side type is not
-          supplied, the polygon being buffered is included
-          in the result buffer. This is the default for polygon features.
+         * RINGS-Buffers will not overlap. For example, if your distances are
+         10 and 14, the result will be two buffers, one from 0 to 10 and one
+         from 10 to 14.
+     sideType {String}:
+         When buffering line features, you can choose which side of the line to
+         buffer. Typically, you choose both sides (Full, which is the default).
+         Left and right are determined as if you were walking from the first x,
+         y coordinate of the line (the start coordinate) to the last x,y
+         coordinate of the line (the end coordinate). Choosing left or right
+         usually means you know that your line features were created and stored
+         in a particular direction (for example, upstream or downstream in a
+         river network).When buffering polygon features, you can choose whether
+         the buffer
+         includes or excludes the polygon being buffered.If a side type is not
+         supplied, the polygon being buffered is included
+         in the result buffer. This is the default for polygon features.
 
-          * FULL-Both sides of the line will be buffered. This is the default
-          for line features.
+         * FULL-Both sides of the line will be buffered. This is the default
+         for line features.
 
-          * RIGHT-Only the right side of the line will be buffered.
+         * RIGHT-Only the right side of the line will be buffered.
 
-          * LEFT-Only the left side of the line will be buffered.
+         * LEFT-Only the left side of the line will be buffered.
 
-          * OUTSIDE-When buffering a polygon, the polygon being buffered is
-          excluded in the result buffer.
-      endType {String}:
-          The shape of the buffer at the end-of-line input features. This
-          parameter is not valid for polygon input features. At the ends of
-          lines, the buffer can be rounded (round) or be straight across (flat).
+         * OUTSIDE-When buffering a polygon, the polygon being buffered is
+         excluded in the result buffer.
+     endType {String}:
+         The shape of the buffer at the end-of-line input features. This
+         parameter is not valid for polygon input features. At the ends of
+         lines, the buffer can be rounded (round) or be straight across (flat).
 
-          * ROUND-Buffers will be rounded at the ends of lines. This is the
-          default.
+         * ROUND-Buffers will be rounded at the ends of lines. This is the
+         default.
 
-          * FLAT-Buffers will be flat or straight across at the ends of lines."""
+         * FLAT-Buffers will be flat or straight across at the ends of lines."""
     ...
-

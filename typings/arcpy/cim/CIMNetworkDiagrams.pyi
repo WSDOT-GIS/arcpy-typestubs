@@ -7,31 +7,23 @@ from .CIMExternal import *
 from .CIMLayer import CIMGroupLayer
 from .CIMVectorLayers import CIMDataConnection
 
-
 class CIMDiagramLayer(CIMGroupLayer):
     """
-      Represents a diagram layer.
+    Represents a diagram layer.
     """
-    def __init__(self, *args, **Kwargs) -> None:
-        ...
-    
 
+    def __init__(self, *args, **Kwargs) -> None: ...
 
 class CIMDiagramRelQueryDataConnection(CIMDataConnection):
     """
-      Represents a diagram rel query data connection.
+    Represents a diagram rel query data connection.
     """
-    def __init__(self, *args, **Kwargs) -> None:
-        ...
-    
 
+    def __init__(self, *args, **Kwargs) -> None: ...
 
 class CIMNetworkDiagramDataConnection(CIMDataConnection):
     """
-      Represents a network diagram data connection.
+    Represents a network diagram data connection.
     """
-    def __init__(self, *args, **Kwargs) -> None:
-        ...
-    
 
-
+    def __init__(self, *args, **Kwargs) -> None: ...

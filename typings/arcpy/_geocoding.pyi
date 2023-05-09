@@ -6,10 +6,7 @@ from arcgisscripting import geocodingx as _geox
 
 "Geocodex Module"
 __all__ = ["Locator"]
+
 class Locator(_geox.Locator):
-  __slots__ = ...
-  def __init__(self, path) -> None:
-    ...
-  
-
-
+    __slots__ = ...
+    def __init__(self, path) -> None: ...

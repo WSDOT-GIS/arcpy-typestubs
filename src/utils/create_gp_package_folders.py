@@ -25,7 +25,7 @@ def _create_file(init_path: Path, dry_run: bool):
         return
     else:
         logger.info(f"File does not exist: {init_path.absolute()}")
-        
+
     if dry_run:
         stderr.writelines(("\n", f"Would have created {init_path.absolute()}"))
     else:

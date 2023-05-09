@@ -9,599 +9,653 @@ editing, and analyzing public transit data. Several tools convert
 between General Transit Feed Specification (GTFS) datasets and feature
 classes and tables. Other tools perform analysis using public transit
 schedule data."""
-__all__ = ['CalculateTransitServiceFrequency', 'ConnectPublicTransitDataModelToStreets', 'FeaturesToGTFSShapes', 'FeaturesToGTFSStops', 'GTFSShapesToFeatures', 'GTFSStopsToFeatures', 'GTFSToPublicTransitDataModel', 'GenerateShapesFeaturesFromGTFS']
+__all__ = [
+    "CalculateTransitServiceFrequency",
+    "ConnectPublicTransitDataModelToStreets",
+    "FeaturesToGTFSShapes",
+    "FeaturesToGTFSStops",
+    "GTFSShapesToFeatures",
+    "GTFSStopsToFeatures",
+    "GTFSToPublicTransitDataModel",
+    "GenerateShapesFeaturesFromGTFS",
+]
 __alias__ = ...
-@gptooldoc('CalculateTransitServiceFrequency_transit', None)
-def CalculateTransitServiceFrequency(in_transit_feature_dataset=..., analysis_type=..., out_feature_class=..., time_windows=..., separate_counts_by_line=..., in_points_of_interest=..., network_data_source=..., travel_mode=..., travel_limit=..., travel_limit_units=..., cell_size=..., barriers=...): # -> conversion | int | float | complex | basestring | list[Unknown] | tuple[Unknown, ...] | dict[Unknown, Unknown]:
+
+@gptooldoc("CalculateTransitServiceFrequency_transit", None)
+def CalculateTransitServiceFrequency(
+    in_transit_feature_dataset=...,
+    analysis_type=...,
+    out_feature_class=...,
+    time_windows=...,
+    separate_counts_by_line=...,
+    in_points_of_interest=...,
+    network_data_source=...,
+    travel_mode=...,
+    travel_limit=...,
+    travel_limit_units=...,
+    cell_size=...,
+    barriers=...,
+):  # -> conversion | int | float | complex | basestring | list[Unknown] | tuple[Unknown, ...] | dict[Unknown, Unknown]:
     """CalculateTransitServiceFrequency_transit(in_transit_feature_dataset, analysis_type, out_feature_class, time_windows;time_windows..., {separate_counts_by_line}, {in_points_of_interest}, {network_data_source}, {travel_mode}, {travel_limit}, {travel_limit_units}, {cell_size}, {barriers;barriers...})
 
-        Calculates the frequency of scheduled public transit service available
-        within one or more specified time windows at public transit stops,
-        along public transit lines, at points of interest, or in areas.
+       Calculates the frequency of scheduled public transit service available
+       within one or more specified time windows at public transit stops,
+       along public transit lines, at points of interest, or in areas.
 
-     INPUTS:
-      in_transit_feature_dataset (Feature Dataset):
-          A feature dataset containing the Stops and LineVariantElements feature
-          classes from the Network Analyst public transit data model. The
-          feature dataset's parent geodatabase must contain the public transit
-          data model's LineVariants, Schedules, ScheduleElements, and Runs
-          tables and the Calendars table, the CalendarExceptions table, or
-          both.A valid feature dataset with its associated feature classes and
-          tables
-          can be created from General Transit Feed Specification (GTFS) public
-          transit data using the GTFS To Public Transit Data Model tool.
-      analysis_type (String):
-          Specifies the location type for which the tool will calculate the
-          frequency of public transit service.
+    INPUTS:
+     in_transit_feature_dataset (Feature Dataset):
+         A feature dataset containing the Stops and LineVariantElements feature
+         classes from the Network Analyst public transit data model. The
+         feature dataset's parent geodatabase must contain the public transit
+         data model's LineVariants, Schedules, ScheduleElements, and Runs
+         tables and the Calendars table, the CalendarExceptions table, or
+         both.A valid feature dataset with its associated feature classes and
+         tables
+         can be created from General Transit Feed Specification (GTFS) public
+         transit data using the GTFS To Public Transit Data Model tool.
+     analysis_type (String):
+         Specifies the location type for which the tool will calculate the
+         frequency of public transit service.
 
-          * STOPS-The frequency of public transit service at public transit
-          stops will be calculated. The output will be a feature class
-          containing a copy of the public transit stops from the input public
-          transit data model Stops feature class.
+         * STOPS-The frequency of public transit service at public transit
+         stops will be calculated. The output will be a feature class
+         containing a copy of the public transit stops from the input public
+         transit data model Stops feature class.
 
-          * LINES-The frequency of public transit service along public transit
-          lines will be calculated. The output will be a feature class
-          containing a copy of the public transit lines from the input public
-          transit data model's LineVariantElements feature class.
+         * LINES-The frequency of public transit service along public transit
+         lines will be calculated. The output will be a feature class
+         containing a copy of the public transit lines from the input public
+         transit data model's LineVariantElements feature class.
 
-          * POINTS_OF_INTEREST-The frequency of public transit service at
-          specified points of interest will be calculated. The output will be a
-          copy of the input points of interest.
+         * POINTS_OF_INTEREST-The frequency of public transit service at
+         specified points of interest will be calculated. The output will be a
+         copy of the input points of interest.
 
-          * AREAS-The frequency of public transit service for all areas within
-          range of all public transit stops will be calculated. The output will
-          be a polygon feature class representing the area served by the public
-          transit system.
-      time_windows (Value Table):
-          The periods of time for which public transit service frequency will be
-          calculated.Multiple time windows can be specified. The output feature
-          class will
-          include a set of fields representing the transit frequency statistics
-          for each time window. These fields will be prefixed by the value
-          specified in the Output Field Prefix column.Time windows can be
-          interpreted either as specific dates or as generic
-          weekdays. The Use Specific Date column determines whether the date
-          component of the Start Datetime column will be interpreted as an exact
-          date or as a generic weekday. For example, if the date component of
-          the Start Datetime value is December 25, 2021, and Use Specific Date
-          is True, the exact date will be used, and the public transit service
-          frequency calculated will include any special service added or removed
-          for the Christmas holiday. If Use Specific Date is False, this date
-          will be interpreted as Saturday, and the public transit service
-          frequency calculated will include regular service for any typical
-          Saturday.For specific dates, all exceptions to the regular public
-          transit
-          service included in the CalendarExceptions table and the date range
-          defined in the Calendars table will be considered. For a generic
-          weekday, only regular service defined in the weekday fields in the
-          Calendars table will be considered.
+         * AREAS-The frequency of public transit service for all areas within
+         range of all public transit stops will be calculated. The output will
+         be a polygon feature class representing the area served by the public
+         transit system.
+     time_windows (Value Table):
+         The periods of time for which public transit service frequency will be
+         calculated.Multiple time windows can be specified. The output feature
+         class will
+         include a set of fields representing the transit frequency statistics
+         for each time window. These fields will be prefixed by the value
+         specified in the Output Field Prefix column.Time windows can be
+         interpreted either as specific dates or as generic
+         weekdays. The Use Specific Date column determines whether the date
+         component of the Start Datetime column will be interpreted as an exact
+         date or as a generic weekday. For example, if the date component of
+         the Start Datetime value is December 25, 2021, and Use Specific Date
+         is True, the exact date will be used, and the public transit service
+         frequency calculated will include any special service added or removed
+         for the Christmas holiday. If Use Specific Date is False, this date
+         will be interpreted as Saturday, and the public transit service
+         frequency calculated will include regular service for any typical
+         Saturday.For specific dates, all exceptions to the regular public
+         transit
+         service included in the CalendarExceptions table and the date range
+         defined in the Calendars table will be considered. For a generic
+         weekday, only regular service defined in the weekday fields in the
+         Calendars table will be considered.
 
-          * Use Specific Date-A Boolean value indicating whether the time
-          window's date will be interpreted as the exact date specified (True)
-          or the generic weekday represented by the date (False).
+         * Use Specific Date-A Boolean value indicating whether the time
+         window's date will be interpreted as the exact date specified (True)
+         or the generic weekday represented by the date (False).
 
-          * Start Datetime-The date and time the time window begins.
+         * Start Datetime-The date and time the time window begins.
 
-          * Duration (minutes)-The duration of the time window in minutes.
+         * Duration (minutes)-The duration of the time window in minutes.
 
-          * Count Arrivals or Departures-Whether arrivals or departures
-          at public transit stops will be counted when calculating transit
-          frequency statistics.
+         * Count Arrivals or Departures-Whether arrivals or departures
+         at public transit stops will be counted when calculating transit
+         frequency statistics.
 
-          * ARRIVALS-Arrivals at public transit stops will be counted. The
-          arrival times will be considered in the calculations.
+         * ARRIVALS-Arrivals at public transit stops will be counted. The
+         arrival times will be considered in the calculations.
 
-          * DEPARTURES-Departures from public transit stops will be counted. The
-          departure times will be considered in the calculations.
+         * DEPARTURES-Departures from public transit stops will be counted. The
+         departure times will be considered in the calculations.
 
-          * Output Field Prefix-A string prefix that will be included in the
-          names of all output fields associated with this time window. String
-          prefixes must be unique and must contain only characters valid for
-          field names in the output feature class.
-      separate_counts_by_line {Boolean}:
-          Specifies whether service from multiple transit lines using the same
-          stop or corridor will be separated by transit line or combined when
-          calculating transit frequency statistics.When separated by transit
-          line, the output will contain a copy of each
-          stop or transit line segment for each unique transit line using the
-          stop or corridor, and these duplicated features will have overlapping
-          geometry.If the LineVariants table in the input data has the optional
-          GDirectionID field, the output will additionally separate counts by
-          the GDirectionID field value. For example, if a stop serves both
-          directions of travel along the same line, the output will contain a
-          copy of the stop for each direction of travel as defined by the
-          GDirectionID field.
+         * Output Field Prefix-A string prefix that will be included in the
+         names of all output fields associated with this time window. String
+         prefixes must be unique and must contain only characters valid for
+         field names in the output feature class.
+     separate_counts_by_line {Boolean}:
+         Specifies whether service from multiple transit lines using the same
+         stop or corridor will be separated by transit line or combined when
+         calculating transit frequency statistics.When separated by transit
+         line, the output will contain a copy of each
+         stop or transit line segment for each unique transit line using the
+         stop or corridor, and these duplicated features will have overlapping
+         geometry.If the LineVariants table in the input data has the optional
+         GDirectionID field, the output will additionally separate counts by
+         the GDirectionID field value. For example, if a stop serves both
+         directions of travel along the same line, the output will contain a
+         copy of the stop for each direction of travel as defined by the
+         GDirectionID field.
 
-          * SEPARATE-Multiple transit lines serving the same stop or corridor
-          will be counted separately when calculating transit frequency
-          statistics.
+         * SEPARATE-Multiple transit lines serving the same stop or corridor
+         will be counted separately when calculating transit frequency
+         statistics.
 
-          * NO_SEPARATE-Multiple transit lines serving the same stop or corridor
-          will not be counted separately when calculating transit frequency
-          statistics; they will be combined. This is the default.
-          This parameter only applies when the analysis_type parameter is set to
-          STOPS or LINES.
-      in_points_of_interest {Feature Layer}:
-          The points of interest for which the frequency of available public
-          transit service will be calculated.If a polygon layer is specified,
-          the public transit service available
-          at the polygon centroids will be used.This parameter is required when
-          the analysis_type parameter is set to
-          POINTS_OF_INTEREST; otherwise, it is ignored.
-      network_data_source {Network Data Source}:
-          The network dataset or service that will be used to determine the
-          public transit stops within range of the designated points of interest
-          or to calculate the polygon areas within range of public transit
-          stops. You can use a catalog path to a network dataset, a network
-          dataset layer object, the string name of the network dataset layer, or
-          a portal URL for a network analysis service. The network must have at
-          least one travel mode.To use a portal URL, you must be signed in to
-          the portal with an
-          account that has routing privileges.Running the tool will consume
-          credits if you use ArcGIS Online as the
-          network data source.Use a network dataset appropriate for modeling
-          passengers traveling to
-          and from public transit stops. Don't use a network dataset configured
-          to use public transit data with the Public Transit evaluator because
-          this type of network models passengers riding public transit, not
-          people traveling to and from the public transit stops.This parameter
-          is required when the analysis_type parameter is set to
-          POINTS_OF_INTEREST or AREAS; otherwise, it is ignored.
-      travel_mode {Network Travel Mode}:
-          The travel mode on the network data source that will be used to
-          determine the public transit stops within range of the designated
-          points of interest or to calculate the polygon areas within range of
-          public transit stops. You can specify the travel mode as a string name
-          of the travel mode or as an arcpy.nax.TravelMode object.Use the travel
-          mode most appropriate for modeling passengers traveling
-          to and from public transit stops. Typically, a travel mode that models
-          walking time or distance should be used.Do not use a travel mode with
-          an impedance attribute that uses the
-          Public Transit evaluator because that travel mode models passengers
-          riding public transit, not passengers traveling to and from the public
-          transit stops.This parameter is required when the analysis_type
-          parameter is set to
-          POINTS_OF_INTEREST or AREAS; otherwise, it is ignored.
-      travel_limit {Double}:
-          The impedance limit that will be used when finding the public transit
-          stops within range of points of interest or when calculating the area
-          reachable from public transit stops.This parameter should be specified
-          in the units designated in the
-          travel_limit_units parameter.This parameter is required when the
-          analysis_type parameter is set to
-          POINTS_OF_INTEREST or AREAS; otherwise, it is ignored.
-      travel_limit_units {String}:
-          Specifies the units that will be used for the impedance limit
-          specified in the travel_limit parameter.The available units depend on
-          the value specified in the travel_mode
-          parameter. If the travel mode's impedance has units of time, only
-          time-based units will be available. If the travel mode's impedance has
-          units of distance, only distance-based units will be available. If the
-          travel mode's impedance units are neither time based nor distance
-          based, the only option available will be unknown units, and the
-          travel_limit parameter value will be in the units of the travel mode's
-          impedance.
+         * NO_SEPARATE-Multiple transit lines serving the same stop or corridor
+         will not be counted separately when calculating transit frequency
+         statistics; they will be combined. This is the default.
+         This parameter only applies when the analysis_type parameter is set to
+         STOPS or LINES.
+     in_points_of_interest {Feature Layer}:
+         The points of interest for which the frequency of available public
+         transit service will be calculated.If a polygon layer is specified,
+         the public transit service available
+         at the polygon centroids will be used.This parameter is required when
+         the analysis_type parameter is set to
+         POINTS_OF_INTEREST; otherwise, it is ignored.
+     network_data_source {Network Data Source}:
+         The network dataset or service that will be used to determine the
+         public transit stops within range of the designated points of interest
+         or to calculate the polygon areas within range of public transit
+         stops. You can use a catalog path to a network dataset, a network
+         dataset layer object, the string name of the network dataset layer, or
+         a portal URL for a network analysis service. The network must have at
+         least one travel mode.To use a portal URL, you must be signed in to
+         the portal with an
+         account that has routing privileges.Running the tool will consume
+         credits if you use ArcGIS Online as the
+         network data source.Use a network dataset appropriate for modeling
+         passengers traveling to
+         and from public transit stops. Don't use a network dataset configured
+         to use public transit data with the Public Transit evaluator because
+         this type of network models passengers riding public transit, not
+         people traveling to and from the public transit stops.This parameter
+         is required when the analysis_type parameter is set to
+         POINTS_OF_INTEREST or AREAS; otherwise, it is ignored.
+     travel_mode {Network Travel Mode}:
+         The travel mode on the network data source that will be used to
+         determine the public transit stops within range of the designated
+         points of interest or to calculate the polygon areas within range of
+         public transit stops. You can specify the travel mode as a string name
+         of the travel mode or as an arcpy.nax.TravelMode object.Use the travel
+         mode most appropriate for modeling passengers traveling
+         to and from public transit stops. Typically, a travel mode that models
+         walking time or distance should be used.Do not use a travel mode with
+         an impedance attribute that uses the
+         Public Transit evaluator because that travel mode models passengers
+         riding public transit, not passengers traveling to and from the public
+         transit stops.This parameter is required when the analysis_type
+         parameter is set to
+         POINTS_OF_INTEREST or AREAS; otherwise, it is ignored.
+     travel_limit {Double}:
+         The impedance limit that will be used when finding the public transit
+         stops within range of points of interest or when calculating the area
+         reachable from public transit stops.This parameter should be specified
+         in the units designated in the
+         travel_limit_units parameter.This parameter is required when the
+         analysis_type parameter is set to
+         POINTS_OF_INTEREST or AREAS; otherwise, it is ignored.
+     travel_limit_units {String}:
+         Specifies the units that will be used for the impedance limit
+         specified in the travel_limit parameter.The available units depend on
+         the value specified in the travel_mode
+         parameter. If the travel mode's impedance has units of time, only
+         time-based units will be available. If the travel mode's impedance has
+         units of distance, only distance-based units will be available. If the
+         travel mode's impedance units are neither time based nor distance
+         based, the only option available will be unknown units, and the
+         travel_limit parameter value will be in the units of the travel mode's
+         impedance.
 
-          * KILOMETERS-The impedance limit will be specified in kilometers.
+         * KILOMETERS-The impedance limit will be specified in kilometers.
 
-          * METERS-The impedance limit will be specified in meters.
+         * METERS-The impedance limit will be specified in meters.
 
-          * MILES-The impedance limit will be specified in miles.
+         * MILES-The impedance limit will be specified in miles.
 
-          * YARDS-The impedance limit will be specified in yards.
+         * YARDS-The impedance limit will be specified in yards.
 
-          * FEET-The impedance limit will be specified in feet.
+         * FEET-The impedance limit will be specified in feet.
 
-          * NAUTICALMILES-The impedance limit will be specified in nautical
-          miles.
+         * NAUTICALMILES-The impedance limit will be specified in nautical
+         miles.
 
-          * DAYS-The impedance limit will be specified in days.
+         * DAYS-The impedance limit will be specified in days.
 
-          * HOURS-The impedance limit will be specified in hours.
+         * HOURS-The impedance limit will be specified in hours.
 
-          * MINUTES-The impedance limit will be specified in minutes.
+         * MINUTES-The impedance limit will be specified in minutes.
 
-          * SECONDS-The impedance limit will be specified in seconds.
+         * SECONDS-The impedance limit will be specified in seconds.
 
-          * UNKNOWN-The impedance limit will be specified in the impedance unit
-          of the selected travel mode.
-          This parameter is required when the analysis_type parameter is set to
-          POINTS_OF_INTEREST or AREAS; otherwise, it is ignored.It is
-          recommended that you use a distance-based travel limit when
-          calculating public transit service frequency for points of interest.
-          With a distance-based limit, the tool can reduce the OD cost matrix
-          size in advance using a simple straight-line distance selection. This
-          may eliminate some origins and destinations from the OD cost matrix
-          analysis and improve performance. If the network data source is a
-          service that charges credits, this optimization also reduces the
-          number of credits needed.
-      cell_size {Linear Unit}:
-          The size (edge length) of cells that will be used to represent the
-          area reachable from transit stops in the tool output. The numerical
-          value and the units are set using this parameter.When calculating the
-          area reachable from public transit stops, a
-          service area is calculated. The resulting service area polygons, which
-          often overlap, are simplified into a raster-like polygon feature class
-          composed of square cells of the size specified in this parameter. The
-          public transit service frequency statistics are calculated for each of
-          these cells based on the public transit stops whose service area
-          polygons overlap the cell centroid.Use a cell size relevant to how
-          pedestrians travel in the real world.
-          For example, you can base the cell size on the size of city blocks or
-          parcels or the distance a pedestrian can walk in less than a minute.
-          Smaller cells are more accurate but take longer to process.The default
-          is 80 meters.This parameter is required when the analysis_type
-          parameter is set to
-          AREAS; otherwise, it is ignored.
-      barriers {Feature Layer}:
-          The point, line, or polygon features that will be used as barriers in
-          the network analysis when calculating the public transit stops within
-          range of the designated points of interest or when calculating the
-          polygon areas within range of public transit stops.This parameter is
-          relevant only when the analysis_type parameter is
-          set to POINTS_OF_INTEREST or AREAS; otherwise, it is ignored.
+         * UNKNOWN-The impedance limit will be specified in the impedance unit
+         of the selected travel mode.
+         This parameter is required when the analysis_type parameter is set to
+         POINTS_OF_INTEREST or AREAS; otherwise, it is ignored.It is
+         recommended that you use a distance-based travel limit when
+         calculating public transit service frequency for points of interest.
+         With a distance-based limit, the tool can reduce the OD cost matrix
+         size in advance using a simple straight-line distance selection. This
+         may eliminate some origins and destinations from the OD cost matrix
+         analysis and improve performance. If the network data source is a
+         service that charges credits, this optimization also reduces the
+         number of credits needed.
+     cell_size {Linear Unit}:
+         The size (edge length) of cells that will be used to represent the
+         area reachable from transit stops in the tool output. The numerical
+         value and the units are set using this parameter.When calculating the
+         area reachable from public transit stops, a
+         service area is calculated. The resulting service area polygons, which
+         often overlap, are simplified into a raster-like polygon feature class
+         composed of square cells of the size specified in this parameter. The
+         public transit service frequency statistics are calculated for each of
+         these cells based on the public transit stops whose service area
+         polygons overlap the cell centroid.Use a cell size relevant to how
+         pedestrians travel in the real world.
+         For example, you can base the cell size on the size of city blocks or
+         parcels or the distance a pedestrian can walk in less than a minute.
+         Smaller cells are more accurate but take longer to process.The default
+         is 80 meters.This parameter is required when the analysis_type
+         parameter is set to
+         AREAS; otherwise, it is ignored.
+     barriers {Feature Layer}:
+         The point, line, or polygon features that will be used as barriers in
+         the network analysis when calculating the public transit stops within
+         range of the designated points of interest or when calculating the
+         polygon areas within range of public transit stops.This parameter is
+         relevant only when the analysis_type parameter is
+         set to POINTS_OF_INTEREST or AREAS; otherwise, it is ignored.
 
-     OUTPUTS:
-      out_feature_class (Feature Class):
-          The output feature class.A shapefile is not a valid value."""
+    OUTPUTS:
+     out_feature_class (Feature Class):
+         The output feature class.A shapefile is not a valid value."""
     ...
 
-@gptooldoc('ConnectPublicTransitDataModelToStreets_transit', None)
-def ConnectPublicTransitDataModelToStreets(target_feature_dataset=..., in_streets_features=..., search_distance=..., expression=...): # -> conversion | int | float | complex | basestring | list[Unknown] | tuple[Unknown, ...] | dict[Unknown, Unknown]:
+@gptooldoc("ConnectPublicTransitDataModelToStreets_transit", None)
+def ConnectPublicTransitDataModelToStreets(
+    target_feature_dataset=...,
+    in_streets_features=...,
+    search_distance=...,
+    expression=...,
+):  # -> conversion | int | float | complex | basestring | list[Unknown] | tuple[Unknown, ...] | dict[Unknown, Unknown]:
     """ConnectPublicTransitDataModelToStreets_transit(target_feature_dataset, in_streets_features, search_distance, {expression})
 
-        Connects transit stops to street features for use in a transit-enabled
-        network dataset. This tool creates the StopsOnStreets and
-        StopConnectors feature classes defined by the Network Analyst public
-        transit data model and is intended to be run as part of a larger
-        workflow for creating a transit-network dataset described in Create
-        and use a network dataset with public transit data.
+       Connects transit stops to street features for use in a transit-enabled
+       network dataset. This tool creates the StopsOnStreets and
+       StopConnectors feature classes defined by the Network Analyst public
+       transit data model and is intended to be run as part of a larger
+       workflow for creating a transit-network dataset described in Create
+       and use a network dataset with public transit data.
 
-     INPUTS:
-      target_feature_dataset (Feature Dataset):
-          The feature dataset where the transit-enabled network dataset will be
-          created. This feature dataset must already exist and contain a point
-          feature class called Stops with the schema described by the Network
-          Analyst public transit data model. A valid Stops feature class can be
-          created with the GTFS To Network Dataset Transit Sources tool.The
-          Stops feature class may be altered after running the tool. Stop
-          features with a GStopType value of 2, representing station entrances,
-          may be deleted. These stop features will instead be included in the
-          output StopsOnStreets feature class to model correct connections from
-          the streets, through the station entrances, and to the stops. Parent
-          stations that are spatially coincident with stops may also be deleted.
-      in_streets_features (Feature Layer):
-          A polyline feature class of streets to which transit stops and lines
-          will connect. This streets feature class should be the same feature
-          class you intend to use in the transit-enabled network dataset for
-          modeling pedestrians walking along streets. The feature class does not
-          need to be in the target feature dataset to run this tool; however,
-          the feature class must be in the target feature dataset at the time
-          you create the network dataset.The input streets features will be
-          altered after running the tool.
-          Vertices will be added at the locations where StopsOnStreets features
-          intersect the streets. If you do not want the street data altered,
-          make a copy of it before running this tool.
-      search_distance (Linear Unit):
-          The search distance for snapping transit stops to the input street
-          features. Stops that are outside the search distance will not be
-          snapped and will not be connected to the streets. A small search
-          distance will ensure that stops do not snap to streets that are far
-          away, but it increases the likelihood of stops failing to snap when
-          they should. A large search distance increases the number of stops
-          likely to snap but may lead to errors that should instead be corrected
-          by editing the street data. If no street features are found within the
-          search distance of a particular stop, the output StopsOnStreets
-          feature will not be snapped to a street and will be coincident with
-          its corresponding feature in Stops, which could lead to poor
-          connectivity in the network dataset at that location.The default is
-          100 meters.
-      expression {SQL Expression}:
-          An SQL expression used to select a subset of input street feature
-          records. Transit stops will be snapped only to street features
-          matching this expression. For example, the expression can be used to
-          prevent stops from snapping to streets where pedestrian travel is
-          prohibited."""
+    INPUTS:
+     target_feature_dataset (Feature Dataset):
+         The feature dataset where the transit-enabled network dataset will be
+         created. This feature dataset must already exist and contain a point
+         feature class called Stops with the schema described by the Network
+         Analyst public transit data model. A valid Stops feature class can be
+         created with the GTFS To Network Dataset Transit Sources tool.The
+         Stops feature class may be altered after running the tool. Stop
+         features with a GStopType value of 2, representing station entrances,
+         may be deleted. These stop features will instead be included in the
+         output StopsOnStreets feature class to model correct connections from
+         the streets, through the station entrances, and to the stops. Parent
+         stations that are spatially coincident with stops may also be deleted.
+     in_streets_features (Feature Layer):
+         A polyline feature class of streets to which transit stops and lines
+         will connect. This streets feature class should be the same feature
+         class you intend to use in the transit-enabled network dataset for
+         modeling pedestrians walking along streets. The feature class does not
+         need to be in the target feature dataset to run this tool; however,
+         the feature class must be in the target feature dataset at the time
+         you create the network dataset.The input streets features will be
+         altered after running the tool.
+         Vertices will be added at the locations where StopsOnStreets features
+         intersect the streets. If you do not want the street data altered,
+         make a copy of it before running this tool.
+     search_distance (Linear Unit):
+         The search distance for snapping transit stops to the input street
+         features. Stops that are outside the search distance will not be
+         snapped and will not be connected to the streets. A small search
+         distance will ensure that stops do not snap to streets that are far
+         away, but it increases the likelihood of stops failing to snap when
+         they should. A large search distance increases the number of stops
+         likely to snap but may lead to errors that should instead be corrected
+         by editing the street data. If no street features are found within the
+         search distance of a particular stop, the output StopsOnStreets
+         feature will not be snapped to a street and will be coincident with
+         its corresponding feature in Stops, which could lead to poor
+         connectivity in the network dataset at that location.The default is
+         100 meters.
+     expression {SQL Expression}:
+         An SQL expression used to select a subset of input street feature
+         records. Transit stops will be snapped only to street features
+         matching this expression. For example, the expression can be used to
+         prevent stops from snapping to streets where pedestrian travel is
+         prohibited."""
     ...
 
-@gptooldoc('FeaturesToGTFSShapes_transit', None)
-def FeaturesToGTFSShapes(in_shape_lines=..., in_shape_stops=..., in_gtfs_trips=..., in_gtfs_stop_times=..., out_gtfs_shapes=..., out_gtfs_stop_times=..., distance_units=...): # -> conversion | int | float | complex | basestring | list[Unknown] | tuple[Unknown, ...] | dict[Unknown, Unknown]:
+@gptooldoc("FeaturesToGTFSShapes_transit", None)
+def FeaturesToGTFSShapes(
+    in_shape_lines=...,
+    in_shape_stops=...,
+    in_gtfs_trips=...,
+    in_gtfs_stop_times=...,
+    out_gtfs_shapes=...,
+    out_gtfs_stop_times=...,
+    distance_units=...,
+):  # -> conversion | int | float | complex | basestring | list[Unknown] | tuple[Unknown, ...] | dict[Unknown, Unknown]:
     """FeaturesToGTFSShapes_transit(in_shape_lines, in_shape_stops, in_gtfs_trips, in_gtfs_stop_times, out_gtfs_shapes, out_gtfs_stop_times, {distance_units})
 
-        Creates a shapes.txt file for a GTFS public transit dataset based on
-        route line representations created by the Generate Shapes Features
-        From GTFS tool.
+       Creates a shapes.txt file for a GTFS public transit dataset based on
+       route line representations created by the Generate Shapes Features
+       From GTFS tool.
 
-     INPUTS:
-      in_shape_lines (Feature Layer):
-          A line feature class representing the GTFS shapes created by running
-          the Generate Shapes Features From GTFS tool. The feature class must
-          contain a shape_id field with values corresponding to the shape_id
-          field values in the other tool inputs.
-      in_shape_stops (Feature Layer):
-          A point feature class representing the GTFS stops associated with each
-          shape created by running the Generate Shapes Features From GTFS tool.
-          If a transit stop is used by multiple shapes, the stop should be
-          duplicated in this feature class for each shape that uses it.The
-          feature class must contain a shape_id field with values
-          corresponding to the shape_id field values in the other tool inputs.
-          It must also contain a stop_id field with values corresponding to
-          those in the shape_id column of the input GTFS stop_times.txt file.
-      in_gtfs_trips (File):
-          The updated GTFS trips.txt file created by running the Generate Shapes
-          Features From GTFS tool. This file must have the shape_id column with
-          values corresponding to those in the shape_id fields in the other tool
-          inputs.
-      in_gtfs_stop_times (File):
-          The original stop_times.txt file from the GTFS dataset that was used
-          when running the Generate Shapes Features From GTFS tool.
-      distance_units {String}:
-          Specifies the distance units to use when populating the
-          shape_dist_traveled field in the output GTFS files.
+    INPUTS:
+     in_shape_lines (Feature Layer):
+         A line feature class representing the GTFS shapes created by running
+         the Generate Shapes Features From GTFS tool. The feature class must
+         contain a shape_id field with values corresponding to the shape_id
+         field values in the other tool inputs.
+     in_shape_stops (Feature Layer):
+         A point feature class representing the GTFS stops associated with each
+         shape created by running the Generate Shapes Features From GTFS tool.
+         If a transit stop is used by multiple shapes, the stop should be
+         duplicated in this feature class for each shape that uses it.The
+         feature class must contain a shape_id field with values
+         corresponding to the shape_id field values in the other tool inputs.
+         It must also contain a stop_id field with values corresponding to
+         those in the shape_id column of the input GTFS stop_times.txt file.
+     in_gtfs_trips (File):
+         The updated GTFS trips.txt file created by running the Generate Shapes
+         Features From GTFS tool. This file must have the shape_id column with
+         values corresponding to those in the shape_id fields in the other tool
+         inputs.
+     in_gtfs_stop_times (File):
+         The original stop_times.txt file from the GTFS dataset that was used
+         when running the Generate Shapes Features From GTFS tool.
+     distance_units {String}:
+         Specifies the distance units to use when populating the
+         shape_dist_traveled field in the output GTFS files.
 
-          * MILES-The unit is miles. This is the default.
+         * MILES-The unit is miles. This is the default.
 
-          * METERS-The unit is meters
+         * METERS-The unit is meters
 
-          * KILOMETERS-The unit is kilometers
+         * KILOMETERS-The unit is kilometers
 
-     OUTPUTS:
-      out_gtfs_shapes (File):
-          The output GTFS shapes.txt file.
-      out_gtfs_stop_times (File):
-          The output GTFS stop_times.txt file This file will contain the
-          shape_dist_traveled field with values derived from the new shapes."""
+    OUTPUTS:
+     out_gtfs_shapes (File):
+         The output GTFS shapes.txt file.
+     out_gtfs_stop_times (File):
+         The output GTFS stop_times.txt file This file will contain the
+         shape_dist_traveled field with values derived from the new shapes."""
     ...
 
-@gptooldoc('FeaturesToGTFSStops_transit', None)
-def FeaturesToGTFSStops(in_features=..., out_gtfs_stops_file=...): # -> conversion | int | float | complex | basestring | list[Unknown] | tuple[Unknown, ...] | dict[Unknown, Unknown]:
+@gptooldoc("FeaturesToGTFSStops_transit", None)
+def FeaturesToGTFSStops(
+    in_features=..., out_gtfs_stops_file=...
+):  # -> conversion | int | float | complex | basestring | list[Unknown] | tuple[Unknown, ...] | dict[Unknown, Unknown]:
     """FeaturesToGTFSStops_transit(in_features, out_gtfs_stops_file)
 
-        Converts a feature class to a GTFS stops.txt file for a GTFS public
-        transit dataset.
+       Converts a feature class to a GTFS stops.txt file for a GTFS public
+       transit dataset.
 
-     INPUTS:
-      in_features (Feature Layer):
-          A point feature class containing transit stop geometries and at least
-          the minimum required GTFS stops.txt file fields except stop_lat and
-          stop_lon.
+    INPUTS:
+     in_features (Feature Layer):
+         A point feature class containing transit stop geometries and at least
+         the minimum required GTFS stops.txt file fields except stop_lat and
+         stop_lon.
 
-     OUTPUTS:
-      out_gtfs_stops_file (File):
-          The output stops.txt file."""
+    OUTPUTS:
+     out_gtfs_stops_file (File):
+         The output stops.txt file."""
     ...
 
-@gptooldoc('GTFSShapesToFeatures_transit', None)
-def GTFSShapesToFeatures(in_gtfs_shapes_file=..., out_feature_class=...): # -> conversion | int | float | complex | basestring | list[Unknown] | tuple[Unknown, ...] | dict[Unknown, Unknown]:
+@gptooldoc("GTFSShapesToFeatures_transit", None)
+def GTFSShapesToFeatures(
+    in_gtfs_shapes_file=..., out_feature_class=...
+):  # -> conversion | int | float | complex | basestring | list[Unknown] | tuple[Unknown, ...] | dict[Unknown, Unknown]:
     """GTFSShapesToFeatures_transit(in_gtfs_shapes_file, out_feature_class)
 
-        Converts a GTFS shapes.txt file from a GTFS public transit dataset to
-        a polyline feature class showing the physical paths taken by vehicles
-        in the public transit system.
+       Converts a GTFS shapes.txt file from a GTFS public transit dataset to
+       a polyline feature class showing the physical paths taken by vehicles
+       in the public transit system.
 
-     INPUTS:
-      in_gtfs_shapes_file (File):
-          A valid shapes.txt file from a GTFS dataset.
+    INPUTS:
+     in_gtfs_shapes_file (File):
+         A valid shapes.txt file from a GTFS dataset.
 
-     OUTPUTS:
-      out_feature_class (Feature Class):
-          The output feature class."""
+    OUTPUTS:
+     out_feature_class (Feature Class):
+         The output feature class."""
     ...
 
-@gptooldoc('GTFSStopsToFeatures_transit', None)
-def GTFSStopsToFeatures(in_gtfs_stops_file=..., out_feature_class=...): # -> conversion | int | float | complex | basestring | list[Unknown] | tuple[Unknown, ...] | dict[Unknown, Unknown]:
+@gptooldoc("GTFSStopsToFeatures_transit", None)
+def GTFSStopsToFeatures(
+    in_gtfs_stops_file=..., out_feature_class=...
+):  # -> conversion | int | float | complex | basestring | list[Unknown] | tuple[Unknown, ...] | dict[Unknown, Unknown]:
     """GTFSStopsToFeatures_transit(in_gtfs_stops_file, out_feature_class)
 
-        Converts a GTFS stops.txt file from a GTFS public transit dataset to a
-        feature class of public transit stops.
+       Converts a GTFS stops.txt file from a GTFS public transit dataset to a
+       feature class of public transit stops.
 
-     INPUTS:
-      in_gtfs_stops_file (File):
-          A valid stops.txt file from a GTFS dataset.
+    INPUTS:
+     in_gtfs_stops_file (File):
+         A valid stops.txt file from a GTFS dataset.
 
-     OUTPUTS:
-      out_feature_class (Feature Class):
-          The output feature class."""
+    OUTPUTS:
+     out_feature_class (Feature Class):
+         The output feature class."""
     ...
 
-@gptooldoc('GTFSToPublicTransitDataModel_transit', None)
-def GTFSToPublicTransitDataModel(in_gtfs_folders=..., target_feature_dataset=..., interpolate=..., append=...): # -> conversion | int | float | complex | basestring | list[Unknown] | tuple[Unknown, ...] | dict[Unknown, Unknown]:
+@gptooldoc("GTFSToPublicTransitDataModel_transit", None)
+def GTFSToPublicTransitDataModel(
+    in_gtfs_folders=..., target_feature_dataset=..., interpolate=..., append=...
+):  # -> conversion | int | float | complex | basestring | list[Unknown] | tuple[Unknown, ...] | dict[Unknown, Unknown]:
     """GTFSToPublicTransitDataModel_transit(in_gtfs_folders;in_gtfs_folders..., target_feature_dataset, {interpolate}, {append})
 
-        Converts one or more General Transit Feed Specification (GTFS) public
-        transit datasets to a set of feature classes and tables that represent
-        the transit stops, lines, and schedules in the format defined by the
-        Network Analyst public transit data model.
+       Converts one or more General Transit Feed Specification (GTFS) public
+       transit datasets to a set of feature classes and tables that represent
+       the transit stops, lines, and schedules in the format defined by the
+       Network Analyst public transit data model.
 
-     INPUTS:
-      in_gtfs_folders (Folder):
-          One or more folders containing valid GTFS data. Each folder must
-          contain the GTFS stops.txt, routes.txt, trips.txt, and stop_times.txt
-          files and either the calendar.txt or calendar_dates.txt file, or both.
-      target_feature_dataset (Feature Dataset):
-          The feature dataset where the transit-enabled network dataset will be
-          created. The Stops and LineVariantElements feature classes created by
-          this tool will be placed in this feature dataset, and the output
-          tables created by this tool will be placed in this feature dataset's
-          parent geodatabase.The feature dataset can be in a file geodatabase or
-          an enterprise
-          geodatabase and can have any spatial reference. If the target feature
-          dataset is in an enterprise geodatabase, it must not be versioned. Do
-          not include the target feature dataset in a geodatabase with an
-          existing feature dataset containing public transit data model feature
-          classes.
-      interpolate {Boolean}:
-          Specifies whether blank values from the arrival_time and
-          departure_time fields in the GTFS stop_times.txt file will be
-          interpolated when creating the public transit data model tables.
+    INPUTS:
+     in_gtfs_folders (Folder):
+         One or more folders containing valid GTFS data. Each folder must
+         contain the GTFS stops.txt, routes.txt, trips.txt, and stop_times.txt
+         files and either the calendar.txt or calendar_dates.txt file, or both.
+     target_feature_dataset (Feature Dataset):
+         The feature dataset where the transit-enabled network dataset will be
+         created. The Stops and LineVariantElements feature classes created by
+         this tool will be placed in this feature dataset, and the output
+         tables created by this tool will be placed in this feature dataset's
+         parent geodatabase.The feature dataset can be in a file geodatabase or
+         an enterprise
+         geodatabase and can have any spatial reference. If the target feature
+         dataset is in an enterprise geodatabase, it must not be versioned. Do
+         not include the target feature dataset in a geodatabase with an
+         existing feature dataset containing public transit data model feature
+         classes.
+     interpolate {Boolean}:
+         Specifies whether blank values from the arrival_time and
+         departure_time fields in the GTFS stop_times.txt file will be
+         interpolated when creating the public transit data model tables.
 
-          * INTERPOLATE-Blank values will be interpolated using simple linear
-          interpolation. The original GTFS data will not be altered. If there
-          are no blank values in the original data, no interpolation will occur.
+         * INTERPOLATE-Blank values will be interpolated using simple linear
+         interpolation. The original GTFS data will not be altered. If there
+         are no blank values in the original data, no interpolation will occur.
 
-          * NO_INTERPOLATE-Blank values will not be interpolated. If blank
-          values are found in the input GTFS data, the tool will issue a warning
-          and will not process the GTFS dataset. This is the default.
-      append {Boolean}:
-          Specifies whether the input GTFS datasets will be appended to existing
-          public transit data model feature classes and tables in the target
-          feature dataset and its parent geodatabase.
+         * NO_INTERPOLATE-Blank values will not be interpolated. If blank
+         values are found in the input GTFS data, the tool will issue a warning
+         and will not process the GTFS dataset. This is the default.
+     append {Boolean}:
+         Specifies whether the input GTFS datasets will be appended to existing
+         public transit data model feature classes and tables in the target
+         feature dataset and its parent geodatabase.
 
-          * APPEND-Data will be appended to the existing feature classes and
-          tables.
+         * APPEND-Data will be appended to the existing feature classes and
+         tables.
 
-          * NO_APPEND-Data will not be appended. Existing feature classes and
-          tables will be overwritten. This is the default."""
+         * NO_APPEND-Data will not be appended. Existing feature classes and
+         tables will be overwritten. This is the default."""
     ...
 
-@gptooldoc('GenerateShapesFeaturesFromGTFS_transit', None)
-def GenerateShapesFeaturesFromGTFS(in_gtfs_folder=..., out_shape_lines=..., out_shape_stops=..., out_gtfs_trips=..., network_modes=..., network_data_source=..., travel_mode=..., drive_side=..., bearing_tolerance=..., max_bearing_angle=...): # -> conversion | int | float | complex | basestring | list[Unknown] | tuple[Unknown, ...] | dict[Unknown, Unknown]:
+@gptooldoc("GenerateShapesFeaturesFromGTFS_transit", None)
+def GenerateShapesFeaturesFromGTFS(
+    in_gtfs_folder=...,
+    out_shape_lines=...,
+    out_shape_stops=...,
+    out_gtfs_trips=...,
+    network_modes=...,
+    network_data_source=...,
+    travel_mode=...,
+    drive_side=...,
+    bearing_tolerance=...,
+    max_bearing_angle=...,
+):  # -> conversion | int | float | complex | basestring | list[Unknown] | tuple[Unknown, ...] | dict[Unknown, Unknown]:
     """GenerateShapesFeaturesFromGTFS_transit(in_gtfs_folder, out_shape_lines, out_shape_stops, out_gtfs_trips, {network_modes;network_modes...}, {network_data_source}, {travel_mode}, {drive_side}, {bearing_tolerance}, {max_bearing_angle})
 
-        Generates an estimate of the paths traveled by the vehicles in a
-        public transit system. The output from this tool can be used to
-        generate a new shapes.txt file for a GTFS public transit dataset.
+       Generates an estimate of the paths traveled by the vehicles in a
+       public transit system. The output from this tool can be used to
+       generate a new shapes.txt file for a GTFS public transit dataset.
 
-     INPUTS:
-      in_gtfs_folder (Folder):
-          A folder containing a valid GTFS dataset for which you want to create
-          a new shapes.txt file. The folder must contain the GTFS stops.txt,
-          trips.txt, routes.txt, and stop_times.txt files.
-      network_modes {String}:
-          Specifies the modes of transit for which line shapes will be generated
-          along the road network rather than with straight lines. Shapes for all
-          modes not selected will be generated using straight lines.You should
-          typically select modes that run on streets, such as buses,
-          since those modes are most accurately represented by the road network.
-          Do not select modes that are not modeled by your road network. For
-          example, unless your network explicitly models ferry lanes, don't use
-          the network to represent the paths traveled by ferries.The modes are
-          specified using the codes in the table below. These
-          correspond to the valid GTFS routes.txt file's route_type field values
-          from the GTFS documentation.Modes 3, 5, and 11 are used by default.
+    INPUTS:
+     in_gtfs_folder (Folder):
+         A folder containing a valid GTFS dataset for which you want to create
+         a new shapes.txt file. The folder must contain the GTFS stops.txt,
+         trips.txt, routes.txt, and stop_times.txt files.
+     network_modes {String}:
+         Specifies the modes of transit for which line shapes will be generated
+         along the road network rather than with straight lines. Shapes for all
+         modes not selected will be generated using straight lines.You should
+         typically select modes that run on streets, such as buses,
+         since those modes are most accurately represented by the road network.
+         Do not select modes that are not modeled by your road network. For
+         example, unless your network explicitly models ferry lanes, don't use
+         the network to represent the paths traveled by ferries.The modes are
+         specified using the codes in the table below. These
+         correspond to the valid GTFS routes.txt file's route_type field values
+         from the GTFS documentation.Modes 3, 5, and 11 are used by default.
 
-          * 0-Tram, streetcar, light rail. This mode corresponds to GTFS
-          route_type 0.
+         * 0-Tram, streetcar, light rail. This mode corresponds to GTFS
+         route_type 0.
 
-          * 1-Subway or metro. This mode corresponds to GTFS route_type 1.
+         * 1-Subway or metro. This mode corresponds to GTFS route_type 1.
 
-          * 2-Rail. This mode corresponds to GTFS route_type 2.
+         * 2-Rail. This mode corresponds to GTFS route_type 2.
 
-          * 3-Bus. This mode corresponds to GTFS route_type 3.
+         * 3-Bus. This mode corresponds to GTFS route_type 3.
 
-          * 4-Ferry. This mode corresponds to GTFS route_type 4.
+         * 4-Ferry. This mode corresponds to GTFS route_type 4.
 
-          * 5-Cable tram. This mode corresponds to GTFS route_type 5.
+         * 5-Cable tram. This mode corresponds to GTFS route_type 5.
 
-          * 6-Aerial lift, suspended cable car, gondola lift, aerial tramway.
-          This mode corresponds to GTFS route_type 6.
+         * 6-Aerial lift, suspended cable car, gondola lift, aerial tramway.
+         This mode corresponds to GTFS route_type 6.
 
-          * 7-Funicular. This mode corresponds to GTFS route_type 7.
+         * 7-Funicular. This mode corresponds to GTFS route_type 7.
 
-          * 11-Trolleybus. This mode corresponds to GTFS route_type 11.
+         * 11-Trolleybus. This mode corresponds to GTFS route_type 11.
 
-          * 12-Monorail. This mode corresponds to GTFS route_type 12.
+         * 12-Monorail. This mode corresponds to GTFS route_type 12.
 
-          * OTHER-This option corresponds to any mode of public transit not
-          encompassed by the other options.
-      network_data_source {Network Data Source}:
-          The network dataset or service that will be used for calculating route
-          shapes along a road network. You can use a catalog path to a network
-          dataset, a network dataset layer object, the string name of the
-          network dataset layer, or a portal URL for a network analysis service.
-          The network must have at least one travel mode.To use a portal URL,
-          you must be signed in to the portal with an
-          account that has routing privileges.Running the tool will consume
-          credits if you use ArcGIS Online as the
-          network data source.This parameter is required when any network modes
-          are selected.The network dataset you choose should be appropriate for
-          modeling
-          transit vehicles, such as buses, driving on streets. Don't use a
-          network dataset configured to use public transit data with the Public
-          Transit evaluator because this type of network models passengers
-          riding on public transit, not public transit vehicles driving on
-          streets.
-      travel_mode {Network Travel Mode}:
-          The travel mode on the network data source that will be used when
-          calculating route shapes along a road network. You can specify the
-          travel mode as a string name of the travel mode or as an
-          arcpy.nax.TravelMode object.Use the travel mode most appropriate for
-          modeling vehicles in your
-          transit system driving along the road network.This parameter is
-          required when any network modes are selected.Do not use a travel mode
-          with an impedance attribute that uses the
-          Public Transit evaluator because that travel mode models passengers
-          riding on public transit, not transit vehicles driving on streets.
-      drive_side {String}:
-          Specifies the side of the road on which vehicles drive in your transit
-          system. This is used to ensure that stops are visited on the correct
-          side of the road.
+         * OTHER-This option corresponds to any mode of public transit not
+         encompassed by the other options.
+     network_data_source {Network Data Source}:
+         The network dataset or service that will be used for calculating route
+         shapes along a road network. You can use a catalog path to a network
+         dataset, a network dataset layer object, the string name of the
+         network dataset layer, or a portal URL for a network analysis service.
+         The network must have at least one travel mode.To use a portal URL,
+         you must be signed in to the portal with an
+         account that has routing privileges.Running the tool will consume
+         credits if you use ArcGIS Online as the
+         network data source.This parameter is required when any network modes
+         are selected.The network dataset you choose should be appropriate for
+         modeling
+         transit vehicles, such as buses, driving on streets. Don't use a
+         network dataset configured to use public transit data with the Public
+         Transit evaluator because this type of network models passengers
+         riding on public transit, not public transit vehicles driving on
+         streets.
+     travel_mode {Network Travel Mode}:
+         The travel mode on the network data source that will be used when
+         calculating route shapes along a road network. You can specify the
+         travel mode as a string name of the travel mode or as an
+         arcpy.nax.TravelMode object.Use the travel mode most appropriate for
+         modeling vehicles in your
+         transit system driving along the road network.This parameter is
+         required when any network modes are selected.Do not use a travel mode
+         with an impedance attribute that uses the
+         Public Transit evaluator because that travel mode models passengers
+         riding on public transit, not transit vehicles driving on streets.
+     drive_side {String}:
+         Specifies the side of the road on which vehicles drive in your transit
+         system. This is used to ensure that stops are visited on the correct
+         side of the road.
 
-          * LEFT-Vehicles drive on the left side of the road.
+         * LEFT-Vehicles drive on the left side of the road.
 
-          * RIGHT-Vehicles drive on the right side of the road. This is the
-          default.
-      bearing_tolerance {Double}:
-          The maximum allowed angle between a transit vehicle's estimated
-          direction of travel at a stop and the angle of the network edge where
-          the stop could locate. If the angles differ by more than this value,
-          it is assumed that this is not the correct network edge on which to
-          locate the stop, and Network Analyst will continue searching other
-          nearby network edges for a more appropriate edge.When calculating
-          route shapes along a road network, bearing and
-          bearing tolerance are used to more accurately locate transit stops
-          along the road network. The transit vehicle's bearing is estimated at
-          each stop based on the angles between the current stop and the
-          previous and next stops along the transit route.Specify the value in
-          units of degrees between 0 and 180. The default
-          is 30.
-      max_bearing_angle {Double}:
-          The maximum allowable difference in bearing angle between the previous
-          stop and the current stop and the current stop to the next stop.The
-          transit vehicle's bearing is estimated at each stop based on the
-          angles between the current stop and the previous and next stops along
-          the transit route. When the transit route follows a relatively
-          straight road, this angle is a good representation of the bearing.
-          However, if the route goes around a corner, makes a U-turn, follows a
-          twisty road, or diverts into a parking lot or side road, the average
-          angle is not a good estimate of bearing and using this estimate can
-          cause the stop to locate on the network far away from where it should
-          and worsen the quality of the tool output.The tool will ignore the
-          bearing estimate if the difference in angle
-          from the previous stop to the current stop and the current stop to the
-          next stop is greater than the value specified in this parameter. In
-          this situation, the stop will revert to the normal network locating
-          behavior and will snap to the closest nonrestricted network
-          edge.Specify the value in units of degrees between 0 and 180. The
-          default
-          is 65.
+         * RIGHT-Vehicles drive on the right side of the road. This is the
+         default.
+     bearing_tolerance {Double}:
+         The maximum allowed angle between a transit vehicle's estimated
+         direction of travel at a stop and the angle of the network edge where
+         the stop could locate. If the angles differ by more than this value,
+         it is assumed that this is not the correct network edge on which to
+         locate the stop, and Network Analyst will continue searching other
+         nearby network edges for a more appropriate edge.When calculating
+         route shapes along a road network, bearing and
+         bearing tolerance are used to more accurately locate transit stops
+         along the road network. The transit vehicle's bearing is estimated at
+         each stop based on the angles between the current stop and the
+         previous and next stops along the transit route.Specify the value in
+         units of degrees between 0 and 180. The default
+         is 30.
+     max_bearing_angle {Double}:
+         The maximum allowable difference in bearing angle between the previous
+         stop and the current stop and the current stop to the next stop.The
+         transit vehicle's bearing is estimated at each stop based on the
+         angles between the current stop and the previous and next stops along
+         the transit route. When the transit route follows a relatively
+         straight road, this angle is a good representation of the bearing.
+         However, if the route goes around a corner, makes a U-turn, follows a
+         twisty road, or diverts into a parking lot or side road, the average
+         angle is not a good estimate of bearing and using this estimate can
+         cause the stop to locate on the network far away from where it should
+         and worsen the quality of the tool output.The tool will ignore the
+         bearing estimate if the difference in angle
+         from the previous stop to the current stop and the current stop to the
+         next stop is greater than the value specified in this parameter. In
+         this situation, the stop will revert to the normal network locating
+         behavior and will snap to the closest nonrestricted network
+         edge.Specify the value in units of degrees between 0 and 180. The
+         default
+         is 65.
 
-     OUTPUTS:
-      out_shape_lines (Feature Class):
-          A line feature class representing the estimated route shapes
-          calculated by this tool. Each line in the output represents a unique
-          shape required for this GTFS dataset. You can edit the line geometry
-          and use this feature class as input to the Features To GTFS Shapes
-          tool.
-      out_shape_stops (Feature Class):
-          A point feature class of GTFS transit stops with an ID associating
-          them with each shape line to be created by the tool. In cases where
-          the same GTFS stop is visited by multiple shapes, this feature class
-          will contain multiple copies of that stop, one for each shape with
-          which it is associated. This feature class is useful with definition
-          queries when editing one shape line at a time. Use this feature class
-          as input to the Features To GTFS Shapes tool.This output feature class
-          is not equivalent to the output of the GTFS
-          Stops To Features tool. That tool produces a feature class of the GTFS
-          stops exactly as they are in the original dataset; this tool may
-          produce multiple copies of each stop to associate them with different
-          shapes. Use this output feature class in conjunction with the other
-          outputs of the Generate Shapes Features From GTFS tool to create a
-          shapes.txt file.
-      out_gtfs_trips (File):
-          The output GTFS trips.txt file. This file will be equivalent to the
-          trips.txt file in the input GTFS folder but will include the shape_id
-          field added and populated with values corresponding to the shape_id
-          field in the Output Transit Shape Lines feature class."""
+    OUTPUTS:
+     out_shape_lines (Feature Class):
+         A line feature class representing the estimated route shapes
+         calculated by this tool. Each line in the output represents a unique
+         shape required for this GTFS dataset. You can edit the line geometry
+         and use this feature class as input to the Features To GTFS Shapes
+         tool.
+     out_shape_stops (Feature Class):
+         A point feature class of GTFS transit stops with an ID associating
+         them with each shape line to be created by the tool. In cases where
+         the same GTFS stop is visited by multiple shapes, this feature class
+         will contain multiple copies of that stop, one for each shape with
+         which it is associated. This feature class is useful with definition
+         queries when editing one shape line at a time. Use this feature class
+         as input to the Features To GTFS Shapes tool.This output feature class
+         is not equivalent to the output of the GTFS
+         Stops To Features tool. That tool produces a feature class of the GTFS
+         stops exactly as they are in the original dataset; this tool may
+         produce multiple copies of each stop to associate them with different
+         shapes. Use this output feature class in conjunction with the other
+         outputs of the Generate Shapes Features From GTFS tool to create a
+         shapes.txt file.
+     out_gtfs_trips (File):
+         The output GTFS trips.txt file. This file will be equivalent to the
+         trips.txt file in the input GTFS folder but will include the shape_id
+         field added and populated with values corresponding to the shape_id
+         field in the Output Transit Shape Lines feature class."""
     ...
-

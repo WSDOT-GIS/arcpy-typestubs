@@ -306,4 +306,3 @@ ParameterDataType = (
     | Literal["GPXYDomain"]
     | Literal["GPZDomain"]
 )
-

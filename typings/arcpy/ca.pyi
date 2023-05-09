@@ -7,1002 +7,1146 @@ from arcpy.geoprocessing._base import gptooldoc
 r"""The Crime Analysis and Safety toolbox contains tools that support
 analytical functions to manage data, select crime incidents, conduct
 tactical and strategic analysis, and investigate crime patterns."""
-__all__ = ['AddDateAttributes', 'CellPhoneRecordsToFeatureClass', 'CellSiteRecordsToFeatureClass', 'EightyTwentyAnalysis', 'FeatureTo3DByTime', 'FindSpaceTimeMatches', 'GenerateCallLinks', 'GenerateSectorLines', 'JoinAttributesFromPolygon', 'SelectLayerByDateAndTime', 'SummarizeIncidentCount', 'SummarizePercentChange', 'UpdateFeaturesWithIncidentRecords']
+__all__ = [
+    "AddDateAttributes",
+    "CellPhoneRecordsToFeatureClass",
+    "CellSiteRecordsToFeatureClass",
+    "EightyTwentyAnalysis",
+    "FeatureTo3DByTime",
+    "FindSpaceTimeMatches",
+    "GenerateCallLinks",
+    "GenerateSectorLines",
+    "JoinAttributesFromPolygon",
+    "SelectLayerByDateAndTime",
+    "SummarizeIncidentCount",
+    "SummarizePercentChange",
+    "UpdateFeaturesWithIncidentRecords",
+]
 __alias__ = ...
-@gptooldoc('AddDateAttributes_ca', None)
-def AddDateAttributes(in_table=..., date_field=..., date_attributes=...): # -> conversion | int | float | complex | basestring | list[Unknown] | tuple[Unknown, ...] | dict[Unknown, Unknown]:
+
+@gptooldoc("AddDateAttributes_ca", None)
+def AddDateAttributes(
+    in_table=..., date_field=..., date_attributes=...
+):  # -> conversion | int | float | complex | basestring | list[Unknown] | tuple[Unknown, ...] | dict[Unknown, Unknown]:
     """AddDateAttributes_ca(in_table, date_field, {date_attributes;date_attributes...})
 
-        Adds fields containing date or time properties from an input date
-        field, for example, day full name, day of the month, month, and year.
+       Adds fields containing date or time properties from an input date
+       field, for example, day full name, day of the month, month, and year.
 
-     INPUTS:
-      in_table (Table View):
-          The layer or table that contains the field with the date values that
-          will be extracted.
-      date_field (Field):
-          The date field from which data and time properties will be extracted
-          to populate the new field values.
-      date_attributes {Value Table}:
-          The date and time properties and fields that will be added to the
-          input table.
+    INPUTS:
+     in_table (Table View):
+         The layer or table that contains the field with the date values that
+         will be extracted.
+     date_field (Field):
+         The date field from which data and time properties will be extracted
+         to populate the new field values.
+     date_attributes {Value Table}:
+         The date and time properties and fields that will be added to the
+         input table.
 
-          * Output Time Format-The date or time property that will be added to
-          Output Field Name.
+         * Output Time Format-The date or time property that will be added to
+         Output Field Name.
 
-          * Output Field Name-The name of the field that will be added to the
-          input table.
-          The Output Time Format options are as follows:
+         * Output Field Name-The name of the field that will be added to the
+         input table.
+         The Output Time Format options are as follows:
 
-          * Hour-The hour value between 0 and 23.
+         * Hour-The hour value between 0 and 23.
 
-          * Day Full Name-The full name of the day of the week, for example,
-          Wednesday.
+         * Day Full Name-The full name of the day of the week, for example,
+         Wednesday.
 
-          * Day Numeric Value-The day of the week value between 1 and 7.
+         * Day Numeric Value-The day of the week value between 1 and 7.
 
-          * Month-The month value between 1 and 12.
+         * Month-The month value between 1 and 12.
 
-          * Day of the Month-The day of the month value between 1 and 31.
+         * Day of the Month-The day of the month value between 1 and 31.
 
-          * Year-The year value in yyyy format, for example, 1983."""
+         * Year-The year value in yyyy format, for example, 1983."""
     ...
 
-@gptooldoc('EightyTwentyAnalysis_ca', None)
-def EightyTwentyAnalysis(in_features=..., out_feature_class=..., cluster_tolerance=..., out_fields=..., aggregation_method=..., in_comparison_features=...): # -> conversion | int | float | complex | basestring | list[Unknown] | tuple[Unknown, ...] | dict[Unknown, Unknown]:
+@gptooldoc("EightyTwentyAnalysis_ca", None)
+def EightyTwentyAnalysis(
+    in_features=...,
+    out_feature_class=...,
+    cluster_tolerance=...,
+    out_fields=...,
+    aggregation_method=...,
+    in_comparison_features=...,
+):  # -> conversion | int | float | complex | basestring | list[Unknown] | tuple[Unknown, ...] | dict[Unknown, Unknown]:
     """EightyTwentyAnalysis_ca(in_features, out_feature_class, {cluster_tolerance}, {out_fields;out_fields...}, {aggregation_method}, {in_comparison_features})
 
-        Conducts an 80/20 analysis of features and creates point clusters,
-        lines, or polygons based on the number of associated incidents. The
-        tool calculates a cumulative percentage field to identify the
-        locations where incidents are disproportionately occurring.
+       Conducts an 80/20 analysis of features and creates point clusters,
+       lines, or polygons based on the number of associated incidents. The
+       tool calculates a cumulative percentage field to identify the
+       locations where incidents are disproportionately occurring.
 
-     INPUTS:
-      in_features (Feature Layer):
-          The input point features that will be used to create clusters, lines,
-          or polygons.
-      cluster_tolerance {Linear Unit}:
-          The maximum distance separating points at which they will be
-          considered part of the same cluster.If no cluster tolerance is
-          specified, the tool will create a cluster
-          where point features overlap.This parameter is enabled when the
-          aggregation_method parameter is set
-          to POINT_CLUSTER.
-      out_fields {Field}:
-          The fields from the input features that will be transferred to the
-          output.
-      aggregation_method {String}:
-          Specifies how the input point features will be aggregated.
+    INPUTS:
+     in_features (Feature Layer):
+         The input point features that will be used to create clusters, lines,
+         or polygons.
+     cluster_tolerance {Linear Unit}:
+         The maximum distance separating points at which they will be
+         considered part of the same cluster.If no cluster tolerance is
+         specified, the tool will create a cluster
+         where point features overlap.This parameter is enabled when the
+         aggregation_method parameter is set
+         to POINT_CLUSTER.
+     out_fields {Field}:
+         The fields from the input features that will be transferred to the
+         output.
+     aggregation_method {String}:
+         Specifies how the input point features will be aggregated.
 
-          * POINT_CLUSTER-The input point features will be clustered. This is
-          the default.
+         * POINT_CLUSTER-The input point features will be clustered. This is
+         the default.
 
-          * CLOSEST_FEATURE-The input point features will be aggregated to the
-          closest comparison polygon or line feature.
-      in_comparison_features {Feature Layer}:
-          The comparison input polygon or line feature class by which the
-          in_features parameter value is aggregated.This parameter is enabled
-          when the aggregation_method parameter is set
-          to CLOSEST_FEATURE.
+         * CLOSEST_FEATURE-The input point features will be aggregated to the
+         closest comparison polygon or line feature.
+     in_comparison_features {Feature Layer}:
+         The comparison input polygon or line feature class by which the
+         in_features parameter value is aggregated.This parameter is enabled
+         when the aggregation_method parameter is set
+         to CLOSEST_FEATURE.
 
-     OUTPUTS:
-      out_feature_class (Feature Class):
-          The output feature class.When the aggregation_method parameter is set
-          to POINT_CLUSTER, the
-          output will be a point feature class.When the aggregation_method
-          parameter is set to CLOSEST_FEATURE, the
-          geometry type of the output will be the same as the
-          in_comparison_features parameter value."""
+    OUTPUTS:
+     out_feature_class (Feature Class):
+         The output feature class.When the aggregation_method parameter is set
+         to POINT_CLUSTER, the
+         output will be a point feature class.When the aggregation_method
+         parameter is set to CLOSEST_FEATURE, the
+         geometry type of the output will be the same as the
+         in_comparison_features parameter value."""
     ...
 
-@gptooldoc('FeatureTo3DByTime_ca', None)
-def FeatureTo3DByTime(in_features=..., out_feature_class=..., date_field=..., time_z_unit=..., base_z=..., base_date=...): # -> conversion | int | float | complex | basestring | list[Unknown] | tuple[Unknown, ...] | dict[Unknown, Unknown]:
+@gptooldoc("FeatureTo3DByTime_ca", None)
+def FeatureTo3DByTime(
+    in_features=...,
+    out_feature_class=...,
+    date_field=...,
+    time_z_unit=...,
+    base_z=...,
+    base_date=...,
+):  # -> conversion | int | float | complex | basestring | list[Unknown] | tuple[Unknown, ...] | dict[Unknown, Unknown]:
     """FeatureTo3DByTime_ca(in_features, out_feature_class, date_field, {time_z_unit}, {base_z}, {base_date})
 
-        Creates a 3D feature class using date values from input features.
+       Creates a 3D feature class using date values from input features.
 
-     INPUTS:
-      in_features (Feature Layer):
-          The features used to create 3D features.
-      date_field (Field):
-          A date field from the input that will be used to calculate the
-          extrusion of the feature..
-      time_z_unit {Time Unit}:
-          The time interval and unit that will be represented by one vertical
-          linear unit in the output feature class.For example, if the output
-          feature class has a vertical coordinate
-          system based in meters and this parameter has a value of 1 second, the
-          resulting feature class will have features extruded in which 1 meter
-          of elevation is equal to 1 second of time.
-      base_z {Long}:
-          The base z-value from which the output feature will start the
-          extrusion.
-      base_date {Date}:
-          The date and time on which the time extrusion will be based.When no
-          value is specified, the minimum date value of the input will
-          be used.
+    INPUTS:
+     in_features (Feature Layer):
+         The features used to create 3D features.
+     date_field (Field):
+         A date field from the input that will be used to calculate the
+         extrusion of the feature..
+     time_z_unit {Time Unit}:
+         The time interval and unit that will be represented by one vertical
+         linear unit in the output feature class.For example, if the output
+         feature class has a vertical coordinate
+         system based in meters and this parameter has a value of 1 second, the
+         resulting feature class will have features extruded in which 1 meter
+         of elevation is equal to 1 second of time.
+     base_z {Long}:
+         The base z-value from which the output feature will start the
+         extrusion.
+     base_date {Date}:
+         The date and time on which the time extrusion will be based.When no
+         value is specified, the minimum date value of the input will
+         be used.
 
-     OUTPUTS:
-      out_feature_class (Feature Class):
-          The output z-enabled feature class."""
+    OUTPUTS:
+     out_feature_class (Feature Class):
+         The output z-enabled feature class."""
     ...
 
-@gptooldoc('FindSpaceTimeMatches_ca', None)
-def FindSpaceTimeMatches(in_primary_features=..., in_comparison_features=..., out_primary_feature_class=..., out_comparison_feature_class=..., match_types=..., search_radius=..., temporal_search_radius=..., primary_start_date_field=..., comparison_start_date_field=..., primary_end_date_field=..., comparison_end_date_field=...): # -> conversion | int | float | complex | basestring | list[Unknown] | tuple[Unknown, ...] | dict[Unknown, Unknown]:
+@gptooldoc("FindSpaceTimeMatches_ca", None)
+def FindSpaceTimeMatches(
+    in_primary_features=...,
+    in_comparison_features=...,
+    out_primary_feature_class=...,
+    out_comparison_feature_class=...,
+    match_types=...,
+    search_radius=...,
+    temporal_search_radius=...,
+    primary_start_date_field=...,
+    comparison_start_date_field=...,
+    primary_end_date_field=...,
+    comparison_end_date_field=...,
+):  # -> conversion | int | float | complex | basestring | list[Unknown] | tuple[Unknown, ...] | dict[Unknown, Unknown]:
     """FindSpaceTimeMatches_ca(in_primary_features, in_comparison_features, out_primary_feature_class, out_comparison_feature_class, match_types;match_types..., {search_radius}, {temporal_search_radius}, {primary_start_date_field}, {comparison_start_date_field}, {primary_end_date_field}, {comparison_end_date_field})
 
-        Identifies matches between two feature classes based on proximity,
-        time extent, or both.
+       Identifies matches between two feature classes based on proximity,
+       time extent, or both.
 
-     INPUTS:
-      in_primary_features (Feature Layer):
-          The primary input feature class.
-      in_comparison_features (Feature Layer):
-          The comparison input feature class.
-      match_types (String):
-          Specifies the types of matches to compare.
+    INPUTS:
+     in_primary_features (Feature Layer):
+         The primary input feature class.
+     in_comparison_features (Feature Layer):
+         The comparison input feature class.
+     match_types (String):
+         Specifies the types of matches to compare.
 
-          * SPACE_AND_TIME-Matches based on both the time extent and proximity
-          defined in the temporal and spatial search radius will be compared,
-          for example, 25 meters and 10 minutes.
+         * SPACE_AND_TIME-Matches based on both the time extent and proximity
+         defined in the temporal and spatial search radius will be compared,
+         for example, 25 meters and 10 minutes.
 
-          * SPACE_ONLY-Matches based only on the proximity defined in the
-          spatial search radius will be compared, for example, 25 meters.
+         * SPACE_ONLY-Matches based only on the proximity defined in the
+         spatial search radius will be compared, for example, 25 meters.
 
-          * TIME_ONLY-Matches based only on the time extent defined in the
-          temporal search radius will be compared, for example, 10 minutes.
-      search_radius {Linear Unit}:
-          The radius used to search between input feature classes.
-      temporal_search_radius {Time Unit}:
-          The time extent used to search between input feature classes.
-      primary_start_date_field {Field}:
-          The primary start date and time field of the input primary features.
-      comparison_start_date_field {Field}:
-          The comparison start date and time field of the input comparison
-          features.
-      primary_end_date_field {Field}:
-          The primary end date and time field of the input primary features.
-          When specified, the time range defined by the start and end date and
-          the temporal search radius will be used to search comparison features.
-          The temporal search radius can be set to 0 to compare only the time
-          defined by the feature's time range.
-      comparison_end_date_field {Field}:
-          The comparison end date and time field of the input comparison
-          features. When specified, the time range defined by the start and end
-          date and the temporal search radius will be used to evaluate
-          relationships with primary features. The temporal search radius can be
-          set to 0 to compare only the time defined by the feature's time range.
+         * TIME_ONLY-Matches based only on the time extent defined in the
+         temporal search radius will be compared, for example, 10 minutes.
+     search_radius {Linear Unit}:
+         The radius used to search between input feature classes.
+     temporal_search_radius {Time Unit}:
+         The time extent used to search between input feature classes.
+     primary_start_date_field {Field}:
+         The primary start date and time field of the input primary features.
+     comparison_start_date_field {Field}:
+         The comparison start date and time field of the input comparison
+         features.
+     primary_end_date_field {Field}:
+         The primary end date and time field of the input primary features.
+         When specified, the time range defined by the start and end date and
+         the temporal search radius will be used to search comparison features.
+         The temporal search radius can be set to 0 to compare only the time
+         defined by the feature's time range.
+     comparison_end_date_field {Field}:
+         The comparison end date and time field of the input comparison
+         features. When specified, the time range defined by the start and end
+         date and the temporal search radius will be used to evaluate
+         relationships with primary features. The temporal search radius can be
+         set to 0 to compare only the time defined by the feature's time range.
 
-     OUTPUTS:
-      out_primary_feature_class (Feature Class):
-          The output feature class containing features from the input primary
-          features where output match types occurred.
-      out_comparison_feature_class (Feature Class):
-          The output feature class containing features from input comparison
-          features where output match types occurred."""
+    OUTPUTS:
+     out_primary_feature_class (Feature Class):
+         The output feature class containing features from the input primary
+         features where output match types occurred.
+     out_comparison_feature_class (Feature Class):
+         The output feature class containing features from input comparison
+         features where output match types occurred."""
     ...
 
-@gptooldoc('JoinAttributesFromPolygon_ca', None)
-def JoinAttributesFromPolygon(target_features=..., in_features=..., fields=...): # -> conversion | int | float | complex | basestring | list[Unknown] | tuple[Unknown, ...] | dict[Unknown, Unknown]:
+@gptooldoc("JoinAttributesFromPolygon_ca", None)
+def JoinAttributesFromPolygon(
+    target_features=..., in_features=..., fields=...
+):  # -> conversion | int | float | complex | basestring | list[Unknown] | tuple[Unknown, ...] | dict[Unknown, Unknown]:
     """JoinAttributesFromPolygon_ca(target_features, in_features, {fields;fields...})
 
-        Joins attributes from input polygon features to input point features.
+       Joins attributes from input polygon features to input point features.
 
-     INPUTS:
-      target_features (Feature Layer):
-          The point features to be updated with attributes from the in_features.
-      in_features (Feature Layer):
-          The input polygon features.
-      fields {Field}:
-          The fields from the Input Polygon Features that will be appended to
-          the Target Point Features."""
+    INPUTS:
+     target_features (Feature Layer):
+         The point features to be updated with attributes from the in_features.
+     in_features (Feature Layer):
+         The input polygon features.
+     fields {Field}:
+         The fields from the Input Polygon Features that will be appended to
+         the Target Point Features."""
     ...
 
-@gptooldoc('SelectLayerByDateAndTime_ca', None)
-def SelectLayerByDateAndTime(in_layer_or_view=..., selection_type=..., time_type=..., date_field=..., start_date_field=..., end_date_field=..., selection_options=..., date_selection_type=..., single_date=..., start_date=..., end_date=..., use_system_time=..., time_slice=..., start_time=..., end_time=..., days_of_week=..., months=..., years=...): # -> conversion | int | float | complex | basestring | list[Unknown] | tuple[Unknown, ...] | dict[Unknown, Unknown]:
+@gptooldoc("SelectLayerByDateAndTime_ca", None)
+def SelectLayerByDateAndTime(
+    in_layer_or_view=...,
+    selection_type=...,
+    time_type=...,
+    date_field=...,
+    start_date_field=...,
+    end_date_field=...,
+    selection_options=...,
+    date_selection_type=...,
+    single_date=...,
+    start_date=...,
+    end_date=...,
+    use_system_time=...,
+    time_slice=...,
+    start_time=...,
+    end_time=...,
+    days_of_week=...,
+    months=...,
+    years=...,
+):  # -> conversion | int | float | complex | basestring | list[Unknown] | tuple[Unknown, ...] | dict[Unknown, Unknown]:
     """SelectLayerByDateAndTime_ca(in_layer_or_view, selection_type, time_type, {date_field}, {start_date_field}, {end_date_field}, {selection_options;selection_options...}, {date_selection_type}, {single_date}, {start_date}, {end_date}, {use_system_time}, {time_slice}, {start_time}, {end_time}, {days_of_week;days_of_week...}, {months;months...}, {years;years...})
 
-        Selects records based on date and time ranges or date properties, for
-        example, single date, time range, time period, days of the week,
-        month, or year.
+       Selects records based on date and time ranges or date properties, for
+       example, single date, time range, time period, days of the week,
+       month, or year.
 
-     INPUTS:
-      in_layer_or_view (Table View / Feature Layer):
-          The data containing a date field to which the selection will be
-          applied.
-      selection_type (String):
-          Specifies how the selection will be applied and what will occur if a
-          selection already exists.
+    INPUTS:
+     in_layer_or_view (Table View / Feature Layer):
+         The data containing a date field to which the selection will be
+         applied.
+     selection_type (String):
+         Specifies how the selection will be applied and what will occur if a
+         selection already exists.
 
-          * NEW_SELECTION-The resulting selection will replace the current
-          selection. This is the default.
+         * NEW_SELECTION-The resulting selection will replace the current
+         selection. This is the default.
 
-          * ADD_TO_SELECTION-The resulting selection will be added to the
-          current selection if one exists. If no selection exists, this is the
-          same as the new selection option.
+         * ADD_TO_SELECTION-The resulting selection will be added to the
+         current selection if one exists. If no selection exists, this is the
+         same as the new selection option.
 
-          * REMOVE_FROM_SELECTION-The resulting selection will be removed from
-          the current selection. If no selection exists, this option has no
-          effect.
+         * REMOVE_FROM_SELECTION-The resulting selection will be removed from
+         the current selection. If no selection exists, this option has no
+         effect.
 
-          * SUBSET_SELECTION-The resulting selection will be combined with the
-          current selection. Only records that are common to both remain
-          selected.
-      time_type (String):
-          Specifies how date and time fields will be used to select records.
+         * SUBSET_SELECTION-The resulting selection will be combined with the
+         current selection. Only records that are common to both remain
+         selected.
+     time_type (String):
+         Specifies how date and time fields will be used to select records.
 
-          * SINGLE_TIME_FIELD-Records will be selected based on a single time
-          field on the input feature.
+         * SINGLE_TIME_FIELD-Records will be selected based on a single time
+         field on the input feature.
 
-          * TIME_RANGE_FIELDS-Records will be selected based on start and end
-          time fields on the input feature.
-      date_field {Field}:
-          The date field from the input layer on which the selection will be
-          based. This parameter is only active if the time_type parameter is set
-          to SINGLE_TIME_FIELD.
-      start_date_field {Field}:
-          The start date field from the time range on which the selection will
-          be based. This parameter is only active if the time_type parameter is
-          set to TIME_RANGE_FIELDS.
-      end_date_field {Field}:
-          The end date field from the time range on which the selection will be
-          based. This parameter is only active if the time_type parameter is set
-          to TIME_RANGE_FIELDS.
-      selection_options {String}:
-          Specifies how date and time selections will be made.
+         * TIME_RANGE_FIELDS-Records will be selected based on start and end
+         time fields on the input feature.
+     date_field {Field}:
+         The date field from the input layer on which the selection will be
+         based. This parameter is only active if the time_type parameter is set
+         to SINGLE_TIME_FIELD.
+     start_date_field {Field}:
+         The start date field from the time range on which the selection will
+         be based. This parameter is only active if the time_type parameter is
+         set to TIME_RANGE_FIELDS.
+     end_date_field {Field}:
+         The end date field from the time range on which the selection will be
+         based. This parameter is only active if the time_type parameter is set
+         to TIME_RANGE_FIELDS.
+     selection_options {String}:
+         Specifies how date and time selections will be made.
 
-          * DATE-The selection will be by date.
+         * DATE-The selection will be by date.
 
-          * TIME-The selection will be by time of day.
+         * TIME-The selection will be by time of day.
 
-          * DAY_OF_WEEK-The selection will be by day of the week.
+         * DAY_OF_WEEK-The selection will be by day of the week.
 
-          * MONTH-The selection will be by month.
+         * MONTH-The selection will be by month.
 
-          * YEAR-The selection will be by year.
-      date_selection_type {String}:
-          Specifies whether records will be selected based on a date range,
-          singular date, recency period, or comparative time period.This
-          parameter is only active when the selection_options parameter is
-          set to DATE.
+         * YEAR-The selection will be by year.
+     date_selection_type {String}:
+         Specifies whether records will be selected based on a date range,
+         singular date, recency period, or comparative time period.This
+         parameter is only active when the selection_options parameter is
+         set to DATE.
 
-          * DATE_RANGE-Records will be selected based on a start and end date
-          range.
+         * DATE_RANGE-Records will be selected based on a start and end date
+         range.
 
-          * SINGLE_DATE-Records will be selected based on the date specified.
+         * SINGLE_DATE-Records will be selected based on the date specified.
 
-          * RECENCY-Records will be selected based on a time period in relation
-          to the current date (system date and time), for example, within the
-          last 14 days.
+         * RECENCY-Records will be selected based on a time period in relation
+         to the current date (system date and time), for example, within the
+         last 14 days.
 
-          * COMPARATIVE-Records will be selected based on the time period
-          immediately preceding a recent time period in relation to the current
-          date (system date and time). For example, if the current date is
-          January 29 and the time slice is 14 days, records occurring between
-          January 1 and January 14 will be selected. This option can be used in
-          combination with a subsequent By Recency (RECENCY in Python) selection
-          to compare record counts between two adjacent time periods (for
-          example, the two 14-day time periods of January 1-14 and January
-          15-28).
-      single_date {Date}:
-          The single date and time to be selected.This parameter is only active
-          when the date_selection_type parameter
-          is set to SINGLE_DATE.
-      start_date {Date}:
-          The start date of the date range.This parameter is only active when
-          the date_selection_type parameter
-          is set to DATE_RANGE.
-      end_date {Date}:
-          The end date of the date range.This parameter is only active when the
-          date_selection_type parameter
-          is set to DATE_RANGE.
-      use_system_time {Boolean}:
-          Specifies whether records from the current day (local system time)
-          will be included in the selection if they exist in the recent time
-          period.
+         * COMPARATIVE-Records will be selected based on the time period
+         immediately preceding a recent time period in relation to the current
+         date (system date and time). For example, if the current date is
+         January 29 and the time slice is 14 days, records occurring between
+         January 1 and January 14 will be selected. This option can be used in
+         combination with a subsequent By Recency (RECENCY in Python) selection
+         to compare record counts between two adjacent time periods (for
+         example, the two 14-day time periods of January 1-14 and January
+         15-28).
+     single_date {Date}:
+         The single date and time to be selected.This parameter is only active
+         when the date_selection_type parameter
+         is set to SINGLE_DATE.
+     start_date {Date}:
+         The start date of the date range.This parameter is only active when
+         the date_selection_type parameter
+         is set to DATE_RANGE.
+     end_date {Date}:
+         The end date of the date range.This parameter is only active when the
+         date_selection_type parameter
+         is set to DATE_RANGE.
+     use_system_time {Boolean}:
+         Specifies whether records from the current day (local system time)
+         will be included in the selection if they exist in the recent time
+         period.
 
-          * SYSTEM_TIME-Records from the current day will be included in the
-          selection.
+         * SYSTEM_TIME-Records from the current day will be included in the
+         selection.
 
-          * NO_SYSTEM_TIME-Records from the current day will not be included in
-          the selection. This is the default.
-          For example, the time slice specified is 14 days, the local system
-          time is 5:00 p.m. on January 15 when the tool executes, the recency
-          time period includes all records between 5:00 p.m. on the date 14 days
-          ago and 5:00 p.m. on the day the tool is executed, and SYSTEM_TIME is
-          selected. In this example, the selection will be January 1, 2017
-          5:00:00 PM to January 15, 2017 5:00:00 PM. Using this same example
-          with NO_SYSTEM_TIME selected, the recent period uses the beginning of
-          the current day as the end time (based on local system time). In this
-          case, the selection will be January 1, 2017 12:00:00 AM to January 15,
-          12:00:00 AM for the 14-day time slice.This parameter is only active
-          when the date_selection_type parameter
-          is set to COMPARATIVE or RECENCY.
-      time_slice {Time Unit}:
-          The number of time units (minutes, hours, days, weeks, months, or
-          years) defining the recent time period on which the selection will be
-          based, for example, events within the last 14 days.This parameter is
-          only active when the date_selection_type parameter
-          is set to COMPARATIVE or RECENCY.
-      start_time {Date}:
-          The start time of the time range.This parameter is only active when
-          the selection_options parameter is
-          set to TIME.
-      end_time {Date}:
-          The end time of the time range.This parameter is only active when the
-          selection_options parameter is
-          set to TIME.
-      days_of_week {String}:
-          Specifies the days of the week used to select records.
+         * NO_SYSTEM_TIME-Records from the current day will not be included in
+         the selection. This is the default.
+         For example, the time slice specified is 14 days, the local system
+         time is 5:00 p.m. on January 15 when the tool executes, the recency
+         time period includes all records between 5:00 p.m. on the date 14 days
+         ago and 5:00 p.m. on the day the tool is executed, and SYSTEM_TIME is
+         selected. In this example, the selection will be January 1, 2017
+         5:00:00 PM to January 15, 2017 5:00:00 PM. Using this same example
+         with NO_SYSTEM_TIME selected, the recent period uses the beginning of
+         the current day as the end time (based on local system time). In this
+         case, the selection will be January 1, 2017 12:00:00 AM to January 15,
+         12:00:00 AM for the 14-day time slice.This parameter is only active
+         when the date_selection_type parameter
+         is set to COMPARATIVE or RECENCY.
+     time_slice {Time Unit}:
+         The number of time units (minutes, hours, days, weeks, months, or
+         years) defining the recent time period on which the selection will be
+         based, for example, events within the last 14 days.This parameter is
+         only active when the date_selection_type parameter
+         is set to COMPARATIVE or RECENCY.
+     start_time {Date}:
+         The start time of the time range.This parameter is only active when
+         the selection_options parameter is
+         set to TIME.
+     end_time {Date}:
+         The end time of the time range.This parameter is only active when the
+         selection_options parameter is
+         set to TIME.
+     days_of_week {String}:
+         Specifies the days of the week used to select records.
 
-          * MONDAY-Records occurring on Monday will be selected.
+         * MONDAY-Records occurring on Monday will be selected.
 
-          * TUESDAY-Records occurring on Tuesday will be selected.
+         * TUESDAY-Records occurring on Tuesday will be selected.
 
-          * WEDNESDAY-Records occurring on Wednesday will be selected.
+         * WEDNESDAY-Records occurring on Wednesday will be selected.
 
-          * THURSDAY-Records occurring on Thursday will be selected.
+         * THURSDAY-Records occurring on Thursday will be selected.
 
-          * FRIDAY-Records occurring on Friday will be selected.
+         * FRIDAY-Records occurring on Friday will be selected.
 
-          * SATURDAY-Records occurring on Saturday will be selected.
+         * SATURDAY-Records occurring on Saturday will be selected.
 
-          * SUNDAY-Records occurring on Sunday will be selected.
-          This parameter is only active when the selection_options parameter is
-          set to DAY_OF_WEEK.
-      months {String}:
-          Specifies the months used to select records.
+         * SUNDAY-Records occurring on Sunday will be selected.
+         This parameter is only active when the selection_options parameter is
+         set to DAY_OF_WEEK.
+     months {String}:
+         Specifies the months used to select records.
 
-          * JANUARY-Records occurring in January will be selected.
+         * JANUARY-Records occurring in January will be selected.
 
-          * FEBRUARY-Records occurring in February will be selected.
+         * FEBRUARY-Records occurring in February will be selected.
 
-          * MARCH-Records occurring in March will be selected.
+         * MARCH-Records occurring in March will be selected.
 
-          * APRIL-Records occurring in April will be selected.
+         * APRIL-Records occurring in April will be selected.
 
-          * MAY-Records occurring in May will be selected.
+         * MAY-Records occurring in May will be selected.
 
-          * JUNE-Records occurring in June will be selected.
+         * JUNE-Records occurring in June will be selected.
 
-          * JULY-Records occurring in July will be selected.
+         * JULY-Records occurring in July will be selected.
 
-          * AUGUST-Records occurring in August will be selected.
+         * AUGUST-Records occurring in August will be selected.
 
-          * SEPTEMBER-Records occurring in September will be selected.
+         * SEPTEMBER-Records occurring in September will be selected.
 
-          * OCTOBER-Records occurring in October will be selected.
+         * OCTOBER-Records occurring in October will be selected.
 
-          * NOVEMBER-Records occurring in November will be selected.
+         * NOVEMBER-Records occurring in November will be selected.
 
-          * DECEMBER-Records occurring in December will be selected.
-          This parameter is only active when the selection_options parameter is
-          set to MONTH.
-      years {Long}:
-          Specifies the years used to select records.This parameter is only
-          active when the selection_options parameter is
-          set to YEAR."""
+         * DECEMBER-Records occurring in December will be selected.
+         This parameter is only active when the selection_options parameter is
+         set to MONTH.
+     years {Long}:
+         Specifies the years used to select records.This parameter is only
+         active when the selection_options parameter is
+         set to YEAR."""
     ...
 
-@gptooldoc('SummarizeIncidentCount_ca', None)
-def SummarizeIncidentCount(in_features=..., in_sum_features=..., out_feature_class=..., search_radius=..., group_field=...): # -> conversion | int | float | complex | basestring | list[Unknown] | tuple[Unknown, ...] | dict[Unknown, Unknown]:
+@gptooldoc("SummarizeIncidentCount_ca", None)
+def SummarizeIncidentCount(
+    in_features=...,
+    in_sum_features=...,
+    out_feature_class=...,
+    search_radius=...,
+    group_field=...,
+):  # -> conversion | int | float | complex | basestring | list[Unknown] | tuple[Unknown, ...] | dict[Unknown, Unknown]:
     """SummarizeIncidentCount_ca(in_features, in_sum_features, out_feature_class, {search_radius}, {group_field})
 
-        Creates a feature class with coincident point counts. Coincident point
-        counts for line and point features are determined by a specified
-        maximum distance. Point counts for polygon features are determine by
-        whether point features or portions of features overlap with the
-        polygon feature.
+       Creates a feature class with coincident point counts. Coincident point
+       counts for line and point features are determined by a specified
+       maximum distance. Point counts for polygon features are determine by
+       whether point features or portions of features overlap with the
+       polygon feature.
 
-     INPUTS:
-      in_features (Feature Layer):
-          The input features to which coincident point counts will be
-          calculated.
-      in_sum_features (Feature Layer):
-          The point features coincident with the input features.
-      search_radius {Linear Unit}:
-          The maximum distance from an Input Features point or line that a point
-          feature will be considered coincident.This parameter is not active
-          when the Input Features is a polygon.
-      group_field {Field}:
-          A field containing the value used to split point counts. Additional
-          fields containing counts for each unique value in the group field will
-          be generated.
+    INPUTS:
+     in_features (Feature Layer):
+         The input features to which coincident point counts will be
+         calculated.
+     in_sum_features (Feature Layer):
+         The point features coincident with the input features.
+     search_radius {Linear Unit}:
+         The maximum distance from an Input Features point or line that a point
+         feature will be considered coincident.This parameter is not active
+         when the Input Features is a polygon.
+     group_field {Field}:
+         A field containing the value used to split point counts. Additional
+         fields containing counts for each unique value in the group field will
+         be generated.
 
-     OUTPUTS:
-      out_feature_class (Feature Class):
-          The output choropleth count feature class, symbolized by total count."""
+    OUTPUTS:
+     out_feature_class (Feature Class):
+         The output choropleth count feature class, symbolized by total count."""
     ...
 
-@gptooldoc('SummarizePercentChange_ca', None)
-def SummarizePercentChange(in_features=..., in_current_features=..., in_previous_features=..., out_feature_class=..., search_radius=...): # -> conversion | int | float | complex | basestring | list[Unknown] | tuple[Unknown, ...] | dict[Unknown, Unknown]:
+@gptooldoc("SummarizePercentChange_ca", None)
+def SummarizePercentChange(
+    in_features=...,
+    in_current_features=...,
+    in_previous_features=...,
+    out_feature_class=...,
+    search_radius=...,
+):  # -> conversion | int | float | complex | basestring | list[Unknown] | tuple[Unknown, ...] | dict[Unknown, Unknown]:
     """SummarizePercentChange_ca(in_features, in_current_features, in_previous_features, out_feature_class, {search_radius})
 
-        Calculates the percent change for features that correspond with point
-        features representing two equal comparison time periods.
+       Calculates the percent change for features that correspond with point
+       features representing two equal comparison time periods.
 
-     INPUTS:
-      in_features (Feature Layer):
-          The coincident features from which comparison time periods will be
-          counted and compared.
-      in_current_features (Feature Layer):
-          The point features filtered to the most recent comparison time
-          period.For example, you can filter for crimes from the previous 14
-          days.
-      in_previous_features (Feature Layer):
-          The point features filtered to the time period immediately preceding
-          the current period. This time period must be of equal length to the
-          current period to provide an accurate comparison.For example, if the
-          current period contains features from January 15
-          to January 28, the previous period contains features from January 1 to
-          January 14.
-      search_radius {Linear Unit}:
-          The maximum distance from the in_features parameter value that a point
-          feature will be considered coincident.This parameter is only enabled
-          when point or line features are used as
-          the input features.
+    INPUTS:
+     in_features (Feature Layer):
+         The coincident features from which comparison time periods will be
+         counted and compared.
+     in_current_features (Feature Layer):
+         The point features filtered to the most recent comparison time
+         period.For example, you can filter for crimes from the previous 14
+         days.
+     in_previous_features (Feature Layer):
+         The point features filtered to the time period immediately preceding
+         the current period. This time period must be of equal length to the
+         current period to provide an accurate comparison.For example, if the
+         current period contains features from January 15
+         to January 28, the previous period contains features from January 1 to
+         January 14.
+     search_radius {Linear Unit}:
+         The maximum distance from the in_features parameter value that a point
+         feature will be considered coincident.This parameter is only enabled
+         when point or line features are used as
+         the input features.
 
-     OUTPUTS:
-      out_feature_class (Feature Class):
-          The output feature class containing difference counts and percent
-          change calculations for the time period comparison."""
+    OUTPUTS:
+     out_feature_class (Feature Class):
+         The output feature class containing difference counts and percent
+         change calculations for the time period comparison."""
     ...
 
-@gptooldoc('UpdateFeaturesWithIncidentRecords_ca', None)
-def UpdateFeaturesWithIncidentRecords(in_table=..., target_features=..., location_type=..., x_field=..., y_field=..., coordinate_system=..., address_locator=..., address_type=..., address_fields=..., invalid_records_table=..., where_clause=..., update_target=..., match_fields=..., in_date_field=..., target_date_field=..., update_matching=..., update_geometry=..., field_matching_type=..., field_mapping=..., time_format=...): # -> conversion | int | float | complex | basestring | list[Unknown] | tuple[Unknown, ...] | dict[Unknown, Unknown]:
+@gptooldoc("UpdateFeaturesWithIncidentRecords_ca", None)
+def UpdateFeaturesWithIncidentRecords(
+    in_table=...,
+    target_features=...,
+    location_type=...,
+    x_field=...,
+    y_field=...,
+    coordinate_system=...,
+    address_locator=...,
+    address_type=...,
+    address_fields=...,
+    invalid_records_table=...,
+    where_clause=...,
+    update_target=...,
+    match_fields=...,
+    in_date_field=...,
+    target_date_field=...,
+    update_matching=...,
+    update_geometry=...,
+    field_matching_type=...,
+    field_mapping=...,
+    time_format=...,
+):  # -> conversion | int | float | complex | basestring | list[Unknown] | tuple[Unknown, ...] | dict[Unknown, Unknown]:
     """UpdateFeaturesWithIncidentRecords_ca(in_table, target_features, {location_type}, {x_field}, {y_field}, {coordinate_system}, {address_locator}, {address_type}, {address_fields;address_fields...}, {invalid_records_table}, {where_clause}, {update_target}, {match_fields;match_fields...}, {in_date_field}, {target_date_field}, {update_matching}, {update_geometry}, {field_matching_type}, {field_mapping}, {time_format})
 
-        Updates an existing table or converts a nonspatial table to point
-        features based on x,y-coordinates or street addresses and updates an
-        existing dataset with the new or updated record information from the
-        table.
+       Updates an existing table or converts a nonspatial table to point
+       features based on x,y-coordinates or street addresses and updates an
+       existing dataset with the new or updated record information from the
+       table.
 
-     INPUTS:
-      in_table (Table View):
-          The nonspatial table or table containing the x- and y-coordinates or
-          addresses that define the locations of the records.
-      target_features (Feature Layer / Table View):
-          The point feature class, point feature layer, or table that will be
-          updated.
-      location_type {String}:
-          Specifies whether features will be created using x,y-coordinates or
-          addresses.
+    INPUTS:
+     in_table (Table View):
+         The nonspatial table or table containing the x- and y-coordinates or
+         addresses that define the locations of the records.
+     target_features (Feature Layer / Table View):
+         The point feature class, point feature layer, or table that will be
+         updated.
+     location_type {String}:
+         Specifies whether features will be created using x,y-coordinates or
+         addresses.
 
-          * COORDINATES-Features will be created using the x,y-coordinates of
-          the input record.
+         * COORDINATES-Features will be created using the x,y-coordinates of
+         the input record.
 
-          * ADDRESSES-Features will be created using the address of the input
-          record using a locator.
-          This parameter is only enabled when the target_features parameter
-          value is a feature class or layer.
-      x_field {Field}:
-          The field in the input table that contains the x-coordinates (or
-          longitude).This parameter is only enabled when the location_type
-          parameter is set
-          to COORDINATES and the target_features parameter value is a feature
-          class or layer.
-      y_field {Field}:
-          The field in the input table that contains the y-coordinates (or
-          latitude).This parameter is only enabled when the location_type
-          parameter is set
-          to COORDINATES and the target_features parameter value is a feature
-          class or layer.
-      coordinate_system {Coordinate System}:
-          The coordinate system of the x- and y-coordinates.This parameter is
-          only enabled when the location_type parameter is set
-          to COORDINATES and the target_features parameter value is a feature
-          class or layer.
-      address_locator {Address Locator}:
-          The address locator that will be used to geocode the table of
-          addresses.When this parameter is set to use ArcGIS World Geocoding
-          Service, this
-          operation may consume credits.When using a local address locator,
-          adding the .loc extension after
-          the locator name at the end of the locator path is optional.This
-          parameter is only enabled when the location_type parameter is set
-          to ADDRESSES and the target_features parameter value is a feature
-          class or layer.
-      address_type {String}:
-          Specifies how address fields used by the address locator will be
-          mapped to fields in the input table of addresses.
+         * ADDRESSES-Features will be created using the address of the input
+         record using a locator.
+         This parameter is only enabled when the target_features parameter
+         value is a feature class or layer.
+     x_field {Field}:
+         The field in the input table that contains the x-coordinates (or
+         longitude).This parameter is only enabled when the location_type
+         parameter is set
+         to COORDINATES and the target_features parameter value is a feature
+         class or layer.
+     y_field {Field}:
+         The field in the input table that contains the y-coordinates (or
+         latitude).This parameter is only enabled when the location_type
+         parameter is set
+         to COORDINATES and the target_features parameter value is a feature
+         class or layer.
+     coordinate_system {Coordinate System}:
+         The coordinate system of the x- and y-coordinates.This parameter is
+         only enabled when the location_type parameter is set
+         to COORDINATES and the target_features parameter value is a feature
+         class or layer.
+     address_locator {Address Locator}:
+         The address locator that will be used to geocode the table of
+         addresses.When this parameter is set to use ArcGIS World Geocoding
+         Service, this
+         operation may consume credits.When using a local address locator,
+         adding the .loc extension after
+         the locator name at the end of the locator path is optional.This
+         parameter is only enabled when the location_type parameter is set
+         to ADDRESSES and the target_features parameter value is a feature
+         class or layer.
+     address_type {String}:
+         Specifies how address fields used by the address locator will be
+         mapped to fields in the input table of addresses.
 
-          * MULTI_FIELD_ADDRESS-Addresses will be divided into multiple fields.
+         * MULTI_FIELD_ADDRESS-Addresses will be divided into multiple fields.
 
-          * SINGLE_FIELD_ADDRESS-Addresses will be contained in one field.
-          Select SINGLE_FIELD_ADDRESS if the complete address is stored in one
-          field in the input table, for example, 303 Peachtree St NE, Atlanta,
-          GA 30308. Select MULTI_FIELD_ADDRESS if the input addresses are
-          divided into multiple fields such as Address, City, State, and ZIP for
-          a general United States address.This parameter is only enabled when
-          the location_type parameter is set
-          to ADDRESSES and the target_features parameter value is a feature
-          class or layer.
-      address_fields {Value Table}:
-          The input table fields that correspond to the locator address fields
-          of the address locator.Some locators support multiple input address
-          fields, such as Address,
-          Address2, and Address3. In this case, the address component can be
-          separated into multiple fields, and the address fields will be
-          concatenated at the time of geocoding. For example, 100, Main st, and
-          Apt 140 across three fields or 100 Main st and Apt 140 across two
-          fields, both become 100 Main st Apt 140 when geocoding.If you do not
-          map an optional input address field used by the address
-          locator to a field in the input table of addresses, specify that there
-          is no mapping by leaving the field name blank.This parameter is only
-          enabled when the location_type parameter is set
-          to ADDRESSES.
-      where_clause {SQL Expression}:
-          The SQL expression that will be used to select a subset of the input
-          datasets' records. If multiple input datasets are specified, they will
-          all be evaluated using the expression. If no records match the
-          expression for an input dataset, no records from that dataset will be
-          appended to the target.For more information about SQL syntax, see SQL
-          reference for query
-          expressions used in ArcGIS.
-      update_target {Boolean}:
-          Specifies whether existing records will be updated in the
-          target_features parameter value.
+         * SINGLE_FIELD_ADDRESS-Addresses will be contained in one field.
+         Select SINGLE_FIELD_ADDRESS if the complete address is stored in one
+         field in the input table, for example, 303 Peachtree St NE, Atlanta,
+         GA 30308. Select MULTI_FIELD_ADDRESS if the input addresses are
+         divided into multiple fields such as Address, City, State, and ZIP for
+         a general United States address.This parameter is only enabled when
+         the location_type parameter is set
+         to ADDRESSES and the target_features parameter value is a feature
+         class or layer.
+     address_fields {Value Table}:
+         The input table fields that correspond to the locator address fields
+         of the address locator.Some locators support multiple input address
+         fields, such as Address,
+         Address2, and Address3. In this case, the address component can be
+         separated into multiple fields, and the address fields will be
+         concatenated at the time of geocoding. For example, 100, Main st, and
+         Apt 140 across three fields or 100 Main st and Apt 140 across two
+         fields, both become 100 Main st Apt 140 when geocoding.If you do not
+         map an optional input address field used by the address
+         locator to a field in the input table of addresses, specify that there
+         is no mapping by leaving the field name blank.This parameter is only
+         enabled when the location_type parameter is set
+         to ADDRESSES.
+     where_clause {SQL Expression}:
+         The SQL expression that will be used to select a subset of the input
+         datasets' records. If multiple input datasets are specified, they will
+         all be evaluated using the expression. If no records match the
+         expression for an input dataset, no records from that dataset will be
+         appended to the target.For more information about SQL syntax, see SQL
+         reference for query
+         expressions used in ArcGIS.
+     update_target {Boolean}:
+         Specifies whether existing records will be updated in the
+         target_features parameter value.
 
-          * UPDATE-Records from the in_table parameter value will be updated in
-          the target_features parameter value if they exist there.
+         * UPDATE-Records from the in_table parameter value will be updated in
+         the target_features parameter value if they exist there.
 
-          * APPEND-Records from the in_table parameter value will be appended to
-          the target_features parameter value. This is the default.
-      match_fields {Value Table}:
-          The ID field or fields that will be used to determine matches between
-          the in_table values and the target_features values.This parameter is
-          only enabled when the update_target parameter is set
-          to UPDATE.
-      in_date_field {Field}:
-          The field containing the last modified date of the in_table
-          records.Date and string field types are supported.This parameter is
-          only enabled when the update_target parameter is set
-          to UPDATE.
-      target_date_field {Field}:
-          The field containing the last modified date of the target_features
-          records.This field must be a date field type.This parameter is only
-          enabled when the update_target parameter is set
-          to UPDATE.
-      update_matching {Boolean}:
-          Specifies whether only existing records will be updated or existing
-          records will be updated and new records will be added.
+         * APPEND-Records from the in_table parameter value will be appended to
+         the target_features parameter value. This is the default.
+     match_fields {Value Table}:
+         The ID field or fields that will be used to determine matches between
+         the in_table values and the target_features values.This parameter is
+         only enabled when the update_target parameter is set
+         to UPDATE.
+     in_date_field {Field}:
+         The field containing the last modified date of the in_table
+         records.Date and string field types are supported.This parameter is
+         only enabled when the update_target parameter is set
+         to UPDATE.
+     target_date_field {Field}:
+         The field containing the last modified date of the target_features
+         records.This field must be a date field type.This parameter is only
+         enabled when the update_target parameter is set
+         to UPDATE.
+     update_matching {Boolean}:
+         Specifies whether only existing records will be updated or existing
+         records will be updated and new records will be added.
 
-          * UPDATE_MATCHING_ONLY-Only existing records will be updated.
+         * UPDATE_MATCHING_ONLY-Only existing records will be updated.
 
-          * UPSERT-Existing records will be updated and new records will be
-          added. This is the default.
-          This parameter is only enabled when the update_target parameter is set
-          to UPDATE.
-      update_geometry {Boolean}:
-          Specifies whether the geometry of existing features will be updated.
+         * UPSERT-Existing records will be updated and new records will be
+         added. This is the default.
+         This parameter is only enabled when the update_target parameter is set
+         to UPDATE.
+     update_geometry {Boolean}:
+         Specifies whether the geometry of existing features will be updated.
 
-          * UPDATE_GEOMETRY-The geometry of existing records will be updated
-          when the geometry information from the in_table parameter value is
-          different than the geometry of the target_features parameter value.
-          This is the default.
+         * UPDATE_GEOMETRY-The geometry of existing records will be updated
+         when the geometry information from the in_table parameter value is
+         different than the geometry of the target_features parameter value.
+         This is the default.
 
-          * KEEP_GEOMETRY-The geometry of existing records will not be updated.
-          This parameter is only enabled when the update_target parameter is set
-          to UPDATE and the target_features parameter value is a feature class
-          or layer.
-      field_matching_type {String}:
-          Specifies whether the fields of the input table must match the fields
-          of the target features for data to be appended.
+         * KEEP_GEOMETRY-The geometry of existing records will not be updated.
+         This parameter is only enabled when the update_target parameter is set
+         to UPDATE and the target_features parameter value is a feature class
+         or layer.
+     field_matching_type {String}:
+         Specifies whether the fields of the input table must match the fields
+         of the target features for data to be appended.
 
-          * AUTOMATIC-Fields from the input dataset match the fields of the
-          target dataset. Fields that do not match will be ignored. This is the
-          default
+         * AUTOMATIC-Fields from the input dataset match the fields of the
+         target dataset. Fields that do not match will be ignored. This is the
+         default
 
-          * FIELD_MAP-Fields from the input dataset do not need to match the
-          fields of the target dataset. Fields from the input dataset that do
-          not match the fields of the target dataset will not be mapped to the
-          target dataset unless the mapping is explicitly set in the Field Map
-          parameter.
-      field_mapping {Field Mappings}:
-          Controls how the attribute fields from the input table will be
-          transferred or mapped to the target features.This parameter is only
-          enabled if the field_matching_type parameter is
-          set to FIELD_MAP.Because the input table values are appended to an
-          existing target
-          feature that has predefined fields, you cannot add, remove, or change
-          the type of the fields in the field map. You can, however, set merge
-          rules for each output field. Merge rules allow you to specify
-          how values from two or more
-          input fields will be merged or combined into a single output value.
-          The following merge rules can be used to determine how the output
-          field will be populated with values:
+         * FIELD_MAP-Fields from the input dataset do not need to match the
+         fields of the target dataset. Fields from the input dataset that do
+         not match the fields of the target dataset will not be mapped to the
+         target dataset unless the mapping is explicitly set in the Field Map
+         parameter.
+     field_mapping {Field Mappings}:
+         Controls how the attribute fields from the input table will be
+         transferred or mapped to the target features.This parameter is only
+         enabled if the field_matching_type parameter is
+         set to FIELD_MAP.Because the input table values are appended to an
+         existing target
+         feature that has predefined fields, you cannot add, remove, or change
+         the type of the fields in the field map. You can, however, set merge
+         rules for each output field. Merge rules allow you to specify
+         how values from two or more
+         input fields will be merged or combined into a single output value.
+         The following merge rules can be used to determine how the output
+         field will be populated with values:
 
-          * First-Use the input fields' first value.
+         * First-Use the input fields' first value.
 
-          * Last-Use the input fields' last value.
+         * Last-Use the input fields' last value.
 
-          * Join-Concatenate (join) the input field values.
+         * Join-Concatenate (join) the input field values.
 
-          * Sum-Calculate the total of the input field values.
+         * Sum-Calculate the total of the input field values.
 
-          * Mean-Calculate the mean (average) of the input field values.
+         * Mean-Calculate the mean (average) of the input field values.
 
-          * Median-Calculate the median (middle) of the input field values.
+         * Median-Calculate the median (middle) of the input field values.
 
-          * Mode-Use the value with the highest frequency.
+         * Mode-Use the value with the highest frequency.
 
-          * Min-Use the minimum value of all the input field values.
+         * Min-Use the minimum value of all the input field values.
 
-          * Max-Use the maximum value of all the input field values.
+         * Max-Use the maximum value of all the input field values.
 
-          * Standard deviation-Use the standard deviation classification method
-          on all the input field values.
+         * Standard deviation-Use the standard deviation classification method
+         on all the input field values.
 
-          * Count-Find the number of records included in the calculation.
-          In Python, you can use the FieldMappings class to define this
-          parameter.
-      time_format {String}:
-          The format of the input field containing the time values. The
-          type can be short, long, float, double, text, or date. You can either
-          choose a standard time format from the drop-down list or provide a
-          custom format. The format strings are case sensitive.
+         * Count-Find the number of records included in the calculation.
+         In Python, you can use the FieldMappings class to define this
+         parameter.
+     time_format {String}:
+         The format of the input field containing the time values. The
+         type can be short, long, float, double, text, or date. You can either
+         choose a standard time format from the drop-down list or provide a
+         custom format. The format strings are case sensitive.
 
-          * If the data type of the time field is date, no time format is
-          required.
+         * If the data type of the time field is date, no time format is
+         required.
 
-          * If the data type of the time field is numeric (short, long, float,
-          or double), a list of standard numeric time formats is provided in the
-          drop-down list.
+         * If the data type of the time field is numeric (short, long, float,
+         or double), a list of standard numeric time formats is provided in the
+         drop-down list.
 
-          * If the data type of the time field is string, a list of
-          standard string time formats is provided in the drop-down list. For
-          string fields, you can also specify a custom time format. For example,
-          the time values may have been stored in a string field in one of the
-          standard formats such as yyyy/MM/dd HH:mm:ss or in a custom format
-          such as dd/MM/yyyy HH:mm:ss. For the custom format, you can also
-          specify the a.m. or p.m. designator. Some commonly used formats are
-          listed below:
+         * If the data type of the time field is string, a list of
+         standard string time formats is provided in the drop-down list. For
+         string fields, you can also specify a custom time format. For example,
+         the time values may have been stored in a string field in one of the
+         standard formats such as yyyy/MM/dd HH:mm:ss or in a custom format
+         such as dd/MM/yyyy HH:mm:ss. For the custom format, you can also
+         specify the a.m. or p.m. designator. Some commonly used formats are
+         listed below:
 
-          * yyyy-Year represented by four digits
+         * yyyy-Year represented by four digits
 
-          * MM-Month as digits with leading zero for single-digit months
+         * MM-Month as digits with leading zero for single-digit months
 
-          * MMM-Month as a three-letter abbreviation
+         * MMM-Month as a three-letter abbreviation
 
-          * dd-Day of month as digits with leading zero for single-digit days
+         * dd-Day of month as digits with leading zero for single-digit days
 
-          * ddd-Day of week as a three-letter abbreviation
+         * ddd-Day of week as a three-letter abbreviation
 
-          * hh-Hours with leading zero for single-digit hours; 12-hour clock
+         * hh-Hours with leading zero for single-digit hours; 12-hour clock
 
-          * HH-Hours with leading zero for single-digit hours; 24-hour clock
+         * HH-Hours with leading zero for single-digit hours; 24-hour clock
 
-          * mm-Minutes with leading zero for single-digit minutes
+         * mm-Minutes with leading zero for single-digit minutes
 
-          * ss-Seconds with leading zero for single-digit seconds
+         * ss-Seconds with leading zero for single-digit seconds
 
-          * t-One character time marker string, such as A or P
+         * t-One character time marker string, such as A or P
 
-          * tt-Multicharacter time marker string, such as AM or PM
+         * tt-Multicharacter time marker string, such as AM or PM
 
-          * unix_us-Unix time in microseconds
+         * unix_us-Unix time in microseconds
 
-          * unix_ms-Unix time in milliseconds
+         * unix_ms-Unix time in milliseconds
 
-          * unix_s-Unix time in seconds
+         * unix_s-Unix time in seconds
 
-          * unix_hex-Unix time in hexadecimal
+         * unix_hex-Unix time in hexadecimal
 
-          This parameter is only enabled when the in_date_field parameter value
-          is a text field and the target_date_field parameter value is a date
-          field, or the field_mapping parameter input value is a text field and
-          the output value is a date fieldThis parameter is only enabled when
-          the update_target parameter is set
-          to UPDATE.
+         This parameter is only enabled when the in_date_field parameter value
+         is a text field and the target_date_field parameter value is a date
+         field, or the field_mapping parameter input value is a text field and
+         the output value is a date fieldThis parameter is only enabled when
+         the update_target parameter is set
+         to UPDATE.
 
-     OUTPUTS:
-      invalid_records_table {Table}:
-          The output table containing a list of invalid records and associated
-          invalidation codes."""
+    OUTPUTS:
+     invalid_records_table {Table}:
+         The output table containing a list of invalid records and associated
+         invalidation codes."""
     ...
 
-@gptooldoc('CellPhoneRecordsToFeatureClass_ca', None)
-def CellPhoneRecordsToFeatureClass(in_table=..., in_site_features=..., in_sector_features=..., out_site_feature_class=..., out_sector_feature_class=..., id_fields=..., subscriber_field=..., destination_field=..., additional_id_fields=..., start_time_field=..., duration_field=..., end_time_field=..., convert_utc=..., location_x_field=..., location_y_field=..., location_coordinate_system=..., out_call_points=...): # -> conversion | int | float | complex | basestring | list[Unknown] | tuple[Unknown, ...] | dict[Unknown, Unknown]:
+@gptooldoc("CellPhoneRecordsToFeatureClass_ca", None)
+def CellPhoneRecordsToFeatureClass(
+    in_table=...,
+    in_site_features=...,
+    in_sector_features=...,
+    out_site_feature_class=...,
+    out_sector_feature_class=...,
+    id_fields=...,
+    subscriber_field=...,
+    destination_field=...,
+    additional_id_fields=...,
+    start_time_field=...,
+    duration_field=...,
+    end_time_field=...,
+    convert_utc=...,
+    location_x_field=...,
+    location_y_field=...,
+    location_coordinate_system=...,
+    out_call_points=...,
+):  # -> conversion | int | float | complex | basestring | list[Unknown] | tuple[Unknown, ...] | dict[Unknown, Unknown]:
     """CellPhoneRecordsToFeatureClass_ca(in_table, in_site_features, in_sector_features, out_site_feature_class, out_sector_feature_class, id_fields;id_fields..., subscriber_field, {destination_field}, {additional_id_fields;additional_id_fields...}, {start_time_field}, {duration_field}, {end_time_field}, {convert_utc}, {location_x_field}, {location_y_field}, {location_coordinate_system}, {out_call_points})
 
-        Imports cell phone records from wireless network providers and
-        associates those records with a cell site and sector feature classes
-        as generated by the Cell Site Records To Feature Class tool based on
-        identifier fields.
+       Imports cell phone records from wireless network providers and
+       associates those records with a cell site and sector feature classes
+       as generated by the Cell Site Records To Feature Class tool based on
+       identifier fields.
 
-     INPUTS:
-      in_table (Table View):
-          The input table containing call records or phone data event records
-          provided by the wireless network provider.
-      in_site_features (Feature Layer):
-          The feature class containing cell site points generated by the Cell
-          Site Records to Feature Class tool.
-      in_sector_features (Feature Layer):
-          The feature class containing cell site sectors generated by the Cell
-          Site Records to Feature Class tool.
-      id_fields (Value Table):
-          Specifies the unique ID field type and the fields that will be added
-          to the output feature.Use the Unique ID type when the Input Phone
-          Records Table parameter
-          value has a unique identifier for all cell sector antennas. Use a
-          combination of other ID Type values when the Input Phone Records Table
-          parameter value does not contain a universal unique identifier for all
-          cell sector antennas.
+    INPUTS:
+     in_table (Table View):
+         The input table containing call records or phone data event records
+         provided by the wireless network provider.
+     in_site_features (Feature Layer):
+         The feature class containing cell site points generated by the Cell
+         Site Records to Feature Class tool.
+     in_sector_features (Feature Layer):
+         The feature class containing cell site sectors generated by the Cell
+         Site Records to Feature Class tool.
+     id_fields (Value Table):
+         Specifies the unique ID field type and the fields that will be added
+         to the output feature.Use the Unique ID type when the Input Phone
+         Records Table parameter
+         value has a unique identifier for all cell sector antennas. Use a
+         combination of other ID Type values when the Input Phone Records Table
+         parameter value does not contain a universal unique identifier for all
+         cell sector antennas.
 
-          * ID Type-The field name to be included in the output feature classes.
+         * ID Type-The field name to be included in the output feature classes.
 
-          * Field-The name of the fields that uniquely identify the cell sector
-          antennas. These will be added to the output feature class.
-          ID Type options are as follows:
+         * Field-The name of the fields that uniquely identify the cell sector
+         antennas. These will be added to the output feature class.
+         ID Type options are as follows:
 
-          * Unique ID-Uniquely identifies a cell sector antenna
+         * Unique ID-Uniquely identifies a cell sector antenna
 
-          * Site ID-Uniquely identifies a cell site
+         * Site ID-Uniquely identifies a cell site
 
-          * Sector ID-Uniquely identifies a cell sector
+         * Sector ID-Uniquely identifies a cell sector
 
-          * Switch ID-Uniquely identifies a wireless network switch
+         * Switch ID-Uniquely identifies a wireless network switch
 
-          * LAC ID-Uniquely identifies the Location Area Code
+         * LAC ID-Uniquely identifies the Location Area Code
 
-          * Cascade ID-Uniquely identifies the sector in the wireless network
-          cascade
+         * Cascade ID-Uniquely identifies the sector in the wireless network
+         cascade
 
-          * Cell ID-Identifies the sector within an Location Area Code
-      subscriber_field (Field):
-          The field in the input table that contains the phone number or
-          identifier of the subscriber.
-      destination_field {Field}:
-          The field in the input table that contains the phone number or
-          identifier of the callee.
-      additional_id_fields {Value Table}:
-          Specifies the additional unique ID field type and the fields that will
-          be added to the output feature.Use the Unique ID type when the Input
-          Phone Records Table parameter
-          value has a unique identifier for all cell sector antennas. Use a
-          combination of other ID Type values when the Input Phone Records Table
-          parameter value does not contain a universal unique identifier for all
-          cell sector antennas.
+         * Cell ID-Identifies the sector within an Location Area Code
+     subscriber_field (Field):
+         The field in the input table that contains the phone number or
+         identifier of the subscriber.
+     destination_field {Field}:
+         The field in the input table that contains the phone number or
+         identifier of the callee.
+     additional_id_fields {Value Table}:
+         Specifies the additional unique ID field type and the fields that will
+         be added to the output feature.Use the Unique ID type when the Input
+         Phone Records Table parameter
+         value has a unique identifier for all cell sector antennas. Use a
+         combination of other ID Type values when the Input Phone Records Table
+         parameter value does not contain a universal unique identifier for all
+         cell sector antennas.
 
-          * ID Type-The field name to be included in the output feature classes.
+         * ID Type-The field name to be included in the output feature classes.
 
-          * Field-The name of the fields that uniquely identify the cell sector
-          antennas. These will be added to the output feature class.
-          ID Type options are as follows:
+         * Field-The name of the fields that uniquely identify the cell sector
+         antennas. These will be added to the output feature class.
+         ID Type options are as follows:
 
-          * Unique ID-Uniquely identifies a cell sector antenna
+         * Unique ID-Uniquely identifies a cell sector antenna
 
-          * Site ID-Uniquely identifies a cell site
+         * Site ID-Uniquely identifies a cell site
 
-          * Sector ID-Uniquely identifies a cell sector
+         * Sector ID-Uniquely identifies a cell sector
 
-          * Switch ID-Uniquely identifies a wireless network switch
+         * Switch ID-Uniquely identifies a wireless network switch
 
-          * LAC ID-Uniquely identifies the Location Area Code
+         * LAC ID-Uniquely identifies the Location Area Code
 
-          * Cascade ID-Uniquely identifies the sector in the wireless network
-          cascade
+         * Cascade ID-Uniquely identifies the sector in the wireless network
+         cascade
 
-          * Cell ID-Identifies the sector within an Location Area Code
-      start_time_field {Field}:
-          The field in the input table that contains the start date and time
-          field of the phone call or data event.
-      duration_field {Field}:
-          The field in the input table that contains the duration of the phone
-          call in seconds.
-      end_time_field {Field}:
-          The field in the input table that contains the end date and time of
-          the phone call or data event.
-      convert_utc {Boolean}:
-          Specifies whether the start and end date and time of the input records
-          will be converted to the time zone of the local system or will remain
-          in coordinated universal time (UTC).
+         * Cell ID-Identifies the sector within an Location Area Code
+     start_time_field {Field}:
+         The field in the input table that contains the start date and time
+         field of the phone call or data event.
+     duration_field {Field}:
+         The field in the input table that contains the duration of the phone
+         call in seconds.
+     end_time_field {Field}:
+         The field in the input table that contains the end date and time of
+         the phone call or data event.
+     convert_utc {Boolean}:
+         Specifies whether the start and end date and time of the input records
+         will be converted to the time zone of the local system or will remain
+         in coordinated universal time (UTC).
 
-          * CONVERT-The start and end date and time of the input records will be
-          converted from UTC to the time zone of the local system.
+         * CONVERT-The start and end date and time of the input records will be
+         converted from UTC to the time zone of the local system.
 
-          * NO_CONVERT-The start and end date and time of the input records will
-          not be converted. This is the default.
-      location_x_field {Field}:
-          The field in the input table that contains the x-coordinate of the
-          estimated phone location as provided by the wireless network provider.
-      location_y_field {Field}:
-          The field in the input table that contains the y-coordinate of the
-          estimated phone location as provided by the wireless network provider.
-      location_coordinate_system {Coordinate System}:
-          The estimated phone location coordinate system of the x,y-coordinates.
-          The default coordinate system is WGS84.
+         * NO_CONVERT-The start and end date and time of the input records will
+         not be converted. This is the default.
+     location_x_field {Field}:
+         The field in the input table that contains the x-coordinate of the
+         estimated phone location as provided by the wireless network provider.
+     location_y_field {Field}:
+         The field in the input table that contains the y-coordinate of the
+         estimated phone location as provided by the wireless network provider.
+     location_coordinate_system {Coordinate System}:
+         The estimated phone location coordinate system of the x,y-coordinates.
+         The default coordinate system is WGS84.
 
-     OUTPUTS:
-      out_site_feature_class (Feature Class):
-          The point feature class containing phone record site points.One point
-          will be generated per phone record linked to cell site
-          points.
-      out_sector_feature_class (Feature Class):
-          The polygon feature class containing phone record sectors.One sector
-          polygon will be generated per phone record linked to cell
-          site sectors.
-      out_call_points {Feature Class}:
-          The point feature class containing the estimated call locations as
-          provided by the wireless network provider."""
+    OUTPUTS:
+     out_site_feature_class (Feature Class):
+         The point feature class containing phone record site points.One point
+         will be generated per phone record linked to cell site
+         points.
+     out_sector_feature_class (Feature Class):
+         The polygon feature class containing phone record sectors.One sector
+         polygon will be generated per phone record linked to cell
+         site sectors.
+     out_call_points {Feature Class}:
+         The point feature class containing the estimated call locations as
+         provided by the wireless network provider."""
     ...
 
-@gptooldoc('CellSiteRecordsToFeatureClass_ca', None)
-def CellSiteRecordsToFeatureClass(in_table=..., out_site_feature_class=..., out_sector_feature_class=..., id_fields=..., x_field=..., y_field=..., in_coordinate_system=..., out_coordinate_system=..., azimuth_field=..., default_azimuth=..., beamwidth_field=..., beamwidth_type=..., default_beamwidth=..., radius_field=..., radius_unit=..., default_radius_length=...): # -> conversion | int | float | complex | basestring | list[Unknown] | tuple[Unknown, ...] | dict[Unknown, Unknown]:
+@gptooldoc("CellSiteRecordsToFeatureClass_ca", None)
+def CellSiteRecordsToFeatureClass(
+    in_table=...,
+    out_site_feature_class=...,
+    out_sector_feature_class=...,
+    id_fields=...,
+    x_field=...,
+    y_field=...,
+    in_coordinate_system=...,
+    out_coordinate_system=...,
+    azimuth_field=...,
+    default_azimuth=...,
+    beamwidth_field=...,
+    beamwidth_type=...,
+    default_beamwidth=...,
+    radius_field=...,
+    radius_unit=...,
+    default_radius_length=...,
+):  # -> conversion | int | float | complex | basestring | list[Unknown] | tuple[Unknown, ...] | dict[Unknown, Unknown]:
     """CellSiteRecordsToFeatureClass_ca(in_table, out_site_feature_class, out_sector_feature_class, id_fields;id_fields..., x_field, y_field, in_coordinate_system, out_coordinate_system, {azimuth_field}, {default_azimuth}, {beamwidth_field}, {beamwidth_type}, {default_beamwidth}, {radius_field}, {radius_unit}, {default_radius_length})
 
-        Creates cell site points and sector polygons based on input latitude,
-        longitude, azimuth, beamwidth, and radius information from a cell site
-        table.
+       Creates cell site points and sector polygons based on input latitude,
+       longitude, azimuth, beamwidth, and radius information from a cell site
+       table.
 
-     INPUTS:
-      in_table (Table View):
-          The input table containing cell site information provided by the
-          wireless network provider.
-      id_fields (Value Table):
-          Specifies the unique ID field type and the fields that will be added
-          to the output feature.Use the Unique ID value when the Input Cell Site
-          Table parameter has a
-          unique identifier for all cell sector antennas. Use a combination of
-          other ID Type values when the Input Cell Site Table parameter does not
-          contain a universal unique identifier for all cell sector antennas.
+    INPUTS:
+     in_table (Table View):
+         The input table containing cell site information provided by the
+         wireless network provider.
+     id_fields (Value Table):
+         Specifies the unique ID field type and the fields that will be added
+         to the output feature.Use the Unique ID value when the Input Cell Site
+         Table parameter has a
+         unique identifier for all cell sector antennas. Use a combination of
+         other ID Type values when the Input Cell Site Table parameter does not
+         contain a universal unique identifier for all cell sector antennas.
 
-          * ID Type-The field name to be included in the output feature classes.
+         * ID Type-The field name to be included in the output feature classes.
 
-          * Field-The name of the fields that uniquely identify the cell sector
-          antennas. These will be added to the output feature class.
-          ID Type options are as follows:
+         * Field-The name of the fields that uniquely identify the cell sector
+         antennas. These will be added to the output feature class.
+         ID Type options are as follows:
 
-          * Unique ID-Uniquely identifies a cell sector antenna
+         * Unique ID-Uniquely identifies a cell sector antenna
 
-          * Site ID-Uniquely identifies a cell site
+         * Site ID-Uniquely identifies a cell site
 
-          * Sector ID-Uniquely identifies a cell sector
+         * Sector ID-Uniquely identifies a cell sector
 
-          * Switch ID-Uniquely identifies a wireless network switch
+         * Switch ID-Uniquely identifies a wireless network switch
 
-          * LAC ID-Uniquely identifies the Location Area Code
+         * LAC ID-Uniquely identifies the Location Area Code
 
-          * Cascade ID-Uniquely identifies the sector in the wireless network
-          cascade
+         * Cascade ID-Uniquely identifies the sector in the wireless network
+         cascade
 
-          * Cell ID-Identifies the sector within an Location Area Code
-      x_field (Field):
-          The field in the input table that contains the x-coordinate of the
-          cell site.
-      y_field (Field):
-          The field in the input table that contains the y-coordinate of the
-          cell site.
-      in_coordinate_system (Coordinate System):
-          The coordinate system of the coordinates specified in the X Field and
-          Y Field parameters.
-      out_coordinate_system (Coordinate System):
-          The projected coordinate system of the output sites and sectors.
-      azimuth_field {Field}:
-          The field in the input table that contains the direction of the
-          antenna signal (cell sector).The azimuth field values must be
-          expressed in positive degrees from 0
-          to 360, measured clockwise from north.
-      default_azimuth {Double}:
-          The starting azimuth value of the antenna signals (cell sectors) that
-          will be used when the azimuth field is not specified.For example,
-          three cell sectors exist at the same location and this
-          parameter is set to 0 degrees. The first sector is generated with an
-          azimuth of 0 degrees, the second sector is generated with an azimuth
-          of 120 degrees, and the third sector is generated with an azimuth of
-          240 degrees.This parameter is used when the azimuth field is not
-          specified.The azimuth value must be expressed in positive degrees from
-          0 to 360.
-          The default is 0.
-      beamwidth_field {Field}:
-          The field in the input table containing the full or half beamwidth
-          value (angle) of the antenna signal (cell sector).The beamwidth must
-          be expressed in positive degrees from 0 to 360. Use
-          360 for omnidirectional antennas.
-      beamwidth_type {String}:
-          Specifies the type of beamwidth value represented in the input cell
-          type table.
+         * Cell ID-Identifies the sector within an Location Area Code
+     x_field (Field):
+         The field in the input table that contains the x-coordinate of the
+         cell site.
+     y_field (Field):
+         The field in the input table that contains the y-coordinate of the
+         cell site.
+     in_coordinate_system (Coordinate System):
+         The coordinate system of the coordinates specified in the X Field and
+         Y Field parameters.
+     out_coordinate_system (Coordinate System):
+         The projected coordinate system of the output sites and sectors.
+     azimuth_field {Field}:
+         The field in the input table that contains the direction of the
+         antenna signal (cell sector).The azimuth field values must be
+         expressed in positive degrees from 0
+         to 360, measured clockwise from north.
+     default_azimuth {Double}:
+         The starting azimuth value of the antenna signals (cell sectors) that
+         will be used when the azimuth field is not specified.For example,
+         three cell sectors exist at the same location and this
+         parameter is set to 0 degrees. The first sector is generated with an
+         azimuth of 0 degrees, the second sector is generated with an azimuth
+         of 120 degrees, and the third sector is generated with an azimuth of
+         240 degrees.This parameter is used when the azimuth field is not
+         specified.The azimuth value must be expressed in positive degrees from
+         0 to 360.
+         The default is 0.
+     beamwidth_field {Field}:
+         The field in the input table containing the full or half beamwidth
+         value (angle) of the antenna signal (cell sector).The beamwidth must
+         be expressed in positive degrees from 0 to 360. Use
+         360 for omnidirectional antennas.
+     beamwidth_type {String}:
+         Specifies the type of beamwidth value represented in the input cell
+         type table.
 
-          * FULL_BEAMWIDTH-Full beamwidth is represented in the input. This is
-          the default.
+         * FULL_BEAMWIDTH-Full beamwidth is represented in the input. This is
+         the default.
 
-          * HALF_BEAMWIDTH-Half beamwidth is represented in the input
-      default_beamwidth {Double}:
-          The beamwidth (in degrees) of the antenna signal (cell sector) that
-          will be used when the beamwidth field is not specified.The default is
-          90 degrees.
-      radius_field {Field}:
-          The field in the input table that contains the radial length (signal
-          distance) of the antenna signal (cell sector).
-      radius_unit {String}:
-          Specifies the linear unit that will be used with the radius field.
+         * HALF_BEAMWIDTH-Half beamwidth is represented in the input
+     default_beamwidth {Double}:
+         The beamwidth (in degrees) of the antenna signal (cell sector) that
+         will be used when the beamwidth field is not specified.The default is
+         90 degrees.
+     radius_field {Field}:
+         The field in the input table that contains the radial length (signal
+         distance) of the antenna signal (cell sector).
+     radius_unit {String}:
+         Specifies the linear unit that will be used with the radius field.
 
-          * KILOMETERS-The unit will be kilometers.
+         * KILOMETERS-The unit will be kilometers.
 
-          * METERS-The unit will be meters.
+         * METERS-The unit will be meters.
 
-          * MILESINT-The unit will be statute miles.
+         * MILESINT-The unit will be statute miles.
 
-          * YARDSINT-The unit will be international yards.
+         * YARDSINT-The unit will be international yards.
 
-          * FEETINT-The unit will be international feet.
+         * FEETINT-The unit will be international feet.
 
-          * MILES-The unit will be US Survey miles. This is the default.
+         * MILES-The unit will be US Survey miles. This is the default.
 
-          * YARDS-The unit will be US Survey yards.
+         * YARDS-The unit will be US Survey yards.
 
-          * FEET-The unit will be US Survey feet.
-      default_radius_length {Double}:
-          The radius length (signal distance) of the antenna signal (cell
-          sector) that will be used when the radial field is not specified.The
-          default is 2.
+         * FEET-The unit will be US Survey feet.
+     default_radius_length {Double}:
+         The radius length (signal distance) of the antenna signal (cell
+         sector) that will be used when the radial field is not specified.The
+         default is 2.
 
-     OUTPUTS:
-      out_site_feature_class (Feature Class):
-          The feature class containing the output cell site points.
-      out_sector_feature_class (Feature Class):
-          The feature class containing the output cell site sectors."""
+    OUTPUTS:
+     out_site_feature_class (Feature Class):
+         The feature class containing the output cell site points.
+     out_sector_feature_class (Feature Class):
+         The feature class containing the output cell site sectors."""
     ...
 
-@gptooldoc('GenerateCallLinks_ca', None)
-def GenerateCallLinks(in_primary_features=..., in_secondary_features=..., out_feature_class=..., output_type=..., primary_subscriber_field=..., primary_destination_field=..., primary_start_time_field=..., secondary_subscriber_field=..., secondary_destination_field=..., secondary_start_time_field=...): # -> conversion | int | float | complex | basestring | list[Unknown] | tuple[Unknown, ...] | dict[Unknown, Unknown]:
+@gptooldoc("GenerateCallLinks_ca", None)
+def GenerateCallLinks(
+    in_primary_features=...,
+    in_secondary_features=...,
+    out_feature_class=...,
+    output_type=...,
+    primary_subscriber_field=...,
+    primary_destination_field=...,
+    primary_start_time_field=...,
+    secondary_subscriber_field=...,
+    secondary_destination_field=...,
+    secondary_start_time_field=...,
+):  # -> conversion | int | float | complex | basestring | list[Unknown] | tuple[Unknown, ...] | dict[Unknown, Unknown]:
     """GenerateCallLinks_ca(in_primary_features, in_secondary_features, out_feature_class, {output_type}, {primary_subscriber_field}, {primary_destination_field}, {primary_start_time_field}, {secondary_subscriber_field}, {secondary_destination_field}, {secondary_start_time_field})
 
-        Creates line features that represent the call links between phones,
-        using cell site points or cell site antenna sectors, based on the
-        start date and time of the call.
+       Creates line features that represent the call links between phones,
+       using cell site points or cell site antenna sectors, based on the
+       start date and time of the call.
 
-     INPUTS:
-      in_primary_features (Feature Layer):
-          The point feature class for the primary phone or sector derived from
-          the Cell Phone Records To Feature Class tool.
-      in_secondary_features (Feature Layer):
-          The point feature class for the secondary phone or sector derived from
-          the Cell Phone Records To Feature Class tool.
-      output_type {String}:
-          Specifies how the relationship of calls between two phones will be
-          analyzed and symbolized.
+    INPUTS:
+     in_primary_features (Feature Layer):
+         The point feature class for the primary phone or sector derived from
+         the Cell Phone Records To Feature Class tool.
+     in_secondary_features (Feature Layer):
+         The point feature class for the secondary phone or sector derived from
+         the Cell Phone Records To Feature Class tool.
+     output_type {String}:
+         Specifies how the relationship of calls between two phones will be
+         analyzed and symbolized.
 
-          * SUMMARY-A summary record of the total number of calls between two
-          phones at various locations will be created. This is the default.
+         * SUMMARY-A summary record of the total number of calls between two
+         phones at various locations will be created. This is the default.
 
-          * DETAIL-An individual record of each call between two phones at
-          various locations will be created.
-      primary_subscriber_field {Field}:
-          The unique ID field for the primary phone subscriber, usually a phone
-          number.
-      primary_destination_field {Field}:
-          The field containing the phone number of the secondary phone.
-      primary_start_time_field {Field}:
-          The start date and time field of the primary phone records.
-      secondary_subscriber_field {Field}:
-          The unique ID field for the secondary phone subscriber, usually a
-          phone number.
-      secondary_destination_field {Field}:
-          The field containing the phone number of the primary phone.
-      secondary_start_time_field {Field}:
-          The start date and time field of the secondary phone records.
+         * DETAIL-An individual record of each call between two phones at
+         various locations will be created.
+     primary_subscriber_field {Field}:
+         The unique ID field for the primary phone subscriber, usually a phone
+         number.
+     primary_destination_field {Field}:
+         The field containing the phone number of the secondary phone.
+     primary_start_time_field {Field}:
+         The start date and time field of the primary phone records.
+     secondary_subscriber_field {Field}:
+         The unique ID field for the secondary phone subscriber, usually a
+         phone number.
+     secondary_destination_field {Field}:
+         The field containing the phone number of the primary phone.
+     secondary_start_time_field {Field}:
+         The start date and time field of the secondary phone records.
 
-     OUTPUTS:
-      out_feature_class (Feature Class):
-          The output line features representing the call links between two
-          phones at various locations."""
+    OUTPUTS:
+     out_feature_class (Feature Class):
+         The output line features representing the call links between two
+         phones at various locations."""
     ...
 
-@gptooldoc('GenerateSectorLines_ca', None)
-def GenerateSectorLines(in_site_features=..., out_feature_class=...): # -> conversion | int | float | complex | basestring | list[Unknown] | tuple[Unknown, ...] | dict[Unknown, Unknown]:
+@gptooldoc("GenerateSectorLines_ca", None)
+def GenerateSectorLines(
+    in_site_features=..., out_feature_class=...
+):  # -> conversion | int | float | complex | basestring | list[Unknown] | tuple[Unknown, ...] | dict[Unknown, Unknown]:
     """GenerateSectorLines_ca(in_site_features, out_feature_class)
 
-        Creates line features that represent the extent of cell site antenna
-        sectors.
+       Creates line features that represent the extent of cell site antenna
+       sectors.
 
-     INPUTS:
-      in_site_features (Feature Layer):
-          The point feature class derived from the Cell Site Records to Feature
-          Class or Cell Phone Records to Feature Class tool.
+    INPUTS:
+     in_site_features (Feature Layer):
+         The point feature class derived from the Cell Site Records to Feature
+         Class or Cell Phone Records to Feature Class tool.
 
-     OUTPUTS:
-      out_feature_class (Feature Class):
-          The output feature class containing the sector lines."""
+    OUTPUTS:
+     out_feature_class (Feature Class):
+         The output feature class containing the sector lines."""
     ...
-

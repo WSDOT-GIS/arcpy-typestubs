@@ -6,48 +6,57 @@ from enum import IntEnum
 from arcgisscripting import na as cna
 
 """Module for working with Service Area Solver."""
-__all__ = ["ServiceAreaInputDataType", "ServiceAreaOutputDataType", "ServiceAreaPolygonCutoffGeometry", "ServiceAreaOverlapGeometry", "ServiceAreaPolygonDetail", "ServiceAreaOutputType", "ServiceArea"]
+__all__ = [
+    "ServiceAreaInputDataType",
+    "ServiceAreaOutputDataType",
+    "ServiceAreaPolygonCutoffGeometry",
+    "ServiceAreaOverlapGeometry",
+    "ServiceAreaPolygonDetail",
+    "ServiceAreaOutputType",
+    "ServiceArea",
+]
+
 class ServiceAreaInputDataType(IntEnum):
     """Enumeration for feature class names used by the Service Area solver to store inputs."""
+
     Facilities = ...
     PointBarriers = ...
     LineBarriers = ...
     PolygonBarriers = ...
 
-
 class ServiceAreaOutputDataType(IntEnum):
     """Enumeration for feature class names used by the Service Area solver to store outputs."""
+
     Facilities = ...
     Lines = ...
     Polygons = ...
 
-
 class ServiceAreaPolygonCutoffGeometry(IntEnum):
     """Enumeration for supported polygon cutoff geometry types."""
+
     Disks = ...
     Rings = ...
 
-
 class ServiceAreaOverlapGeometry(IntEnum):
     """Enumeration for the behavior of service-area output from multiple facilities in relation to one another."""
+
     Split = ...
     Overlap = ...
     Dissolve = ...
 
-
 class ServiceAreaPolygonDetail(IntEnum):
     """Enumeration for supported polygon detail options."""
+
     Generalized = ...
     Standard = ...
     High = ...
 
-
 class ServiceAreaOutputType(IntEnum):
     """Enumeration for the type of output to be generated."""
+
     Polygons = ...
     Lines = ...
     PolygonsAndLines = ...
-
 
 class ServiceArea(cna.ServiceArea):
     """Perform route analysis.
@@ -78,6 +87,7 @@ class ServiceArea(cna.ServiceArea):
         print(result.solverMessages())
 
     """
+
     __slots__ = ...
     def __init__(self, in_network) -> None:
         """Create a service area solver object based on the input network dataset.
@@ -97,6 +107,3 @@ class ServiceArea(cna.ServiceArea):
 
         """
         ...
-    
-
-

@@ -8,8 +8,8 @@ from arcpy import metadata
 
 class constants(ArgAdaptor):
     """Represents the constants that can be passed into various ExportTo* mp functions"""
-    __args__ = ...
 
+    __args__ = ...
 
 class ArcGISProject(_ObjectWithoutInitCall):
     """ArcGISProject(aprx_path)
@@ -20,6 +20,7 @@ class ArcGISProject(_ObjectWithoutInitCall):
     aprx_path(String):
     A string that includes the full system path and file name of an existing
     ArcGIS project ( .aprx ) or a string that contains the CURRENT keyword."""
+
     dateSaved = ...
     defaultGeodatabase = ...
     defaultToolbox = ...
@@ -31,7 +32,9 @@ class ArcGISProject(_ObjectWithoutInitCall):
     metadata = ...
     isReadOnly = ...
     folderConnections = ...
-    def importDocument(self, document_path, include_layout=..., reuse_existing_maps=...): # -> conversion | int | float | complex | basestring | list[Unknown] | tuple[Unknown, ...] | dict[Unknown, Unknown]:
+    def importDocument(
+        self, document_path, include_layout=..., reuse_existing_maps=...
+    ):  # -> conversion | int | float | complex | basestring | list[Unknown] | tuple[Unknown, ...] | dict[Unknown, Unknown]:
         """ArcGISProject.importDocument(document_path, {include_layout},
         {reuse_existing_maps})
 
@@ -63,8 +66,9 @@ class ArcGISProject(_ObjectWithoutInitCall):
         this value to  False. The default value is False.
         """
         ...
-    
-    def listBrokenDataSources(self): # -> conversion | int | float | complex | basestring | list[Unknown] | tuple[Unknown, ...] | dict[Unknown, Unknown]:
+    def listBrokenDataSources(
+        self,
+    ):  # -> conversion | int | float | complex | basestring | list[Unknown] | tuple[Unknown, ...] | dict[Unknown, Unknown]:
         """ArcGISProject.listBrokenDataSources()
 
 
@@ -72,8 +76,9 @@ class ArcGISProject(_ObjectWithoutInitCall):
         connections to their original source data for all maps in a project.
         """
         ...
-    
-    def listLayouts(self, wildcard=...): # -> conversion | int | float | complex | basestring | list[Unknown] | tuple[Unknown, ...] | dict[Unknown, Unknown]:
+    def listLayouts(
+        self, wildcard=...
+    ):  # -> conversion | int | float | complex | basestring | list[Unknown] | tuple[Unknown, ...] | dict[Unknown, Unknown]:
         """ArcGISProject.listLayouts({wildcard})
 
 
@@ -86,8 +91,9 @@ class ArcGISProject(_ObjectWithoutInitCall):
         limit the resulting list. The default value is None.
         """
         ...
-    
-    def listReports(self, wildcard=...): # -> conversion | int | float | complex | basestring | list[Unknown] | tuple[Unknown, ...] | dict[Unknown, Unknown]:
+    def listReports(
+        self, wildcard=...
+    ):  # -> conversion | int | float | complex | basestring | list[Unknown] | tuple[Unknown, ...] | dict[Unknown, Unknown]:
         """ArcGISProject.listReports({wildcard})
 
 
@@ -100,8 +106,9 @@ class ArcGISProject(_ObjectWithoutInitCall):
         limit the resulting list. The default value is None.
         """
         ...
-    
-    def listMaps(self, wildcard=...): # -> conversion | int | float | complex | basestring | list[Unknown] | tuple[Unknown, ...] | dict[Unknown, Unknown]:
+    def listMaps(
+        self, wildcard=...
+    ):  # -> conversion | int | float | complex | basestring | list[Unknown] | tuple[Unknown, ...] | dict[Unknown, Unknown]:
         """ArcGISProject.listMaps({wildcard})
 
 
@@ -114,16 +121,18 @@ class ArcGISProject(_ObjectWithoutInitCall):
         limit the resulting list. The default value is None.
         """
         ...
-    
-    def save(self): # -> conversion | int | float | complex | basestring | list[Unknown] | tuple[Unknown, ...] | dict[Unknown, Unknown]:
+    def save(
+        self,
+    ):  # -> conversion | int | float | complex | basestring | list[Unknown] | tuple[Unknown, ...] | dict[Unknown, Unknown]:
         """ArcGISProject.save()
 
 
         Saves changes to an ArcGISProject  (.aprx).
         """
         ...
-    
-    def saveACopy(self, file_name): # -> conversion | int | float | complex | basestring | list[Unknown] | tuple[Unknown, ...] | dict[Unknown, Unknown]:
+    def saveACopy(
+        self, file_name
+    ):  # -> conversion | int | float | complex | basestring | list[Unknown] | tuple[Unknown, ...] | dict[Unknown, Unknown]:
         """ArcGISProject.saveACopy(file_name)
 
 
@@ -135,8 +144,14 @@ class ArcGISProject(_ObjectWithoutInitCall):
         file name.
         """
         ...
-    
-    def updateConnectionProperties(self, current_connection_info, new_connection_info, auto_update_joins_and_relates=..., validate=..., ignore_case=...): # -> conversion | int | float | complex | basestring | list[Unknown] | tuple[Unknown, ...] | dict[Unknown, Unknown]:
+    def updateConnectionProperties(
+        self,
+        current_connection_info,
+        new_connection_info,
+        auto_update_joins_and_relates=...,
+        validate=...,
+        ignore_case=...,
+    ):  # -> conversion | int | float | complex | basestring | list[Unknown] | tuple[Unknown, ...] | dict[Unknown, Unknown]:
         """ArcGISProject.updateConnectionProperties(current_connection_info,
         new_connection_info, {auto_update_joins_and_relates}, {validate},
         {ignore_case})
@@ -180,8 +195,9 @@ class ArcGISProject(_ObjectWithoutInitCall):
         ignore_case to True. The default value is False.
         """
         ...
-    
-    def listColorRamps(self, wildcard=...): # -> conversion | int | float | complex | basestring | list[Unknown] | tuple[Unknown, ...] | dict[Unknown, Unknown]:
+    def listColorRamps(
+        self, wildcard=...
+    ):  # -> conversion | int | float | complex | basestring | list[Unknown] | tuple[Unknown, ...] | dict[Unknown, Unknown]:
         """ArcGISProject.listColorRamps({wildcard})
 
 
@@ -196,9 +212,10 @@ class ArcGISProject(_ObjectWithoutInitCall):
         limit the resulting list. The default value is None.
         """
         ...
-    
     @constants.maskargs
-    def closeViews(self, view_type=...): # -> conversion | int | float | complex | basestring | list[Unknown] | tuple[Unknown, ...] | dict[Unknown, Unknown]:
+    def closeViews(
+        self, view_type=...
+    ):  # -> conversion | int | float | complex | basestring | list[Unknown] | tuple[Unknown, ...] | dict[Unknown, Unknown]:
         """ArcGISProject.closeViews({view_type})
 
 
@@ -218,9 +235,10 @@ class ArcGISProject(_ObjectWithoutInitCall):
         * MAPS_AND_LAYOUTS: Close all open layout and map view panes.
         """
         ...
-    
     @constants.maskargs
-    def createMap(self, name=..., map_type=...): # -> conversion | int | float | complex | basestring | list[Unknown] | tuple[Unknown, ...] | dict[Unknown, Unknown]:
+    def createMap(
+        self, name=..., map_type=...
+    ):  # -> conversion | int | float | complex | basestring | list[Unknown] | tuple[Unknown, ...] | dict[Unknown, Unknown]:
         """ArcGISProject.createMap({name}, {map_type})
 
 
@@ -245,8 +263,9 @@ class ArcGISProject(_ObjectWithoutInitCall):
         * SCENE: A new local scene
         """
         ...
-    
-    def copyItem(self, project_item, new_name=...): # -> conversion | int | float | complex | basestring | list[Unknown] | tuple[Unknown, ...] | dict[Unknown, Unknown]:
+    def copyItem(
+        self, project_item, new_name=...
+    ):  # -> conversion | int | float | complex | basestring | list[Unknown] | tuple[Unknown, ...] | dict[Unknown, Unknown]:
         """ArcGISProject.copyItem(project_item, {new_name})
 
 
@@ -263,8 +282,9 @@ class ArcGISProject(_ObjectWithoutInitCall):
         for example, Map, Map1, Map2.
         """
         ...
-    
-    def deleteItem(self, project_item): # -> conversion | int | float | complex | basestring | list[Unknown] | tuple[Unknown, ...] | dict[Unknown, Unknown]:
+    def deleteItem(
+        self, project_item
+    ):  # -> conversion | int | float | complex | basestring | list[Unknown] | tuple[Unknown, ...] | dict[Unknown, Unknown]:
         """ArcGISProject.deleteItem(project_item)
 
 
@@ -275,8 +295,9 @@ class ArcGISProject(_ObjectWithoutInitCall):
         An object that represents a supported project item to be deleted.
         """
         ...
-    
-    def updateFolderConnections(self, folder_connections, validate=...): # -> conversion | int | float | complex | basestring | list[Unknown] | tuple[Unknown, ...] | dict[Unknown, Unknown]:
+    def updateFolderConnections(
+        self, folder_connections, validate=...
+    ):  # -> conversion | int | float | complex | basestring | list[Unknown] | tuple[Unknown, ...] | dict[Unknown, Unknown]:
         """ArcGISProject.updateFolderConnections(folder_connections, {validate})
 
 
@@ -309,7 +330,6 @@ class ArcGISProject(_ObjectWithoutInitCall):
         default value is True.
         """
         ...
-    
     def __init__(self, aprx_path) -> None:
         """ArcGISProject(aprx_path)
 
@@ -324,30 +344,28 @@ class ArcGISProject(_ObjectWithoutInitCall):
         project (.aprx) or a string that contains the CURRENT keyword.
         """
         ...
-    
-
 
 class Bookmark(_ObjectWithoutInitCall):
     """Provides access to bookmark methods and properties."""
+
     hasThumbnail = ...
     map = ...
     name = ...
-    def updateThumbnail(self): # -> conversion | int | float | complex | basestring | list[Unknown] | tuple[Unknown, ...] | dict[Unknown, Unknown]:
+    def updateThumbnail(
+        self,
+    ):  # -> conversion | int | float | complex | basestring | list[Unknown] | tuple[Unknown, ...] | dict[Unknown, Unknown]:
         """Bookmark.updateThumbnail()
 
 
         Updates a bookmark's thumbnail image.
         """
         ...
-    
-    def __eq__(self, other) -> bool:
-        ...
-    
-
+    def __eq__(self, other) -> bool: ...
 
 class Camera(_ObjectWithoutInitCall):
     """The Camera object provides access to  2D and 3D viewer properties that
-       control the display in a MapFrame ."""
+    control the display in a MapFrame ."""
+
     heading = ...
     mode = ...
     pitch = ...
@@ -356,15 +374,18 @@ class Camera(_ObjectWithoutInitCall):
     X = ...
     Y = ...
     Z = ...
-    def getExtent(self): # -> conversion | int | float | complex | basestring | list[Unknown] | tuple[Unknown, ...] | dict[Unknown, Unknown]:
+    def getExtent(
+        self,
+    ):  # -> conversion | int | float | complex | basestring | list[Unknown] | tuple[Unknown, ...] | dict[Unknown, Unknown]:
         """Camera.getExtent()
 
 
         Returns an Extent object for a 2D map frame.
         """
         ...
-    
-    def setExtent(self, extent): # -> conversion | int | float | complex | basestring | list[Unknown] | tuple[Unknown, ...] | dict[Unknown, Unknown]:
+    def setExtent(
+        self, extent
+    ):  # -> conversion | int | float | complex | basestring | list[Unknown] | tuple[Unknown, ...] | dict[Unknown, Unknown]:
         """Camera.setExtent(extent)
 
 
@@ -375,16 +396,13 @@ class Camera(_ObjectWithoutInitCall):
         A geoprocessing Extent object.
         """
         ...
-    
-    def __eq__(self, other) -> bool:
-        ...
-    
-
+    def __eq__(self, other) -> bool: ...
 
 class GraphicElement(_ObjectWithoutInitCall):
     """The GraphicElement object provides access to properties that enables its
-       repositioning on the page layout, as well as methods that allow for
-       duplicating and deleting existing graphic elements."""
+    repositioning on the page layout, as well as methods that allow for
+    duplicating and deleting existing graphic elements."""
+
     elementHeight = ...
     elementPositionX = ...
     elementPositionY = ...
@@ -395,7 +413,9 @@ class GraphicElement(_ObjectWithoutInitCall):
     name = ...
     type = ...
     visible = ...
-    def clone(self, suffix=...): # -> conversion | int | float | complex | basestring | list[Unknown] | tuple[Unknown, ...] | dict[Unknown, Unknown]:
+    def clone(
+        self, suffix=...
+    ):  # -> conversion | int | float | complex | basestring | list[Unknown] | tuple[Unknown, ...] | dict[Unknown, Unknown]:
         """GraphicElement.clone({suffix})
 
 
@@ -413,8 +433,9 @@ class GraphicElement(_ObjectWithoutInitCall):
         resemble Line_1, Line_2, Line_3, and so on.
         """
         ...
-    
-    def delete(self): # -> conversion | int | float | complex | basestring | list[Unknown] | tuple[Unknown, ...] | dict[Unknown, Unknown]:
+    def delete(
+        self,
+    ):  # -> conversion | int | float | complex | basestring | list[Unknown] | tuple[Unknown, ...] | dict[Unknown, Unknown]:
         """GraphicElement.delete()
 
 
@@ -422,19 +443,15 @@ class GraphicElement(_ObjectWithoutInitCall):
         layout.
         """
         ...
-    
-    def __eq__(self, other) -> bool:
-        ...
-    
-
+    def __eq__(self, other) -> bool: ...
 
 class LabelClass(_ObjectWithoutInitCall):
     """Provides access to a layer's label class properties."""
+
     expression = ...
     name = ...
     SQLQuery = ...
     visible = ...
-
 
 class Layer(_ObjectWithoutInitCall):
     """Layer(lyr_file_path)
@@ -447,6 +464,7 @@ class Layer(_ObjectWithoutInitCall):
     A string that includes the full path and file name of an existing layer
     file.  The supported extensions are .lyr or .lyrx.
     """
+
     brightness = ...
     contrast = ...
     connectionProperties = ...
@@ -475,7 +493,9 @@ class Layer(_ObjectWithoutInitCall):
     time = ...
     URI = ...
     @constants.maskargs
-    def extrusion(self, extrusion_type=..., expression=...): # -> conversion | int | float | complex | basestring | list[Unknown] | tuple[Unknown, ...] | dict[Unknown, Unknown]:
+    def extrusion(
+        self, extrusion_type=..., expression=...
+    ):  # -> conversion | int | float | complex | basestring | list[Unknown] | tuple[Unknown, ...] | dict[Unknown, Unknown]:
         """Layer.extrusion({extrusion_type}, {expression})
 
 
@@ -507,16 +527,18 @@ class Layer(_ObjectWithoutInitCall):
         absolute extrusion height  for each feature. The default value is None.
         """
         ...
-    
-    def getSelectionSet(self): # -> conversion | int | float | complex | basestring | list[Unknown] | tuple[Unknown, ...] | dict[Unknown, Unknown]:
+    def getSelectionSet(
+        self,
+    ):  # -> conversion | int | float | complex | basestring | list[Unknown] | tuple[Unknown, ...] | dict[Unknown, Unknown]:
         """Layer.getSelectionSet()
 
 
         Returns a layer's selection as a Python set of object IDs.
         """
         ...
-    
-    def listLabelClasses(self, wildcard=...): # -> conversion | int | float | complex | basestring | list[Unknown] | tuple[Unknown, ...] | dict[Unknown, Unknown]:
+    def listLabelClasses(
+        self, wildcard=...
+    ):  # -> conversion | int | float | complex | basestring | list[Unknown] | tuple[Unknown, ...] | dict[Unknown, Unknown]:
         """Layer.listLabelClasses({wildcard})
 
 
@@ -529,8 +551,9 @@ class Layer(_ObjectWithoutInitCall):
         limit the resulting list. The default value is None.
         """
         ...
-    
-    def listLayers(self, wildcard=...): # -> conversion | int | float | complex | basestring | list[Unknown] | tuple[Unknown, ...] | dict[Unknown, Unknown]:
+    def listLayers(
+        self, wildcard=...
+    ):  # -> conversion | int | float | complex | basestring | list[Unknown] | tuple[Unknown, ...] | dict[Unknown, Unknown]:
         """Layer.listLayers({wildcard})
 
 
@@ -544,8 +567,9 @@ class Layer(_ObjectWithoutInitCall):
         limit the resulting list. The default value is None.
         """
         ...
-    
-    def listTables(self, wildcard=...): # -> conversion | int | float | complex | basestring | list[Unknown] | tuple[Unknown, ...] | dict[Unknown, Unknown]:
+    def listTables(
+        self, wildcard=...
+    ):  # -> conversion | int | float | complex | basestring | list[Unknown] | tuple[Unknown, ...] | dict[Unknown, Unknown]:
         """Layer.listTables({wildcard})
 
 
@@ -558,8 +582,9 @@ class Layer(_ObjectWithoutInitCall):
         resulting list. The default value is None.
         """
         ...
-    
-    def listDefinitionQueries(self, wildcard=...): # -> conversion | int | float | complex | basestring | list[Unknown] | tuple[Unknown, ...] | dict[Unknown, Unknown]:
+    def listDefinitionQueries(
+        self, wildcard=...
+    ):  # -> conversion | int | float | complex | basestring | list[Unknown] | tuple[Unknown, ...] | dict[Unknown, Unknown]:
         """Layer.listDefinitionQueries({wildcard})
 
 
@@ -572,8 +597,9 @@ class Layer(_ObjectWithoutInitCall):
         resulting list. The default value is None.
         """
         ...
-    
-    def saveACopy(self, file_name): # -> conversion | int | float | complex | basestring | list[Unknown] | tuple[Unknown, ...] | dict[Unknown, Unknown]:
+    def saveACopy(
+        self, file_name
+    ):  # -> conversion | int | float | complex | basestring | list[Unknown] | tuple[Unknown, ...] | dict[Unknown, Unknown]:
         """Layer.saveACopy(file_name)
 
 
@@ -585,9 +611,10 @@ class Layer(_ObjectWithoutInitCall):
         (.lyrx).
         """
         ...
-    
     @constants.maskargs
-    def setSelectionSet(self, oidList=..., method=...): # -> conversion | int | float | complex | basestring | list[Unknown] | tuple[Unknown, ...] | dict[Unknown, Unknown]:
+    def setSelectionSet(
+        self, oidList=..., method=...
+    ):  # -> conversion | int | float | complex | basestring | list[Unknown] | tuple[Unknown, ...] | dict[Unknown, Unknown]:
         """Layer.setSelectionSet({oidList}, {method})
 
 
@@ -618,8 +645,9 @@ class Layer(_ObjectWithoutInitCall):
         the oidList.
         """
         ...
-    
-    def supports(self, layer_property): # -> conversion | int | float | complex | basestring | list[Unknown] | tuple[Unknown, ...] | dict[Unknown, Unknown]:
+    def supports(
+        self, layer_property
+    ):  # -> conversion | int | float | complex | basestring | list[Unknown] | tuple[Unknown, ...] | dict[Unknown, Unknown]:
         """Layer.supports(layer_property)
 
 
@@ -667,8 +695,14 @@ class Layer(_ObjectWithoutInitCall):
         * METADATA: A layer that can persist metadata.
         """
         ...
-    
-    def updateConnectionProperties(self, current_connection_info, new_connection_info, auto_update_joins_and_relates=..., validate=..., ignore_case=...): # -> conversion | int | float | complex | basestring | list[Unknown] | tuple[Unknown, ...] | dict[Unknown, Unknown]:
+    def updateConnectionProperties(
+        self,
+        current_connection_info,
+        new_connection_info,
+        auto_update_joins_and_relates=...,
+        validate=...,
+        ignore_case=...,
+    ):  # -> conversion | int | float | complex | basestring | list[Unknown] | tuple[Unknown, ...] | dict[Unknown, Unknown]:
         """Layer.updateConnectionProperties(current_connection_info,
         new_connection_info, {auto_update_joins_and_relates}, {validate},
         {ignore_case})
@@ -712,8 +746,9 @@ class Layer(_ObjectWithoutInitCall):
         ignore_case to True. The default value is False.
         """
         ...
-    
-    def updateDefinitionQueries(self, definitionQueries): # -> conversion | int | float | complex | basestring | list[Unknown] | tuple[Unknown, ...] | dict[Unknown, Unknown]:
+    def updateDefinitionQueries(
+        self, definitionQueries
+    ):  # -> conversion | int | float | complex | basestring | list[Unknown] | tuple[Unknown, ...] | dict[Unknown, Unknown]:
         """Layer.updateDefinitionQueries(definitionQueries)
 
 
@@ -725,8 +760,9 @@ class Layer(_ObjectWithoutInitCall):
         definition query.
         """
         ...
-    
-    def updateLayerFromJSON(self, json_data): # -> conversion | int | float | complex | basestring | list[Unknown] | tuple[Unknown, ...] | dict[Unknown, Unknown]:
+    def updateLayerFromJSON(
+        self, json_data
+    ):  # -> conversion | int | float | complex | basestring | list[Unknown] | tuple[Unknown, ...] | dict[Unknown, Unknown]:
         """Layer.updateLayerFromJSON(json_data)
 
 
@@ -744,8 +780,13 @@ class Layer(_ObjectWithoutInitCall):
         webmap_json.
         """
         ...
-    
-    def enableTime(self, startTimeField=..., endTimeField=..., autoCalculateTimeRange=..., timeDimension=...): # -> conversion | int | float | complex | basestring | list[Unknown] | tuple[Unknown, ...] | dict[Unknown, Unknown]:
+    def enableTime(
+        self,
+        startTimeField=...,
+        endTimeField=...,
+        autoCalculateTimeRange=...,
+        timeDimension=...,
+    ):  # -> conversion | int | float | complex | basestring | list[Unknown] | tuple[Unknown, ...] | dict[Unknown, Unknown]:
         """Layer.enableTime({startTimeField}, {endTimeField},
         {autoCalculateTimeRange}, {timeDimension})
 
@@ -779,23 +820,19 @@ class Layer(_ObjectWithoutInitCall):
         The default value is None.
         """
         ...
-    
-    def disableTime(self): # -> conversion | int | float | complex | basestring | list[Unknown] | tuple[Unknown, ...] | dict[Unknown, Unknown]:
+    def disableTime(
+        self,
+    ):  # -> conversion | int | float | complex | basestring | list[Unknown] | tuple[Unknown, ...] | dict[Unknown, Unknown]:
         """Layer.disableTime()
 
 
         Disables time on a layer.
         """
         ...
-    
-    def __str__(self) -> str:
-        ...
-    
-    def __eq__(self, other) -> bool:
-        ...
-    
+    def __str__(self) -> str: ...
+    def __eq__(self, other) -> bool: ...
     @constants.maskargs
-    def getDefinition(self, cim_version): # -> Any | list[Unknown] | None:
+    def getDefinition(self, cim_version):  # -> Any | list[Unknown] | None:
         """Layer.getDefinition(cim_version)
 
 
@@ -806,9 +843,10 @@ class Layer(_ObjectWithoutInitCall):
         A string that represents the major version of the CIM.
         """
         ...
-    
     @constants.maskargs
-    def setDefinition(self, definition_object): # -> conversion | int | float | complex | basestring | list[Unknown] | tuple[Unknown, ...] | dict[Unknown, Unknown]:
+    def setDefinition(
+        self, definition_object
+    ):  # -> conversion | int | float | complex | basestring | list[Unknown] | tuple[Unknown, ...] | dict[Unknown, Unknown]:
         """Layer.setDefinition(definition_object)
 
 
@@ -820,8 +858,6 @@ class Layer(_ObjectWithoutInitCall):
         getDefinition.
         """
         ...
-    
-
 
 class LayerFile(_ObjectWithoutInitCall):
     """LayerFile(layer_file_path)
@@ -834,11 +870,14 @@ class LayerFile(_ObjectWithoutInitCall):
     A string that includes the full system path and file name of an existing
     layer file.
     """
+
     filePath = ...
     version = ...
     metadata = ...
     @constants.maskargs
-    def addLayer(self, add_layer_or_layerfile, add_position=...): # -> conversion | int | float | complex | basestring | list[Unknown] | tuple[Unknown, ...] | dict[Unknown, Unknown]:
+    def addLayer(
+        self, add_layer_or_layerfile, add_position=...
+    ):  # -> conversion | int | float | complex | basestring | list[Unknown] | tuple[Unknown, ...] | dict[Unknown, Unknown]:
         """LayerFile.addLayer(add_layer_or_layerfile, {add_position})
 
 
@@ -864,9 +903,10 @@ class LayerFile(_ObjectWithoutInitCall):
         stack.
         """
         ...
-    
     @constants.maskargs
-    def addLayerToGroup(self, target_group_layer, add_layer_or_layerfile, add_position=...): # -> conversion | int | float | complex | basestring | list[Unknown] | tuple[Unknown, ...] | dict[Unknown, Unknown]:
+    def addLayerToGroup(
+        self, target_group_layer, add_layer_or_layerfile, add_position=...
+    ):  # -> conversion | int | float | complex | basestring | list[Unknown] | tuple[Unknown, ...] | dict[Unknown, Unknown]:
         """LayerFile.addLayerToGroup(target_group_layer, add_layer_or_layerfile,
         {add_position})
 
@@ -897,9 +937,10 @@ class LayerFile(_ObjectWithoutInitCall):
         * BOTTOM: Places the layer at the bottom of the TOC layer stack.
         """
         ...
-    
     @constants.maskargs
-    def insertLayer(self, reference_layer, insert_layer_or_layerfile, insert_position=...): # -> conversion | int | float | complex | basestring | list[Unknown] | tuple[Unknown, ...] | dict[Unknown, Unknown]:
+    def insertLayer(
+        self, reference_layer, insert_layer_or_layerfile, insert_position=...
+    ):  # -> conversion | int | float | complex | basestring | list[Unknown] | tuple[Unknown, ...] | dict[Unknown, Unknown]:
         """LayerFile.insertLayer(reference_layer, insert_layer_or_layerfile,
         {insert_position})
 
@@ -927,8 +968,9 @@ class LayerFile(_ObjectWithoutInitCall):
         * BEFORE: Inserts the new layer before or above the reference layer.
         """
         ...
-    
-    def listBrokenDataSources(self): # -> conversion | int | float | complex | basestring | list[Unknown] | tuple[Unknown, ...] | dict[Unknown, Unknown]:
+    def listBrokenDataSources(
+        self,
+    ):  # -> conversion | int | float | complex | basestring | list[Unknown] | tuple[Unknown, ...] | dict[Unknown, Unknown]:
         """LayerFile.listBrokenDataSources()
 
 
@@ -936,8 +978,9 @@ class LayerFile(_ObjectWithoutInitCall):
         connections to their original source data.
         """
         ...
-    
-    def listLayers(self, wildcard=...): # -> conversion | int | float | complex | basestring | list[Unknown] | tuple[Unknown, ...] | dict[Unknown, Unknown]:
+    def listLayers(
+        self, wildcard=...
+    ):  # -> conversion | int | float | complex | basestring | list[Unknown] | tuple[Unknown, ...] | dict[Unknown, Unknown]:
         """LayerFile.listLayers({wildcard})
 
 
@@ -950,8 +993,9 @@ class LayerFile(_ObjectWithoutInitCall):
         limit the resulting list. The default value is None.
         """
         ...
-    
-    def listTables(self, wildcard=...): # -> conversion | int | float | complex | basestring | list[Unknown] | tuple[Unknown, ...] | dict[Unknown, Unknown]:
+    def listTables(
+        self, wildcard=...
+    ):  # -> conversion | int | float | complex | basestring | list[Unknown] | tuple[Unknown, ...] | dict[Unknown, Unknown]:
         """LayerFile.listTables({wildcard})
 
 
@@ -964,9 +1008,10 @@ class LayerFile(_ObjectWithoutInitCall):
         resulting list. The default value is None.
         """
         ...
-    
     @constants.maskargs
-    def moveLayer(self, reference_layer, move_layer, insert_position=...): # -> conversion | int | float | complex | basestring | list[Unknown] | tuple[Unknown, ...] | dict[Unknown, Unknown]:
+    def moveLayer(
+        self, reference_layer, move_layer, insert_position=...
+    ):  # -> conversion | int | float | complex | basestring | list[Unknown] | tuple[Unknown, ...] | dict[Unknown, Unknown]:
         """LayerFile.moveLayer(reference_layer, move_layer, {insert_position})
 
 
@@ -992,8 +1037,9 @@ class LayerFile(_ObjectWithoutInitCall):
         * BEFORE: Moves the layer before or above the reference layer.
         """
         ...
-    
-    def removeLayer(self, remove_layer): # -> conversion | int | float | complex | basestring | list[Unknown] | tuple[Unknown, ...] | dict[Unknown, Unknown]:
+    def removeLayer(
+        self, remove_layer
+    ):  # -> conversion | int | float | complex | basestring | list[Unknown] | tuple[Unknown, ...] | dict[Unknown, Unknown]:
         """LayerFile.removeLayer(remove_layer)
 
 
@@ -1004,8 +1050,9 @@ class LayerFile(_ObjectWithoutInitCall):
         A reference to a Layer object representing the layer to be removed.
         """
         ...
-    
-    def save(self): # -> conversion | int | float | complex | basestring | list[Unknown] | tuple[Unknown, ...] | dict[Unknown, Unknown]:
+    def save(
+        self,
+    ):  # -> conversion | int | float | complex | basestring | list[Unknown] | tuple[Unknown, ...] | dict[Unknown, Unknown]:
         """LayerFile.save()
 
 
@@ -1013,8 +1060,9 @@ class LayerFile(_ObjectWithoutInitCall):
         referenced was a .lyr file.
         """
         ...
-    
-    def saveACopy(self, file_name): # -> conversion | int | float | complex | basestring | list[Unknown] | tuple[Unknown, ...] | dict[Unknown, Unknown]:
+    def saveACopy(
+        self, file_name
+    ):  # -> conversion | int | float | complex | basestring | list[Unknown] | tuple[Unknown, ...] | dict[Unknown, Unknown]:
         """LayerFile.saveACopy(file_name)
 
 
@@ -1026,8 +1074,14 @@ class LayerFile(_ObjectWithoutInitCall):
         only save to .lyrx files.
         """
         ...
-    
-    def updateConnectionProperties(self, current_connection_info, new_connection_info, auto_update_joins_and_relates=..., validate=..., ignore_case=...): # -> conversion | int | float | complex | basestring | list[Unknown] | tuple[Unknown, ...] | dict[Unknown, Unknown]:
+    def updateConnectionProperties(
+        self,
+        current_connection_info,
+        new_connection_info,
+        auto_update_joins_and_relates=...,
+        validate=...,
+        ignore_case=...,
+    ):  # -> conversion | int | float | complex | basestring | list[Unknown] | tuple[Unknown, ...] | dict[Unknown, Unknown]:
         """LayerFile.updateConnectionProperties(current_connection_info,
         new_connection_info, {auto_update_joins_and_relates}, {validate},
         {ignore_case})
@@ -1071,7 +1125,6 @@ class LayerFile(_ObjectWithoutInitCall):
         ignore_case to True. The default value is False.
         """
         ...
-    
     def __init__(self, layer_file_path) -> None:
         """LayerFile(layer_file_path)
 
@@ -1083,14 +1136,11 @@ class LayerFile(_ObjectWithoutInitCall):
         A string that includes the full system path and file name of an existing layer file.
         """
         ...
-    
-    def __str__(self) -> str:
-        ...
-    
-
+    def __str__(self) -> str: ...
 
 class LayerTime(_ObjectWithoutInitCall):
     """LayerTime provides access to layer time level information in a Layer Object."""
+
     startTimeField = ...
     endTimeField = ...
     timeFormat = ...
@@ -1104,11 +1154,11 @@ class LayerTime(_ObjectWithoutInitCall):
     timeStepIntervalUnits = ...
     timeDimension = ...
 
-
 class Layout(_ObjectWithoutInitCall):
     """The Layout object references a single-page layout in an ArcGIS Pro
-       project ( .aprx ).  It provides access to common properties like page
-       size and a number of different export methods."""
+    project ( .aprx ).  It provides access to common properties like page
+    size and a number of different export methods."""
+
     name = ...
     pageHeight = ...
     pageUnits = ...
@@ -1117,7 +1167,19 @@ class Layout(_ObjectWithoutInitCall):
     metadata = ...
     URI = ...
     @constants.maskargs
-    def exportToAIX(self, out_aix, resolution=..., image_quality=..., compress_vector_graphics=..., image_compression=..., jpeg_compression_quality=..., embed_fonts=..., embed_color_profile=..., clip_to_elements=..., keep_layout_background=...): # -> conversion | int | float | complex | basestring | list[Unknown] | tuple[Unknown, ...] | dict[Unknown, Unknown]:
+    def exportToAIX(
+        self,
+        out_aix,
+        resolution=...,
+        image_quality=...,
+        compress_vector_graphics=...,
+        image_compression=...,
+        jpeg_compression_quality=...,
+        embed_fonts=...,
+        embed_color_profile=...,
+        clip_to_elements=...,
+        keep_layout_background=...,
+    ):  # -> conversion | int | float | complex | basestring | list[Unknown] | tuple[Unknown, ...] | dict[Unknown, Unknown]:
         """Layout.exportToAIX(out_aix, {resolution}, {image_quality},
         {compress_vector_graphics}, {image_compression},
         {jpeg_compression_quality}, {embed_fonts}, {embed_color_profile},
@@ -1209,9 +1271,16 @@ class Layout(_ObjectWithoutInitCall):
         value is True.
         """
         ...
-    
     @constants.maskargs
-    def exportToBMP(self, out_bmp, resolution=..., bmp_color_mode=..., bmp_image_compression=..., embed_color_profile=..., clip_to_elements=...): # -> conversion | int | float | complex | basestring | list[Unknown] | tuple[Unknown, ...] | dict[Unknown, Unknown]:
+    def exportToBMP(
+        self,
+        out_bmp,
+        resolution=...,
+        bmp_color_mode=...,
+        bmp_image_compression=...,
+        embed_color_profile=...,
+        clip_to_elements=...,
+    ):  # -> conversion | int | float | complex | basestring | list[Unknown] | tuple[Unknown, ...] | dict[Unknown, Unknown]:
         """Layout.exportToBMP(out_bmp, {resolution}, {bmp_color_mode},
         {bmp_image_compression}, {embed_color_profile}, {clip_to_elements})
 
@@ -1260,9 +1329,15 @@ class Layout(_ObjectWithoutInitCall):
         includes all layout elements. The default value is False.
         """
         ...
-    
     @constants.maskargs
-    def exportToEMF(self, out_emf, resolution=..., image_quality=..., output_as_image=..., clip_to_elements=...): # -> conversion | int | float | complex | basestring | list[Unknown] | tuple[Unknown, ...] | dict[Unknown, Unknown]:
+    def exportToEMF(
+        self,
+        out_emf,
+        resolution=...,
+        image_quality=...,
+        output_as_image=...,
+        clip_to_elements=...,
+    ):  # -> conversion | int | float | complex | basestring | list[Unknown] | tuple[Unknown, ...] | dict[Unknown, Unknown]:
         """Layout.exportToEMF(out_emf, {resolution}, {image_quality},
         {output_as_image}, {clip_to_elements})
 
@@ -1308,9 +1383,17 @@ class Layout(_ObjectWithoutInitCall):
         includes all layout elements. The default value is False.
         """
         ...
-    
     @constants.maskargs
-    def exportToEPS(self, out_eps, resolution=..., image_compression=..., image_quality=..., embed_fonts=..., output_as_image=..., clip_to_elements=...): # -> conversion | int | float | complex | basestring | list[Unknown] | tuple[Unknown, ...] | dict[Unknown, Unknown]:
+    def exportToEPS(
+        self,
+        out_eps,
+        resolution=...,
+        image_compression=...,
+        image_quality=...,
+        embed_fonts=...,
+        output_as_image=...,
+        clip_to_elements=...,
+    ):  # -> conversion | int | float | complex | basestring | list[Unknown] | tuple[Unknown, ...] | dict[Unknown, Unknown]:
         """Layout.exportToEPS(out_eps, {resolution}, {image_compression},
         {image_quality}, {embed_fonts}, {output_as_image}, {clip_to_elements})
 
@@ -1376,9 +1459,10 @@ class Layout(_ObjectWithoutInitCall):
         includes all layout elements. The default value is False.
         """
         ...
-    
     @constants.maskargs
-    def exportToGIF(self, out_gif, resolution=..., gif_color_mode=..., clip_to_elements=...): # -> conversion | int | float | complex | basestring | list[Unknown] | tuple[Unknown, ...] | dict[Unknown, Unknown]:
+    def exportToGIF(
+        self, out_gif, resolution=..., gif_color_mode=..., clip_to_elements=...
+    ):  # -> conversion | int | float | complex | basestring | list[Unknown] | tuple[Unknown, ...] | dict[Unknown, Unknown]:
         """Layout.exportToGIF(out_gif, {resolution}, {gif_color_mode},
         {clip_to_elements})
 
@@ -1410,9 +1494,16 @@ class Layout(_ObjectWithoutInitCall):
         includes all layout elements. The default value is False.
         """
         ...
-    
     @constants.maskargs
-    def exportToJPEG(self, out_jpg, resolution=..., jpeg_color_mode=..., jpeg_quality=..., embed_color_profile=..., clip_to_elements=...): # -> conversion | int | float | complex | basestring | list[Unknown] | tuple[Unknown, ...] | dict[Unknown, Unknown]:
+    def exportToJPEG(
+        self,
+        out_jpg,
+        resolution=...,
+        jpeg_color_mode=...,
+        jpeg_quality=...,
+        embed_color_profile=...,
+        clip_to_elements=...,
+    ):  # -> conversion | int | float | complex | basestring | list[Unknown] | tuple[Unknown, ...] | dict[Unknown, Unknown]:
         """Layout.exportToJPEG(out_jpg, {resolution}, {jpeg_color_mode},
         {jpeg_quality}, {embed_color_profile}, {clip_to_elements})
 
@@ -1459,12 +1550,24 @@ class Layout(_ObjectWithoutInitCall):
         includes all layout elements. The default value is False.
         """
         ...
-    
-    def exportToPAGX(self, out_pagx): # -> conversion | int | float | complex | basestring | list[Unknown] | tuple[Unknown, ...] | dict[Unknown, Unknown]:
-        ...
-    
+    def exportToPAGX(self, out_pagx): ...
     @constants.maskargs
-    def exportToPDF(self, out_pdf, resolution=..., image_quality=..., compress_vector_graphics=..., image_compression=..., embed_fonts=..., layers_attributes=..., georef_info=..., jpeg_compression_quality=..., clip_to_elements=..., output_as_image=..., embed_color_profile=..., pdf_accessibility=...): # -> conversion | int | float | complex | basestring | list[Unknown] | tuple[Unknown, ...] | dict[Unknown, Unknown]:
+    def exportToPDF(
+        self,
+        out_pdf,
+        resolution=...,
+        image_quality=...,
+        compress_vector_graphics=...,
+        image_compression=...,
+        embed_fonts=...,
+        layers_attributes=...,
+        georef_info=...,
+        jpeg_compression_quality=...,
+        clip_to_elements=...,
+        output_as_image=...,
+        embed_color_profile=...,
+        pdf_accessibility=...,
+    ):  # -> conversion | int | float | complex | basestring | list[Unknown] | tuple[Unknown, ...] | dict[Unknown, Unknown]:
         """Layout.exportToPDF(out_pdf, {resolution}, {image_quality},
         {compress_vector_graphics}, {image_compression}, {embed_fonts},
         {layers_attributes}, {georef_info}, {jpeg_compression_quality},
@@ -1585,9 +1688,16 @@ class Layout(_ObjectWithoutInitCall):
         Element Pane for each element. The default value is False.
         """
         ...
-    
     @constants.maskargs
-    def exportToPNG(self, out_png, resolution=..., color_mode=..., transparent_background=..., embed_color_profile=..., clip_to_elements=...): # -> conversion | int | float | complex | basestring | list[Unknown] | tuple[Unknown, ...] | dict[Unknown, Unknown]:
+    def exportToPNG(
+        self,
+        out_png,
+        resolution=...,
+        color_mode=...,
+        transparent_background=...,
+        embed_color_profile=...,
+        clip_to_elements=...,
+    ):  # -> conversion | int | float | complex | basestring | list[Unknown] | tuple[Unknown, ...] | dict[Unknown, Unknown]:
         """Layout.exportToPNG(out_png, {resolution}, {color_mode},
         {transparent_background}, {embed_color_profile}, {clip_to_elements})
 
@@ -1633,9 +1743,17 @@ class Layout(_ObjectWithoutInitCall):
         includes all layout elements. The default value is False.
         """
         ...
-    
     @constants.maskargs
-    def exportToSVG(self, out_svg, resolution=..., compress_to_svgz=..., image_quality=..., embed_fonts=..., output_as_image=..., clip_to_elements=...): # -> conversion | int | float | complex | basestring | list[Unknown] | tuple[Unknown, ...] | dict[Unknown, Unknown]:
+    def exportToSVG(
+        self,
+        out_svg,
+        resolution=...,
+        compress_to_svgz=...,
+        image_quality=...,
+        embed_fonts=...,
+        output_as_image=...,
+        clip_to_elements=...,
+    ):  # -> conversion | int | float | complex | basestring | list[Unknown] | tuple[Unknown, ...] | dict[Unknown, Unknown]:
         """Layout.exportToSVG(out_svg, {resolution}, {compress_to_svgz},
         {image_quality}, {embed_fonts}, {output_as_image}, {clip_to_elements})
 
@@ -1692,9 +1810,15 @@ class Layout(_ObjectWithoutInitCall):
         includes all layout elements. The default value is False.
         """
         ...
-    
     @constants.maskargs
-    def exportToTGA(self, out_tga, resolution=..., color_mode=..., transparent_background=..., clip_to_elements=...): # -> conversion | int | float | complex | basestring | list[Unknown] | tuple[Unknown, ...] | dict[Unknown, Unknown]:
+    def exportToTGA(
+        self,
+        out_tga,
+        resolution=...,
+        color_mode=...,
+        transparent_background=...,
+        clip_to_elements=...,
+    ):  # -> conversion | int | float | complex | basestring | list[Unknown] | tuple[Unknown, ...] | dict[Unknown, Unknown]:
         """Layout.exportToTGA(out_tga, {resolution}, {color_mode},
         {transparent_background}, {clip_to_elements})
 
@@ -1735,9 +1859,21 @@ class Layout(_ObjectWithoutInitCall):
         includes all layout elements. The default value is False.
         """
         ...
-    
     @constants.maskargs
-    def exportToTIFF(self, out_tif, resolution=..., color_mode=..., tiff_compression=..., jpeg_compression_quality=..., transparent_background=..., embed_color_profile=..., clip_to_elements=..., world_file=..., geoTIFF_tags=..., georef_mapframe=...): # -> conversion | int | float | complex | basestring | list[Unknown] | tuple[Unknown, ...] | dict[Unknown, Unknown]:
+    def exportToTIFF(
+        self,
+        out_tif,
+        resolution=...,
+        color_mode=...,
+        tiff_compression=...,
+        jpeg_compression_quality=...,
+        transparent_background=...,
+        embed_color_profile=...,
+        clip_to_elements=...,
+        world_file=...,
+        geoTIFF_tags=...,
+        georef_mapframe=...,
+    ):  # -> conversion | int | float | complex | basestring | list[Unknown] | tuple[Unknown, ...] | dict[Unknown, Unknown]:
         """Layout.exportToTIFF(out_tif, {resolution}, {color_mode},
         {tiff_compression}, {jpeg_compression_quality},
         {transparent_background}, {embed_color_profile}, {clip_to_elements},
@@ -1834,9 +1970,10 @@ class Layout(_ObjectWithoutInitCall):
         set to True. The default value is None.
         """
         ...
-    
     @constants.maskargs
-    def listElements(self, element_type=..., wildcard=...): # -> conversion | int | float | complex | basestring | list[Unknown] | tuple[Unknown, ...] | dict[Unknown, Unknown]:
+    def listElements(
+        self, element_type=..., wildcard=...
+    ):  # -> conversion | int | float | complex | basestring | list[Unknown] | tuple[Unknown, ...] | dict[Unknown, Unknown]:
         """Layout.listElements({element_type}, {wildcard})
 
 
@@ -1867,12 +2004,9 @@ class Layout(_ObjectWithoutInitCall):
         the results. The default value is None.
         """
         ...
-    
-    def __eq__(self, other) -> bool:
-        ...
-    
+    def __eq__(self, other) -> bool: ...
     @constants.maskargs
-    def getDefinition(self, cim_version): # -> Any | list[Unknown] | None:
+    def getDefinition(self, cim_version):  # -> Any | list[Unknown] | None:
         """Layout.getDefinition(cim_version)
 
 
@@ -1883,9 +2017,10 @@ class Layout(_ObjectWithoutInitCall):
         A string that represents the major version of the CIM.
         """
         ...
-    
     @constants.maskargs
-    def setDefinition(self, definition_object): # -> conversion | int | float | complex | basestring | list[Unknown] | tuple[Unknown, ...] | dict[Unknown, Unknown]:
+    def setDefinition(
+        self, definition_object
+    ):  # -> conversion | int | float | complex | basestring | list[Unknown] | tuple[Unknown, ...] | dict[Unknown, Unknown]:
         """Layout.setDefinition(definition_object)
 
 
@@ -1897,21 +2032,21 @@ class Layout(_ObjectWithoutInitCall):
         getDefinition.
         """
         ...
-    
-    def openView(self): # -> conversion | int | float | complex | basestring | list[Unknown] | tuple[Unknown, ...] | dict[Unknown, Unknown]:
+    def openView(
+        self,
+    ):  # -> conversion | int | float | complex | basestring | list[Unknown] | tuple[Unknown, ...] | dict[Unknown, Unknown]:
         """Layout.openView()
 
 
         Opens and activates a new layout view pane in the application.
         """
         ...
-    
-
 
 class LegendElement(_ObjectWithoutInitCall):
     """The LegendElement object provides access to properties that enable its positioning
-       and resizing on the page layout as well as modifying its title. It also provides
-       access to individual LegendItems."""
+    and resizing on the page layout as well as modifying its title. It also provides
+    access to individual LegendItems."""
+
     elementHeight = ...
     elementPositionX = ...
     elementPositionY = ...
@@ -1931,7 +2066,9 @@ class LegendElement(_ObjectWithoutInitCall):
     columnCount = ...
     fittingStrategy = ...
     items = ...
-    def removeItem(self, remove_item): # -> conversion | int | float | complex | basestring | list[Unknown] | tuple[Unknown, ...] | dict[Unknown, Unknown]:
+    def removeItem(
+        self, remove_item
+    ):  # -> conversion | int | float | complex | basestring | list[Unknown] | tuple[Unknown, ...] | dict[Unknown, Unknown]:
         """LegendElement.removeItem(remove_item)
 
 
@@ -1942,9 +2079,10 @@ class LegendElement(_ObjectWithoutInitCall):
         A reference to a LegendItem object representing the item to be removed.
         """
         ...
-    
     @constants.maskargs
-    def addItem(self, layer, add_position=...): # -> conversion | int | float | complex | basestring | list[Unknown] | tuple[Unknown, ...] | dict[Unknown, Unknown]:
+    def addItem(
+        self, layer, add_position=...
+    ):  # -> conversion | int | float | complex | basestring | list[Unknown] | tuple[Unknown, ...] | dict[Unknown, Unknown]:
         """LegendElement.addItem(layer, {add_position})
 
 
@@ -1966,9 +2104,10 @@ class LegendElement(_ObjectWithoutInitCall):
         stack.
         """
         ...
-    
     @constants.maskargs
-    def moveItem(self, reference_item, move_item, move_position=...): # -> conversion | int | float | complex | basestring | list[Unknown] | tuple[Unknown, ...] | dict[Unknown, Unknown]:
+    def moveItem(
+        self, reference_item, move_item, move_position=...
+    ):  # -> conversion | int | float | complex | basestring | list[Unknown] | tuple[Unknown, ...] | dict[Unknown, Unknown]:
         """LegendElement.moveItem(reference_item, move_item, {move_position})
 
 
@@ -1994,11 +2133,10 @@ class LegendElement(_ObjectWithoutInitCall):
         * BEFORE: Moves the legend item before or above the reference_item.
         """
         ...
-    
-
 
 class LegendItem(_ObjectWithoutInitCall):
     """LegendItem provides access to legend item level information in a LegendElement."""
+
     arrangement = ...
     patchHeight = ...
     patchWidth = ...
@@ -2009,16 +2147,18 @@ class LegendItem(_ObjectWithoutInitCall):
     name = ...
     column = ...
 
-
 class Report(_ObjectWithoutInitCall):
     """The Report object references a report in an ArcGIS Pro
-       project ( .aprx ).  It provides access to common properties like dataReference,
-       definitionQuery, and the export method."""
+    project ( .aprx ).  It provides access to common properties like dataReference,
+    definitionQuery, and the export method."""
+
     name = ...
     referenceDataSource = ...
     definitionQuery = ...
     metadata = ...
-    def setReferenceDataSource(self, data_source): # -> conversion | int | float | complex | basestring | list[Unknown] | tuple[Unknown, ...] | dict[Unknown, Unknown]:
+    def setReferenceDataSource(
+        self, data_source
+    ):  # -> conversion | int | float | complex | basestring | list[Unknown] | tuple[Unknown, ...] | dict[Unknown, Unknown]:
         """Report.setReferenceDataSource(data_source)
 
 
@@ -2031,8 +2171,20 @@ class Report(_ObjectWithoutInitCall):
         external data source. The default value is None.
         """
         ...
-    
-    def exportToPDF(self, out_pdf, page_range_type=..., page_range=..., starting_page_number=..., total_page_number=..., resolution=..., image_quality=..., compress_vector_graphics=..., image_compression=..., embed_fonts=..., jpeg_compression_quality=...): # -> conversion | int | float | complex | basestring | list[Unknown] | tuple[Unknown, ...] | dict[Unknown, Unknown]:
+    def exportToPDF(
+        self,
+        out_pdf,
+        page_range_type=...,
+        page_range=...,
+        starting_page_number=...,
+        total_page_number=...,
+        resolution=...,
+        image_quality=...,
+        compress_vector_graphics=...,
+        image_compression=...,
+        embed_fonts=...,
+        jpeg_compression_quality=...,
+    ):  # -> conversion | int | float | complex | basestring | list[Unknown] | tuple[Unknown, ...] | dict[Unknown, Unknown]:
         """Report.exportToPDF(out_pdf, {page_range_type}, {page_range},
         {starting_page_number}, {total_page_number}, {resolution},
         {image_quality}, {compress_vector_graphics}, {image_compression},
@@ -2141,8 +2293,9 @@ class Report(_ObjectWithoutInitCall):
         The default value is 80.
         """
         ...
-    
-    def listSections(self, wildcard=...): # -> conversion | int | float | complex | basestring | list[Unknown] | tuple[Unknown, ...] | dict[Unknown, Unknown]:
+    def listSections(
+        self, wildcard=...
+    ):  # -> conversion | int | float | complex | basestring | list[Unknown] | tuple[Unknown, ...] | dict[Unknown, Unknown]:
         """Report.listSections({wildcard})
 
 
@@ -2156,17 +2309,17 @@ class Report(_ObjectWithoutInitCall):
         limit the resulting list. The default value is None.
         """
         ...
-    
-    def openView(self): # -> conversion | int | float | complex | basestring | list[Unknown] | tuple[Unknown, ...] | dict[Unknown, Unknown]:
+    def openView(
+        self,
+    ):  # -> conversion | int | float | complex | basestring | list[Unknown] | tuple[Unknown, ...] | dict[Unknown, Unknown]:
         """Report.openView()
 
 
         Opens and activates a new report view pane in the application.
         """
         ...
-    
     @constants.maskargs
-    def getDefinition(self, cim_version): # -> Any | list[Unknown] | None:
+    def getDefinition(self, cim_version):  # -> Any | list[Unknown] | None:
         """Report.getDefinition(cim_version)
 
 
@@ -2177,9 +2330,10 @@ class Report(_ObjectWithoutInitCall):
         A string that represents the major version of the CIM.
         """
         ...
-    
     @constants.maskargs
-    def setDefinition(self, definition_object): # -> conversion | int | float | complex | basestring | list[Unknown] | tuple[Unknown, ...] | dict[Unknown, Unknown]:
+    def setDefinition(
+        self, definition_object
+    ):  # -> conversion | int | float | complex | basestring | list[Unknown] | tuple[Unknown, ...] | dict[Unknown, Unknown]:
         """Report.setDefinition(definition_object)
 
 
@@ -2191,19 +2345,20 @@ class Report(_ObjectWithoutInitCall):
         getDefinition.
         """
         ...
-    
-
 
 class ReportSection(_ObjectWithoutInitCall):
     """The ReportSection object references a reportSection in a Report.
-       It provides access to common properties like dataReference and
-       definitionQuery."""
+    It provides access to common properties like dataReference and
+    definitionQuery."""
+
     name = ...
     referenceDataSource = ...
     definitionQuery = ...
     visible = ...
     type = ...
-    def setReferenceDataSource(self, data_source): # -> conversion | int | float | complex | basestring | list[Unknown] | tuple[Unknown, ...] | dict[Unknown, Unknown]:
+    def setReferenceDataSource(
+        self, data_source
+    ):  # -> conversion | int | float | complex | basestring | list[Unknown] | tuple[Unknown, ...] | dict[Unknown, Unknown]:
         """ReportSection.setReferenceDataSource(data_source)
 
 
@@ -2216,8 +2371,12 @@ class ReportSection(_ObjectWithoutInitCall):
         external data source. The default value is None.
         """
         ...
-    
-    def setRelatedReportSource(self, related_report_data_source, related_report_section_name, relate_or_relationship_class_name): # -> conversion | int | float | complex | basestring | list[Unknown] | tuple[Unknown, ...] | dict[Unknown, Unknown]:
+    def setRelatedReportSource(
+        self,
+        related_report_data_source,
+        related_report_section_name,
+        relate_or_relationship_class_name,
+    ):  # -> conversion | int | float | complex | basestring | list[Unknown] | tuple[Unknown, ...] | dict[Unknown, Unknown]:
         """ReportSection.setRelatedReportSource(related_report_data_source,
         related_report_section_name, relate_or_relationship_class_name)
 
@@ -2240,21 +2399,20 @@ class ReportSection(_ObjectWithoutInitCall):
         None.
         """
         ...
-    
-
 
 class ReportLayoutSection(_ObjectWithoutInitCall):
     """The ReportLayoutSection object references a reportLayoutSection in a Report.
-       It provides access to common properties like name and visibility."""
+    It provides access to common properties like name and visibility."""
+
     name = ...
     visible = ...
     type = ...
     URI = ...
 
-
 class Map(_ObjectWithoutInitCall):
     """The Map is the primary object for referencing and managing layers and
-       tables within an ArcGIS Pro project."""
+    tables within an ArcGIS Pro project."""
+
     defaultCamera = ...
     defaultView = ...
     mapType = ...
@@ -2266,7 +2424,9 @@ class Map(_ObjectWithoutInitCall):
     URI = ...
     transformations = ...
     @constants.maskargs
-    def addLayer(self, add_layer_or_layerfile, add_position=...): # -> conversion | int | float | complex | basestring | list[Unknown] | tuple[Unknown, ...] | dict[Unknown, Unknown]:
+    def addLayer(
+        self, add_layer_or_layerfile, add_position=...
+    ):  # -> conversion | int | float | complex | basestring | list[Unknown] | tuple[Unknown, ...] | dict[Unknown, Unknown]:
         """Map.addLayer(add_layer_or_layerfile, {add_position})
 
 
@@ -2292,9 +2452,10 @@ class Map(_ObjectWithoutInitCall):
         stack.
         """
         ...
-    
     @constants.maskargs
-    def addLayerToGroup(self, target_group_layer, add_layer_or_layerfile, add_position=...): # -> conversion | int | float | complex | basestring | list[Unknown] | tuple[Unknown, ...] | dict[Unknown, Unknown]:
+    def addLayerToGroup(
+        self, target_group_layer, add_layer_or_layerfile, add_position=...
+    ):  # -> conversion | int | float | complex | basestring | list[Unknown] | tuple[Unknown, ...] | dict[Unknown, Unknown]:
         """Map.addLayerToGroup(target_group_layer, add_layer_or_layerfile,
         {add_position})
 
@@ -2325,8 +2486,9 @@ class Map(_ObjectWithoutInitCall):
         * BOTTOM: Places the layer at the bottom of the TOC layer stack.
         """
         ...
-    
-    def addTable(self, add_table): # -> conversion | int | float | complex | basestring | list[Unknown] | tuple[Unknown, ...] | dict[Unknown, Unknown]:
+    def addTable(
+        self, add_table
+    ):  # -> conversion | int | float | complex | basestring | list[Unknown] | tuple[Unknown, ...] | dict[Unknown, Unknown]:
         """Map.addTable(add_table)
 
 
@@ -2337,8 +2499,9 @@ class Map(_ObjectWithoutInitCall):
         A reference to a Table object representing the table  to be added.
         """
         ...
-    
-    def addTableToGroup(self, target_group_layer, add_table): # -> conversion | int | float | complex | basestring | list[Unknown] | tuple[Unknown, ...] | dict[Unknown, Unknown]:
+    def addTableToGroup(
+        self, target_group_layer, add_table
+    ):  # -> conversion | int | float | complex | basestring | list[Unknown] | tuple[Unknown, ...] | dict[Unknown, Unknown]:
         """Map.addTableToGroup(target_group_layer, add_table)
 
 
@@ -2354,17 +2517,19 @@ class Map(_ObjectWithoutInitCall):
         A reference to a Table object.
         """
         ...
-    
-    def clearSelection(self): # -> conversion | int | float | complex | basestring | list[Unknown] | tuple[Unknown, ...] | dict[Unknown, Unknown]:
+    def clearSelection(
+        self,
+    ):  # -> conversion | int | float | complex | basestring | list[Unknown] | tuple[Unknown, ...] | dict[Unknown, Unknown]:
         """Map.clearSelection()
 
 
         Clears the selection for all layers and tables in a map.
         """
         ...
-    
     @constants.maskargs
-    def insertLayer(self, reference_layer, insert_layer_or_layerfile, insert_position=...): # -> conversion | int | float | complex | basestring | list[Unknown] | tuple[Unknown, ...] | dict[Unknown, Unknown]:
+    def insertLayer(
+        self, reference_layer, insert_layer_or_layerfile, insert_position=...
+    ):  # -> conversion | int | float | complex | basestring | list[Unknown] | tuple[Unknown, ...] | dict[Unknown, Unknown]:
         """Map.insertLayer(reference_layer, insert_layer_or_layerfile,
         {insert_position})
 
@@ -2392,8 +2557,9 @@ class Map(_ObjectWithoutInitCall):
         * BEFORE: Inserts the new layer before or above the reference layer.
         """
         ...
-    
-    def listBookmarks(self, wildcard=...): # -> conversion | int | float | complex | basestring | list[Unknown] | tuple[Unknown, ...] | dict[Unknown, Unknown]:
+    def listBookmarks(
+        self, wildcard=...
+    ):  # -> conversion | int | float | complex | basestring | list[Unknown] | tuple[Unknown, ...] | dict[Unknown, Unknown]:
         """Map.listBookmarks({wildcard})
 
 
@@ -2406,8 +2572,9 @@ class Map(_ObjectWithoutInitCall):
         limit the resulting list. The default value is None.
         """
         ...
-    
-    def listBrokenDataSources(self): # -> conversion | int | float | complex | basestring | list[Unknown] | tuple[Unknown, ...] | dict[Unknown, Unknown]:
+    def listBrokenDataSources(
+        self,
+    ):  # -> conversion | int | float | complex | basestring | list[Unknown] | tuple[Unknown, ...] | dict[Unknown, Unknown]:
         """Map.listBrokenDataSources()
 
 
@@ -2415,8 +2582,9 @@ class Map(_ObjectWithoutInitCall):
         connections to their original source data within a map.
         """
         ...
-    
-    def listLayers(self, wildcard=...): # -> conversion | int | float | complex | basestring | list[Unknown] | tuple[Unknown, ...] | dict[Unknown, Unknown]:
+    def listLayers(
+        self, wildcard=...
+    ):  # -> conversion | int | float | complex | basestring | list[Unknown] | tuple[Unknown, ...] | dict[Unknown, Unknown]:
         """Map.listLayers({wildcard})
 
 
@@ -2429,8 +2597,9 @@ class Map(_ObjectWithoutInitCall):
         limit the resulting list. The default value is None.
         """
         ...
-    
-    def listTables(self, wildcard=...): # -> conversion | int | float | complex | basestring | list[Unknown] | tuple[Unknown, ...] | dict[Unknown, Unknown]:
+    def listTables(
+        self, wildcard=...
+    ):  # -> conversion | int | float | complex | basestring | list[Unknown] | tuple[Unknown, ...] | dict[Unknown, Unknown]:
         """Map.listTables({wildcard})
 
 
@@ -2443,8 +2612,9 @@ class Map(_ObjectWithoutInitCall):
         the resulting list. The default value is None.
         """
         ...
-    
-    def addBasemap(self, basemap_name): # -> conversion | int | float | complex | basestring | list[Unknown] | tuple[Unknown, ...] | dict[Unknown, Unknown]:
+    def addBasemap(
+        self, basemap_name
+    ):  # -> conversion | int | float | complex | basestring | list[Unknown] | tuple[Unknown, ...] | dict[Unknown, Unknown]:
         """Map.addBasemap(basemap_name)
 
 
@@ -2456,9 +2626,10 @@ class Map(_ObjectWithoutInitCall):
         The name of the basemap as it appears in the basemap gallery.
         """
         ...
-    
     @constants.maskargs
-    def addDataFromPath(self, data_path, web_service_type=..., custom_parameters=...): # -> conversion | int | float | complex | basestring | list[Unknown] | tuple[Unknown, ...] | dict[Unknown, Unknown]:
+    def addDataFromPath(
+        self, data_path, web_service_type=..., custom_parameters=...
+    ):  # -> conversion | int | float | complex | basestring | list[Unknown] | tuple[Unknown, ...] | dict[Unknown, Unknown]:
         """Map.addDataFromPath(data_path, {web_service_type}, {custom_parameters})
 
 
@@ -2496,9 +2667,10 @@ class Map(_ObjectWithoutInitCall):
         is None.
         """
         ...
-    
     @constants.maskargs
-    def moveLayer(self, reference_layer, move_layer, insert_position=...): # -> conversion | int | float | complex | basestring | list[Unknown] | tuple[Unknown, ...] | dict[Unknown, Unknown]:
+    def moveLayer(
+        self, reference_layer, move_layer, insert_position=...
+    ):  # -> conversion | int | float | complex | basestring | list[Unknown] | tuple[Unknown, ...] | dict[Unknown, Unknown]:
         """Map.moveLayer(reference_layer, move_layer, {insert_position})
 
 
@@ -2524,8 +2696,9 @@ class Map(_ObjectWithoutInitCall):
         * BEFORE: Moves the layer before or above the reference layer.
         """
         ...
-    
-    def removeLayer(self, remove_layer): # -> conversion | int | float | complex | basestring | list[Unknown] | tuple[Unknown, ...] | dict[Unknown, Unknown]:
+    def removeLayer(
+        self, remove_layer
+    ):  # -> conversion | int | float | complex | basestring | list[Unknown] | tuple[Unknown, ...] | dict[Unknown, Unknown]:
         """Map.removeLayer(remove_layer)
 
 
@@ -2536,8 +2709,9 @@ class Map(_ObjectWithoutInitCall):
         A reference to a Layer object representing the layer to be removed.
         """
         ...
-    
-    def removeTable(self, remove_table): # -> conversion | int | float | complex | basestring | list[Unknown] | tuple[Unknown, ...] | dict[Unknown, Unknown]:
+    def removeTable(
+        self, remove_table
+    ):  # -> conversion | int | float | complex | basestring | list[Unknown] | tuple[Unknown, ...] | dict[Unknown, Unknown]:
         """Map.removeTable(remove_table)
 
 
@@ -2548,8 +2722,14 @@ class Map(_ObjectWithoutInitCall):
         A reference to a Table object representing the layer to be removed.
         """
         ...
-    
-    def updateConnectionProperties(self, current_connection_info, new_connection_info, auto_update_joins_and_relates=..., validate=..., ignore_case=...): # -> conversion | int | float | complex | basestring | list[Unknown] | tuple[Unknown, ...] | dict[Unknown, Unknown]:
+    def updateConnectionProperties(
+        self,
+        current_connection_info,
+        new_connection_info,
+        auto_update_joins_and_relates=...,
+        validate=...,
+        ignore_case=...,
+    ):  # -> conversion | int | float | complex | basestring | list[Unknown] | tuple[Unknown, ...] | dict[Unknown, Unknown]:
         """Map.updateConnectionProperties(current_connection_info,
         new_connection_info, {auto_update_joins_and_relates}, {validate},
         {ignore_case})
@@ -2593,8 +2773,9 @@ class Map(_ObjectWithoutInitCall):
         ignore_case to True. The default value is False.
         """
         ...
-    
-    def getWebLayerSharingDraft(self, server_type, service_type, service_name, layers_and_tables=...): # -> TileSharingDraft | FeatureSharingDraft | MapImageSharingDraft:
+    def getWebLayerSharingDraft(
+        self, server_type, service_type, service_name, layers_and_tables=...
+    ):  # -> TileSharingDraft | FeatureSharingDraft | MapImageSharingDraft:
         """Map.getWebLayerSharingDraft(server_type, service_type, service_name,
         {layers_and_tables})
 
@@ -2647,12 +2828,9 @@ class Map(_ObjectWithoutInitCall):
         relationship class will be published.
         """
         ...
-    
-    def __eq__(self, other) -> bool:
-        ...
-    
+    def __eq__(self, other) -> bool: ...
     @constants.maskargs
-    def getDefinition(self, cim_version): # -> Any | list[Unknown] | None:
+    def getDefinition(self, cim_version):  # -> Any | list[Unknown] | None:
         """Map.getDefinition(cim_version)
 
 
@@ -2663,9 +2841,10 @@ class Map(_ObjectWithoutInitCall):
         A string that represents the major version of the CIM.
         """
         ...
-    
     @constants.maskargs
-    def setDefinition(self, definition_object): # -> conversion | int | float | complex | basestring | list[Unknown] | tuple[Unknown, ...] | dict[Unknown, Unknown]:
+    def setDefinition(
+        self, definition_object
+    ):  # -> conversion | int | float | complex | basestring | list[Unknown] | tuple[Unknown, ...] | dict[Unknown, Unknown]:
         """Map.setDefinition(definition_object)
 
 
@@ -2677,8 +2856,9 @@ class Map(_ObjectWithoutInitCall):
         getDefinition.
         """
         ...
-    
-    def exportToMAPX(self, out_mapx): # -> conversion | int | float | complex | basestring | list[Unknown] | tuple[Unknown, ...] | dict[Unknown, Unknown]:
+    def exportToMAPX(
+        self, out_mapx
+    ):  # -> conversion | int | float | complex | basestring | list[Unknown] | tuple[Unknown, ...] | dict[Unknown, Unknown]:
         """Map.exportToMAPX(out_mapx)
 
 
@@ -2689,9 +2869,10 @@ class Map(_ObjectWithoutInitCall):
         A string used to save a Map to a map file (.mapx).
         """
         ...
-    
     @constants.maskargs
-    def createGroupLayer(self, name, group_layer=...): # -> conversion | int | float | complex | basestring | list[Unknown] | tuple[Unknown, ...] | dict[Unknown, Unknown]:
+    def createGroupLayer(
+        self, name, group_layer=...
+    ):  # -> conversion | int | float | complex | basestring | list[Unknown] | tuple[Unknown, ...] | dict[Unknown, Unknown]:
         """Map.createGroupLayer(name, {group_layer})
 
 
@@ -2707,16 +2888,18 @@ class Map(_ObjectWithoutInitCall):
         group layer. Use this parameter to create nested group layers.
         """
         ...
-    
-    def openView(self): # -> conversion | int | float | complex | basestring | list[Unknown] | tuple[Unknown, ...] | dict[Unknown, Unknown]:
+    def openView(
+        self,
+    ):  # -> conversion | int | float | complex | basestring | list[Unknown] | tuple[Unknown, ...] | dict[Unknown, Unknown]:
         """Map.openView()
 
 
         Opens and activates a new map view pane in the application.
         """
         ...
-    
-    def updateTransformations(self, transformations): # -> conversion | int | float | complex | basestring | list[Unknown] | tuple[Unknown, ...] | dict[Unknown, Unknown]:
+    def updateTransformations(
+        self, transformations
+    ):  # -> conversion | int | float | complex | basestring | list[Unknown] | tuple[Unknown, ...] | dict[Unknown, Unknown]:
         """Map.updateTransformations(transformations)
 
 
@@ -2732,13 +2915,12 @@ class Map(_ObjectWithoutInitCall):
         * 3D: Vertical transformations, if any exist
         """
         ...
-    
-
 
 class MapFrame(_ObjectWithoutInitCall):
     """The MapFrame object is a page layout element that is used to display the
-       contents of a map on a layout.      It also provides access to page size
-       and positioning, basic navigation methods,  and export options."""
+    contents of a map on a layout.      It also provides access to page size
+    and positioning, basic navigation methods,  and export options."""
+
     camera = ...
     elementHeight = ...
     elementPositionX = ...
@@ -2752,7 +2934,15 @@ class MapFrame(_ObjectWithoutInitCall):
     visible = ...
     time = ...
     @constants.maskargs
-    def exportToBMP(self, out_bmp, resolution=..., world_file=..., bmp_color_mode=..., bmp_image_compression=..., embed_color_profile=...): # -> conversion | int | float | complex | basestring | list[Unknown] | tuple[Unknown, ...] | dict[Unknown, Unknown]:
+    def exportToBMP(
+        self,
+        out_bmp,
+        resolution=...,
+        world_file=...,
+        bmp_color_mode=...,
+        bmp_image_compression=...,
+        embed_color_profile=...,
+    ):  # -> conversion | int | float | complex | basestring | list[Unknown] | tuple[Unknown, ...] | dict[Unknown, Unknown]:
         """MapFrame.exportToBMP(out_bmp, {resolution}, {world_file},
         {bmp_color_mode}, {bmp_image_compression}, {embed_color_profile})
 
@@ -2802,9 +2992,10 @@ class MapFrame(_ObjectWithoutInitCall):
         metadata. The default value is True.
         """
         ...
-    
     @constants.maskargs
-    def exportToEMF(self, out_emf, resolution=..., image_quality=..., output_as_image=...): # -> conversion | int | float | complex | basestring | list[Unknown] | tuple[Unknown, ...] | dict[Unknown, Unknown]:
+    def exportToEMF(
+        self, out_emf, resolution=..., image_quality=..., output_as_image=...
+    ):  # -> conversion | int | float | complex | basestring | list[Unknown] | tuple[Unknown, ...] | dict[Unknown, Unknown]:
         """MapFrame.exportToEMF(out_emf, {resolution}, {image_quality},
         {output_as_image})
 
@@ -2845,9 +3036,16 @@ class MapFrame(_ObjectWithoutInitCall):
         output. The default value is False.
         """
         ...
-    
     @constants.maskargs
-    def exportToEPS(self, out_eps, resolution=..., image_compression=..., image_quality=..., embed_fonts=..., output_as_image=...): # -> conversion | int | float | complex | basestring | list[Unknown] | tuple[Unknown, ...] | dict[Unknown, Unknown]:
+    def exportToEPS(
+        self,
+        out_eps,
+        resolution=...,
+        image_compression=...,
+        image_quality=...,
+        embed_fonts=...,
+        output_as_image=...,
+    ):  # -> conversion | int | float | complex | basestring | list[Unknown] | tuple[Unknown, ...] | dict[Unknown, Unknown]:
         """MapFrame.exportToEPS(out_eps, {resolution}, {image_compression},
         {image_quality}, {embed_fonts}, {output_as_image})
 
@@ -2908,9 +3106,10 @@ class MapFrame(_ObjectWithoutInitCall):
         output. The default value is False.
         """
         ...
-    
     @constants.maskargs
-    def exportToGIF(self, out_gif, resolution=..., world_file=..., gif_color_mode=...): # -> conversion | int | float | complex | basestring | list[Unknown] | tuple[Unknown, ...] | dict[Unknown, Unknown]:
+    def exportToGIF(
+        self, out_gif, resolution=..., world_file=..., gif_color_mode=...
+    ):  # -> conversion | int | float | complex | basestring | list[Unknown] | tuple[Unknown, ...] | dict[Unknown, Unknown]:
         """MapFrame.exportToGIF(out_gif, {resolution}, {world_file},
         {gif_color_mode})
 
@@ -2943,9 +3142,16 @@ class MapFrame(_ObjectWithoutInitCall):
         * 8-BIT_PALETTE: 8-bit adaptive palette
         """
         ...
-    
     @constants.maskargs
-    def exportToJPEG(self, out_jpg, resolution=..., world_file=..., jpeg_color_mode=..., jpeg_quality=..., embed_color_profile=...): # -> conversion | int | float | complex | basestring | list[Unknown] | tuple[Unknown, ...] | dict[Unknown, Unknown]:
+    def exportToJPEG(
+        self,
+        out_jpg,
+        resolution=...,
+        world_file=...,
+        jpeg_color_mode=...,
+        jpeg_quality=...,
+        embed_color_profile=...,
+    ):  # -> conversion | int | float | complex | basestring | list[Unknown] | tuple[Unknown, ...] | dict[Unknown, Unknown]:
         """MapFrame.exportToJPEG(out_jpg, {resolution}, {world_file},
         {jpeg_color_mode}, {jpeg_quality}, {embed_color_profile})
 
@@ -2995,9 +3201,21 @@ class MapFrame(_ObjectWithoutInitCall):
         metadata. The default value is True.
         """
         ...
-    
     @constants.maskargs
-    def exportToPDF(self, out_pdf, resolution=..., image_quality=..., compress_vector_graphics=..., image_compression=..., embed_fonts=..., layers_attributes=..., georef_info=..., jpeg_compression_quality=..., output_as_image=..., embed_color_profile=...): # -> conversion | int | float | complex | basestring | list[Unknown] | tuple[Unknown, ...] | dict[Unknown, Unknown]:
+    def exportToPDF(
+        self,
+        out_pdf,
+        resolution=...,
+        image_quality=...,
+        compress_vector_graphics=...,
+        image_compression=...,
+        embed_fonts=...,
+        layers_attributes=...,
+        georef_info=...,
+        jpeg_compression_quality=...,
+        output_as_image=...,
+        embed_color_profile=...,
+    ):  # -> conversion | int | float | complex | basestring | list[Unknown] | tuple[Unknown, ...] | dict[Unknown, Unknown]:
         """MapFrame.exportToPDF(out_pdf, {resolution}, {image_quality},
         {compress_vector_graphics}, {image_compression}, {embed_fonts},
         {layers_attributes}, {georef_info}, {jpeg_compression_quality},
@@ -3101,9 +3319,15 @@ class MapFrame(_ObjectWithoutInitCall):
         metadata. The default value is True.
         """
         ...
-    
     @constants.maskargs
-    def exportToPNG(self, out_png, resolution=..., world_file=..., color_mode=..., embed_color_profile=...): # -> conversion | int | float | complex | basestring | list[Unknown] | tuple[Unknown, ...] | dict[Unknown, Unknown]:
+    def exportToPNG(
+        self,
+        out_png,
+        resolution=...,
+        world_file=...,
+        color_mode=...,
+        embed_color_profile=...,
+    ):  # -> conversion | int | float | complex | basestring | list[Unknown] | tuple[Unknown, ...] | dict[Unknown, Unknown]:
         """MapFrame.exportToPNG(out_png, {resolution}, {world_file}, {color_mode},
         {embed_color_profile})
 
@@ -3147,9 +3371,16 @@ class MapFrame(_ObjectWithoutInitCall):
         metadata. The default value is True.
         """
         ...
-    
     @constants.maskargs
-    def exportToSVG(self, out_svg, resolution=..., compress_to_svgz=..., image_quality=..., embed_fonts=..., output_as_image=...): # -> conversion | int | float | complex | basestring | list[Unknown] | tuple[Unknown, ...] | dict[Unknown, Unknown]:
+    def exportToSVG(
+        self,
+        out_svg,
+        resolution=...,
+        compress_to_svgz=...,
+        image_quality=...,
+        embed_fonts=...,
+        output_as_image=...,
+    ):  # -> conversion | int | float | complex | basestring | list[Unknown] | tuple[Unknown, ...] | dict[Unknown, Unknown]:
         """MapFrame.exportToSVG(out_svg, {resolution}, {compress_to_svgz},
         {image_quality}, {embed_fonts}, {output_as_image})
 
@@ -3201,9 +3432,10 @@ class MapFrame(_ObjectWithoutInitCall):
         output. The default value is False.
         """
         ...
-    
     @constants.maskargs
-    def exportToTGA(self, out_tga, resolution=..., world_file=..., color_mode=...): # -> conversion | int | float | complex | basestring | list[Unknown] | tuple[Unknown, ...] | dict[Unknown, Unknown]:
+    def exportToTGA(
+        self, out_tga, resolution=..., world_file=..., color_mode=...
+    ):  # -> conversion | int | float | complex | basestring | list[Unknown] | tuple[Unknown, ...] | dict[Unknown, Unknown]:
         """MapFrame.exportToTGA(out_tga, {resolution}, {world_file}, {color_mode})
 
 
@@ -3239,9 +3471,18 @@ class MapFrame(_ObjectWithoutInitCall):
         * 24-BIT_TRUE_COLOR: 24-bit true color
         """
         ...
-    
     @constants.maskargs
-    def exportToTIFF(self, out_tif, resolution=..., world_file=..., color_mode=..., tiff_compression=..., geoTIFF_tags=..., jpeg_compression_quality=..., embed_color_profile=...): # -> conversion | int | float | complex | basestring | list[Unknown] | tuple[Unknown, ...] | dict[Unknown, Unknown]:
+    def exportToTIFF(
+        self,
+        out_tif,
+        resolution=...,
+        world_file=...,
+        color_mode=...,
+        tiff_compression=...,
+        geoTIFF_tags=...,
+        jpeg_compression_quality=...,
+        embed_color_profile=...,
+    ):  # -> conversion | int | float | complex | basestring | list[Unknown] | tuple[Unknown, ...] | dict[Unknown, Unknown]:
         """MapFrame.exportToTIFF(out_tif, {resolution}, {world_file}, {color_mode},
         {tiff_compression}, {geoTIFF_tags}, {jpeg_compression_quality},
         {embed_color_profile})
@@ -3325,8 +3566,9 @@ class MapFrame(_ObjectWithoutInitCall):
         metadata. The default value is True.
         """
         ...
-    
-    def getLayerExtent(self, layer, selection_only=..., symbolized_extent=...): # -> conversion | int | float | complex | basestring | list[Unknown] | tuple[Unknown, ...] | dict[Unknown, Unknown]:
+    def getLayerExtent(
+        self, layer, selection_only=..., symbolized_extent=...
+    ):  # -> conversion | int | float | complex | basestring | list[Unknown] | tuple[Unknown, ...] | dict[Unknown, Unknown]:
         """MapFrame.getLayerExtent(layer, {selection_only}, {symbolized_extent})
 
 
@@ -3350,8 +3592,9 @@ class MapFrame(_ObjectWithoutInitCall):
         the data frame's boundary. The default value is True.
         """
         ...
-    
-    def panToExtent(self, extent): # -> conversion | int | float | complex | basestring | list[Unknown] | tuple[Unknown, ...] | dict[Unknown, Unknown]:
+    def panToExtent(
+        self, extent
+    ):  # -> conversion | int | float | complex | basestring | list[Unknown] | tuple[Unknown, ...] | dict[Unknown, Unknown]:
         """MapFrame.panToExtent(extent)
 
 
@@ -3363,8 +3606,9 @@ class MapFrame(_ObjectWithoutInitCall):
         A geoprocessing Extent object.
         """
         ...
-    
-    def zoomToAllLayers(self, selection_only=..., symbolized_extent=...): # -> conversion | int | float | complex | basestring | list[Unknown] | tuple[Unknown, ...] | dict[Unknown, Unknown]:
+    def zoomToAllLayers(
+        self, selection_only=..., symbolized_extent=...
+    ):  # -> conversion | int | float | complex | basestring | list[Unknown] | tuple[Unknown, ...] | dict[Unknown, Unknown]:
         """MapFrame.zoomToAllLayers({selection_only}, {symbolized_extent})
 
 
@@ -3385,8 +3629,9 @@ class MapFrame(_ObjectWithoutInitCall):
         the map frame's boundary. The default value is True.
         """
         ...
-    
-    def zoomToBookmark(self, bookmark): # -> conversion | int | float | complex | basestring | list[Unknown] | tuple[Unknown, ...] | dict[Unknown, Unknown]:
+    def zoomToBookmark(
+        self, bookmark
+    ):  # -> conversion | int | float | complex | basestring | list[Unknown] | tuple[Unknown, ...] | dict[Unknown, Unknown]:
         """MapFrame.zoomToBookmark(bookmark)
 
 
@@ -3398,9 +3643,18 @@ class MapFrame(_ObjectWithoutInitCall):
         A reference to a Bookmark object.
         """
         ...
-    
     @constants.maskargs
-    def exportToAIX(self, out_aix, resolution=..., image_quality=..., compress_vector_graphics=..., image_compression=..., jpeg_compression_quality=..., embed_fonts=..., embed_color_profile=...): # -> conversion | int | float | complex | basestring | list[Unknown] | tuple[Unknown, ...] | dict[Unknown, Unknown]:
+    def exportToAIX(
+        self,
+        out_aix,
+        resolution=...,
+        image_quality=...,
+        compress_vector_graphics=...,
+        image_compression=...,
+        jpeg_compression_quality=...,
+        embed_fonts=...,
+        embed_color_profile=...,
+    ):  # -> conversion | int | float | complex | basestring | list[Unknown] | tuple[Unknown, ...] | dict[Unknown, Unknown]:
         """MapFrame.exportToAIX(out_aix, {resolution}, {image_quality},
         {compress_vector_graphics}, {image_compression},
         {jpeg_compression_quality}, {embed_fonts}, {embed_color_profile})
@@ -3481,11 +3735,7 @@ class MapFrame(_ObjectWithoutInitCall):
         metadata. The default value is True.
         """
         ...
-    
-    def __eq__(self, other) -> bool:
-        ...
-    
-
+    def __eq__(self, other) -> bool: ...
 
 class MapSurroundElement(_ObjectWithoutInitCall):
     elementPositionX = ...
@@ -3498,9 +3748,9 @@ class MapSurroundElement(_ObjectWithoutInitCall):
     type = ...
     visible = ...
 
-
 class MapTime(_ObjectWithoutInitCall):
     """The MapTime object is a Map object with time settings."""
+
     currentTimeStart = ...
     currentTimeEnd = ...
     currentTimeSpan = ...
@@ -3510,7 +3760,9 @@ class MapTime(_ObjectWithoutInitCall):
     isTimeEnabled = ...
     timeInclusion = ...
     @constants.maskargs
-    def timeStep(self, reference_time, interval, interval_units): # -> conversion | int | float | complex | basestring | list[Unknown] | tuple[Unknown, ...] | dict[Unknown, Unknown]:
+    def timeStep(
+        self, reference_time, interval, interval_units
+    ):  # -> conversion | int | float | complex | basestring | list[Unknown] | tuple[Unknown, ...] | dict[Unknown, Unknown]:
         """MapTime.timeStep(reference_time, interval, interval_units)
 
 
@@ -3554,9 +3806,10 @@ class MapTime(_ObjectWithoutInitCall):
         * MILLISECONDS: Milliseconds
         """
         ...
-    
     @constants.maskargs
-    def setTimeInclusion(self, time_inclusion): # -> conversion | int | float | complex | basestring | list[Unknown] | tuple[Unknown, ...] | dict[Unknown, Unknown]:
+    def setTimeInclusion(
+        self, time_inclusion
+    ):  # -> conversion | int | float | complex | basestring | list[Unknown] | tuple[Unknown, ...] | dict[Unknown, Unknown]:
         """MapTime.setTimeInclusion(time_inclusion)
 
 
@@ -3576,13 +3829,12 @@ class MapTime(_ObjectWithoutInitCall):
         * EXCLUDE_START_AND_END: Exclude both start and end times.
         """
         ...
-    
-
 
 class PictureElement(_ObjectWithoutInitCall):
     """Provides access to picture properties that enable the repositioning of a
-       picture on the page layout as well as getting and setting its data
-       source."""
+    picture on the page layout as well as getting and setting its data
+    source."""
+
     elementHeight = ...
     elementPositionX = ...
     elementPositionY = ...
@@ -3593,7 +3845,6 @@ class PictureElement(_ObjectWithoutInitCall):
     sourceImage = ...
     type = ...
     visible = ...
-
 
 class Table(_ObjectWithoutInitCall):
     """Table(table_data_source)
@@ -3608,6 +3859,7 @@ class Table(_ObjectWithoutInitCall):
     table.  For SDE tables, the workspace path is the path to an SDE
     connection file.
     """
+
     connectionProperties = ...
     dataSource = ...
     definitionQuery = ...
@@ -3616,16 +3868,19 @@ class Table(_ObjectWithoutInitCall):
     longName = ...
     metadata = ...
     URI = ...
-    def getSelectionSet(self): # -> conversion | int | float | complex | basestring | list[Unknown] | tuple[Unknown, ...] | dict[Unknown, Unknown]:
+    def getSelectionSet(
+        self,
+    ):  # -> conversion | int | float | complex | basestring | list[Unknown] | tuple[Unknown, ...] | dict[Unknown, Unknown]:
         """Table.getSelectionSet()
 
 
         Returns a table's selection as a Python set of Object IDs.
         """
         ...
-    
     @constants.maskargs
-    def setSelectionSet(self, oidList=..., method=...): # -> conversion | int | float | complex | basestring | list[Unknown] | tuple[Unknown, ...] | dict[Unknown, Unknown]:
+    def setSelectionSet(
+        self, oidList=..., method=...
+    ):  # -> conversion | int | float | complex | basestring | list[Unknown] | tuple[Unknown, ...] | dict[Unknown, Unknown]:
         """Table.setSelectionSet({oidList}, {method})
 
 
@@ -3656,8 +3911,14 @@ class Table(_ObjectWithoutInitCall):
         the oidList.
         """
         ...
-    
-    def updateConnectionProperties(self, current_connection_info, new_connection_info, auto_update_joins_and_relates=..., validate=..., ignore_case=...): # -> conversion | int | float | complex | basestring | list[Unknown] | tuple[Unknown, ...] | dict[Unknown, Unknown]:
+    def updateConnectionProperties(
+        self,
+        current_connection_info,
+        new_connection_info,
+        auto_update_joins_and_relates=...,
+        validate=...,
+        ignore_case=...,
+    ):  # -> conversion | int | float | complex | basestring | list[Unknown] | tuple[Unknown, ...] | dict[Unknown, Unknown]:
         """Table.updateConnectionProperties(current_connection_info,
         new_connection_info, {auto_update_joins_and_relates}, {validate},
         {ignore_case})
@@ -3701,8 +3962,9 @@ class Table(_ObjectWithoutInitCall):
         ignore_case to True. The default value is False.
         """
         ...
-    
-    def updateDefinitionQueries(self, definitionQueries): # -> conversion | int | float | complex | basestring | list[Unknown] | tuple[Unknown, ...] | dict[Unknown, Unknown]:
+    def updateDefinitionQueries(
+        self, definitionQueries
+    ):  # -> conversion | int | float | complex | basestring | list[Unknown] | tuple[Unknown, ...] | dict[Unknown, Unknown]:
         """Table.updateDefinitionQueries(definitionQueries)
 
 
@@ -3714,8 +3976,9 @@ class Table(_ObjectWithoutInitCall):
         definition query for a table.
         """
         ...
-    
-    def listDefinitionQueries(self, wildcard=...): # -> conversion | int | float | complex | basestring | list[Unknown] | tuple[Unknown, ...] | dict[Unknown, Unknown]:
+    def listDefinitionQueries(
+        self, wildcard=...
+    ):  # -> conversion | int | float | complex | basestring | list[Unknown] | tuple[Unknown, ...] | dict[Unknown, Unknown]:
         """Table.listDefinitionQueries({wildcard})
 
 
@@ -3728,7 +3991,6 @@ class Table(_ObjectWithoutInitCall):
         resulting list. The default value is None.
         """
         ...
-    
     def __init__(self, table_data_source) -> None:
         """Table(table_data_source)
 
@@ -3741,15 +4003,10 @@ class Table(_ObjectWithoutInitCall):
         For SDE tables, the workspace path is the path to an SDE connection file.
         """
         ...
-    
-    def __str__(self) -> str:
-        ...
-    
-    def __eq__(self, other) -> bool:
-        ...
-    
+    def __str__(self) -> str: ...
+    def __eq__(self, other) -> bool: ...
     @constants.maskargs
-    def getDefinition(self, cim_version): # -> Any | list[Unknown] | None:
+    def getDefinition(self, cim_version):  # -> Any | list[Unknown] | None:
         """Table.getDefinition(cim_version)
 
 
@@ -3760,9 +4017,10 @@ class Table(_ObjectWithoutInitCall):
         A string that represents the major version of the CIM.
         """
         ...
-    
     @constants.maskargs
-    def setDefinition(self, definition_object): # -> conversion | int | float | complex | basestring | list[Unknown] | tuple[Unknown, ...] | dict[Unknown, Unknown]:
+    def setDefinition(
+        self, definition_object
+    ):  # -> conversion | int | float | complex | basestring | list[Unknown] | tuple[Unknown, ...] | dict[Unknown, Unknown]:
         """Table.setDefinition(definition_object)
 
 
@@ -3774,8 +4032,9 @@ class Table(_ObjectWithoutInitCall):
         getDefinition.
         """
         ...
-    
-    def saveACopy(self, file_name): # -> conversion | int | float | complex | basestring | list[Unknown] | tuple[Unknown, ...] | dict[Unknown, Unknown]:
+    def saveACopy(
+        self, file_name
+    ):  # -> conversion | int | float | complex | basestring | list[Unknown] | tuple[Unknown, ...] | dict[Unknown, Unknown]:
         """Table.saveACopy(file_name)
 
 
@@ -3787,13 +4046,12 @@ class Table(_ObjectWithoutInitCall):
         (.lyrx).
         """
         ...
-    
-
 
 class TextElement(_ObjectWithoutInitCall):
     """The TextElement object provides access to properties that enable its
-       repositioning on the page layout as well as modifying the text string and
-       font size."""
+    repositioning on the page layout as well as modifying the text string and
+    font size."""
+
     elementHeight = ...
     elementPositionX = ...
     elementPositionY = ...
@@ -3806,7 +4064,9 @@ class TextElement(_ObjectWithoutInitCall):
     text = ...
     type = ...
     visible = ...
-    def clone(self, suffix=...): # -> conversion | int | float | complex | basestring | list[Unknown] | tuple[Unknown, ...] | dict[Unknown, Unknown]:
+    def clone(
+        self, suffix=...
+    ):  # -> conversion | int | float | complex | basestring | list[Unknown] | tuple[Unknown, ...] | dict[Unknown, Unknown]:
         """TextElement.clone({suffix})
 
 
@@ -3824,8 +4084,9 @@ class TextElement(_ObjectWithoutInitCall):
         resemble FieldLabel_1, FieldLabel_2, FieldLabel_3, and so on.
         """
         ...
-    
-    def delete(self): # -> conversion | int | float | complex | basestring | list[Unknown] | tuple[Unknown, ...] | dict[Unknown, Unknown]:
+    def delete(
+        self,
+    ):  # -> conversion | int | float | complex | basestring | list[Unknown] | tuple[Unknown, ...] | dict[Unknown, Unknown]:
         """TextElement.delete()
 
 
@@ -3833,15 +4094,26 @@ class TextElement(_ObjectWithoutInitCall):
         layout.
         """
         ...
-    
-
 
 class MapView(_ObjectWithoutInitCall):
     """The MapView."""
+
     camera = ...
     map = ...
     @constants.maskargs
-    def exportToAIX(self, out_aix, width, height, resolution=..., image_quality=..., compress_vector_graphics=..., image_compression=..., jpeg_compression_quality=..., embed_fonts=..., embed_color_profile=...): # -> conversion | int | float | complex | basestring | list[Unknown] | tuple[Unknown, ...] | dict[Unknown, Unknown]:
+    def exportToAIX(
+        self,
+        out_aix,
+        width,
+        height,
+        resolution=...,
+        image_quality=...,
+        compress_vector_graphics=...,
+        image_compression=...,
+        jpeg_compression_quality=...,
+        embed_fonts=...,
+        embed_color_profile=...,
+    ):  # -> conversion | int | float | complex | basestring | list[Unknown] | tuple[Unknown, ...] | dict[Unknown, Unknown]:
         """MapView.exportToAIX(out_aix, width, height, {resolution},
         {image_quality}, {compress_vector_graphics}, {image_compression},
         {jpeg_compression_quality}, {embed_fonts}, {embed_color_profile})
@@ -3930,9 +4202,18 @@ class MapView(_ObjectWithoutInitCall):
         metadata. The default value is True.
         """
         ...
-    
     @constants.maskargs
-    def exportToBMP(self, out_bmp, width, height, resolution=..., world_file=..., bmp_color_mode=..., bmp_image_compression=..., embed_color_profile=...): # -> conversion | int | float | complex | basestring | list[Unknown] | tuple[Unknown, ...] | dict[Unknown, Unknown]:
+    def exportToBMP(
+        self,
+        out_bmp,
+        width,
+        height,
+        resolution=...,
+        world_file=...,
+        bmp_color_mode=...,
+        bmp_image_compression=...,
+        embed_color_profile=...,
+    ):  # -> conversion | int | float | complex | basestring | list[Unknown] | tuple[Unknown, ...] | dict[Unknown, Unknown]:
         """MapView.exportToBMP(out_bmp, width, height, {resolution}, {world_file},
         {bmp_color_mode}, {bmp_image_compression}, {embed_color_profile})
 
@@ -3990,9 +4271,16 @@ class MapView(_ObjectWithoutInitCall):
         metadata. The default value is True.
         """
         ...
-    
     @constants.maskargs
-    def exportToEMF(self, out_emf, width, height, resolution=..., image_quality=..., output_as_image=...): # -> conversion | int | float | complex | basestring | list[Unknown] | tuple[Unknown, ...] | dict[Unknown, Unknown]:
+    def exportToEMF(
+        self,
+        out_emf,
+        width,
+        height,
+        resolution=...,
+        image_quality=...,
+        output_as_image=...,
+    ):  # -> conversion | int | float | complex | basestring | list[Unknown] | tuple[Unknown, ...] | dict[Unknown, Unknown]:
         """MapView.exportToEMF(out_emf, width, height, {resolution},
         {image_quality}, {output_as_image})
 
@@ -4041,9 +4329,18 @@ class MapView(_ObjectWithoutInitCall):
         output. The default value is False.
         """
         ...
-    
     @constants.maskargs
-    def exportToEPS(self, out_eps, width, height, resolution=..., image_compression=..., image_quality=..., embed_fonts=..., output_as_image=...): # -> conversion | int | float | complex | basestring | list[Unknown] | tuple[Unknown, ...] | dict[Unknown, Unknown]:
+    def exportToEPS(
+        self,
+        out_eps,
+        width,
+        height,
+        resolution=...,
+        image_compression=...,
+        image_quality=...,
+        embed_fonts=...,
+        output_as_image=...,
+    ):  # -> conversion | int | float | complex | basestring | list[Unknown] | tuple[Unknown, ...] | dict[Unknown, Unknown]:
         """MapView.exportToEPS(out_eps, width, height, {resolution},
         {image_compression}, {image_quality}, {embed_fonts}, {output_as_image})
 
@@ -4112,9 +4409,10 @@ class MapView(_ObjectWithoutInitCall):
         output. The default value is False.
         """
         ...
-    
     @constants.maskargs
-    def exportToGIF(self, out_gif, width, height, resolution=..., world_file=..., gif_color_mode=...): # -> conversion | int | float | complex | basestring | list[Unknown] | tuple[Unknown, ...] | dict[Unknown, Unknown]:
+    def exportToGIF(
+        self, out_gif, width, height, resolution=..., world_file=..., gif_color_mode=...
+    ):  # -> conversion | int | float | complex | basestring | list[Unknown] | tuple[Unknown, ...] | dict[Unknown, Unknown]:
         """MapView.exportToGIF(out_gif, width, height, {resolution}, {world_file},
         {gif_color_mode})
 
@@ -4155,9 +4453,18 @@ class MapView(_ObjectWithoutInitCall):
         * 8-BIT_PALETTE: 8-bit adaptive palette
         """
         ...
-    
     @constants.maskargs
-    def exportToJPEG(self, out_jpg, width, height, resolution=..., world_file=..., jpeg_color_mode=..., jpeg_quality=..., embed_color_profile=...): # -> conversion | int | float | complex | basestring | list[Unknown] | tuple[Unknown, ...] | dict[Unknown, Unknown]:
+    def exportToJPEG(
+        self,
+        out_jpg,
+        width,
+        height,
+        resolution=...,
+        world_file=...,
+        jpeg_color_mode=...,
+        jpeg_quality=...,
+        embed_color_profile=...,
+    ):  # -> conversion | int | float | complex | basestring | list[Unknown] | tuple[Unknown, ...] | dict[Unknown, Unknown]:
         """MapView.exportToJPEG(out_jpg, width, height, {resolution}, {world_file},
         {jpeg_color_mode}, {jpeg_quality}, {embed_color_profile})
 
@@ -4215,9 +4522,23 @@ class MapView(_ObjectWithoutInitCall):
         metadata. The default value is True.
         """
         ...
-    
     @constants.maskargs
-    def exportToPDF(self, out_pdf, width, height, resolution=..., image_quality=..., compress_vector_graphics=..., image_compression=..., embed_fonts=..., layers_attributes=..., georef_info=..., jpeg_compression_quality=..., output_as_image=..., embed_color_profile=...): # -> conversion | int | float | complex | basestring | list[Unknown] | tuple[Unknown, ...] | dict[Unknown, Unknown]:
+    def exportToPDF(
+        self,
+        out_pdf,
+        width,
+        height,
+        resolution=...,
+        image_quality=...,
+        compress_vector_graphics=...,
+        image_compression=...,
+        embed_fonts=...,
+        layers_attributes=...,
+        georef_info=...,
+        jpeg_compression_quality=...,
+        output_as_image=...,
+        embed_color_profile=...,
+    ):  # -> conversion | int | float | complex | basestring | list[Unknown] | tuple[Unknown, ...] | dict[Unknown, Unknown]:
         """MapView.exportToPDF(out_pdf, width, height, {resolution},
         {image_quality}, {compress_vector_graphics}, {image_compression},
         {embed_fonts}, {layers_attributes}, {georef_info},
@@ -4329,9 +4650,17 @@ class MapView(_ObjectWithoutInitCall):
         metadata. The default value is True.
         """
         ...
-    
     @constants.maskargs
-    def exportToPNG(self, out_png, width, height, resolution=..., world_file=..., color_mode=..., embed_color_profile=...): # -> conversion | int | float | complex | basestring | list[Unknown] | tuple[Unknown, ...] | dict[Unknown, Unknown]:
+    def exportToPNG(
+        self,
+        out_png,
+        width,
+        height,
+        resolution=...,
+        world_file=...,
+        color_mode=...,
+        embed_color_profile=...,
+    ):  # -> conversion | int | float | complex | basestring | list[Unknown] | tuple[Unknown, ...] | dict[Unknown, Unknown]:
         """MapView.exportToPNG(out_png, width, height, {resolution}, {world_file},
         {color_mode}, {embed_color_profile})
 
@@ -4383,9 +4712,18 @@ class MapView(_ObjectWithoutInitCall):
         metadata. The default value is True.
         """
         ...
-    
     @constants.maskargs
-    def exportToSVG(self, out_svg, width, height, resolution=..., compress_to_svgz=..., image_quality=..., embed_fonts=..., output_as_image=...): # -> conversion | int | float | complex | basestring | list[Unknown] | tuple[Unknown, ...] | dict[Unknown, Unknown]:
+    def exportToSVG(
+        self,
+        out_svg,
+        width,
+        height,
+        resolution=...,
+        compress_to_svgz=...,
+        image_quality=...,
+        embed_fonts=...,
+        output_as_image=...,
+    ):  # -> conversion | int | float | complex | basestring | list[Unknown] | tuple[Unknown, ...] | dict[Unknown, Unknown]:
         """MapView.exportToSVG(out_svg, width, height, {resolution},
         {compress_to_svgz}, {image_quality}, {embed_fonts}, {output_as_image})
 
@@ -4445,9 +4783,10 @@ class MapView(_ObjectWithoutInitCall):
         output. The default value is False.
         """
         ...
-    
     @constants.maskargs
-    def exportToTGA(self, out_tga, width, height, resolution=..., world_file=..., color_mode=...): # -> conversion | int | float | complex | basestring | list[Unknown] | tuple[Unknown, ...] | dict[Unknown, Unknown]:
+    def exportToTGA(
+        self, out_tga, width, height, resolution=..., world_file=..., color_mode=...
+    ):  # -> conversion | int | float | complex | basestring | list[Unknown] | tuple[Unknown, ...] | dict[Unknown, Unknown]:
         """MapView.exportToTGA(out_tga, width, height, {resolution}, {world_file},
         {color_mode})
 
@@ -4492,9 +4831,20 @@ class MapView(_ObjectWithoutInitCall):
         * 24-BIT_TRUE_COLOR: 24-bit true color
         """
         ...
-    
     @constants.maskargs
-    def exportToTIFF(self, out_tif, width, height, resolution=..., world_file=..., color_mode=..., tiff_compression=..., geoTIFF_tags=..., jpeg_compression_quality=..., embed_color_profile=...): # -> conversion | int | float | complex | basestring | list[Unknown] | tuple[Unknown, ...] | dict[Unknown, Unknown]:
+    def exportToTIFF(
+        self,
+        out_tif,
+        width,
+        height,
+        resolution=...,
+        world_file=...,
+        color_mode=...,
+        tiff_compression=...,
+        geoTIFF_tags=...,
+        jpeg_compression_quality=...,
+        embed_color_profile=...,
+    ):  # -> conversion | int | float | complex | basestring | list[Unknown] | tuple[Unknown, ...] | dict[Unknown, Unknown]:
         """MapView.exportToTIFF(out_tif, width, height, {resolution}, {world_file},
         {color_mode}, {tiff_compression}, {geoTIFF_tags},
         {jpeg_compression_quality}, {embed_color_profile})
@@ -4586,8 +4936,9 @@ class MapView(_ObjectWithoutInitCall):
         metadata. The default value is True.
         """
         ...
-    
-    def getLayerExtent(self, layer, selection_only=..., symbolized_extent=...): # -> conversion | int | float | complex | basestring | list[Unknown] | tuple[Unknown, ...] | dict[Unknown, Unknown]:
+    def getLayerExtent(
+        self, layer, selection_only=..., symbolized_extent=...
+    ):  # -> conversion | int | float | complex | basestring | list[Unknown] | tuple[Unknown, ...] | dict[Unknown, Unknown]:
         """MapView.getLayerExtent(layer, {selection_only}, {symbolized_extent})
 
 
@@ -4611,8 +4962,9 @@ class MapView(_ObjectWithoutInitCall):
         the data frame's boundary. The default value is True.
         """
         ...
-    
-    def panToExtent(self, extent): # -> conversion | int | float | complex | basestring | list[Unknown] | tuple[Unknown, ...] | dict[Unknown, Unknown]:
+    def panToExtent(
+        self, extent
+    ):  # -> conversion | int | float | complex | basestring | list[Unknown] | tuple[Unknown, ...] | dict[Unknown, Unknown]:
         """MapView.panToExtent(extent)
 
 
@@ -4624,8 +4976,9 @@ class MapView(_ObjectWithoutInitCall):
         A geoprocessing Extent object.
         """
         ...
-    
-    def zoomToBookmark(self, bookmark): # -> conversion | int | float | complex | basestring | list[Unknown] | tuple[Unknown, ...] | dict[Unknown, Unknown]:
+    def zoomToBookmark(
+        self, bookmark
+    ):  # -> conversion | int | float | complex | basestring | list[Unknown] | tuple[Unknown, ...] | dict[Unknown, Unknown]:
         """MapView.zoomToBookmark(bookmark)
 
 
@@ -4637,8 +4990,9 @@ class MapView(_ObjectWithoutInitCall):
         A reference to a Bookmark object.
         """
         ...
-    
-    def zoomToAllLayers(self, selection_only=..., symbolized_extent=...): # -> conversion | int | float | complex | basestring | list[Unknown] | tuple[Unknown, ...] | dict[Unknown, Unknown]:
+    def zoomToAllLayers(
+        self, selection_only=..., symbolized_extent=...
+    ):  # -> conversion | int | float | complex | basestring | list[Unknown] | tuple[Unknown, ...] | dict[Unknown, Unknown]:
         """MapView.zoomToAllLayers({selection_only}, {symbolized_extent})
 
 
@@ -4659,11 +5013,10 @@ class MapView(_ObjectWithoutInitCall):
         the map frame's boundary. The default value is True.
         """
         ...
-    
-
 
 class MapSeries(_ObjectWithoutInitCall):
-    """ MapSeries object provides access to properties."""
+    """MapSeries object provides access to properties."""
+
     currentPageNumber = ...
     mapFrame = ...
     indexLayer = ...
@@ -4672,11 +5025,29 @@ class MapSeries(_ObjectWithoutInitCall):
     selectedIndexFeatures = ...
     enabled = ...
     @property
-    def pageRow(self): # -> pageRow:
-        ...
-    
+    def pageRow(self): ...
     @constants.maskargs
-    def exportToPDF(self, out_pdf, page_range_type=..., page_range_string=..., multiple_files=..., resolution=..., image_quality=..., compress_vector_graphics=..., image_compression=..., embed_fonts=..., layers_attributes=..., georef_info=..., jpeg_compression_quality=..., clip_to_elements=..., show_selection_symbology=..., output_as_image=..., embed_color_profile=..., pdf_accessibility=..., show_export_count=...): # -> conversion | int | float | complex | basestring | list[Unknown] | tuple[Unknown, ...] | dict[Unknown, Unknown]:
+    def exportToPDF(
+        self,
+        out_pdf,
+        page_range_type=...,
+        page_range_string=...,
+        multiple_files=...,
+        resolution=...,
+        image_quality=...,
+        compress_vector_graphics=...,
+        image_compression=...,
+        embed_fonts=...,
+        layers_attributes=...,
+        georef_info=...,
+        jpeg_compression_quality=...,
+        clip_to_elements=...,
+        show_selection_symbology=...,
+        output_as_image=...,
+        embed_color_profile=...,
+        pdf_accessibility=...,
+        show_export_count=...,
+    ):  # -> conversion | int | float | complex | basestring | list[Unknown] | tuple[Unknown, ...] | dict[Unknown, Unknown]:
         """MapSeries.exportToPDF(out_pdf, {page_range_type}, {page_range_string},
         {multiple_files}, {resolution}, {image_quality},
         {compress_vector_graphics}, {image_compression}, {embed_fonts},
@@ -4845,8 +5216,9 @@ class MapSeries(_ObjectWithoutInitCall):
         displayed in the Python shell. The default value is False.
         """
         ...
-    
-    def getPageNumberFromName(self, page_name): # -> conversion | int | float | complex | basestring | list[Unknown] | tuple[Unknown, ...] | dict[Unknown, Unknown]:
+    def getPageNumberFromName(
+        self, page_name
+    ):  # -> conversion | int | float | complex | basestring | list[Unknown] | tuple[Unknown, ...] | dict[Unknown, Unknown]:
         """MapSeries.getPageNumberFromName(page_name)
 
 
@@ -4858,15 +5230,14 @@ class MapSeries(_ObjectWithoutInitCall):
         was used to set up the Map Series.
         """
         ...
-    
-    def refresh(self): # -> conversion | int | float | complex | basestring | list[Unknown] | tuple[Unknown, ...] | dict[Unknown, Unknown]:
+    def refresh(
+        self,
+    ):  # -> conversion | int | float | complex | basestring | list[Unknown] | tuple[Unknown, ...] | dict[Unknown, Unknown]:
         """MapSeries.refresh()
 
 
         Refreshes an existing map series.
         """
         ...
-    
-
 
 ob_conversion = ...

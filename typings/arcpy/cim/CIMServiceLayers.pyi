@@ -7,417 +7,322 @@ from .CIMExternal import *
 from .CIMLayer import CIMBaseLayer, CIMSubLayerBase
 from .CIMVectorLayers import CIMDataConnection
 
-
 class CIMIsosurface:
     """
-      Represents a isosurface.
+    Represents a isosurface.
     """
-    def __init__(self, *args, **Kwargs) -> None:
-        ...
-    
 
+    def __init__(self, *args, **Kwargs) -> None: ...
 
 class CIMObject3DRenderingFilter:
     """
-      Represents a 3D object rendering filter.
+    Represents a 3D object rendering filter.
     """
-    def __init__(self, *args, **Kwargs) -> None:
-        ...
-    
 
+    def __init__(self, *args, **Kwargs) -> None: ...
 
 class CIMObject3DRenderingFilterAuthoringInfo:
     """
-      Represents a filter authoring info.
+    Represents a filter authoring info.
     """
-    def __init__(self, *args, **Kwargs) -> None:
-        ...
-    
 
+    def __init__(self, *args, **Kwargs) -> None: ...
 
 class CIMObject3DRenderingFilterBlock:
     """
-      Represents a 3D object rendering filter block.
+    Represents a 3D object rendering filter block.
     """
-    def __init__(self, *args, **Kwargs) -> None:
-        ...
-    
 
+    def __init__(self, *args, **Kwargs) -> None: ...
 
 class CIMObject3DRenderingFilterBlockAuthoringInfo:
     """
-      Represents a filter block authoring info.
+    Represents a filter block authoring info.
     """
-    def __init__(self, *args, **Kwargs) -> None:
-        ...
-    
 
+    def __init__(self, *args, **Kwargs) -> None: ...
 
 class CIMObject3DRenderingFilterState:
     """
-      Represents a 3D object rendering filter value.
+    Represents a 3D object rendering filter value.
     """
-    def __init__(self, *args, **Kwargs) -> None:
-        ...
-    
 
+    def __init__(self, *args, **Kwargs) -> None: ...
 
 class CIMServerConnection:
     """
-      Represents a server connection.
+    Represents a server connection.
     """
-    def __init__(self, *args, **Kwargs) -> None:
-        ...
-    
 
+    def __init__(self, *args, **Kwargs) -> None: ...
 
 class CIMVoxelColorUniqueValue:
     """
-      Represents a voxel color unique value.
+    Represents a voxel color unique value.
     """
-    def __init__(self, *args, **Kwargs) -> None:
-        ...
-    
 
+    def __init__(self, *args, **Kwargs) -> None: ...
 
 class CIMVoxelFilter:
     """
-      Represents a renderer filter.
+    Represents a renderer filter.
     """
-    def __init__(self, *args, **Kwargs) -> None:
-        ...
-    
 
+    def __init__(self, *args, **Kwargs) -> None: ...
 
 class CIMVoxelFormat:
     """
-      Represents a voxel format.
+    Represents a voxel format.
     """
-    def __init__(self, *args, **Kwargs) -> None:
-        ...
-    
 
+    def __init__(self, *args, **Kwargs) -> None: ...
 
 class CIMVoxelLighting:
     """
-      Represents voxel lighting.
+    Represents voxel lighting.
     """
-    def __init__(self, *args, **Kwargs) -> None:
-        ...
-    
 
+    def __init__(self, *args, **Kwargs) -> None: ...
 
 class CIMVoxelPlane:
     """
-      Represents a voxel plane.
+    Represents a voxel plane.
     """
-    def __init__(self, *args, **Kwargs) -> None:
-        ...
-    
 
+    def __init__(self, *args, **Kwargs) -> None: ...
 
 class CIMVoxelRenderer:
     """
-      Represents a voxel renderer.
+    Represents a voxel renderer.
     """
-    def __init__(self, *args, **Kwargs) -> None:
-        ...
-    
 
+    def __init__(self, *args, **Kwargs) -> None: ...
 
 class CIMVoxelStaticSection:
     """
-      Represents a voxel static section.
+    Represents a voxel static section.
     """
-    def __init__(self, *args, **Kwargs) -> None:
-        ...
-    
 
+    def __init__(self, *args, **Kwargs) -> None: ...
 
 class CIMVoxelVariableProfile:
     """
-      Represents a voxel layer variable profile.
+    Represents a voxel layer variable profile.
     """
-    def __init__(self, *args, **Kwargs) -> None:
-        ...
-    
 
+    def __init__(self, *args, **Kwargs) -> None: ...
 
 class CIMVoxelVolume:
     """
-      Represents a voxel layer volume.
+    Represents a voxel layer volume.
     """
-    def __init__(self, *args, **Kwargs) -> None:
-        ...
-    
 
+    def __init__(self, *args, **Kwargs) -> None: ...
 
 class CIMBuildingDisciplineSceneLayer(CIMBaseLayer):
     """
-      Represents a building discipline scene layer.
+    Represents a building discipline scene layer.
     """
-    def __init__(self, *args, **Kwargs) -> None:
-        ...
-    
 
+    def __init__(self, *args, **Kwargs) -> None: ...
 
 class CIMBuildingSceneLayer(CIMBaseLayer):
     """
-      Represents a building composite scene layer.
+    Represents a building composite scene layer.
     """
-    def __init__(self, *args, **Kwargs) -> None:
-        ...
-    
 
+    def __init__(self, *args, **Kwargs) -> None: ...
 
 class CIMIndexedSceneLayer(CIMBaseLayer):
     """
-      Represents a indexed scene layer.
+    Represents a indexed scene layer.
     """
-    def __init__(self, *args, **Kwargs) -> None:
-        ...
-    
 
+    def __init__(self, *args, **Kwargs) -> None: ...
 
 class CIMServiceCompositeSubLayer(CIMSubLayerBase):
     """
-      Represents a service composite sublayer.
+    Represents a service composite sublayer.
     """
-    def __init__(self, *args, **Kwargs) -> None:
-        ...
-    
 
+    def __init__(self, *args, **Kwargs) -> None: ...
 
 class CIMServiceConnection(CIMDataConnection):
     """
-      Represents a service connection.
+    Represents a service connection.
     """
-    def __init__(self, *args, **Kwargs) -> None:
-        ...
-    
 
+    def __init__(self, *args, **Kwargs) -> None: ...
 
 class CIMServiceLayer(CIMBaseLayer):
     """
-      Represents a service layer.
+    Represents a service layer.
     """
-    def __init__(self, *args, **Kwargs) -> None:
-        ...
-    
 
+    def __init__(self, *args, **Kwargs) -> None: ...
 
 class CIMServiceSubLayer(CIMSubLayerBase):
     """
-      Represents a service sublayer.
+    Represents a service sublayer.
     """
-    def __init__(self, *args, **Kwargs) -> None:
-        ...
-    
 
+    def __init__(self, *args, **Kwargs) -> None: ...
 
 class CIMVoxelDataConnection(CIMDataConnection):
     """
-      Represents a voxel data connection.
+    Represents a voxel data connection.
     """
-    def __init__(self, *args, **Kwargs) -> None:
-        ...
-    
 
+    def __init__(self, *args, **Kwargs) -> None: ...
 
 class CIMVoxelLayer(CIMBaseLayer):
     """
-      Represents a voxel layer.
+    Represents a voxel layer.
     """
-    def __init__(self, *args, **Kwargs) -> None:
-        ...
-    
 
+    def __init__(self, *args, **Kwargs) -> None: ...
 
 class CIMWMSSubLayer(CIMSubLayerBase):
     """
-      Represents a WMS service sublayer.
+    Represents a WMS service sublayer.
     """
-    def __init__(self, *args, **Kwargs) -> None:
-        ...
-    
 
+    def __init__(self, *args, **Kwargs) -> None: ...
 
 class CIMAGSServiceConnection(CIMServiceConnection):
     """
-      Represents an ArcGIS Server service connection.
+    Represents an ArcGIS Server service connection.
     """
-    def __init__(self, *args, **Kwargs) -> None:
-        ...
-    
 
+    def __init__(self, *args, **Kwargs) -> None: ...
 
 class CIMDCOMServerConnection(CIMServerConnection):
     """
-      Represents a DCOM server connection.
+    Represents a DCOM server connection.
     """
-    def __init__(self, *args, **Kwargs) -> None:
-        ...
-    
 
+    def __init__(self, *args, **Kwargs) -> None: ...
 
 class CIMDynamicServiceLayer(CIMServiceLayer):
     """
-      Represents a dynamic service layer.
+    Represents a dynamic service layer.
     """
-    def __init__(self, *args, **Kwargs) -> None:
-        ...
-    
 
+    def __init__(self, *args, **Kwargs) -> None: ...
 
 class CIMInternetServerConnectionBase(CIMServerConnection):
     """
-      Represents the internet server connection base class.
+    Represents the internet server connection base class.
     """
-    def __init__(self, *args, **Kwargs) -> None:
-        ...
-    
 
+    def __init__(self, *args, **Kwargs) -> None: ...
 
 class CIMLANServerConnection(CIMServerConnection):
     """
-      Represents a LAN service connection.
+    Represents a LAN service connection.
     """
-    def __init__(self, *args, **Kwargs) -> None:
-        ...
-    
 
+    def __init__(self, *args, **Kwargs) -> None: ...
 
 class CIMMapImageLayer(CIMDynamicServiceLayer):
     """
-      Represents an ArcGIS Map Service layer.
+    Represents an ArcGIS Map Service layer.
     """
-    def __init__(self, *args, **Kwargs) -> None:
-        ...
-    
 
+    def __init__(self, *args, **Kwargs) -> None: ...
 
 class CIMOGCAPIServiceConnection(CIMServiceConnection):
     """
-      Represents a OGCAPI service connection.
+    Represents a OGCAPI service connection.
     """
-    def __init__(self, *args, **Kwargs) -> None:
-        ...
-    
 
+    def __init__(self, *args, **Kwargs) -> None: ...
 
 class CIMProjectServerConnection(CIMInternetServerConnectionBase):
     """
-      Represents a project server connection.
+    Represents a project server connection.
     """
-    def __init__(self, *args, **Kwargs) -> None:
-        ...
-    
 
+    def __init__(self, *args, **Kwargs) -> None: ...
 
 class CIMStandardServiceConnection(CIMServiceConnection):
     """
-      Represents a standard service connection.
+    Represents a standard service connection.
     """
-    def __init__(self, *args, **Kwargs) -> None:
-        ...
-    
 
+    def __init__(self, *args, **Kwargs) -> None: ...
 
 class CIMTiledServiceLayer(CIMServiceLayer):
     """
-      Represents a tiled service layer.
+    Represents a tiled service layer.
     """
-    def __init__(self, *args, **Kwargs) -> None:
-        ...
-    
 
+    def __init__(self, *args, **Kwargs) -> None: ...
 
 class CIMVoxelRangeValueFilter(CIMVoxelFilter):
     """
-      Represents a voxel value filter.
-        /// Filter based on the value of an specified variable.
+    Represents a voxel value filter.
+      /// Filter based on the value of an specified variable.
     """
-    def __init__(self, *args, **Kwargs) -> None:
-        ...
-    
 
+    def __init__(self, *args, **Kwargs) -> None: ...
 
 class CIMVoxelStretchRenderer(CIMVoxelRenderer):
     """
-      Represents a stretch renderer.
+    Represents a stretch renderer.
     """
-    def __init__(self, *args, **Kwargs) -> None:
-        ...
-    
 
+    def __init__(self, *args, **Kwargs) -> None: ...
 
 class CIMVoxelUniqueValueRenderer(CIMVoxelRenderer):
     """
-      Represents a unique value renderer.
+    Represents a unique value renderer.
     """
-    def __init__(self, *args, **Kwargs) -> None:
-        ...
-    
 
+    def __init__(self, *args, **Kwargs) -> None: ...
 
 class CIMVoxelValueFilter(CIMVoxelFilter):
     """
-      Represents a voxel value filter.
-        /// Filter based on the value of an specified variable.
+    Represents a voxel value filter.
+      /// Filter based on the value of an specified variable.
     """
-    def __init__(self, *args, **Kwargs) -> None:
-        ...
-    
 
+    def __init__(self, *args, **Kwargs) -> None: ...
 
 class CIMWCSServiceConnection(CIMServiceConnection):
     """
-      Represents a WCS service connection.
+    Represents a WCS service connection.
     """
-    def __init__(self, *args, **Kwargs) -> None:
-        ...
-    
 
+    def __init__(self, *args, **Kwargs) -> None: ...
 
 class CIMWFSServiceConnection(CIMServiceConnection):
     """
-      Represents a WFS service connection.
+    Represents a WFS service connection.
     """
-    def __init__(self, *args, **Kwargs) -> None:
-        ...
-    
 
+    def __init__(self, *args, **Kwargs) -> None: ...
 
 class CIMWMSLayer(CIMDynamicServiceLayer):
     """
-      Represents an OGC WMS layer.
+    Represents an OGC WMS layer.
     """
-    def __init__(self, *args, **Kwargs) -> None:
-        ...
-    
 
+    def __init__(self, *args, **Kwargs) -> None: ...
 
 class CIMWMSServiceConnection(CIMServiceConnection):
     """
-      Represents a WMS service connection.
+    Represents a WMS service connection.
     """
-    def __init__(self, *args, **Kwargs) -> None:
-        ...
-    
 
+    def __init__(self, *args, **Kwargs) -> None: ...
 
 class CIMWMTSServiceConnection(CIMServiceConnection):
     """
-      Represents a WMTS service connection.
+    Represents a WMTS service connection.
     """
-    def __init__(self, *args, **Kwargs) -> None:
-        ...
-    
 
+    def __init__(self, *args, **Kwargs) -> None: ...
 
 class CIMInternetServerConnection(CIMInternetServerConnectionBase):
-    def __init__(self, *args, **Kwargs) -> None:
-        ...
-    
-
-
+    def __init__(self, *args, **Kwargs) -> None: ...

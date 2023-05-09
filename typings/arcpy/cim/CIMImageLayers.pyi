@@ -9,377 +9,293 @@ from .CIMLayer import CIMBaseLayer
 from .CIMCore import CIMDefinition
 from .CIMLayout import CIMGraphicElement
 
-
 class CIMAuxiliaryRasterProperties:
     """
-      Represents auxiliary raster properties.
+    Represents auxiliary raster properties.
     """
-    def __init__(self, *args, **Kwargs) -> None:
-        ...
-    
 
+    def __init__(self, *args, **Kwargs) -> None: ...
 
 class CIMMosaicRule:
     """
-      Represents a mosaic rule.
+    Represents a mosaic rule.
     """
-    def __init__(self, *args, **Kwargs) -> None:
-        ...
-    
 
+    def __init__(self, *args, **Kwargs) -> None: ...
 
 class CIMPansharpeningFilter:
     """
-      Represents a pansharpening filter.
+    Represents a pansharpening filter.
     """
-    def __init__(self, *args, **Kwargs) -> None:
-        ...
-    
 
+    def __init__(self, *args, **Kwargs) -> None: ...
 
 class CIMRasterClassBreak:
     """
-      Represents a raster class break.
+    Represents a raster class break.
     """
-    def __init__(self, *args, **Kwargs) -> None:
-        ...
-    
 
+    def __init__(self, *args, **Kwargs) -> None: ...
 
 class CIMRasterColorCorrection:
     """
-      Represents a raster color correction configuration.
+    Represents a raster color correction configuration.
     """
-    def __init__(self, *args, **Kwargs) -> None:
-        ...
-    
 
+    def __init__(self, *args, **Kwargs) -> None: ...
 
 class CIMRasterColorizer:
     """
-      Represents a raster colorizer.
+    Represents a raster colorizer.
     """
-    def __init__(self, *args, **Kwargs) -> None:
-        ...
-    
 
+    def __init__(self, *args, **Kwargs) -> None: ...
 
 class CIMRasterColorizerMapping:
     """
-      Represents a raster colorizer mapping.
+    Represents a raster colorizer mapping.
     """
-    def __init__(self, *args, **Kwargs) -> None:
-        ...
-    
 
+    def __init__(self, *args, **Kwargs) -> None: ...
 
 class CIMRasterDimensionalDefinition:
     """
-      Represents a set of criteria used to define the multidimensional 
-      extent of a raster layer.
+    Represents a set of criteria used to define the multidimensional
+    extent of a raster layer.
     """
-    def __init__(self, *args, **Kwargs) -> None:
-        ...
-    
 
+    def __init__(self, *args, **Kwargs) -> None: ...
 
 class CIMRasterHistogramEditInfo:
     """
-      Represents raster histogram custom stretch edit info.
+    Represents raster histogram custom stretch edit info.
     """
-    def __init__(self, *args, **Kwargs) -> None:
-        ...
-    
 
+    def __init__(self, *args, **Kwargs) -> None: ...
 
 class CIMRasterMultidimensionalDisplayDefinition:
     """
-      Represents a multidimensional display definition for the current 
-      display slice.
+    Represents a multidimensional display definition for the current
+    display slice.
     """
-    def __init__(self, *args, **Kwargs) -> None:
-        ...
-    
 
+    def __init__(self, *args, **Kwargs) -> None: ...
 
 class CIMRasterMultidimensionalExtentDefinition:
     """
-      Represents a multidimensional extent applicable to a raster layer.
+    Represents a multidimensional extent applicable to a raster layer.
     """
-    def __init__(self, *args, **Kwargs) -> None:
-        ...
-    
 
+    def __init__(self, *args, **Kwargs) -> None: ...
 
 class CIMRasterStretchClass:
     """
-      Represents a raster stretch class.
+    Represents a raster stretch class.
     """
-    def __init__(self, *args, **Kwargs) -> None:
-        ...
-    
 
+    def __init__(self, *args, **Kwargs) -> None: ...
 
 class CIMRasterUniqueValueClass:
     """
-      Represents a raster unique value class.
+    Represents a raster unique value class.
     """
-    def __init__(self, *args, **Kwargs) -> None:
-        ...
-    
 
+    def __init__(self, *args, **Kwargs) -> None: ...
 
 class CIMRasterUniqueValueGroup:
     """
-      Represents a raster unique value group.
+    Represents a raster unique value group.
     """
-    def __init__(self, *args, **Kwargs) -> None:
-        ...
-    
 
+    def __init__(self, *args, **Kwargs) -> None: ...
 
 class CIMRenderingRule:
     """
-      Represents a raster rendering rule.
+    Represents a raster rendering rule.
     """
-    def __init__(self, *args, **Kwargs) -> None:
-        ...
-    
 
+    def __init__(self, *args, **Kwargs) -> None: ...
 
 class CIMVideoTimelineIndicator:
     """
-      Represents an indicator on a video timeline.
+    Represents an indicator on a video timeline.
     """
-    def __init__(self, *args, **Kwargs) -> None:
-        ...
-    
 
+    def __init__(self, *args, **Kwargs) -> None: ...
 
 class CIMFeatureMosaicSubLayer(CIMFeatureLayer):
     """
-      Represents mosaic feature sub layer.
+    Represents mosaic feature sub layer.
     """
-    def __init__(self, *args, **Kwargs) -> None:
-        ...
-    
 
+    def __init__(self, *args, **Kwargs) -> None: ...
 
 class CIMMosaicLayer(CIMBaseLayer):
     """
-      Represents a mosaic layer corresponding to a mosaic dataset.
+    Represents a mosaic layer corresponding to a mosaic dataset.
     """
-    def __init__(self, *args, **Kwargs) -> None:
-        ...
-    
 
+    def __init__(self, *args, **Kwargs) -> None: ...
 
 class CIMNITFDataConnection(CIMDataConnection):
     """
-      Represents a NITF data connection.
+    Represents a NITF data connection.
     """
-    def __init__(self, *args, **Kwargs) -> None:
-        ...
-    
 
+    def __init__(self, *args, **Kwargs) -> None: ...
 
 class CIMNitfFeatureSubLayer(CIMFeatureLayer):
     """
-      Represents NITF feature sub layer.
+    Represents NITF feature sub layer.
     """
-    def __init__(self, *args, **Kwargs) -> None:
-        ...
-    
 
+    def __init__(self, *args, **Kwargs) -> None: ...
 
 class CIMNitfLayer(CIMBaseLayer):
     """
-      Represents a NITF composite layer.
+    Represents a NITF composite layer.
     """
-    def __init__(self, *args, **Kwargs) -> None:
-        ...
-    
 
+    def __init__(self, *args, **Kwargs) -> None: ...
 
 class CIMRasterBandDataConnection(CIMDataConnection):
     """
-      Represents a raster band data connection.
+    Represents a raster band data connection.
     """
-    def __init__(self, *args, **Kwargs) -> None:
-        ...
-    
 
+    def __init__(self, *args, **Kwargs) -> None: ...
 
 class CIMRasterCatalogLayer(CIMGeoFeatureLayerBase):
     """
-      Represents a raster catalog layer.
+    Represents a raster catalog layer.
     """
-    def __init__(self, *args, **Kwargs) -> None:
-        ...
-    
 
+    def __init__(self, *args, **Kwargs) -> None: ...
 
 class CIMRasterLayer(CIMBaseLayer):
     """
-      Represents a raster layer which displays raster imagery stored 
-      in a raster dataset.
+    Represents a raster layer which displays raster imagery stored
+    in a raster dataset.
     """
-    def __init__(self, *args, **Kwargs) -> None:
-        ...
-    
 
+    def __init__(self, *args, **Kwargs) -> None: ...
 
 class CIMStandaloneVideo(CIMDefinition):
     """
-      Represents a standalone video.
+    Represents a standalone video.
     """
-    def __init__(self, *args, **Kwargs) -> None:
-        ...
-    
 
+    def __init__(self, *args, **Kwargs) -> None: ...
 
 class CIMVideoDataConnection(CIMDataConnection):
     """
-      Represents a video data connection.
+    Represents a video data connection.
     """
-    def __init__(self, *args, **Kwargs) -> None:
-        ...
-    
 
+    def __init__(self, *args, **Kwargs) -> None: ...
 
 class CIMVideoGraphicElement(CIMGraphicElement):
     """
-      Represents video-related graphic being displayed on the map.
+    Represents video-related graphic being displayed on the map.
     """
-    def __init__(self, *args, **Kwargs) -> None:
-        ...
-    
 
+    def __init__(self, *args, **Kwargs) -> None: ...
 
 class CIMImageServiceLayer(CIMRasterLayer):
     """
-      Represents an image service layer corresponding to an ArcGIS Server 
-      image service.
+    Represents an image service layer corresponding to an ArcGIS Server
+    image service.
     """
-    def __init__(self, *args, **Kwargs) -> None:
-        ...
-    
 
+    def __init__(self, *args, **Kwargs) -> None: ...
 
 class CIMNitfImageSubLayer(CIMRasterLayer):
     """
-      Represents NITF image sub layer.
+    Represents NITF image sub layer.
     """
-    def __init__(self, *args, **Kwargs) -> None:
-        ...
-    
 
+    def __init__(self, *args, **Kwargs) -> None: ...
 
 class CIMRasterCMYKColorizer(CIMRasterColorizer):
     """
-      Represents a raster CMYK colorizer.
+    Represents a raster CMYK colorizer.
     """
-    def __init__(self, *args, **Kwargs) -> None:
-        ...
-    
 
+    def __init__(self, *args, **Kwargs) -> None: ...
 
 class CIMRasterClassifyColorizer(CIMRasterColorizer):
     """
-      Represents a raster classify colorizer.
+    Represents a raster classify colorizer.
     """
-    def __init__(self, *args, **Kwargs) -> None:
-        ...
-    
 
+    def __init__(self, *args, **Kwargs) -> None: ...
 
 class CIMRasterColorMapColorizer(CIMRasterColorizer):
     """
-      Represents a raster color map colorizer.
+    Represents a raster color map colorizer.
     """
-    def __init__(self, *args, **Kwargs) -> None:
-        ...
-    
 
+    def __init__(self, *args, **Kwargs) -> None: ...
 
 class CIMRasterDiscreteColorColorizer(CIMRasterColorizer):
     """
-      Represents a raster discrete color colorizer.
+    Represents a raster discrete color colorizer.
     """
-    def __init__(self, *args, **Kwargs) -> None:
-        ...
-    
 
+    def __init__(self, *args, **Kwargs) -> None: ...
 
 class CIMRasterRGBColorizer(CIMRasterColorizer):
     """
-      Represents a raster RGB colorizer.
+    Represents a raster RGB colorizer.
     """
-    def __init__(self, *args, **Kwargs) -> None:
-        ...
-    
 
+    def __init__(self, *args, **Kwargs) -> None: ...
 
 class CIMRasterShadedReliefColorizer(CIMRasterColorizer):
     """
-      Represents a raster shaded relief colorizer.
+    Represents a raster shaded relief colorizer.
     """
-    def __init__(self, *args, **Kwargs) -> None:
-        ...
-    
 
+    def __init__(self, *args, **Kwargs) -> None: ...
 
 class CIMRasterStretchColorizer(CIMRasterColorizer):
     """
-      Represents a raster stretch colorizer.
+    Represents a raster stretch colorizer.
     """
-    def __init__(self, *args, **Kwargs) -> None:
-        ...
-    
 
+    def __init__(self, *args, **Kwargs) -> None: ...
 
 class CIMRasterUniqueValueColorizer(CIMRasterColorizer):
     """
-      Represents a raster unique value colorizer.
+    Represents a raster unique value colorizer.
     """
-    def __init__(self, *args, **Kwargs) -> None:
-        ...
-    
 
+    def __init__(self, *args, **Kwargs) -> None: ...
 
 class CIMRasterVectorFieldColorizer(CIMRasterColorizer):
     """
-      Represents a raster vector field colorizer.
+    Represents a raster vector field colorizer.
     """
-    def __init__(self, *args, **Kwargs) -> None:
-        ...
-    
 
+    def __init__(self, *args, **Kwargs) -> None: ...
 
 class CIMVideoTimelineEventIndicator(CIMVideoTimelineIndicator):
     """
-      Represents an event indicator on a video timeline.
+    Represents an event indicator on a video timeline.
     """
-    def __init__(self, *args, **Kwargs) -> None:
-        ...
-    
 
+    def __init__(self, *args, **Kwargs) -> None: ...
 
 class CIMVideoTimelineRangeIndicator(CIMVideoTimelineIndicator):
     """
-      Represents a range indicator on a video timeline.
+    Represents a range indicator on a video timeline.
     """
-    def __init__(self, *args, **Kwargs) -> None:
-        ...
-    
 
+    def __init__(self, *args, **Kwargs) -> None: ...
 
 class CIMImageMosaicSubLayer(CIMImageServiceLayer):
     """
-      Represents an image mosaic sublayer.
+    Represents an image mosaic sublayer.
     """
-    def __init__(self, *args, **Kwargs) -> None:
-        ...
-    
 
-
+    def __init__(self, *args, **Kwargs) -> None: ...

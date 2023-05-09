@@ -8,3442 +8,3680 @@ r"""Ready To Use tools are ArcGIS Online geoprocessing services that use
 the hosted data and analysis capabilities of ArcGIS Online. All you
 need to provide are input features; all the other data necessary for
 the analysis and the computation is hosted in ArcGIS Online."""
-__all__ = ['FindClosestFacilities', 'FindRoutes', 'GenerateOriginDestinationCostMatrix', 'GenerateServiceAreas', 'Profile', 'SolveLocationAllocation', 'SolveVehicleRoutingProblem', 'SummarizeElevation', 'TraceDownstream', 'Viewshed', 'Watershed']
+__all__ = [
+    "FindClosestFacilities",
+    "FindRoutes",
+    "GenerateOriginDestinationCostMatrix",
+    "GenerateServiceAreas",
+    "Profile",
+    "SolveLocationAllocation",
+    "SolveVehicleRoutingProblem",
+    "SummarizeElevation",
+    "TraceDownstream",
+    "Viewshed",
+    "Watershed",
+]
 __alias__ = ...
-@gptooldoc('FindClosestFacilities_agolservices', None)
-def FindClosestFacilities(Incidents=..., Facilities=..., Measurement_Units=..., Analysis_Region=..., Number_of_Facilities_to_Find=..., Cutoff=..., Travel_Direction=..., Use_Hierarchy=..., Time_of_Day=..., Time_of_Day_Usage=..., UTurn_at_Junctions=..., Point_Barriers=..., Line_Barriers=..., Polygon_Barriers=..., Restrictions=..., Attribute_Parameter_Values=..., Route_Shape=..., Route_Line_Simplification_Tolerance=..., Populate_Directions=..., Directions_Language=..., Directions_Distance_Units=..., Directions_Style_Name=..., Time_Zone_for_Time_of_Day=..., Travel_Mode=..., Impedance=..., Save_Output_Network_Analysis_Layer=..., Overrides=..., Save_Route_Data=..., Time_Impedance=..., Distance_Impedance=..., Output_Format=..., Ignore_Invalid_Locations=..., Locate_Settings=...): # -> conversion | int | float | complex | basestring | list[Unknown] | tuple[Unknown, ...] | dict[Unknown, Unknown]:
+
+@gptooldoc("FindClosestFacilities_agolservices", None)
+def FindClosestFacilities(
+    Incidents=...,
+    Facilities=...,
+    Measurement_Units=...,
+    Analysis_Region=...,
+    Number_of_Facilities_to_Find=...,
+    Cutoff=...,
+    Travel_Direction=...,
+    Use_Hierarchy=...,
+    Time_of_Day=...,
+    Time_of_Day_Usage=...,
+    UTurn_at_Junctions=...,
+    Point_Barriers=...,
+    Line_Barriers=...,
+    Polygon_Barriers=...,
+    Restrictions=...,
+    Attribute_Parameter_Values=...,
+    Route_Shape=...,
+    Route_Line_Simplification_Tolerance=...,
+    Populate_Directions=...,
+    Directions_Language=...,
+    Directions_Distance_Units=...,
+    Directions_Style_Name=...,
+    Time_Zone_for_Time_of_Day=...,
+    Travel_Mode=...,
+    Impedance=...,
+    Save_Output_Network_Analysis_Layer=...,
+    Overrides=...,
+    Save_Route_Data=...,
+    Time_Impedance=...,
+    Distance_Impedance=...,
+    Output_Format=...,
+    Ignore_Invalid_Locations=...,
+    Locate_Settings=...,
+):  # -> conversion | int | float | complex | basestring | list[Unknown] | tuple[Unknown, ...] | dict[Unknown, Unknown]:
     """FindClosestFacilities_agolservices(Incidents, Facilities, Measurement_Units, {Analysis_Region}, {Number_of_Facilities_to_Find}, {Cutoff}, {Travel_Direction}, {Use_Hierarchy}, {Time_of_Day}, {Time_of_Day_Usage}, {UTurn_at_Junctions}, {Point_Barriers}, {Line_Barriers}, {Polygon_Barriers}, {Restrictions;Restrictions...}, {Attribute_Parameter_Values}, {Route_Shape}, {Route_Line_Simplification_Tolerance}, {Populate_Directions}, {Directions_Language}, {Directions_Distance_Units}, {Directions_Style_Name}, {Time_Zone_for_Time_of_Day}, {Travel_Mode}, {Impedance}, {Save_Output_Network_Analysis_Layer}, {Overrides}, {Save_Route_Data}, {Time_Impedance}, {Distance_Impedance}, {Output_Format}, {Ignore_Invalid_Locations}, {Locate_Settings})
 
-        Finds one or more facilities that are closest from an incident based
-        on travel time or travel distance and outputs the best routes, driving
-        directions between the incidents and the chosen facilities, and a copy
-        of the chosen facilities. You can use the tool, for example, to find
-        the closest hospital to an accident, the closest police cars to a
-        crime scene, or the closest store to a customer's address.
+       Finds one or more facilities that are closest from an incident based
+       on travel time or travel distance and outputs the best routes, driving
+       directions between the incidents and the chosen facilities, and a copy
+       of the chosen facilities. You can use the tool, for example, to find
+       the closest hospital to an accident, the closest police cars to a
+       crime scene, or the closest store to a customer's address.
 
-     INPUTS:
-      Incidents (Feature Set):
-          The locations that will be used as starting or ending points in a
-          closest facility analysis.You can specify one or more incidents (up to
-          5,000). These are the
-          locations from which the tool searches for the nearby locations.When
-          specifying the incidents, you can set properties for each-such as
-          its name or service time-using the following attributes:NameThe name
-          of the incident. The name is used in the driving directions.
-          If the name is not specified, a unique name prefixed with Location is
-          automatically generated in the output routes and directions.IDA unique
-          identifier for the incident. The identifier is included in
-          the output routes (as the IncidentID field) and can help join
-          additional information from the output routes, such as the total
-          travel time or total distance, to attributes from your incidents or
-          vice versa. If the ID isn't specified, the service automatically
-          generates a unique identifier for each incident.AdditionalTimeThe
-          amount of time spent at the incident, which is added to the total
-          time of the route. The default value is 0.The units for this attribute
-          value are specified by the Measurement
-          Units parameter. The attribute value is included in the analysis only
-          when the measurement units are time based.If you are finding the
-          closest fire stations to fire incidents to
-          estimate response times, for example, the AdditionalTime attribute can
-          store the amount of time it takes firefighters to hook up their
-          equipment at the location of the incident before they can begin
-          fighting the fire.AdditionalDistanceThe extra distance traveled at the
-          incident, which is added to the
-          total distance of the route. The default value is 0.The units for this
-          attribute value are specified by the Measurement
-          Units parameter. The attribute value is included in the analysis only
-          when the measurement units are distance based.Generally, the location
-          of an incident, such as a home, isn't exactly
-          on the street; it is set back somewhat from the road. This attribute
-          value can be used to model the distance between the incident location
-          and its location on the street if it is important to include that
-          distance in the total travel distance.AdditionalCostThe extra cost
-          spent at the incident, which is added to the total cost
-          of the route. The default value is 0.This attribute value should be
-          used when the travel mode for the
-          analysis uses an impedance attribute that is neither time based nor
-          distance based The units for the attribute values are interpreted to
-          be in unknown units.TargetFacilityCountThe number of facilities that
-          need to be found for the given incident.
-          This field allows you to specify a different number of facilities to
-          find for each incident. For example, using this field you can find the
-          three closest facilities from one incident and the two closest
-          facilities from another incident.CutoffThe impedance value at which to
-          stop searching for facilities from a
-          given incident. This attribute allows you to specify a different
-          cutoff value for each incident. For example, using this attribute you
-          can search for facilities within five minutes travel time from one
-          incident and search for facilities within eight minutes travel time
-          from another incident.CurbApproachSpecifies the direction a vehicle
-          may arrive at and depart from the
-          incident. The field value is specified as one of the following
-          integers (use the numeric code, not the name in parentheses):
+    INPUTS:
+     Incidents (Feature Set):
+         The locations that will be used as starting or ending points in a
+         closest facility analysis.You can specify one or more incidents (up to
+         5,000). These are the
+         locations from which the tool searches for the nearby locations.When
+         specifying the incidents, you can set properties for each-such as
+         its name or service time-using the following attributes:NameThe name
+         of the incident. The name is used in the driving directions.
+         If the name is not specified, a unique name prefixed with Location is
+         automatically generated in the output routes and directions.IDA unique
+         identifier for the incident. The identifier is included in
+         the output routes (as the IncidentID field) and can help join
+         additional information from the output routes, such as the total
+         travel time or total distance, to attributes from your incidents or
+         vice versa. If the ID isn't specified, the service automatically
+         generates a unique identifier for each incident.AdditionalTimeThe
+         amount of time spent at the incident, which is added to the total
+         time of the route. The default value is 0.The units for this attribute
+         value are specified by the Measurement
+         Units parameter. The attribute value is included in the analysis only
+         when the measurement units are time based.If you are finding the
+         closest fire stations to fire incidents to
+         estimate response times, for example, the AdditionalTime attribute can
+         store the amount of time it takes firefighters to hook up their
+         equipment at the location of the incident before they can begin
+         fighting the fire.AdditionalDistanceThe extra distance traveled at the
+         incident, which is added to the
+         total distance of the route. The default value is 0.The units for this
+         attribute value are specified by the Measurement
+         Units parameter. The attribute value is included in the analysis only
+         when the measurement units are distance based.Generally, the location
+         of an incident, such as a home, isn't exactly
+         on the street; it is set back somewhat from the road. This attribute
+         value can be used to model the distance between the incident location
+         and its location on the street if it is important to include that
+         distance in the total travel distance.AdditionalCostThe extra cost
+         spent at the incident, which is added to the total cost
+         of the route. The default value is 0.This attribute value should be
+         used when the travel mode for the
+         analysis uses an impedance attribute that is neither time based nor
+         distance based The units for the attribute values are interpreted to
+         be in unknown units.TargetFacilityCountThe number of facilities that
+         need to be found for the given incident.
+         This field allows you to specify a different number of facilities to
+         find for each incident. For example, using this field you can find the
+         three closest facilities from one incident and the two closest
+         facilities from another incident.CutoffThe impedance value at which to
+         stop searching for facilities from a
+         given incident. This attribute allows you to specify a different
+         cutoff value for each incident. For example, using this attribute you
+         can search for facilities within five minutes travel time from one
+         incident and search for facilities within eight minutes travel time
+         from another incident.CurbApproachSpecifies the direction a vehicle
+         may arrive at and depart from the
+         incident. The field value is specified as one of the following
+         integers (use the numeric code, not the name in parentheses):
 
-          * 0 (Either side of vehicle)-The vehicle can approach and depart the
-          incident in either direction, so a U-turn is allowed at the incident.
-          This setting can be chosen if it is possible and practical for a
-          vehicle to turn around at the incident. This decision may depend on
-          the width of the road and the amount of traffic or whether the
-          incident has a parking lot where vehicles can pull in and turn around.
+         * 0 (Either side of vehicle)-The vehicle can approach and depart the
+         incident in either direction, so a U-turn is allowed at the incident.
+         This setting can be chosen if it is possible and practical for a
+         vehicle to turn around at the incident. This decision may depend on
+         the width of the road and the amount of traffic or whether the
+         incident has a parking lot where vehicles can pull in and turn around.
 
-          * 1 (Right side of vehicle)-When the vehicle approaches and departs
-          the incident, the curb must be on the right side of the vehicle. A
-          U-turn is prohibited. This is typically used for vehicles such as
-          buses that must arrive with the bus stop on the right-hand side.
+         * 1 (Right side of vehicle)-When the vehicle approaches and departs
+         the incident, the curb must be on the right side of the vehicle. A
+         U-turn is prohibited. This is typically used for vehicles such as
+         buses that must arrive with the bus stop on the right-hand side.
 
-          * 2 (Left side of vehicle)-When the vehicle approaches and departs the
-          incident, the curb must be on the left side of the vehicle. A U-turn
-          is prohibited. This is typically used for vehicles such as buses that
-          must arrive with the bus stop on the left-hand side.
+         * 2 (Left side of vehicle)-When the vehicle approaches and departs the
+         incident, the curb must be on the left side of the vehicle. A U-turn
+         is prohibited. This is typically used for vehicles such as buses that
+         must arrive with the bus stop on the left-hand side.
 
-          * 3 (No U-Turn)-When the vehicle approaches the incident, the curb can
-          be on either side of the vehicle; however, the vehicle must depart
-          without turning around.
-          The CurbApproach attribute is designed to work with both types of
-          national driving standards: right-hand traffic (United States) and
-          left-hand traffic (United Kingdom). First, consider an incident on the
-          left side of a vehicle. It is always on the left side regardless of
-          whether the vehicle travels on the left or right half of the road.
-          What may change with national driving standards is your decision to
-          approach an incident from one of two directions, that is, so it ends
-          up on the right or left side of the vehicle. For example, if you want
-          to arrive at an incident and not have a lane of traffic between the
-          vehicle and the incident, choose 1 (Right side of vehicle) in the
-          United States and 2 (Left side of vehicle) in the United
-          Kingdom.BearingThe direction in which a point is moving. The units are
-          degrees and
-          are measured clockwise from true north. This field is used in
-          conjunction with the BearingTol field.Bearing data is usually sent
-          automatically from a mobile device
-          equipped with a GPS receiver. Try to include bearing data if you are
-          loading an input location that is moving, such as a pedestrian or a
-          vehicle.Using this field tends to prevent adding locations to the
-          wrong edges,
-          which can occur when a vehicle is near an intersection or an overpass,
-          for example. Bearing also helps the tool determine on which side of
-          the street the point is.BearingTolThe bearing tolerance value creates
-          a range of acceptable bearing
-          values when locating moving points on an edge using the Bearing field.
-          If the Bearing field value is within the range of acceptable values
-          that are generated from the bearing tolerance on an edge, the point
-          can be added as a network location there; otherwise, the closest point
-          on the next-nearest edge is evaluated.The units are in degrees, and
-          the default value is 30. Values must be
-          greater than 0 and less than 180. A value of 30 means that when
-          Network Analyst attempts to add a network location on an edge, a range
-          of acceptable bearing values is generated 15 degrees to either side of
-          the edge (left and right) and in both digitized directions of the
-          edge.NavLatencyThis field is only used in the solve process if the
-          Bearing and
-          BearingTol fields also have values; however, entering a NavLatency
-          field value is optional, even when values are present in Bearing and
-          BearingTol. NavLatency indicates how much cost is expected to elapse
-          from the moment GPS information is sent from a moving vehicle to a
-          server and the moment the processed route is received by the vehicle's
-          navigation device.The units of NavLatency are the same as the units of
-          the impedance
-          attribute.
-      Facilities (Feature Set):
-          The locations that will be used as starting or ending points in a
-          closest facility analysis.You can specify one or more facilities (up
-          to 5,000). These are the
-          locations that are searched for when finding the closest location.When
-          specifying the facilities, you can set properties for each-such
-          as its name or service time-using the following attributes:NameThe
-          name of the facility. The name is used in the driving directions.
-          If the name is not specified, a unique name prefixed with Location is
-          automatically generated in the output routes and directions.IDA unique
-          identifier for the facility. The identifier is included in
-          the output routes and the output closest facilities as FacilityID
-          fields. The FacilityID field can be used to join additional
-          information from the output routes, such as the total travel time or
-          total distance, to attributes from your facilities. If the ID isn't
-          specified, the service automatically generates a unique identifier for
-          each facility.AdditionalTimeThe amount of time spent at the facility,
-          which is added to the total
-          time of the route. The default value is 0.The units for this attribute
-          value are specified by the Measurement
-          Units parameter. The attribute value is included in the analysis only
-          when the measurement units are time based.If you are finding the
-          closest fire stations to fire incidents, for
-          example, AdditionalTime can store the time it takes a crew to don the
-          appropriate protective equipment and exit the fire
-          station.AdditionalDistanceThe extra distance traveled at the facility,
-          which is added to the
-          total distance of the route. The default value is 0.The units for this
-          attribute value are specified by the Measurement
-          Units parameter. The attribute value is included in the analysis only
-          when the measurement units are distance based.Generally, the location
-          of a facility, such as a fire station, isn't
-          exactly on the street; it is set back somewhat from the road.
-          AdditionalDistance can model the distance between the facility
-          location and its location on the street if it is important to include
-          that distance in the total travel distance.AdditionalCostThe extra
-          cost spent at the facility, which is added to the total cost
-          of the route. The default value is 0.This attribute value should be
-          used when the travel mode for the
-          analysis uses an impedance attribute that is neither time based nor
-          distance based The units for the attribute values are interpreted to
-          be in unknown units.CutoffThe impedance value at which to stop
-          searching for incidents from a
-          given facility. This attribute allows you to specify a different
-          cutoff value for each facility. For example, using this attribute you
-          can search for incidents within five minutes of travel time from one
-          facility and search for incidents within eight minutes of travel time
-          from another facility.CurbApproachSpecifies the direction a vehicle
-          may arrive at and depart from the
-          facility.
+         * 3 (No U-Turn)-When the vehicle approaches the incident, the curb can
+         be on either side of the vehicle; however, the vehicle must depart
+         without turning around.
+         The CurbApproach attribute is designed to work with both types of
+         national driving standards: right-hand traffic (United States) and
+         left-hand traffic (United Kingdom). First, consider an incident on the
+         left side of a vehicle. It is always on the left side regardless of
+         whether the vehicle travels on the left or right half of the road.
+         What may change with national driving standards is your decision to
+         approach an incident from one of two directions, that is, so it ends
+         up on the right or left side of the vehicle. For example, if you want
+         to arrive at an incident and not have a lane of traffic between the
+         vehicle and the incident, choose 1 (Right side of vehicle) in the
+         United States and 2 (Left side of vehicle) in the United
+         Kingdom.BearingThe direction in which a point is moving. The units are
+         degrees and
+         are measured clockwise from true north. This field is used in
+         conjunction with the BearingTol field.Bearing data is usually sent
+         automatically from a mobile device
+         equipped with a GPS receiver. Try to include bearing data if you are
+         loading an input location that is moving, such as a pedestrian or a
+         vehicle.Using this field tends to prevent adding locations to the
+         wrong edges,
+         which can occur when a vehicle is near an intersection or an overpass,
+         for example. Bearing also helps the tool determine on which side of
+         the street the point is.BearingTolThe bearing tolerance value creates
+         a range of acceptable bearing
+         values when locating moving points on an edge using the Bearing field.
+         If the Bearing field value is within the range of acceptable values
+         that are generated from the bearing tolerance on an edge, the point
+         can be added as a network location there; otherwise, the closest point
+         on the next-nearest edge is evaluated.The units are in degrees, and
+         the default value is 30. Values must be
+         greater than 0 and less than 180. A value of 30 means that when
+         Network Analyst attempts to add a network location on an edge, a range
+         of acceptable bearing values is generated 15 degrees to either side of
+         the edge (left and right) and in both digitized directions of the
+         edge.NavLatencyThis field is only used in the solve process if the
+         Bearing and
+         BearingTol fields also have values; however, entering a NavLatency
+         field value is optional, even when values are present in Bearing and
+         BearingTol. NavLatency indicates how much cost is expected to elapse
+         from the moment GPS information is sent from a moving vehicle to a
+         server and the moment the processed route is received by the vehicle's
+         navigation device.The units of NavLatency are the same as the units of
+         the impedance
+         attribute.
+     Facilities (Feature Set):
+         The locations that will be used as starting or ending points in a
+         closest facility analysis.You can specify one or more facilities (up
+         to 5,000). These are the
+         locations that are searched for when finding the closest location.When
+         specifying the facilities, you can set properties for each-such
+         as its name or service time-using the following attributes:NameThe
+         name of the facility. The name is used in the driving directions.
+         If the name is not specified, a unique name prefixed with Location is
+         automatically generated in the output routes and directions.IDA unique
+         identifier for the facility. The identifier is included in
+         the output routes and the output closest facilities as FacilityID
+         fields. The FacilityID field can be used to join additional
+         information from the output routes, such as the total travel time or
+         total distance, to attributes from your facilities. If the ID isn't
+         specified, the service automatically generates a unique identifier for
+         each facility.AdditionalTimeThe amount of time spent at the facility,
+         which is added to the total
+         time of the route. The default value is 0.The units for this attribute
+         value are specified by the Measurement
+         Units parameter. The attribute value is included in the analysis only
+         when the measurement units are time based.If you are finding the
+         closest fire stations to fire incidents, for
+         example, AdditionalTime can store the time it takes a crew to don the
+         appropriate protective equipment and exit the fire
+         station.AdditionalDistanceThe extra distance traveled at the facility,
+         which is added to the
+         total distance of the route. The default value is 0.The units for this
+         attribute value are specified by the Measurement
+         Units parameter. The attribute value is included in the analysis only
+         when the measurement units are distance based.Generally, the location
+         of a facility, such as a fire station, isn't
+         exactly on the street; it is set back somewhat from the road.
+         AdditionalDistance can model the distance between the facility
+         location and its location on the street if it is important to include
+         that distance in the total travel distance.AdditionalCostThe extra
+         cost spent at the facility, which is added to the total cost
+         of the route. The default value is 0.This attribute value should be
+         used when the travel mode for the
+         analysis uses an impedance attribute that is neither time based nor
+         distance based The units for the attribute values are interpreted to
+         be in unknown units.CutoffThe impedance value at which to stop
+         searching for incidents from a
+         given facility. This attribute allows you to specify a different
+         cutoff value for each facility. For example, using this attribute you
+         can search for incidents within five minutes of travel time from one
+         facility and search for incidents within eight minutes of travel time
+         from another facility.CurbApproachSpecifies the direction a vehicle
+         may arrive at and depart from the
+         facility.
 
-          * 0 (Either side of vehicle)-The vehicle can approach and depart the
-          facility in either direction, so a U-turn is allowed at the facility.
-          This setting can be chosen if it is possible and practical for a
-          vehicle to turn around at the facility. This decision may depend on
-          the width of the road and the amount of traffic or whether the
-          facility has a parking lot where vehicles can pull in and turn around.
+         * 0 (Either side of vehicle)-The vehicle can approach and depart the
+         facility in either direction, so a U-turn is allowed at the facility.
+         This setting can be chosen if it is possible and practical for a
+         vehicle to turn around at the facility. This decision may depend on
+         the width of the road and the amount of traffic or whether the
+         facility has a parking lot where vehicles can pull in and turn around.
 
-          * 1 (Right side of vehicle)-When the vehicle approaches and departs
-          the facility, the facility must be on the right side of the vehicle. A
-          U-turn is prohibited. This is typically used for vehicles such as
-          buses that must arrive with the bus stop on the right-hand side.
+         * 1 (Right side of vehicle)-When the vehicle approaches and departs
+         the facility, the facility must be on the right side of the vehicle. A
+         U-turn is prohibited. This is typically used for vehicles such as
+         buses that must arrive with the bus stop on the right-hand side.
 
-          * 2 (Left side of vehicle)-When the vehicle approaches and departs the
-          facility, the curb must be on the left side of the vehicle. A U-turn
-          is prohibited. This is typically used for vehicles such as buses that
-          must arrive with the bus stop on the left-hand side.
+         * 2 (Left side of vehicle)-When the vehicle approaches and departs the
+         facility, the curb must be on the left side of the vehicle. A U-turn
+         is prohibited. This is typically used for vehicles such as buses that
+         must arrive with the bus stop on the left-hand side.
 
-          * 3 (No U-Turn)-When the vehicle approaches the facility, the curb can
-          be on either side of the vehicle; however, the vehicle must depart
-          without turning around.
-          The CurbApproach attribute is designed to work with both types of
-          national driving standards: right-hand traffic (United States) and
-          left-hand traffic (United Kingdom). First, consider a facility on the
-          left side of a vehicle. It is always on the left side regardless of
-          whether the vehicle travels on the left or right half of the road.
-          What may change with national driving standards is your decision to
-          approach a facility from one of two directions, that is, so it ends up
-          on the right or left side of the vehicle. For example, if you want to
-          arrive at a facility and not have a lane of traffic between the
-          vehicle and the facility, choose 1 (Right side of vehicle) in the
-          United States and 2 (Left side of vehicle) in the United
-          Kingdom.BearingThe direction in which a point is moving. The units are
-          degrees and
-          are measured clockwise from true north. This field is used in
-          conjunction with the BearingTol field.Bearing data is usually sent
-          automatically from a mobile device
-          equipped with a GPS receiver. Try to include bearing data if you are
-          loading an input location that is moving, such as a pedestrian or a
-          vehicle.Using this field tends to prevent adding locations to the
-          wrong edges,
-          which can occur when a vehicle is near an intersection or an overpass,
-          for example. Bearing also helps the tool determine on which side of
-          the street the point is.BearingTolThe bearing tolerance value creates
-          a range of acceptable bearing
-          values when locating moving points on an edge using the Bearing field.
-          If the Bearing field value is within the range of acceptable values
-          that are generated from the bearing tolerance on an edge, the point
-          can be added as a network location there; otherwise, the closest point
-          on the next-nearest edge is evaluated.The units are in degrees, and
-          the default value is 30. Values must be
-          greater than 0 and less than 180. A value of 30 means that when
-          Network Analyst attempts to add a network location on an edge, a range
-          of acceptable bearing values is generated 15 degrees to either side of
-          the edge (left and right) and in both digitized directions of the
-          edge.NavLatencyThis field is only used in the solve process if the
-          Bearing and
-          BearingTol fields also have values; however, entering a NavLatency
-          field value is optional, even when values are present in Bearing and
-          BearingTol. NavLatency indicates how much cost is expected to elapse
-          from the moment GPS information is sent from a moving vehicle to a
-          server and the moment the processed route is received by the vehicle's
-          navigation device.The units of NavLatency are the same as the units of
-          the impedance
-          attribute.
-      Measurement_Units (String):
-          Specifies the units that will be used to measure and report the total
-          travel time or travel distance for the output routes. The tool finds
-          the closest facility by measuring the travel time or the travel
-          distance along the streets.The units specified for this parameter
-          determine whether the tool will
-          measure driving distance or driving time to find what is closest.
-          Choose a time unit to measure driving time. To measure driving
-          distance, choose a distance unit. Your choice also determines the
-          units in which the tool will report total driving time or distance in
-          the results.
+         * 3 (No U-Turn)-When the vehicle approaches the facility, the curb can
+         be on either side of the vehicle; however, the vehicle must depart
+         without turning around.
+         The CurbApproach attribute is designed to work with both types of
+         national driving standards: right-hand traffic (United States) and
+         left-hand traffic (United Kingdom). First, consider a facility on the
+         left side of a vehicle. It is always on the left side regardless of
+         whether the vehicle travels on the left or right half of the road.
+         What may change with national driving standards is your decision to
+         approach a facility from one of two directions, that is, so it ends up
+         on the right or left side of the vehicle. For example, if you want to
+         arrive at a facility and not have a lane of traffic between the
+         vehicle and the facility, choose 1 (Right side of vehicle) in the
+         United States and 2 (Left side of vehicle) in the United
+         Kingdom.BearingThe direction in which a point is moving. The units are
+         degrees and
+         are measured clockwise from true north. This field is used in
+         conjunction with the BearingTol field.Bearing data is usually sent
+         automatically from a mobile device
+         equipped with a GPS receiver. Try to include bearing data if you are
+         loading an input location that is moving, such as a pedestrian or a
+         vehicle.Using this field tends to prevent adding locations to the
+         wrong edges,
+         which can occur when a vehicle is near an intersection or an overpass,
+         for example. Bearing also helps the tool determine on which side of
+         the street the point is.BearingTolThe bearing tolerance value creates
+         a range of acceptable bearing
+         values when locating moving points on an edge using the Bearing field.
+         If the Bearing field value is within the range of acceptable values
+         that are generated from the bearing tolerance on an edge, the point
+         can be added as a network location there; otherwise, the closest point
+         on the next-nearest edge is evaluated.The units are in degrees, and
+         the default value is 30. Values must be
+         greater than 0 and less than 180. A value of 30 means that when
+         Network Analyst attempts to add a network location on an edge, a range
+         of acceptable bearing values is generated 15 degrees to either side of
+         the edge (left and right) and in both digitized directions of the
+         edge.NavLatencyThis field is only used in the solve process if the
+         Bearing and
+         BearingTol fields also have values; however, entering a NavLatency
+         field value is optional, even when values are present in Bearing and
+         BearingTol. NavLatency indicates how much cost is expected to elapse
+         from the moment GPS information is sent from a moving vehicle to a
+         server and the moment the processed route is received by the vehicle's
+         navigation device.The units of NavLatency are the same as the units of
+         the impedance
+         attribute.
+     Measurement_Units (String):
+         Specifies the units that will be used to measure and report the total
+         travel time or travel distance for the output routes. The tool finds
+         the closest facility by measuring the travel time or the travel
+         distance along the streets.The units specified for this parameter
+         determine whether the tool will
+         measure driving distance or driving time to find what is closest.
+         Choose a time unit to measure driving time. To measure driving
+         distance, choose a distance unit. Your choice also determines the
+         units in which the tool will report total driving time or distance in
+         the results.
 
-          * Meters-The linear unit will be meters.
+         * Meters-The linear unit will be meters.
 
-          * Kilometers-The linear unit will be kilometers.
+         * Kilometers-The linear unit will be kilometers.
 
-          * Feet-The linear unit will be feet.
+         * Feet-The linear unit will be feet.
 
-          * Yards-The linear unit will be yards.
+         * Yards-The linear unit will be yards.
 
-          * Miles-The linear unit will be miles.
+         * Miles-The linear unit will be miles.
 
-          * NauticalMiles-The linear unit will be nautical miles.
+         * NauticalMiles-The linear unit will be nautical miles.
 
-          * Seconds-The time unit will be seconds.
+         * Seconds-The time unit will be seconds.
 
-          * Minutes-The time unit will be minutes.
+         * Minutes-The time unit will be minutes.
 
-          * Hours-The time unit will be hours.
+         * Hours-The time unit will be hours.
 
-          * Days-The time unit will be days.
-      Analysis_Region {String}:
-          The region in which the analysis will be performed. If a value is not
-          specified for this parameter, the tool will automatically calculate
-          the region name based on the location of the input points. Setting the
-          name of the region is required only if the automatic detection of the
-          region name is not accurate for the inputs.To specify a region, use
-          one of the following values:
+         * Days-The time unit will be days.
+     Analysis_Region {String}:
+         The region in which the analysis will be performed. If a value is not
+         specified for this parameter, the tool will automatically calculate
+         the region name based on the location of the input points. Setting the
+         name of the region is required only if the automatic detection of the
+         region name is not accurate for the inputs.To specify a region, use
+         one of the following values:
 
-          * Europe-The analysis region will be Europe.
+         * Europe-The analysis region will be Europe.
 
-          * Japan-The analysis region will be Japan.
+         * Japan-The analysis region will be Japan.
 
-          * Korea-The analysis region will be Korea.
+         * Korea-The analysis region will be Korea.
 
-          * MiddleEastAndAfrica-The analysis region will be Middle East and
-          Africa.
+         * MiddleEastAndAfrica-The analysis region will be Middle East and
+         Africa.
 
-          * NorthAmerica-The analysis region will be North America.
+         * NorthAmerica-The analysis region will be North America.
 
-          * SouthAmerica-The analysis region will be South America.
+         * SouthAmerica-The analysis region will be South America.
 
-          * SouthAsia-The analysis region will be South Asia.
+         * SouthAsia-The analysis region will be South Asia.
 
-          * Thailand-The analysis region will be Thailand.
-                  The following region names are no longer supported and will be
-          removed in future releases. If you specify one of the deprecated
-          region names, the tool automatically assigns a supported region name
-          for the region.
+         * Thailand-The analysis region will be Thailand.
+                 The following region names are no longer supported and will be
+         removed in future releases. If you specify one of the deprecated
+         region names, the tool automatically assigns a supported region name
+         for the region.
 
-          * Greece redirects to Europe
+         * Greece redirects to Europe
 
-          * India redirects to SouthAsia
+         * India redirects to SouthAsia
 
-          * Oceania redirects to SouthAsia
+         * Oceania redirects to SouthAsia
 
-          * SouthEastAsia redirects to SouthAsia
+         * SouthEastAsia redirects to SouthAsia
 
-          * Taiwan redirects to SouthAsia
-      Number_of_Facilities_to_Find {Long}:
-          The number of closest facilities to find per incident. This is useful
-          in situations in which multiple fire engines may be required from
-          different fire stations, such as a fire. You can specify, for example,
-          to find the three nearest fire stations to a fire.The value set in
-          this parameter can be overridden on a per-incident
-          basis using the TargetFacilityCount field in the input incidents.The
-          tool can find up to 100 facilities from each incident.
-      Cutoff {Double}:
-          The travel time or travel distance value at which to stop searching
-          for facilities for a given incident. For example, while finding the
-          closest hospitals from the site of an accident, a cutoff value of 15
-          minutes means that the tool will search for the closest hospital
-          within 15 minutes from the incident. If the closest hospital is 17
-          minutes away, no routes will be returned in the output routes. A
-          cutoff value is especially useful when searching for multiple
-          facilities.When the Travel Direction parameter is set to Facility to
-          Incident,
-          the cutoff can be overridden on a per-facility basis using the Cutoff
-          field in the input facilities. When the Travel Direction parameter is
-          set to Incident To Facility, the cutoff can be overridden on a per-
-          incident basis using the Cutoff field in the input incidents.The units
-          for this parameter are specified by the Measurement Units
-          parameter.
-      Travel_Direction {String}:
-          Specifies how the travel direction for the closest facility search
-          will be measured.
+         * Taiwan redirects to SouthAsia
+     Number_of_Facilities_to_Find {Long}:
+         The number of closest facilities to find per incident. This is useful
+         in situations in which multiple fire engines may be required from
+         different fire stations, such as a fire. You can specify, for example,
+         to find the three nearest fire stations to a fire.The value set in
+         this parameter can be overridden on a per-incident
+         basis using the TargetFacilityCount field in the input incidents.The
+         tool can find up to 100 facilities from each incident.
+     Cutoff {Double}:
+         The travel time or travel distance value at which to stop searching
+         for facilities for a given incident. For example, while finding the
+         closest hospitals from the site of an accident, a cutoff value of 15
+         minutes means that the tool will search for the closest hospital
+         within 15 minutes from the incident. If the closest hospital is 17
+         minutes away, no routes will be returned in the output routes. A
+         cutoff value is especially useful when searching for multiple
+         facilities.When the Travel Direction parameter is set to Facility to
+         Incident,
+         the cutoff can be overridden on a per-facility basis using the Cutoff
+         field in the input facilities. When the Travel Direction parameter is
+         set to Incident To Facility, the cutoff can be overridden on a per-
+         incident basis using the Cutoff field in the input incidents.The units
+         for this parameter are specified by the Measurement Units
+         parameter.
+     Travel_Direction {String}:
+         Specifies how the travel direction for the closest facility search
+         will be measured.
 
-          * Facility to Incident-The direction of travel is from facilities to
-          incidents.
+         * Facility to Incident-The direction of travel is from facilities to
+         incidents.
 
-          * Incident to Facility-The direction of travel is from incidents to
-          facilities.
-          Each option may find different facilities, as the travel time along
-          some streets may vary based on the travel direction and one-way
-          restrictions. For instance, a facility may be a 10-minute drive from
-          the incident while traveling from the incident to the facility, but
-          while traveling from the facility to the incident, it may be a
-          15-minute drive because of different travel time in that direction.If
-          you are also setting a value for the Time of Day parameter, traffic
-          may also cause the Facility to Incident and Incident to Facility
-          options to return different results.Fire departments commonly use the
-          Facility to Incident value for the
-          parameter, since they are concerned with the time it takes to travel
-          from the fire station (facility) to the location of the emergency
-          (incident). Management at a retail store (facility) is more concerned
-          with the time it takes shoppers (incidents) to reach the store
-          (facility); therefore, store management commonly chooses Incident to
-          Facility.
-      Use_Hierarchy {Boolean}:
-          Specifies whether hierarchy will be used when finding the best route
-          between the facility and the incident.
+         * Incident to Facility-The direction of travel is from incidents to
+         facilities.
+         Each option may find different facilities, as the travel time along
+         some streets may vary based on the travel direction and one-way
+         restrictions. For instance, a facility may be a 10-minute drive from
+         the incident while traveling from the incident to the facility, but
+         while traveling from the facility to the incident, it may be a
+         15-minute drive because of different travel time in that direction.If
+         you are also setting a value for the Time of Day parameter, traffic
+         may also cause the Facility to Incident and Incident to Facility
+         options to return different results.Fire departments commonly use the
+         Facility to Incident value for the
+         parameter, since they are concerned with the time it takes to travel
+         from the fire station (facility) to the location of the emergency
+         (incident). Management at a retail store (facility) is more concerned
+         with the time it takes shoppers (incidents) to reach the store
+         (facility); therefore, store management commonly chooses Incident to
+         Facility.
+     Use_Hierarchy {Boolean}:
+         Specifies whether hierarchy will be used when finding the best route
+         between the facility and the incident.
 
-          * Checked (True in Python)-Hierarchy will be used when finding routes.
-          When hierarchy is used, the tool identifies higher-order streets (such
-          as freeways) before lower-order streets (such as local roads) and can
-          be used to simulate the driver preference of traveling on freeways
-          instead of local roads even if that means a longer trip. This is
-          especially useful when finding routes to faraway facilities, because
-          drivers on long-distance trips tend to prefer traveling on freeways,
-          where stops, intersections, and turns can be avoided. Using hierarchy
-          is computationally faster, especially for long-distance routes, as the
-          tool identifies the best route from a relatively smaller subset of
-          streets.
+         * Checked (True in Python)-Hierarchy will be used when finding routes.
+         When hierarchy is used, the tool identifies higher-order streets (such
+         as freeways) before lower-order streets (such as local roads) and can
+         be used to simulate the driver preference of traveling on freeways
+         instead of local roads even if that means a longer trip. This is
+         especially useful when finding routes to faraway facilities, because
+         drivers on long-distance trips tend to prefer traveling on freeways,
+         where stops, intersections, and turns can be avoided. Using hierarchy
+         is computationally faster, especially for long-distance routes, as the
+         tool identifies the best route from a relatively smaller subset of
+         streets.
 
-          * Unchecked (False in Python)-Hierarchy will not be used when finding
-          routes. If hierarchy is not used, the tool considers all the streets
-          and doesn't necessarily identify higher-order streets when finding the
-          route. This is often used for finding short-distance routes within a
-          city.
-          The tool automatically reverts to using hierarchy if the straight-line
-          distance between facilities and incidents is greater than 50 miles,
-          even if this parameter is Unchecked (set to False in Python).
-      Time_of_Day {Date}:
-          The time and date the route will begin or end. The value is used as
-          the start time or end time for the route depending on the value for
-          the Time of Day Usage parameter. If you specify the current date and
-          time as the value for this parameter, the tool will use live traffic
-          conditions to find the closest facility, and the total travel time
-          will be based on traffic conditions.Specifying a time of day results
-          in a more accurate estimation of
-          travel time between the incident and facility because the travel time
-          accounts for the traffic conditions that are applicable for that date
-          and time.The Time Zone for Time of Day parameter specifies whether
-          this time
-          and date refer to UTC or the time zone in which the facility or
-          incident is located.
-      Time_of_Day_Usage {String}:
-          Specifies whether the Time of Day parameter value represents the
-          arrival or departure time for the route.
+         * Unchecked (False in Python)-Hierarchy will not be used when finding
+         routes. If hierarchy is not used, the tool considers all the streets
+         and doesn't necessarily identify higher-order streets when finding the
+         route. This is often used for finding short-distance routes within a
+         city.
+         The tool automatically reverts to using hierarchy if the straight-line
+         distance between facilities and incidents is greater than 50 miles,
+         even if this parameter is Unchecked (set to False in Python).
+     Time_of_Day {Date}:
+         The time and date the route will begin or end. The value is used as
+         the start time or end time for the route depending on the value for
+         the Time of Day Usage parameter. If you specify the current date and
+         time as the value for this parameter, the tool will use live traffic
+         conditions to find the closest facility, and the total travel time
+         will be based on traffic conditions.Specifying a time of day results
+         in a more accurate estimation of
+         travel time between the incident and facility because the travel time
+         accounts for the traffic conditions that are applicable for that date
+         and time.The Time Zone for Time of Day parameter specifies whether
+         this time
+         and date refer to UTC or the time zone in which the facility or
+         incident is located.
+     Time_of_Day_Usage {String}:
+         Specifies whether the Time of Day parameter value represents the
+         arrival or departure time for the route.
 
-          * Start Time-The tool considers the Time of Day parameter value as the
-          departure time from the facility or incident to find the best route.
+         * Start Time-The tool considers the Time of Day parameter value as the
+         departure time from the facility or incident to find the best route.
 
-          * End Time-The tool considers the Time of Day parameter value as the
-          arrival time at the facility or incident to find the best route. This
-          option is useful if you want to know the time to depart from a
-          location so you arrive at the destination at the time specified in
-          Time of Day.
-      UTurn_at_Junctions {String}:
-          Specifies the U-turn policy at junctions. Allowing U-turns implies the
-          solver can turn around at a junction and double back on the same
-          street. Given that junctions represent street intersections and dead
-          ends, different vehicles may be able to turn around at some junctions
-          but not at others-it depends on whether the junction represents an
-          intersection or dead end. To accommodate this, the U-turn policy
-          parameter is implicitly specified by the number of edges that connect
-          to the junction, which is known as junction valency. The acceptable
-          values for this parameter are listed below; each is followed by a
-          description of its meaning in terms of junction valency.
+         * End Time-The tool considers the Time of Day parameter value as the
+         arrival time at the facility or incident to find the best route. This
+         option is useful if you want to know the time to depart from a
+         location so you arrive at the destination at the time specified in
+         Time of Day.
+     UTurn_at_Junctions {String}:
+         Specifies the U-turn policy at junctions. Allowing U-turns implies the
+         solver can turn around at a junction and double back on the same
+         street. Given that junctions represent street intersections and dead
+         ends, different vehicles may be able to turn around at some junctions
+         but not at others-it depends on whether the junction represents an
+         intersection or dead end. To accommodate this, the U-turn policy
+         parameter is implicitly specified by the number of edges that connect
+         to the junction, which is known as junction valency. The acceptable
+         values for this parameter are listed below; each is followed by a
+         description of its meaning in terms of junction valency.
 
-          * Allowed-U-turns are permitted at junctions with any number of
-          connected edges. This is the default value.
+         * Allowed-U-turns are permitted at junctions with any number of
+         connected edges. This is the default value.
 
-          * Not Allowed-U-turns are prohibited at all junctions, regardless of
-          junction valency. However, U-turns are still permitted at network
-          locations even when this option is chosen, but you can set the
-          individual network locations' CurbApproach attribute to prohibit
-          U-turns there as well.
+         * Not Allowed-U-turns are prohibited at all junctions, regardless of
+         junction valency. However, U-turns are still permitted at network
+         locations even when this option is chosen, but you can set the
+         individual network locations' CurbApproach attribute to prohibit
+         U-turns there as well.
 
-          * Allowed Only at Dead Ends-U-turns are prohibited at all junctions
-          except those that have only one adjacent edge (a dead end).
+         * Allowed Only at Dead Ends-U-turns are prohibited at all junctions
+         except those that have only one adjacent edge (a dead end).
 
-          * Allowed Only at Intersections and Dead Ends-U-turns are prohibited
-          at junctions where exactly two adjacent edges meet but are permitted
-          at intersections (junctions with three or more adjacent edges) and
-          dead ends (junctions with exactly one adjacent edge). Often, networks
-          have extraneous junctions in the middle of road segments. This option
-          prevents vehicles from making U-turns at these locations.
-          This parameter is ignored unless Travel Mode is set to Custom.
-      Point_Barriers {Feature Set}:
-          Use this parameter to specify one or more points that will act as
-          temporary restrictions or represent additional time or distance that
-          may be required to travel on the underlying streets. For example, a
-          point barrier can be used to represent a fallen tree along a street or
-          a time delay spent at a railroad crossing.The tool imposes a limit of
-          250 points that can be added as barriers.When specifying point
-          barriers, you can set properties for each, such
-          as its name or barrier type, using the following attributes:NameThe
-          name of the barrier.BarrierTypeSpecifies whether the point barrier
-          restricts travel completely or
-          adds time or distance when it is crossed. The value for this attribute
-          is specified as one of the following integers (use the numeric code,
-          not the name in parentheses):
+         * Allowed Only at Intersections and Dead Ends-U-turns are prohibited
+         at junctions where exactly two adjacent edges meet but are permitted
+         at intersections (junctions with three or more adjacent edges) and
+         dead ends (junctions with exactly one adjacent edge). Often, networks
+         have extraneous junctions in the middle of road segments. This option
+         prevents vehicles from making U-turns at these locations.
+         This parameter is ignored unless Travel Mode is set to Custom.
+     Point_Barriers {Feature Set}:
+         Use this parameter to specify one or more points that will act as
+         temporary restrictions or represent additional time or distance that
+         may be required to travel on the underlying streets. For example, a
+         point barrier can be used to represent a fallen tree along a street or
+         a time delay spent at a railroad crossing.The tool imposes a limit of
+         250 points that can be added as barriers.When specifying point
+         barriers, you can set properties for each, such
+         as its name or barrier type, using the following attributes:NameThe
+         name of the barrier.BarrierTypeSpecifies whether the point barrier
+         restricts travel completely or
+         adds time or distance when it is crossed. The value for this attribute
+         is specified as one of the following integers (use the numeric code,
+         not the name in parentheses):
 
-          * 0 (Restriction)-Prohibits travel through the barrier. The barrier
-          is
-          referred to as a restriction point barrier since it acts as a
-          restriction.
+         * 0 (Restriction)-Prohibits travel through the barrier. The barrier
+         is
+         referred to as a restriction point barrier since it acts as a
+         restriction.
 
-          * 2 (Added Cost)-Traveling through the barrier increases the travel
-          time
-          or distance by the amount specified in the Additional_Time,
-          Additional_Distance, or AdditionalCost field. This barrier type is
-          referred to as an added cost point barrier.
-          Additional_TimeThe added travel time when the barrier is traversed.
-          This field is
-          applicable only for added-cost barriers and when the Measurement Units
-          parameter value is time based.This field value must be greater than or
-          equal to zero, and its units
-          must be the same as those specified in the Measurement Units
-          parameter.Additional_DistanceThe added distance when the barrier is
-          traversed. This field is
-          applicable only for added-cost barriers and when the Measurement Units
-          parameter value is distance based.The field value must be greater than
-          or equal to zero, and its units
-          must be the same as those specified in the Measurement Units
-          parameter.AdditionalCostThe added cost when the barrier is traversed.
-          This field is applicable
-          only for added-cost barriers when the Measurement Units parameter
-          value is neither time based nor distance based.FullEdgeSpecifies how
-          the restriction point barriers are applied to the edge
-          elements during the analysis. The field value is specified as one of
-          the following integers (use the numeric code, not the name in
-          parentheses):
+         * 2 (Added Cost)-Traveling through the barrier increases the travel
+         time
+         or distance by the amount specified in the Additional_Time,
+         Additional_Distance, or AdditionalCost field. This barrier type is
+         referred to as an added cost point barrier.
+         Additional_TimeThe added travel time when the barrier is traversed.
+         This field is
+         applicable only for added-cost barriers and when the Measurement Units
+         parameter value is time based.This field value must be greater than or
+         equal to zero, and its units
+         must be the same as those specified in the Measurement Units
+         parameter.Additional_DistanceThe added distance when the barrier is
+         traversed. This field is
+         applicable only for added-cost barriers and when the Measurement Units
+         parameter value is distance based.The field value must be greater than
+         or equal to zero, and its units
+         must be the same as those specified in the Measurement Units
+         parameter.AdditionalCostThe added cost when the barrier is traversed.
+         This field is applicable
+         only for added-cost barriers when the Measurement Units parameter
+         value is neither time based nor distance based.FullEdgeSpecifies how
+         the restriction point barriers are applied to the edge
+         elements during the analysis. The field value is specified as one of
+         the following integers (use the numeric code, not the name in
+         parentheses):
 
-          * 0 (False)-Permits travel on the edge up to the barrier but not
-          through it. This is the default value.
+         * 0 (False)-Permits travel on the edge up to the barrier but not
+         through it. This is the default value.
 
-          * 1 (True)-Restricts travel anywhere on the associated edge.
-          CurbApproachSpecifies the direction of traffic that is affected by the
-          barrier.
-          The field value is specified as one of the following integers (use the
-          numeric code, not the name in parentheses):
+         * 1 (True)-Restricts travel anywhere on the associated edge.
+         CurbApproachSpecifies the direction of traffic that is affected by the
+         barrier.
+         The field value is specified as one of the following integers (use the
+         numeric code, not the name in parentheses):
 
-          * 0 (Either side of vehicle)-The barrier affects travel over the edge
-          in both directions.
+         * 0 (Either side of vehicle)-The barrier affects travel over the edge
+         in both directions.
 
-          * 1 (Right side of vehicle)-Vehicles are only affected if the barrier
-          is on their right side during the approach. Vehicles that traverse the
-          same edge but approach the barrier on their left side are not affected
-          by the barrier.
+         * 1 (Right side of vehicle)-Vehicles are only affected if the barrier
+         is on their right side during the approach. Vehicles that traverse the
+         same edge but approach the barrier on their left side are not affected
+         by the barrier.
 
-          * 2 (Left side of vehicle)-Vehicles are only affected if the barrier
-          is on their left side during the approach. Vehicles that traverse the
-          same edge but approach the barrier on their right side are not
-          affected by the barrier.
-          Because junctions are points and don't have a side, barriers on
-          junctions affect all vehicles regardless of the curb approach.The
-          CurbApproach attribute works with both types of national driving
-          standards: right-hand traffic (United States) and left-hand traffic
-          (United Kingdom)"""
+         * 2 (Left side of vehicle)-Vehicles are only affected if the barrier
+         is on their left side during the approach. Vehicles that traverse the
+         same edge but approach the barrier on their right side are not
+         affected by the barrier.
+         Because junctions are points and don't have a side, barriers on
+         junctions affect all vehicles regardless of the curb approach.The
+         CurbApproach attribute works with both types of national driving
+         standards: right-hand traffic (United States) and left-hand traffic
+         (United Kingdom)"""
     ...
 
-@gptooldoc('FindRoutes_agolservices', None)
-def FindRoutes(Stops=..., Measurement_Units=..., Analysis_Region=..., Reorder_Stops_to_Find_Optimal_Routes=..., Preserve_Terminal_Stops=..., Return_to_Start=..., Use_Time_Windows=..., Time_of_Day=..., Time_Zone_for_Time_of_Day=..., UTurn_at_Junctions=..., Point_Barriers=..., Line_Barriers=..., Polygon_Barriers=..., Use_Hierarchy=..., Restrictions=..., Attribute_Parameter_Values=..., Route_Shape=..., Route_Line_Simplification_Tolerance=..., Populate_Route_Edges=..., Populate_Directions=..., Directions_Language=..., Directions_Distance_Units=..., Directions_Style_Name=..., Travel_Mode=..., Impedance=..., Time_Zone_for_Time_Windows=..., Save_Output_Network_Analysis_Layer=..., Overrides=..., Save_Route_Data=..., Time_Impedance=..., Distance_Impedance=..., Output_Format=..., Ignore_Invalid_Locations=..., Locate_Settings=...): # -> conversion | int | float | complex | basestring | list[Unknown] | tuple[Unknown, ...] | dict[Unknown, Unknown]:
+@gptooldoc("FindRoutes_agolservices", None)
+def FindRoutes(
+    Stops=...,
+    Measurement_Units=...,
+    Analysis_Region=...,
+    Reorder_Stops_to_Find_Optimal_Routes=...,
+    Preserve_Terminal_Stops=...,
+    Return_to_Start=...,
+    Use_Time_Windows=...,
+    Time_of_Day=...,
+    Time_Zone_for_Time_of_Day=...,
+    UTurn_at_Junctions=...,
+    Point_Barriers=...,
+    Line_Barriers=...,
+    Polygon_Barriers=...,
+    Use_Hierarchy=...,
+    Restrictions=...,
+    Attribute_Parameter_Values=...,
+    Route_Shape=...,
+    Route_Line_Simplification_Tolerance=...,
+    Populate_Route_Edges=...,
+    Populate_Directions=...,
+    Directions_Language=...,
+    Directions_Distance_Units=...,
+    Directions_Style_Name=...,
+    Travel_Mode=...,
+    Impedance=...,
+    Time_Zone_for_Time_Windows=...,
+    Save_Output_Network_Analysis_Layer=...,
+    Overrides=...,
+    Save_Route_Data=...,
+    Time_Impedance=...,
+    Distance_Impedance=...,
+    Output_Format=...,
+    Ignore_Invalid_Locations=...,
+    Locate_Settings=...,
+):  # -> conversion | int | float | complex | basestring | list[Unknown] | tuple[Unknown, ...] | dict[Unknown, Unknown]:
     """FindRoutes_agolservices(Stops, Measurement_Units, {Analysis_Region}, {Reorder_Stops_to_Find_Optimal_Routes}, {Preserve_Terminal_Stops}, {Return_to_Start}, {Use_Time_Windows}, {Time_of_Day}, {Time_Zone_for_Time_of_Day}, {UTurn_at_Junctions}, {Point_Barriers}, {Line_Barriers}, {Polygon_Barriers}, {Use_Hierarchy}, {Restrictions;Restrictions...}, {Attribute_Parameter_Values}, {Route_Shape}, {Route_Line_Simplification_Tolerance}, {Populate_Route_Edges}, {Populate_Directions}, {Directions_Language}, {Directions_Distance_Units}, {Directions_Style_Name}, {Travel_Mode}, {Impedance}, {Time_Zone_for_Time_Windows}, {Save_Output_Network_Analysis_Layer}, {Overrides}, {Save_Route_Data}, {Time_Impedance}, {Distance_Impedance}, {Output_Format}, {Ignore_Invalid_Locations}, {Locate_Settings})
 
-        Determines the shortest paths to visit the input stops and returns the
-        driving directions, information about the visited stops, and the route
-        paths, including travel time and distance.
+       Determines the shortest paths to visit the input stops and returns the
+       driving directions, information about the visited stops, and the route
+       paths, including travel time and distance.
 
-     INPUTS:
-      Stops (Feature Set):
-          Specifies the locations the output route or routes will visit.You can
-          add up to 10,000 stops and assign up to 150 stops to a single
-          route. (Assign stops to routes using the RouteName attribute.)When
-          specifying the stops, you can set properties for each-such as its
-          name or service time-using the following attributes:NameThe name of
-          the stop. The name is used in the driving directions. If
-          the name is not specified, a unique name prefixed with Location is
-          automatically generated in the output stops, routes, and
-          directions.RouteNameThe name of the route to which the stop is
-          assigned. Assigning the
-          same route name to different stops causes those stops to be grouped
-          together and visited by the same route. You can generate many routes
-          in a single solve by assigning unique route names to different groups
-          of stops.You can group up to 150 stops into one route.SequenceThe
-          output routes will visit the stops in the order you specify with
-          this attribute. In a group of stops that have the same RouteName
-          value, the sequence number should be greater than 0 but not greater
-          than the total number of stops. Also, the sequence number should not
-          be duplicated.If Reorder Stops To Find Optimal Routes is checked
-          (True), all but
-          possibly the first and last sequence values for each route name are
-          ignored so the tool can find the sequence that minimizes overall
-          travel for each route. (The settings for Preserve Ordering of Stops
-          and Return to Start determine whether the first or last sequence
-          values for each route are ignored.)AdditionalTimeThe amount of time
-          spent at the stop, which is added to the total time
-          of the route. The default value is 0.The units for this attribute
-          value are specified by the Measurement
-          Units parameter. The attribute value is included in the analysis only
-          when the measurement units are time based.You can account for the
-          extra time it takes at the stop to complete a
-          task, such as to repair an appliance, deliver a package, or inspect
-          the premises.AdditionalDistanceThe extra distance traveled at the
-          stops, which is added to the total
-          distance of the route. The default value is 0.The units for this
-          attribute value are specified by the Measurement
-          Units parameter. The attribute value is included in the analysis only
-          when the measurement units are distance based.Generally, the location
-          of a stop, such as a home, isn't exactly on
-          the street; it is set back somewhat from the road. This attribute
-          value can be used to model the distance between the actual stop
-          location and its location on the street if it is important to include
-          that distance in the total travel distance.AdditionalCostThe extra
-          cost spent at the stop, which is added to the total cost of
-          the route. The default value is 0.This attribute value should be used
-          when the travel mode for the
-          analysis uses an impedance attribute that is neither time based nor
-          distance based. The units for the attribute values are interpreted to
-          be in unknown units.TimeWindowStartThe earliest time the stop can be
-          visited. By specifying a start and
-          end time for a stop's time window, you are defining when a route
-          should visit the stop. When the travel mode for the analysis uses an
-          impedance attribute that is time based, by specifying time-window
-          values the analysis will find a solution that minimizes overall travel
-          and reaches the stop within the prescribed time window.Make sure you
-          specify the value as a date and time value, such as
-          8/12/2015 12:15 PM.When solving a problem that spans multiple time
-          zones, time-window
-          values refer to the time zone in which the stop is located.This field
-          can contain a null value; a null value indicates that a
-          route can arrive at any time before the time indicated in the
-          TimeWindowEnd attribute. If a null value is also present in
-          TimeWindowEnd, a route can visit the stop at any time.TimeWindowEndThe
-          latest time the stop can be visited. By specifying a start and end
-          time for a stop's time window, you are defining when a route will
-          visit the stop. When the travel mode for the analysis uses an
-          impedance attribute that is time based, specifying time-window values
-          will cause the analysis to find a solution that minimizes overall
-          travel and reaches the stop within the prescribed time window.Make
-          sure you specify the value as a date and time value, such as
-          8/12/2015 12:15 PM.When solving a problem that spans multiple time
-          zones, time-window
-          values refer to the time zone in which the stop is located.This field
-          can contain a null value; a null value indicates that a
-          route can arrive at any time after the time indicated in the
-          TimeWindowStart attribute. If a null value is also present in
-          TimeWindowStart, a route can visit the stop at any
-          time.CurbApproachSpecifies the direction a vehicle may arrive at and
-          depart from the
-          stop. The field value is specified as one of the following integers
-          (use the numeric code, not the name in parentheses):
+    INPUTS:
+     Stops (Feature Set):
+         Specifies the locations the output route or routes will visit.You can
+         add up to 10,000 stops and assign up to 150 stops to a single
+         route. (Assign stops to routes using the RouteName attribute.)When
+         specifying the stops, you can set properties for each-such as its
+         name or service time-using the following attributes:NameThe name of
+         the stop. The name is used in the driving directions. If
+         the name is not specified, a unique name prefixed with Location is
+         automatically generated in the output stops, routes, and
+         directions.RouteNameThe name of the route to which the stop is
+         assigned. Assigning the
+         same route name to different stops causes those stops to be grouped
+         together and visited by the same route. You can generate many routes
+         in a single solve by assigning unique route names to different groups
+         of stops.You can group up to 150 stops into one route.SequenceThe
+         output routes will visit the stops in the order you specify with
+         this attribute. In a group of stops that have the same RouteName
+         value, the sequence number should be greater than 0 but not greater
+         than the total number of stops. Also, the sequence number should not
+         be duplicated.If Reorder Stops To Find Optimal Routes is checked
+         (True), all but
+         possibly the first and last sequence values for each route name are
+         ignored so the tool can find the sequence that minimizes overall
+         travel for each route. (The settings for Preserve Ordering of Stops
+         and Return to Start determine whether the first or last sequence
+         values for each route are ignored.)AdditionalTimeThe amount of time
+         spent at the stop, which is added to the total time
+         of the route. The default value is 0.The units for this attribute
+         value are specified by the Measurement
+         Units parameter. The attribute value is included in the analysis only
+         when the measurement units are time based.You can account for the
+         extra time it takes at the stop to complete a
+         task, such as to repair an appliance, deliver a package, or inspect
+         the premises.AdditionalDistanceThe extra distance traveled at the
+         stops, which is added to the total
+         distance of the route. The default value is 0.The units for this
+         attribute value are specified by the Measurement
+         Units parameter. The attribute value is included in the analysis only
+         when the measurement units are distance based.Generally, the location
+         of a stop, such as a home, isn't exactly on
+         the street; it is set back somewhat from the road. This attribute
+         value can be used to model the distance between the actual stop
+         location and its location on the street if it is important to include
+         that distance in the total travel distance.AdditionalCostThe extra
+         cost spent at the stop, which is added to the total cost of
+         the route. The default value is 0.This attribute value should be used
+         when the travel mode for the
+         analysis uses an impedance attribute that is neither time based nor
+         distance based. The units for the attribute values are interpreted to
+         be in unknown units.TimeWindowStartThe earliest time the stop can be
+         visited. By specifying a start and
+         end time for a stop's time window, you are defining when a route
+         should visit the stop. When the travel mode for the analysis uses an
+         impedance attribute that is time based, by specifying time-window
+         values the analysis will find a solution that minimizes overall travel
+         and reaches the stop within the prescribed time window.Make sure you
+         specify the value as a date and time value, such as
+         8/12/2015 12:15 PM.When solving a problem that spans multiple time
+         zones, time-window
+         values refer to the time zone in which the stop is located.This field
+         can contain a null value; a null value indicates that a
+         route can arrive at any time before the time indicated in the
+         TimeWindowEnd attribute. If a null value is also present in
+         TimeWindowEnd, a route can visit the stop at any time.TimeWindowEndThe
+         latest time the stop can be visited. By specifying a start and end
+         time for a stop's time window, you are defining when a route will
+         visit the stop. When the travel mode for the analysis uses an
+         impedance attribute that is time based, specifying time-window values
+         will cause the analysis to find a solution that minimizes overall
+         travel and reaches the stop within the prescribed time window.Make
+         sure you specify the value as a date and time value, such as
+         8/12/2015 12:15 PM.When solving a problem that spans multiple time
+         zones, time-window
+         values refer to the time zone in which the stop is located.This field
+         can contain a null value; a null value indicates that a
+         route can arrive at any time after the time indicated in the
+         TimeWindowStart attribute. If a null value is also present in
+         TimeWindowStart, a route can visit the stop at any
+         time.CurbApproachSpecifies the direction a vehicle may arrive at and
+         depart from the
+         stop. The field value is specified as one of the following integers
+         (use the numeric code, not the name in parentheses):
 
-          * 0 (Either side of vehicle)-The vehicle can approach and depart the
-          stop in either direction, so a U-turn is allowed at the stop. This
-          setting can be chosen if it is possible and practical for a vehicle to
-          turn around at the stop. This decision may depend on the width of the
-          road and the amount of traffic or whether the stop has a parking lot
-          where vehicles can enter and turn around.
+         * 0 (Either side of vehicle)-The vehicle can approach and depart the
+         stop in either direction, so a U-turn is allowed at the stop. This
+         setting can be chosen if it is possible and practical for a vehicle to
+         turn around at the stop. This decision may depend on the width of the
+         road and the amount of traffic or whether the stop has a parking lot
+         where vehicles can enter and turn around.
 
-          * 1 (Right side of vehicle)-When the vehicle approaches and departs
-          the stop, the curb must be on the right side of the vehicle. A U-turn
-          is prohibited. This is typically used for vehicles such as buses that
-          must arrive with the bus stop on the right-hand side.
+         * 1 (Right side of vehicle)-When the vehicle approaches and departs
+         the stop, the curb must be on the right side of the vehicle. A U-turn
+         is prohibited. This is typically used for vehicles such as buses that
+         must arrive with the bus stop on the right-hand side.
 
-          * 2 (Left side of vehicle)-When the vehicle approaches and departs the
-          stop, the curb must be on the left side of the vehicle. A U-turn is
-          prohibited. This is typically used for vehicles such as buses that
-          must arrive with the bus stop on the left-hand side.
+         * 2 (Left side of vehicle)-When the vehicle approaches and departs the
+         stop, the curb must be on the left side of the vehicle. A U-turn is
+         prohibited. This is typically used for vehicles such as buses that
+         must arrive with the bus stop on the left-hand side.
 
-          * 3 (No U-Turn)-When the vehicle approaches the stop, the curb can be
-          on either side of the vehicle, however, the vehicle must depart
-          without turning around.
-          The CurbApproach attribute is designed to work with both kinds of
-          national driving standards: right-hand traffic (United States) and
-          left-hand traffic (United Kingdom). First, consider a stop on the left
-          side of a vehicle. It is always on the left side regardless of whether
-          the vehicle travels on the left or right half of the road. What may
-          change with national driving standards is your decision to approach a
-          stop from one of two directions, that is, so it ends up on the right
-          or left side of the vehicle. For example, if you want to arrive at a
-          stop and not have a lane of traffic between the vehicle and the stop,
-          choose 1 (Right side of vehicle) in the United States and 2 (Left side
-          of vehicle) in the United Kingdom.LocationTypeSpecifies the stop type.
-          The field value is specified as one of the
-          following integers (use the numeric code, not the name in the
-          parentheses):
+         * 3 (No U-Turn)-When the vehicle approaches the stop, the curb can be
+         on either side of the vehicle, however, the vehicle must depart
+         without turning around.
+         The CurbApproach attribute is designed to work with both kinds of
+         national driving standards: right-hand traffic (United States) and
+         left-hand traffic (United Kingdom). First, consider a stop on the left
+         side of a vehicle. It is always on the left side regardless of whether
+         the vehicle travels on the left or right half of the road. What may
+         change with national driving standards is your decision to approach a
+         stop from one of two directions, that is, so it ends up on the right
+         or left side of the vehicle. For example, if you want to arrive at a
+         stop and not have a lane of traffic between the vehicle and the stop,
+         choose 1 (Right side of vehicle) in the United States and 2 (Left side
+         of vehicle) in the United Kingdom.LocationTypeSpecifies the stop type.
+         The field value is specified as one of the
+         following integers (use the numeric code, not the name in the
+         parentheses):
 
-          * 0 (Stop)-A location that the route will visit. This is the default.
+         * 0 (Stop)-A location that the route will visit. This is the default.
 
-          * 1 (Waypoint)-A location that the route will travel through without
-          making a stop. Waypoints can be used to force the route to take a
-          specific path (to go through the waypoint) without being considered an
-          actual stop. Waypoints do not appear in directions.
-          BearingThe direction in which a point is moving. The units are degrees
-          and
-          are measured clockwise from true north. This field is used in
-          conjunction with the BearingTol field.Bearing data is usually sent
-          automatically from a mobile device
-          equipped with a GPS receiver. Try to include bearing data if you are
-          loading an input location that is moving, such as a pedestrian or a
-          vehicle.Using this field tends to prevent adding locations to the
-          wrong edges,
-          which can occur when a vehicle is near an intersection or an overpass,
-          for example. Bearing also helps the tool determine on which side of
-          the street the point is.BearingTolThe bearing tolerance value creates
-          a range of acceptable bearing
-          values when locating moving points on an edge using the Bearing field.
-          If the Bearing field value is within the range of acceptable values
-          that are generated from the bearing tolerance on an edge, the point
-          can be added as a network location there; otherwise, the closest point
-          on the next-nearest edge is evaluated.The units are in degrees, and
-          the default value is 30. Values must be
-          greater than 0 and less than 180. A value of 30 means that when
-          Network Analyst attempts to add a network location on an edge, a range
-          of acceptable bearing values is generated 15 degrees to either side of
-          the edge (left and right) and in both digitized directions of the
-          edge.NavLatencyThis field is only used in the solve process if the
-          Bearing and
-          BearingTol fields also have values; however, entering a NavLatency
-          field value is optional, even when values are present in Bearing and
-          BearingTol. NavLatency indicates how much cost is expected to elapse
-          from the moment GPS information is sent from a moving vehicle to a
-          server and the moment the processed route is received by the vehicle's
-          navigation device.The units of NavLatency are the same as the units of
-          the impedance
-          attribute.
-      Measurement_Units (String):
-          Specifies the units that will be used to measure and report the total
-          travel time or travel distance for the output routes.The units you
-          choose for this parameter determine whether the tool
-          will measure distance or time to find the best routes. Choose a time
-          unit to minimize travel time for your chosen travel mode (driving or
-          walking time, for instance). To minimize travel distance for the given
-          travel mode, choose a distance unit. Your choice also determines in
-          which units the tool will report total time or distance in the
-          results.
+         * 1 (Waypoint)-A location that the route will travel through without
+         making a stop. Waypoints can be used to force the route to take a
+         specific path (to go through the waypoint) without being considered an
+         actual stop. Waypoints do not appear in directions.
+         BearingThe direction in which a point is moving. The units are degrees
+         and
+         are measured clockwise from true north. This field is used in
+         conjunction with the BearingTol field.Bearing data is usually sent
+         automatically from a mobile device
+         equipped with a GPS receiver. Try to include bearing data if you are
+         loading an input location that is moving, such as a pedestrian or a
+         vehicle.Using this field tends to prevent adding locations to the
+         wrong edges,
+         which can occur when a vehicle is near an intersection or an overpass,
+         for example. Bearing also helps the tool determine on which side of
+         the street the point is.BearingTolThe bearing tolerance value creates
+         a range of acceptable bearing
+         values when locating moving points on an edge using the Bearing field.
+         If the Bearing field value is within the range of acceptable values
+         that are generated from the bearing tolerance on an edge, the point
+         can be added as a network location there; otherwise, the closest point
+         on the next-nearest edge is evaluated.The units are in degrees, and
+         the default value is 30. Values must be
+         greater than 0 and less than 180. A value of 30 means that when
+         Network Analyst attempts to add a network location on an edge, a range
+         of acceptable bearing values is generated 15 degrees to either side of
+         the edge (left and right) and in both digitized directions of the
+         edge.NavLatencyThis field is only used in the solve process if the
+         Bearing and
+         BearingTol fields also have values; however, entering a NavLatency
+         field value is optional, even when values are present in Bearing and
+         BearingTol. NavLatency indicates how much cost is expected to elapse
+         from the moment GPS information is sent from a moving vehicle to a
+         server and the moment the processed route is received by the vehicle's
+         navigation device.The units of NavLatency are the same as the units of
+         the impedance
+         attribute.
+     Measurement_Units (String):
+         Specifies the units that will be used to measure and report the total
+         travel time or travel distance for the output routes.The units you
+         choose for this parameter determine whether the tool
+         will measure distance or time to find the best routes. Choose a time
+         unit to minimize travel time for your chosen travel mode (driving or
+         walking time, for instance). To minimize travel distance for the given
+         travel mode, choose a distance unit. Your choice also determines in
+         which units the tool will report total time or distance in the
+         results.
 
-          * Meters-The linear unit will be meters.
+         * Meters-The linear unit will be meters.
 
-          * Kilometers-The linear unit will be kilometers.
+         * Kilometers-The linear unit will be kilometers.
 
-          * Feet-The linear unit will be feet.
+         * Feet-The linear unit will be feet.
 
-          * Yards-The linear unit will be yards.
+         * Yards-The linear unit will be yards.
 
-          * Miles-The linear unit will be miles.
+         * Miles-The linear unit will be miles.
 
-          * NauticalMiles-The linear unit will be nautical miles.
+         * NauticalMiles-The linear unit will be nautical miles.
 
-          * Seconds-The time unit will be seconds.
+         * Seconds-The time unit will be seconds.
 
-          * Minutes-The time unit will be minutes.
+         * Minutes-The time unit will be minutes.
 
-          * Hours-The time unit will be hours.
+         * Hours-The time unit will be hours.
 
-          * Days-The time unit will be days.
-      Analysis_Region {String}:
-          The region in which the analysis will be performed. If a value is not
-          specified for this parameter, the tool will automatically calculate
-          the region name based on the location of the input points. Setting the
-          name of the region is required only if the automatic detection of the
-          region name is not accurate for the inputs.To specify a region, use
-          one of the following values:
+         * Days-The time unit will be days.
+     Analysis_Region {String}:
+         The region in which the analysis will be performed. If a value is not
+         specified for this parameter, the tool will automatically calculate
+         the region name based on the location of the input points. Setting the
+         name of the region is required only if the automatic detection of the
+         region name is not accurate for the inputs.To specify a region, use
+         one of the following values:
 
-          * Europe-The analysis region will be Europe.
+         * Europe-The analysis region will be Europe.
 
-          * Japan-The analysis region will be Japan.
+         * Japan-The analysis region will be Japan.
 
-          * Korea-The analysis region will be Korea.
+         * Korea-The analysis region will be Korea.
 
-          * MiddleEastAndAfrica-The analysis region will be Middle East and
-          Africa.
+         * MiddleEastAndAfrica-The analysis region will be Middle East and
+         Africa.
 
-          * NorthAmerica-The analysis region will be North America.
+         * NorthAmerica-The analysis region will be North America.
 
-          * SouthAmerica-The analysis region will be South America.
+         * SouthAmerica-The analysis region will be South America.
 
-          * SouthAsia-The analysis region will be South Asia.
+         * SouthAsia-The analysis region will be South Asia.
 
-          * Thailand-The analysis region will be Thailand.
-                  The following region names are no longer supported and will be
-          removed in future releases. If you specify one of the deprecated
-          region names, the tool automatically assigns a supported region name
-          for the region.
+         * Thailand-The analysis region will be Thailand.
+                 The following region names are no longer supported and will be
+         removed in future releases. If you specify one of the deprecated
+         region names, the tool automatically assigns a supported region name
+         for the region.
 
-          * Greece redirects to Europe
+         * Greece redirects to Europe
 
-          * India redirects to SouthAsia
+         * India redirects to SouthAsia
 
-          * Oceania redirects to SouthAsia
+         * Oceania redirects to SouthAsia
 
-          * SouthEastAsia redirects to SouthAsia
+         * SouthEastAsia redirects to SouthAsia
 
-          * Taiwan redirects to SouthAsia
-      Reorder_Stops_to_Find_Optimal_Routes {Boolean}:
-          Specifies whether to visit the stops in the order you define or the
-          order the tool determines will minimize overall travel.
+         * Taiwan redirects to SouthAsia
+     Reorder_Stops_to_Find_Optimal_Routes {Boolean}:
+         Specifies whether to visit the stops in the order you define or the
+         order the tool determines will minimize overall travel.
 
-          * Checked (True)-Stops will be visited in the order determined by the
-          tool to minimize overall travel distance or time. It can reorder stops
-          and account for time windows at stops. Additional parameters allow you
-          to preserve the first or last stops while allowing the tool to reorder
-          the intermediary stops.
+         * Checked (True)-Stops will be visited in the order determined by the
+         tool to minimize overall travel distance or time. It can reorder stops
+         and account for time windows at stops. Additional parameters allow you
+         to preserve the first or last stops while allowing the tool to reorder
+         the intermediary stops.
 
-          * Unchecked (False)-Stops are visited in the order you define. You can
-          set the order of stops using a Sequence attribute in the input stops
-          features or let the sequence be determined by the Object ID of the
-          stops. This is the default.
-          Finding the optimal stop order and the best routes is commonly known
-          as solving the traveling salesperson problem (TSP).
-      Preserve_Terminal_Stops {String}:
-          Specifies how terminal stops will be preserved. When Reorder Stops to
-          Find Optimal Routes is checked (or True), you can preserve the
-          starting or ending stops, and the tool can reorder the rest.The first
-          and last stops are determined by their Sequence attribute
-          values or, if the Sequence values are null, by their Object ID values.
+         * Unchecked (False)-Stops are visited in the order you define. You can
+         set the order of stops using a Sequence attribute in the input stops
+         features or let the sequence be determined by the Object ID of the
+         stops. This is the default.
+         Finding the optimal stop order and the best routes is commonly known
+         as solving the traveling salesperson problem (TSP).
+     Preserve_Terminal_Stops {String}:
+         Specifies how terminal stops will be preserved. When Reorder Stops to
+         Find Optimal Routes is checked (or True), you can preserve the
+         starting or ending stops, and the tool can reorder the rest.The first
+         and last stops are determined by their Sequence attribute
+         values or, if the Sequence values are null, by their Object ID values.
 
-          * Preserve First-The first stop won't be reordered. Choose this option
-          if you are starting from a known location, such as your home,
-          headquarters, or current location.
+         * Preserve First-The first stop won't be reordered. Choose this option
+         if you are starting from a known location, such as your home,
+         headquarters, or current location.
 
-          * Preserve Last-The last stop won't ve reordered. The output routes
-          can start from any stop feature but must end at the predetermined last
-          stop.
+         * Preserve Last-The last stop won't ve reordered. The output routes
+         can start from any stop feature but must end at the predetermined last
+         stop.
 
-          * Preserve First and Last-The first and last stops won't be reordered.
+         * Preserve First and Last-The first and last stops won't be reordered.
 
-          * Preserve None-Any stop can be reordered, including the first and
-          last stops. The route can start or end at any of the stop features.
-          Preserve Terminal Stops is ignored when Reorder Stops to Find Optimal
-          Routes is unchecked (or False).
-      Return_to_Start {Boolean}:
-          Specifies whether routes will start and end at the same location. With
-          this option, you can avoid duplicating the first stop feature and
-          sequencing the duplicate stop at the end.The starting location of the
-          route is the stop feature with the lowest
-          value in the Sequence attribute. If the Sequence values are null, it
-          is the stop feature with the lowest Object ID value.
+         * Preserve None-Any stop can be reordered, including the first and
+         last stops. The route can start or end at any of the stop features.
+         Preserve Terminal Stops is ignored when Reorder Stops to Find Optimal
+         Routes is unchecked (or False).
+     Return_to_Start {Boolean}:
+         Specifies whether routes will start and end at the same location. With
+         this option, you can avoid duplicating the first stop feature and
+         sequencing the duplicate stop at the end.The starting location of the
+         route is the stop feature with the lowest
+         value in the Sequence attribute. If the Sequence values are null, it
+         is the stop feature with the lowest Object ID value.
 
-          * Checked (True)-The route will start and end at the first stop
-          feature. When Reorder Stops to Find Optimal Routes and Return to Start
-          are both checked (or True), Preserve Terminal Stops must be set to
-          Preserve First. This is the default value.
+         * Checked (True)-The route will start and end at the first stop
+         feature. When Reorder Stops to Find Optimal Routes and Return to Start
+         are both checked (or True), Preserve Terminal Stops must be set to
+         Preserve First. This is the default value.
 
-          * Unchecked (False)-The route won't start and end at the first stop
-          feature.
-      Use_Time_Windows {Boolean}:
-          Specifies whether time windows will be honored. Check this option (or
-          set it to True) if any input stops have time windows that specify when
-          the route will reach the stop. You can add time windows to input stops
-          by entering time values in the TimeWindowStart and TimeWindowEnd
-          attributes.
+         * Unchecked (False)-The route won't start and end at the first stop
+         feature.
+     Use_Time_Windows {Boolean}:
+         Specifies whether time windows will be honored. Check this option (or
+         set it to True) if any input stops have time windows that specify when
+         the route will reach the stop. You can add time windows to input stops
+         by entering time values in the TimeWindowStart and TimeWindowEnd
+         attributes.
 
-          * Checked (True)-The input stops have time windows, and you want the
-          tool to try to honor them.
+         * Checked (True)-The input stops have time windows, and you want the
+         tool to try to honor them.
 
-          * Unchecked (False)-The input stops don't have time windows, or if
-          they do, you don't want the tool to try to honor them. This is the
-          default value.
-          The tool will take slightly longer to run when Use Time Windows is
-          checked (or True), even when none of the input stops have time
-          windows, so it is recommended that you uncheck this option (set to
-          False) if possible.
-      Time_of_Day {Date}:
-          The time and date the routes will begin.If you are modeling the
-          driving travel mode and specify the current
-          date and time as the value for this parameter, the tool will use live
-          traffic conditions to find the best routes, and the total travel time
-          will be based on traffic conditions.Specifying a time of day results
-          in more accurate routes and
-          estimations of travel times because the travel times account for the
-          traffic conditions that are applicable for that date and time.The Time
-          Zone for Time of Day parameter specifies whether this time
-          and date refer to UTC or the time zone in which the stop is
-          located.The tool ignores this parameter when Measurement Units isn't
-          set to a
-          time-based unit.
-      Time_Zone_for_Time_of_Day {String}:
-          Specifies the time zone of the Time of Day parameter.
+         * Unchecked (False)-The input stops don't have time windows, or if
+         they do, you don't want the tool to try to honor them. This is the
+         default value.
+         The tool will take slightly longer to run when Use Time Windows is
+         checked (or True), even when none of the input stops have time
+         windows, so it is recommended that you uncheck this option (set to
+         False) if possible.
+     Time_of_Day {Date}:
+         The time and date the routes will begin.If you are modeling the
+         driving travel mode and specify the current
+         date and time as the value for this parameter, the tool will use live
+         traffic conditions to find the best routes, and the total travel time
+         will be based on traffic conditions.Specifying a time of day results
+         in more accurate routes and
+         estimations of travel times because the travel times account for the
+         traffic conditions that are applicable for that date and time.The Time
+         Zone for Time of Day parameter specifies whether this time
+         and date refer to UTC or the time zone in which the stop is
+         located.The tool ignores this parameter when Measurement Units isn't
+         set to a
+         time-based unit.
+     Time_Zone_for_Time_of_Day {String}:
+         Specifies the time zone of the Time of Day parameter.
 
-          * Geographically Local-The Time of Day parameter refers to the time
-          zone in which the first stop of a route is located. If you are
-          generating many routes that start in multiple time zones, the start
-          times are staggered in coordinated universal time (UTC). For example,
-          a Time of Day value of 10:00 a.m., 2 January, means a start time of
-          10:00 a.m. eastern standard time (UTC-3:00) for routes beginning in
-          the eastern time zone and 10:00 a.m. central standard time (UTC-4:00)
-          for routes beginning in the central time zone. The start times are
-          offset by one hour in UTC. The arrive and depart times and dates
-          recorded in the output Stops feature class will refer to the local
-          time zone of the first stop for each route.
+         * Geographically Local-The Time of Day parameter refers to the time
+         zone in which the first stop of a route is located. If you are
+         generating many routes that start in multiple time zones, the start
+         times are staggered in coordinated universal time (UTC). For example,
+         a Time of Day value of 10:00 a.m., 2 January, means a start time of
+         10:00 a.m. eastern standard time (UTC-3:00) for routes beginning in
+         the eastern time zone and 10:00 a.m. central standard time (UTC-4:00)
+         for routes beginning in the central time zone. The start times are
+         offset by one hour in UTC. The arrive and depart times and dates
+         recorded in the output Stops feature class will refer to the local
+         time zone of the first stop for each route.
 
-          * UTC-The Time of Day parameter refers to UTC. Choose this option if
-          you want to generate a route for a specific time, such as now, but
-          aren't certain in which time zone the first stop will be located. If
-          you are generating many routes spanning multiple time zones, the start
-          times in UTC are simultaneous. For example, a Time of Day value of
-          10:00 a.m., 2 January, means a start time of 5:00 a.m. eastern
-          standard time (UTC-5:00) for routes beginning in the eastern time zone
-          and 4:00 a.m. central standard time (UTC-6:00) for routes beginning in
-          the central time zone. Both routes start at 10:00 a.m. UTC. The arrive
-          and depart times and dates recorded in the output Stops feature class
-          will refer to UTC.
-      UTurn_at_Junctions {String}:
-          Specifies the U-turn policy at junctions. Allowing U-turns implies the
-          solver can turn around at a junction and double back on the same
-          street. Given that junctions represent street intersections and dead
-          ends, different vehicles may be able to turn around at some junctions
-          but not at others-it depends on whether the junction represents an
-          intersection or dead end. To accommodate this, the U-turn policy
-          parameter is implicitly specified by the number of edges that connect
-          to the junction, which is known as junction valency. The acceptable
-          values for this parameter are listed below; each is followed by a
-          description of its meaning in terms of junction valency.
+         * UTC-The Time of Day parameter refers to UTC. Choose this option if
+         you want to generate a route for a specific time, such as now, but
+         aren't certain in which time zone the first stop will be located. If
+         you are generating many routes spanning multiple time zones, the start
+         times in UTC are simultaneous. For example, a Time of Day value of
+         10:00 a.m., 2 January, means a start time of 5:00 a.m. eastern
+         standard time (UTC-5:00) for routes beginning in the eastern time zone
+         and 4:00 a.m. central standard time (UTC-6:00) for routes beginning in
+         the central time zone. Both routes start at 10:00 a.m. UTC. The arrive
+         and depart times and dates recorded in the output Stops feature class
+         will refer to UTC.
+     UTurn_at_Junctions {String}:
+         Specifies the U-turn policy at junctions. Allowing U-turns implies the
+         solver can turn around at a junction and double back on the same
+         street. Given that junctions represent street intersections and dead
+         ends, different vehicles may be able to turn around at some junctions
+         but not at others-it depends on whether the junction represents an
+         intersection or dead end. To accommodate this, the U-turn policy
+         parameter is implicitly specified by the number of edges that connect
+         to the junction, which is known as junction valency. The acceptable
+         values for this parameter are listed below; each is followed by a
+         description of its meaning in terms of junction valency.
 
-          * Allowed-U-turns are permitted at junctions with any number of
-          connected edges. This is the default value.
+         * Allowed-U-turns are permitted at junctions with any number of
+         connected edges. This is the default value.
 
-          * Not Allowed-U-turns are prohibited at all junctions, regardless of
-          junction valency. However, U-turns are still permitted at network
-          locations even when this option is chosen, but you can set the
-          individual network locations' CurbApproach attribute to prohibit
-          U-turns there as well.
+         * Not Allowed-U-turns are prohibited at all junctions, regardless of
+         junction valency. However, U-turns are still permitted at network
+         locations even when this option is chosen, but you can set the
+         individual network locations' CurbApproach attribute to prohibit
+         U-turns there as well.
 
-          * Allowed Only at Dead Ends-U-turns are prohibited at all junctions
-          except those that have only one adjacent edge (a dead end).
+         * Allowed Only at Dead Ends-U-turns are prohibited at all junctions
+         except those that have only one adjacent edge (a dead end).
 
-          * Allowed Only at Intersections and Dead Ends-U-turns are prohibited
-          at junctions where exactly two adjacent edges meet but are permitted
-          at intersections (junctions with three or more adjacent edges) and
-          dead ends (junctions with exactly one adjacent edge). Often, networks
-          have extraneous junctions in the middle of road segments. This option
-          prevents vehicles from making U-turns at these locations.
-          This parameter is ignored unless Travel Mode is set to Custom.
-      Point_Barriers {Feature Set}:
-          Use this parameter to specify one or more points that will act as
-          temporary restrictions or represent additional time or distance that
-          may be required to travel on the underlying streets. For example, a
-          point barrier can be used to represent a fallen tree along a street or
-          a time delay spent at a railroad crossing.The tool imposes a limit of
-          250 points that can be added as barriers.When specifying point
-          barriers, you can set properties for each, such
-          as its name or barrier type, using the following attributes:NameThe
-          name of the barrier.BarrierTypeSpecifies whether the point barrier
-          restricts travel completely or
-          adds time or distance when it is crossed. The value for this attribute
-          is specified as one of the following integers (use the numeric code,
-          not the name in parentheses):
+         * Allowed Only at Intersections and Dead Ends-U-turns are prohibited
+         at junctions where exactly two adjacent edges meet but are permitted
+         at intersections (junctions with three or more adjacent edges) and
+         dead ends (junctions with exactly one adjacent edge). Often, networks
+         have extraneous junctions in the middle of road segments. This option
+         prevents vehicles from making U-turns at these locations.
+         This parameter is ignored unless Travel Mode is set to Custom.
+     Point_Barriers {Feature Set}:
+         Use this parameter to specify one or more points that will act as
+         temporary restrictions or represent additional time or distance that
+         may be required to travel on the underlying streets. For example, a
+         point barrier can be used to represent a fallen tree along a street or
+         a time delay spent at a railroad crossing.The tool imposes a limit of
+         250 points that can be added as barriers.When specifying point
+         barriers, you can set properties for each, such
+         as its name or barrier type, using the following attributes:NameThe
+         name of the barrier.BarrierTypeSpecifies whether the point barrier
+         restricts travel completely or
+         adds time or distance when it is crossed. The value for this attribute
+         is specified as one of the following integers (use the numeric code,
+         not the name in parentheses):
 
-          * 0 (Restriction)-Prohibits travel through the barrier. The barrier
-          is
-          referred to as a restriction point barrier since it acts as a
-          restriction.
+         * 0 (Restriction)-Prohibits travel through the barrier. The barrier
+         is
+         referred to as a restriction point barrier since it acts as a
+         restriction.
 
-          * 2 (Added Cost)-Traveling through the barrier increases the travel
-          time
-          or distance by the amount specified in the Additional_Time,
-          Additional_Distance, or AdditionalCost field. This barrier type is
-          referred to as an added cost point barrier.
-          Additional_TimeThe added travel time when the barrier is traversed.
-          This field is
-          applicable only for added-cost barriers and when the Measurement Units
-          parameter value is time based.This field value must be greater than or
-          equal to zero, and its units
-          must be the same as those specified in the Measurement Units
-          parameter.Additional_DistanceThe added distance when the barrier is
-          traversed. This field is
-          applicable only for added-cost barriers and when the Measurement Units
-          parameter value is distance based.The field value must be greater than
-          or equal to zero, and its units
-          must be the same as those specified in the Measurement Units
-          parameter.AdditionalCostThe added cost when the barrier is traversed.
-          This field is applicable
-          only for added-cost barriers when the Measurement Units parameter
-          value is neither time based nor distance based.FullEdgeSpecifies how
-          the restriction point barriers are applied to the edge
-          elements during the analysis. The field value is specified as one of
-          the following integers (use the numeric code, not the name in
-          parentheses):
+         * 2 (Added Cost)-Traveling through the barrier increases the travel
+         time
+         or distance by the amount specified in the Additional_Time,
+         Additional_Distance, or AdditionalCost field. This barrier type is
+         referred to as an added cost point barrier.
+         Additional_TimeThe added travel time when the barrier is traversed.
+         This field is
+         applicable only for added-cost barriers and when the Measurement Units
+         parameter value is time based.This field value must be greater than or
+         equal to zero, and its units
+         must be the same as those specified in the Measurement Units
+         parameter.Additional_DistanceThe added distance when the barrier is
+         traversed. This field is
+         applicable only for added-cost barriers and when the Measurement Units
+         parameter value is distance based.The field value must be greater than
+         or equal to zero, and its units
+         must be the same as those specified in the Measurement Units
+         parameter.AdditionalCostThe added cost when the barrier is traversed.
+         This field is applicable
+         only for added-cost barriers when the Measurement Units parameter
+         value is neither time based nor distance based.FullEdgeSpecifies how
+         the restriction point barriers are applied to the edge
+         elements during the analysis. The field value is specified as one of
+         the following integers (use the numeric code, not the name in
+         parentheses):
 
-          * 0 (False)-Permits travel on the edge up to the barrier but not
-          through it. This is the default value.
+         * 0 (False)-Permits travel on the edge up to the barrier but not
+         through it. This is the default value.
 
-          * 1 (True)-Restricts travel anywhere on the associated edge.
-          CurbApproachSpecifies the direction of traffic that is affected by the
-          barrier.
-          The field value is specified as one of the following integers (use the
-          numeric code, not the name in parentheses):
+         * 1 (True)-Restricts travel anywhere on the associated edge.
+         CurbApproachSpecifies the direction of traffic that is affected by the
+         barrier.
+         The field value is specified as one of the following integers (use the
+         numeric code, not the name in parentheses):
 
-          * 0 (Either side of vehicle)-The barrier affects travel over the edge
-          in both directions.
+         * 0 (Either side of vehicle)-The barrier affects travel over the edge
+         in both directions.
 
-          * 1 (Right side of vehicle)-Vehicles are only affected if the barrier
-          is on their right side during the approach. Vehicles that traverse the
-          same edge but approach the barrier on their left side are not affected
-          by the barrier.
+         * 1 (Right side of vehicle)-Vehicles are only affected if the barrier
+         is on their right side during the approach. Vehicles that traverse the
+         same edge but approach the barrier on their left side are not affected
+         by the barrier.
 
-          * 2 (Left side of vehicle)-Vehicles are only affected if the barrier
-          is on their left side during the approach. Vehicles that traverse the
-          same edge but approach the barrier on their right side are not
-          affected by the barrier.
-          Because junctions are points and don't have a side, barriers on
-          junctions affect all vehicles regardless of the curb approach.The
-          CurbApproach attribute works with both types of national driving
-          standards: right-hand traffic (United States) and left-hand traffic
-          (United Kingdom). First, consider a facility on the left side of a
-          vehicle. It is always on the left side regardless of whether the
-          vehicle travels on the left or right half of the road. What may change
-          with national driving standards is your decision to approach a
-          facility from one of two directions, that is, so it ends up on the
-          right or left side of the vehicle. For example, to arrive at a
-          facility and not have a lane of traffic between the vehicle and the
-          facility, choose 1 (Right side of vehicle) in the United States and 2
-          (Left side of vehicle) in the United Kingdom.BearingThe direction in
-          which a point is moving. The units are degrees and
-          are measured clockwise from true north. This field is used in
-          conjunction with the BearingTol field.Bearing data is usually sent
-          automatically from a mobile device
-          equipped with a GPS receiver. Try to include bearing data if you are
-          loading an input location that is moving, such as a pedestrian or a
-          vehicle.Using this field tends to prevent adding locations to the
-          wrong edges,
-          which can occur when a vehicle is near an intersection or an overpass,
-          for example. Bearing also helps the tool determine on which side of
-          the street the point is.BearingTolThe bearing tolerance value creates
-          a range of acceptable bearing
-          values when locating moving points on an edge using the Bearing field.
-          If the Bearing field value is within the range of acceptable values
-          that are generated from the bearing tolerance on an edge, the point
-          can be added as a network location there; otherwise, the closest point
-          on the next-nearest edge is evaluated.The units are in degrees, and
-          the default value is 30. Values must be
-          greater than 0 and less than 180. A value of 30 means that when
-          Network Analyst attempts to add a network location on an edge, a range
-          of acceptable bearing values is generated 15 degrees to either side of
-          the edge (left and right) and in both digitized directions of the
-          edge.NavLatencyThis field is only used in the solve process if the
-          Bearing and
-          BearingTol fields also have values; however, entering a NavLatency
-          field value is optional, even when values are present in Bearing and
-          BearingTol. NavLatency indicates how much cost is expected to elapse
-          from the moment GPS information is sent from a moving vehicle to a
-          server and the moment the processed route is received by the vehicle's
-          navigation device.The units of NavLatency are the same as the units of
-          the impedance
-          attribute.
-      Line_Barriers {Feature Set}:
-          Use this parameter to specify one or more lines that prohibit travel
-          anywhere the lines intersect the streets. For example, a parade or
-          protest that blocks traffic across several street segments can be
-          modeled with a line barrier. A line barrier can also quickly fence off
-          several roads from being traversed, thereby channeling possible routes
-          away from undesirable parts of the street network.The tool imposes a
-          limit on the number of streets you can restrict
-          using the Line Barriers parameter. While there is no limit to the
-          number of lines you can specify as line barriers, the combined number
-          of streets intersected by all the lines cannot exceed 500.When
-          specifying the line barriers, you can set name and barrier type
-          properties for each using the following attributes:NameThe name of the
-          barrier.
-      Polygon_Barriers {Feature Set}:
-          Use this parameter to specify polygons that either completely restrict
-          travel or proportionately scale the time or distance required to
-          travel on the streets intersected by the polygons.The service imposes
-          a limit on the number of streets you can restrict
-          using the Polygon Barriers parameter. While there is no limit to the
-          number of polygons you can specify as polygon barriers, the combined
-          number of streets intersected by all the polygons cannot exceed
-          2,000.When specifying the polygon barriers, you can set properties for
-          each,
-          such as its name or barrier type, using the following
-          attributes:NameThe name of the barrier.BarrierTypeSpecifies whether
-          the barrier restricts travel completely or scales
-          the cost (such as time or distance) for traveling through it. The
-          field value is specified as one of the following integers (use the
-          numeric code, not the name in parentheses):
+         * 2 (Left side of vehicle)-Vehicles are only affected if the barrier
+         is on their left side during the approach. Vehicles that traverse the
+         same edge but approach the barrier on their right side are not
+         affected by the barrier.
+         Because junctions are points and don't have a side, barriers on
+         junctions affect all vehicles regardless of the curb approach.The
+         CurbApproach attribute works with both types of national driving
+         standards: right-hand traffic (United States) and left-hand traffic
+         (United Kingdom). First, consider a facility on the left side of a
+         vehicle. It is always on the left side regardless of whether the
+         vehicle travels on the left or right half of the road. What may change
+         with national driving standards is your decision to approach a
+         facility from one of two directions, that is, so it ends up on the
+         right or left side of the vehicle. For example, to arrive at a
+         facility and not have a lane of traffic between the vehicle and the
+         facility, choose 1 (Right side of vehicle) in the United States and 2
+         (Left side of vehicle) in the United Kingdom.BearingThe direction in
+         which a point is moving. The units are degrees and
+         are measured clockwise from true north. This field is used in
+         conjunction with the BearingTol field.Bearing data is usually sent
+         automatically from a mobile device
+         equipped with a GPS receiver. Try to include bearing data if you are
+         loading an input location that is moving, such as a pedestrian or a
+         vehicle.Using this field tends to prevent adding locations to the
+         wrong edges,
+         which can occur when a vehicle is near an intersection or an overpass,
+         for example. Bearing also helps the tool determine on which side of
+         the street the point is.BearingTolThe bearing tolerance value creates
+         a range of acceptable bearing
+         values when locating moving points on an edge using the Bearing field.
+         If the Bearing field value is within the range of acceptable values
+         that are generated from the bearing tolerance on an edge, the point
+         can be added as a network location there; otherwise, the closest point
+         on the next-nearest edge is evaluated.The units are in degrees, and
+         the default value is 30. Values must be
+         greater than 0 and less than 180. A value of 30 means that when
+         Network Analyst attempts to add a network location on an edge, a range
+         of acceptable bearing values is generated 15 degrees to either side of
+         the edge (left and right) and in both digitized directions of the
+         edge.NavLatencyThis field is only used in the solve process if the
+         Bearing and
+         BearingTol fields also have values; however, entering a NavLatency
+         field value is optional, even when values are present in Bearing and
+         BearingTol. NavLatency indicates how much cost is expected to elapse
+         from the moment GPS information is sent from a moving vehicle to a
+         server and the moment the processed route is received by the vehicle's
+         navigation device.The units of NavLatency are the same as the units of
+         the impedance
+         attribute.
+     Line_Barriers {Feature Set}:
+         Use this parameter to specify one or more lines that prohibit travel
+         anywhere the lines intersect the streets. For example, a parade or
+         protest that blocks traffic across several street segments can be
+         modeled with a line barrier. A line barrier can also quickly fence off
+         several roads from being traversed, thereby channeling possible routes
+         away from undesirable parts of the street network.The tool imposes a
+         limit on the number of streets you can restrict
+         using the Line Barriers parameter. While there is no limit to the
+         number of lines you can specify as line barriers, the combined number
+         of streets intersected by all the lines cannot exceed 500.When
+         specifying the line barriers, you can set name and barrier type
+         properties for each using the following attributes:NameThe name of the
+         barrier.
+     Polygon_Barriers {Feature Set}:
+         Use this parameter to specify polygons that either completely restrict
+         travel or proportionately scale the time or distance required to
+         travel on the streets intersected by the polygons.The service imposes
+         a limit on the number of streets you can restrict
+         using the Polygon Barriers parameter. While there is no limit to the
+         number of polygons you can specify as polygon barriers, the combined
+         number of streets intersected by all the polygons cannot exceed
+         2,000.When specifying the polygon barriers, you can set properties for
+         each,
+         such as its name or barrier type, using the following
+         attributes:NameThe name of the barrier.BarrierTypeSpecifies whether
+         the barrier restricts travel completely or scales
+         the cost (such as time or distance) for traveling through it. The
+         field value is specified as one of the following integers (use the
+         numeric code, not the name in parentheses):
 
-          * 0 (Restriction)-Prohibits traveling through any part of the
-          barrier.
-          The barrier is referred to as a restriction polygon barrier since it
-          prohibits traveling on streets intersected by the barrier. One use of
-          this type of barrier is to model floods covering areas of the street
-          that make traveling on those streets impossible.
+         * 0 (Restriction)-Prohibits traveling through any part of the
+         barrier.
+         The barrier is referred to as a restriction polygon barrier since it
+         prohibits traveling on streets intersected by the barrier. One use of
+         this type of barrier is to model floods covering areas of the street
+         that make traveling on those streets impossible.
 
-          * 1 (Scaled Cost)-Scales the cost (such as travel time or distance)
-          required to travel the underlying streets by a factor specified using
-          """
+         * 1 (Scaled Cost)-Scales the cost (such as travel time or distance)
+         required to travel the underlying streets by a factor specified using
+    """
     ...
 
-@gptooldoc('GenerateOriginDestinationCostMatrix_agolservices', None)
-def GenerateOriginDestinationCostMatrix(Origins=..., Destinations=..., Travel_Mode=..., Time_Units=..., Distance_Units=..., Analysis_Region=..., Number_of_Destinations_to_Find=..., Cutoff=..., Time_of_Day=..., Time_Zone_for_Time_of_Day=..., Point_Barriers=..., Line_Barriers=..., Polygon_Barriers=..., UTurn_at_Junctions=..., Use_Hierarchy=..., Restrictions=..., Attribute_Parameter_Values=..., Impedance=..., Origin_Destination_Line_Shape=..., Save_Output_Network_Analysis_Layer=..., Overrides=..., Time_Impedance=..., Distance_Impedance=..., Output_Format=..., Ignore_Invalid_Locations=..., Locate_Settings=...): # -> conversion | int | float | complex | basestring | list[Unknown] | tuple[Unknown, ...] | dict[Unknown, Unknown]:
+@gptooldoc("GenerateOriginDestinationCostMatrix_agolservices", None)
+def GenerateOriginDestinationCostMatrix(
+    Origins=...,
+    Destinations=...,
+    Travel_Mode=...,
+    Time_Units=...,
+    Distance_Units=...,
+    Analysis_Region=...,
+    Number_of_Destinations_to_Find=...,
+    Cutoff=...,
+    Time_of_Day=...,
+    Time_Zone_for_Time_of_Day=...,
+    Point_Barriers=...,
+    Line_Barriers=...,
+    Polygon_Barriers=...,
+    UTurn_at_Junctions=...,
+    Use_Hierarchy=...,
+    Restrictions=...,
+    Attribute_Parameter_Values=...,
+    Impedance=...,
+    Origin_Destination_Line_Shape=...,
+    Save_Output_Network_Analysis_Layer=...,
+    Overrides=...,
+    Time_Impedance=...,
+    Distance_Impedance=...,
+    Output_Format=...,
+    Ignore_Invalid_Locations=...,
+    Locate_Settings=...,
+):  # -> conversion | int | float | complex | basestring | list[Unknown] | tuple[Unknown, ...] | dict[Unknown, Unknown]:
     """GenerateOriginDestinationCostMatrix_agolservices(Origins, Destinations, {Travel_Mode}, {Time_Units}, {Distance_Units}, {Analysis_Region}, {Number_of_Destinations_to_Find}, {Cutoff}, {Time_of_Day}, {Time_Zone_for_Time_of_Day}, {Point_Barriers}, {Line_Barriers}, {Polygon_Barriers}, {UTurn_at_Junctions}, {Use_Hierarchy}, {Restrictions;Restrictions...}, {Attribute_Parameter_Values}, {Impedance}, {Origin_Destination_Line_Shape}, {Save_Output_Network_Analysis_Layer}, {Overrides}, {Time_Impedance}, {Distance_Impedance}, {Output_Format}, {Ignore_Invalid_Locations}, {Locate_Settings})
 
-        Creates an origin-destination (OD) cost matrix from multiple origins
-        to multiple destinations. An OD cost matrix is a table that contains
-        the travel time and travel distance from each origin to each
-        destination. Additionally, it ranks the destinations that each origin
-        connects to in ascending order based on the minimum time or distance
-        required to travel from that origin to each destination. The best path
-        on the street network is discovered for each origin-destination pair,
-        and the travel times and travel distances are stored as attributes of
-        the output lines. Even though the lines are straight for performance
-        reasons, they store the travel time and travel distance along the
-        street network, not straight-line distance.
+       Creates an origin-destination (OD) cost matrix from multiple origins
+       to multiple destinations. An OD cost matrix is a table that contains
+       the travel time and travel distance from each origin to each
+       destination. Additionally, it ranks the destinations that each origin
+       connects to in ascending order based on the minimum time or distance
+       required to travel from that origin to each destination. The best path
+       on the street network is discovered for each origin-destination pair,
+       and the travel times and travel distances are stored as attributes of
+       the output lines. Even though the lines are straight for performance
+       reasons, they store the travel time and travel distance along the
+       street network, not straight-line distance.
 
-     INPUTS:
-      Origins (Feature Set):
-          Specifies the starting points from which to travel to the
-          destinations.You can add up to 1000 origins.When specifying the
-          origins, you can set properties for each-such as
-          its name or the number of destinations to find from the origin-using
-          the following attributes:NameThe name of the origin. The name can be a
-          unique identifier for the
-          origin. The name is included in the output lines (as the OriginName
-          field) and in the output origins (as the Name field) and can be used
-          to join additional information from the tool outputs to the attributes
-          of your origins.If the name is not specified, a unique name prefixed
-          with Location is
-          automatically generated.TargetDestinationCountThe maximum number of
-          destinations to find for the origin.If a value is not specified, the
-          value from the Number of Destinations
-          to Find parameter is used.This field allows you to specify a different
-          number of destinations to
-          find for each origin. For example, using this field, you can find the
-          three closest destinations from one origin and the two closest
-          destinations from another origin.CutoffThe impedance value at which to
-          stop searching for destinations from a
-          given origin. This attribute allows you to specify a different cutoff
-          value for each destination. For example, using this attribute, you can
-          specify to search for destinations within five minutes of travel time
-          from one origin and to search for destinations within eight minutes of
-          travel time from another origin.The units of the cutoff are the same
-          as the units of your impedance
-          attribute. If a value is not specified, the value from the Cutoff
-          parameter is used.CurbApproachSpecifies the direction a vehicle may
-          depart from the origin. The
-          field value is specified as one of the following integers (use the
-          numeric code, not the name in parentheses):
+    INPUTS:
+     Origins (Feature Set):
+         Specifies the starting points from which to travel to the
+         destinations.You can add up to 1000 origins.When specifying the
+         origins, you can set properties for each-such as
+         its name or the number of destinations to find from the origin-using
+         the following attributes:NameThe name of the origin. The name can be a
+         unique identifier for the
+         origin. The name is included in the output lines (as the OriginName
+         field) and in the output origins (as the Name field) and can be used
+         to join additional information from the tool outputs to the attributes
+         of your origins.If the name is not specified, a unique name prefixed
+         with Location is
+         automatically generated.TargetDestinationCountThe maximum number of
+         destinations to find for the origin.If a value is not specified, the
+         value from the Number of Destinations
+         to Find parameter is used.This field allows you to specify a different
+         number of destinations to
+         find for each origin. For example, using this field, you can find the
+         three closest destinations from one origin and the two closest
+         destinations from another origin.CutoffThe impedance value at which to
+         stop searching for destinations from a
+         given origin. This attribute allows you to specify a different cutoff
+         value for each destination. For example, using this attribute, you can
+         specify to search for destinations within five minutes of travel time
+         from one origin and to search for destinations within eight minutes of
+         travel time from another origin.The units of the cutoff are the same
+         as the units of your impedance
+         attribute. If a value is not specified, the value from the Cutoff
+         parameter is used.CurbApproachSpecifies the direction a vehicle may
+         depart from the origin. The
+         field value is specified as one of the following integers (use the
+         numeric code, not the name in parentheses):
 
-          * 0 (Either side of vehicle)-The vehicle can depart the origin in
-          either direction, so a U-turn is allowed at the origin. This setting
-          can be chosen if it is possible and practical for a vehicle to turn
-          around at the origin. This decision may depend on the width of the
-          road and the amount of traffic or whether the origin has a parking lot
-          where vehicles can enter and turn around.
+         * 0 (Either side of vehicle)-The vehicle can depart the origin in
+         either direction, so a U-turn is allowed at the origin. This setting
+         can be chosen if it is possible and practical for a vehicle to turn
+         around at the origin. This decision may depend on the width of the
+         road and the amount of traffic or whether the origin has a parking lot
+         where vehicles can enter and turn around.
 
-          * 1 (Right side of vehicle)-When the vehicle departs the origin, the
-          origin must be on the right side of the vehicle. A U-turn is
-          prohibited. This is typically used for vehicles such as buses that
-          must depart from the bus stop on the right-hand side.
+         * 1 (Right side of vehicle)-When the vehicle departs the origin, the
+         origin must be on the right side of the vehicle. A U-turn is
+         prohibited. This is typically used for vehicles such as buses that
+         must depart from the bus stop on the right-hand side.
 
-          * 2 (Left side of vehicle)-When the vehicle departs the origin, the
-          curb must be on the left side of the vehicle. A U-turn is prohibited.
-          This is typically used for vehicles such as buses that must depart
-          from the bus stop on the left-hand side.
+         * 2 (Left side of vehicle)-When the vehicle departs the origin, the
+         curb must be on the left side of the vehicle. A U-turn is prohibited.
+         This is typically used for vehicles such as buses that must depart
+         from the bus stop on the left-hand side.
 
-          * 3 (No U-Turn)-For this tool, this value functions the same as 0
-          (Either side of vehicle).
-          The CurbApproach attribute is designed to work with both kinds of
-          national driving standards: right-hand traffic (United States) and
-          left-hand traffic (United Kingdom). First, consider an origin on the
-          left side of a vehicle. It is always on the left side regardless of
-          whether the vehicle travels on the left or right half of the road.
-          What may change with national driving standards is your decision to
-          depart the origin from one of two directions, that is, so it ends up
-          on the right or left side of the vehicle. For example, if you want to
-          depart from an origin and not have a lane of traffic between the
-          vehicle and the origin, choose 1 (Right side of vehicle) in the United
-          States and 2 (Left side of vehicle) in the United Kingdom.BearingThe
-          direction in which a point is moving. The units are degrees and
-          are measured clockwise from true north. This field is used in
-          conjunction with the BearingTol field.Bearing data is usually sent
-          automatically from a mobile device
-          equipped with a GPS receiver. Try to include bearing data if you are
-          loading an input location that is moving, such as a pedestrian or a
-          vehicle.Using this field tends to prevent adding locations to the
-          wrong edges,
-          which can occur when a vehicle is near an intersection or an overpass,
-          for example. Bearing also helps the tool determine on which side of
-          the street the point is.BearingTolThe bearing tolerance value creates
-          a range of acceptable bearing
-          values when locating moving points on an edge using the Bearing field.
-          If the Bearing field value is within the range of acceptable values
-          that are generated from the bearing tolerance on an edge, the point
-          can be added as a network location there; otherwise, the closest point
-          on the next-nearest edge is evaluated.The units are in degrees, and
-          the default value is 30. Values must be
-          greater than 0 and less than 180. A value of 30 means that when
-          Network Analyst attempts to add a network location on an edge, a range
-          of acceptable bearing values is generated 15 degrees to either side of
-          the edge (left and right) and in both digitized directions of the
-          edge.NavLatencyThis field is only used in the solve process if the
-          Bearing and
-          BearingTol fields also have values; however, entering a NavLatency
-          field value is optional, even when values are present in Bearing and
-          BearingTol. NavLatency indicates how much cost is expected to elapse
-          from the moment GPS information is sent from a moving vehicle to a
-          server and the moment the processed route is received by the vehicle's
-          navigation device.The units of NavLatency are the same as the units of
-          the impedance
-          attribute.
-      Destinations (Feature Set):
-          Specifies the ending point locations to travel to from the origins.You
-          can add up to 1000 destinations.When specifying the destinations, you
-          can set properties for each-such
-          as its name-using the following attributes:NameThe name of the
-          destination. The name can be a unique identifier for
-          the destination. The name is included in the output lines (as the
-          DestinationName field) and in the output destinations (as the Name
-          field) and can be used to join additional information from the tool
-          outputs to the attributes of your destinations.If the name is not
-          specified, a unique name prefixed with Location is
-          automatically generated.CurbApproachSpecifies the direction a vehicle
-          may arrive at a destination. The
-          field value is specified as one of the following integers (use the
-          numeric code, not the name in parentheses):
+         * 3 (No U-Turn)-For this tool, this value functions the same as 0
+         (Either side of vehicle).
+         The CurbApproach attribute is designed to work with both kinds of
+         national driving standards: right-hand traffic (United States) and
+         left-hand traffic (United Kingdom). First, consider an origin on the
+         left side of a vehicle. It is always on the left side regardless of
+         whether the vehicle travels on the left or right half of the road.
+         What may change with national driving standards is your decision to
+         depart the origin from one of two directions, that is, so it ends up
+         on the right or left side of the vehicle. For example, if you want to
+         depart from an origin and not have a lane of traffic between the
+         vehicle and the origin, choose 1 (Right side of vehicle) in the United
+         States and 2 (Left side of vehicle) in the United Kingdom.BearingThe
+         direction in which a point is moving. The units are degrees and
+         are measured clockwise from true north. This field is used in
+         conjunction with the BearingTol field.Bearing data is usually sent
+         automatically from a mobile device
+         equipped with a GPS receiver. Try to include bearing data if you are
+         loading an input location that is moving, such as a pedestrian or a
+         vehicle.Using this field tends to prevent adding locations to the
+         wrong edges,
+         which can occur when a vehicle is near an intersection or an overpass,
+         for example. Bearing also helps the tool determine on which side of
+         the street the point is.BearingTolThe bearing tolerance value creates
+         a range of acceptable bearing
+         values when locating moving points on an edge using the Bearing field.
+         If the Bearing field value is within the range of acceptable values
+         that are generated from the bearing tolerance on an edge, the point
+         can be added as a network location there; otherwise, the closest point
+         on the next-nearest edge is evaluated.The units are in degrees, and
+         the default value is 30. Values must be
+         greater than 0 and less than 180. A value of 30 means that when
+         Network Analyst attempts to add a network location on an edge, a range
+         of acceptable bearing values is generated 15 degrees to either side of
+         the edge (left and right) and in both digitized directions of the
+         edge.NavLatencyThis field is only used in the solve process if the
+         Bearing and
+         BearingTol fields also have values; however, entering a NavLatency
+         field value is optional, even when values are present in Bearing and
+         BearingTol. NavLatency indicates how much cost is expected to elapse
+         from the moment GPS information is sent from a moving vehicle to a
+         server and the moment the processed route is received by the vehicle's
+         navigation device.The units of NavLatency are the same as the units of
+         the impedance
+         attribute.
+     Destinations (Feature Set):
+         Specifies the ending point locations to travel to from the origins.You
+         can add up to 1000 destinations.When specifying the destinations, you
+         can set properties for each-such
+         as its name-using the following attributes:NameThe name of the
+         destination. The name can be a unique identifier for
+         the destination. The name is included in the output lines (as the
+         DestinationName field) and in the output destinations (as the Name
+         field) and can be used to join additional information from the tool
+         outputs to the attributes of your destinations.If the name is not
+         specified, a unique name prefixed with Location is
+         automatically generated.CurbApproachSpecifies the direction a vehicle
+         may arrive at a destination. The
+         field value is specified as one of the following integers (use the
+         numeric code, not the name in parentheses):
 
-          * 0 (Either side of vehicle)-The vehicle can arrive at the destination
-          in either direction, so a U-turn is allowed at the origin. This
-          setting can be chosen if it is possible and practical for a vehicle to
-          turn around at the destination. This decision may depend on the width
-          of the road and the amount of traffic or whether the destination has a
-          parking lot where vehicles can enter and turn around.
+         * 0 (Either side of vehicle)-The vehicle can arrive at the destination
+         in either direction, so a U-turn is allowed at the origin. This
+         setting can be chosen if it is possible and practical for a vehicle to
+         turn around at the destination. This decision may depend on the width
+         of the road and the amount of traffic or whether the destination has a
+         parking lot where vehicles can enter and turn around.
 
-          * 1 ( Right side of vehicle)-When the vehicle arrive at the
-          destination, the destination must be on the right side of the vehicle.
-          A U-turn is prohibited. This is typically used for vehicles such as
-          buses that must depart from the bus stop on the right-hand side.
+         * 1 ( Right side of vehicle)-When the vehicle arrive at the
+         destination, the destination must be on the right side of the vehicle.
+         A U-turn is prohibited. This is typically used for vehicles such as
+         buses that must depart from the bus stop on the right-hand side.
 
-          * 2 (Left side of vehicle)-When the vehicle arrives at the
-          destination, the curb must be on the left side of the vehicle. A
-          U-turn is prohibited. This is typically used for vehicles such as
-          buses that must depart from the bus stop on the left-hand side.
+         * 2 (Left side of vehicle)-When the vehicle arrives at the
+         destination, the curb must be on the left side of the vehicle. A
+         U-turn is prohibited. This is typically used for vehicles such as
+         buses that must depart from the bus stop on the left-hand side.
 
-          * 3 (No U-Turn)-For this tool, this value functions the same as 0
-          (Either side of vehicle).
-          The CurbApproach attribute is designed to work with both kinds of
-          national driving standards: right-hand traffic (United States) and
-          left-hand traffic (United Kingdom). First, consider an origin on the
-          left side of a vehicle. It is always on the left side regardless of
-          whether the vehicle travels on the left or right half of the road.
-          What may change with national driving standards is your decision to
-          depart the origin from one of two directions, that is, so it ends up
-          on the right or left side of the vehicle. For example, if you want to
-          depart from an origin and not have a lane of traffic between the
-          vehicle and the origin, choose 1 (Right side of vehicle) in the United
-          States and 2 (Left side of vehicle) in the United Kingdom.BearingThe
-          direction in which a point is moving. The units are degrees and
-          are measured clockwise from true north. This field is used in
-          conjunction with the BearingTol field.Bearing data is usually sent
-          automatically from a mobile device
-          equipped with a GPS receiver. Try to include bearing data if you are
-          loading an input location that is moving, such as a pedestrian or a
-          vehicle.Using this field tends to prevent adding locations to the
-          wrong edges,
-          which can occur when a vehicle is near an intersection or an overpass,
-          for example. Bearing also helps the tool determine on which side of
-          the street the point is.BearingTolThe bearing tolerance value creates
-          a range of acceptable bearing
-          values when locating moving points on an edge using the Bearing field.
-          If the Bearing field value is within the range of acceptable values
-          that are generated from the bearing tolerance on an edge, the point
-          can be added as a network location there; otherwise, the closest point
-          on the next-nearest edge is evaluated.The units are in degrees, and
-          the default value is 30. Values must be
-          greater than 0 and less than 180. A value of 30 means that when
-          Network Analyst attempts to add a network location on an edge, a range
-          of acceptable bearing values is generated 15 degrees to either side of
-          the edge (left and right) and in both digitized directions of the
-          edge.NavLatencyThis field is only used in the solve process if the
-          Bearing and
-          BearingTol fields also have values; however, entering a NavLatency
-          field value is optional, even when values are present in Bearing and
-          BearingTol. NavLatency indicates how much cost is expected to elapse
-          from the moment GPS information is sent from a moving vehicle to a
-          server and the moment the processed route is received by the vehicle's
-          navigation device.The units of NavLatency are the same as the units of
-          the impedance
-          attribute.
-      Travel_Mode {String}:
-          The mode of transportation to model in the analysis. Travel modes are
-          managed in ArcGIS Online and can be configured by the administrator of
-          your organization to reflect the organization's workflows. Specify the
-          name of a travel mode that is supported by your organization.To get a
-          list of supported travel mode names, run the Get Travel Modes
-          tool from the Utilities toolbox under the same GIS Server connection
-          you used to access the tool. The Get Travel Modes tool adds a table,
-          Supported Travel Modes, to the application. Any value in the Travel
-          Mode Name field from the Supported Travel Modes table can be specified
-          as input. You can also specify the value from the Travel Mode Settings
-          field as input. This speeds up tool execution, as the tool does not
-          have to find the settings based on the travel mode name.The default
-          value, Custom, allows you to configure a custom travel
-          mode using the custom travel mode parameters (UTurn at Junctions, Use
-          Hierarchy, Restrictions, Attribute Parameter Values, and Impedance).
-          The default values of the custom travel mode parameters model
-          traveling by car. You can also choose Custom and set the custom travel
-          mode parameters listed above to model a pedestrian with a fast walking
-          speed or a truck with a given height, weight, and cargo of certain
-          hazardous materials. You can try different settings to get the
-          analysis results you want. Once you have identified the analysis
-          settings, work with your organization's administrator and save these
-          settings as part of a new or existing travel mode so that everyone in
-          your organization can run the analysis with the same settings.When you
-          choose Custom, the values you set for the custom travel mode
-          parameters are included in the analysis. Specifying another travel
-          mode, as defined by your organization, causes any values you set for
-          the custom travel mode parameters to be ignored; the tool overrides
-          them with values from the specified travel mode.
-      Time_Units {String}:
-          Specifies the units that will be used to measure and report the total
-          travel time between each origin-destination pair.
+         * 3 (No U-Turn)-For this tool, this value functions the same as 0
+         (Either side of vehicle).
+         The CurbApproach attribute is designed to work with both kinds of
+         national driving standards: right-hand traffic (United States) and
+         left-hand traffic (United Kingdom). First, consider an origin on the
+         left side of a vehicle. It is always on the left side regardless of
+         whether the vehicle travels on the left or right half of the road.
+         What may change with national driving standards is your decision to
+         depart the origin from one of two directions, that is, so it ends up
+         on the right or left side of the vehicle. For example, if you want to
+         depart from an origin and not have a lane of traffic between the
+         vehicle and the origin, choose 1 (Right side of vehicle) in the United
+         States and 2 (Left side of vehicle) in the United Kingdom.BearingThe
+         direction in which a point is moving. The units are degrees and
+         are measured clockwise from true north. This field is used in
+         conjunction with the BearingTol field.Bearing data is usually sent
+         automatically from a mobile device
+         equipped with a GPS receiver. Try to include bearing data if you are
+         loading an input location that is moving, such as a pedestrian or a
+         vehicle.Using this field tends to prevent adding locations to the
+         wrong edges,
+         which can occur when a vehicle is near an intersection or an overpass,
+         for example. Bearing also helps the tool determine on which side of
+         the street the point is.BearingTolThe bearing tolerance value creates
+         a range of acceptable bearing
+         values when locating moving points on an edge using the Bearing field.
+         If the Bearing field value is within the range of acceptable values
+         that are generated from the bearing tolerance on an edge, the point
+         can be added as a network location there; otherwise, the closest point
+         on the next-nearest edge is evaluated.The units are in degrees, and
+         the default value is 30. Values must be
+         greater than 0 and less than 180. A value of 30 means that when
+         Network Analyst attempts to add a network location on an edge, a range
+         of acceptable bearing values is generated 15 degrees to either side of
+         the edge (left and right) and in both digitized directions of the
+         edge.NavLatencyThis field is only used in the solve process if the
+         Bearing and
+         BearingTol fields also have values; however, entering a NavLatency
+         field value is optional, even when values are present in Bearing and
+         BearingTol. NavLatency indicates how much cost is expected to elapse
+         from the moment GPS information is sent from a moving vehicle to a
+         server and the moment the processed route is received by the vehicle's
+         navigation device.The units of NavLatency are the same as the units of
+         the impedance
+         attribute.
+     Travel_Mode {String}:
+         The mode of transportation to model in the analysis. Travel modes are
+         managed in ArcGIS Online and can be configured by the administrator of
+         your organization to reflect the organization's workflows. Specify the
+         name of a travel mode that is supported by your organization.To get a
+         list of supported travel mode names, run the Get Travel Modes
+         tool from the Utilities toolbox under the same GIS Server connection
+         you used to access the tool. The Get Travel Modes tool adds a table,
+         Supported Travel Modes, to the application. Any value in the Travel
+         Mode Name field from the Supported Travel Modes table can be specified
+         as input. You can also specify the value from the Travel Mode Settings
+         field as input. This speeds up tool execution, as the tool does not
+         have to find the settings based on the travel mode name.The default
+         value, Custom, allows you to configure a custom travel
+         mode using the custom travel mode parameters (UTurn at Junctions, Use
+         Hierarchy, Restrictions, Attribute Parameter Values, and Impedance).
+         The default values of the custom travel mode parameters model
+         traveling by car. You can also choose Custom and set the custom travel
+         mode parameters listed above to model a pedestrian with a fast walking
+         speed or a truck with a given height, weight, and cargo of certain
+         hazardous materials. You can try different settings to get the
+         analysis results you want. Once you have identified the analysis
+         settings, work with your organization's administrator and save these
+         settings as part of a new or existing travel mode so that everyone in
+         your organization can run the analysis with the same settings.When you
+         choose Custom, the values you set for the custom travel mode
+         parameters are included in the analysis. Specifying another travel
+         mode, as defined by your organization, causes any values you set for
+         the custom travel mode parameters to be ignored; the tool overrides
+         them with values from the specified travel mode.
+     Time_Units {String}:
+         Specifies the units that will be used to measure and report the total
+         travel time between each origin-destination pair.
 
-          * Seconds-The time unit is seconds.
+         * Seconds-The time unit is seconds.
 
-          * Minutes-The time unit is minutes.
+         * Minutes-The time unit is minutes.
 
-          * Hours-The time unit is hours.
+         * Hours-The time unit is hours.
 
-          * Days-The time unit is days.
-      Distance_Units {String}:
-          Specifies the units that will be used to measure and report the total
-          travel distance between each origin-destination pair.
+         * Days-The time unit is days.
+     Distance_Units {String}:
+         Specifies the units that will be used to measure and report the total
+         travel distance between each origin-destination pair.
 
-          * Meters-The linear unit is meters.
+         * Meters-The linear unit is meters.
 
-          * Kilometers-The linear unit is kilometers.
+         * Kilometers-The linear unit is kilometers.
 
-          * Feet-The linear unit is feet.
+         * Feet-The linear unit is feet.
 
-          * Yards-The linear unit is yards.
+         * Yards-The linear unit is yards.
 
-          * Miles-The linear unit is miles.
+         * Miles-The linear unit is miles.
 
-          * NauticalMiles-The linear unit is nautical miles.
-      Analysis_Region {String}:
-          The region in which the analysis will be performed. If a value is not
-          specified for this parameter, the tool will automatically calculate
-          the region name based on the location of the input points. Setting the
-          name of the region is required only if the automatic detection of the
-          region name is not accurate for the inputs.To specify a region, use
-          one of the following values:
+         * NauticalMiles-The linear unit is nautical miles.
+     Analysis_Region {String}:
+         The region in which the analysis will be performed. If a value is not
+         specified for this parameter, the tool will automatically calculate
+         the region name based on the location of the input points. Setting the
+         name of the region is required only if the automatic detection of the
+         region name is not accurate for the inputs.To specify a region, use
+         one of the following values:
 
-          * Europe-The analysis region will be Europe.
+         * Europe-The analysis region will be Europe.
 
-          * Japan-The analysis region will be Japan.
+         * Japan-The analysis region will be Japan.
 
-          * Korea-The analysis region will be Korea.
+         * Korea-The analysis region will be Korea.
 
-          * MiddleEastAndAfrica-The analysis region will be Middle East and
-          Africa.
+         * MiddleEastAndAfrica-The analysis region will be Middle East and
+         Africa.
 
-          * NorthAmerica-The analysis region will be North America.
+         * NorthAmerica-The analysis region will be North America.
 
-          * SouthAmerica-The analysis region will be South America.
+         * SouthAmerica-The analysis region will be South America.
 
-          * SouthAsia-The analysis region will be South Asia.
+         * SouthAsia-The analysis region will be South Asia.
 
-          * Thailand-The analysis region will be Thailand.
-                  The following region names are no longer supported and will be
-          removed in future releases. If you specify one of the deprecated
-          region names, the tool automatically assigns a supported region name
-          for the region.
+         * Thailand-The analysis region will be Thailand.
+                 The following region names are no longer supported and will be
+         removed in future releases. If you specify one of the deprecated
+         region names, the tool automatically assigns a supported region name
+         for the region.
 
-          * Greece redirects to Europe
+         * Greece redirects to Europe
 
-          * India redirects to SouthAsia
+         * India redirects to SouthAsia
 
-          * Oceania redirects to SouthAsia
+         * Oceania redirects to SouthAsia
 
-          * SouthEastAsia redirects to SouthAsia
+         * SouthEastAsia redirects to SouthAsia
 
-          * Taiwan redirects to SouthAsia
-      Number_of_Destinations_to_Find {Long}:
-          The maximum number of destinations to find per origin. If a value for
-          this parameter is not specified, the output matrix includes travel
-          costs from each origin to every destination. Individual origins can
-          have their own values (specified as the TargetDestinationCount field)
-          that override the Number of Destinations to Find parameter value.
-      Cutoff {Double}:
-          The travel time or travel distance value at which to stop searching
-          for destinations from a given origin. Any destination beyond the
-          cutoff value will not be considered. Individual origins can have their
-          own values (specified as the Cutoff field) that override the Cutoff
-          parameter value.The value must be in the units specified by the Time
-          Units parameter
-          if the impedance attribute of your travel mode is time based or in the
-          units specified by the Distance Units parameter if the impedance
-          attribute of your travel mode is distance based. If a value is not
-          specified, the tool will not enforce any travel time or travel
-          distance limit when searching for destinations.
-      Time_of_Day {Date}:
-          The time and date the routes will begin.If you are modeling the
-          driving travel mode and specify the current
-          date and time as the value for this parameter, the tool will use live
-          traffic conditions to find the best routes, and the total travel time
-          will be based on traffic conditions.Specifying a time of day results
-          in more accurate routes and
-          estimations of travel times because the travel times account for the
-          traffic conditions that are applicable for that date and time.The Time
-          Zone for Time of Day parameter specifies whether this time
-          and date refer to UTC or the time zone in which the stop is
-          located.The tool ignores this parameter when Measurement Units isn't
-          set to a
-          time-based unit.
-      Time_Zone_for_Time_of_Day {String}:
-          Specifies the time zone of the Time of Day parameter.
+         * Taiwan redirects to SouthAsia
+     Number_of_Destinations_to_Find {Long}:
+         The maximum number of destinations to find per origin. If a value for
+         this parameter is not specified, the output matrix includes travel
+         costs from each origin to every destination. Individual origins can
+         have their own values (specified as the TargetDestinationCount field)
+         that override the Number of Destinations to Find parameter value.
+     Cutoff {Double}:
+         The travel time or travel distance value at which to stop searching
+         for destinations from a given origin. Any destination beyond the
+         cutoff value will not be considered. Individual origins can have their
+         own values (specified as the Cutoff field) that override the Cutoff
+         parameter value.The value must be in the units specified by the Time
+         Units parameter
+         if the impedance attribute of your travel mode is time based or in the
+         units specified by the Distance Units parameter if the impedance
+         attribute of your travel mode is distance based. If a value is not
+         specified, the tool will not enforce any travel time or travel
+         distance limit when searching for destinations.
+     Time_of_Day {Date}:
+         The time and date the routes will begin.If you are modeling the
+         driving travel mode and specify the current
+         date and time as the value for this parameter, the tool will use live
+         traffic conditions to find the best routes, and the total travel time
+         will be based on traffic conditions.Specifying a time of day results
+         in more accurate routes and
+         estimations of travel times because the travel times account for the
+         traffic conditions that are applicable for that date and time.The Time
+         Zone for Time of Day parameter specifies whether this time
+         and date refer to UTC or the time zone in which the stop is
+         located.The tool ignores this parameter when Measurement Units isn't
+         set to a
+         time-based unit.
+     Time_Zone_for_Time_of_Day {String}:
+         Specifies the time zone of the Time of Day parameter.
 
-          * Geographically Local-The Time of Day parameter refers to the time
-          zone in which the first stop of a route is located. If you are
-          generating many routes that start in multiple time zones, the start
-          times are staggered in coordinated universal time (UTC). For example,
-          a Time of Day value of 10:00 a.m., 2 January, means a start time of
-          10:00 a.m. eastern standard time (UTC-3:00) for routes beginning in
-          the eastern time zone and 10:00 a.m. central standard time (UTC-4:00)
-          for routes beginning in the central time zone. The start times are
-          offset by one hour in UTC. The arrive and depart times and dates
-          recorded in the output Stops feature class will refer to the local
-          time zone of the first stop for each route.
+         * Geographically Local-The Time of Day parameter refers to the time
+         zone in which the first stop of a route is located. If you are
+         generating many routes that start in multiple time zones, the start
+         times are staggered in coordinated universal time (UTC). For example,
+         a Time of Day value of 10:00 a.m., 2 January, means a start time of
+         10:00 a.m. eastern standard time (UTC-3:00) for routes beginning in
+         the eastern time zone and 10:00 a.m. central standard time (UTC-4:00)
+         for routes beginning in the central time zone. The start times are
+         offset by one hour in UTC. The arrive and depart times and dates
+         recorded in the output Stops feature class will refer to the local
+         time zone of the first stop for each route.
 
-          * UTC-The Time of Day parameter refers to UTC. Choose this option if
-          you want to generate a route for a specific time, such as now, but
-          aren't certain in which time zone the first stop will be located. If
-          you are generating many routes spanning multiple time zones, the start
-          times in UTC are simultaneous. For example, a Time of Day value of
-          10:00 a.m., 2 January, means a start time of 5:00 a.m. eastern
-          standard time (UTC-5:00) for routes beginning in the eastern time zone
-          and 4:00 a.m. central standard time (UTC-6:00) for routes beginning in
-          the central time zone. Both routes start at 10:00 a.m. UTC. The arrive
-          and depart times and dates recorded in the output Stops feature class
-          will refer to UTC.
-      Point_Barriers {Feature Set}:
-          Use this parameter to specify one or more points that will act as
-          temporary restrictions or represent additional time or distance that
-          may be required to travel on the underlying streets. For example, a
-          point barrier can be used to represent a fallen tree along a street or
-          a time delay spent at a railroad crossing.The tool imposes a limit of
-          250 points that can be added as barriers.When specifying point
-          barriers, you can set properties for each, such
-          as its name or barrier type, using the following attributes:NameThe
-          name of the barrier.BarrierTypeSpecifies whether the point barrier
-          restricts travel completely or
-          adds time or distance when it is crossed. The value for this attribute
-          is specified as one of the following integers (use the numeric code,
-          not the name in parentheses):
+         * UTC-The Time of Day parameter refers to UTC. Choose this option if
+         you want to generate a route for a specific time, such as now, but
+         aren't certain in which time zone the first stop will be located. If
+         you are generating many routes spanning multiple time zones, the start
+         times in UTC are simultaneous. For example, a Time of Day value of
+         10:00 a.m., 2 January, means a start time of 5:00 a.m. eastern
+         standard time (UTC-5:00) for routes beginning in the eastern time zone
+         and 4:00 a.m. central standard time (UTC-6:00) for routes beginning in
+         the central time zone. Both routes start at 10:00 a.m. UTC. The arrive
+         and depart times and dates recorded in the output Stops feature class
+         will refer to UTC.
+     Point_Barriers {Feature Set}:
+         Use this parameter to specify one or more points that will act as
+         temporary restrictions or represent additional time or distance that
+         may be required to travel on the underlying streets. For example, a
+         point barrier can be used to represent a fallen tree along a street or
+         a time delay spent at a railroad crossing.The tool imposes a limit of
+         250 points that can be added as barriers.When specifying point
+         barriers, you can set properties for each, such
+         as its name or barrier type, using the following attributes:NameThe
+         name of the barrier.BarrierTypeSpecifies whether the point barrier
+         restricts travel completely or
+         adds time or distance when it is crossed. The value for this attribute
+         is specified as one of the following integers (use the numeric code,
+         not the name in parentheses):
 
-          * 0 (Restriction)-Prohibits travel through the barrier. The barrier
-          is
-          referred to as a restriction point barrier since it acts as a
-          restriction.
+         * 0 (Restriction)-Prohibits travel through the barrier. The barrier
+         is
+         referred to as a restriction point barrier since it acts as a
+         restriction.
 
-          * 2 (Added Cost)-Traveling through the barrier increases the travel
-          time
-          or distance by the amount specified in the Additional_Time,
-          Additional_Distance, or AdditionalCost field. This barrier type is
-          referred to as an added cost point barrier.
-          Additional_TimeThe added travel time when the barrier is traversed.
-          This field is
-          applicable only for added-cost barriers and when the Measurement Units
-          parameter value is time based.This field value must be greater than or
-          equal to zero, and its units
-          must be the same as those specified in the Measurement Units
-          parameter.Additional_DistanceThe added distance when the barrier is
-          traversed. This field is
-          applicable only for added-cost barriers and when the Measurement Units
-          parameter value is distance based.The field value must be greater than
-          or equal to zero, and its units
-          must be the same as those specified in the Measurement Units
-          parameter.AdditionalCostThe added cost when the barrier is traversed.
-          This field is applicable
-          only for added-cost barriers when the Measurement Units parameter
-          value is neither time based nor distance based.FullEdgeSpecifies how
-          the restriction point barriers are applied to the edge
-          elements during the analysis. The field value is specified as one of
-          the following integers (use the numeric code, not the name in
-          parentheses):
+         * 2 (Added Cost)-Traveling through the barrier increases the travel
+         time
+         or distance by the amount specified in the Additional_Time,
+         Additional_Distance, or AdditionalCost field. This barrier type is
+         referred to as an added cost point barrier.
+         Additional_TimeThe added travel time when the barrier is traversed.
+         This field is
+         applicable only for added-cost barriers and when the Measurement Units
+         parameter value is time based.This field value must be greater than or
+         equal to zero, and its units
+         must be the same as those specified in the Measurement Units
+         parameter.Additional_DistanceThe added distance when the barrier is
+         traversed. This field is
+         applicable only for added-cost barriers and when the Measurement Units
+         parameter value is distance based.The field value must be greater than
+         or equal to zero, and its units
+         must be the same as those specified in the Measurement Units
+         parameter.AdditionalCostThe added cost when the barrier is traversed.
+         This field is applicable
+         only for added-cost barriers when the Measurement Units parameter
+         value is neither time based nor distance based.FullEdgeSpecifies how
+         the restriction point barriers are applied to the edge
+         elements during the analysis. The field value is specified as one of
+         the following integers (use the numeric code, not the name in
+         parentheses):
 
-          * 0 (False)-Permits travel on the edge up to the barrier but not
-          through it. This is the default value.
+         * 0 (False)-Permits travel on the edge up to the barrier but not
+         through it. This is the default value.
 
-          * 1 (True)-Restricts travel anywhere on the associated edge.
-          CurbApproachSpecifies the direction of traffic that is affected by the
-          barrier.
-          The field value is specified as one of the following integers (use the
-          numeric code, not the name in parentheses):
+         * 1 (True)-Restricts travel anywhere on the associated edge.
+         CurbApproachSpecifies the direction of traffic that is affected by the
+         barrier.
+         The field value is specified as one of the following integers (use the
+         numeric code, not the name in parentheses):
 
-          * 0 (Either side of vehicle)-The barrier affects travel over the edge
-          in both directions.
+         * 0 (Either side of vehicle)-The barrier affects travel over the edge
+         in both directions.
 
-          * 1 (Right side of vehicle)-Vehicles are only affected if the barrier
-          is on their right side during the approach. Vehicles that traverse the
-          same edge but approach the barrier on their left side are not affected
-          by the barrier.
+         * 1 (Right side of vehicle)-Vehicles are only affected if the barrier
+         is on their right side during the approach. Vehicles that traverse the
+         same edge but approach the barrier on their left side are not affected
+         by the barrier.
 
-          * 2 (Left side of vehicle)-Vehicles are only affected if the barrier
-          is on their left side during the approach. Vehicles that traverse the
-          same edge but approach the barrier on their right side are not
-          affected by the barrier.
-          Because junctions are points and don't have a side, barriers on
-          junctions affect all vehicles regardless of the curb approach.The
-          CurbApproach attribute works with both types of national driving
-          standards: right-hand traffic (United States) and left-hand traffic
-          (United Kingdom). First, consider a facility on the left side of a
-          vehicle. It is always on the left side regardless of whether the
-          vehicle travels on the left or right half of the road. What may change
-          with national driving standards is your decision to approach a
-          facility from one of two directions, that is, so it ends up on the
-          right or left side of the vehicle. For example, to arrive at a
-          facility and not have a lane of traffic between the vehicle and the
-          facility, choose 1 (Right side of vehicle) in the United States and 2
-          (Left side of vehicle) in the United Kingdom.BearingThe direction in
-          which a point is moving. The units are degrees and
-          are measured clockwise from true north. This field is used in
-          conjunction with the BearingTol field.Bearing data is usually sent
-          automatically from a mobile device
-          equipped with a GPS receiver. Try to include bearing data if you are
-          loading an input location that is moving, such as a pedestrian or a
-          vehicle.Using this field tends to prevent adding locations to the
-          wrong edges,
-          which can occur when a vehicle is near an intersection or an overpass,
-          for example. Bearing also helps the tool determine on which side of
-          the street the point is.BearingTolThe bearing tolerance value creates
-          a range of acceptable bearing
-          values when locating moving points on an edge using the Bearing field.
-          If the Bearing field value is within the range of acceptable values
-          that are generated from the bearing tolerance on an edge, the point
-          can be added as a network location there; otherwise, the closest point
-          on the next-nearest edge is evaluated.The units are in degrees, and
-          the default value is 30. Values must be
-          greater than 0 and less than 180. A value of 30 means that when
-          Network Analyst attempts to add a network location on an edge, a range
-          of acceptable bearing values is generated 15 degrees to either side of
-          the edge (left and right) and in both digitized directions of the
-          edge.NavLatencyThis field is only used in the solve process if the
-          Bearing and
-          BearingTol fields also have values; however, entering a NavLatency
-          field value is optional, even when values are present in Bearing and
-          BearingTol. NavLatency indicates how much cost is expected to elapse
-          from the moment GPS information is sent from a moving vehicle to a
-          server and the moment the processed route is received by the vehicle's
-          navigation device.The units of NavLatency are the same as the units of
-          the impedance
-          attribute.
-      Line_Barriers {Feature Set}:
-          Use this parameter to specify one or more lines that prohibit travel
-          anywhere the lines intersect the streets. For example, a parade or
-          protest that blocks traffic across several street segments can be
-          modeled with a line barrier. A line barrier can also quickly fence off
-          several roads from being traversed, thereby channeling possible routes
-          away from undesirable parts of the street network.The tool imposes a
-          limit on the number of streets you can restrict
-          using the Line Barriers parameter. While there is no limit to the
-          number of lines you can specify as line barriers, the combined number
-          of streets intersected by all the lines cannot exceed 500.When
-          specifying the line barriers, you can set name and barrier type
-          properties for each using the following attributes:NameThe name of the
-          barrier.
-      Polygon_Barriers {Feature Set}:
-          Use this parameter to specify polygons that either completely restrict
-          travel or proportionately scale the time or distance required to
-          travel on the streets intersected by the polygons.The service imposes
-          a limit on the number of streets you can restrict
-          using the Polygon Barriers parameter. While there is no limit to the
-          number of polygons you can specify as polygon barriers, the combined
-          number of streets intersected by all the polygons cannot exceed
-          2,000.When specifying the polygon barriers, you can set properties for
-          each,
-          such as its name or barrier type, using the following
-          attributes:NameThe name of the barrier.BarrierTypeSpecifies whether
-          the barrier restricts travel completely or scales
-          the cost (such as time or distance) for traveling through it. The
-          field value is specified as one of the following integers (use the
-          numeric code, not the name in parentheses):
+         * 2 (Left side of vehicle)-Vehicles are only affected if the barrier
+         is on their left side during the approach. Vehicles that traverse the
+         same edge but approach the barrier on their right side are not
+         affected by the barrier.
+         Because junctions are points and don't have a side, barriers on
+         junctions affect all vehicles regardless of the curb approach.The
+         CurbApproach attribute works with both types of national driving
+         standards: right-hand traffic (United States) and left-hand traffic
+         (United Kingdom). First, consider a facility on the left side of a
+         vehicle. It is always on the left side regardless of whether the
+         vehicle travels on the left or right half of the road. What may change
+         with national driving standards is your decision to approach a
+         facility from one of two directions, that is, so it ends up on the
+         right or left side of the vehicle. For example, to arrive at a
+         facility and not have a lane of traffic between the vehicle and the
+         facility, choose 1 (Right side of vehicle) in the United States and 2
+         (Left side of vehicle) in the United Kingdom.BearingThe direction in
+         which a point is moving. The units are degrees and
+         are measured clockwise from true north. This field is used in
+         conjunction with the BearingTol field.Bearing data is usually sent
+         automatically from a mobile device
+         equipped with a GPS receiver. Try to include bearing data if you are
+         loading an input location that is moving, such as a pedestrian or a
+         vehicle.Using this field tends to prevent adding locations to the
+         wrong edges,
+         which can occur when a vehicle is near an intersection or an overpass,
+         for example. Bearing also helps the tool determine on which side of
+         the street the point is.BearingTolThe bearing tolerance value creates
+         a range of acceptable bearing
+         values when locating moving points on an edge using the Bearing field.
+         If the Bearing field value is within the range of acceptable values
+         that are generated from the bearing tolerance on an edge, the point
+         can be added as a network location there; otherwise, the closest point
+         on the next-nearest edge is evaluated.The units are in degrees, and
+         the default value is 30. Values must be
+         greater than 0 and less than 180. A value of 30 means that when
+         Network Analyst attempts to add a network location on an edge, a range
+         of acceptable bearing values is generated 15 degrees to either side of
+         the edge (left and right) and in both digitized directions of the
+         edge.NavLatencyThis field is only used in the solve process if the
+         Bearing and
+         BearingTol fields also have values; however, entering a NavLatency
+         field value is optional, even when values are present in Bearing and
+         BearingTol. NavLatency indicates how much cost is expected to elapse
+         from the moment GPS information is sent from a moving vehicle to a
+         server and the moment the processed route is received by the vehicle's
+         navigation device.The units of NavLatency are the same as the units of
+         the impedance
+         attribute.
+     Line_Barriers {Feature Set}:
+         Use this parameter to specify one or more lines that prohibit travel
+         anywhere the lines intersect the streets. For example, a parade or
+         protest that blocks traffic across several street segments can be
+         modeled with a line barrier. A line barrier can also quickly fence off
+         several roads from being traversed, thereby channeling possible routes
+         away from undesirable parts of the street network.The tool imposes a
+         limit on the number of streets you can restrict
+         using the Line Barriers parameter. While there is no limit to the
+         number of lines you can specify as line barriers, the combined number
+         of streets intersected by all the lines cannot exceed 500.When
+         specifying the line barriers, you can set name and barrier type
+         properties for each using the following attributes:NameThe name of the
+         barrier.
+     Polygon_Barriers {Feature Set}:
+         Use this parameter to specify polygons that either completely restrict
+         travel or proportionately scale the time or distance required to
+         travel on the streets intersected by the polygons.The service imposes
+         a limit on the number of streets you can restrict
+         using the Polygon Barriers parameter. While there is no limit to the
+         number of polygons you can specify as polygon barriers, the combined
+         number of streets intersected by all the polygons cannot exceed
+         2,000.When specifying the polygon barriers, you can set properties for
+         each,
+         such as its name or barrier type, using the following
+         attributes:NameThe name of the barrier.BarrierTypeSpecifies whether
+         the barrier restricts travel completely or scales
+         the cost (such as time or distance) for traveling through it. The
+         field value is specified as one of the following integers (use the
+         numeric code, not the name in parentheses):
 
-          * 0 (Restriction)-Prohibits traveling through any part of the
-          barrier.
-          The barrier is referred to as a restriction polygon barrier since it
-          prohibits traveling on streets intersected by the barrier. One use of
-          this type of barrier is to model floods covering areas of the street
-          that make traveling on those streets impossible.
+         * 0 (Restriction)-Prohibits traveling through any part of the
+         barrier.
+         The barrier is referred to as a restriction polygon barrier since it
+         prohibits traveling on streets intersected by the barrier. One use of
+         this type of barrier is to model floods covering areas of the street
+         that make traveling on those streets impossible.
 
-          * 1 (Scaled Cost)-Scales the cost (such as travel time or distance)
-          required to travel the underlying streets by a factor specified using
-          the ScaledTimeFactor or ScaledDistanceFactor field. If the streets are
-          partially covered by the barrier, the travel time or distance is
-          apportioned and then scaled. For example, a factor of 0.25 means that
-          travel on underlying streets is expected to be four times faster than
-          normal. A factor of 3.0 means it is expected to take three times
-          longer than normal to travel on underlying streets. This barrier type
-          is referred to as a scaled-cost polygon barrier. It can be used to
-          model storms that reduce travel speeds in specific regions, for
-          example.
-          ScaledTimeFactorThis is the factor by which the travel time of the
-          streets intersected
-          by the barrier is multiplied. The field value must be greater than
-          zero.This field is applicable only for scaled-cost barriers and when
-          the
-          Measurement Units parameter is time-based.ScaledDistanceFactorThis is
-          the factor by which the distance of the streets intersected by
-          the barrier is multiplied. The field value must be greater than
-          zero.This field is applicable only for scaled-cost barriers and when
-          the
-          Measurement Units parameter is distance-based.ScaledCostFactorThis is
-          the factor by which the cost of the streets intersec"""
+         * 1 (Scaled Cost)-Scales the cost (such as travel time or distance)
+         required to travel the underlying streets by a factor specified using
+         the ScaledTimeFactor or ScaledDistanceFactor field. If the streets are
+         partially covered by the barrier, the travel time or distance is
+         apportioned and then scaled. For example, a factor of 0.25 means that
+         travel on underlying streets is expected to be four times faster than
+         normal. A factor of 3.0 means it is expected to take three times
+         longer than normal to travel on underlying streets. This barrier type
+         is referred to as a scaled-cost polygon barrier. It can be used to
+         model storms that reduce travel speeds in specific regions, for
+         example.
+         ScaledTimeFactorThis is the factor by which the travel time of the
+         streets intersected
+         by the barrier is multiplied. The field value must be greater than
+         zero.This field is applicable only for scaled-cost barriers and when
+         the
+         Measurement Units parameter is time-based.ScaledDistanceFactorThis is
+         the factor by which the distance of the streets intersected by
+         the barrier is multiplied. The field value must be greater than
+         zero.This field is applicable only for scaled-cost barriers and when
+         the
+         Measurement Units parameter is distance-based.ScaledCostFactorThis is
+         the factor by which the cost of the streets intersec"""
     ...
 
-@gptooldoc('GenerateServiceAreas_agolservices', None)
-def GenerateServiceAreas(Facilities=..., Break_Values=..., Break_Units=..., Analysis_Region=..., Travel_Direction=..., Time_of_Day=..., Use_Hierarchy=..., UTurn_at_Junctions=..., Polygons_for_Multiple_Facilities=..., Polygon_Overlap_Type=..., Detailed_Polygons=..., Polygon_Trim_Distance=..., Polygon_Simplification_Tolerance=..., Point_Barriers=..., Line_Barriers=..., Polygon_Barriers=..., Restrictions=..., Attribute_Parameter_Values=..., Time_Zone_for_Time_of_Day=..., Travel_Mode=..., Impedance=..., Save_Output_Network_Analysis_Layer=..., Overrides=..., Time_Impedance=..., Distance_Impedance=..., Polygon_Detail=..., Output_Type=..., Output_Format=..., Ignore_Invalid_Locations=..., Locate_Settings=...): # -> conversion | int | float | complex | basestring | list[Unknown] | tuple[Unknown, ...] | dict[Unknown, Unknown]:
+@gptooldoc("GenerateServiceAreas_agolservices", None)
+def GenerateServiceAreas(
+    Facilities=...,
+    Break_Values=...,
+    Break_Units=...,
+    Analysis_Region=...,
+    Travel_Direction=...,
+    Time_of_Day=...,
+    Use_Hierarchy=...,
+    UTurn_at_Junctions=...,
+    Polygons_for_Multiple_Facilities=...,
+    Polygon_Overlap_Type=...,
+    Detailed_Polygons=...,
+    Polygon_Trim_Distance=...,
+    Polygon_Simplification_Tolerance=...,
+    Point_Barriers=...,
+    Line_Barriers=...,
+    Polygon_Barriers=...,
+    Restrictions=...,
+    Attribute_Parameter_Values=...,
+    Time_Zone_for_Time_of_Day=...,
+    Travel_Mode=...,
+    Impedance=...,
+    Save_Output_Network_Analysis_Layer=...,
+    Overrides=...,
+    Time_Impedance=...,
+    Distance_Impedance=...,
+    Polygon_Detail=...,
+    Output_Type=...,
+    Output_Format=...,
+    Ignore_Invalid_Locations=...,
+    Locate_Settings=...,
+):  # -> conversion | int | float | complex | basestring | list[Unknown] | tuple[Unknown, ...] | dict[Unknown, Unknown]:
     """GenerateServiceAreas_agolservices(Facilities, Break_Values, Break_Units, {Analysis_Region}, {Travel_Direction}, {Time_of_Day}, {Use_Hierarchy}, {UTurn_at_Junctions}, {Polygons_for_Multiple_Facilities}, {Polygon_Overlap_Type}, {Detailed_Polygons}, {Polygon_Trim_Distance}, {Polygon_Simplification_Tolerance}, {Point_Barriers}, {Line_Barriers}, {Polygon_Barriers}, {Restrictions;Restrictions...}, {Attribute_Parameter_Values}, {Time_Zone_for_Time_of_Day}, {Travel_Mode}, {Impedance}, {Save_Output_Network_Analysis_Layer}, {Overrides}, {Time_Impedance}, {Distance_Impedance}, {Polygon_Detail}, {Output_Type}, {Output_Format}, {Ignore_Invalid_Locations}, {Locate_Settings})
 
-        Determines network service areas around facilities. A network service
-        area is a region that encompasses all streets that can be accessed
-        within a given distance or travel time from one or more facilities.
-        For instance, the 10-minute service area for a facility includes all
-        the streets that can be reached within 10 minutes from that facility.
+       Determines network service areas around facilities. A network service
+       area is a region that encompasses all streets that can be accessed
+       within a given distance or travel time from one or more facilities.
+       For instance, the 10-minute service area for a facility includes all
+       the streets that can be reached within 10 minutes from that facility.
 
-     INPUTS:
-      Facilities (Feature Set):
-          The input locations around which service areas are generated.You can
-          load up to 1,000 facilities.The facilities feature set has an
-          associated attribute table. The
-          fields in the attribute table are described below.ObjectIDThe system-
-          managed ID field.NameThe name of the facility. If the name is not
-          specified, a name is
-          automatically generated at solve time.All fields from the input
-          facilities are included in the output
-          polygons when the Polygons for Multiple Facilities parameter is set to
-          Overlapping or Not Overlapping. The ObjectID field on the input
-          facilities is transferred to the FacilityOID field on the output
-          polygons.BreaksSpecify the extent of the service area to be calculated
-          on a per
-          facility basis.This attribute allows you to specify a different
-          service area break
-          value for each facility. For example, with two facilities, you can
-          generate 5- and 10-minute service area polygons for one facility and
-          6-, 9-, and 12-minute polygons for the other facility.Separate
-          multiple break values with a space, and specify the numeric
-          values using the dot character as your decimal separator, even if the
-          locale of your computer defines a different decimal separator. For
-          example, the value 5.5 10 15.5 specifies three break values around a
-          facility.AdditionalTimeThe amount of time spent at the facility, which
-          reduces the extent of
-          the service area calculated for the given facility. The default value
-          is 0.For example, when calculating service areas that represent fire
-          station response times, AdditionalTime can store the turnout time,
-          which is the time it takes a crew to put on the appropriate protective
-          equipment and exit the fire station, for each fire station. Assume
-          Fire Station 1 has a turnout time of 1 minute and Fire Station 2 has a
-          turnout time of 3 minutes. If a 5-minute service area is calculated
-          for both fire stations, the actual service area for Fire Station 1 is
-          4 minutes (since 1 of the 5 minutes is required as turnout time).
-          Similarly, Fire Station 2 has a service area of only 2 minutes from
-          the fire station.AdditionalDistanceThe extra distance traveled to
-          reach the facility before the service
-          is calculated. This attribute reduces the extent of the service area
-          calculated for the given facility. The default value is 0.Generally,
-          the location of a facility, such as a store location, isn't
-          exactly on the street; it is set back somewhat from the road. This
-          attribute value can be used to model the distance between the actual
-          facility location and its location on the street if it is important to
-          include that distance when calculating the service areas for the
-          facility.AdditionalCostThe extra cost spent at the facility, which
-          reduces the extent of the
-          service area calculated for the given facility. The default value is
-          0.Use this attribute value when the travel mode for the analysis uses
-          an
-          impedance attribute that is neither time based nor distance based The
-          units for the attribute values are interpreted to be in unknown
-          units.CurbApproachSpecifies the direction a vehicle may arrive at and
-          depart from the
-          facility. The field value is specified as one of the following
-          integers (use the numeric code, not the name in parentheses):
+    INPUTS:
+     Facilities (Feature Set):
+         The input locations around which service areas are generated.You can
+         load up to 1,000 facilities.The facilities feature set has an
+         associated attribute table. The
+         fields in the attribute table are described below.ObjectIDThe system-
+         managed ID field.NameThe name of the facility. If the name is not
+         specified, a name is
+         automatically generated at solve time.All fields from the input
+         facilities are included in the output
+         polygons when the Polygons for Multiple Facilities parameter is set to
+         Overlapping or Not Overlapping. The ObjectID field on the input
+         facilities is transferred to the FacilityOID field on the output
+         polygons.BreaksSpecify the extent of the service area to be calculated
+         on a per
+         facility basis.This attribute allows you to specify a different
+         service area break
+         value for each facility. For example, with two facilities, you can
+         generate 5- and 10-minute service area polygons for one facility and
+         6-, 9-, and 12-minute polygons for the other facility.Separate
+         multiple break values with a space, and specify the numeric
+         values using the dot character as your decimal separator, even if the
+         locale of your computer defines a different decimal separator. For
+         example, the value 5.5 10 15.5 specifies three break values around a
+         facility.AdditionalTimeThe amount of time spent at the facility, which
+         reduces the extent of
+         the service area calculated for the given facility. The default value
+         is 0.For example, when calculating service areas that represent fire
+         station response times, AdditionalTime can store the turnout time,
+         which is the time it takes a crew to put on the appropriate protective
+         equipment and exit the fire station, for each fire station. Assume
+         Fire Station 1 has a turnout time of 1 minute and Fire Station 2 has a
+         turnout time of 3 minutes. If a 5-minute service area is calculated
+         for both fire stations, the actual service area for Fire Station 1 is
+         4 minutes (since 1 of the 5 minutes is required as turnout time).
+         Similarly, Fire Station 2 has a service area of only 2 minutes from
+         the fire station.AdditionalDistanceThe extra distance traveled to
+         reach the facility before the service
+         is calculated. This attribute reduces the extent of the service area
+         calculated for the given facility. The default value is 0.Generally,
+         the location of a facility, such as a store location, isn't
+         exactly on the street; it is set back somewhat from the road. This
+         attribute value can be used to model the distance between the actual
+         facility location and its location on the street if it is important to
+         include that distance when calculating the service areas for the
+         facility.AdditionalCostThe extra cost spent at the facility, which
+         reduces the extent of the
+         service area calculated for the given facility. The default value is
+         0.Use this attribute value when the travel mode for the analysis uses
+         an
+         impedance attribute that is neither time based nor distance based The
+         units for the attribute values are interpreted to be in unknown
+         units.CurbApproachSpecifies the direction a vehicle may arrive at and
+         depart from the
+         facility. The field value is specified as one of the following
+         integers (use the numeric code, not the name in parentheses):
 
-          * 0 (Either side of vehicle)-The vehicle can approach and depart the
-          facility in either direction, so a U-turn is allowed at the facility.
-          This setting can be chosen if it is possible and practical for a
-          vehicle to turn around at the facility. This decision may depend on
-          the width of the road and the amount of traffic or whether the
-          facility has a parking lot where vehicles can enter and turn around.
+         * 0 (Either side of vehicle)-The vehicle can approach and depart the
+         facility in either direction, so a U-turn is allowed at the facility.
+         This setting can be chosen if it is possible and practical for a
+         vehicle to turn around at the facility. This decision may depend on
+         the width of the road and the amount of traffic or whether the
+         facility has a parking lot where vehicles can enter and turn around.
 
-          * 1 (Right side of vehicle)-When the vehicle approaches and departs
-          the facility, the curb must be on the right side of the vehicle. A
-          U-turn is prohibited. This is typically used for vehicles such as
-          buses that must arrive with the bus stop on the right-hand side.
+         * 1 (Right side of vehicle)-When the vehicle approaches and departs
+         the facility, the curb must be on the right side of the vehicle. A
+         U-turn is prohibited. This is typically used for vehicles such as
+         buses that must arrive with the bus stop on the right-hand side.
 
-          * 2 (Left side of vehicle)-When the vehicle approaches and departs the
-          facility, the curb must be on the left side of the vehicle. A U-turn
-          is prohibited. This is typically used for vehicles such as buses that
-          must arrive with the bus stop on the left-hand side.
+         * 2 (Left side of vehicle)-When the vehicle approaches and departs the
+         facility, the curb must be on the left side of the vehicle. A U-turn
+         is prohibited. This is typically used for vehicles such as buses that
+         must arrive with the bus stop on the left-hand side.
 
-          * 3 (No U-Turn)-When the vehicle approaches the facility, the curb can
-          be on either side of the vehicle, however, the vehicle must depart
-          without turning around.
-          The CurbApproach attribute is designed to work with both types of
-          national driving standards: right-hand traffic (United States) and
-          left-hand traffic (United Kingdom). First, consider a facility on the
-          left side of a vehicle. It is always on the left side regardless of
-          whether the vehicle travels on the left or right half of the road.
-          What may change with national driving standards is your decision to
-          approach a facility from one of two directions; that is, so it ends up
-          on the right or left side of the vehicle. For example, if you want to
-          arrive at a facility and not have a lane of traffic between the
-          vehicle and the facility, choose 1 (Right side of vehicle) in the
-          United States and 2 (Left side of vehicle) in the United
-          Kingdom.BearingThe direction in which a point is moving. The units are
-          degrees and
-          are measured clockwise from true north. This field is used in
-          conjunction with the BearingTol field.Bearing data is usually sent
-          automatically from a mobile device
-          equipped with a GPS receiver. Try to include bearing data if you are
-          loading an input location that is moving, such as a pedestrian or a
-          vehicle.Using this field tends to prevent adding locations to the
-          wrong edges,
-          which can occur when a vehicle is near an intersection or an overpass,
-          for example. Bearing also helps the tool determine on which side of
-          the street the point is.BearingTolThe bearing tolerance value creates
-          a range of acceptable bearing
-          values when locating moving points on an edge using the Bearing field.
-          If the Bearing field value is within the range of acceptable values
-          that are generated from the bearing tolerance on an edge, the point
-          can be added as a network location there; otherwise, the closest point
-          on the next-nearest edge is evaluated.The units are in degrees, and
-          the default value is 30. Values must be
-          greater than 0 and less than 180. A value of 30 means that when
-          Network Analyst attempts to add a network location on an edge, a range
-          of acceptable bearing values is generated 15 degrees to either side of
-          the edge (left and right) and in both digitized directions of the
-          edge.NavLatencyThis field is only used in the solve process if the
-          Bearing and
-          BearingTol fields also have values; however, entering a NavLatency
-          field value is optional, even when values are present in Bearing and
-          BearingTol. NavLatency indicates how much cost is expected to elapse
-          from the moment GPS information is sent from a moving vehicle to a
-          server and the moment the processed route is received by the vehicle's
-          navigation device.The units of NavLatency are the same as the units of
-          the impedance
-          attribute.
-      Break_Values (String):
-          Specifies the size and number of service area polygons that will be
-          generated for each facility. The units are determined by the Break
-          Units value.Multiple polygon breaks can be set to create concentric
-          service areas
-          per facility. For instance, to find 2-, 3-, and 5-mile service areas
-          for each facility, type 2 3 5, separating the values with a space, and
-          set Break Units to Miles. There is no limit to the number of break
-          values you can specify.The size of the maximum break value can't
-          exceed the equivalent of 300
-          minutes or 300 miles (482.80 kilometers). When generating detailed
-          polygons, the maximum service-area size is limited to 15 minutes and
-          15 miles (24.14 kilometers).
-      Break_Units (String):
-          Specifies the units for the Break Values parameter.The units you
-          choose for this parameter determine whether the service
-          will create service areas by measuring driving distance or driving
-          time. Choose a time unit to measure driving time. To measure driving
-          distance, choose a distance unit. The specified value also determines
-          the units that will be used to report total driving time or distance
-          in the results.The choices are as follows:
+         * 3 (No U-Turn)-When the vehicle approaches the facility, the curb can
+         be on either side of the vehicle, however, the vehicle must depart
+         without turning around.
+         The CurbApproach attribute is designed to work with both types of
+         national driving standards: right-hand traffic (United States) and
+         left-hand traffic (United Kingdom). First, consider a facility on the
+         left side of a vehicle. It is always on the left side regardless of
+         whether the vehicle travels on the left or right half of the road.
+         What may change with national driving standards is your decision to
+         approach a facility from one of two directions; that is, so it ends up
+         on the right or left side of the vehicle. For example, if you want to
+         arrive at a facility and not have a lane of traffic between the
+         vehicle and the facility, choose 1 (Right side of vehicle) in the
+         United States and 2 (Left side of vehicle) in the United
+         Kingdom.BearingThe direction in which a point is moving. The units are
+         degrees and
+         are measured clockwise from true north. This field is used in
+         conjunction with the BearingTol field.Bearing data is usually sent
+         automatically from a mobile device
+         equipped with a GPS receiver. Try to include bearing data if you are
+         loading an input location that is moving, such as a pedestrian or a
+         vehicle.Using this field tends to prevent adding locations to the
+         wrong edges,
+         which can occur when a vehicle is near an intersection or an overpass,
+         for example. Bearing also helps the tool determine on which side of
+         the street the point is.BearingTolThe bearing tolerance value creates
+         a range of acceptable bearing
+         values when locating moving points on an edge using the Bearing field.
+         If the Bearing field value is within the range of acceptable values
+         that are generated from the bearing tolerance on an edge, the point
+         can be added as a network location there; otherwise, the closest point
+         on the next-nearest edge is evaluated.The units are in degrees, and
+         the default value is 30. Values must be
+         greater than 0 and less than 180. A value of 30 means that when
+         Network Analyst attempts to add a network location on an edge, a range
+         of acceptable bearing values is generated 15 degrees to either side of
+         the edge (left and right) and in both digitized directions of the
+         edge.NavLatencyThis field is only used in the solve process if the
+         Bearing and
+         BearingTol fields also have values; however, entering a NavLatency
+         field value is optional, even when values are present in Bearing and
+         BearingTol. NavLatency indicates how much cost is expected to elapse
+         from the moment GPS information is sent from a moving vehicle to a
+         server and the moment the processed route is received by the vehicle's
+         navigation device.The units of NavLatency are the same as the units of
+         the impedance
+         attribute.
+     Break_Values (String):
+         Specifies the size and number of service area polygons that will be
+         generated for each facility. The units are determined by the Break
+         Units value.Multiple polygon breaks can be set to create concentric
+         service areas
+         per facility. For instance, to find 2-, 3-, and 5-mile service areas
+         for each facility, type 2 3 5, separating the values with a space, and
+         set Break Units to Miles. There is no limit to the number of break
+         values you can specify.The size of the maximum break value can't
+         exceed the equivalent of 300
+         minutes or 300 miles (482.80 kilometers). When generating detailed
+         polygons, the maximum service-area size is limited to 15 minutes and
+         15 miles (24.14 kilometers).
+     Break_Units (String):
+         Specifies the units for the Break Values parameter.The units you
+         choose for this parameter determine whether the service
+         will create service areas by measuring driving distance or driving
+         time. Choose a time unit to measure driving time. To measure driving
+         distance, choose a distance unit. The specified value also determines
+         the units that will be used to report total driving time or distance
+         in the results.The choices are as follows:
 
-          * Meters-The linear unit will be meters.
+         * Meters-The linear unit will be meters.
 
-          * Kilometers-The linear unit will be kilometers.
+         * Kilometers-The linear unit will be kilometers.
 
-          * Feet-The linear unit will be feet.
+         * Feet-The linear unit will be feet.
 
-          * Yards-The linear unit will be yards.
+         * Yards-The linear unit will be yards.
 
-          * Miles-The linear unit will be miles.
+         * Miles-The linear unit will be miles.
 
-          * NauticalMiles-The linear unit will be nautical miles.
+         * NauticalMiles-The linear unit will be nautical miles.
 
-          * Seconds-The time unit will be seconds.
+         * Seconds-The time unit will be seconds.
 
-          * Minutes-The time unit will be minutes.
+         * Minutes-The time unit will be minutes.
 
-          * Hours-The time unit will be hours.
+         * Hours-The time unit will be hours.
 
-          * Days-The time unit will be days.
-      Analysis_Region {String}:
-          The region in which the analysis will be performed. If a value is not
-          specified for this parameter, the tool will automatically calculate
-          the region name based on the location of the input points. Setting the
-          name of the region is required only if the automatic detection of the
-          region name is not accurate for the inputs.To specify a region, use
-          one of the following values:
+         * Days-The time unit will be days.
+     Analysis_Region {String}:
+         The region in which the analysis will be performed. If a value is not
+         specified for this parameter, the tool will automatically calculate
+         the region name based on the location of the input points. Setting the
+         name of the region is required only if the automatic detection of the
+         region name is not accurate for the inputs.To specify a region, use
+         one of the following values:
 
-          * Europe-The analysis region will be Europe.
+         * Europe-The analysis region will be Europe.
 
-          * Japan-The analysis region will be Japan.
+         * Japan-The analysis region will be Japan.
 
-          * Korea-The analysis region will be Korea.
+         * Korea-The analysis region will be Korea.
 
-          * MiddleEastAndAfrica-The analysis region will be Middle East and
-          Africa.
+         * MiddleEastAndAfrica-The analysis region will be Middle East and
+         Africa.
 
-          * NorthAmerica-The analysis region will be North America.
+         * NorthAmerica-The analysis region will be North America.
 
-          * SouthAmerica-The analysis region will be South America.
+         * SouthAmerica-The analysis region will be South America.
 
-          * SouthAsia-The analysis region will be South Asia.
+         * SouthAsia-The analysis region will be South Asia.
 
-          * Thailand-The analysis region will be Thailand.
-                  The following region names are no longer supported and will be
-          removed in future releases. If you specify one of the deprecated
-          region names, the tool automatically assigns a supported region name
-          for the region.
+         * Thailand-The analysis region will be Thailand.
+                 The following region names are no longer supported and will be
+         removed in future releases. If you specify one of the deprecated
+         region names, the tool automatically assigns a supported region name
+         for the region.
 
-          * Greece redirects to Europe
+         * Greece redirects to Europe
 
-          * India redirects to SouthAsia
+         * India redirects to SouthAsia
 
-          * Oceania redirects to SouthAsia
+         * Oceania redirects to SouthAsia
 
-          * SouthEastAsia redirects to SouthAsia
+         * SouthEastAsia redirects to SouthAsia
 
-          * Taiwan redirects to SouthAsia
-      Travel_Direction {String}:
-          Specifies whether the direction of travel used to generate the service
-          area polygons is toward or away from the facilities.
+         * Taiwan redirects to SouthAsia
+     Travel_Direction {String}:
+         Specifies whether the direction of travel used to generate the service
+         area polygons is toward or away from the facilities.
 
-          * Away From Facility-The service area will be generated in the
-          direction away from the facilities.
+         * Away From Facility-The service area will be generated in the
+         direction away from the facilities.
 
-          * Towards Facility-The service area will be generated in the direction
-          toward the facilities.
-          The direction of travel may change the shape of the polygons because
-          impedances on opposite sides of streets may differ or one-way
-          restrictions may exist, such as one-way streets. The direction you
-          should choose depends on the nature of your service area analysis. The
-          service area for a pizza delivery store, for example, should be
-          created away from the facility, whereas the service area of a hospital
-          should be created toward the facility.
-      Time_of_Day {Date}:
-          The time to depart from or arrive at the facilities. The
-          interpretation of this value depends on whether travel is toward or
-          away from the facilities.
+         * Towards Facility-The service area will be generated in the direction
+         toward the facilities.
+         The direction of travel may change the shape of the polygons because
+         impedances on opposite sides of streets may differ or one-way
+         restrictions may exist, such as one-way streets. The direction you
+         should choose depends on the nature of your service area analysis. The
+         service area for a pizza delivery store, for example, should be
+         created away from the facility, whereas the service area of a hospital
+         should be created toward the facility.
+     Time_of_Day {Date}:
+         The time to depart from or arrive at the facilities. The
+         interpretation of this value depends on whether travel is toward or
+         away from the facilities.
 
-          * It represents the departure time if Travel Direction is set to Away
-          from facilities.
+         * It represents the departure time if Travel Direction is set to Away
+         from facilities.
 
-          * It represents the arrival time if Travel Direction is set to Toward
-          facilities.
-          You can use the Time Zone for Time of Day parameter to specify whether
-          this time and date refers to UTC or the time zone in which the
-          facility is located.Repeatedly solving the same analysis, but using
-          different Time of Day
-          values, allows you to see how a facility's reach changes over time.
-          For instance, the five-minute service area around a fire station may
-          start out large in the early morning, diminish during the morning rush
-          hour, grow in the late morning, and so on, throughout the day.
-      Use_Hierarchy {Boolean}:
-          Specifies whether hierarchy will be used when finding the best route
-          between the facility and the incident.
+         * It represents the arrival time if Travel Direction is set to Toward
+         facilities.
+         You can use the Time Zone for Time of Day parameter to specify whether
+         this time and date refers to UTC or the time zone in which the
+         facility is located.Repeatedly solving the same analysis, but using
+         different Time of Day
+         values, allows you to see how a facility's reach changes over time.
+         For instance, the five-minute service area around a fire station may
+         start out large in the early morning, diminish during the morning rush
+         hour, grow in the late morning, and so on, throughout the day.
+     Use_Hierarchy {Boolean}:
+         Specifies whether hierarchy will be used when finding the best route
+         between the facility and the incident.
 
-          * Checked (True)-Hierarchy will be used for the analysis. Using a
-          hierarchy results in the solver preferring higher-order edges to
-          lower-order edges. Hierarchical solves are faster, and they can be
-          used to simulate the preference of a driver who chooses to travel on
-          freeways over local roads when possible-even if that means a longer
-          trip.
+         * Checked (True)-Hierarchy will be used for the analysis. Using a
+         hierarchy results in the solver preferring higher-order edges to
+         lower-order edges. Hierarchical solves are faster, and they can be
+         used to simulate the preference of a driver who chooses to travel on
+         freeways over local roads when possible-even if that means a longer
+         trip.
 
-          * Unchecked (False)-Hierarchy will not be used for the analysis. Not
-          using a hierarchy yields an accurate service area measured along all
-          edges of the network dataset regardless of hierarchy level.
-          Regardless of whether the Use Hierarchy parameter is checked (True),
-          hierarchy is always used when the largest break value exceeds 240
-          minutes or 240 miles (386.24 kilometers).
-      UTurn_at_Junctions {String}:
-          Specifies whether to restrict or permit the service area to make
-          U-turns at junctions. To understand the parameter values, consider the
-          following terminology: a junction is a point where a street segment
-          ends and potentially connects to one or more other segments; a
-          pseudojunction is a point where exactly two streets connect to one
-          another; an intersection is a point where three or more streets
-          connect; and a dead end is where one street segment ends without
-          connecting to another.
+         * Unchecked (False)-Hierarchy will not be used for the analysis. Not
+         using a hierarchy yields an accurate service area measured along all
+         edges of the network dataset regardless of hierarchy level.
+         Regardless of whether the Use Hierarchy parameter is checked (True),
+         hierarchy is always used when the largest break value exceeds 240
+         minutes or 240 miles (386.24 kilometers).
+     UTurn_at_Junctions {String}:
+         Specifies whether to restrict or permit the service area to make
+         U-turns at junctions. To understand the parameter values, consider the
+         following terminology: a junction is a point where a street segment
+         ends and potentially connects to one or more other segments; a
+         pseudojunction is a point where exactly two streets connect to one
+         another; an intersection is a point where three or more streets
+         connect; and a dead end is where one street segment ends without
+         connecting to another.
 
-          * Allowed-U-turns are permitted at junctions with any number of
-          connected edges. This is the default value.
+         * Allowed-U-turns are permitted at junctions with any number of
+         connected edges. This is the default value.
 
-          * Not Allowed-U-turns are prohibited at all junctions, regardless of
-          junction valency. However, U-turns are still permitted at network
-          locations even when this option is chosen, but you can set the
-          individual network locations' CurbApproach attribute to prohibit
-          U-turns there as well.
+         * Not Allowed-U-turns are prohibited at all junctions, regardless of
+         junction valency. However, U-turns are still permitted at network
+         locations even when this option is chosen, but you can set the
+         individual network locations' CurbApproach attribute to prohibit
+         U-turns there as well.
 
-          * Allowed Only at Dead Ends-U-turns are prohibited at all junctions
-          except those that have only one adjacent edge (a dead end).
+         * Allowed Only at Dead Ends-U-turns are prohibited at all junctions
+         except those that have only one adjacent edge (a dead end).
 
-          * Allowed Only at Intersections and Dead Ends-U-turns are prohibited
-          at junctions where exactly two adjacent edges meet but are permitted
-          at intersections (junctions with three or more adjacent edges) and
-          dead ends (junctions with exactly one adjacent edge). Often, networks
-          have extraneous junctions in the middle of road segments. This option
-          prevents vehicles from making U-turns at these locations.
-      Polygons_for_Multiple_Facilities {String}:
-          Specifies how service area polygons will be generated when multiple
-          facilities are present in the analysis.
+         * Allowed Only at Intersections and Dead Ends-U-turns are prohibited
+         at junctions where exactly two adjacent edges meet but are permitted
+         at intersections (junctions with three or more adjacent edges) and
+         dead ends (junctions with exactly one adjacent edge). Often, networks
+         have extraneous junctions in the middle of road segments. This option
+         prevents vehicles from making U-turns at these locations.
+     Polygons_for_Multiple_Facilities {String}:
+         Specifies how service area polygons will be generated when multiple
+         facilities are present in the analysis.
 
-          * Overlapping-Individual polygons will be created for each facility.
-          The polygons can overlap each other. This is the default.
+         * Overlapping-Individual polygons will be created for each facility.
+         The polygons can overlap each other. This is the default.
 
-          * Not Overlapping-Individual polygons will be created so that a
-          polygon from one facility cannot overlap polygons from other
-          facilities. Any portion of the network can only be covered by the
-          service area of the nearest facility.
+         * Not Overlapping-Individual polygons will be created so that a
+         polygon from one facility cannot overlap polygons from other
+         facilities. Any portion of the network can only be covered by the
+         service area of the nearest facility.
 
-          * Merge by Break Value-Polygons of different facilities with the same
-          break value will be created and joined.
-          When using Overlapping or Not Overlapping, all fields from the input
-          facilities are included in the output polygons, with the exception
-          that values from the input ObjectID field are transferred to the
-          FacilityOID field of the output polygons. The FacilityOID field is
-          null when merging by break value, and the input fields are not
-          included in the output.
-      Polygon_Overlap_Type {String}:
-          Specifies whether concentric service area polygons will be created as
-          disks or rings. This parameter is applicable only when multiple break
-          values are specified for the facilities.
+         * Merge by Break Value-Polygons of different facilities with the same
+         break value will be created and joined.
+         When using Overlapping or Not Overlapping, all fields from the input
+         facilities are included in the output polygons, with the exception
+         that values from the input ObjectID field are transferred to the
+         FacilityOID field of the output polygons. The FacilityOID field is
+         null when merging by break value, and the input fields are not
+         included in the output.
+     Polygon_Overlap_Type {String}:
+         Specifies whether concentric service area polygons will be created as
+         disks or rings. This parameter is applicable only when multiple break
+         values are specified for the facilities.
 
-          * Rings-The polygons representing larger breaks will exclude the
-          polygons of smaller breaks. This creates polygons between consecutive
-          breaks. Use this option to find the area from one break to another.
-          For instance, if you create 5- and 10-minute service areas, the
-          10-minute service area polygon will exclude the area under the
-          5-minute service area polygon. This is the default.
+         * Rings-The polygons representing larger breaks will exclude the
+         polygons of smaller breaks. This creates polygons between consecutive
+         breaks. Use this option to find the area from one break to another.
+         For instance, if you create 5- and 10-minute service areas, the
+         10-minute service area polygon will exclude the area under the
+         5-minute service area polygon. This is the default.
 
-          * Disks-Polygons will be created from the facility to the break. For
-          instance, if you create 5- and 10-minute service areas, the 10-minute
-          service area polygon will include the area under the 5-minute service
-          area polygon.
-      Detailed_Polygons {Boolean}:
-          Use of this parameter is no longer recommended. To generate detailed
-          polygons, set the Polygon Detail parameter value to High.Specifies the
-          option to create detailed or generalized polygons.
+         * Disks-Polygons will be created from the facility to the break. For
+         instance, if you create 5- and 10-minute service areas, the 10-minute
+         service area polygon will include the area under the 5-minute service
+         area polygon.
+     Detailed_Polygons {Boolean}:
+         Use of this parameter is no longer recommended. To generate detailed
+         polygons, set the Polygon Detail parameter value to High.Specifies the
+         option to create detailed or generalized polygons.
 
-          * Unchecked (False)-Generalized polygons are created, which are
-          generated quickly and are fairly accurate. This is the default.
+         * Unchecked (False)-Generalized polygons are created, which are
+         generated quickly and are fairly accurate. This is the default.
 
-          * Checked (True)-Detailed polygons are created, which accurately model
-          the service area lines and may contain islands of unreached areas.
-          This option is much slower than generating generalized polygons. This
-          option isn't supported when using hierarchy.
-          The tool supports generating detailed polygons only if the largest
-          value specified in the Break Values parameter is less than or equal to
-          15 minutes or 15 miles (24.14 kilometers).
-      Polygon_Trim_Distance {Linear Unit}:
-          The distance within which the service area polygons will be trimmed.
-          This is useful when finding service areas in places that have a sparse
-          street network and you don't want the service area to cover large
-          areas where there are no street features.The default value is 100
-          meters. No value or a value of 0 specifies
-          that the service area polygons will not be trimmed. This parameter
-          value is ignored when using hierarchy.
-      Polygon_Simplification_Tolerance {Linear Unit}:
-          The amount by which the polygon geometry will be
-          simplified.Simplification maintains critical vertices of a polygon to
-          define its
-          essential shape and removes other vertices. The simplification
-          distance you specify is the maximum offset the simplified polygon
-          boundaries can deviate from the original polygon boundaries.
-          Simplifying a polygon reduces the number of vertices and tends to
-          reduce drawing times.
-      Point_Barriers {Feature Set}:
-          Use this parameter to specify one or more points that will act as
-          temporary restrictions or represent additional time or distance that
-          may be required to travel on the underlying streets. For example, a
-          point barrier can be used to represent a fallen tree along a street or
-          a time delay spent at a railroad crossing.The tool imposes a limit of
-          250 points that can be added as barriers.When specifying point
-          barriers, you can set properties for each, such
-          as its name or barrier type, using the following attributes:NameThe
-          name of the barrier.BarrierTypeSpecifies whether the point barrier
-          restricts travel completely or
-          adds time or distance when it is crossed. The value for this attribute
-          is specified as one of the following integers (use the numeric code,
-          not the name in parentheses):
+         * Checked (True)-Detailed polygons are created, which accurately model
+         the service area lines and may contain islands of unreached areas.
+         This option is much slower than generating generalized polygons. This
+         option isn't supported when using hierarchy.
+         The tool supports generating detailed polygons only if the largest
+         value specified in the Break Values parameter is less than or equal to
+         15 minutes or 15 miles (24.14 kilometers).
+     Polygon_Trim_Distance {Linear Unit}:
+         The distance within which the service area polygons will be trimmed.
+         This is useful when finding service areas in places that have a sparse
+         street network and you don't want the service area to cover large
+         areas where there are no street features.The default value is 100
+         meters. No value or a value of 0 specifies
+         that the service area polygons will not be trimmed. This parameter
+         value is ignored when using hierarchy.
+     Polygon_Simplification_Tolerance {Linear Unit}:
+         The amount by which the polygon geometry will be
+         simplified.Simplification maintains critical vertices of a polygon to
+         define its
+         essential shape and removes other vertices. The simplification
+         distance you specify is the maximum offset the simplified polygon
+         boundaries can deviate from the original polygon boundaries.
+         Simplifying a polygon reduces the number of vertices and tends to
+         reduce drawing times.
+     Point_Barriers {Feature Set}:
+         Use this parameter to specify one or more points that will act as
+         temporary restrictions or represent additional time or distance that
+         may be required to travel on the underlying streets. For example, a
+         point barrier can be used to represent a fallen tree along a street or
+         a time delay spent at a railroad crossing.The tool imposes a limit of
+         250 points that can be added as barriers.When specifying point
+         barriers, you can set properties for each, such
+         as its name or barrier type, using the following attributes:NameThe
+         name of the barrier.BarrierTypeSpecifies whether the point barrier
+         restricts travel completely or
+         adds time or distance when it is crossed. The value for this attribute
+         is specified as one of the following integers (use the numeric code,
+         not the name in parentheses):
 
-          * 0 (Restriction)-Prohibits travel through the barrier. The barrier
-          is
-          referred to as a restriction point barrier since it acts as a
-          restriction.
+         * 0 (Restriction)-Prohibits travel through the barrier. The barrier
+         is
+         referred to as a restriction point barrier since it acts as a
+         restriction.
 
-          * 2 (Added Cost)-Traveling through the barrier increases the travel
-          time
-          or distance by the amount specified in the Additional_Time,
-          Additional_Distance, or AdditionalCost field. This barrier type is
-          referred to as an added cost point barrier.
-          Additional_TimeThe added travel time when the barrier is traversed.
-          This field is
-          applicable only for added-cost barriers and when the Measurement Units
-          parameter value is time based.This field value must be greater than or
-          equal to zero, and its units
-          must be the same as those specified in the Measurement Units
-          parameter.Additional_DistanceThe added distance when the barrier is
-          traversed. This field is
-          applicable only for added-cost barriers and when the Measurement Units
-          parameter value is distance based.The field value must be greater than
-          or equal to zero, and its units
-          must be the same as those specified in the Measurement Units
-          parameter.AdditionalCostThe added cost when the barrier is traversed.
-          This field is applicable
-          only for added-cost barriers when the Measurement Units parameter
-          value is neither time based nor distance based.FullEdgeSpecifies how
-          the restriction point barriers are applied to the edge
-          elements during the analysis. The field value is specified as one of
-          the following integers (use the numeric code, not the name in
-          parentheses):
+         * 2 (Added Cost)-Traveling through the barrier increases the travel
+         time
+         or distance by the amount specified in the Additional_Time,
+         Additional_Distance, or AdditionalCost field. This barrier type is
+         referred to as an added cost point barrier.
+         Additional_TimeThe added travel time when the barrier is traversed.
+         This field is
+         applicable only for added-cost barriers and when the Measurement Units
+         parameter value is time based.This field value must be greater than or
+         equal to zero, and its units
+         must be the same as those specified in the Measurement Units
+         parameter.Additional_DistanceThe added distance when the barrier is
+         traversed. This field is
+         applicable only for added-cost barriers and when the Measurement Units
+         parameter value is distance based.The field value must be greater than
+         or equal to zero, and its units
+         must be the same as those specified in the Measurement Units
+         parameter.AdditionalCostThe added cost when the barrier is traversed.
+         This field is applicable
+         only for added-cost barriers when the Measurement Units parameter
+         value is neither time based nor distance based.FullEdgeSpecifies how
+         the restriction point barriers are applied to the edge
+         elements during the analysis. The field value is specified as one of
+         the following integers (use the numeric code, not the name in
+         parentheses):
 
-          * 0 (False)-Permits travel on the edge up to the barrier but not
-          through it. This is the default value.
+         * 0 (False)-Permits travel on the edge up to the barrier but not
+         through it. This is the default value.
 
-          * 1 (True)-Restricts travel anywhere on the associated edge.
-          CurbApproachSpecifies the direction of traffic that is affected by the
-          barrier.
-          The field value is specified as one of the following integers (use the
-          numeric code, not the name in parentheses):
+         * 1 (True)-Restricts travel anywhere on the associated edge.
+         CurbApproachSpecifies the direction of traffic that is affected by the
+         barrier.
+         The field value is specified as one of the following integers (use the
+         numeric code, not the name in parentheses):
 
-          * 0 (Either side of vehicle)-The barrier affects travel over the edge
-          in both directions.
+         * 0 (Either side of vehicle)-The barrier affects travel over the edge
+         in both directions.
 
-          * 1 (Right side of vehicle)-Vehicles are only affected if the barrier
-          is on their right side during the approach. Vehicles that traverse the
-          same edge but approach the barrier on their left side are not affected
-          by the barrier.
+         * 1 (Right side of vehicle)-Vehicles are only affected if the barrier
+         is on their right side during the approach. Vehicles that traverse the
+         same edge but approach the barrier on their left side are not affected
+         by the barrier.
 
-          * 2 (Left side of vehicle)-Vehicles are only affected if the barrier
-          is on their left side during the approach. Vehicles that traverse the
-          same edge but approach the barrier on their right side are not
-          affected by the barrier.
-          Because junctions are points and don't have a side, barriers on
-          junctions affect all vehicles regardless of the curb approach.The
-          CurbApproach attribute works with both types of national driving
-          standards: right-hand traffic (United States) and left-hand traffic
-          (United Kingdom). First, consider a facility on the left side of a
-          vehicle. It is always on the left side regardless of whether the
-          vehicle travels on the left or right half of the road. What may change
-          with national driving standards is your decision to approach a
-          facility from one of two directions, that is, so it ends up on the
-          right or left side of the vehicle. For example, to arrive at a
-          facility and not have a lane of traffic between the vehicle and the
-          facility, choose 1 (Right side of vehicle) in the United States and 2
-          (Left side of vehicle) in the United Kingdom.BearingThe direction in
-          which a point is moving. The units are degrees and
-          are measured clockwise from true north. This field is used in
-          conjunction with the BearingTol field.Bearing data is usually sent
-          automatically from a mobile device
-          equipped with a GPS receiver. Try to include bearing data if you are
-          loading an input location that is moving, such as a pedestrian or a
-          vehicle.Using this field tends to prevent adding locations to the
-          wrong edges,
-          which can occur when a vehicle is near an intersection or an overpass,
-          for example. Bearing also helps the tool determine on which side of
-          the street the point is.BearingTolThe bearing tolerance value creates
-          a range of acceptable bearing
-          values when locating moving points on an edge using the Bearing field.
-          If the Bearing field value is within the range of acceptable values
-          that are generated from the bearing tolerance on an edge, the point
-          can be added as a network location there; otherwise, the closest point
-          on the next-nearest edge is evaluated.The units are in degrees, and
-          the default value is 30. Values must be
-          greater than 0 and less than 180. A value of 30 means that when
-          Network Analyst attempts to add a network location on an edge, a range
-          of acceptable bearing values is generated 15 degrees to either side of
-          the edge (left and right) and in both digitized directions of the
-          edge.NavLatencyThis field is only used in the solve process if the
-          Bearing and
-          BearingTol fields also have values; however, entering a NavLatency
-          field value is optional, even when values are present in Bearing and
-          BearingTol. NavLatency indicates how much cost is expected to elapse
-          from the moment GPS information is sent from a moving vehicle to a
-          server and the moment the processed route is received by the vehicle's
-          navigation device.The units of NavLatency are the same as the units of
-          the impedance
-          attribute.
-      Line_Barriers {Feature Set}:
-          Use this parameter to specify one or more lines that prohibit travel
-          anywhere the lines intersect the streets. For example, a parade or
-          protest that blocks traffic across several street segments can be
-          modeled with a line barrier. A line barrier can also quickly fence off
-          several roads from being traversed, thereby channeling possible routes
-          away from undesirable parts of the street network.The tool imposes a
-          limit on the number of streets you can restrict
-          using the Line Barriers parameter. While there is no limit to the
-          number of lines you can specify as line barriers, the combined number
-          of streets intersected by all the lines cannot exceed 500.When
-          specifying the line barriers, you can set name and barrier type
-          properties for each using the following attributes:NameThe name of the
-          barrier.
-      Polygon_Barriers {Feature Set}:
-          Use this parameter to specify polygons that either completely restrict
-          travel or proportionately scale the time or distance required to
-          travel on the streets intersected by the polygons.The service imposes
-          a limit on the number of streets you can restrict
-          using the Polygon Barriers parameter. While there is no limit to the
-          number of polygons you can specify as polygon barriers, the combined
-          number of streets intersected by all the polygons cannot exceed
-          2,000.When specifying the polygon barriers, you can set properties for
-          each,
-          such as its name or barrier type, using the following
-          attributes:NameThe name of the barrier.BarrierTypeSpecifies whether
-          the barrier restricts travel completely or scales
-          the cost (such as time or distance) for traveling through it. The
-          field value is specified as one of the following integers (use the
-          numeric code, not the name in parentheses):
+         * 2 (Left side of vehicle)-Vehicles are only affected if the barrier
+         is on their left side during the approach. Vehicles that traverse the
+         same edge but approach the barrier on their right side are not
+         affected by the barrier.
+         Because junctions are points and don't have a side, barriers on
+         junctions affect all vehicles regardless of the curb approach.The
+         CurbApproach attribute works with both types of national driving
+         standards: right-hand traffic (United States) and left-hand traffic
+         (United Kingdom). First, consider a facility on the left side of a
+         vehicle. It is always on the left side regardless of whether the
+         vehicle travels on the left or right half of the road. What may change
+         with national driving standards is your decision to approach a
+         facility from one of two directions, that is, so it ends up on the
+         right or left side of the vehicle. For example, to arrive at a
+         facility and not have a lane of traffic between the vehicle and the
+         facility, choose 1 (Right side of vehicle) in the United States and 2
+         (Left side of vehicle) in the United Kingdom.BearingThe direction in
+         which a point is moving. The units are degrees and
+         are measured clockwise from true north. This field is used in
+         conjunction with the BearingTol field.Bearing data is usually sent
+         automatically from a mobile device
+         equipped with a GPS receiver. Try to include bearing data if you are
+         loading an input location that is moving, such as a pedestrian or a
+         vehicle.Using this field tends to prevent adding locations to the
+         wrong edges,
+         which can occur when a vehicle is near an intersection or an overpass,
+         for example. Bearing also helps the tool determine on which side of
+         the street the point is.BearingTolThe bearing tolerance value creates
+         a range of acceptable bearing
+         values when locating moving points on an edge using the Bearing field.
+         If the Bearing field value is within the range of acceptable values
+         that are generated from the bearing tolerance on an edge, the point
+         can be added as a network location there; otherwise, the closest point
+         on the next-nearest edge is evaluated.The units are in degrees, and
+         the default value is 30. Values must be
+         greater than 0 and less than 180. A value of 30 means that when
+         Network Analyst attempts to add a network location on an edge, a range
+         of acceptable bearing values is generated 15 degrees to either side of
+         the edge (left and right) and in both digitized directions of the
+         edge.NavLatencyThis field is only used in the solve process if the
+         Bearing and
+         BearingTol fields also have values; however, entering a NavLatency
+         field value is optional, even when values are present in Bearing and
+         BearingTol. NavLatency indicates how much cost is expected to elapse
+         from the moment GPS information is sent from a moving vehicle to a
+         server and the moment the processed route is received by the vehicle's
+         navigation device.The units of NavLatency are the same as the units of
+         the impedance
+         attribute.
+     Line_Barriers {Feature Set}:
+         Use this parameter to specify one or more lines that prohibit travel
+         anywhere the lines intersect the streets. For example, a parade or
+         protest that blocks traffic across several street segments can be
+         modeled with a line barrier. A line barrier can also quickly fence off
+         several roads from being traversed, thereby channeling possible routes
+         away from undesirable parts of the street network.The tool imposes a
+         limit on the number of streets you can restrict
+         using the Line Barriers parameter. While there is no limit to the
+         number of lines you can specify as line barriers, the combined number
+         of streets intersected by all the lines cannot exceed 500.When
+         specifying the line barriers, you can set name and barrier type
+         properties for each using the following attributes:NameThe name of the
+         barrier.
+     Polygon_Barriers {Feature Set}:
+         Use this parameter to specify polygons that either completely restrict
+         travel or proportionately scale the time or distance required to
+         travel on the streets intersected by the polygons.The service imposes
+         a limit on the number of streets you can restrict
+         using the Polygon Barriers parameter. While there is no limit to the
+         number of polygons you can specify as polygon barriers, the combined
+         number of streets intersected by all the polygons cannot exceed
+         2,000.When specifying the polygon barriers, you can set properties for
+         each,
+         such as its name or barrier type, using the following
+         attributes:NameThe name of the barrier.BarrierTypeSpecifies whether
+         the barrier restricts travel completely or scales
+         the cost (such as time or distance) for traveling through it. The
+         field value is specified as one of the following integers (use the
+         numeric code, not the name in parentheses):
 
-          * 0 (Restriction)-Prohibits traveling through any part of the
-          barrier.
-          The barrier is referred to as a restriction polygon barrier since it
-          prohibits traveling on streets intersected by the barrier. One use of
-          this type of barrier is to model floods covering areas of the street
-          that make traveling on those streets impossible.
+         * 0 (Restriction)-Prohibits traveling through any part of the
+         barrier.
+         The barrier is referred to as a restriction polygon barrier since it
+         prohibits traveling on streets intersected by the barrier. One use of
+         this type of barrier is to model floods covering areas of the street
+         that make traveling on those streets impossible.
 
-          * 1 (Scaled Cost)-Scales the cost (such as travel time or distance)
-          required to travel the underlying streets by a factor specified using
-          the ScaledTimeFactor or ScaledDistanceFactor field. If the streets are
-          partially covered by the barrier, the travel time or distance is
-          apportioned and then scaled. For example, a factor of 0.25 means that
-          travel on underlying streets is expected to be four times faster than
-          normal. A factor of 3.0 means it is expected to take three times
-          longer than normal to travel on underlying streets. This barrier type
-          is referred to as a scaled-cost polygon barrier. It can be used to
-          model storms that reduce travel speeds in specific regions, for
-          example.
-          ScaledTimeFactorThis is the factor by which the travel time of the
-          streets intersected
-          by the barrier is multiplied. The field value must be greater than
-          zero.This field is applicable only for scaled-cost barriers and when
-          the
-          Measurement Units parameter is time-based.ScaledDistanceFactorThis is
-          the factor by which the distance of the streets intersected by
-          the barrier is multiplied. The field value must be greater than
-          zero.This field is applicable only for scaled-cost barriers and when
-          the
-          Measurement Units parameter is distance-based.ScaledCostFactorThis is
-          the factor by which the cost of the streets intersected by the
-          barrier is multiplied. The field value must be greater than zero.This
-          field is applicable only for sc"""
+         * 1 (Scaled Cost)-Scales the cost (such as travel time or distance)
+         required to travel the underlying streets by a factor specified using
+         the ScaledTimeFactor or ScaledDistanceFactor field. If the streets are
+         partially covered by the barrier, the travel time or distance is
+         apportioned and then scaled. For example, a factor of 0.25 means that
+         travel on underlying streets is expected to be four times faster than
+         normal. A factor of 3.0 means it is expected to take three times
+         longer than normal to travel on underlying streets. This barrier type
+         is referred to as a scaled-cost polygon barrier. It can be used to
+         model storms that reduce travel speeds in specific regions, for
+         example.
+         ScaledTimeFactorThis is the factor by which the travel time of the
+         streets intersected
+         by the barrier is multiplied. The field value must be greater than
+         zero.This field is applicable only for scaled-cost barriers and when
+         the
+         Measurement Units parameter is time-based.ScaledDistanceFactorThis is
+         the factor by which the distance of the streets intersected by
+         the barrier is multiplied. The field value must be greater than
+         zero.This field is applicable only for scaled-cost barriers and when
+         the
+         Measurement Units parameter is distance-based.ScaledCostFactorThis is
+         the factor by which the cost of the streets intersected by the
+         barrier is multiplied. The field value must be greater than zero.This
+         field is applicable only for sc"""
     ...
 
-@gptooldoc('SolveLocationAllocation_agolservices', None)
-def SolveLocationAllocation(Facilities=..., Demand_Points=..., Measurement_Units=..., Analysis_Region=..., Problem_Type=..., Number_of_Facilities_to_Find=..., Default_Measurement_Cutoff=..., Default_Capacity=..., Target_Market_Share=..., Measurement_Transformation_Model=..., Measurement_Transformation_Factor=..., Travel_Direction=..., Time_of_Day=..., Time_Zone_for_Time_of_Day=..., UTurn_at_Junctions=..., Point_Barriers=..., Line_Barriers=..., Polygon_Barriers=..., Use_Hierarchy=..., Restrictions=..., Attribute_Parameter_Values=..., Allocation_Line_Shape=..., Travel_Mode=..., Impedance=..., Save_Output_Network_Analysis_Layer=..., Overrides=..., Time_Impedance=..., Distance_Impedance=..., Output_Format=..., Ignore_Invalid_Locations=..., Locate_Settings=...): # -> conversion | int | float | complex | basestring | list[Unknown] | tuple[Unknown, ...] | dict[Unknown, Unknown]:
+@gptooldoc("SolveLocationAllocation_agolservices", None)
+def SolveLocationAllocation(
+    Facilities=...,
+    Demand_Points=...,
+    Measurement_Units=...,
+    Analysis_Region=...,
+    Problem_Type=...,
+    Number_of_Facilities_to_Find=...,
+    Default_Measurement_Cutoff=...,
+    Default_Capacity=...,
+    Target_Market_Share=...,
+    Measurement_Transformation_Model=...,
+    Measurement_Transformation_Factor=...,
+    Travel_Direction=...,
+    Time_of_Day=...,
+    Time_Zone_for_Time_of_Day=...,
+    UTurn_at_Junctions=...,
+    Point_Barriers=...,
+    Line_Barriers=...,
+    Polygon_Barriers=...,
+    Use_Hierarchy=...,
+    Restrictions=...,
+    Attribute_Parameter_Values=...,
+    Allocation_Line_Shape=...,
+    Travel_Mode=...,
+    Impedance=...,
+    Save_Output_Network_Analysis_Layer=...,
+    Overrides=...,
+    Time_Impedance=...,
+    Distance_Impedance=...,
+    Output_Format=...,
+    Ignore_Invalid_Locations=...,
+    Locate_Settings=...,
+):  # -> conversion | int | float | complex | basestring | list[Unknown] | tuple[Unknown, ...] | dict[Unknown, Unknown]:
     """SolveLocationAllocation_agolservices(Facilities, Demand_Points, Measurement_Units, {Analysis_Region}, {Problem_Type}, {Number_of_Facilities_to_Find}, {Default_Measurement_Cutoff}, {Default_Capacity}, {Target_Market_Share}, {Measurement_Transformation_Model}, {Measurement_Transformation_Factor}, {Travel_Direction}, {Time_of_Day}, {Time_Zone_for_Time_of_Day}, {UTurn_at_Junctions}, {Point_Barriers}, {Line_Barriers}, {Polygon_Barriers}, {Use_Hierarchy}, {Restrictions;Restrictions...}, {Attribute_Parameter_Values}, {Allocation_Line_Shape}, {Travel_Mode}, {Impedance}, {Save_Output_Network_Analysis_Layer}, {Overrides}, {Time_Impedance}, {Distance_Impedance}, {Output_Format}, {Ignore_Invalid_Locations}, {Locate_Settings})
 
-        Identifies the best location or locations from a set of input
-        locations by assigning demand points to input facilities in a way that
-        allocates the most demand to facilities and minimizes overall travel.
+       Identifies the best location or locations from a set of input
+       locations by assigning demand points to input facilities in a way that
+       allocates the most demand to facilities and minimizes overall travel.
 
-     INPUTS:
-      Facilities (Feature Set):
-          Specify one or more facilities that the solver will choose from during
-          the analysis. The solver identifies the best facilities to allocate
-          demand in the most efficient way according to the problem type and
-          criteria you specify.In a competitive analysis in which you try to
-          find the best locations
-          in the face of competition, the facilities of the competitors are
-          specified here as well.When defining the facilities, you can set
-          properties for each-such as
-          its name or type-using the following attributes:NameThe name of the
-          facility. The name is included in the name of output
-          allocation lines if the facility is part of the solution.FacilityType
-          Specifies whether the facility is a candidate, required, or a
-          competitor facility. The field value is specified as one of the
-          following integers (use the numeric code, not the name in
-          parentheses):
+    INPUTS:
+     Facilities (Feature Set):
+         Specify one or more facilities that the solver will choose from during
+         the analysis. The solver identifies the best facilities to allocate
+         demand in the most efficient way according to the problem type and
+         criteria you specify.In a competitive analysis in which you try to
+         find the best locations
+         in the face of competition, the facilities of the competitors are
+         specified here as well.When defining the facilities, you can set
+         properties for each-such as
+         its name or type-using the following attributes:NameThe name of the
+         facility. The name is included in the name of output
+         allocation lines if the facility is part of the solution.FacilityType
+         Specifies whether the facility is a candidate, required, or a
+         competitor facility. The field value is specified as one of the
+         following integers (use the numeric code, not the name in
+         parentheses):
 
-          * 0 (Candidate)-A facility that may be part of the solution.
+         * 0 (Candidate)-A facility that may be part of the solution.
 
-          * 1 (Required)-A facility that must be part of the solution.
+         * 1 (Required)-A facility that must be part of the solution.
 
-          * 2 (Competitor)-A rival facility that potentially removes demand from
-          your facilities. Competitor facilities are specific to the maximize
-          market share and target market share problem types; they are ignored
-          in other problem types.
-          WeightThe relative weighting of the facility, which is used to rate
-          the
-          attractiveness, desirability, or bias of one facility compared to
-          another.For example, a value of 2.0 may capture the preference of
-          customers
-          who prefer, at a ratio of 2 to 1, shopping in one facility over
-          another facility. Factors that potentially affect facility weight
-          include square footage, neighborhood, and age of the building. Weight
-          values other than one are only honored by the maximize market share
-          and target market share problem types; they are ignored in other
-          problem types.CutoffThe impedance value at which to stop searching for
-          demand points from
-          a given facility. The demand point can't be allocated to a facility
-          that is beyond the value indicated here.This attribute allows you to
-          specify a different cutoff value for each
-          demand point. For example, you may find that people in rural areas are
-          willing to travel up to 10 miles to reach a facility, while urbanites
-          are only willing to travel up to 2 miles. You can model this behavior
-          by setting the Cutoff value for all demand points that are in rural
-          areas to 10 and setting the Cutoff value of the demand points in urban
-          areas to 2.CapacityThe Capacity field is specific to the maximize
-          capacitated coverage
-          problem type; the other problem types ignore this field.Capacity
-          specifies how much weighted demand the facility is capable of
-          supplying. Excess demand won't be allocated to a facility even if that
-          demand is within the facility's default measurement cutoff.Any value
-          assigned to the Capacity field overrides the Default
-          Capacity parameter (Default_Capacity in Python) for the given
-          facility.CurbApproachSpecifies the direction a vehicle may arrive at
-          or depart from the
-          facility. The field value is specified as one of the following
-          integers (use the numeric code, not the name in parentheses):
+         * 2 (Competitor)-A rival facility that potentially removes demand from
+         your facilities. Competitor facilities are specific to the maximize
+         market share and target market share problem types; they are ignored
+         in other problem types.
+         WeightThe relative weighting of the facility, which is used to rate
+         the
+         attractiveness, desirability, or bias of one facility compared to
+         another.For example, a value of 2.0 may capture the preference of
+         customers
+         who prefer, at a ratio of 2 to 1, shopping in one facility over
+         another facility. Factors that potentially affect facility weight
+         include square footage, neighborhood, and age of the building. Weight
+         values other than one are only honored by the maximize market share
+         and target market share problem types; they are ignored in other
+         problem types.CutoffThe impedance value at which to stop searching for
+         demand points from
+         a given facility. The demand point can't be allocated to a facility
+         that is beyond the value indicated here.This attribute allows you to
+         specify a different cutoff value for each
+         demand point. For example, you may find that people in rural areas are
+         willing to travel up to 10 miles to reach a facility, while urbanites
+         are only willing to travel up to 2 miles. You can model this behavior
+         by setting the Cutoff value for all demand points that are in rural
+         areas to 10 and setting the Cutoff value of the demand points in urban
+         areas to 2.CapacityThe Capacity field is specific to the maximize
+         capacitated coverage
+         problem type; the other problem types ignore this field.Capacity
+         specifies how much weighted demand the facility is capable of
+         supplying. Excess demand won't be allocated to a facility even if that
+         demand is within the facility's default measurement cutoff.Any value
+         assigned to the Capacity field overrides the Default
+         Capacity parameter (Default_Capacity in Python) for the given
+         facility.CurbApproachSpecifies the direction a vehicle may arrive at
+         or depart from the
+         facility. The field value is specified as one of the following
+         integers (use the numeric code, not the name in parentheses):
 
-          * 0 (Either side of vehicle)-The facility can be visited from either
-          the right or left side of the vehicle.
+         * 0 (Either side of vehicle)-The facility can be visited from either
+         the right or left side of the vehicle.
 
-          * 1 (Right side of vehicle)-Arrive at or depart the facility so it is
-          on the right side of the vehicle. This is typically used for vehicles
-          such as buses that must arrive with the bus stop on the right-hand
-          side so passengers can disembark at the curb.
+         * 1 (Right side of vehicle)-Arrive at or depart the facility so it is
+         on the right side of the vehicle. This is typically used for vehicles
+         such as buses that must arrive with the bus stop on the right-hand
+         side so passengers can disembark at the curb.
 
-          * 2 (Left side of vehicle)-Arrive at or depart the facility so it is
-          on the left side of the vehicle. When the vehicle approaches and
-          departs the facility, the curb must be on the left side of the
-          vehicle. This is typically used for vehicles such as buses that must
-          arrive with the bus stop on the left-hand side so passengers can
-          disembark at the curb.
-          The CurbApproach attribute is designed to work with both types of
-          national driving standards: right-hand traffic (United States) and
-          left-hand traffic (United Kingdom). First, consider a facility on the
-          left side of a vehicle. It is always on the left side regardless of
-          whether the vehicle travels on the left or right half of the road.
-          What may change with national driving standards is your decision to
-          approach a facility from one of two directions, that is, so it ends up
-          on the right or left side of the vehicle. For example, if you want to
-          arrive at a facility and not have a lane of traffic between the
-          vehicle and the incident, choose 1 (Right side of vehicle) in the
-          United States and 2 (Left side of vehicle) in the United
-          Kingdom.BearingThe direction in which a point is moving. The units are
-          degrees and
-          are measured clockwise from true north. This field is used in
-          conjunction with the BearingTol field.Bearing data is usually sent
-          automatically from a mobile device
-          equipped with a GPS receiver. Try to include bearing data if you are
-          loading an input location that is moving, such as a pedestrian or a
-          vehicle.Using this field tends to prevent adding locations to the
-          wrong edges,
-          which can occur when a vehicle is near an intersection or an overpass,
-          for example. Bearing also helps the tool determine on which side of
-          the street the point is.BearingTolThe bearing tolerance value creates
-          a range of acceptable bearing
-          values when locating moving points on an edge using the Bearing field.
-          If the Bearing field value is within the range of acceptable values
-          that are generated from the bearing tolerance on an edge, the point
-          can be added as a network location there; otherwise, the closest point
-          on the next-nearest edge is evaluated.The units are in degrees, and
-          the default value is 30. Values must be
-          greater than 0 and less than 180. A value of 30 means that when
-          Network Analyst attempts to add a network location on an edge, a range
-          of acceptable bearing values is generated 15 degrees to either side of
-          the edge (left and right) and in both digitized directions of the
-          edge.NavLatencyThis field is only used in the solve process if the
-          Bearing and
-          BearingTol fields also have values; however, entering a NavLatency
-          field value is optional, even when values are present in Bearing and
-          BearingTol. NavLatency indicates how much cost is expected to elapse
-          from the moment GPS information is sent from a moving vehicle to a
-          server and the moment the processed route is received by the vehicle's
-          navigation device.The units of NavLatency are the same as the units of
-          the impedance
-          attribute.
-      Demand_Points (Feature Set):
-          Specify one or more demand points. The solver identifies the best
-          facilities based in large part on how they serve the demand points
-          specified here.A demand point is typically a location that represents
-          the people or
-          things requiring the goods and services your facilities provide. A
-          demand point may be a ZIP Code centroid weighted by the number of
-          people residing within it or by the expected consumption generated by
-          those people. Demand points can also represent business customers. If
-          you supply businesses with a high turnover of inventory, they will be
-          weighted more heavily than those with a low turnover rate.When
-          specifying the demand points, you can set properties for
-          each-such as its name or weight-using the following attributes:NameThe
-          name of the demand point. The name is included in the name of the
-          output allocation line or lines if the demand point is part of the
-          solution.GroupNameThe name of the group to which the demand point
-          belongs. This field is
-          ignored for the Maximize Capacitated Coverage, Target Market Share,
-          and Maximize Market Share problem types.If demand points share a group
-          name, the solver allocates all members
-          of the group to the same facility. (If constraints, such as a cutoff
-          distance, prevent any of the demand points in the group from reaching
-          the same facility, none of the demand points are allocated.)WeightThe
-          relative weighting of the demand point. A value of 2.0 means the
-          demand point is twice as important as one with a weight of 1.0. If
-          demand points represent households, for example, weight can indicate
-          the number of people in each household.CutoffThe impedance value at
-          which to stop searching for demand points from
-          a given facility. The demand point can't be allocated to a facility
-          that is beyond the value indicated here.This attribute allows you to
-          specify a cutoff value for each demand
-          point. For example, you may find that people in rural areas are
-          willing to travel up to 10 miles to reach a facility, while those in
-          urban areas are only willing to travel up to 2 miles. You can model
-          this behavior by setting the Cutoff value for all demand points that
-          are in rural areas to 10 and setting the Cutoff value of the demand
-          points in urban areas to 2.The units for this attribute value are
-          specified by the Measurement
-          Units parameter.A value for this attribute overrides the default set
-          for the analysis
-          using the Default Measurement Cutoff parameter. The default value is
-          Null, which results in using the default value set by the Default
-          Measurement Cutoff parameter for all the demand
-          points.ImpedanceTransformationA value for this attribute overrides the
-          default set for the analysis
-          by the Measurement Transformation Model parameter.ImpedanceParameterA
-          value for this attribute overrides the default set for the analysis
-          by the Measurement Transformation Factor
-          parameter.CurbApproachSpecifies the direction a vehicle may arrive at
-          or depart from the
-          demand point. The field value is specified as one of the following
-          integers (use the numeric code, not the name in parentheses):
+         * 2 (Left side of vehicle)-Arrive at or depart the facility so it is
+         on the left side of the vehicle. When the vehicle approaches and
+         departs the facility, the curb must be on the left side of the
+         vehicle. This is typically used for vehicles such as buses that must
+         arrive with the bus stop on the left-hand side so passengers can
+         disembark at the curb.
+         The CurbApproach attribute is designed to work with both types of
+         national driving standards: right-hand traffic (United States) and
+         left-hand traffic (United Kingdom). First, consider a facility on the
+         left side of a vehicle. It is always on the left side regardless of
+         whether the vehicle travels on the left or right half of the road.
+         What may change with national driving standards is your decision to
+         approach a facility from one of two directions, that is, so it ends up
+         on the right or left side of the vehicle. For example, if you want to
+         arrive at a facility and not have a lane of traffic between the
+         vehicle and the incident, choose 1 (Right side of vehicle) in the
+         United States and 2 (Left side of vehicle) in the United
+         Kingdom.BearingThe direction in which a point is moving. The units are
+         degrees and
+         are measured clockwise from true north. This field is used in
+         conjunction with the BearingTol field.Bearing data is usually sent
+         automatically from a mobile device
+         equipped with a GPS receiver. Try to include bearing data if you are
+         loading an input location that is moving, such as a pedestrian or a
+         vehicle.Using this field tends to prevent adding locations to the
+         wrong edges,
+         which can occur when a vehicle is near an intersection or an overpass,
+         for example. Bearing also helps the tool determine on which side of
+         the street the point is.BearingTolThe bearing tolerance value creates
+         a range of acceptable bearing
+         values when locating moving points on an edge using the Bearing field.
+         If the Bearing field value is within the range of acceptable values
+         that are generated from the bearing tolerance on an edge, the point
+         can be added as a network location there; otherwise, the closest point
+         on the next-nearest edge is evaluated.The units are in degrees, and
+         the default value is 30. Values must be
+         greater than 0 and less than 180. A value of 30 means that when
+         Network Analyst attempts to add a network location on an edge, a range
+         of acceptable bearing values is generated 15 degrees to either side of
+         the edge (left and right) and in both digitized directions of the
+         edge.NavLatencyThis field is only used in the solve process if the
+         Bearing and
+         BearingTol fields also have values; however, entering a NavLatency
+         field value is optional, even when values are present in Bearing and
+         BearingTol. NavLatency indicates how much cost is expected to elapse
+         from the moment GPS information is sent from a moving vehicle to a
+         server and the moment the processed route is received by the vehicle's
+         navigation device.The units of NavLatency are the same as the units of
+         the impedance
+         attribute.
+     Demand_Points (Feature Set):
+         Specify one or more demand points. The solver identifies the best
+         facilities based in large part on how they serve the demand points
+         specified here.A demand point is typically a location that represents
+         the people or
+         things requiring the goods and services your facilities provide. A
+         demand point may be a ZIP Code centroid weighted by the number of
+         people residing within it or by the expected consumption generated by
+         those people. Demand points can also represent business customers. If
+         you supply businesses with a high turnover of inventory, they will be
+         weighted more heavily than those with a low turnover rate.When
+         specifying the demand points, you can set properties for
+         each-such as its name or weight-using the following attributes:NameThe
+         name of the demand point. The name is included in the name of the
+         output allocation line or lines if the demand point is part of the
+         solution.GroupNameThe name of the group to which the demand point
+         belongs. This field is
+         ignored for the Maximize Capacitated Coverage, Target Market Share,
+         and Maximize Market Share problem types.If demand points share a group
+         name, the solver allocates all members
+         of the group to the same facility. (If constraints, such as a cutoff
+         distance, prevent any of the demand points in the group from reaching
+         the same facility, none of the demand points are allocated.)WeightThe
+         relative weighting of the demand point. A value of 2.0 means the
+         demand point is twice as important as one with a weight of 1.0. If
+         demand points represent households, for example, weight can indicate
+         the number of people in each household.CutoffThe impedance value at
+         which to stop searching for demand points from
+         a given facility. The demand point can't be allocated to a facility
+         that is beyond the value indicated here.This attribute allows you to
+         specify a cutoff value for each demand
+         point. For example, you may find that people in rural areas are
+         willing to travel up to 10 miles to reach a facility, while those in
+         urban areas are only willing to travel up to 2 miles. You can model
+         this behavior by setting the Cutoff value for all demand points that
+         are in rural areas to 10 and setting the Cutoff value of the demand
+         points in urban areas to 2.The units for this attribute value are
+         specified by the Measurement
+         Units parameter.A value for this attribute overrides the default set
+         for the analysis
+         using the Default Measurement Cutoff parameter. The default value is
+         Null, which results in using the default value set by the Default
+         Measurement Cutoff parameter for all the demand
+         points.ImpedanceTransformationA value for this attribute overrides the
+         default set for the analysis
+         by the Measurement Transformation Model parameter.ImpedanceParameterA
+         value for this attribute overrides the default set for the analysis
+         by the Measurement Transformation Factor
+         parameter.CurbApproachSpecifies the direction a vehicle may arrive at
+         or depart from the
+         demand point. The field value is specified as one of the following
+         integers (use the numeric code, not the name in parentheses):
 
-          * 0 (Either side of vehicle)-The demand point can be visited from
-          either the right or left side of the vehicle.
+         * 0 (Either side of vehicle)-The demand point can be visited from
+         either the right or left side of the vehicle.
 
-          * 1 (Right side of vehicle)-Arrive at or depart the demand point so it
-          is on the right side of the vehicle. When the vehicle approaches and
-          departs the demand point, the curb must be on the right side of the
-          vehicle. This is typically used for vehicles such as buses that must
-          arrive with the bus stop on the right-hand side so passengers can
-          disembark at the curb.
+         * 1 (Right side of vehicle)-Arrive at or depart the demand point so it
+         is on the right side of the vehicle. When the vehicle approaches and
+         departs the demand point, the curb must be on the right side of the
+         vehicle. This is typically used for vehicles such as buses that must
+         arrive with the bus stop on the right-hand side so passengers can
+         disembark at the curb.
 
-          * 2 (Left side of vehicle)-Arrive at or depart the demand point so it
-          is on the left side of the vehicle. When the vehicle approaches and
-          departs the demand point, the curb must be on the left side of the
-          vehicle. This is typically used for vehicles such as buses that must
-          arrive with the bus stop on the left-hand side so passengers can
-          disembark at the curb.
-          The CurbApproach attribute is designed to work with both types of
-          national driving standards: right-hand traffic (United States) and
-          left-hand traffic (United Kingdom). First, consider a demand point on
-          the left side of a vehicle. It is always on the left side regardless
-          of whether the vehicle travels on the left or right half of the road.
-          What may change with national driving standards is your decision to
-          approach a demand point from one of two directions, that is, so it
-          ends up on the right or left side of the vehicle. For example, if you
-          want to arrive at a demand point and not have a lane of traffic
-          between the vehicle and the demand point, choose 1 (Right side of
-          vehicle) in the United States and 2 (Left side of vehicle) in the
-          United Kingdom.BearingThe direction in which a point is moving. The
-          units are degrees and
-          are measured clockwise from true north. This field is used in
-          conjunction with the BearingTol field.Bearing data is usually sent
-          automatically from a mobile device
-          equipped with a GPS receiver. Try to include bearing data if you are
-          loading an input location that is moving, such as a pedestrian or a
-          vehicle.Using this field tends to prevent adding locations to the
-          wrong edges,
-          which can occur when a vehicle is near an intersection or an overpass,
-          for example. Bearing also helps the tool determine on which side of
-          the street the point is.BearingTolThe bearing tolerance value creates
-          a range of acceptable bearing
-          values when locating moving points on an edge using the Bearing field.
-          If the Bearing field value is within the range of acceptable values
-          that are generated from the bearing tolerance on an edge, the point
-          can be added as a network location there; otherwise, the closest point
-          on the next-nearest edge is evaluated.The units are in degrees, and
-          the default value is 30. Values must be
-          greater than 0 and less than 180. A value of 30 means that when
-          Network Analyst attempts to add a network location on an edge, a range
-          of acceptable bearing values is generated 15 degrees to either side of
-          the edge (left and right) and in both digitized directions of the
-          edge.NavLatencyThis field is only used in the solve process if the
-          Bearing and
-          BearingTol fields also have values; however, entering a NavLatency
-          field value is optional, even when values are present in Bearing and
-          BearingTol. NavLatency indicates how much cost is expected to elapse
-          from the moment GPS information is sent from a moving vehicle to a
-          server and the moment the processed route is received by the vehicle's
-          navigation device.The units of NavLatency are the same as the units of
-          the impedance
-          attribute.
-      Measurement_Units (String):
-          Specify the units that will be used to measure the travel times or
-          travel distances between demand points and facilities. The tool finds
-          the best facilities based on those that can reach, or be reached by,
-          the most amount of weighted demand with the least amount travel.The
-          output allocation lines report travel distance or travel time in
-          different units, including the units you specify for this parameter.
+         * 2 (Left side of vehicle)-Arrive at or depart the demand point so it
+         is on the left side of the vehicle. When the vehicle approaches and
+         departs the demand point, the curb must be on the left side of the
+         vehicle. This is typically used for vehicles such as buses that must
+         arrive with the bus stop on the left-hand side so passengers can
+         disembark at the curb.
+         The CurbApproach attribute is designed to work with both types of
+         national driving standards: right-hand traffic (United States) and
+         left-hand traffic (United Kingdom). First, consider a demand point on
+         the left side of a vehicle. It is always on the left side regardless
+         of whether the vehicle travels on the left or right half of the road.
+         What may change with national driving standards is your decision to
+         approach a demand point from one of two directions, that is, so it
+         ends up on the right or left side of the vehicle. For example, if you
+         want to arrive at a demand point and not have a lane of traffic
+         between the vehicle and the demand point, choose 1 (Right side of
+         vehicle) in the United States and 2 (Left side of vehicle) in the
+         United Kingdom.BearingThe direction in which a point is moving. The
+         units are degrees and
+         are measured clockwise from true north. This field is used in
+         conjunction with the BearingTol field.Bearing data is usually sent
+         automatically from a mobile device
+         equipped with a GPS receiver. Try to include bearing data if you are
+         loading an input location that is moving, such as a pedestrian or a
+         vehicle.Using this field tends to prevent adding locations to the
+         wrong edges,
+         which can occur when a vehicle is near an intersection or an overpass,
+         for example. Bearing also helps the tool determine on which side of
+         the street the point is.BearingTolThe bearing tolerance value creates
+         a range of acceptable bearing
+         values when locating moving points on an edge using the Bearing field.
+         If the Bearing field value is within the range of acceptable values
+         that are generated from the bearing tolerance on an edge, the point
+         can be added as a network location there; otherwise, the closest point
+         on the next-nearest edge is evaluated.The units are in degrees, and
+         the default value is 30. Values must be
+         greater than 0 and less than 180. A value of 30 means that when
+         Network Analyst attempts to add a network location on an edge, a range
+         of acceptable bearing values is generated 15 degrees to either side of
+         the edge (left and right) and in both digitized directions of the
+         edge.NavLatencyThis field is only used in the solve process if the
+         Bearing and
+         BearingTol fields also have values; however, entering a NavLatency
+         field value is optional, even when values are present in Bearing and
+         BearingTol. NavLatency indicates how much cost is expected to elapse
+         from the moment GPS information is sent from a moving vehicle to a
+         server and the moment the processed route is received by the vehicle's
+         navigation device.The units of NavLatency are the same as the units of
+         the impedance
+         attribute.
+     Measurement_Units (String):
+         Specify the units that will be used to measure the travel times or
+         travel distances between demand points and facilities. The tool finds
+         the best facilities based on those that can reach, or be reached by,
+         the most amount of weighted demand with the least amount travel.The
+         output allocation lines report travel distance or travel time in
+         different units, including the units you specify for this parameter.
 
-          * Meters-The linear unit will be meters.
+         * Meters-The linear unit will be meters.
 
-          * Kilometers-The linear unit will be kilometers.
+         * Kilometers-The linear unit will be kilometers.
 
-          * Feet-The linear unit will be feet.
+         * Feet-The linear unit will be feet.
 
-          * Yards-The linear unit will be yards.
+         * Yards-The linear unit will be yards.
 
-          * Miles-The linear unit will be miles.
+         * Miles-The linear unit will be miles.
 
-          * NauticalMiles-The linear unit will be nautical miles.
+         * NauticalMiles-The linear unit will be nautical miles.
 
-          * Seconds-The time unit will be seconds.
+         * Seconds-The time unit will be seconds.
 
-          * Minutes-The time unit will be minutes.
+         * Minutes-The time unit will be minutes.
 
-          * Hours-The time unit will be hours.
+         * Hours-The time unit will be hours.
 
-          * Days-The time unit will be days.
-      Analysis_Region {String}:
-          The region in which the analysis will be performed. If a value is not
-          specified for this parameter, the tool will automatically calculate
-          the region name based on the location of the input points. Setting the
-          name of the region is required only if the automatic detection of the
-          region name is not accurate for the inputs.To specify a region, use
-          one of the following values:
+         * Days-The time unit will be days.
+     Analysis_Region {String}:
+         The region in which the analysis will be performed. If a value is not
+         specified for this parameter, the tool will automatically calculate
+         the region name based on the location of the input points. Setting the
+         name of the region is required only if the automatic detection of the
+         region name is not accurate for the inputs.To specify a region, use
+         one of the following values:
 
-          * Europe-The analysis region will be Europe.
+         * Europe-The analysis region will be Europe.
 
-          * Japan-The analysis region will be Japan.
+         * Japan-The analysis region will be Japan.
 
-          * Korea-The analysis region will be Korea.
+         * Korea-The analysis region will be Korea.
 
-          * MiddleEastAndAfrica-The analysis region will be Middle East and
-          Africa.
+         * MiddleEastAndAfrica-The analysis region will be Middle East and
+         Africa.
 
-          * NorthAmerica-The analysis region will be North America.
+         * NorthAmerica-The analysis region will be North America.
 
-          * SouthAmerica-The analysis region will be South America.
+         * SouthAmerica-The analysis region will be South America.
 
-          * SouthAsia-The analysis region will be South Asia.
+         * SouthAsia-The analysis region will be South Asia.
 
-          * Thailand-The analysis region will be Thailand.
-                  The following region names are no longer supported and will be
-          removed in future releases. If you specify one of the deprecated
-          region names, the tool automatically assigns a supported region name
-          for the region.
+         * Thailand-The analysis region will be Thailand.
+                 The following region names are no longer supported and will be
+         removed in future releases. If you specify one of the deprecated
+         region names, the tool automatically assigns a supported region name
+         for the region.
 
-          * Greece redirects to Europe
+         * Greece redirects to Europe
 
-          * India redirects to SouthAsia
+         * India redirects to SouthAsia
 
-          * Oceania redirects to SouthAsia
+         * Oceania redirects to SouthAsia
 
-          * SouthEastAsia redirects to SouthAsia
+         * SouthEastAsia redirects to SouthAsia
 
-          * Taiwan redirects to SouthAsia
-      Problem_Type {String}:
-          Specifies the objective of the location-allocation analysis. The
-          default objective is to minimize impedance.
+         * Taiwan redirects to SouthAsia
+     Problem_Type {String}:
+         Specifies the objective of the location-allocation analysis. The
+         default objective is to minimize impedance.
 
-          * Minimize Impedance-This is also known as the P-Median
-          problem type. Facilities are located so that the sum of all weighted
-          travel time or distance between demand points and solution facilities
-          is minimized. (Weighted travel is the amount of demand allocated to a
-          facility multiplied by the travel distance or time to the
-          facility.)This problem type is traditionally used to locate
-          warehouses, because it can reduce the overall transportation costs of
-          delivering goods to outlets. Since minimizing impedance reduces the
-          overall distance the public must travel to reach the chosen
-          facilities, the minimize impedance problem without an impedance cutoff
-          is typically regarded as more equitable than other problem types for
-          locating public sector facilities such as libraries, regional
-          airports, museums, department of motor vehicles offices, and health
-          clinics.The following list describes how the minimize impedance
-          problem type handles demand:
+         * Minimize Impedance-This is also known as the P-Median
+         problem type. Facilities are located so that the sum of all weighted
+         travel time or distance between demand points and solution facilities
+         is minimized. (Weighted travel is the amount of demand allocated to a
+         facility multiplied by the travel distance or time to the
+         facility.)This problem type is traditionally used to locate
+         warehouses, because it can reduce the overall transportation costs of
+         delivering goods to outlets. Since minimizing impedance reduces the
+         overall distance the public must travel to reach the chosen
+         facilities, the minimize impedance problem without an impedance cutoff
+         is typically regarded as more equitable than other problem types for
+         locating public sector facilities such as libraries, regional
+         airports, museums, department of motor vehicles offices, and health
+         clinics.The following list describes how the minimize impedance
+         problem type handles demand:
 
-          * A demand point that cannot reach any facilities due to setting a
-          cutoff distance or time is not allocated.
+         * A demand point that cannot reach any facilities due to setting a
+         cutoff distance or time is not allocated.
 
-          * A demand point that can only reach one facility has all its demand
-          weight allocated to that facility.
+         * A demand point that can only reach one facility has all its demand
+         weight allocated to that facility.
 
-          * A demand point that can reach two or more facilities has all its
-          demand weight allocated to the nearest facility only.
+         * A demand point that can reach two or more facilities has all its
+         demand weight allocated to the nearest facility only.
 
-          * Maximize Coverage-Facilities are located so that as much
-          demand as possible is allocated to solution facilities within the
-          impedance cutoff.Maximize coverage is frequently used to locate fire
-          stations, police stations, and emergency response system centers,
-          because emergency services are often required to arrive at all demand
-          points within a specified response time. It is important for all
-          organizations, and critical for emergency services, to have accurate
-          and precise data so analysis results correctly model real-world
-          results.Pizza delivery businesses, as opposed to eat-in pizzerias, try
-          to locate stores where they can cover the most people within a certain
-          drive time. People who order pizzas for delivery don't typically worry
-          about how far away the pizzeria is; they are mainly concerned with the
-          pizza arriving within an advertised time window. A pizza delivery
-          business would subtract pizza preparation time from their advertised
-          delivery time and solve a maximize coverage problem to choose the
-          candidate facility that will capture the most potential customers in
-          the coverage area. (Potential customers of eat-in pizzerias are more
-          affected by distance, since they must travel to the restaurant; thus,
-          the attendance maximizing and market share problem types are better
-          suited to eat-in restaurants.)The following list describes how the
-          maximize coverage problem type handles demand:
+         * Maximize Coverage-Facilities are located so that as much
+         demand as possible is allocated to solution facilities within the
+         impedance cutoff.Maximize coverage is frequently used to locate fire
+         stations, police stations, and emergency response system centers,
+         because emergency services are often required to arrive at all demand
+         points within a specified response time. It is important for all
+         organizations, and critical for emergency services, to have accurate
+         and precise data so analysis results correctly model real-world
+         results.Pizza delivery businesses, as opposed to eat-in pizzerias, try
+         to locate stores where they can cover the most people within a certain
+         drive time. People who order pizzas for delivery don't typically worry
+         about how far away the pizzeria is; they are mainly concerned with the
+         pizza arriving within an advertised time window. A pizza delivery
+         business would subtract pizza preparation time from their advertised
+         delivery time and solve a maximize coverage problem to choose the
+         candidate facility that will capture the most potential customers in
+         the coverage area. (Potential customers of eat-in pizzerias are more
+         affected by distance, since they must travel to the restaurant; thus,
+         the attendance maximizing and market share problem types are better
+         suited to eat-in restaurants.)The following list describes how the
+         maximize coverage problem type handles demand:
 
-          * A demand point that cannot reach any facilities due to cutoff
-          distance or time is not allocated.
+         * A demand point that cannot reach any facilities due to cutoff
+         distance or time is not allocated.
 
-          * A demand point that can only reach one facility has all its demand
-          weight allocated to that facility.
+         * A demand point that can only reach one facility has all its demand
+         weight allocated to that facility.
 
-          * A demand point that can reach two or more facilities has all its
-          demand weight allocated to the nearest facility only.
+         * A demand point that can reach two or more facilities has all its
+         demand weight allocated to the nearest facility only.
 
-          * Maximize Capacitated Coverage-Facilities are located so
-          that all or the greatest amount of demand can be served without
-          exceeding the capacity of any facility.Maximize capacitated coverage
-          behaves similarly to the minimize impedance and maximize coverage
-          problem types but with the added constraint of capacity. You can
-          specify a capacity for an individual facility by assigning a numeric
-          value to its corresponding Capacity field on the input facilities. If
-          the Capacity field value is null, the facility is assigned a capacity
-          from the Default Capacity property.Use cases for the maximize
-          capacitated coverage problem type include creating territories that
-          encompass a given number of people or businesses, locating hospitals
-          or other medical facilities with a limited number of beds or patients
-          who can be treated, and locating warehouses whose inventory isn't
-          assumed to be unlimited. The following list describes how the maximize
-          capacitated coverage problem type handles demand:
+         * Maximize Capacitated Coverage-Facilities are located so
+         that all or the greatest amount of demand can be served without
+         exceeding the capacity of any facility.Maximize capacitated coverage
+         behaves similarly to the minimize impedance and maximize coverage
+         problem types but with the added constraint of capacity. You can
+         specify a capacity for an individual facility by assigning a numeric
+         value to its corresponding Capacity field on the input facilities. If
+         the Capacity field value is null, the facility is assigned a capacity
+         from the Default Capacity property.Use cases for the maximize
+         capacitated coverage problem type include creating territories that
+         encompass a given number of people or businesses, locating hospitals
+         or other medical facilities with a limited number of beds or patients
+         who can be treated, and locating warehouses whose inventory isn't
+         assumed to be unlimited. The following list describes how the maximize
+         capacitated coverage problem type handles demand:
 
-          * Unlike maximize coverage, maximize capacitated coverage doesn't
-          require a value for the Default Measurement Cutoff parameter; however,
-          when a cutoff is specified, any demand point outside the cutoff time
-          or distance of all facilities is not allocated.
+         * Unlike maximize coverage, maximize capacitated coverage doesn't
+         require a value for the Default Measurement Cutoff parameter; however,
+         when a cutoff is specified, any demand point outside the cutoff time
+         or distance of all facilities is not allocated.
 
-          * An allocated demand point has all or none of its demand weight
-          assigned to a facility; that is, demand isn't apportioned with this
-          problem type.
+         * An allocated demand point has all or none of its demand weight
+         assigned to a facility; that is, demand isn't apportioned with this
+         problem type.
 
-          * If the total demand that can reach a facility is greater
-          than the capacity of the facility, only the demand points that
-          maximize total captured demand and minimize total weighted travel are
-          allocated. You may notice an apparent inefficiency when a
-          demand point is
-          allocated to a facility that isn't the nearest solution facility. This
-          may occur when demand points have varying weights and when the demand
-          point in question can reach more than one facility. This kind of
-          result indicates the nearest solution facility didn't have adequate
-          capacity for the weighted demand, or the most efficient solution for
-          the entire problem required one or more local inefficiencies. In
-          either case, the solution is correct.
+         * If the total demand that can reach a facility is greater
+         than the capacity of the facility, only the demand points that
+         maximize total captured demand and minimize total weighted travel are
+         allocated. You may notice an apparent inefficiency when a
+         demand point is
+         allocated to a facility that isn't the nearest solution facility. This
+         may occur when demand points have varying weights and when the demand
+         point in question can reach more than one facility. This kind of
+         result indicates the nearest solution facility didn't have adequate
+         capacity for the weighted demand, or the most efficient solution for
+         the entire problem required one or more local inefficiencies. In
+         either case, the solution is correct.
 
-          * Minimize Facilities-Facilities are chosen so that as much
-          weighted demand as possible is allocated to solution facilities within
-          the travel time or distance cutoff; additionally, the number of
-          facilities required to cover demand is minimized.Minimize facilities
-          is the same as maximize coverage but with the exception of the number
-          of facilities to locate, which is determined by the solver. When the
-          cost of building facilities is not a limiting factor, the same types
-          of organizations that use maximize coverage (emergency response, for
-          instance) use minimize facilities so all possible demand points will
-          be covered. The following list describes how the minimize facilities
-          problem type handles demand:
+         * Minimize Facilities-Facilities are chosen so that as much
+         weighted demand as possible is allocated to solution facilities within
+         the travel time or distance cutoff; additionally, the number of
+         facilities required to cover demand is minimized.Minimize facilities
+         is the same as maximize coverage but with the exception of the number
+         of facilities to locate, which is determined by the solver. When the
+         cost of building facilities is not a limiting factor, the same types
+         of organizations that use maximize coverage (emergency response, for
+         instance) use minimize facilities so all possible demand points will
+         be covered. The following list describes how the minimize facilities
+         problem type handles demand:
 
-          * A demand point that cannot reach any facilities due to a cutoff
-          distance or time is not allocated.
+         * A demand point that cannot reach any facilities due to a cutoff
+         distance or time is not allocated.
 
-          * A demand point that can only reach one facility has all its demand
-          weight allocated to that facility.
+         * A demand point that can only reach one facility has all its demand
+         weight allocated to that facility.
 
-          * A demand point that can reach two or more facilities has all its
-          demand weight allocated to the nearest facility only.
+         * A demand point that can reach two or more facilities has all its
+         demand weight allocated to the nearest facility only.
 
-          * Maximize Attendance-Facilities are chosen so that as much
-          demand weight as possible is allocated to facilities while assuming
-          the demand weight decreases in relation to the distance between the
-          facility and the demand point.Specialty stores that have little or no
-          competition benefit from this problem type, but it may also be
-          beneficial to general retailers and restaurants that don't have the
-          data on competitors necessary to perform market share problem types.
-          Some businesses that may benefit from this problem type include coffee
-          shops, fitness centers, dental and medical offices, and electronics
-          stores. Public transit bus stops are often chosen with the help of
-          maximize attendance. Maximize attendance assumes that the farther
-          people must travel to reach your facility, the less likely they are to
-          use it. This is reflected in how the amount of demand allocated to
-          facilities diminishes with distance.The following list describes how
-          the maximize attendance problem type handles demand:
+         * Maximize Attendance-Facilities are chosen so that as much
+         demand weight as possible is allocated to facilities while assuming
+         the demand weight decreases in relation to the distance between the
+         facility and the demand point.Specialty stores that have little or no
+         competition benefit from this problem type, but it may also be
+         beneficial to general retailers and restaurants that don't have the
+         data on competitors necessary to perform market share problem types.
+         Some businesses that may benefit from this problem type include coffee
+         shops, fitness centers, dental and medical offices, and electronics
+         stores. Public transit bus stops are often chosen with the help of
+         maximize attendance. Maximize attendance assumes that the farther
+         people must travel to reach your facility, the less likely they are to
+         use it. This is reflected in how the amount of demand allocated to
+         facilities diminishes with distance.The following list describes how
+         the maximize attendance problem type handles demand:
 
-          * A demand point that cannot reach any facilities due to a cutoff
-          distance or time is not allocated.
+         * A demand point that cannot reach any facilities due to a cutoff
+         distance or time is not allocated.
 
-          * When a demand point can reach a facility, its demand weight is only
-          partially allocated to the facility. The amount allocated decreases as
-          a function of the maximum cutoff distance (or time) and the travel
-          distance (or time) between the facility and the demand point.
+         * When a demand point can reach a facility, its demand weight is only
+         partially allocated to the facility. The amount allocated decreases as
+         a function of the maximum cutoff distance (or time) and the travel
+         distance (or time) between the facility and the demand point.
 
-          * The weight of a demand point that can reach more than one facility
-          is proportionately allocated to the nearest facility only.
+         * The weight of a demand point that can reach more than one facility
+         is proportionately allocated to the nearest facility only.
 
-          * Maximize Market Share-A specific number of facilities are
-          chosen so that the allocated demand is maximized in the presence of
-          competitors. The goal is to capture as much of the total market share
-          as possible with a given number of facilities, which you specify. The
-          total market share is the sum of all demand weight for valid demand
-          points.The market share problem types require the most data because,
-          along with knowing your facilities' weight, you also need to know that
-          of your competitors' facilities. The same types of facilities that use
-          the maximize attendance problem type can also use market share problem
-          types given that they have comprehensive information that includes
-          competitor data. Large discount stores typically use maximize market
-          share to locate a finite set of new stores. The market share problem
-          types use a Huff model, which is also known as a gravity model or
-          spatial interaction.The following list describes how the maximize
-          market share problem type handles demand:
+         * Maximize Market Share-A specific number of facilities are
+         chosen so that the allocated demand is maximized in the presence of
+         competitors. The goal is to capture as much of the total market share
+         as possible with a given number of facilities, which you specify. The
+         total market share is the sum of all demand weight for valid demand
+         points.The market share problem types require the most data because,
+         along with knowing your facilities' weight, you also need to know that
+         of your competitors' facilities. The same types of facilities that use
+         the maximize attendance problem type can also use market share problem
+         types given that they have comprehensive information that includes
+         competitor data. Large discount stores typically use maximize market
+         share to locate a finite set of new stores. The market share problem
+         types use a Huff model, which is also known as a gravity model or
+         spatial interaction.The following list describes how the maximize
+         market share problem type handles demand:
 
-          * A demand point that cannot reach any facilities due to a cutoff
-          distance or time is not allocated.
+         * A demand point that cannot reach any facilities due to a cutoff
+         distance or time is not allocated.
 
-          * A demand point that can only reach one facility has all its demand
-          weight allocated to that facility.
+         * A demand point that can only reach one facility has all its demand
+         weight allocated to that facility.
 
-          * A demand point that can reach two or more facilities has all its
-          demand weight allocated to them; furthermore, the weight is split
-          among the facilities proportionally to the facilities' attractiveness
-          (facility weight) and inversely proportionally to the distance between
-          the facility and demand point. Given equal facility weights, this
-          means more demand weight is assigned to near facilities than
-          facilities farther away.
+         * A demand point that can reach two or more facilities has all its
+         demand weight allocated to them; furthermore, the weight is split
+         among the facilities proportionally to the facilities' attractiveness
+         (facility weight) and inversely proportionally to the distance between
+         the facility and demand point. Given equal facility weights, this
+         means more demand weight is assigned to near facilities than
+         facilities farther away.
 
-          * The total market share, which can be used to calculate the captured
-          market share, is the sum of the weight of all valid demand points.
+         * The total market share, which can be used to calculate the captured
+         market share, is the sum of the weight of all valid demand points.
 
-          * Target Market Share-The minimum number of facilities
-          necessary to capture a specific percentage of the total market share
-          in the presence of competitors is chosen. The total market share is
-          the sum of all demand weight for valid demand points. You set the
-          percent of the market share you want to reach and the solver
-          identifies the fewest number of facilities necessary to meet that
-          threshold.The market share problem types require the most data
-          because, along with knowing your facilities' weight, you also need to
-          know that of your competitors' facilities. The same types of
-          facilities that use the maximize attendance problem type can also use
-          market share problem types given that they have comprehensive
-          information that includes competitor data.Large discount stores
-          typically use the target market share problem type when they want to
-          know how much expansion would be required to reach a certain level of
-          the market share or determine the strategy needed to maintain their
-          current market share given the introduction of new competing
-          facilities. The results often represent what stores would do if
-          budgets weren't a concern. In cases in which budget is a concern,
-          stores revert to the maximize market share problem type and capture as
-          much of the market share as possible with a limited number of
-          facilities.The following list describes how the target market share
-          problem type handles demand:
+         * Target Market Share-The minimum number of facilities
+         necessary to capture a specific percentage of the total market share
+         in the presence of competitors is chosen. The total market share is
+         the sum of all demand weight for valid demand points. You set the
+         percent of the market share you want to reach and the solver
+         identifies the fewest number of facilities necessary to meet that
+         threshold.The market share problem types require the most data
+         because, along with knowing your facilities' weight, you also need to
+         know that of your competitors' facilities. The same types of
+         facilities that use the maximize attendance problem type can also use
+         market share problem types given that they have comprehensive
+         information that includes competitor data.Large discount stores
+         typically use the target market share problem type when they want to
+         know how much expansion would be required to reach a certain level of
+         the market share or determine the strategy needed to maintain their
+         current market share given the introduction of new competing
+         facilities. The results often represent what stores would do if
+         budgets weren't a concern. In cases in which budget is a concern,
+         stores revert to the maximize market share problem type and capture as
+         much of the market share as possible with a limited number of
+         facilities.The following list describes how the target market share
+         problem type handles demand:
 
-          * The total market share, which is used in calculating the captured
-          market share, is the sum of the weight of all valid demand points.
+         * The total market share, which is used in calculating the captured
+         market share, is the sum of the weight of all valid demand points.
 
-          * A demand point that cannot reach any facilities due to a cutoff
-          distance or time is not allocated.
+         * A demand point that cannot reach any facilities due to a cutoff
+         distance or time is not allocated.
 
-          * A demand point that can only reach one facility has all its demand
-          weight allocated to that facility.
+         * A demand point that can only reach one facility has all its demand
+         weight allocated to that facility.
 
-          * A demand point that can reach two or more facilities has all its
-          demand weight allocated to them, and the weight is split among the
-          facilities proportionally to the facilities' attractiveness (facility
-          weight) and inversely proportionally to the distance between the
-          facility and demand point. Given equal facility weights, this means
-          more demand weight is assigned to near facilities than facilities
-          farther away.
-      Number_of_Facilities_to_Find {Long"""
+         * A demand point that can reach two or more facilities has all its
+         demand weight allocated to them, and the weight is split among the
+         facilities proportionally to the facilities' attractiveness (facility
+         weight) and inversely proportionally to the distance between the
+         facility and demand point. Given equal facility weights, this means
+         more demand weight is assigned to near facilities than facilities
+         farther away.
+     Number_of_Facilities_to_Find {Long"""
     ...
 
-@gptooldoc('SolveVehicleRoutingProblem_agolservices', None)
-def SolveVehicleRoutingProblem(orders=..., depots=..., routes=..., breaks=..., time_units=..., distance_units=..., analysis_region=..., default_date=..., uturn_policy=..., time_window_factor=..., spatially_cluster_routes=..., route_zones=..., route_renewals=..., order_pairs=..., excess_transit_factor=..., point_barriers=..., line_barriers=..., polygon_barriers=..., use_hierarchy_in_analysis=..., restrictions=..., attribute_parameter_values=..., populate_route_lines=..., route_line_simplification_tolerance=..., populate_directions=..., directions_language=..., directions_style_name=..., travel_mode=..., impedance=..., time_zone_usage_for_time_fields=..., save_output_layer=..., overrides=..., save_route_data=..., time_impedance=..., distance_impedance=..., populate_stop_shapes=..., output_format=..., ignore_invalid_order_locations=..., locate_settings=...): # -> conversion | int | float | complex | basestring | list[Unknown] | tuple[Unknown, ...] | dict[Unknown, Unknown]:
+@gptooldoc("SolveVehicleRoutingProblem_agolservices", None)
+def SolveVehicleRoutingProblem(
+    orders=...,
+    depots=...,
+    routes=...,
+    breaks=...,
+    time_units=...,
+    distance_units=...,
+    analysis_region=...,
+    default_date=...,
+    uturn_policy=...,
+    time_window_factor=...,
+    spatially_cluster_routes=...,
+    route_zones=...,
+    route_renewals=...,
+    order_pairs=...,
+    excess_transit_factor=...,
+    point_barriers=...,
+    line_barriers=...,
+    polygon_barriers=...,
+    use_hierarchy_in_analysis=...,
+    restrictions=...,
+    attribute_parameter_values=...,
+    populate_route_lines=...,
+    route_line_simplification_tolerance=...,
+    populate_directions=...,
+    directions_language=...,
+    directions_style_name=...,
+    travel_mode=...,
+    impedance=...,
+    time_zone_usage_for_time_fields=...,
+    save_output_layer=...,
+    overrides=...,
+    save_route_data=...,
+    time_impedance=...,
+    distance_impedance=...,
+    populate_stop_shapes=...,
+    output_format=...,
+    ignore_invalid_order_locations=...,
+    locate_settings=...,
+):  # -> conversion | int | float | complex | basestring | list[Unknown] | tuple[Unknown, ...] | dict[Unknown, Unknown]:
     """SolveVehicleRoutingProblem_agolservices(orders, depots, routes, {breaks}, {time_units}, {distance_units}, {analysis_region}, {default_date}, {uturn_policy}, {time_window_factor}, {spatially_cluster_routes}, {route_zones}, {route_renewals}, {order_pairs}, {excess_transit_factor}, {point_barriers}, {line_barriers}, {polygon_barriers}, {use_hierarchy_in_analysis}, {restrictions;restrictions...}, {attribute_parameter_values}, {populate_route_lines}, {route_line_simplification_tolerance}, {populate_directions}, {directions_language}, {directions_style_name}, {travel_mode}, {impedance}, {time_zone_usage_for_time_fields}, {save_output_layer}, {overrides}, {save_route_data}, {time_impedance}, {distance_impedance}, {populate_stop_shapes}, {output_format}, {ignore_invalid_order_locations}, {locate_settings})
 
-        Solves a vehicle routing problem (VRP) to find the best routes for a
-        fleet of vehicles.
+       Solves a vehicle routing problem (VRP) to find the best routes for a
+       fleet of vehicles.
 
-     INPUTS:
-      orders (Feature Set):
-          Specifies one or more locations that the routes of the VRP analysis
-          will visit. An order can represent a delivery (for example, furniture
-          delivery), a pickup (such as an airport shuttle bus picking up a
-          passenger), or some type of service or inspection (a tree trimming job
-          or building inspection, for instance).When specifying the orders, you
-          can set properties for each-such as
-          its name or service time-using the following attributes:ObjectIDThe
-          system-managed ID field.NameThe name of the order. The name must be
-          unique. If the name is left
-          null, a name is automatically generated at solve time.DescriptionThe
-          descriptive information about the order. This can contain any
-          textual information for the order and has no restrictions for
-          uniqueness. You may want to store a client's ID number in the Name
-          field and the client's actual name or address in the Description
-          field.ServiceTimeThis property specifies the amount of time that will
-          be spent at the
-          network location when the route visits it; that is, it stores the
-          impedance value for the network location. A zero or null value
-          indicates that the network location requires no service time.The unit
-          for this field value is specified by the time_units
-          parameter.TimeWindowStart1The beginning time of the first time window
-          for the network location.
-          This field can contain a null value; a null value indicates no
-          beginning time.A time window only states when a vehicle can arrive at
-          an order; it
-          doesn't state when the service time must be completed. To account for
-          service time and departure before the time window ends, subtract
-          ServiceTime from the TimeWindowEnd1 field.The time window fields
-          (TimeWindowStart1, TimeWindowEnd1,
-          TimeWindowStart2, and TimeWindowEnd2) can contain a time-only value or
-          a date and time value in a date field and cannot be integers
-          representing milliseconds since epoch. The time zone for time window
-          fields is specified using the Time Zone Usage for Time Fields
-          parameter. If a time field such as TimeWindowStart1 has a time-only
-          value (for example, 8:00 a.m.), the date is assumed to be the default
-          date set for the analysis. Using date and time values (for example,
-          7/11/2010 8:00 a.m.) allows you to set time windows that span multiple
-          days.When solving a problem that spans multiple time zones, each
-          order's
-          time-window values refer to the time zone in which the order is
-          located.TimeWindowEnd1The ending time of the first window for the
-          network location. This
-          field can contain a null value; a null value indicates no ending
-          time.TimeWindowStart2The beginning time of the second time window for
-          the network location.
-          This field can contain a null value; a null value indicates that there
-          is no second time window.If the first time window is null as specified
-          by the TimeWindowStart1
-          and TimeWindowEnd1 fields, the second time window must also be null.If
-          both time windows are non null, they can't overlap. Also, the
-          second time window must occur after the first.TimeWindowEnd2The ending
-          time of the second time window for the network location.
-          This field can contain a null value.When TimeWindowStart2 and
-          TimeWindowEnd2 are both null, there is no
-          second time window.When TimeWindowStart2 is not null but
-          TimeWindowEnd2 is null, there is
-          a second time window that has a starting time but no ending time. This
-          is valid.MaxViolationTime1A time window is considered violated if the
-          arrival time occurs after
-          the time window has ended. This field specifies the maximum allowable
-          violation time for the first time window of the order. It can contain
-          a zero value but can't contain negative values. A zero value indicates
-          that a time window violation at the first time window of the order is
-          unacceptable; that is, the first time window is hard. Conversely, a
-          null value indicates that there is no limit on the allowable violation
-          time. A nonzero value specifies the maximum amount of lateness; for
-          example, a route can arrive at an order up to 30 minutes beyond the
-          end of its first time window.The unit for this field value is
-          specified by the Time Field Units
-          parameterTime window violations can be tracked and weighted by the
-          solver.
-          Consequently, you can direct the VRP solver to do one of the
-          following:
+    INPUTS:
+     orders (Feature Set):
+         Specifies one or more locations that the routes of the VRP analysis
+         will visit. An order can represent a delivery (for example, furniture
+         delivery), a pickup (such as an airport shuttle bus picking up a
+         passenger), or some type of service or inspection (a tree trimming job
+         or building inspection, for instance).When specifying the orders, you
+         can set properties for each-such as
+         its name or service time-using the following attributes:ObjectIDThe
+         system-managed ID field.NameThe name of the order. The name must be
+         unique. If the name is left
+         null, a name is automatically generated at solve time.DescriptionThe
+         descriptive information about the order. This can contain any
+         textual information for the order and has no restrictions for
+         uniqueness. You may want to store a client's ID number in the Name
+         field and the client's actual name or address in the Description
+         field.ServiceTimeThis property specifies the amount of time that will
+         be spent at the
+         network location when the route visits it; that is, it stores the
+         impedance value for the network location. A zero or null value
+         indicates that the network location requires no service time.The unit
+         for this field value is specified by the time_units
+         parameter.TimeWindowStart1The beginning time of the first time window
+         for the network location.
+         This field can contain a null value; a null value indicates no
+         beginning time.A time window only states when a vehicle can arrive at
+         an order; it
+         doesn't state when the service time must be completed. To account for
+         service time and departure before the time window ends, subtract
+         ServiceTime from the TimeWindowEnd1 field.The time window fields
+         (TimeWindowStart1, TimeWindowEnd1,
+         TimeWindowStart2, and TimeWindowEnd2) can contain a time-only value or
+         a date and time value in a date field and cannot be integers
+         representing milliseconds since epoch. The time zone for time window
+         fields is specified using the Time Zone Usage for Time Fields
+         parameter. If a time field such as TimeWindowStart1 has a time-only
+         value (for example, 8:00 a.m.), the date is assumed to be the default
+         date set for the analysis. Using date and time values (for example,
+         7/11/2010 8:00 a.m.) allows you to set time windows that span multiple
+         days.When solving a problem that spans multiple time zones, each
+         order's
+         time-window values refer to the time zone in which the order is
+         located.TimeWindowEnd1The ending time of the first window for the
+         network location. This
+         field can contain a null value; a null value indicates no ending
+         time.TimeWindowStart2The beginning time of the second time window for
+         the network location.
+         This field can contain a null value; a null value indicates that there
+         is no second time window.If the first time window is null as specified
+         by the TimeWindowStart1
+         and TimeWindowEnd1 fields, the second time window must also be null.If
+         both time windows are non null, they can't overlap. Also, the
+         second time window must occur after the first.TimeWindowEnd2The ending
+         time of the second time window for the network location.
+         This field can contain a null value.When TimeWindowStart2 and
+         TimeWindowEnd2 are both null, there is no
+         second time window.When TimeWindowStart2 is not null but
+         TimeWindowEnd2 is null, there is
+         a second time window that has a starting time but no ending time. This
+         is valid.MaxViolationTime1A time window is considered violated if the
+         arrival time occurs after
+         the time window has ended. This field specifies the maximum allowable
+         violation time for the first time window of the order. It can contain
+         a zero value but can't contain negative values. A zero value indicates
+         that a time window violation at the first time window of the order is
+         unacceptable; that is, the first time window is hard. Conversely, a
+         null value indicates that there is no limit on the allowable violation
+         time. A nonzero value specifies the maximum amount of lateness; for
+         example, a route can arrive at an order up to 30 minutes beyond the
+         end of its first time window.The unit for this field value is
+         specified by the Time Field Units
+         parameterTime window violations can be tracked and weighted by the
+         solver.
+         Consequently, you can direct the VRP solver to do one of the
+         following:
 
-          * Minimize the overall violation time regardless of the increase in
-          travel cost for the fleet.
+         * Minimize the overall violation time regardless of the increase in
+         travel cost for the fleet.
 
-          * Find a solution that balances overall violation time and travel
-          cost.
+         * Find a solution that balances overall violation time and travel
+         cost.
 
-          * Ignore the overall violation time and minimize the travel cost for
-          the fleet.
-          By assigning an importance level for the Time Window Violation
-          Importance parameter, you are essentially choosing one of these
-          options. In any case, however, the solver will return an error if the
-          value set for MaxViolationTime1 is surpassed.MaxViolationTime2The
-          maximum allowable violation time for the second time window of the
-          order. This field is analogous to the MaxViolationTime1
-          field.InboundArriveTimeDefines when the item to be delivered to the
-          order will be ready at
-          the starting depot.The order can be assigned to a route only if the
-          inbound arrive time
-          precedes the route's latest start time value; this way, the route
-          cannot leave the depot before the item is ready to be loaded onto
-          it.This field can help model scenarios involving inbound-wave
-          transshipments. For example, a job at an order requires special
-          materials that are not currently available at the depot. The materials
-          are being shipped from another location and will arrive at the depot
-          at 11:00 a.m. To ensure a route that leaves before the shipment
-          arrives isn't assigned to the order, the order's inbound arrive time
-          is set to 11:00 a.m. The special materials arrive at 11:00 a.m., they
-          are loaded onto the vehicle, and the vehicle departs from the depot to
-          visit its assigned orders. Notes:
+         * Ignore the overall violation time and minimize the travel cost for
+         the fleet.
+         By assigning an importance level for the Time Window Violation
+         Importance parameter, you are essentially choosing one of these
+         options. In any case, however, the solver will return an error if the
+         value set for MaxViolationTime1 is surpassed.MaxViolationTime2The
+         maximum allowable violation time for the second time window of the
+         order. This field is analogous to the MaxViolationTime1
+         field.InboundArriveTimeDefines when the item to be delivered to the
+         order will be ready at
+         the starting depot.The order can be assigned to a route only if the
+         inbound arrive time
+         precedes the route's latest start time value; this way, the route
+         cannot leave the depot before the item is ready to be loaded onto
+         it.This field can help model scenarios involving inbound-wave
+         transshipments. For example, a job at an order requires special
+         materials that are not currently available at the depot. The materials
+         are being shipped from another location and will arrive at the depot
+         at 11:00 a.m. To ensure a route that leaves before the shipment
+         arrives isn't assigned to the order, the order's inbound arrive time
+         is set to 11:00 a.m. The special materials arrive at 11:00 a.m., they
+         are loaded onto the vehicle, and the vehicle departs from the depot to
+         visit its assigned orders. Notes:
 
-          * The route's start time, which includes service times, must occur
-          after
-          the inbound arrive time. If a route begins before an order's inbound
-          arrive time, the order cannot be assigned to the route. The assignment
-          is invalid even if the route has a start-depot service time that lasts
-          until after the inbound arrive time.
+         * The route's start time, which includes service times, must occur
+         after
+         the inbound arrive time. If a route begins before an order's inbound
+         arrive time, the order cannot be assigned to the route. The assignment
+         is invalid even if the route has a start-depot service time that lasts
+         until after the inbound arrive time.
 
-          * This time field can contain a time-only value or a date and time
-          value. If a time-only value is set (for example, 11:00 AM), the date
-          is assumed to be the default date set for the analysis. The default
-          date is ignored, however, when any time field in the Depots, Routes,
-          Orders, or Breaks includes a date with the time. In that case, specify
-          all such fields with a date and time (for example, 7/11/2015 11:00
-          AM).
+         * This time field can contain a time-only value or a date and time
+         value. If a time-only value is set (for example, 11:00 AM), the date
+         is assumed to be the default date set for the analysis. The default
+         date is ignored, however, when any time field in the Depots, Routes,
+         Orders, or Breaks includes a date with the time. In that case, specify
+         all such fields with a date and time (for example, 7/11/2015 11:00
+         AM).
 
-          * The VRP solver honors InboundArriveTime regardless of the
-          DeliveryQuantities value.
+         * The VRP solver honors InboundArriveTime regardless of the
+         DeliveryQuantities value.
 
-          * If an outbound depart time is also specified, its time value must
-          occur after the inbound arrive time.
-          OutboundDepartTimeDefines when the item to be picked up at the order
-          must arrive at the
-          ending depot.The order can be assigned to a route only if the route
-          can visit the
-          order and reach its end depot before the specified outbound depart
-          time.This field can help model scenarios involving outbound-wave
-          transshipments. For instance, a shipping company sends out delivery
-          trucks to pick up packages from orders and bring them into a depot
-          where they are forwarded on to other facilities, en route to their
-          final destination. At 3:00 p.m. every day, a semitrailer stops at the
-          depot to pick up the high-priority packages and take them directly to
-          a central processing station. To avoid delaying the high-priority
-          packages until the next day's 3:00 p.m. trip, the shipping company
-          tries to have delivery trucks pick up the high-priority packages from
-          orders and bring them to the depot before the 3:00 p.m. deadline. This
-          is done by setting the outbound depart time to 3:00 p.m. Notes:
+         * If an outbound depart time is also specified, its time value must
+         occur after the inbound arrive time.
+         OutboundDepartTimeDefines when the item to be picked up at the order
+         must arrive at the
+         ending depot.The order can be assigned to a route only if the route
+         can visit the
+         order and reach its end depot before the specified outbound depart
+         time.This field can help model scenarios involving outbound-wave
+         transshipments. For instance, a shipping company sends out delivery
+         trucks to pick up packages from orders and bring them into a depot
+         where they are forwarded on to other facilities, en route to their
+         final destination. At 3:00 p.m. every day, a semitrailer stops at the
+         depot to pick up the high-priority packages and take them directly to
+         a central processing station. To avoid delaying the high-priority
+         packages until the next day's 3:00 p.m. trip, the shipping company
+         tries to have delivery trucks pick up the high-priority packages from
+         orders and bring them to the depot before the 3:00 p.m. deadline. This
+         is done by setting the outbound depart time to 3:00 p.m. Notes:
 
-          * The route's end time, including service times, must occur before
-          the
-          outbound depart time. If a route reaches a depot but doesn't complete
-          its end-depot service time prior to the order's outbound depart time,
-          the order cannot be assigned to the route.
+         * The route's end time, including service times, must occur before
+         the
+         outbound depart time. If a route reaches a depot but doesn't complete
+         its end-depot service time prior to the order's outbound depart time,
+         the order cannot be assigned to the route.
 
-          * This time field can contain a time-only value or a date and time
-          value. If a time-only value is set (for example, 11:00 AM), the date
-          is assumed to be the default date set for the analysis. The default
-          date is ignored, however, when any time field in Depots, Routes,
-          Orders, or Breaks includes a date with the time. In that case, specify
-          all such fields with a date and time (for example, 7/11/2015 11:00
-          AM).
+         * This time field can contain a time-only value or a date and time
+         value. If a time-only value is set (for example, 11:00 AM), the date
+         is assumed to be the default date set for the analysis. The default
+         date is ignored, however, when any time field in Depots, Routes,
+         Orders, or Breaks includes a date with the time. In that case, specify
+         all such fields with a date and time (for example, 7/11/2015 11:00
+         AM).
 
-          * The VRP solver honors OutboundDepartTime regardless of the
-          PickupQuantities value.
+         * The VRP solver honors OutboundDepartTime regardless of the
+         PickupQuantities value.
 
-          * If an inbound arrive time is also specified, its time value must
-          occur
-          before the outbound depart time.
-          DeliveryQuantitiesThe size of the delivery. You can specify size in
-          any dimension, such
-          as weight, volume, or quantity. You can also specify multiple
-          dimensions, for example, weight and volume.Enter delivery quantities
-          without indicating units. For example, if a
-          300-pound object needs to be delivered to an order, enter 300. You
-          will need to remember that the value is in pounds.If you are tracking
-          multiple dimensions, separate the numeric values
-          with a space. For example, if you are recording the weight and volume
-          of a delivery that weighs 2,000 pounds and has a volume of 100 cubic
-          feet, enter 2000 100. Again, you need to remember the units-in this
-          case, pounds and cubic feet. You also need to remember the sequence in
-          which the values and their corresponding units are entered.Make sure
-          that Capacities for Routes and DeliveryQuantities and
-          PickupQuantities for Orders are specified in the same manner; that is,
-          the values must be in the same units. If you are using multiple
-          dimensions, the dimensions must be listed in the same sequence for all
-          parameters. For example, if you specify weight in pounds, followed by
-          volume in cubic feet for DeliveryQuantities, the capacity of your
-          routes and the pickup quantities of your orders must be specified the
-          same way: weight in pounds, then volume in cubic feet. If you combine
-          units or change the sequence, you will get unwanted results with no
-          warning messages.An empty string or null value is equivalent to all
-          dimensions being
-          infinity. If the string has an insufficient number of values in
-          relation to the capacity count or dimensions being tracked, the
-          remaining values are treated as infinity. Delivery quantities can't be
-          negative.PickupQuantitiesThe size of the pickup. You can specify size
-          in any dimension, such as
-          weight, volume, or quantity. You can also specify multiple dimensions,
-          for example, weight and volume. You cannot, however, use negative
-          values. This field is analogous to the DeliveryQuantities field of
-          Orders.In the case of an exchange visit, an order can have both
-          delivery and
-          pickup quantities.RevenueThe income generated if the order is included
-          in a solution. This
-          field can contain a null value-a null value indicates zero revenue-but
-          it can't have a negative value.Revenue is included in optimizing the
-          objective function value but is
-          not part of the solution's operating cost; that is, the TotalCost
-          field in the routes never includes revenue in its output. However,
-          revenue weights the relative importance of servicing orders.Revenue is
-          included in optimizing the objective function value but is
-          not part of the solution's operating cost; that is, the TotalCost
-          field in the route class never includes revenue in its output.
-          However, revenue weights the relative importance of servicing
-          orders.SpecialtyNamesA space-separated string containing the names of
-          the specialties
-          required by the order. A null value indicates that the order doesn't
-          require specialties.The spelling of any specialties listed in the
-          Orders and Routes
-          classes must match exactly so that the VRP solver can link them
-          together.To illustrate what specialties are and how they work, assume
-          a lawn
-          care and tree trimming company has a portion of its orders that
-          requires a bucket truck to trim tall trees. The company enters
-          BucketTruck in the SpecialtyNames field for these orders to indicate
-          their special need. SpecialtyNames is left null for the other orders.
-          Similarly, the company also enters BucketTruck in the SpecialtyNames
-          field of routes that are driven by trucks with hydraulic booms. It
-          leaves the field null for the other routes. At solve time, the VRP
-          solver assigns orders without special needs to any route, but it only
-          assigns orders that need bucket trucks to routes that have
-          them.AssignmentRuleSpecifies the rule for assigning the order to a
-          route. The field value
-          is specified as one of the following integers (use the numeric code,
-          not the name in parentheses):
+         * If an inbound arrive time is also specified, its time value must
+         occur
+         before the outbound depart time.
+         DeliveryQuantitiesThe size of the delivery. You can specify size in
+         any dimension, such
+         as weight, volume, or quantity. You can also specify multiple
+         dimensions, for example, weight and volume.Enter delivery quantities
+         without indicating units. For example, if a
+         300-pound object needs to be delivered to an order, enter 300. You
+         will need to remember that the value is in pounds.If you are tracking
+         multiple dimensions, separate the numeric values
+         with a space. For example, if you are recording the weight and volume
+         of a delivery that weighs 2,000 pounds and has a volume of 100 cubic
+         feet, enter 2000 100. Again, you need to remember the units-in this
+         case, pounds and cubic feet. You also need to remember the sequence in
+         which the values and their corresponding units are entered.Make sure
+         that Capacities for Routes and DeliveryQuantities and
+         PickupQuantities for Orders are specified in the same manner; that is,
+         the values must be in the same units. If you are using multiple
+         dimensions, the dimensions must be listed in the same sequence for all
+         parameters. For example, if you specify weight in pounds, followed by
+         volume in cubic feet for DeliveryQuantities, the capacity of your
+         routes and the pickup quantities of your orders must be specified the
+         same way: weight in pounds, then volume in cubic feet. If you combine
+         units or change the sequence, you will get unwanted results with no
+         warning messages.An empty string or null value is equivalent to all
+         dimensions being
+         infinity. If the string has an insufficient number of values in
+         relation to the capacity count or dimensions being tracked, the
+         remaining values are treated as infinity. Delivery quantities can't be
+         negative.PickupQuantitiesThe size of the pickup. You can specify size
+         in any dimension, such as
+         weight, volume, or quantity. You can also specify multiple dimensions,
+         for example, weight and volume. You cannot, however, use negative
+         values. This field is analogous to the DeliveryQuantities field of
+         Orders.In the case of an exchange visit, an order can have both
+         delivery and
+         pickup quantities.RevenueThe income generated if the order is included
+         in a solution. This
+         field can contain a null value-a null value indicates zero revenue-but
+         it can't have a negative value.Revenue is included in optimizing the
+         objective function value but is
+         not part of the solution's operating cost; that is, the TotalCost
+         field in the routes never includes revenue in its output. However,
+         revenue weights the relative importance of servicing orders.Revenue is
+         included in optimizing the objective function value but is
+         not part of the solution's operating cost; that is, the TotalCost
+         field in the route class never includes revenue in its output.
+         However, revenue weights the relative importance of servicing
+         orders.SpecialtyNamesA space-separated string containing the names of
+         the specialties
+         required by the order. A null value indicates that the order doesn't
+         require specialties.The spelling of any specialties listed in the
+         Orders and Routes
+         classes must match exactly so that the VRP solver can link them
+         together.To illustrate what specialties are and how they work, assume
+         a lawn
+         care and tree trimming company has a portion of its orders that
+         requires a bucket truck to trim tall trees. The company enters
+         BucketTruck in the SpecialtyNames field for these orders to indicate
+         their special need. SpecialtyNames is left null for the other orders.
+         Similarly, the company also enters BucketTruck in the SpecialtyNames
+         field of routes that are driven by trucks with hydraulic booms. It
+         leaves the field null for the other routes. At solve time, the VRP
+         solver assigns orders without special needs to any route, but it only
+         assigns orders that need bucket trucks to routes that have
+         them.AssignmentRuleSpecifies the rule for assigning the order to a
+         route. The field value
+         is specified as one of the following integers (use the numeric code,
+         not the name in parentheses):
 
-          * 0 (Exclude)-The order will be excluded from the subsequent solve
-          operation.
+         * 0 (Exclude)-The order will be excluded from the subsequent solve
+         operation.
 
-          * 1 (Preserve route and relative sequence)-The solver must always
-          assign the order to the preassigned route at the preassigned relative
-          sequence during the solve operation. If this assignment rule can't be
-          followed, it results in an order violation. With this setting, only
-          the relative sequence is maintained, not the absolute sequence. To
-          illustrate what this means, imagine there are two orders: A and B.
-          They have sequence values of 2 and 3, respectively. If you set their
-          AssignmentRule field values to Preserve route and relative sequence,
-          the sequence values for A and B may change after solving because other
-          orders, breaks, and depot visits can be sequenced before, between, or
-          after A and B. However, B cannot be sequenced before A.
+         * 1 (Preserve route and relative sequence)-The solver must always
+         assign the order to the preassigned route at the preassigned relative
+         sequence during the solve operation. If this assignment rule can't be
+         followed, it results in an order violation. With this setting, only
+         the relative sequence is maintained, not the absolute sequence. To
+         illustrate what this means, imagine there are two orders: A and B.
+         They have sequence values of 2 and 3, respectively. If you set their
+         AssignmentRule field values to Preserve route and relative sequence,
+         the sequence values for A and B may change after solving because other
+         orders, breaks, and depot visits can be sequenced before, between, or
+         after A and B. However, B cannot be sequenced before A.
 
-          * 2 (Preserve route)-The solver must always assign the order to the
-          preassigned route during the solve operation. A valid sequence must
-          also be set even though the sequence may or may not be preserved. If
-          the order can't be assigned to the specified route, it results in an
-          order violation.
+         * 2 (Preserve route)-The solver must always assign the order to the
+         preassigned route during the solve operation. A valid sequence must
+         also be set even though the sequence may or may not be preserved. If
+         the order can't be assigned to the specified route, it results in an
+         order violation.
 
-          * 3 (Override)-The solver tries to preserve the route and sequence
-          preassignment for the order during the solve operation. However, a new
-          route or sequence for the order may be assigned if it helps minimize
-          the overall value of the objective function. This is the default
-          value.
+         * 3 (Override)-The solver tries to preserve the route and sequence
+         preassignment for the order during the solve operation. However, a new
+         route or sequence for the order may be assigned if it helps minimize
+         the overall value of the objective function. This is the default
+         value.
 
-          * 4 (Anchor first)-The solver ignores the route and sequence
-          preassignment (if any) for the order during the solve operation. It
-          assigns a route to the order and makes it the first order on that
-          route to minimize the overall value of the objective function.
+         * 4 (Anchor first)-The solver ignores the route and sequence
+         preassignment (if any) for the order during the solve operation. It
+         assigns a route to the order and makes it the first order on that
+         route to minimize the overall value of the objective function.
 
-          * 5 (Anchor last)-The solver ignores the route and sequence
-          preassignment (if any) for the order during the solve operation. It
-          assigns a route to the order and makes it the last order on that route
-          to minimize the overall value of the objective function.
-          This field can't contain a null value.CurbApproachSpecifies the
-          direction a vehicle may arrive at and depart from the
-          order. The field value is specified as one of the following integers
-          (use the numeric code, not the name in parentheses):
+         * 5 (Anchor last)-The solver ignores the route and sequence
+         preassignment (if any) for the order during the solve operation. It
+         assigns a route to the order and makes it the last order on that route
+         to minimize the overall value of the objective function.
+         This field can't contain a null value.CurbApproachSpecifies the
+         direction a vehicle may arrive at and depart from the
+         order. The field value is specified as one of the following integers
+         (use the numeric code, not the name in parentheses):
 
-          * 0 (Either side of vehicle)-The vehicle can approach and depart the
-          order in either direction, so a U-turn is allowed at the incident.
-          This setting can be chosen if it is possible and practical for a
-          vehicle to turn around at the order. This decision may depend on the
-          width of the road and the amount of traffic or whether the order has a
-          parking lot where vehicles can enter and turn around.
+         * 0 (Either side of vehicle)-The vehicle can approach and depart the
+         order in either direction, so a U-turn is allowed at the incident.
+         This setting can be chosen if it is possible and practical for a
+         vehicle to turn around at the order. This decision may depend on the
+         width of the road and the amount of traffic or whether the order has a
+         parking lot where vehicles can enter and turn around.
 
-          * 1 (Right side of vehicle)-When the vehicle approaches and departs
-          the order, the order must be on the right side of the vehicle. A
-          U-turn is prohibited. This is typically used for vehicles such as
-          buses that must arrive with the bus stop on the right-hand side.
+         * 1 (Right side of vehicle)-When the vehicle approaches and departs
+         the order, the order must be on the right side of the vehicle. A
+         U-turn is prohibited. This is typically used for vehicles such as
+         buses that must arrive with the bus stop on the right-hand side.
 
-          * 2 (Left side of vehicle)-When the vehicle approaches and departs the
-          order, the curb must be on the left side of the vehicle. A U-turn is
-          prohibited. This is typically used for vehicles such as buses that
-          must arrive with the bus stop on the left-hand side.
+         * 2 (Left side of vehicle)-When the vehicle approaches and departs the
+         order, the curb must be on the left side of the vehicle. A U-turn is
+         prohibited. This is typically used for vehicles such as buses that
+         must arrive with the bus stop on the left-hand side.
 
-          * 3 (No U-Turn)-When the vehicle approaches the order, the curb can be
-          on either side of the vehicle; however, the vehicle must depart
-          without turning around.
-          The CurbApproach attribute is designed to work with both kinds of
-          national driving standards: right-hand traffic (United States) and
-          left-hand traffic (United Kingdom). First, consider an order on the
-          left side of a vehicle. It is always on the left side regardless of
-          whether the vehicle travels on the left or right half of the road.
-          What may change with national driving standards is your decision to
-          approach an order from one of two directions, that is, so it ends up
-          on the right or left side of the vehicle. For example, if you want to
-          arrive at an order and not have a lane of traffic between the vehicle
-          and the order, choose 1 (Right side of vehicle) in the United States
-          and 2 (Left side of vehicle) in the United Kingdom.RouteNameThe name
-          of the route to which the order is assigned.This field is used to
-          preassign an order to a specific route. It can
-          contain a null value, indicating that the order is not preassigned to
-          any route, and the solver identifies the best possible route
-          assignment for the order. If this is set to null, the Sequence field
-          must also be set to null.After a solve operation, if the order is
-          routed, the RouteName field
-          contains the name of the route to which the order is
-          assigned.SequenceThis indicates the sequence of the order on its
-          assigned route.This field is used to specify the relative sequence of
-          an order on the
-          route. This field can contain a null value specifying that the order
-          can be placed anywhere along the route. A null value can only occur
-          together with a null RouteName value.The input sequence values are
-          positive and unique for each route
-          (shared across renewal depot visits, orders, and breaks) but do not
-          need to start from 1 or be contiguous.After a solve operation, the
-          Sequence field contains the sequence
-          value of the order on its assigned route. Output sequence values for a
-          route are shared across depot visits, orders, and breaks; start from 1
-          (at the starting depot); and are consecutive. The smallest possible
-          output sequence value for a routed order is 2, since a route always
-          begins at a depot.BearingThe direction in which a point is moving. The
-          units are degrees and
-          are measured clockwise from true north. This field is used in
-          conjunction with the BearingTol field.Bearing data is usually sent
-          automatically from a mobile device
-          equipped with a GPS receiver. Try to include bearing data if you are
-          loading an input location that is moving, such as a pedestrian or a
-          vehicle.Using this field tends to prevent adding locations to the
-          wrong edges,
-          which can occur when a vehicle is near an intersection or an overpass,
-          for example. Bearing also helps the tool determine on which side of
-          the street the point is.BearingTolThe bearing tolerance value creates
-          a range of acceptable bearing
-          values when locating moving points on an edge using the Bearing field.
-          If the Bearing field value is within the range of acceptable values
-          that are generated from the bearing tolerance on an edge, the point
-          can be added as a network location there; otherwise, the closest point
-          on the next-nearest edge is evaluated.The units are in degrees, and
-          the default value is 30. Values must be
-          greater than 0 and less than 180. A value of 30 means that when
-          Network Analyst attempts to add a network location on an edge, a range
-          of acceptable bearing values is generated 15 degrees to either side of
-          the edge (left and right) and in both digitized directions of the
-          edge.NavLatencyThis field is only used in the solve process if the
-          Bearing and
-          BearingTol fields also have values; however, entering a NavLatency
-          field value is optional, even when values are present in Bearing and
-          BearingTol. NavLatency indicates how much cost is expected to elapse
-          from the moment GPS information is sent from a moving vehicle to a
-          server and the moment the processed route is received by the vehicle's
-          navigation device.The units of NavLatency are the same as the units of
-          the impedance
-          attribute.
-      depots (Feature Set):
-          Specifies one or more depots for the given vehicle routing problem. A
-          depot is a location that a vehicle departs from at the beginning of
-          its workday and returns to at the end of the workday. Vehicles are
-          loaded (for deliveries) or unloaded (for pickups) at depots. In some
-          cases, a depot can also act as a renewal location whereby the vehicle
-          can unload or reload and continue performing deliveries and pickups. A
-          depot has open and close times, as specified by a hard time window.
-          Vehicles can't arrive at a depot outside of this time window.When
-          specifying the depots, you can set properties for each-such as
-          its name or service time-using the following attributes:ObjectIDThe
-          system-managed ID field.NameThe name of the depot. The StartDepotName
-          and EndDepotName fields on
-          routes reference the names you specify here. It is also referenced by
-          the route renewals, when used.Depot names are not case sensitive but
-          must be nonempty and unique.DescriptionThe descriptive information
-          about the depot location. This can contain
-          any textual information and has no restrictions for uniqueness.For
-          example, if you want to note which region a depot is in or the
-          depot's address and telephone number, you can enter the information
-          here rather than in the Name field.TimeWindowStart1The beginning time
-          of the first time window for the network location.
-          This field can contain a null value; a null value indicates no
-          beginning time.The time window fields (TimeWindowStart1,
-          TimeWindowEnd1,
-          TimeWindowStart2, and TimeWindowEnd2) can contain a time-only value or
-          a date and time value in a date field and cannot be integers
-          representing milliseconds since epoch. The time zone for time window
-          fields is specified using the Time Zone Usage for Time Fields
-          parameter. If a time field such as TimeWindowStart1 has a time-only
-          value (for example, 8:00 a.m.), the date is assumed to be the default
-          date set for the analysis. Using date and time values (for example,
-          7/11/2010 8:00 a.m.) allows you to set time windows that span multiple
-          days.When solving a problem that spans multiple time zones, each
-          depot's
-          time-window values refer to the time zone in which the depot is
-          located.TimeWindowEnd1The ending time of the first window for the
-          network location. This
-          field can contain a null value; a null value indicates no ending
-          time.TimeWindowStart2The beginning time of the second time window for
-          the network location.
-          This field can contain a null value; a null value indicates that there
-          is no second time window.If the first time window is null, as
-          specified by the TimeWindowStart1
-          and TimeWindowEnd1 fields, the second time window must also be null.If
-          both time windows are not null, they can't overlap. Also, the
-          second time window must occur after the first.TimeWindowEnd2The ending
-          time of the second time window for the network location.
-          This field can contain a null value.When TimeWindowStart2 and
-          TimeWindowEnd2 are both null, there is no
-          second time window.When TimeWindowStart2 is not null but
-          TimeWindowEnd2 is null, there is
-          a second time window that has a starting time but no ending time. This
-          is valid.CurbApproach
+         * 3 (No U-Turn)-When the vehicle approaches the order, the curb can be
+         on either side of the vehicle; however, the vehicle must depart
+         without turning around.
+         The CurbApproach attribute is designed to work with both kinds of
+         national driving standards: right-hand traffic (United States) and
+         left-hand traffic (United Kingdom). First, consider an order on the
+         left side of a vehicle. It is always on the left side regardless of
+         whether the vehicle travels on the left or right half of the road.
+         What may change with national driving standards is your decision to
+         approach an order from one of two directions, that is, so it ends up
+         on the right or left side of the vehicle. For example, if you want to
+         arrive at an order and not have a lane of traffic between the vehicle
+         and the order, choose 1 (Right side of vehicle) in the United States
+         and 2 (Left side of vehicle) in the United Kingdom.RouteNameThe name
+         of the route to which the order is assigned.This field is used to
+         preassign an order to a specific route. It can
+         contain a null value, indicating that the order is not preassigned to
+         any route, and the solver identifies the best possible route
+         assignment for the order. If this is set to null, the Sequence field
+         must also be set to null.After a solve operation, if the order is
+         routed, the RouteName field
+         contains the name of the route to which the order is
+         assigned.SequenceThis indicates the sequence of the order on its
+         assigned route.This field is used to specify the relative sequence of
+         an order on the
+         route. This field can contain a null value specifying that the order
+         can be placed anywhere along the route. A null value can only occur
+         together with a null RouteName value.The input sequence values are
+         positive and unique for each route
+         (shared across renewal depot visits, orders, and breaks) but do not
+         need to start from 1 or be contiguous.After a solve operation, the
+         Sequence field contains the sequence
+         value of the order on its assigned route. Output sequence values for a
+         route are shared across depot visits, orders, and breaks; start from 1
+         (at the starting depot); and are consecutive. The smallest possible
+         output sequence value for a routed order is 2, since a route always
+         begins at a depot.BearingThe direction in which a point is moving. The
+         units are degrees and
+         are measured clockwise from true north. This field is used in
+         conjunction with the BearingTol field.Bearing data is usually sent
+         automatically from a mobile device
+         equipped with a GPS receiver. Try to include bearing data if you are
+         loading an input location that is moving, such as a pedestrian or a
+         vehicle.Using this field tends to prevent adding locations to the
+         wrong edges,
+         which can occur when a vehicle is near an intersection or an overpass,
+         for example. Bearing also helps the tool determine on which side of
+         the street the point is.BearingTolThe bearing tolerance value creates
+         a range of acceptable bearing
+         values when locating moving points on an edge using the Bearing field.
+         If the Bearing field value is within the range of acceptable values
+         that are generated from the bearing tolerance on an edge, the point
+         can be added as a network location there; otherwise, the closest point
+         on the next-nearest edge is evaluated.The units are in degrees, and
+         the default value is 30. Values must be
+         greater than 0 and less than 180. A value of 30 means that when
+         Network Analyst attempts to add a network location on an edge, a range
+         of acceptable bearing values is generated 15 degrees to either side of
+         the edge (left and right) and in both digitized directions of the
+         edge.NavLatencyThis field is only used in the solve process if the
+         Bearing and
+         BearingTol fields also have values; however, entering a NavLatency
+         field value is optional, even when values are present in Bearing and
+         BearingTol. NavLatency indicates how much cost is expected to elapse
+         from the moment GPS information is sent from a moving vehicle to a
+         server and the moment the processed route is received by the vehicle's
+         navigation device.The units of NavLatency are the same as the units of
+         the impedance
+         attribute.
+     depots (Feature Set):
+         Specifies one or more depots for the given vehicle routing problem. A
+         depot is a location that a vehicle departs from at the beginning of
+         its workday and returns to at the end of the workday. Vehicles are
+         loaded (for deliveries) or unloaded (for pickups) at depots. In some
+         cases, a depot can also act as a renewal location whereby the vehicle
+         can unload or reload and continue performing deliveries and pickups. A
+         depot has open and close times, as specified by a hard time window.
+         Vehicles can't arrive at a depot outside of this time window.When
+         specifying the depots, you can set properties for each-such as
+         its name or service time-using the following attributes:ObjectIDThe
+         system-managed ID field.NameThe name of the depot. The StartDepotName
+         and EndDepotName fields on
+         routes reference the names you specify here. It is also referenced by
+         the route renewals, when used.Depot names are not case sensitive but
+         must be nonempty and unique.DescriptionThe descriptive information
+         about the depot location. This can contain
+         any textual information and has no restrictions for uniqueness.For
+         example, if you want to note which region a depot is in or the
+         depot's address and telephone number, you can enter the information
+         here rather than in the Name field.TimeWindowStart1The beginning time
+         of the first time window for the network location.
+         This field can contain a null value; a null value indicates no
+         beginning time.The time window fields (TimeWindowStart1,
+         TimeWindowEnd1,
+         TimeWindowStart2, and TimeWindowEnd2) can contain a time-only value or
+         a date and time value in a date field and cannot be integers
+         representing milliseconds since epoch. The time zone for time window
+         fields is specified using the Time Zone Usage for Time Fields
+         parameter. If a time field such as TimeWindowStart1 has a time-only
+         value (for example, 8:00 a.m.), the date is assumed to be the default
+         date set for the analysis. Using date and time values (for example,
+         7/11/2010 8:00 a.m.) allows you to set time windows that span multiple
+         days.When solving a problem that spans multiple time zones, each
+         depot's
+         time-window values refer to the time zone in which the depot is
+         located.TimeWindowEnd1The ending time of the first window for the
+         network location. This
+         field can contain a null value; a null value indicates no ending
+         time.TimeWindowStart2The beginning time of the second time window for
+         the network location.
+         This field can contain a null value; a null value indicates that there
+         is no second time window.If the first time window is null, as
+         specified by the TimeWindowStart1
+         and TimeWindowEnd1 fields, the second time window must also be null.If
+         both time windows are not null, they can't overlap. Also, the
+         second time window must occur after the first.TimeWindowEnd2The ending
+         time of the second time window for the network location.
+         This field can contain a null value.When TimeWindowStart2 and
+         TimeWindowEnd2 are both null, there is no
+         second time window.When TimeWindowStart2 is not null but
+         TimeWindowEnd2 is null, there is
+         a second time window that has a starting time but no ending time. This
+         is valid.CurbApproach
 
-          * 0 (Either side of vehicle)-The vehicle can approach and depart the
-          depot in either direction, so a U-turn is allowed at the incident.
-          This setting can be chosen if it is possible and practical for a
-          vehicle to turn around at the depot. This decision may depend on the
-          width of the road and the amount of traffic or whether the depot has a
-          parking lot where vehicles can enter and turn around.
+         * 0 (Either side of vehicle)-The vehicle can approach and depart the
+         depot in either direction, so a U-turn is allowed at the incident.
+         This setting can be chosen if it is possible and practical for a
+         vehicle to turn around at the depot. This decision may depend on the
+         width of the road and the amount of traffic or whether the depot has a
+         parking lot where vehicles can enter and turn around.
 
-          * 1 (Right side of vehicle)-When the vehicle approaches and departs
-          the depot, the depot must be on the right side of the vehicle. A
-          U-turn is prohibited. This is typically used for vehicles such as
-          buses that must arrive with the bus stop on the right-hand side.
+         * 1 (Right side of vehicle)-When the vehicle approaches and departs
+         the depot, the depot must be on the right side of the vehicle. A
+         U-turn is prohibited. This is typically used for vehicles such as
+         buses that must arrive with the bus stop on the right-hand side.
 
-          * 2 (Left side of vehicle)-When the vehicle approaches and departs the
-          depot, the curb must be on the left side of the vehicle. A U-turn is
-          prohibited. This is typically used for vehicles such as buses that
-          must arrive with the bus stop on the left-hand side.
+         * 2 (Left side of vehicle)-When the vehicle approaches and departs the
+         depot, the curb must be on the left side of the vehicle. A U-turn is
+         prohibited. This is typically used for vehicles such as buses that
+         must arrive with the bus stop on the left-hand side.
 
-          * 3 (No U-Turn)-When the vehicle approaches the depot, the curb can be
-          on either side of the vehicle; however, the vehicle must depart
-          without turning around.
-          The CurbApproach attribute is designed to work with both kinds of
-          national driving standards: right-hand traffic (United States) and
-          left-hand traffic (United Kingdom). First, consider a depot on the
-          left side of a vehicle. It is always on the left side regardless of
-          whether the vehicle travels on the left or right half of the road.
-          What may change with national driving standards is your decision to
-          approach a depot from one of two directions, that is, so it ends up on
-          the right or left side of the vehicle. For example, if you want to
-          arrive at a depot and not have a lane of traffic between the vehicle
-          and the depot, choose 1 (Right side of vehicle) in the United States
-          and 2 (Left side of vehicle) in the United Kingdom.BearingThe
-          direction in which a point is moving. The units are degrees and
-          are measured clockwise from true north. This field is used in
-          conjunction with the BearingTol field.Bearing data is usually sent
-          automatically from a mobile device
-          equipped with a GPS receiver. Try to include bearing data if you are
-          loading an input location that is moving, such as a pedestrian or a
-          vehicle.Using this field tends to prevent adding locations to the
-          wrong edges,
-          which can occur when a vehicle is near an intersection or an overpass,
-          for example. Bearing also helps the tool determine on which side of
-          the street the point is.BearingTolThe bearing tolerance value creates
-          a range of acceptable bearing
-          values when locating moving points on an edge using the Bearing field.
-          If the Bearing field value is within the range of acceptable values
-          that are generated from the bearing tolerance on an edge, the point
-          can be added as a network location there; otherwise, the closest point
-          on the next-nearest edge is evaluated.The units are in degrees, and
-          the default value is 30. Values must be
-          greater than 0 and less than 180. A value of 30 means that when
-          Network Analyst attempts to add a network location on an edge, a range
-          of acceptable bearing values is generated 15 degrees to either side of
-          the edge (left and right) and in both digitized directions of the
-          edge.NavLatencyThis field is only used in the solve process if the
-          Bearing and
-          BearingTol fields also have values; however, entering a NavLatency
-          field value is optional, even when values are present in Bearing and
-          BearingTol. NavLatency indicates how much cost is expected to elapse
-          from the moment GPS information is sent from a moving vehicle to a
-          server and the moment the processed route is received by the vehicle's
-          navigation device.The units of NavLatency are the same as the units of
-          the impedance
-          attribute.
-      routes (Record Set):
-          Specifies one or more routes that describe vehicle and driver
-          characteristics. A route can have start and end depot service times, a
-          fixed or flexible starting time, time-based operating costs, distance-
-          based operating costs, multiple capacities, various constraints on a
-          driver's workday, and so on.The routes can be specified with"""
+         * 3 (No U-Turn)-When the vehicle approaches the depot, the curb can be
+         on either side of the vehicle; however, the vehicle must depart
+         without turning around.
+         The CurbApproach attribute is designed to work with both kinds of
+         national driving standards: right-hand traffic (United States) and
+         left-hand traffic (United Kingdom). First, consider a depot on the
+         left side of a vehicle. It is always on the left side regardless of
+         whether the vehicle travels on the left or right half of the road.
+         What may change with national driving standards is your decision to
+         approach a depot from one of two directions, that is, so it ends up on
+         the right or left side of the vehicle. For example, if you want to
+         arrive at a depot and not have a lane of traffic between the vehicle
+         and the depot, choose 1 (Right side of vehicle) in the United States
+         and 2 (Left side of vehicle) in the United Kingdom.BearingThe
+         direction in which a point is moving. The units are degrees and
+         are measured clockwise from true north. This field is used in
+         conjunction with the BearingTol field.Bearing data is usually sent
+         automatically from a mobile device
+         equipped with a GPS receiver. Try to include bearing data if you are
+         loading an input location that is moving, such as a pedestrian or a
+         vehicle.Using this field tends to prevent adding locations to the
+         wrong edges,
+         which can occur when a vehicle is near an intersection or an overpass,
+         for example. Bearing also helps the tool determine on which side of
+         the street the point is.BearingTolThe bearing tolerance value creates
+         a range of acceptable bearing
+         values when locating moving points on an edge using the Bearing field.
+         If the Bearing field value is within the range of acceptable values
+         that are generated from the bearing tolerance on an edge, the point
+         can be added as a network location there; otherwise, the closest point
+         on the next-nearest edge is evaluated.The units are in degrees, and
+         the default value is 30. Values must be
+         greater than 0 and less than 180. A value of 30 means that when
+         Network Analyst attempts to add a network location on an edge, a range
+         of acceptable bearing values is generated 15 degrees to either side of
+         the edge (left and right) and in both digitized directions of the
+         edge.NavLatencyThis field is only used in the solve process if the
+         Bearing and
+         BearingTol fields also have values; however, entering a NavLatency
+         field value is optional, even when values are present in Bearing and
+         BearingTol. NavLatency indicates how much cost is expected to elapse
+         from the moment GPS information is sent from a moving vehicle to a
+         server and the moment the processed route is received by the vehicle's
+         navigation device.The units of NavLatency are the same as the units of
+         the impedance
+         attribute.
+     routes (Record Set):
+         Specifies one or more routes that describe vehicle and driver
+         characteristics. A route can have start and end depot service times, a
+         fixed or flexible starting time, time-based operating costs, distance-
+         based operating costs, multiple capacities, various constraints on a
+         driver's workday, and so on.The routes can be specified with"""
     ...
 
-@gptooldoc('Profile_agolservices', None)
-def Profile(InputLineFeatures=..., ProfileIDField=..., DEMResolution=..., MaximumSampleDistance=..., MaximumSampleDistanceUnits=...): # -> conversion | int | float | complex | basestring | list[Unknown] | tuple[Unknown, ...] | dict[Unknown, Unknown]:
+@gptooldoc("Profile_agolservices", None)
+def Profile(
+    InputLineFeatures=...,
+    ProfileIDField=...,
+    DEMResolution=...,
+    MaximumSampleDistance=...,
+    MaximumSampleDistanceUnits=...,
+):  # -> conversion | int | float | complex | basestring | list[Unknown] | tuple[Unknown, ...] | dict[Unknown, Unknown]:
     """Profile_agolservices(InputLineFeatures, {ProfileIDField}, {DEMResolution}, {MaximumSampleDistance}, {MaximumSampleDistanceUnits})
 
-        Returns elevation profiles for the input line features.
+       Returns elevation profiles for the input line features.
 
-     INPUTS:
-      InputLineFeatures (Feature Set):
-          The line features that will be profiled over the surface inputs.
-      ProfileIDField {String}:
-          A unique identifier to associate profiles with their corresponding
-          input line features.
-      DEMResolution {String}:
-          Specifies the approximate spatial resolution (cell size) of the source
-          elevation data used for the calculation.The resolution keyword is an
-          approximation of the spatial resolution
-          of the digital elevation model. Many elevation sources are distributed
-          in units of arc seconds; the keyword is an approximation in meters for
-          easier understanding.
+    INPUTS:
+     InputLineFeatures (Feature Set):
+         The line features that will be profiled over the surface inputs.
+     ProfileIDField {String}:
+         A unique identifier to associate profiles with their corresponding
+         input line features.
+     DEMResolution {String}:
+         Specifies the approximate spatial resolution (cell size) of the source
+         elevation data used for the calculation.The resolution keyword is an
+         approximation of the spatial resolution
+         of the digital elevation model. Many elevation sources are distributed
+         in units of arc seconds; the keyword is an approximation in meters for
+         easier understanding.
 
-          * FINEST-The finest units available for the extent are used.
+         * FINEST-The finest units available for the extent are used.
 
-          * 10m-The elevation source resolution is 1/3 arc second or
-          approximately 10 meters.
+         * 10m-The elevation source resolution is 1/3 arc second or
+         approximately 10 meters.
 
-          * 24m-The elevation source is the Airbus WorldDEM4Ortho dataset at 24
-          meters resolution.
+         * 24m-The elevation source is the Airbus WorldDEM4Ortho dataset at 24
+         meters resolution.
 
-          * 30m-The elevation source resolution is 1 arc second or approximately
-          30 meters.
+         * 30m-The elevation source resolution is 1 arc second or approximately
+         30 meters.
 
-          * 90m-The elevation source resolution is 3 arc seconds or
-          approximately 90 meters. This is the default.
+         * 90m-The elevation source resolution is 3 arc seconds or
+         approximately 90 meters. This is the default.
 
-          * 500m-The elevation source resolution is 15 arc seconds or
-          approximately 500 meters.
+         * 500m-The elevation source resolution is 15 arc seconds or
+         approximately 500 meters.
 
-          * 1000m-The elevation source resolution is 30 arc seconds or
-          approximately 1000 meters.
-      MaximumSampleDistance {Double}:
-          The maximum sample distance along the line used to sample elevation
-          values.
-      MaximumSampleDistanceUnits {String}:
-          Specifies the units for the Maximum Sample Distance parameter.
+         * 1000m-The elevation source resolution is 30 arc seconds or
+         approximately 1000 meters.
+     MaximumSampleDistance {Double}:
+         The maximum sample distance along the line used to sample elevation
+         values.
+     MaximumSampleDistanceUnits {String}:
+         Specifies the units for the Maximum Sample Distance parameter.
 
-          * Meters-The units are meters. This is the default.
+         * Meters-The units are meters. This is the default.
 
-          * Kilometers-The units are kilometers.
+         * Kilometers-The units are kilometers.
 
-          * Feet-The units are feet.
+         * Feet-The units are feet.
 
-          * Yards-The units are yards.
+         * Yards-The units are yards.
 
-          * Miles-The units are miles."""
+         * Miles-The units are miles."""
     ...
 
-@gptooldoc('SummarizeElevation_agolservices', None)
-def SummarizeElevation(InputFeatures=..., FeatureIDField=..., DEMResolution=..., IncludeSlopeAspect=...): # -> conversion | int | float | complex | basestring | list[Unknown] | tuple[Unknown, ...] | dict[Unknown, Unknown]:
+@gptooldoc("SummarizeElevation_agolservices", None)
+def SummarizeElevation(
+    InputFeatures=..., FeatureIDField=..., DEMResolution=..., IncludeSlopeAspect=...
+):  # -> conversion | int | float | complex | basestring | list[Unknown] | tuple[Unknown, ...] | dict[Unknown, Unknown]:
     """SummarizeElevation_agolservices(InputFeatures, {FeatureIDField}, {DEMResolution}, {IncludeSlopeAspect})
 
-        Calculates summary statistics of elevation for each input feature.
+       Calculates summary statistics of elevation for each input feature.
 
-     INPUTS:
-      InputFeatures (Feature Set):
-          The input point, line, or area features for which the elevation will
-          be summarized.
-      FeatureIDField {String}:
-          The unique ID field to use for the input features.
-      DEMResolution {String}:
-          Specifies the approximate spatial resolution (cell size) of the source
-          elevation data used for the calculation.The resolution keyword is an
-          approximation of the spatial resolution
-          of the digital elevation model. Many elevation sources are distributed
-          in units of arc seconds; the keyword is an approximation in meters for
-          easier understanding.
+    INPUTS:
+     InputFeatures (Feature Set):
+         The input point, line, or area features for which the elevation will
+         be summarized.
+     FeatureIDField {String}:
+         The unique ID field to use for the input features.
+     DEMResolution {String}:
+         Specifies the approximate spatial resolution (cell size) of the source
+         elevation data used for the calculation.The resolution keyword is an
+         approximation of the spatial resolution
+         of the digital elevation model. Many elevation sources are distributed
+         in units of arc seconds; the keyword is an approximation in meters for
+         easier understanding.
 
-          * FINEST-The finest units available for the extent are used.
+         * FINEST-The finest units available for the extent are used.
 
-          * 10m-The elevation source resolution is 1/3 arc second or
-          approximately 10 meters.
+         * 10m-The elevation source resolution is 1/3 arc second or
+         approximately 10 meters.
 
-          * 24m-The elevation source is the Airbus WorldDEM4Ortho dataset at 24
-          meters resolution.
+         * 24m-The elevation source is the Airbus WorldDEM4Ortho dataset at 24
+         meters resolution.
 
-          * 30m-The elevation source resolution is 1 arc second or approximately
-          30 meters.
+         * 30m-The elevation source resolution is 1 arc second or approximately
+         30 meters.
 
-          * 90m-The elevation source resolution is 3 arc seconds or
-          approximately 90 meters. This is the default.
-      IncludeSlopeAspect {Boolean}:
-          Specifies whether slope and aspect values for the input features will
-          be included in the output in addition to the elevation values.
+         * 90m-The elevation source resolution is 3 arc seconds or
+         approximately 90 meters. This is the default.
+     IncludeSlopeAspect {Boolean}:
+         Specifies whether slope and aspect values for the input features will
+         be included in the output in addition to the elevation values.
 
-          * SLOPE_ASPECT-Slope and aspect values will be included in the output.
+         * SLOPE_ASPECT-Slope and aspect values will be included in the output.
 
-          * NO_SLOPE_ASPECT-Slope and aspect values will not be included in the
-          output. This is the default."""
+         * NO_SLOPE_ASPECT-Slope and aspect values will not be included in the
+         output. This is the default."""
     ...
 
-@gptooldoc('Viewshed_agolservices', None)
-def Viewshed(InputPoints=..., MaximumDistance=..., MaximumDistanceUnits=..., DEMResolution=..., ObserverHeight=..., ObserverHeightUnits=..., SurfaceOffset=..., SurfaceOffsetUnits=..., GeneralizeViewshedPolygons=...): # -> conversion | int | float | complex | basestring | list[Unknown] | tuple[Unknown, ...] | dict[Unknown, Unknown]:
+@gptooldoc("Viewshed_agolservices", None)
+def Viewshed(
+    InputPoints=...,
+    MaximumDistance=...,
+    MaximumDistanceUnits=...,
+    DEMResolution=...,
+    ObserverHeight=...,
+    ObserverHeightUnits=...,
+    SurfaceOffset=...,
+    SurfaceOffsetUnits=...,
+    GeneralizeViewshedPolygons=...,
+):  # -> conversion | int | float | complex | basestring | list[Unknown] | tuple[Unknown, ...] | dict[Unknown, Unknown]:
     """Viewshed_agolservices(InputPoints, {MaximumDistance}, {MaximumDistanceUnits}, {DEMResolution}, {ObserverHeight}, {ObserverHeightUnits}, {SurfaceOffset}, {SurfaceOffsetUnits}, {GeneralizeViewshedPolygons})
 
-        Returns polygons of visible areas for a given set of input observation
-        points.
+       Returns polygons of visible areas for a given set of input observation
+       points.
 
-     INPUTS:
-      InputPoints (Feature Set):
-          The point features to use as the observer locations.
-      MaximumDistance {Double}:
-          The maximum distance to calculate the viewshed.
-      MaximumDistanceUnits {String}:
-          Specifies the units for the Maximum Distance parameter.
+    INPUTS:
+     InputPoints (Feature Set):
+         The point features to use as the observer locations.
+     MaximumDistance {Double}:
+         The maximum distance to calculate the viewshed.
+     MaximumDistanceUnits {String}:
+         Specifies the units for the Maximum Distance parameter.
 
-          * Meters-The units are meters. This is the default.
+         * Meters-The units are meters. This is the default.
 
-          * Kilometers-The units are kilometers.
+         * Kilometers-The units are kilometers.
 
-          * Feet-The units are feet.
+         * Feet-The units are feet.
 
-          * Yards-The units are yards.
+         * Yards-The units are yards.
 
-          * Miles-The units are miles.
-      DEMResolution {String}:
-          Specifies the approximate spatial resolution (cell size) of the source
-          elevation data used for the calculation.The resolution keyword is an
-          approximation of the spatial resolution
-          of the digital elevation model. Many elevation sources are distributed
-          in units of arc seconds; the keyword is an approximation in meters for
-          easier understanding.
+         * Miles-The units are miles.
+     DEMResolution {String}:
+         Specifies the approximate spatial resolution (cell size) of the source
+         elevation data used for the calculation.The resolution keyword is an
+         approximation of the spatial resolution
+         of the digital elevation model. Many elevation sources are distributed
+         in units of arc seconds; the keyword is an approximation in meters for
+         easier understanding.
 
-          * FINEST-The finest units available for the extent are used.
+         * FINEST-The finest units available for the extent are used.
 
-          * 10m-The elevation source resolution is 1/3 arc second or
-          approximately 10 meters.
+         * 10m-The elevation source resolution is 1/3 arc second or
+         approximately 10 meters.
 
-          * 24m-The elevation source is the Airbus WorldDEM4Ortho dataset at 24
-          meters resolution.
+         * 24m-The elevation source is the Airbus WorldDEM4Ortho dataset at 24
+         meters resolution.
 
-          * 30m-The elevation source resolution is 1 arc second or approximately
-          30 meters.
+         * 30m-The elevation source resolution is 1 arc second or approximately
+         30 meters.
 
-          * 90m-The elevation source resolution is 3 arc seconds or
-          approximately 90 meters. This is the default.
-      ObserverHeight {Double}:
-          The height above the surface of the observer. The default value of
-          1.75 meters is an average height of a person. If you are looking from
-          an elevated location such as an observation tower or a tall building,
-          use that height instead.
-      ObserverHeightUnits {String}:
-          Specifies the units for the Observer Height parameter.
+         * 90m-The elevation source resolution is 3 arc seconds or
+         approximately 90 meters. This is the default.
+     ObserverHeight {Double}:
+         The height above the surface of the observer. The default value of
+         1.75 meters is an average height of a person. If you are looking from
+         an elevated location such as an observation tower or a tall building,
+         use that height instead.
+     ObserverHeightUnits {String}:
+         Specifies the units for the Observer Height parameter.
 
-          * Meters-The units are meters. This is the default.
+         * Meters-The units are meters. This is the default.
 
-          * Kilometers-The units are kilometers.
+         * Kilometers-The units are kilometers.
 
-          * Feet-The units are feet.
+         * Feet-The units are feet.
 
-          * Yards-The units are yards.
+         * Yards-The units are yards.
 
-          * Miles-The units are miles.
-      SurfaceOffset {Double}:
-          The height above the surface of the object you are viewing. The
-          default value is 0. If you are viewing buildings or wind turbines, use
-          their height.
-      SurfaceOffsetUnits {String}:
-          Specifies the units for the Surface Offset parameter.
+         * Miles-The units are miles.
+     SurfaceOffset {Double}:
+         The height above the surface of the object you are viewing. The
+         default value is 0. If you are viewing buildings or wind turbines, use
+         their height.
+     SurfaceOffsetUnits {String}:
+         Specifies the units for the Surface Offset parameter.
 
-          * Meters-The units are meters. This is the default.
+         * Meters-The units are meters. This is the default.
 
-          * Kilometers-The units are kilometers.
+         * Kilometers-The units are kilometers.
 
-          * Feet-The units are feet.
+         * Feet-The units are feet.
 
-          * Yards-The units are yards.
+         * Yards-The units are yards.
 
-          * Miles-The units are miles.
-      GeneralizeViewshedPolygons {Boolean}:
-          Specifies whether the viewshed polygons will be generalized.The
-          viewshed calculation is based on a raster elevation model that
-          creates a result with stair-stepped edges. To create a more pleasing
-          appearance and improve performance, the default behavior generalizes
-          the polygons. This generalization will not change the accuracy of the
-          result for any location more than one half of the DEM resolution.
+         * Miles-The units are miles.
+     GeneralizeViewshedPolygons {Boolean}:
+         Specifies whether the viewshed polygons will be generalized.The
+         viewshed calculation is based on a raster elevation model that
+         creates a result with stair-stepped edges. To create a more pleasing
+         appearance and improve performance, the default behavior generalizes
+         the polygons. This generalization will not change the accuracy of the
+         result for any location more than one half of the DEM resolution.
 
-          * GENERALIZE-The viewshed polygons will be generalized. This is the
-          default.
+         * GENERALIZE-The viewshed polygons will be generalized. This is the
+         default.
 
-          * NO_GENERALIZE-The viewshed polygons will not be generalized."""
+         * NO_GENERALIZE-The viewshed polygons will not be generalized."""
     ...
 
-@gptooldoc('TraceDownstream_agolservices', None)
-def TraceDownstream(InputPoints=..., PointIDField=..., DataSourceResolution=..., Generalize=...): # -> conversion | int | float | complex | basestring | list[Unknown] | tuple[Unknown, ...] | dict[Unknown, Unknown]:
+@gptooldoc("TraceDownstream_agolservices", None)
+def TraceDownstream(
+    InputPoints=..., PointIDField=..., DataSourceResolution=..., Generalize=...
+):  # -> conversion | int | float | complex | basestring | list[Unknown] | tuple[Unknown, ...] | dict[Unknown, Unknown]:
     """TraceDownstream_agolservices(InputPoints, {PointIDField}, {DataSourceResolution}, {Generalize})
 
-        Determines the path water will take from a particular location to its
-        furthest downhill path.
+       Determines the path water will take from a particular location to its
+       furthest downhill path.
 
-     INPUTS:
-      InputPoints (Feature Set):
-          The point features used for calculating downstream trace.
-      PointIDField {String}:
-          An integer or string field used to identify the input points.The
-          default is to use the unique ID field.
-      DataSourceResolution {String}:
-          Specifies the source data resolution that will be used in the
-          analysis. The values are an approximation of the spatial resolution of
-          the digital elevation model used to build the foundation hydrologic
-          database. Since many elevation sources are distributed in units of arc
-          seconds, an approximation is provided in meters for easier
-          understanding.
+    INPUTS:
+     InputPoints (Feature Set):
+         The point features used for calculating downstream trace.
+     PointIDField {String}:
+         An integer or string field used to identify the input points.The
+         default is to use the unique ID field.
+     DataSourceResolution {String}:
+         Specifies the source data resolution that will be used in the
+         analysis. The values are an approximation of the spatial resolution of
+         the digital elevation model used to build the foundation hydrologic
+         database. Since many elevation sources are distributed in units of arc
+         seconds, an approximation is provided in meters for easier
+         understanding.
 
-          * Blank-The hydrologic source, built from a 3-arc second data source,
-          which is approximately 90-meter resolution elevation data, will be
-          used. This is the default.
+         * Blank-The hydrologic source, built from a 3-arc second data source,
+         which is approximately 90-meter resolution elevation data, will be
+         used. This is the default.
 
-          * FINEST-The finest resolution available at each location from all
-          possible data sources will be used.
+         * FINEST-The finest resolution available at each location from all
+         possible data sources will be used.
 
-          * 10m-The hydrologic source, built from a 1/3 arc second data source,
-          which is approximately 10-meter resolution elevation data, will be
-          used.
+         * 10m-The hydrologic source, built from a 1/3 arc second data source,
+         which is approximately 10-meter resolution elevation data, will be
+         used.
 
-          * 30m-The hydrologic source, built from a 1-arc second data source,
-          which is approximately 30-meter resolution elevation data, will be
-          used.
+         * 30m-The hydrologic source, built from a 1-arc second data source,
+         which is approximately 30-meter resolution elevation data, will be
+         used.
 
-          * 90m-The hydrologic source, built from a 3-arc second data source,
-          which is approximately 90-meter resolution elevation data, will be
-          used.
-      Generalize {Boolean}:
-          Specifies whether the output downstream trace lines will be smoothed
-          into simpler lines or conform to the cell centers of the original DEM.
+         * 90m-The hydrologic source, built from a 3-arc second data source,
+         which is approximately 90-meter resolution elevation data, will be
+         used.
+     Generalize {Boolean}:
+         Specifies whether the output downstream trace lines will be smoothed
+         into simpler lines or conform to the cell centers of the original DEM.
 
-          * True-The lines will be smoothed into simpler lines.
+         * True-The lines will be smoothed into simpler lines.
 
-          * False-The lines will not be smoothed. Each trace line of output
-          downstream trace have more vertices since they conform to the original
-          DEM cell centers. This is the default."""
+         * False-The lines will not be smoothed. Each trace line of output
+         downstream trace have more vertices since they conform to the original
+         DEM cell centers. This is the default."""
     ...
 
-@gptooldoc('Watershed_agolservices', None)
-def Watershed(InputPoints=..., PointIDField=..., SnapDistance=..., SnapDistanceUnits=..., DataSourceResolution=..., Generalize=..., ReturnSnappedPoints=...): # -> conversion | int | float | complex | basestring | list[Unknown] | tuple[Unknown, ...] | dict[Unknown, Unknown]:
+@gptooldoc("Watershed_agolservices", None)
+def Watershed(
+    InputPoints=...,
+    PointIDField=...,
+    SnapDistance=...,
+    SnapDistanceUnits=...,
+    DataSourceResolution=...,
+    Generalize=...,
+    ReturnSnappedPoints=...,
+):  # -> conversion | int | float | complex | basestring | list[Unknown] | tuple[Unknown, ...] | dict[Unknown, Unknown]:
     """Watershed_agolservices(InputPoints, {PointIDField}, {SnapDistance}, {SnapDistanceUnits}, {DataSourceResolution}, {Generalize}, {ReturnSnappedPoints})
 
-        Determines the contributing area above each input point. A watershed
-        is the upslope area that contributes flow.
+       Determines the contributing area above each input point. A watershed
+       is the upslope area that contributes flow.
 
-     INPUTS:
-      InputPoints (Feature Set):
-          The point features used for calculating watersheds. These are referred
-          to as pour points, because it is the location at which water pours out
-          of the watershed.
-      PointIDField {String}:
-          An integer or string field used to identify to the input points.The
-          default is to use the unique ID field.
-      SnapDistance {String}:
-          The maximum distance to move the location of an input
-          point.Interactive input points and documented gage locations may not
-          exactly
-          align with the stream location in the DEM. This parameter allows the
-          service to move the point to a nearby location with the largest
-          contributing area.By default, the snapping distance is calculated as
-          the resolution of
-          the source data multiplied by 5.
-      SnapDistanceUnits {String}:
-          The linear units specified for the snap distance.
+    INPUTS:
+     InputPoints (Feature Set):
+         The point features used for calculating watersheds. These are referred
+         to as pour points, because it is the location at which water pours out
+         of the watershed.
+     PointIDField {String}:
+         An integer or string field used to identify to the input points.The
+         default is to use the unique ID field.
+     SnapDistance {String}:
+         The maximum distance to move the location of an input
+         point.Interactive input points and documented gage locations may not
+         exactly
+         align with the stream location in the DEM. This parameter allows the
+         service to move the point to a nearby location with the largest
+         contributing area.By default, the snapping distance is calculated as
+         the resolution of
+         the source data multiplied by 5.
+     SnapDistanceUnits {String}:
+         The linear units specified for the snap distance.
 
-          * Meters-The units are meters. This is the default.
+         * Meters-The units are meters. This is the default.
 
-          * Kilometers-The units are kilometers.
+         * Kilometers-The units are kilometers.
 
-          * Feet-The units are feet.
+         * Feet-The units are feet.
 
-          * Yards-The units are yards.
+         * Yards-The units are yards.
 
-          * Miles-The units are miles.
-      DataSourceResolution {String}:
-          Specifies the source data resolution that will be used in the
-          analysis. The values are an approximation of the spatial resolution of
-          the digital elevation model used to build the foundation hydrologic
-          database. Since many elevation sources are distributed in units of arc
-          seconds, an approximation is provided in meters for easier
-          understanding.
+         * Miles-The units are miles.
+     DataSourceResolution {String}:
+         Specifies the source data resolution that will be used in the
+         analysis. The values are an approximation of the spatial resolution of
+         the digital elevation model used to build the foundation hydrologic
+         database. Since many elevation sources are distributed in units of arc
+         seconds, an approximation is provided in meters for easier
+         understanding.
 
-          * Blank-The hydrologic source, built from a 3-arc second data source,
-          which is approximately 90-meter resolution elevation data, will be
-          used. This is the default.
+         * Blank-The hydrologic source, built from a 3-arc second data source,
+         which is approximately 90-meter resolution elevation data, will be
+         used. This is the default.
 
-          * FINEST-The finest resolution available at each location from all
-          possible data sources will be used.
+         * FINEST-The finest resolution available at each location from all
+         possible data sources will be used.
 
-          * 10m-The hydrologic source, built from a 1/3 arc second data source,
-          which is approximately 10-meter resolution elevation data, will be
-          used.
+         * 10m-The hydrologic source, built from a 1/3 arc second data source,
+         which is approximately 10-meter resolution elevation data, will be
+         used.
 
-          * 30m-The hydrologic source, built from a 1-arc second data source,
-          which is approximately 30-meter resolution elevation data, will be
-          used.
+         * 30m-The hydrologic source, built from a 1-arc second data source,
+         which is approximately 30-meter resolution elevation data, will be
+         used.
 
-          * 90m-The hydrologic source, built from a 3-arc second data source,
-          which is approximately 90-meter resolution elevation data, will be
-          used.
-      Generalize {Boolean}:
-          Specifies whether the output watersheds will be smoothed into simpler
-          shapes or conform to the cell edges of the original DEM.
+         * 90m-The hydrologic source, built from a 3-arc second data source,
+         which is approximately 90-meter resolution elevation data, will be
+         used.
+     Generalize {Boolean}:
+         Specifies whether the output watersheds will be smoothed into simpler
+         shapes or conform to the cell edges of the original DEM.
 
-          * True-The polygon boundaries will be smoothed into simpler shapes.
+         * True-The polygon boundaries will be smoothed into simpler shapes.
 
-          * False-The edges of the polygons will conform to the cell edges of
-          the original DEM. This is the default.
-      ReturnSnappedPoints {Boolean}:
-          Determines if a point feature at the watershed's pour point will be
-          returned. If snapping is enabled, this might not be the same as the
-          input point.
+         * False-The edges of the polygons will conform to the cell edges of
+         the original DEM. This is the default.
+     ReturnSnappedPoints {Boolean}:
+         Determines if a point feature at the watershed's pour point will be
+         returned. If snapping is enabled, this might not be the same as the
+         input point.
 
-          * True-A point feature will be returned.
+         * True-A point feature will be returned.
 
-          * False-No point features will be returned. This is the default."""
+         * False-No point features will be returned. This is the default."""
     ...
-

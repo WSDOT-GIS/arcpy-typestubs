@@ -6,25 +6,33 @@ from enum import IntEnum
 from arcgisscripting import na as cna
 
 """Module for working with Location-Allocation Solver."""
-__all__ = ["LocationAllocationInputDataType", "LocationAllocationOutputDataType", "LocationAllocationProblemType", "DecayFunctionType", "LocationAllocation"]
+__all__ = [
+    "LocationAllocationInputDataType",
+    "LocationAllocationOutputDataType",
+    "LocationAllocationProblemType",
+    "DecayFunctionType",
+    "LocationAllocation",
+]
+
 class LocationAllocationInputDataType(IntEnum):
     """Enumeration for feature class names used by the Location-Allocation solver to store inputs."""
+
     Facilities = ...
     DemandPoints = ...
     PointBarriers = ...
     LineBarriers = ...
     PolygonBarriers = ...
 
-
 class LocationAllocationOutputDataType(IntEnum):
     """Enumeration for feature class names used by the Location-Allocation solver to store outputs."""
+
     Facilities = ...
     DemandPoints = ...
     Lines = ...
 
-
 class LocationAllocationProblemType(IntEnum):
     """Enumeration for the problem type solved using location-allocation analysis."""
+
     MaximizeAttendance = ...
     MaximizeCapacitatedCoverage = ...
     MaximizeCoverage = ...
@@ -33,13 +41,12 @@ class LocationAllocationProblemType(IntEnum):
     MinimizeImpedance = ...
     TargetMarketShare = ...
 
-
 class DecayFunctionType(IntEnum):
     """Enumeration for the type of equation used to transform costs during location-allocation analysis."""
+
     Linear = ...
     Power = ...
     Exponential = ...
-
 
 class LocationAllocation(cna.LocationAllocation):
     """Perform location-allocation analysis.
@@ -75,6 +82,7 @@ class LocationAllocation(cna.LocationAllocation):
         print(result.solverMessages())
 
     """
+
     __slots__ = ...
     def __init__(self, in_network) -> None:
         """Create a location-allocation solver object based on the input network dataset.
@@ -94,6 +102,3 @@ class LocationAllocation(cna.LocationAllocation):
 
         """
         ...
-    
-
-

@@ -7,1101 +7,1259 @@ from arcpy.geoprocessing._base import gptooldoc
 r"""The GeoAI toolbox contains tools for using and training AI models that
 work with geospatial and tabular data. These tools use modern machine
 learning and deep learning techniques and integrate them with GIS."""
-__all__ = ['ClassifyTextUsingDeepLearning', 'ExtractEntitiesUsingDeepLearning', 'ExtractFeaturesUsingAIModels', 'ForecastUsingTimeSeriesModel', 'PredictUsingAutoML', 'TrainEntityRecognitionModel', 'TrainTextClassificationModel', 'TrainTextTransformationModel', 'TrainTimeSeriesForecastingModel', 'TrainUsingAutoDL', 'TrainUsingAutoML', 'TransformTextUsingDeepLearning']
+__all__ = [
+    "ClassifyTextUsingDeepLearning",
+    "ExtractEntitiesUsingDeepLearning",
+    "ExtractFeaturesUsingAIModels",
+    "ForecastUsingTimeSeriesModel",
+    "PredictUsingAutoML",
+    "TrainEntityRecognitionModel",
+    "TrainTextClassificationModel",
+    "TrainTextTransformationModel",
+    "TrainTimeSeriesForecastingModel",
+    "TrainUsingAutoDL",
+    "TrainUsingAutoML",
+    "TransformTextUsingDeepLearning",
+]
 __alias__ = ...
-@gptooldoc('PredictUsingAutoML_geoai', None)
-def PredictUsingAutoML(in_model_definition=..., prediction_type=..., in_features=..., explanatory_rasters=..., distance_features=..., out_prediction_features=..., out_prediction_surface=..., match_explanatory_variables=..., match_distance_variables=..., match_explanatory_rasters=..., get_prediction_explanations=...): # -> conversion | int | float | complex | basestring | list[Unknown] | tuple[Unknown, ...] | dict[Unknown, Unknown]:
+
+@gptooldoc("PredictUsingAutoML_geoai", None)
+def PredictUsingAutoML(
+    in_model_definition=...,
+    prediction_type=...,
+    in_features=...,
+    explanatory_rasters=...,
+    distance_features=...,
+    out_prediction_features=...,
+    out_prediction_surface=...,
+    match_explanatory_variables=...,
+    match_distance_variables=...,
+    match_explanatory_rasters=...,
+    get_prediction_explanations=...,
+):  # -> conversion | int | float | complex | basestring | list[Unknown] | tuple[Unknown, ...] | dict[Unknown, Unknown]:
     """PredictUsingAutoML_geoai(in_model_definition, prediction_type, in_features, {explanatory_rasters;explanatory_rasters...}, {distance_features;distance_features...}, {out_prediction_features}, {out_prediction_surface}, {match_explanatory_variables;match_explanatory_variables...}, {match_distance_variables;match_distance_variables...}, {match_explanatory_rasters;match_explanatory_rasters...}, {get_prediction_explanations})
 
-        Predicts continuous variables (regression) or categorical variables
-        (classification) on unseen compatible datasets using a trained .dlpk
-        model produced by the Train Using AutoML tool.
+       Predicts continuous variables (regression) or categorical variables
+       (classification) on unseen compatible datasets using a trained .dlpk
+       model produced by the Train Using AutoML tool.
 
-     INPUTS:
-      in_model_definition (File):
-          The .dlpk file or the .emd file.
-      prediction_type (String):
-          Specifies the output file type that will be created.
+    INPUTS:
+     in_model_definition (File):
+         The .dlpk file or the .emd file.
+     prediction_type (String):
+         Specifies the output file type that will be created.
 
-          * PREDICT_FEATURE-A feature layer containing the prediction values
-          will be created. The Output Prediction Features value is required for
-          this option.
+         * PREDICT_FEATURE-A feature layer containing the prediction values
+         will be created. The Output Prediction Features value is required for
+         this option.
 
-          * PREDICT_RASTER-A raster layer containing the prediction values will
-          be created. The Output Prediction Surface value is required for this
-          option.
-      in_features (Feature Layer / Table View / Feature Class):
-          The features for which the prediction will be obtained. The input
-          should include some or all the fields necessary to determine the
-          dependent variable value. This parameter is required if the
-          prediction_type parameter is set to PREDICT_FEATURE.
-      explanatory_rasters {Raster Layer}:
-          A list of rasters that contain the explanatory rasters necessary to
-          determine the dependent variable value. This parameter is required if
-          the prediction_type parameter is set to PREDICT_RASTER.
-      distance_features {Feature Layer}:
-          The point or polygon features whose distances from the input training
-          features will be estimated automatically and added as explanatory
-          variables. Distances will be calculated from each of the input
-          explanatory training distance features to the nearest input training
-          features. If the input explanatory training distance features are
-          polygons, the distance attributes will be calculated as the distance
-          between the closest segments of the pair of features.
-      match_explanatory_variables {Value Table}:
-          The mapping of field names from the prediction set to the training
-          set. Use this parameter if the field names of the training and
-          prediction sets are different. The values are the field names in the
-          prediction dataset that match the field names in the input feature
-          class.
-      match_distance_variables {Value Table}:
-          The mapping of distance feature names from the prediction set to the
-          training set. Use this parameter if the distance feature names used in
-          the training and prediction sets are different. The string values are
-          the feature names that were used for prediction that match the
-          distance features names used for training.
-      match_explanatory_rasters {Value Table}:
-          The mapping of names from the prediction rasters to the training
-          rasters. Use this parameter if the names of the explanatory rasters
-          used for prediction and the names of the corresponding rasters used
-          during training are different. The string values are the explanatory
-          raster names that were used for prediction that match the explanatory
-          raster names used for training.
-      get_prediction_explanations {Boolean}:
-          Specifies whether fields representing feature importance will be
-          added.
+         * PREDICT_RASTER-A raster layer containing the prediction values will
+         be created. The Output Prediction Surface value is required for this
+         option.
+     in_features (Feature Layer / Table View / Feature Class):
+         The features for which the prediction will be obtained. The input
+         should include some or all the fields necessary to determine the
+         dependent variable value. This parameter is required if the
+         prediction_type parameter is set to PREDICT_FEATURE.
+     explanatory_rasters {Raster Layer}:
+         A list of rasters that contain the explanatory rasters necessary to
+         determine the dependent variable value. This parameter is required if
+         the prediction_type parameter is set to PREDICT_RASTER.
+     distance_features {Feature Layer}:
+         The point or polygon features whose distances from the input training
+         features will be estimated automatically and added as explanatory
+         variables. Distances will be calculated from each of the input
+         explanatory training distance features to the nearest input training
+         features. If the input explanatory training distance features are
+         polygons, the distance attributes will be calculated as the distance
+         between the closest segments of the pair of features.
+     match_explanatory_variables {Value Table}:
+         The mapping of field names from the prediction set to the training
+         set. Use this parameter if the field names of the training and
+         prediction sets are different. The values are the field names in the
+         prediction dataset that match the field names in the input feature
+         class.
+     match_distance_variables {Value Table}:
+         The mapping of distance feature names from the prediction set to the
+         training set. Use this parameter if the distance feature names used in
+         the training and prediction sets are different. The string values are
+         the feature names that were used for prediction that match the
+         distance features names used for training.
+     match_explanatory_rasters {Value Table}:
+         The mapping of names from the prediction rasters to the training
+         rasters. Use this parameter if the names of the explanatory rasters
+         used for prediction and the names of the corresponding rasters used
+         during training are different. The string values are the explanatory
+         raster names that were used for prediction that match the explanatory
+         raster names used for training.
+     get_prediction_explanations {Boolean}:
+         Specifies whether fields representing feature importance will be
+         added.
 
-          * TRUE-Fields representing feature importance will be added. Fields
-          will be generated for every predicted sample along with the prediction
-          values.
+         * TRUE-Fields representing feature importance will be added. Fields
+         will be generated for every predicted sample along with the prediction
+         values.
 
-          * FALSE-Fields representing feature importance will not be generated.
-          This is the default.
+         * FALSE-Fields representing feature importance will not be generated.
+         This is the default.
 
-     OUTPUTS:
-      out_prediction_features {Feature Class / Table}:
-          The output table or feature class.
-      out_prediction_surface {Folder}:
-          The path to where the output prediction raster will be saved."""
+    OUTPUTS:
+     out_prediction_features {Feature Class / Table}:
+         The output table or feature class.
+     out_prediction_surface {Folder}:
+         The path to where the output prediction raster will be saved."""
     ...
 
-@gptooldoc('TrainUsingAutoML_geoai', None)
-def TrainUsingAutoML(in_features=..., out_model=..., variable_predict=..., treat_variable_as_categorical=..., explanatory_variables=..., distance_features=..., explanatory_rasters=..., total_time_limit=..., autoML_mode=..., algorithms=..., validation_percent=..., out_report=..., out_importance=..., out_features=...): # -> conversion | int | float | complex | basestring | list[Unknown] | tuple[Unknown, ...] | dict[Unknown, Unknown]:
+@gptooldoc("TrainUsingAutoML_geoai", None)
+def TrainUsingAutoML(
+    in_features=...,
+    out_model=...,
+    variable_predict=...,
+    treat_variable_as_categorical=...,
+    explanatory_variables=...,
+    distance_features=...,
+    explanatory_rasters=...,
+    total_time_limit=...,
+    autoML_mode=...,
+    algorithms=...,
+    validation_percent=...,
+    out_report=...,
+    out_importance=...,
+    out_features=...,
+):  # -> conversion | int | float | complex | basestring | list[Unknown] | tuple[Unknown, ...] | dict[Unknown, Unknown]:
     """TrainUsingAutoML_geoai(in_features, out_model, variable_predict, {treat_variable_as_categorical}, {explanatory_variables;explanatory_variables...}, {distance_features;distance_features...}, {explanatory_rasters;explanatory_rasters...}, {total_time_limit}, {autoML_mode}, {algorithms;algorithms...}, {validation_percent}, {out_report}, {out_importance}, {out_features})
 
-        Trains a deep learning model by building training pipelines and
-        automating much of the training process. This includes exploratory
-        data analysis, feature selection, feature engineering, model
-        selection, hyperparameter tuning, and model training. Its outputs
-        include performance metrics of the best model on the training data, as
-        well as the trained deep learning model package (.dlpk) that can be
-        used as input for the Predict Using AutoML tool to predict on a new
-        dataset.
+       Trains a deep learning model by building training pipelines and
+       automating much of the training process. This includes exploratory
+       data analysis, feature selection, feature engineering, model
+       selection, hyperparameter tuning, and model training. Its outputs
+       include performance metrics of the best model on the training data, as
+       well as the trained deep learning model package (.dlpk) that can be
+       used as input for the Predict Using AutoML tool to predict on a new
+       dataset.
 
-     INPUTS:
-      in_features (Feature Layer / Table View / Feature Class):
-          The input feature class that will be used to train the model.
-      variable_predict (Field):
-          A field from the in_features parameter that contains the values that
-          will be used to train the model. This field contains known (training)
-          values of the variable that will be used to predict at unknown
-          locations.
-      treat_variable_as_categorical {Boolean}:
-          Specifies whether the variable_predict parameter value will be treated
-          as a categorical variable.
+    INPUTS:
+     in_features (Feature Layer / Table View / Feature Class):
+         The input feature class that will be used to train the model.
+     variable_predict (Field):
+         A field from the in_features parameter that contains the values that
+         will be used to train the model. This field contains known (training)
+         values of the variable that will be used to predict at unknown
+         locations.
+     treat_variable_as_categorical {Boolean}:
+         Specifies whether the variable_predict parameter value will be treated
+         as a categorical variable.
 
-          * CATEGORICAL-The variable_predict parameter value will be treated as
-          a categorical variable and the tool will perform classification.
+         * CATEGORICAL-The variable_predict parameter value will be treated as
+         a categorical variable and the tool will perform classification.
 
-          * CONTINUOUS-The variable_predict parameter value will be treated as
-          continuous and the tool will perform regression. This is the default.
-      explanatory_variables {Value Table}:
-          A list of fields representing the explanatory variables that will help
-          predict the value or category of the variable_predict parameter value.
-          Pass the True value ('name_of_variable',True) for any variables that
-          represent classes or categories (such as land cover, presence, or
-          absence).
-      distance_features {Feature Layer}:
-          The features whose distances from the input training features will be
-          estimated automatically and added as more explanatory variables.
-          Distances will be calculated from each of the input explanatory
-          training distance features to the nearest input training features.
-          Point and polygon features are supported, and if the input explanatory
-          training distance features are polygons, the distance attributes will
-          be calculated as the distance between the closest segments of the pair
-          of features.
-      explanatory_rasters {Value Table}:
-          The rasters whose values will be extracted from the raster and
-          considered as explanatory variables for the model. Each layer forms
-          one explanatory variable. For each feature in the input training
-          features, the value of the raster cell will be extracted at that exact
-          location. Bilinear raster resampling will be used when extracting the
-          raster value for continuous rasters. Nearest neighbor assignment will
-          be used when extracting a raster value from categorical rasters. If
-          the in_features parameter value has polygons, and you have specified
-          this parameter, one raster value for each polygon will be used in the
-          model. Each polygon is assigned the average value for continuous
-          rasters and the majority for categorical rasters. Pass a true value
-          using "<name_of_raster> true" for any raster that represents classes
-          or categories such as land cover, presence, or absence.
-      total_time_limit {Double}:
-          The total time limit in minutes it takes for AutoML model training.
-          The default is 60 (1 hour).
-      autoML_mode {String}:
-          Specifies the goal of AutoML and how intensive the AutoML search will
-          be.
+         * CONTINUOUS-The variable_predict parameter value will be treated as
+         continuous and the tool will perform regression. This is the default.
+     explanatory_variables {Value Table}:
+         A list of fields representing the explanatory variables that will help
+         predict the value or category of the variable_predict parameter value.
+         Pass the True value ('name_of_variable',True) for any variables that
+         represent classes or categories (such as land cover, presence, or
+         absence).
+     distance_features {Feature Layer}:
+         The features whose distances from the input training features will be
+         estimated automatically and added as more explanatory variables.
+         Distances will be calculated from each of the input explanatory
+         training distance features to the nearest input training features.
+         Point and polygon features are supported, and if the input explanatory
+         training distance features are polygons, the distance attributes will
+         be calculated as the distance between the closest segments of the pair
+         of features.
+     explanatory_rasters {Value Table}:
+         The rasters whose values will be extracted from the raster and
+         considered as explanatory variables for the model. Each layer forms
+         one explanatory variable. For each feature in the input training
+         features, the value of the raster cell will be extracted at that exact
+         location. Bilinear raster resampling will be used when extracting the
+         raster value for continuous rasters. Nearest neighbor assignment will
+         be used when extracting a raster value from categorical rasters. If
+         the in_features parameter value has polygons, and you have specified
+         this parameter, one raster value for each polygon will be used in the
+         model. Each polygon is assigned the average value for continuous
+         rasters and the majority for categorical rasters. Pass a true value
+         using "<name_of_raster> true" for any raster that represents classes
+         or categories such as land cover, presence, or absence.
+     total_time_limit {Double}:
+         The total time limit in minutes it takes for AutoML model training.
+         The default is 60 (1 hour).
+     autoML_mode {String}:
+         Specifies the goal of AutoML and how intensive the AutoML search will
+         be.
 
-          * BASIC-Basic is used to explain the significance of the different
-          variables and the data. Feature engineering, feature selection, and
-          hyperparameter tuning will not be performed. Full descriptions and
-          explanations for model learning curves, feature importance plots
-          generated for tree-based models, and SHAP plots for all other models
-          will be included in reports. This mode takes the least amount of
-          processing time. This is the default.
+         * BASIC-Basic is used to explain the significance of the different
+         variables and the data. Feature engineering, feature selection, and
+         hyperparameter tuning will not be performed. Full descriptions and
+         explanations for model learning curves, feature importance plots
+         generated for tree-based models, and SHAP plots for all other models
+         will be included in reports. This mode takes the least amount of
+         processing time. This is the default.
 
-          * INTERMEDIATE-Intermediate is used to train a model that will be used
-          in real-life use cases. This mode uses 5-fold cross validation (CV)
-          and produces output of learning curves and importance plots in the
-          reports, but SHAP plots are not available.
+         * INTERMEDIATE-Intermediate is used to train a model that will be used
+         in real-life use cases. This mode uses 5-fold cross validation (CV)
+         and produces output of learning curves and importance plots in the
+         reports, but SHAP plots are not available.
 
-          * ADVANCED-Advanced is used for machine learning competitions (for
-          maximum performance). This mode uses 10-fold cross validation (CV) and
-          performs feature engineering, feature selection, and hyperparameter
-          tuning. Input training features are assigned to multiple spatial grids
-          of different sizes based on their location, and the corresponding grid
-          IDs are passed as additional categorical explanatory variables to the
-          model. The report only includes learning curves; model explainability
-          is not available.
-      algorithms {String}:
-          Specifies the algorithms that will be used during the training.
+         * ADVANCED-Advanced is used for machine learning competitions (for
+         maximum performance). This mode uses 10-fold cross validation (CV) and
+         performs feature engineering, feature selection, and hyperparameter
+         tuning. Input training features are assigned to multiple spatial grids
+         of different sizes based on their location, and the corresponding grid
+         IDs are passed as additional categorical explanatory variables to the
+         model. The report only includes learning curves; model explainability
+         is not available.
+     algorithms {String}:
+         Specifies the algorithms that will be used during the training.
 
-          * LINEAR-The Linear regression supervised algorithm will be used to
-          train a regression machine learning model. If Linear is the only
-          algorithm specified, ensure that the total number of records is less
-          than 10.000 and the number of columns is less than 1,000. Other models
-          can accommodate larger datasets and it is recommended that you use
-          Linear with other algorithms and not as the sole algorithm.
+         * LINEAR-The Linear regression supervised algorithm will be used to
+         train a regression machine learning model. If Linear is the only
+         algorithm specified, ensure that the total number of records is less
+         than 10.000 and the number of columns is less than 1,000. Other models
+         can accommodate larger datasets and it is recommended that you use
+         Linear with other algorithms and not as the sole algorithm.
 
-          * RANDOM TREES-The Random Trees decision tree-based supervised machine
-          learning algorithm will be used. It can be used for both
-          classification and regression.
+         * RANDOM TREES-The Random Trees decision tree-based supervised machine
+         learning algorithm will be used. It can be used for both
+         classification and regression.
 
-          * XGBOOST-The XGBoost (extreme gradient boosting) supervised machine
-          learning algorithm will be used. It can be used for both
-          classification and regression.
+         * XGBOOST-The XGBoost (extreme gradient boosting) supervised machine
+         learning algorithm will be used. It can be used for both
+         classification and regression.
 
-          * LIGHT GBM-The Light GBM gradient boosting ensemble algorithm, which
-          is based on decision trees, will be used. It can be used for both
-          classification and regression. Light GBM is optimized for high
-          performance with distributed systems.
+         * LIGHT GBM-The Light GBM gradient boosting ensemble algorithm, which
+         is based on decision trees, will be used. It can be used for both
+         classification and regression. Light GBM is optimized for high
+         performance with distributed systems.
 
-          * DECISION TREE-The Decision Tree supervised machine learning
-          algorithm, which classifies or regresses the data using true and false
-          answers to certain questions, will be used. Decision trees are easily
-          understood and are good for explainability.
+         * DECISION TREE-The Decision Tree supervised machine learning
+         algorithm, which classifies or regresses the data using true and false
+         answers to certain questions, will be used. Decision trees are easily
+         understood and are good for explainability.
 
-          * EXTRA TREE-The Extra Tree (extremely randomized trees) ensemble
-          supervised machine learning algorithm, which uses decision trees, will
-          be used. This algorithm is similar to Random Trees but can be faster.
+         * EXTRA TREE-The Extra Tree (extremely randomized trees) ensemble
+         supervised machine learning algorithm, which uses decision trees, will
+         be used. This algorithm is similar to Random Trees but can be faster.
 
-          * CATBOOST-The CatBoost algorithm will be used. It uses decision trees
-          for classification and regression. This option can use a combination
-          of categorical and noncategorical explanatory variables without
-          preprocessing.
-          By default, all the algorithms will be used.
-      validation_percent {Long}:
-          The percentage of input data that will be used for validation. The
-          default value is 10.
+         * CATBOOST-The CatBoost algorithm will be used. It uses decision trees
+         for classification and regression. This option can use a combination
+         of categorical and noncategorical explanatory variables without
+         preprocessing.
+         By default, all the algorithms will be used.
+     validation_percent {Long}:
+         The percentage of input data that will be used for validation. The
+         default value is 10.
 
-     OUTPUTS:
-      out_model (File):
-          The output trained model that will be saved as a deep learning package
-          (.dlpk file).
-      out_report {File}:
-          The output report that will be generated as an .html file. If the path
-          provided is not empty, the report will be created in a new folder
-          under the provided path. The report will contain details of the
-          various models as well as details of the hyperparameters that were
-          used during the evaluation and the performance of each model.
-          Hyperparameters are parameters that control the training process. They
-          are not updated during training and include model architecture,
-          learning rate, number of epochs, and so on.
-      out_importance {Table}:
-          An output table containing information about the importance of each
-          explanatory variable (fields, distance features, and rasters) used in
-          the model.
-      out_features {Feature Class}:
-          The feature layer containing the predicted values by the best
-          performing model on the training feature layer. It can be used to
-          verify model performance by visually comparing the predicted values
-          with the ground truth."""
+    OUTPUTS:
+     out_model (File):
+         The output trained model that will be saved as a deep learning package
+         (.dlpk file).
+     out_report {File}:
+         The output report that will be generated as an .html file. If the path
+         provided is not empty, the report will be created in a new folder
+         under the provided path. The report will contain details of the
+         various models as well as details of the hyperparameters that were
+         used during the evaluation and the performance of each model.
+         Hyperparameters are parameters that control the training process. They
+         are not updated during training and include model architecture,
+         learning rate, number of epochs, and so on.
+     out_importance {Table}:
+         An output table containing information about the importance of each
+         explanatory variable (fields, distance features, and rasters) used in
+         the model.
+     out_features {Feature Class}:
+         The feature layer containing the predicted values by the best
+         performing model on the training feature layer. It can be used to
+         verify model performance by visually comparing the predicted values
+         with the ground truth."""
     ...
 
-@gptooldoc('ExtractFeaturesUsingAIModels_geoai', None)
-def ExtractFeaturesUsingAIModels(in_raster=..., mode=..., out_location=..., out_prefix=..., area_of_interest=..., pretrained_models=..., additional_models=..., confidence_threshold=..., save_intermediate_output=..., test_time_augmentation=..., buffer_distance=..., extend_length=..., smoothing_tolerance=..., dangle_length=..., in_road_features=..., road_buffer_width=..., regularize_parcels=..., post_processing_workflow=..., out_features=..., parcel_tolerance=..., regularization_method=..., poly_tolerance=...): # -> conversion | int | float | complex | basestring | list[Unknown] | tuple[Unknown, ...] | dict[Unknown, Unknown]:
+@gptooldoc("ExtractFeaturesUsingAIModels_geoai", None)
+def ExtractFeaturesUsingAIModels(
+    in_raster=...,
+    mode=...,
+    out_location=...,
+    out_prefix=...,
+    area_of_interest=...,
+    pretrained_models=...,
+    additional_models=...,
+    confidence_threshold=...,
+    save_intermediate_output=...,
+    test_time_augmentation=...,
+    buffer_distance=...,
+    extend_length=...,
+    smoothing_tolerance=...,
+    dangle_length=...,
+    in_road_features=...,
+    road_buffer_width=...,
+    regularize_parcels=...,
+    post_processing_workflow=...,
+    out_features=...,
+    parcel_tolerance=...,
+    regularization_method=...,
+    poly_tolerance=...,
+):  # -> conversion | int | float | complex | basestring | list[Unknown] | tuple[Unknown, ...] | dict[Unknown, Unknown]:
     """ExtractFeaturesUsingAIModels_geoai(in_raster, mode, out_location, out_prefix, {area_of_interest}, {pretrained_models;pretrained_models...}, {additional_models;additional_models...}, {confidence_threshold}, {save_intermediate_output}, {test_time_augmentation}, {buffer_distance}, {extend_length}, {smoothing_tolerance}, {dangle_length}, {in_road_features}, {road_buffer_width}, {regularize_parcels}, {post_processing_workflow}, {out_features}, {parcel_tolerance}, {regularization_method}, {poly_tolerance})
 
-        Runs one or more pretrained deep learning models on an input raster to
-        extract features and automate the postprocessing of the inferenced
-        outputs.
+       Runs one or more pretrained deep learning models on an input raster to
+       extract features and automate the postprocessing of the inferenced
+       outputs.
 
-     INPUTS:
-      in_raster (Raster Layer / Raster Dataset / Mosaic Layer):
-          The input raster on which processing will be performed.If the mode
-          parameter is specified as Only Postprocess, a raster with
-          binary classification is expected for this parameter.
-      mode (String):
-          Specifies the mode that will be used for the processing of the input
-          raster.
+    INPUTS:
+     in_raster (Raster Layer / Raster Dataset / Mosaic Layer):
+         The input raster on which processing will be performed.If the mode
+         parameter is specified as Only Postprocess, a raster with
+         binary classification is expected for this parameter.
+     mode (String):
+         Specifies the mode that will be used for the processing of the input
+         raster.
 
-          * Infer and Postprocess-Features will be extracted from the imagery
-          and postprocessed. This is the default.
+         * Infer and Postprocess-Features will be extracted from the imagery
+         and postprocessed. This is the default.
 
-          * Only Postprocess-The input raster will be directly postprocessed. A
-          single band raster with binary classification is expected for this
-          option.
-      out_location (Workspace):
-          The file geodatabase where the intermediate output from the models and
-          the final postprocessed output will be stored.
-      out_prefix (String):
-          A prefix that will be added to the name of the outputs that will be
-          saved to the output location. The prefix will also be used as the name
-          of a group layer that will be used to display all outputs.
-      area_of_interest {Feature Set}:
-          The geographical extent that will be used to extract features. Only
-          features within the area of interest will be extracted.
-      pretrained_models {String}:
-          The ArcGIS pretrained models from ArcGIS Living Atlas of the World
-          that can be used on the provided input raster. This parameter requires
-          internet connection to download the pretrained models.
-      additional_models {Value Table}:
-          The deep learning models that can be used on the provided
-          input raster and the postprocessing workflow that will be used for
-          additional model files (.dlpk and .emd). Available postprocessing
-          workflow are as follows:
+         * Only Postprocess-The input raster will be directly postprocessed. A
+         single band raster with binary classification is expected for this
+         option.
+     out_location (Workspace):
+         The file geodatabase where the intermediate output from the models and
+         the final postprocessed output will be stored.
+     out_prefix (String):
+         A prefix that will be added to the name of the outputs that will be
+         saved to the output location. The prefix will also be used as the name
+         of a group layer that will be used to display all outputs.
+     area_of_interest {Feature Set}:
+         The geographical extent that will be used to extract features. Only
+         features within the area of interest will be extracted.
+     pretrained_models {String}:
+         The ArcGIS pretrained models from ArcGIS Living Atlas of the World
+         that can be used on the provided input raster. This parameter requires
+         internet connection to download the pretrained models.
+     additional_models {Value Table}:
+         The deep learning models that can be used on the provided
+         input raster and the postprocessing workflow that will be used for
+         additional model files (.dlpk and .emd). Available postprocessing
+         workflow are as follows:
 
-          * Line Regularization-The postprocessing workflow will extract line
-          features from a single band raster with binary classification and
-          generate a polyline feature class after refining it.
+         * Line Regularization-The postprocessing workflow will extract line
+         features from a single band raster with binary classification and
+         generate a polyline feature class after refining it.
 
-          * Parcel Regularization-The postprocessing workflow will extract
-          parcels from a single band raster with binary classification and
-          generate a polygon feature class after refining it.
+         * Parcel Regularization-The postprocessing workflow will extract
+         parcels from a single band raster with binary classification and
+         generate a polygon feature class after refining it.
 
-          * Polygon Regularization-The postprocessing workflow will generate a
-          polygon feature class after refining it. This workflow is only
-          compatible with object detection models.
+         * Polygon Regularization-The postprocessing workflow will generate a
+         polygon feature class after refining it. This workflow is only
+         compatible with object detection models.
 
-          * None-No postprocessing workflow will be applied. This is the
-          default.
-      confidence_threshold {Double}:
-          The minimum confidence of deep learning model that will be used when
-          detecting objects. The value must be between 0 and 1.
-      save_intermediate_output {Boolean}:
-          Specifies whether the intermediate outputs will be saved to the output
-          location. The term intermediate outputs refers to the results
-          generated after the model has been inferenced.
+         * None-No postprocessing workflow will be applied. This is the
+         default.
+     confidence_threshold {Double}:
+         The minimum confidence of deep learning model that will be used when
+         detecting objects. The value must be between 0 and 1.
+     save_intermediate_output {Boolean}:
+         Specifies whether the intermediate outputs will be saved to the output
+         location. The term intermediate outputs refers to the results
+         generated after the model has been inferenced.
 
-          * TRUE-The intermediate outputs will be saved to the output location.
+         * TRUE-The intermediate outputs will be saved to the output location.
 
-          * FALSE-The intermediate outputs will not be saved. This is the
-          default.
-      test_time_augmentation {Boolean}:
-          Specifies whether predictions of flipped and rotated variants of the
-          input image will be merged into the final output.
+         * FALSE-The intermediate outputs will not be saved. This is the
+         default.
+     test_time_augmentation {Boolean}:
+         Specifies whether predictions of flipped and rotated variants of the
+         input image will be merged into the final output.
 
-          * TRUE-Predictions of flipped and rotated variants of the input image
-          will be merged into the final output.
+         * TRUE-Predictions of flipped and rotated variants of the input image
+         will be merged into the final output.
 
-          * FALSE-Predictions of flipped and rotated variants of the input image
-          will not be merged into the final output. This is the default.
-      buffer_distance {Linear Unit}:
-          The distance that will be used to buffer polyline features before they
-          are used in postprocessing. The default is 15 meters.
-      extend_length {Linear Unit}:
-          The maximum distance a line segment will be extended to an
-          intersecting feature. The default is 25 meters.
-      smoothing_tolerance {Linear Unit}:
-          The tolerance used by the Polynomial Approximation with Exponential
-          Kernel (PAEK) algorithm. The default is 30 meters.
-      dangle_length {Linear Unit}:
-          The length at which line segments that do not touch another line at
-          both endpoints (dangles) will be trimmed. The default is 5 meters.
-      in_road_features {Feature Layer / Feature Class}:
-          A road feature class that will be used for refining the parcels. The
-          input can be a polygon or polyline feature class.
-      road_buffer_width {Linear Unit}:
-          The buffer distance that will be used for the Input Road Features
-          value. The default value is 5 meters for polyline features and 0
-          meters for polygon features.
-      regularize_parcels {Boolean}:
-          Specifies whether extracted parcels will be normalized by eliminating
-          undesirable artifacts in their geometry.
+         * FALSE-Predictions of flipped and rotated variants of the input image
+         will not be merged into the final output. This is the default.
+     buffer_distance {Linear Unit}:
+         The distance that will be used to buffer polyline features before they
+         are used in postprocessing. The default is 15 meters.
+     extend_length {Linear Unit}:
+         The maximum distance a line segment will be extended to an
+         intersecting feature. The default is 25 meters.
+     smoothing_tolerance {Linear Unit}:
+         The tolerance used by the Polynomial Approximation with Exponential
+         Kernel (PAEK) algorithm. The default is 30 meters.
+     dangle_length {Linear Unit}:
+         The length at which line segments that do not touch another line at
+         both endpoints (dangles) will be trimmed. The default is 5 meters.
+     in_road_features {Feature Layer / Feature Class}:
+         A road feature class that will be used for refining the parcels. The
+         input can be a polygon or polyline feature class.
+     road_buffer_width {Linear Unit}:
+         The buffer distance that will be used for the Input Road Features
+         value. The default value is 5 meters for polyline features and 0
+         meters for polygon features.
+     regularize_parcels {Boolean}:
+         Specifies whether extracted parcels will be normalized by eliminating
+         undesirable artifacts in their geometry.
 
-          * TRUE-Extracted parcels will be normalized. This is the default.
+         * TRUE-Extracted parcels will be normalized. This is the default.
 
-          * FALSE-Extracted parcels will not be normalized.
-      post_processing_workflow {String}:
-          Specifies the postprocessing workflow that will be used.
+         * FALSE-Extracted parcels will not be normalized.
+     post_processing_workflow {String}:
+         Specifies the postprocessing workflow that will be used.
 
-          * Line Regularization-The postprocessing workflow will extract line
-          features from a single band raster with binary classification and
-          generate a polyline feature class after refining it.
+         * Line Regularization-The postprocessing workflow will extract line
+         features from a single band raster with binary classification and
+         generate a polyline feature class after refining it.
 
-          * Parcel Regularization-The postprocessing workflow will extract
-          parcels from a single band raster with binary classification and
-          generate a polygon feature class after refining it.
-      parcel_tolerance {Linear Unit}:
-          The minimum distance between coordinates before they are considered
-          equal. This parameter is used to reduce slivers between extracted
-          parcels. The default is 3 meters.
-      regularization_method {String}:
-          Specifies the regularization method that will be used in
-          postprocessing.
+         * Parcel Regularization-The postprocessing workflow will extract
+         parcels from a single band raster with binary classification and
+         generate a polygon feature class after refining it.
+     parcel_tolerance {Linear Unit}:
+         The minimum distance between coordinates before they are considered
+         equal. This parameter is used to reduce slivers between extracted
+         parcels. The default is 3 meters.
+     regularization_method {String}:
+         Specifies the regularization method that will be used in
+         postprocessing.
 
-          * Right Angles-Shapes composed of 90° angles between adjoining edges
-          will be constructed. This is the default.
+         * Right Angles-Shapes composed of 90° angles between adjoining edges
+         will be constructed. This is the default.
 
-          * Right Angles and Diagonals-Shapes composed of 45° and 90° angles
-          between adjoining edges will be constructed.
+         * Right Angles and Diagonals-Shapes composed of 45° and 90° angles
+         between adjoining edges will be constructed.
 
-          * Any Angles-Shapes that form any angles between adjoining edges will
-          be constructed.
+         * Any Angles-Shapes that form any angles between adjoining edges will
+         be constructed.
 
-          * Circle-The maximum distance from the boundary of the feature being
-          processed will be used.
-      poly_tolerance {Linear Unit}:
-          The maximum distance that the regularized footprint can deviate from
-          the boundary of its originating feature. The default is 1 meter.
+         * Circle-The maximum distance from the boundary of the feature being
+         processed will be used.
+     poly_tolerance {Linear Unit}:
+         The maximum distance that the regularized footprint can deviate from
+         the boundary of its originating feature. The default is 1 meter.
 
-     OUTPUTS:
-      out_features {Feature Class}:
-          The feature class containing the postprocessed output."""
+    OUTPUTS:
+     out_features {Feature Class}:
+         The feature class containing the postprocessed output."""
     ...
 
-@gptooldoc('TrainUsingAutoDL_geoai', None)
-def TrainUsingAutoDL(in_data=..., out_model=..., pretrained_model=..., total_time_limit=..., autodl_mode=..., networks=..., save_evaluated_models=...): # -> conversion | int | float | complex | basestring | list[Unknown] | tuple[Unknown, ...] | dict[Unknown, Unknown]:
+@gptooldoc("TrainUsingAutoDL_geoai", None)
+def TrainUsingAutoDL(
+    in_data=...,
+    out_model=...,
+    pretrained_model=...,
+    total_time_limit=...,
+    autodl_mode=...,
+    networks=...,
+    save_evaluated_models=...,
+):  # -> conversion | int | float | complex | basestring | list[Unknown] | tuple[Unknown, ...] | dict[Unknown, Unknown]:
     """TrainUsingAutoDL_geoai(in_data, out_model, {pretrained_model}, {total_time_limit}, {autodl_mode}, {networks;networks...}, {save_evaluated_models})
 
-        Trains a deep learning model by building training pipelines and
-        automating much of the training process. This includes data
-        augmentation, model selection, hyperparameter tuning, and batch size
-        deduction. Its outputs include performance metrics of the best model
-        on the training data, as well as the trained deep learning model
-        package (.dlpk file) that can be used as input for the Extract
-        Features Using AI Models tool to predict on a new imagery.
+       Trains a deep learning model by building training pipelines and
+       automating much of the training process. This includes data
+       augmentation, model selection, hyperparameter tuning, and batch size
+       deduction. Its outputs include performance metrics of the best model
+       on the training data, as well as the trained deep learning model
+       package (.dlpk file) that can be used as input for the Extract
+       Features Using AI Models tool to predict on a new imagery.
 
-     INPUTS:
-      in_data (Folder):
-          The folders containing the image chips, labels, and statistics
-          required to train the model. This is the output from the Export
-          Training Data For Deep Learning tool. The metadata format of the
-          exported data must be Classified_Tiles, PASCAL_VOC_rectangles, or
-          KITTI_rectangles.
-      pretrained_model {File}:
-          A pretrained model that will be used to fine-tune the new model. The
-          input is an Esri model definition file (.emd) or a deep learning
-          package file (.dlpk).A pretrained model with similar classes can be
-          fine-tuned to fit the
-          new model. The pretrained model must have been trained with the same
-          model type and backbone model that will be used to train the new
-          model.
-      total_time_limit {Double}:
-          The total time limit in hours it will take for AutoDL model training.
-          The default is 2 hours.
-      autodl_mode {String}:
-          Specifies the AutoDL mode that will be used and how intensive the
-          AutoDL search will be.
+    INPUTS:
+     in_data (Folder):
+         The folders containing the image chips, labels, and statistics
+         required to train the model. This is the output from the Export
+         Training Data For Deep Learning tool. The metadata format of the
+         exported data must be Classified_Tiles, PASCAL_VOC_rectangles, or
+         KITTI_rectangles.
+     pretrained_model {File}:
+         A pretrained model that will be used to fine-tune the new model. The
+         input is an Esri model definition file (.emd) or a deep learning
+         package file (.dlpk).A pretrained model with similar classes can be
+         fine-tuned to fit the
+         new model. The pretrained model must have been trained with the same
+         model type and backbone model that will be used to train the new
+         model.
+     total_time_limit {Double}:
+         The total time limit in hours it will take for AutoDL model training.
+         The default is 2 hours.
+     autodl_mode {String}:
+         Specifies the AutoDL mode that will be used and how intensive the
+         AutoDL search will be.
 
-          * BASIC-The basic mode will be used. This mode is used to train all
-          selected networks without hyperparameter tuning.
+         * BASIC-The basic mode will be used. This mode is used to train all
+         selected networks without hyperparameter tuning.
 
-          * ADVANCED-The advanced mode will be used. This mode is used to
-          perform hyperparameter tuning on the top two performing models.
-      networks {String}:
-          Specifies the architectures that will be used to train the model.
+         * ADVANCED-The advanced mode will be used. This mode is used to
+         perform hyperparameter tuning on the top two performing models.
+     networks {String}:
+         Specifies the architectures that will be used to train the model.
 
-          * SingleShotDetector-The SingleShotDetector architecture will be used
-          to train the model. SingleShotDetector is used for object detection.
+         * SingleShotDetector-The SingleShotDetector architecture will be used
+         to train the model. SingleShotDetector is used for object detection.
 
-          * RetinaNet-The RetinaNet architecture will be used to train the
-          model. RetinaNet is used for object detection.
+         * RetinaNet-The RetinaNet architecture will be used to train the
+         model. RetinaNet is used for object detection.
 
-          * FasterRCNN-The FasterRCNN architecture will be used to train the
-          model. FasterRCNN is used for object detection.
+         * FasterRCNN-The FasterRCNN architecture will be used to train the
+         model. FasterRCNN is used for object detection.
 
-          * YOLOv3-The YOLOv3 architecture will be used to train the model.
-          YOLOv3 is used for object detection.
+         * YOLOv3-The YOLOv3 architecture will be used to train the model.
+         YOLOv3 is used for object detection.
 
-          * HRNet-The HRNet architecture will be used to train the model. HRNet
-          is used for pixel classification.
+         * HRNet-The HRNet architecture will be used to train the model. HRNet
+         is used for pixel classification.
 
-          * ATSS-The ATSS architecture will be used to train the model. ATSS is
-          used for object detection.
+         * ATSS-The ATSS architecture will be used to train the model. ATSS is
+         used for object detection.
 
-          * CARAFE-The CARAFE architecture will be used to train the model.
-          CARAFE is used for object detection.
+         * CARAFE-The CARAFE architecture will be used to train the model.
+         CARAFE is used for object detection.
 
-          * CascadeRCNN-The CascadeRCNN architecture will be used to train the
-          model. CascadeRCNN is used for object detection.
+         * CascadeRCNN-The CascadeRCNN architecture will be used to train the
+         model. CascadeRCNN is used for object detection.
 
-          * CascadeRPN-The CascadeRPN architecture will be used to train the
-          model. CascadeRPN is used for object detection.
+         * CascadeRPN-The CascadeRPN architecture will be used to train the
+         model. CascadeRPN is used for object detection.
 
-          * DCN-The DCN architecture will be used to train the model. DCN is
-          used for object detection.
+         * DCN-The DCN architecture will be used to train the model. DCN is
+         used for object detection.
 
-          * DeepLab-The DeepLab architecture will be used to train the model.
-          DeepLab is used for pixel classification.
+         * DeepLab-The DeepLab architecture will be used to train the model.
+         DeepLab is used for pixel classification.
 
-          * UnetClassifier-The UnetClassifier architecture will be used to train
-          the model. UnetClassifier is used for pixel classification.
+         * UnetClassifier-The UnetClassifier architecture will be used to train
+         the model. UnetClassifier is used for pixel classification.
 
-          * PSPNetClassifier-The PSPNetClassifier architecture will be used to
-          train the model. PSPNetClassifier is used for pixel classification.
+         * PSPNetClassifier-The PSPNetClassifier architecture will be used to
+         train the model. PSPNetClassifier is used for pixel classification.
 
-          * ANN-The ANN architecture will be used to train the model. ANN is
-          used for pixel classification.
+         * ANN-The ANN architecture will be used to train the model. ANN is
+         used for pixel classification.
 
-          * APCNet-The APCNet architecture will be used to train the model.
-          APCNet is used for pixel classification.
+         * APCNet-The APCNet architecture will be used to train the model.
+         APCNet is used for pixel classification.
 
-          * CCNet-The CCNet architecture will be used to train the model. CCNet
-          is used for pixel classification.
+         * CCNet-The CCNet architecture will be used to train the model. CCNet
+         is used for pixel classification.
 
-          * CGNet-The CGNet architecture will be used to train the model. CGNet
-          is used for pixel classification.
-          By default, all the networks will be used.
-      save_evaluated_models {Boolean}:
-          Specifies whether all evaluated models will be saved.
+         * CGNet-The CGNet architecture will be used to train the model. CGNet
+         is used for pixel classification.
+         By default, all the networks will be used.
+     save_evaluated_models {Boolean}:
+         Specifies whether all evaluated models will be saved.
 
-          * SAVE_ALL_MODELS-All evaluated models will be saved.
+         * SAVE_ALL_MODELS-All evaluated models will be saved.
 
-          * SAVE_BEST_MODEL-Only the best performing model will be saved. This
-          is the default.
+         * SAVE_BEST_MODEL-Only the best performing model will be saved. This
+         is the default.
 
-     OUTPUTS:
-      out_model (File):
-          The output trained model that will be saved as a deep learning package
-          (.dlpk file)."""
+    OUTPUTS:
+     out_model (File):
+         The output trained model that will be saved as a deep learning package
+         (.dlpk file)."""
     ...
 
-@gptooldoc('ClassifyTextUsingDeepLearning_geoai', None)
-def ClassifyTextUsingDeepLearning(in_table=..., text_field=..., in_model_definition_file=..., class_label_field=..., model_arguments=...): # -> conversion | int | float | complex | basestring | list[Unknown] | tuple[Unknown, ...] | dict[Unknown, Unknown]:
+@gptooldoc("ClassifyTextUsingDeepLearning_geoai", None)
+def ClassifyTextUsingDeepLearning(
+    in_table=...,
+    text_field=...,
+    in_model_definition_file=...,
+    class_label_field=...,
+    model_arguments=...,
+):  # -> conversion | int | float | complex | basestring | list[Unknown] | tuple[Unknown, ...] | dict[Unknown, Unknown]:
     """ClassifyTextUsingDeepLearning_geoai(in_table, text_field, in_model_definition_file, {class_label_field}, {model_arguments;model_arguments...})
 
-        Runs a trained text classification model on a text field in a feature
-        class or table and updates each record with an assigned class or
-        category label with each class having a confidence value.
+       Runs a trained text classification model on a text field in a feature
+       class or table and updates each record with an assigned class or
+       category label with each class having a confidence value.
 
-     INPUTS:
-      in_table (Feature Layer / Table View):
-          The input point, line, or polygon feature class, or table, containing
-          the text that will be classified and labelled.
-      text_field (Field):
-          A text field in the input feature class or table that contains the
-          text that will be classified.
-      in_model_definition_file (File):
-          The trained model that will be used for classification. The model
-          definition file can be an Esri model definition JSON file (.emd) or a
-          deep learning model package (.dlpk) stored locally.
-      class_label_field {String}:
-          The name of the field that will contain the class or category label
-          assigned by the model. The default field name is ClassLabel.
-      model_arguments {Value Table}:
-          Additional arguments, such as sequence_length or confidence_threshold,
-          that will be used to adjust the model's output.The names of the
-          arguments will be populated by the tool.The model argument
-          confidence_threshold is only applicable for
-          multilabel text classification."""
+    INPUTS:
+     in_table (Feature Layer / Table View):
+         The input point, line, or polygon feature class, or table, containing
+         the text that will be classified and labelled.
+     text_field (Field):
+         A text field in the input feature class or table that contains the
+         text that will be classified.
+     in_model_definition_file (File):
+         The trained model that will be used for classification. The model
+         definition file can be an Esri model definition JSON file (.emd) or a
+         deep learning model package (.dlpk) stored locally.
+     class_label_field {String}:
+         The name of the field that will contain the class or category label
+         assigned by the model. The default field name is ClassLabel.
+     model_arguments {Value Table}:
+         Additional arguments, such as sequence_length or confidence_threshold,
+         that will be used to adjust the model's output.The names of the
+         arguments will be populated by the tool.The model argument
+         confidence_threshold is only applicable for
+         multilabel text classification."""
     ...
 
-@gptooldoc('ExtractEntitiesUsingDeepLearning_geoai', None)
-def ExtractEntitiesUsingDeepLearning(in_folder=..., out_table=..., in_model_definition_file=..., model_arguments=..., batch_size=..., location_zone=..., in_locator=...): # -> conversion | int | float | complex | basestring | list[Unknown] | tuple[Unknown, ...] | dict[Unknown, Unknown]:
+@gptooldoc("ExtractEntitiesUsingDeepLearning_geoai", None)
+def ExtractEntitiesUsingDeepLearning(
+    in_folder=...,
+    out_table=...,
+    in_model_definition_file=...,
+    model_arguments=...,
+    batch_size=...,
+    location_zone=...,
+    in_locator=...,
+):  # -> conversion | int | float | complex | basestring | list[Unknown] | tuple[Unknown, ...] | dict[Unknown, Unknown]:
     """ExtractEntitiesUsingDeepLearning_geoai(in_folder, out_table, in_model_definition_file, {model_arguments;model_arguments...}, {batch_size}, {location_zone}, {in_locator})
 
-        Runs a trained named entity recognizer model on text files in a folder
-        to extract entities and locations (such as addresses, place or person
-        names, dates, and monetary values) in a table. If the extracted
-        entities contain an address, the tool geocodes the addresses using the
-        specified locator and produces a feature class as an output.
+       Runs a trained named entity recognizer model on text files in a folder
+       to extract entities and locations (such as addresses, place or person
+       names, dates, and monetary values) in a table. If the extracted
+       entities contain an address, the tool geocodes the addresses using the
+       specified locator and produces a feature class as an output.
 
-     INPUTS:
-      in_folder (Folder):
-          The folder containing the text files on which named entity extraction
-          will be performed.
-      in_model_definition_file (File):
-          The trained model that will be used for classification. The model
-          definition file can be an Esri model definition JSON file (.emd) or a
-          deep learning model package (.dlpk) stored locally.
-      model_arguments {Value Table}:
-          Additional arguments, such as a confidence threshold, that will be
-          used to adjust the sensitivity of the model.The names of the arguments
-          will be populated by the tool.
-      batch_size {Double}:
-          The number of training samples that will be processed at one time. The
-          default value is 4.Increasing the batch size can improve tool
-          performance; however, as
-          the batch size increases, more memory is used. If an out of memory
-          error occurs, use a smaller batch size.
-      location_zone {String}:
-          The geographic region or zone in which the addresses are expected to
-          be located. The specified text will be appended to the address
-          extracted by the model.The locator uses the location zone information
-          to identify the region
-          or geographic area in which the address is located and produces better
-          results.
-      in_locator {Address Locator}:
-          The locator that will be used to geocode addresses found in the input
-          text documents. A point is generated for each address that is geocoded
-          successfully and stored in the output feature class.
+    INPUTS:
+     in_folder (Folder):
+         The folder containing the text files on which named entity extraction
+         will be performed.
+     in_model_definition_file (File):
+         The trained model that will be used for classification. The model
+         definition file can be an Esri model definition JSON file (.emd) or a
+         deep learning model package (.dlpk) stored locally.
+     model_arguments {Value Table}:
+         Additional arguments, such as a confidence threshold, that will be
+         used to adjust the sensitivity of the model.The names of the arguments
+         will be populated by the tool.
+     batch_size {Double}:
+         The number of training samples that will be processed at one time. The
+         default value is 4.Increasing the batch size can improve tool
+         performance; however, as
+         the batch size increases, more memory is used. If an out of memory
+         error occurs, use a smaller batch size.
+     location_zone {String}:
+         The geographic region or zone in which the addresses are expected to
+         be located. The specified text will be appended to the address
+         extracted by the model.The locator uses the location zone information
+         to identify the region
+         or geographic area in which the address is located and produces better
+         results.
+     in_locator {Address Locator}:
+         The locator that will be used to geocode addresses found in the input
+         text documents. A point is generated for each address that is geocoded
+         successfully and stored in the output feature class.
 
-     OUTPUTS:
-      out_table (Feature Class / Table / Feature Layer):
-          The output feature class or table that will contain the extracted
-          entities. If a locator is provided and the model extracts addresses,
-          the feature class will be produced by geocoding the extracted
-          addresses."""
+    OUTPUTS:
+     out_table (Feature Class / Table / Feature Layer):
+         The output feature class or table that will contain the extracted
+         entities. If a locator is provided and the model extracts addresses,
+         the feature class will be produced by geocoding the extracted
+         addresses."""
     ...
 
-@gptooldoc('TrainEntityRecognitionModel_geoai', None)
-def TrainEntityRecognitionModel(in_folder=..., out_model=..., pretrained_model_file=..., address_entity=..., max_epochs=..., model_backbone=..., batch_size=..., model_arguments=..., learning_rate=..., validation_percentage=..., stop_training=..., make_trainable=...): # -> conversion | int | float | complex | basestring | list[Unknown] | tuple[Unknown, ...] | dict[Unknown, Unknown]:
+@gptooldoc("TrainEntityRecognitionModel_geoai", None)
+def TrainEntityRecognitionModel(
+    in_folder=...,
+    out_model=...,
+    pretrained_model_file=...,
+    address_entity=...,
+    max_epochs=...,
+    model_backbone=...,
+    batch_size=...,
+    model_arguments=...,
+    learning_rate=...,
+    validation_percentage=...,
+    stop_training=...,
+    make_trainable=...,
+):  # -> conversion | int | float | complex | basestring | list[Unknown] | tuple[Unknown, ...] | dict[Unknown, Unknown]:
     """TrainEntityRecognitionModel_geoai(in_folder, out_model, {pretrained_model_file}, {address_entity}, {max_epochs}, {model_backbone}, {batch_size}, {model_arguments;model_arguments...}, {learning_rate}, {validation_percentage}, {stop_training}, {make_trainable})
 
-        Trains a named entity recognition model to extract a predefined set of
-        entities from raw text.
+       Trains a named entity recognition model to extract a predefined set of
+       entities from raw text.
 
-     INPUTS:
-      in_folder (Folder):
-          A folder containing training data in the form of standard datasets for
-          NER tasks. The training data must be in .json or .csv files. The file
-          format determines the dataset type of the input. The following
-          are the supported dataset types:
+    INPUTS:
+     in_folder (Folder):
+         A folder containing training data in the form of standard datasets for
+         NER tasks. The training data must be in .json or .csv files. The file
+         format determines the dataset type of the input. The following
+         are the supported dataset types:
 
-          * ner_json-The training data folder should contain a .json file with
-          text and the labelled entities formatted using the spaCy JSON training
-          format.
+         * ner_json-The training data folder should contain a .json file with
+         text and the labelled entities formatted using the spaCy JSON training
+         format.
 
-          * IOB-The IOB (I - inside, O - outside, B - beginning tags)
-          format proposed by Ramshaw and Marcus in the paper "Text Chunking
-          using Transformation-Based Learning". The training data
-          folder should contain the following two .csv files:
+         * IOB-The IOB (I - inside, O - outside, B - beginning tags)
+         format proposed by Ramshaw and Marcus in the paper "Text Chunking
+         using Transformation-Based Learning". The training data
+         folder should contain the following two .csv files:
 
-          * token.csv-Contains text as input chunks.
+         * token.csv-Contains text as input chunks.
 
-          * tags.csv-Contains IOB tags for the text chunks.
+         * tags.csv-Contains IOB tags for the text chunks.
 
-          * BILUO-An extension of the IOB format that additionally
-          contains 'L - last and U - unit tags. The training data
-          folder should contain the following two .csv files:
+         * BILUO-An extension of the IOB format that additionally
+         contains 'L - last and U - unit tags. The training data
+         folder should contain the following two .csv files:
 
-          * token.csv-Contains text as input chunks.
+         * token.csv-Contains text as input chunks.
 
-          * tags.csv-Contains BILUO tags for the text chunks.
-      pretrained_model_file {File}:
-          A pretrained model that will be used to fine-tune the new model. The
-          input can be an Esri model definition file (.emd) or a deep learning
-          package file (.dlpk).A pretrained model with similar entities can be
-          fine-tuned to fit the
-          new model. The pretrained model must have been trained with the same
-          model type and backbone model that will be used to train the new
-          model.
-      address_entity {String}:
-          An address entity that will be treated as a location. During
-          inference, such entities will be geocoded using the specified locator,
-          and a feature class will be produced as a result of the entity
-          extraction process. If a locator is not provided or the trained model
-          does not extract address entities, a table containing the extracted
-          entities will be produced instead.
-      max_epochs {Long}:
-          The maximum number of epochs for which the model will be trained. A
-          maximum epoch value of 1 means the dataset will be passed forward and
-          backward through the neural network one time. The default value is 5.
-      model_backbone {String}:
-          Specifies the preconfigured neural network that will be used as the
-          architecture for training the new model.
+         * tags.csv-Contains BILUO tags for the text chunks.
+     pretrained_model_file {File}:
+         A pretrained model that will be used to fine-tune the new model. The
+         input can be an Esri model definition file (.emd) or a deep learning
+         package file (.dlpk).A pretrained model with similar entities can be
+         fine-tuned to fit the
+         new model. The pretrained model must have been trained with the same
+         model type and backbone model that will be used to train the new
+         model.
+     address_entity {String}:
+         An address entity that will be treated as a location. During
+         inference, such entities will be geocoded using the specified locator,
+         and a feature class will be produced as a result of the entity
+         extraction process. If a locator is not provided or the trained model
+         does not extract address entities, a table containing the extracted
+         entities will be produced instead.
+     max_epochs {Long}:
+         The maximum number of epochs for which the model will be trained. A
+         maximum epoch value of 1 means the dataset will be passed forward and
+         backward through the neural network one time. The default value is 5.
+     model_backbone {String}:
+         Specifies the preconfigured neural network that will be used as the
+         architecture for training the new model.
 
-          * bert-base-cased-The model will be trained using the BERT neural
-          network. BERT is pretrained using the masked language modeling
-          objective and next sentence prediction.
+         * bert-base-cased-The model will be trained using the BERT neural
+         network. BERT is pretrained using the masked language modeling
+         objective and next sentence prediction.
 
-          * roberta-base-The model will be trained using the RoBERTa neural
-          network. RoBERTa modifies the key hyperparameters of BERT, eliminating
-          the pretraining objective and training of the next sentence with small
-          batches and higher learning rates.
+         * roberta-base-The model will be trained using the RoBERTa neural
+         network. RoBERTa modifies the key hyperparameters of BERT, eliminating
+         the pretraining objective and training of the next sentence with small
+         batches and higher learning rates.
 
-          * albert-base-v1-The model will be trained using the ALBERT neural
-          network. ALBERT uses a self-supervised loss that focuses on modeling
-          intersentence coherence, resulting in better scalability than BERT.
+         * albert-base-v1-The model will be trained using the ALBERT neural
+         network. ALBERT uses a self-supervised loss that focuses on modeling
+         intersentence coherence, resulting in better scalability than BERT.
 
-          * xlnet-base-cased-The model will be trained using the XLNet neural
-          network. XLNet is a generalized autoregressive pretraining method. It
-          allows learning bidirectional contexts by maximizing the expected
-          probability on all permutations of the factorization order, which
-          overcomes BERT's drawbacks.
+         * xlnet-base-cased-The model will be trained using the XLNet neural
+         network. XLNet is a generalized autoregressive pretraining method. It
+         allows learning bidirectional contexts by maximizing the expected
+         probability on all permutations of the factorization order, which
+         overcomes BERT's drawbacks.
 
-          * xlm-roberta-base-The model will be trained using the XLM-RoBERTa
-          neural network. XLM-RoBERTa is a multilingual model trained on 100
-          different languages. Unlike some XLM multilingual models, it does not
-          require language tensors to understand which language is used and
-          identifies the correct language from the input IDs.
+         * xlm-roberta-base-The model will be trained using the XLM-RoBERTa
+         neural network. XLM-RoBERTa is a multilingual model trained on 100
+         different languages. Unlike some XLM multilingual models, it does not
+         require language tensors to understand which language is used and
+         identifies the correct language from the input IDs.
 
-          * distilroberta-base-DistilRoBERTa is an English language model
-          pretrained with the supervision of roberta-base solely on
-          OpenWebTextCorpus, a reproduction of OpenAI's WebText dataset.
+         * distilroberta-base-DistilRoBERTa is an English language model
+         pretrained with the supervision of roberta-base solely on
+         OpenWebTextCorpus, a reproduction of OpenAI's WebText dataset.
 
-          * distilbert-base-cased-The model will be trained using the DistilBERT
-          neural network. DistilBERT is a smaller general-purpose language
-          representation model.
+         * distilbert-base-cased-The model will be trained using the DistilBERT
+         neural network. DistilBERT is a smaller general-purpose language
+         representation model.
 
-          * spacy-The model will be trained using the SpaCy neural network.
-          SpaCy is an open-source library for advanced natural language
-          processing.
-      batch_size {Double}:
-          The number of training samples that will be processed at one time.
-          This parameter is not applicable to models with the spaCy backbone.
-          The default value is 2.Increasing the batch size can improve tool
-          performance; however, as
-          the batch size increases, more memory is used. If an out of memory
-          error occurs, use a smaller batch size.
-      model_arguments {Value Table}:
-          Additional arguments for initializing the model, such as seq_len for
-          the maximum sequence length of the training data, that will be
-          considered for training the model.See keyword arguments in the
-          EntityRecognizer documentation for the
-          list of supported models arguments that can be used.
-      learning_rate {Double}:
-          The step size indicating how much the model weights will be adjusted
-          during the training process. If no value is specified, an optimal
-          learning rate will be deduced automatically.
-      validation_percentage {Double}:
-          The percentage of training samples that will be used for validating
-          the model. The default value is 10.
-      stop_training {Boolean}:
-          Specifies whether model training will stop when the model is no longer
-          improving or until the max_epochs parameter value is reached.
+         * spacy-The model will be trained using the SpaCy neural network.
+         SpaCy is an open-source library for advanced natural language
+         processing.
+     batch_size {Double}:
+         The number of training samples that will be processed at one time.
+         This parameter is not applicable to models with the spaCy backbone.
+         The default value is 2.Increasing the batch size can improve tool
+         performance; however, as
+         the batch size increases, more memory is used. If an out of memory
+         error occurs, use a smaller batch size.
+     model_arguments {Value Table}:
+         Additional arguments for initializing the model, such as seq_len for
+         the maximum sequence length of the training data, that will be
+         considered for training the model.See keyword arguments in the
+         EntityRecognizer documentation for the
+         list of supported models arguments that can be used.
+     learning_rate {Double}:
+         The step size indicating how much the model weights will be adjusted
+         during the training process. If no value is specified, an optimal
+         learning rate will be deduced automatically.
+     validation_percentage {Double}:
+         The percentage of training samples that will be used for validating
+         the model. The default value is 10.
+     stop_training {Boolean}:
+         Specifies whether model training will stop when the model is no longer
+         improving or until the max_epochs parameter value is reached.
 
-          * STOP_TRAINING-The model training will stop when the model is no
-          longer improving, regardless of the max_epochs parameter value
-          specified. This is the default.
+         * STOP_TRAINING-The model training will stop when the model is no
+         longer improving, regardless of the max_epochs parameter value
+         specified. This is the default.
 
-          * CONTINUE_TRAINING-The model training will continue until the
-          max_epochs parameter value is reached.
-      make_trainable {Boolean}:
-          Specifies whether the backbone layers in the pretrained model will be
-          frozen, so that the weights and biases remain as originally designed.
+         * CONTINUE_TRAINING-The model training will continue until the
+         max_epochs parameter value is reached.
+     make_trainable {Boolean}:
+         Specifies whether the backbone layers in the pretrained model will be
+         frozen, so that the weights and biases remain as originally designed.
 
-          * TRAIN_MODEL_BACKBONE-The backbone layers will not be frozen, and the
-          weights and biases of the model_backbone parameter value can be
-          altered to fit the training samples. This takes more time to process
-          but typically produces better results. This is the default.
+         * TRAIN_MODEL_BACKBONE-The backbone layers will not be frozen, and the
+         weights and biases of the model_backbone parameter value can be
+         altered to fit the training samples. This takes more time to process
+         but typically produces better results. This is the default.
 
-          * FREEZE_MODEL_BACKBONE-The backbone layers will be frozen, and the
-          predefined weights and biases of the model_backbone parameter value
-          will not be altered during training.
+         * FREEZE_MODEL_BACKBONE-The backbone layers will be frozen, and the
+         predefined weights and biases of the model_backbone parameter value
+         will not be altered during training.
 
-     OUTPUTS:
-      out_model (Folder):
-          The output folder location that will store the trained model."""
+    OUTPUTS:
+     out_model (Folder):
+         The output folder location that will store the trained model."""
     ...
 
-@gptooldoc('TrainTextClassificationModel_geoai', None)
-def TrainTextClassificationModel(in_table=..., text_field=..., label_field=..., out_model=..., pretrained_model_file=..., max_epochs=..., model_backbone=..., batch_size=..., model_arguments=..., learning_rate=..., validation_percentage=..., stop_training=..., make_trainable=..., remove_html_tags=..., remove_urls=...): # -> conversion | int | float | complex | basestring | list[Unknown] | tuple[Unknown, ...] | dict[Unknown, Unknown]:
+@gptooldoc("TrainTextClassificationModel_geoai", None)
+def TrainTextClassificationModel(
+    in_table=...,
+    text_field=...,
+    label_field=...,
+    out_model=...,
+    pretrained_model_file=...,
+    max_epochs=...,
+    model_backbone=...,
+    batch_size=...,
+    model_arguments=...,
+    learning_rate=...,
+    validation_percentage=...,
+    stop_training=...,
+    make_trainable=...,
+    remove_html_tags=...,
+    remove_urls=...,
+):  # -> conversion | int | float | complex | basestring | list[Unknown] | tuple[Unknown, ...] | dict[Unknown, Unknown]:
     """TrainTextClassificationModel_geoai(in_table, text_field, label_field;label_field..., out_model, {pretrained_model_file}, {max_epochs}, {model_backbone}, {batch_size}, {model_arguments;model_arguments...}, {learning_rate}, {validation_percentage}, {stop_training}, {make_trainable}, {remove_html_tags}, {remove_urls})
 
-        Trains a single or multilabel text classification model to assign a
-        predefined category or label to unstructured text.
+       Trains a single or multilabel text classification model to assign a
+       predefined category or label to unstructured text.
 
-     INPUTS:
-      in_table (Feature Class / Table View / Feature Layer):
-          A feature class or table containing a text field with the input text
-          for the model and a label field containing the target class labels.
-      text_field (Field):
-          A text field in the input feature class or table that contains the
-          text that will be classified by the model.
-      label_field (Field):
-          A text field in the input feature class or table that contains the
-          target class labels for training the model. In the case of multilabel
-          text classification, specify more than one text field.
-      pretrained_model_file {File}:
-          A pretrained model that will be used to fine-tune the new model. The
-          input can be an Esri model definition file (.emd) or a deep learning
-          package file (.dlpk).A pretrained model with similar classes can be
-          fine-tuned to fit the
-          new model. The pretrained model must have been trained with the same
-          model type and backbone model that will be used to train the new
-          model.
-      max_epochs {Long}:
-          The maximum number of epochs for which the model will be trained. A
-          maximum epoch value of 1 means the dataset will be passed forward and
-          backward through the neural network one time. The default value is 5.
-      model_backbone {String}:
-          Specifies the preconfigured neural network that will serve as the
-          encoder for the model and extract feature representations of the input
-          text in the form of fixed length vectors. These vectors are then
-          passed as input to the classification head of the model.
+    INPUTS:
+     in_table (Feature Class / Table View / Feature Layer):
+         A feature class or table containing a text field with the input text
+         for the model and a label field containing the target class labels.
+     text_field (Field):
+         A text field in the input feature class or table that contains the
+         text that will be classified by the model.
+     label_field (Field):
+         A text field in the input feature class or table that contains the
+         target class labels for training the model. In the case of multilabel
+         text classification, specify more than one text field.
+     pretrained_model_file {File}:
+         A pretrained model that will be used to fine-tune the new model. The
+         input can be an Esri model definition file (.emd) or a deep learning
+         package file (.dlpk).A pretrained model with similar classes can be
+         fine-tuned to fit the
+         new model. The pretrained model must have been trained with the same
+         model type and backbone model that will be used to train the new
+         model.
+     max_epochs {Long}:
+         The maximum number of epochs for which the model will be trained. A
+         maximum epoch value of 1 means the dataset will be passed forward and
+         backward through the neural network one time. The default value is 5.
+     model_backbone {String}:
+         Specifies the preconfigured neural network that will serve as the
+         encoder for the model and extract feature representations of the input
+         text in the form of fixed length vectors. These vectors are then
+         passed as input to the classification head of the model.
 
-          * bert-base-cased-The model will be trained using the BERT neural
-          network. BERT is pretrained using the masked language modeling
-          objective and next sentence prediction.
+         * bert-base-cased-The model will be trained using the BERT neural
+         network. BERT is pretrained using the masked language modeling
+         objective and next sentence prediction.
 
-          * roberta-base-The model will be trained using the RoBERTa neural
-          network. RoBERTa modifies the key hyperparameters of BERT, eliminating
-          the pretraining objective and training of the next sentence with small
-          batches and higher learning rates.
+         * roberta-base-The model will be trained using the RoBERTa neural
+         network. RoBERTa modifies the key hyperparameters of BERT, eliminating
+         the pretraining objective and training of the next sentence with small
+         batches and higher learning rates.
 
-          * albert-base-v1-The model will be trained using the ALBERT neural
-          network. ALBERT uses a self-supervised loss that focuses on modeling
-          intersentence coherence, resulting in better scalability than BERT.
+         * albert-base-v1-The model will be trained using the ALBERT neural
+         network. ALBERT uses a self-supervised loss that focuses on modeling
+         intersentence coherence, resulting in better scalability than BERT.
 
-          * xlnet-base-cased-The model will be trained using the XLNet neural
-          network. XLNet is a generalized autoregressive pretraining method. It
-          allows learning bidirectional contexts by maximizing the expected
-          probability on all permutations of the factorization order, which
-          overcomes BERT's drawbacks.
+         * xlnet-base-cased-The model will be trained using the XLNet neural
+         network. XLNet is a generalized autoregressive pretraining method. It
+         allows learning bidirectional contexts by maximizing the expected
+         probability on all permutations of the factorization order, which
+         overcomes BERT's drawbacks.
 
-          * xlm-roberta-base-The model will be trained using the XLM-RoBERTa
-          neural network. XLM-RoBERTa is a multilingual model trained on 100
-          different languages. Unlike some XLM multilingual models, it does not
-          require language tensors to understand which language is used and
-          identifies the correct language from the input IDs.
+         * xlm-roberta-base-The model will be trained using the XLM-RoBERTa
+         neural network. XLM-RoBERTa is a multilingual model trained on 100
+         different languages. Unlike some XLM multilingual models, it does not
+         require language tensors to understand which language is used and
+         identifies the correct language from the input IDs.
 
-          * distilroberta-base-The model will be trained using the DistilRoBERTa
-          neural network. DistilRoBERTa is an English language model pretrained
-          with the supervision of roberta-base solely on OpenWebTextCorpus, a
-          reproduction of OpenAI's WebText dataset.
+         * distilroberta-base-The model will be trained using the DistilRoBERTa
+         neural network. DistilRoBERTa is an English language model pretrained
+         with the supervision of roberta-base solely on OpenWebTextCorpus, a
+         reproduction of OpenAI's WebText dataset.
 
-          * distilbert-base-cased-The model will be trained using the DistilBERT
-          neural network. DistilBERT is a smaller general-purpose language
-          representation model.
-      batch_size {Double}:
-          The number of training samples that will be processed at one time. The
-          default value is 2.Increasing the batch size can improve tool
-          performance; however, as
-          the batch size increases, more memory is used. If an out of memory
-          error occurs, use a smaller batch size.
-      model_arguments {Value Table}:
-          Additional arguments for initializing the model, such as seq_len for
-          the maximum sequence length of the training data, that will be
-          considered for training the model.See keyword arguments in the
-          TextClassifier documentation for the list
-          of supported model arguments that can be used.
-      learning_rate {Double}:
-          The step size indicating how much the model weights will be adjusted
-          during the training process. If no value is specified, an optimal
-          learning rate will be determined automatically.
-      validation_percentage {Double}:
-          The percentage of training samples that will be used for validating
-          the model. The default value is 10.
-      stop_training {Boolean}:
-          Specifies whether model training will stop when the model is no longer
-          improving or until the max_epochs parameter value is reached.
+         * distilbert-base-cased-The model will be trained using the DistilBERT
+         neural network. DistilBERT is a smaller general-purpose language
+         representation model.
+     batch_size {Double}:
+         The number of training samples that will be processed at one time. The
+         default value is 2.Increasing the batch size can improve tool
+         performance; however, as
+         the batch size increases, more memory is used. If an out of memory
+         error occurs, use a smaller batch size.
+     model_arguments {Value Table}:
+         Additional arguments for initializing the model, such as seq_len for
+         the maximum sequence length of the training data, that will be
+         considered for training the model.See keyword arguments in the
+         TextClassifier documentation for the list
+         of supported model arguments that can be used.
+     learning_rate {Double}:
+         The step size indicating how much the model weights will be adjusted
+         during the training process. If no value is specified, an optimal
+         learning rate will be determined automatically.
+     validation_percentage {Double}:
+         The percentage of training samples that will be used for validating
+         the model. The default value is 10.
+     stop_training {Boolean}:
+         Specifies whether model training will stop when the model is no longer
+         improving or until the max_epochs parameter value is reached.
 
-          * STOP_TRAINING-The model training will stop when the model is no
-          longer improving, regardless of the max_epochs parameter value
-          specified. This is the default.
+         * STOP_TRAINING-The model training will stop when the model is no
+         longer improving, regardless of the max_epochs parameter value
+         specified. This is the default.
 
-          * CONTINUE_TRAINING-The model training will continue until the
-          max_epochs parameter value is reached.
-      make_trainable {Boolean}:
-          Specifies whether the backbone layers in the pretrained model will be
-          frozen, so that the weights and biases remain as originally designed.
+         * CONTINUE_TRAINING-The model training will continue until the
+         max_epochs parameter value is reached.
+     make_trainable {Boolean}:
+         Specifies whether the backbone layers in the pretrained model will be
+         frozen, so that the weights and biases remain as originally designed.
 
-          * TRAIN_MODEL_BACKBONE-The backbone layers will not be frozen, and the
-          weights and biases of the model_backbone parameter value can be
-          altered to fit the training samples. This takes more time to process
-          but typically produces better results. This is the default.
+         * TRAIN_MODEL_BACKBONE-The backbone layers will not be frozen, and the
+         weights and biases of the model_backbone parameter value can be
+         altered to fit the training samples. This takes more time to process
+         but typically produces better results. This is the default.
 
-          * FREEZE_MODEL_BACKBONE-The backbone layers will be frozen, and the
-          predefined weights and biases of the model_backbone parameter value
-          will not be altered during training.
-      remove_html_tags {Boolean}:
-          Specifies whether HTML tags will be removed from the input text.
+         * FREEZE_MODEL_BACKBONE-The backbone layers will be frozen, and the
+         predefined weights and biases of the model_backbone parameter value
+         will not be altered during training.
+     remove_html_tags {Boolean}:
+         Specifies whether HTML tags will be removed from the input text.
 
-          * REMOVE_HTML_TAGS-The HTML tags in the input text will be removed.
-          This is the default.
+         * REMOVE_HTML_TAGS-The HTML tags in the input text will be removed.
+         This is the default.
 
-          * DO_NOT_REMOVE_HTML_TAGS-The HTML tags in the input text will not be
-          removed.
-      remove_urls {Boolean}:
-          Specifies whether URLs will be removed from the input text.
+         * DO_NOT_REMOVE_HTML_TAGS-The HTML tags in the input text will not be
+         removed.
+     remove_urls {Boolean}:
+         Specifies whether URLs will be removed from the input text.
 
-          * REMOVE_URLS-The URLs in the input text will be removed. This is the
-          default.
+         * REMOVE_URLS-The URLs in the input text will be removed. This is the
+         default.
 
-          * DO_NOT_REMOVE_URLS-The URLs in the input text will not be removed.
+         * DO_NOT_REMOVE_URLS-The URLs in the input text will not be removed.
 
-     OUTPUTS:
-      out_model (Folder):
-          The output folder location that will store the trained model."""
+    OUTPUTS:
+     out_model (Folder):
+         The output folder location that will store the trained model."""
     ...
 
-@gptooldoc('TrainTextTransformationModel_geoai', None)
-def TrainTextTransformationModel(in_table=..., text_field=..., label_field=..., out_model=..., pretrained_model_file=..., max_epochs=..., model_backbone=..., batch_size=..., model_arguments=..., learning_rate=..., validation_percentage=..., stop_training=..., make_trainable=..., remove_html_tags=..., remove_urls=...): # -> conversion | int | float | complex | basestring | list[Unknown] | tuple[Unknown, ...] | dict[Unknown, Unknown]:
+@gptooldoc("TrainTextTransformationModel_geoai", None)
+def TrainTextTransformationModel(
+    in_table=...,
+    text_field=...,
+    label_field=...,
+    out_model=...,
+    pretrained_model_file=...,
+    max_epochs=...,
+    model_backbone=...,
+    batch_size=...,
+    model_arguments=...,
+    learning_rate=...,
+    validation_percentage=...,
+    stop_training=...,
+    make_trainable=...,
+    remove_html_tags=...,
+    remove_urls=...,
+):  # -> conversion | int | float | complex | basestring | list[Unknown] | tuple[Unknown, ...] | dict[Unknown, Unknown]:
     """TrainTextTransformationModel_geoai(in_table, text_field, label_field, out_model, {pretrained_model_file}, {max_epochs}, {model_backbone}, {batch_size}, {model_arguments;model_arguments...}, {learning_rate}, {validation_percentage}, {stop_training}, {make_trainable}, {remove_html_tags}, {remove_urls})
 
-        Trains a text transformation model to transform, translate, or
-        summarize text.
+       Trains a text transformation model to transform, translate, or
+       summarize text.
 
-     INPUTS:
-      in_table (Feature Class / Table View / Feature Layer):
-          A feature class or table containing a text field with the input text
-          for the model and a label field containing the target transformed
-          text.
-      text_field (Field):
-          A text field in the input feature class or table that contains the
-          input text that will be transformed by the model.
-      label_field (Field):
-          A text field in the input feature class or table that contains the
-          target transformed text for training the model.
-      pretrained_model_file {File}:
-          A pretrained model that will be used to fine-tune the new model. The
-          input can be an Esri model definition file (.emd) or a deep learning
-          package file (.dlpk).A pretrained model that performs a similar task
-          can be fine-tuned to
-          fit the training data. The pretrained model must have been trained
-          with the same model type and backbone model that will be used to train
-          the new model.
-      max_epochs {Long}:
-          The maximum number of epochs for which the model will be trained. A
-          maximum epoch value of 1 means the dataset will be passed forward and
-          backward through the neural network one time. The default value is 5.
-      model_backbone {String}:
-          Specifies the preconfigured neural network that will be used as the
-          architecture for training the new model.
+    INPUTS:
+     in_table (Feature Class / Table View / Feature Layer):
+         A feature class or table containing a text field with the input text
+         for the model and a label field containing the target transformed
+         text.
+     text_field (Field):
+         A text field in the input feature class or table that contains the
+         input text that will be transformed by the model.
+     label_field (Field):
+         A text field in the input feature class or table that contains the
+         target transformed text for training the model.
+     pretrained_model_file {File}:
+         A pretrained model that will be used to fine-tune the new model. The
+         input can be an Esri model definition file (.emd) or a deep learning
+         package file (.dlpk).A pretrained model that performs a similar task
+         can be fine-tuned to
+         fit the training data. The pretrained model must have been trained
+         with the same model type and backbone model that will be used to train
+         the new model.
+     max_epochs {Long}:
+         The maximum number of epochs for which the model will be trained. A
+         maximum epoch value of 1 means the dataset will be passed forward and
+         backward through the neural network one time. The default value is 5.
+     model_backbone {String}:
+         Specifies the preconfigured neural network that will be used as the
+         architecture for training the new model.
 
-          * t5-small-The new model will be trained using the T5 neural network.
-          T5 is a unified framework that converts every language problem into a
-          text-to-text format. t5-small is the small variant of T5.
+         * t5-small-The new model will be trained using the T5 neural network.
+         T5 is a unified framework that converts every language problem into a
+         text-to-text format. t5-small is the small variant of T5.
 
-          * t5-base-The new model will be trained using the T5 neural network.
-          T5 is a unified framework that converts every language problem into a
-          text-to-text format. t5-base is the medium variant of T5.
+         * t5-base-The new model will be trained using the T5 neural network.
+         T5 is a unified framework that converts every language problem into a
+         text-to-text format. t5-base is the medium variant of T5.
 
-          * t5-large-The new model will be trained using the T5 neural network.
-          T5 is a unified framework that converts every language problem into a
-          text-to-text format. t5-large is the large variant of T5.
-      batch_size {Double}:
-          The number of training samples that will be processed at one time. The
-          default value is 2.Increasing the batch size can improve tool
-          performance; however, as
-          the batch size increases, more memory is used. If an out of memory
-          error occurs, use a smaller batch size.
-      model_arguments {Value Table}:
-          Additional arguments for initializing the model, such as seq_len for
-          the maximum sequence length of the training data, that will be
-          considered for training the model.See keyword arguments in the
-          SequenceToSequence documentation for the
-          list of supported models arguments that can be used.
-      learning_rate {Double}:
-          The step size indicating how much the model weights will be adjusted
-          during the training process. If no value is specified, an optimal
-          learning rate will be deduced automatically.
-      validation_percentage {Double}:
-          The percentage of training samples that will be used for validating
-          the model. The default value is 10.
-      stop_training {Boolean}:
-          Specifies whether model training will stop when the model is no longer
-          improving or until the max_epochs parameter value is reached.
+         * t5-large-The new model will be trained using the T5 neural network.
+         T5 is a unified framework that converts every language problem into a
+         text-to-text format. t5-large is the large variant of T5.
+     batch_size {Double}:
+         The number of training samples that will be processed at one time. The
+         default value is 2.Increasing the batch size can improve tool
+         performance; however, as
+         the batch size increases, more memory is used. If an out of memory
+         error occurs, use a smaller batch size.
+     model_arguments {Value Table}:
+         Additional arguments for initializing the model, such as seq_len for
+         the maximum sequence length of the training data, that will be
+         considered for training the model.See keyword arguments in the
+         SequenceToSequence documentation for the
+         list of supported models arguments that can be used.
+     learning_rate {Double}:
+         The step size indicating how much the model weights will be adjusted
+         during the training process. If no value is specified, an optimal
+         learning rate will be deduced automatically.
+     validation_percentage {Double}:
+         The percentage of training samples that will be used for validating
+         the model. The default value is 10.
+     stop_training {Boolean}:
+         Specifies whether model training will stop when the model is no longer
+         improving or until the max_epochs parameter value is reached.
 
-          * STOP_TRAINING-The model training will stop when the model is no
-          longer improving, regardless of the max_epochs parameter value
-          specified. This is the default.
+         * STOP_TRAINING-The model training will stop when the model is no
+         longer improving, regardless of the max_epochs parameter value
+         specified. This is the default.
 
-          * CONTINUE_TRAINING-The model training will continue until the
-          max_epochs parameter value is reached.
-      make_trainable {Boolean}:
-          Specifies whether the backbone layers in the pretrained model will be
-          frozen, so that the weights and biases remain as originally designed.
+         * CONTINUE_TRAINING-The model training will continue until the
+         max_epochs parameter value is reached.
+     make_trainable {Boolean}:
+         Specifies whether the backbone layers in the pretrained model will be
+         frozen, so that the weights and biases remain as originally designed.
 
-          * TRAIN_MODEL_BACKBONE-The backbone layers will not be frozen, and the
-          weights and biases of the model_backbone parameter value can be
-          altered to fit the training samples. This takes more time to process
-          but typically produces better results. This is the default.
+         * TRAIN_MODEL_BACKBONE-The backbone layers will not be frozen, and the
+         weights and biases of the model_backbone parameter value can be
+         altered to fit the training samples. This takes more time to process
+         but typically produces better results. This is the default.
 
-          * FREEZE_MODEL_BACKBONE-The backbone layers will be frozen, and the
-          predefined weights and biases of the model_backbone parameter value
-          will not be altered during training.
-      remove_html_tags {Boolean}:
-          Specifies whether HTML tags will be removed from the input text.
+         * FREEZE_MODEL_BACKBONE-The backbone layers will be frozen, and the
+         predefined weights and biases of the model_backbone parameter value
+         will not be altered during training.
+     remove_html_tags {Boolean}:
+         Specifies whether HTML tags will be removed from the input text.
 
-          * REMOVE_HTML_TAGS-The HTML tags in the input text will be removed.
-          This is the default.
+         * REMOVE_HTML_TAGS-The HTML tags in the input text will be removed.
+         This is the default.
 
-          * DO_NOT_REMOVE_HTML_TAGS-The HTML tags in the input text will not be
-          removed.
-      remove_urls {Boolean}:
-          Specifies whether URLs will be removed from the input text.
+         * DO_NOT_REMOVE_HTML_TAGS-The HTML tags in the input text will not be
+         removed.
+     remove_urls {Boolean}:
+         Specifies whether URLs will be removed from the input text.
 
-          * REMOVE_URLS-The URLs in the input text will be removed. This is the
-          default.
+         * REMOVE_URLS-The URLs in the input text will be removed. This is the
+         default.
 
-          * DO_NOT_REMOVE_URLS-The URLs in the input text will not be removed.
+         * DO_NOT_REMOVE_URLS-The URLs in the input text will not be removed.
 
-     OUTPUTS:
-      out_model (Folder):
-          The output folder location that will store the trained model."""
+    OUTPUTS:
+     out_model (Folder):
+         The output folder location that will store the trained model."""
     ...
 
-@gptooldoc('TransformTextUsingDeepLearning_geoai', None)
-def TransformTextUsingDeepLearning(in_table=..., text_field=..., in_model_definition_file=..., result_field=..., model_arguments=..., batch_size=..., minimum_sequence_length=..., maximum_sequence_length=...): # -> conversion | int | float | complex | basestring | list[Unknown] | tuple[Unknown, ...] | dict[Unknown, Unknown]:
+@gptooldoc("TransformTextUsingDeepLearning_geoai", None)
+def TransformTextUsingDeepLearning(
+    in_table=...,
+    text_field=...,
+    in_model_definition_file=...,
+    result_field=...,
+    model_arguments=...,
+    batch_size=...,
+    minimum_sequence_length=...,
+    maximum_sequence_length=...,
+):  # -> conversion | int | float | complex | basestring | list[Unknown] | tuple[Unknown, ...] | dict[Unknown, Unknown]:
     """TransformTextUsingDeepLearning_geoai(in_table, text_field, in_model_definition_file, {result_field}, {model_arguments;model_arguments...}, {batch_size}, {minimum_sequence_length}, {maximum_sequence_length})
 
-        Runs a trained sequence-to-sequence model on a text field in a feature
-        class or table and updates it with a new field containing the
-        converted, transformed, or translated text.
+       Runs a trained sequence-to-sequence model on a text field in a feature
+       class or table and updates it with a new field containing the
+       converted, transformed, or translated text.
 
-     INPUTS:
-      in_table (Feature Layer / Table View / Feature Class):
-          The input point, line, or polygon feature class, or table, containing
-          the text that will be transformed.
-      text_field (Field):
-          A text field in the input feature class or table that contains the
-          text that will be transformed.
-      in_model_definition_file (File):
-          The trained model that will be used for classification. The model
-          definition file can be an Esri model definition JSON file (.emd) or a
-          deep learning model package (.dlpk) stored locally.
-      result_field {String}:
-          The name of the field that will contain the transformed text in the
-          output feature class or table. The default field name is Result.
-      model_arguments {Value Table}:
-          Additional arguments, such as a confidence threshold, that will be
-          used to adjust the sensitivity of the model.The names of the arguments
-          will be populated by the tool.
-      batch_size {Double}:
-          The number of training samples that will be processed at one time. The
-          default value is 4.Increasing the batch size can improve tool
-          performance; however, as
-          the batch size increases, more memory is used. If an out of memory
-          error occurs, use a smaller batch size.
-      minimum_sequence_length {Double}:
-          The minimum number of characters for the output text string. The
-          default value is 20.
-      maximum_sequence_length {Double}:
-          The maximum number of characters for the output text string. The
-          default value is 50."""
+    INPUTS:
+     in_table (Feature Layer / Table View / Feature Class):
+         The input point, line, or polygon feature class, or table, containing
+         the text that will be transformed.
+     text_field (Field):
+         A text field in the input feature class or table that contains the
+         text that will be transformed.
+     in_model_definition_file (File):
+         The trained model that will be used for classification. The model
+         definition file can be an Esri model definition JSON file (.emd) or a
+         deep learning model package (.dlpk) stored locally.
+     result_field {String}:
+         The name of the field that will contain the transformed text in the
+         output feature class or table. The default field name is Result.
+     model_arguments {Value Table}:
+         Additional arguments, such as a confidence threshold, that will be
+         used to adjust the sensitivity of the model.The names of the arguments
+         will be populated by the tool.
+     batch_size {Double}:
+         The number of training samples that will be processed at one time. The
+         default value is 4.Increasing the batch size can improve tool
+         performance; however, as
+         the batch size increases, more memory is used. If an out of memory
+         error occurs, use a smaller batch size.
+     minimum_sequence_length {Double}:
+         The minimum number of characters for the output text string. The
+         default value is 20.
+     maximum_sequence_length {Double}:
+         The maximum number of characters for the output text string. The
+         default value is 50."""
     ...
 
-@gptooldoc('ForecastUsingTimeSeriesModel_geoai', None)
-def ForecastUsingTimeSeriesModel(in_cube=..., in_model_definition=..., out_features=..., number_of_timesteps_to_forecast=..., match_explanatory_variables=...): # -> conversion | int | float | complex | basestring | list[Unknown] | tuple[Unknown, ...] | dict[Unknown, Unknown]:
+@gptooldoc("ForecastUsingTimeSeriesModel_geoai", None)
+def ForecastUsingTimeSeriesModel(
+    in_cube=...,
+    in_model_definition=...,
+    out_features=...,
+    number_of_timesteps_to_forecast=...,
+    match_explanatory_variables=...,
+):  # -> conversion | int | float | complex | basestring | list[Unknown] | tuple[Unknown, ...] | dict[Unknown, Unknown]:
     """ForecastUsingTimeSeriesModel_geoai(in_cube, in_model_definition, out_features, number_of_timesteps_to_forecast, {match_explanatory_variables;match_explanatory_variables...})
 
-        Predicts the values of each location of a space-time cube using a deep
-        learning-based time series forecasting model that has been trained
-        using the Train Time Series Forecasting Model tool.
+       Predicts the values of each location of a space-time cube using a deep
+       learning-based time series forecasting model that has been trained
+       using the Train Time Series Forecasting Model tool.
 
-     INPUTS:
-      in_cube (File):
-          The netCDF cube containing the variable that will be used to forecast
-          to future time steps. This file must have an .nc file extension and
-          must have been created using the Create Space Time Cube By Aggregating
-          Points, Create Space Time Cube From Defined Locations, or Create Space
-          Time Cube From Multidimensional Raster Layer tool.
-      in_model_definition (File):
-          The trained deep learning model file (.dlpk or .emd) that will be used
-          to make the predictions. The model can be trained using the Train Time
-          Series Forecasting Model tool.
-      number_of_timesteps_to_forecast (Long):
-          A positive integer specifying the number of time steps that will be
-          used to forecast the analysis variable. The default value is 2. This
-          value cannot be larger than 50 percent of the total time steps in the
-          input space-time cube.
-      match_explanatory_variables {Value Table}:
-          The mapping of field names from the prediction set to the training
-          set. Use this parameter if the field names of the training and
-          prediction sets are different. The values are the field names in the
-          prediction dataset that match the field names in the input time series
-          data.
+    INPUTS:
+     in_cube (File):
+         The netCDF cube containing the variable that will be used to forecast
+         to future time steps. This file must have an .nc file extension and
+         must have been created using the Create Space Time Cube By Aggregating
+         Points, Create Space Time Cube From Defined Locations, or Create Space
+         Time Cube From Multidimensional Raster Layer tool.
+     in_model_definition (File):
+         The trained deep learning model file (.dlpk or .emd) that will be used
+         to make the predictions. The model can be trained using the Train Time
+         Series Forecasting Model tool.
+     number_of_timesteps_to_forecast (Long):
+         A positive integer specifying the number of time steps that will be
+         used to forecast the analysis variable. The default value is 2. This
+         value cannot be larger than 50 percent of the total time steps in the
+         input space-time cube.
+     match_explanatory_variables {Value Table}:
+         The mapping of field names from the prediction set to the training
+         set. Use this parameter if the field names of the training and
+         prediction sets are different. The values are the field names in the
+         prediction dataset that match the field names in the input time series
+         data.
 
-     OUTPUTS:
-      out_features (Feature Class):
-          The output feature class of all locations in the space-time cube with
-          forecasted values stored as fields. The layer displays the forecast
-          for the final time step and contains pop-up charts showing the time
-          series and forecasts for each location."""
+    OUTPUTS:
+     out_features (Feature Class):
+         The output feature class of all locations in the space-time cube with
+         forecasted values stored as fields. The layer displays the forecast
+         for the final time step and contains pop-up charts showing the time
+         series and forecasts for each location."""
     ...
 
-@gptooldoc('TrainTimeSeriesForecastingModel_geoai', None)
-def TrainTimeSeriesForecastingModel(in_cube=..., out_model=..., analysis_variable=..., sequence_length=..., explanatory_variables=..., max_epochs=..., validation_timesteps=..., model_type=..., batch_size=..., arguments=..., early_stopping=..., out_features=...): # -> conversion | int | float | complex | basestring | list[Unknown] | tuple[Unknown, ...] | dict[Unknown, Unknown]:
+@gptooldoc("TrainTimeSeriesForecastingModel_geoai", None)
+def TrainTimeSeriesForecastingModel(
+    in_cube=...,
+    out_model=...,
+    analysis_variable=...,
+    sequence_length=...,
+    explanatory_variables=...,
+    max_epochs=...,
+    validation_timesteps=...,
+    model_type=...,
+    batch_size=...,
+    arguments=...,
+    early_stopping=...,
+    out_features=...,
+):  # -> conversion | int | float | complex | basestring | list[Unknown] | tuple[Unknown, ...] | dict[Unknown, Unknown]:
     """TrainTimeSeriesForecastingModel_geoai(in_cube, out_model, analysis_variable, sequence_length, {explanatory_variables;explanatory_variables...}, {max_epochs}, {validation_timesteps}, {model_type}, {batch_size}, {arguments;arguments...}, {early_stopping}, {out_features})
 
-        Trains a deep learning-based time series forecasting model using time
-        series data from a space-time cube. The trained model can be used for
-        forecasting the values of each location of a space-time cube using the
-        Forecast Using Time Series Model tool.
+       Trains a deep learning-based time series forecasting model using time
+       series data from a space-time cube. The trained model can be used for
+       forecasting the values of each location of a space-time cube using the
+       Forecast Using Time Series Model tool.
 
-     INPUTS:
-      in_cube (File):
-          The netCDF cube containing the variable that will be used to forecast
-          to future time steps. This file must have an .nc file extension and
-          must have been created using the Create Space Time Cube By Aggregating
-          Points, Create Space Time Cube From Defined Locations, or Create Space
-          Time Cube From Multidimensional Raster Layer tool.
-      analysis_variable (String):
-          The numeric variable in the dataset that will be forecasted to future
-          time steps.
-      sequence_length (Long):
-          The number of previous time steps that will be used when training the
-          model. If the data contains seasonality (repeating cycles), provide
-          the length corresponding to one season. The parameter value cannot be
-          larger than the total number of input time steps that remain after
-          excluding validation time steps.
-      explanatory_variables {Value Table}:
-          Independent variables from the data that will be used to train the
-          model. Use a True value after any variables that represent classes or
-          categories.
-      max_epochs {Long}:
-          The maximum number of epochs for which the model will be trained. The
-          default is 20.
-      validation_timesteps {Long}:
-          The number of time steps that will be excluded for validation. If a
-          value of 14 is specified, the last 14 rows in the data frame will be
-          used as validation data. This value cannot be larger than 25 percent
-          of the number of input time steps. The default is 2.
-      model_type {String}:
-          Specifies the model architecture that will be used for training the
-          model.
+    INPUTS:
+     in_cube (File):
+         The netCDF cube containing the variable that will be used to forecast
+         to future time steps. This file must have an .nc file extension and
+         must have been created using the Create Space Time Cube By Aggregating
+         Points, Create Space Time Cube From Defined Locations, or Create Space
+         Time Cube From Multidimensional Raster Layer tool.
+     analysis_variable (String):
+         The numeric variable in the dataset that will be forecasted to future
+         time steps.
+     sequence_length (Long):
+         The number of previous time steps that will be used when training the
+         model. If the data contains seasonality (repeating cycles), provide
+         the length corresponding to one season. The parameter value cannot be
+         larger than the total number of input time steps that remain after
+         excluding validation time steps.
+     explanatory_variables {Value Table}:
+         Independent variables from the data that will be used to train the
+         model. Use a True value after any variables that represent classes or
+         categories.
+     max_epochs {Long}:
+         The maximum number of epochs for which the model will be trained. The
+         default is 20.
+     validation_timesteps {Long}:
+         The number of time steps that will be excluded for validation. If a
+         value of 14 is specified, the last 14 rows in the data frame will be
+         used as validation data. This value cannot be larger than 25 percent
+         of the number of input time steps. The default is 2.
+     model_type {String}:
+         Specifies the model architecture that will be used for training the
+         model.
 
-          * InceptionTime
+         * InceptionTime
 
-          * ResNet
+         * ResNet
 
-          * ResCNN
+         * ResCNN
 
-          * FCN
+         * FCN
 
-          * LSTM
-          The default model type is InceptionTime.
-      batch_size {Long}:
-          The number of samples that will be processed at one time. The default
-          is 64.Depending on the computer's GPU, this number can be changed to
-          8, 16,
-          32, 64, and son on.
-      arguments {Value Table}:
-          Additional model arguments that will be used specific to each model.
-          These arguments can be used to adjust the model complexity and size.
-          See How Time Series forecasting models work to understand the model
-          architecture, the supported model arguments, and their default values.
-      early_stopping {Boolean}:
-          Specifies whether the model training will stop when validation loss
-          does not register improvement after five consecutive epochs.
+         * LSTM
+         The default model type is InceptionTime.
+     batch_size {Long}:
+         The number of samples that will be processed at one time. The default
+         is 64.Depending on the computer's GPU, this number can be changed to
+         8, 16,
+         32, 64, and son on.
+     arguments {Value Table}:
+         Additional model arguments that will be used specific to each model.
+         These arguments can be used to adjust the model complexity and size.
+         See How Time Series forecasting models work to understand the model
+         architecture, the supported model arguments, and their default values.
+     early_stopping {Boolean}:
+         Specifies whether the model training will stop when validation loss
+         does not register improvement after five consecutive epochs.
 
-          * TRUE-The model training will stop when validation loss does not
-          register improvement after five consecutive epochs. This is the
-          default.
+         * TRUE-The model training will stop when validation loss does not
+         register improvement after five consecutive epochs. This is the
+         default.
 
-          * FALSE-The model training will continue until the maximum number of
-          epochs has been reached.
+         * FALSE-The model training will continue until the maximum number of
+         epochs has been reached.
 
-     OUTPUTS:
-      out_model (Folder):
-          The output folder location that will store the trained model. The
-          trained model will be saved as a deep learning package file (.dlpk).
-      out_features {Feature Class}:
-          The output feature class of all locations in the space-time cube with
-          forecasted values stored as fields. The feature class will be created
-          using prediction of the trained model on the validation dataset. The
-          output displays the forecast for the final time step and contains pop-
-          up charts showing the time series forecast on the validation set."""
+    OUTPUTS:
+     out_model (Folder):
+         The output folder location that will store the trained model. The
+         trained model will be saved as a deep learning package file (.dlpk).
+     out_features {Feature Class}:
+         The output feature class of all locations in the space-time cube with
+         forecasted values stored as fields. The feature class will be created
+         using prediction of the trained model on the validation dataset. The
+         output displays the forecast for the final time step and contains pop-
+         up charts showing the time series forecast on the validation set."""
     ...
-

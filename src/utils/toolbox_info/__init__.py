@@ -7,6 +7,7 @@ from arcpy import Filter, GetParameterInfo, ListToolboxes, ListTools, Parameter
 
 _LOGGER = getLogger()
 
+
 class ToolTuple(NamedTuple):
     full_name: str
     tool_name: str
@@ -24,9 +25,11 @@ class ToolboxNameTuple(NamedTuple):
     name: str
     alias: str
 
+
 class PropertyNameValueTuple(NamedTuple):
     name: str
     value: Optional[str]
+
 
 class ToolInfoTuple(NamedTuple):
     toolbox_name: str
@@ -34,6 +37,7 @@ class ToolInfoTuple(NamedTuple):
     full_tool_name: str
     tool_name: str
     tool_properties: list[PropertyNameValueTuple]
+
 
 def parse_toolbox_into_name_and_alias(toolbox_name: str):
     """Splits a toolbox name in `Toolbox Full Name(alias)` format
@@ -109,8 +113,6 @@ def get_tb_alias_from_tool_name(name: str):
     return ToolTuple(name, tool_name, toolbox_alias)
 
 
-    
-
 def enumerate_tool_info(wild_card: Optional[str] = None):
     class ToolboxTuple(NamedTuple):
         name: str
@@ -121,12 +123,20 @@ def enumerate_tool_info(wild_card: Optional[str] = None):
         ToolboxTuple(name, alias, ListTools(f"*_{alias}"))
         for (name, alias) in list_toolboxes(wild_card=wild_card)
     )
-    
-    for (toolbox_name, toolbox_alias, tools) in toolboxes:
-        for (full_tool_name, tool_name, _) in (get_tb_alias_from_tool_name(t) for t in tools):
-            parameters = ((p, get_parameter_properties(p)) for p in GetParameterInfo(full_tool_name))
+
+    for toolbox_name, toolbox_alias, tools in toolboxes:
+        for full_tool_name, tool_name, _ in (
+            get_tb_alias_from_tool_name(t) for t in tools
+        ):
+            parameters = (
+                (p, get_parameter_properties(p))
+                for p in GetParameterInfo(full_tool_name)
+            )
             for _, p_props in parameters:
-                yield ToolInfoTuple(toolbox_name, toolbox_alias, full_tool_name, tool_name, [*p_props])
+                yield ToolInfoTuple(
+                    toolbox_name, toolbox_alias, full_tool_name, tool_name, [*p_props]
+                )
+
 
 def get_parameter_properties(parameter: Parameter):
     logger = _LOGGER.getChild(get_parameter_properties.__name__)
@@ -146,12 +156,9 @@ def get_parameter_properties(parameter: Parameter):
         )
         if pt.definition is not None and type(pt.definition) == property
     )
-    
+
     def format_filter(filter: Filter):
-        out_dict = {
-            "list": filter.list,
-            "type": filter.type
-        }
+        out_dict = {"list": filter.list, "type": filter.type}
         return dumps(out_dict)
 
     for name, _ in properties:

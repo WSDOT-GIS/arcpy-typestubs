@@ -1,4 +1,11 @@
 # Custom Dictionary Words
+arcengine
 arcgis
+arcgispro
 arcpy
 atbx
+geodb
+progressor
+scripting
+SDE
+SQL

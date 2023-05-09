@@ -11,1503 +11,1675 @@ forecasting, and tools that are helpful for visualizing the data
 stored in the space-time netCDF cube in both 2D and 3D. It also
 includes options for estimating and filling missing values in the data
 prior to cube creation."""
-__all__ = ['ChangePointDetection', 'CreateSpaceTimeCube', 'CreateSpaceTimeCubeDefinedLocations', 'CreateSpaceTimeCubeMDRasterLayer', 'CurveFitForecast', 'DescribeSpaceTimeCube', 'EmergingHotSpotAnalysis', 'EvaluateForecastsByLocation', 'ExponentialSmoothingForecast', 'FillMissingValues', 'ForestBasedForecast', 'LocalOutlierAnalysis', 'SubsetSpaceTimeCube', 'TimeSeriesClustering', 'VisualizeSpaceTimeCube2D', 'VisualizeSpaceTimeCube3D']
+__all__ = [
+    "ChangePointDetection",
+    "CreateSpaceTimeCube",
+    "CreateSpaceTimeCubeDefinedLocations",
+    "CreateSpaceTimeCubeMDRasterLayer",
+    "CurveFitForecast",
+    "DescribeSpaceTimeCube",
+    "EmergingHotSpotAnalysis",
+    "EvaluateForecastsByLocation",
+    "ExponentialSmoothingForecast",
+    "FillMissingValues",
+    "ForestBasedForecast",
+    "LocalOutlierAnalysis",
+    "SubsetSpaceTimeCube",
+    "TimeSeriesClustering",
+    "VisualizeSpaceTimeCube2D",
+    "VisualizeSpaceTimeCube3D",
+]
 __alias__ = ...
-@gptooldoc('CreateSpaceTimeCube_stpm', None)
-def CreateSpaceTimeCube(in_features=..., output_cube=..., time_field=..., template_cube=..., time_step_interval=..., time_step_alignment=..., reference_time=..., distance_interval=..., summary_fields=..., aggregation_shape_type=..., defined_polygon_locations=..., location_id=...): # -> conversion | int | float | complex | basestring | list[Unknown] | tuple[Unknown, ...] | dict[Unknown, Unknown]:
+
+@gptooldoc("CreateSpaceTimeCube_stpm", None)
+def CreateSpaceTimeCube(
+    in_features=...,
+    output_cube=...,
+    time_field=...,
+    template_cube=...,
+    time_step_interval=...,
+    time_step_alignment=...,
+    reference_time=...,
+    distance_interval=...,
+    summary_fields=...,
+    aggregation_shape_type=...,
+    defined_polygon_locations=...,
+    location_id=...,
+):  # -> conversion | int | float | complex | basestring | list[Unknown] | tuple[Unknown, ...] | dict[Unknown, Unknown]:
     """CreateSpaceTimeCube_stpm(in_features, output_cube, time_field, {template_cube}, {time_step_interval}, {time_step_alignment}, {reference_time}, {distance_interval}, {summary_fields;summary_fields...}, {aggregation_shape_type}, {defined_polygon_locations}, {location_id})
 
-        Summarizes a set of points into a netCDF data structure by aggregating
-        them into space-time bins. Within each bin, the points are counted,
-        and specified attributes are aggregated. For all bin locations, the
-        trend for counts and summary field values are evaluated.
+       Summarizes a set of points into a netCDF data structure by aggregating
+       them into space-time bins. Within each bin, the points are counted,
+       and specified attributes are aggregated. For all bin locations, the
+       trend for counts and summary field values are evaluated.
 
-     INPUTS:
-      in_features (Feature Layer):
-          The input point feature class to be aggregated into space-time bins.
-      time_field (Field):
-          The field containing the date and time (timestamp) for each point.
-          This field must be of type Date.
-      template_cube {File}:
-          A reference space-time cube used to define the output_cube extent of
-          analysis, bin dimensions, and bin alignment. The time_step_interval,
-          distance_interval, and reference_time values are also obtained from
-          the template cube. This template cube must be a netCDF (.nc) file that
-          has been created using this tool.A space-time cube created by
-          aggregating into DEFINED_LOCATIONS cannot
-          be used as a template_cube.
-      time_step_interval {Time Unit}:
-          The number of seconds, minutes, hours, days, weeks, or years that will
-          represent a single time step. All points within the same
-          time_step_interval and distance_interval will be aggregated. (When a
-          template_cube is provided, this parameter is ignored, and the
-          time_step_interval value is obtained from the template cube). Examples
-          of valid entries for this parameter are 1 Weeks, 13 Days, or 1 Months.
-      time_step_alignment {String}:
-          Defines how aggregation will occur based on a given
-          time_step_interval. If a template_cube is provided, the
-          time_step_alignment associated with the template_cube overrides this
-          parameter setting and the time_step_alignment of the template_cube is
-          used.
+    INPUTS:
+     in_features (Feature Layer):
+         The input point feature class to be aggregated into space-time bins.
+     time_field (Field):
+         The field containing the date and time (timestamp) for each point.
+         This field must be of type Date.
+     template_cube {File}:
+         A reference space-time cube used to define the output_cube extent of
+         analysis, bin dimensions, and bin alignment. The time_step_interval,
+         distance_interval, and reference_time values are also obtained from
+         the template cube. This template cube must be a netCDF (.nc) file that
+         has been created using this tool.A space-time cube created by
+         aggregating into DEFINED_LOCATIONS cannot
+         be used as a template_cube.
+     time_step_interval {Time Unit}:
+         The number of seconds, minutes, hours, days, weeks, or years that will
+         represent a single time step. All points within the same
+         time_step_interval and distance_interval will be aggregated. (When a
+         template_cube is provided, this parameter is ignored, and the
+         time_step_interval value is obtained from the template cube). Examples
+         of valid entries for this parameter are 1 Weeks, 13 Days, or 1 Months.
+     time_step_alignment {String}:
+         Defines how aggregation will occur based on a given
+         time_step_interval. If a template_cube is provided, the
+         time_step_alignment associated with the template_cube overrides this
+         parameter setting and the time_step_alignment of the template_cube is
+         used.
 
-          * END_TIME-Time steps align to the last time event and aggregate back
-          in time.
+         * END_TIME-Time steps align to the last time event and aggregate back
+         in time.
 
-          * START_TIME-Time steps align to the first time event and aggregate
-          forward in time.
+         * START_TIME-Time steps align to the first time event and aggregate
+         forward in time.
 
-          * REFERENCE_TIME-Time steps align to a particular date/time that you
-          specify. If all points in the input features have a timestamp larger
-          than the reference time you provide (or it falls exactly on the start
-          time of the input features), the time-step interval will begin with
-          that reference time and aggregate forward in time (as occurs with a
-          START_TIME alignment). If all points in the input features have a
-          timestamp smaller than the reference time you provide (or it falls
-          exactly on the end time of the input features), the time-step interval
-          will end with that reference time and aggregate backward in time (as
-          occurs with an END_TIME alignment). If the reference time you provide
-          is in the middle of the time extent of your data, a time-step interval
-          will be created ending with the reference time provided (as occurs
-          with an END_TIME alignment); additional intervals will be created both
-          before and after the reference time until the full time extent of your
-          data is covered.
-      reference_time {Date}:
-          The date/time to use to align the time-step intervals. If you want to
-          bin your data weekly from Monday to Sunday, for example, you could set
-          a reference time of Sunday at midnight to ensure bins break between
-          Sunday and Monday at midnight. (When a template_cube is provided, this
-          parameter is ignored and the reference_time is based on the
-          template_cube.)
-      distance_interval {Linear Unit}:
-          The size of the bins used to aggregate the in_features. All points
-          that fall within the same distance_interval and time_step_interval
-          will be aggregated. When aggregating into a hexagon grid, this
-          distance is used as the height to construct the hexagon polygons.
-          (When a template_cube is provided, this parameter is ignored and the
-          distance interval value will be based on the template_cube.)
-      summary_fields {Value Table}:
-          The numeric field containing attribute values used to calculate the
-          specified statistic when aggregating into a space-time cube. Multiple
-          statistic and field combinations can be specified. Null values in any
-          of the fields specified will result in that feature being dropped from
-          the output cube. If there are null values present in your input
-          features, it is highly recommended that you run the Fill Missing
-          Values tool before creating a space-time cube. Available
-          statistic types are:
+         * REFERENCE_TIME-Time steps align to a particular date/time that you
+         specify. If all points in the input features have a timestamp larger
+         than the reference time you provide (or it falls exactly on the start
+         time of the input features), the time-step interval will begin with
+         that reference time and aggregate forward in time (as occurs with a
+         START_TIME alignment). If all points in the input features have a
+         timestamp smaller than the reference time you provide (or it falls
+         exactly on the end time of the input features), the time-step interval
+         will end with that reference time and aggregate backward in time (as
+         occurs with an END_TIME alignment). If the reference time you provide
+         is in the middle of the time extent of your data, a time-step interval
+         will be created ending with the reference time provided (as occurs
+         with an END_TIME alignment); additional intervals will be created both
+         before and after the reference time until the full time extent of your
+         data is covered.
+     reference_time {Date}:
+         The date/time to use to align the time-step intervals. If you want to
+         bin your data weekly from Monday to Sunday, for example, you could set
+         a reference time of Sunday at midnight to ensure bins break between
+         Sunday and Monday at midnight. (When a template_cube is provided, this
+         parameter is ignored and the reference_time is based on the
+         template_cube.)
+     distance_interval {Linear Unit}:
+         The size of the bins used to aggregate the in_features. All points
+         that fall within the same distance_interval and time_step_interval
+         will be aggregated. When aggregating into a hexagon grid, this
+         distance is used as the height to construct the hexagon polygons.
+         (When a template_cube is provided, this parameter is ignored and the
+         distance interval value will be based on the template_cube.)
+     summary_fields {Value Table}:
+         The numeric field containing attribute values used to calculate the
+         specified statistic when aggregating into a space-time cube. Multiple
+         statistic and field combinations can be specified. Null values in any
+         of the fields specified will result in that feature being dropped from
+         the output cube. If there are null values present in your input
+         features, it is highly recommended that you run the Fill Missing
+         Values tool before creating a space-time cube. Available
+         statistic types are:
 
-          * SUM-Adds the total value for the specified field within each bin.
+         * SUM-Adds the total value for the specified field within each bin.
 
-          * MEAN-Calculates the average for the specified field within each bin.
+         * MEAN-Calculates the average for the specified field within each bin.
 
-          * MIN-Finds the smallest value for all records of the specified field
-          within each bin.
+         * MIN-Finds the smallest value for all records of the specified field
+         within each bin.
 
-          * MAX-Finds the largest value for all records of the specified field
-          within each bin.
+         * MAX-Finds the largest value for all records of the specified field
+         within each bin.
 
-          * STD-Finds the standard deviation on values in the specified field
-          within each bin.
+         * STD-Finds the standard deviation on values in the specified field
+         within each bin.
 
-          * MEDIAN-Finds the sorted middle value of all records of the specified
-          field within each bin.
-                  Available fill types are:
+         * MEDIAN-Finds the sorted middle value of all records of the specified
+         field within each bin.
+                 Available fill types are:
 
-          * ZEROS-Fills empty bins with zeros.
+         * ZEROS-Fills empty bins with zeros.
 
-          * SPATIAL_NEIGHBORS-Fills empty bins with the average value of spatial
-          neighbors
+         * SPATIAL_NEIGHBORS-Fills empty bins with the average value of spatial
+         neighbors
 
-          * SPACE_TIME_NEIGHBORS-Fills empty bins with the average value of
-          space time neighbors.
+         * SPACE_TIME_NEIGHBORS-Fills empty bins with the average value of
+         space time neighbors.
 
-          * TEMPORAL_TREND-Fills empty bins using an interpolated univariate
-          spline algorithm.
-          Null values present in any of the summary field records will result in
-          those features being excluded from the output cube. If there are null
-          values present in your Input Features, it is highly recommended that
-          you run the Fill Missing Values tool first. If, after running the Fill
-          Missing Values tool, there are still null values present and having
-          the count of points in each bin is part of your analysis strategy, you
-          may want to consider creating separate cubes, one for the count
-          (without Summary Fields) and one for Summary Fields. If the set of
-          null values is different for each summary field, you may also consider
-          creating a separate cube for each summary field.
-      aggregation_shape_type {String}:
-          The shape of the polygon mesh into which the input feature point data
-          will be aggregated.
+         * TEMPORAL_TREND-Fills empty bins using an interpolated univariate
+         spline algorithm.
+         Null values present in any of the summary field records will result in
+         those features being excluded from the output cube. If there are null
+         values present in your Input Features, it is highly recommended that
+         you run the Fill Missing Values tool first. If, after running the Fill
+         Missing Values tool, there are still null values present and having
+         the count of points in each bin is part of your analysis strategy, you
+         may want to consider creating separate cubes, one for the count
+         (without Summary Fields) and one for Summary Fields. If the set of
+         null values is different for each summary field, you may also consider
+         creating a separate cube for each summary field.
+     aggregation_shape_type {String}:
+         The shape of the polygon mesh into which the input feature point data
+         will be aggregated.
 
-          * FISHNET_GRID-The input features will be aggregated into a grid of
-          square (fishnet) cells.
+         * FISHNET_GRID-The input features will be aggregated into a grid of
+         square (fishnet) cells.
 
-          * HEXAGON_GRID-The input features will be aggregated into a grid of
-          hexagonal cells.
+         * HEXAGON_GRID-The input features will be aggregated into a grid of
+         hexagonal cells.
 
-          * DEFINED_LOCATIONS-The input features will be aggregated into the
-          locations provided.
-      defined_polygon_locations {Feature Layer}:
-          The polygon features into which the input point data will be
-          aggregated. These can represent county boundaries, police beats, or
-          sales territories for example.
-      location_id {Field}:
-          The field containing the ID number for each unique location.
+         * DEFINED_LOCATIONS-The input features will be aggregated into the
+         locations provided.
+     defined_polygon_locations {Feature Layer}:
+         The polygon features into which the input point data will be
+         aggregated. These can represent county boundaries, police beats, or
+         sales territories for example.
+     location_id {Field}:
+         The field containing the ID number for each unique location.
 
-     OUTPUTS:
-      output_cube (File):
-          The output netCDF data cube that will be created to contain counts and
-          summaries of the input feature point data."""
+    OUTPUTS:
+     output_cube (File):
+         The output netCDF data cube that will be created to contain counts and
+         summaries of the input feature point data."""
     ...
 
-@gptooldoc('CreateSpaceTimeCubeDefinedLocations_stpm', None)
-def CreateSpaceTimeCubeDefinedLocations(in_features=..., output_cube=..., location_id=..., temporal_aggregation=..., time_field=..., time_step_interval=..., time_step_alignment=..., reference_time=..., variables=..., summary_fields=..., in_related_table=..., related_location_id=...): # -> conversion | int | float | complex | basestring | list[Unknown] | tuple[Unknown, ...] | dict[Unknown, Unknown]:
+@gptooldoc("CreateSpaceTimeCubeDefinedLocations_stpm", None)
+def CreateSpaceTimeCubeDefinedLocations(
+    in_features=...,
+    output_cube=...,
+    location_id=...,
+    temporal_aggregation=...,
+    time_field=...,
+    time_step_interval=...,
+    time_step_alignment=...,
+    reference_time=...,
+    variables=...,
+    summary_fields=...,
+    in_related_table=...,
+    related_location_id=...,
+):  # -> conversion | int | float | complex | basestring | list[Unknown] | tuple[Unknown, ...] | dict[Unknown, Unknown]:
     """CreateSpaceTimeCubeDefinedLocations_stpm(in_features, output_cube, location_id, temporal_aggregation, time_field, time_step_interval, {time_step_alignment}, {reference_time}, {variables;variables...}, {summary_fields;summary_fields...}, {in_related_table}, {related_location_id})
 
-        Takes panel data or station data (defined locations where geography
-        does not change but attributes are changing over time) and structures
-        it into a netCDF data format by creating space-time bins. For all
-        locations, the trend for variables or summary fields is evaluated.
+       Takes panel data or station data (defined locations where geography
+       does not change but attributes are changing over time) and structures
+       it into a netCDF data format by creating space-time bins. For all
+       locations, the trend for variables or summary fields is evaluated.
 
-     INPUTS:
-      in_features (Feature Layer):
-          The input point or polygon feature class to be converted into a space-
-          time cube.
-      location_id (Field):
-          An integer field containing the ID number for each unique location.
-      temporal_aggregation (Boolean):
-          * APPLY_TEMPORAL_AGGREGATION-The space-time cube will temporally
-          aggregate your features based on the time_step_interval you provide.
-          For example, you have data that has been collected daily and want to
-          create a cube with a weekly time_step_interval.
+    INPUTS:
+     in_features (Feature Layer):
+         The input point or polygon feature class to be converted into a space-
+         time cube.
+     location_id (Field):
+         An integer field containing the ID number for each unique location.
+     temporal_aggregation (Boolean):
+         * APPLY_TEMPORAL_AGGREGATION-The space-time cube will temporally
+         aggregate your features based on the time_step_interval you provide.
+         For example, you have data that has been collected daily and want to
+         create a cube with a weekly time_step_interval.
 
-          * NO_TEMPORAL_AGGREGATION-The space-time cube will be created using
-          the existing temporal structure of your in_features. For example, you
-          have yearly data and want to create a cube with a yearly
-          time_step_interval. This is the default.
-      time_field (Field):
-          The field containing the timestamp for each row in the dataset. This
-          field must be of type Date.
-      time_step_interval (Time Unit):
-          The number of seconds, minutes, hours, days, weeks, or years that will
-          represent a single time step. Examples of valid entries for this
-          parameter are 1 Weeks, 13 Days, or 1 Months.If temporal_aggregation is
-          checked off, you are not aggregating
-          temporally, and this parameter should be set to the existing temporal
-          structure of your data.If temporal_aggregation is checked on, you are
-          aggregating temporally,
-          and this parameter should be set to the time_step_interval you want to
-          create. All features within the same time_step_interval will be
-          aggregated.
-      time_step_alignment {String}:
-          Defines how the cube structure will occur based on a given
-          time_step_interval.
+         * NO_TEMPORAL_AGGREGATION-The space-time cube will be created using
+         the existing temporal structure of your in_features. For example, you
+         have yearly data and want to create a cube with a yearly
+         time_step_interval. This is the default.
+     time_field (Field):
+         The field containing the timestamp for each row in the dataset. This
+         field must be of type Date.
+     time_step_interval (Time Unit):
+         The number of seconds, minutes, hours, days, weeks, or years that will
+         represent a single time step. Examples of valid entries for this
+         parameter are 1 Weeks, 13 Days, or 1 Months.If temporal_aggregation is
+         checked off, you are not aggregating
+         temporally, and this parameter should be set to the existing temporal
+         structure of your data.If temporal_aggregation is checked on, you are
+         aggregating temporally,
+         and this parameter should be set to the time_step_interval you want to
+         create. All features within the same time_step_interval will be
+         aggregated.
+     time_step_alignment {String}:
+         Defines how the cube structure will occur based on a given
+         time_step_interval.
 
-          * END_TIME-Time steps align to the last time event and aggregate back
-          in time.
+         * END_TIME-Time steps align to the last time event and aggregate back
+         in time.
 
-          * START_TIME-Time steps align to the first time event and aggregate
-          forward in time.
+         * START_TIME-Time steps align to the first time event and aggregate
+         forward in time.
 
-          * REFERENCE_TIME-Time steps align to a particular date/time that you
-          specify. If all points in the input features have a timestamp larger
-          than the reference time you provide (or it falls exactly on the start
-          time of the input features), the time-step interval will begin with
-          that reference time and aggregate forward in time (as occurs with a
-          START_TIME alignment). If all points in the input features have a
-          timestamp smaller than the reference time you provide (or it falls
-          exactly on the end time of the input features), the time-step interval
-          will end with that reference time and aggregate backward in time (as
-          occurs with an END_TIME alignment). If the reference time you provide
-          is in the middle of the time extent of your data, a time-step interval
-          will be created ending with the reference time provided (as occurs
-          with an END_TIME alignment); additional intervals will be created both
-          before and after the reference time until the full time extent of your
-          data is covered.
-      reference_time {Date}:
-          The date/time to used to align the time-step intervals. If you want to
-          bin your data weekly from Monday to Sunday, for example, you could set
-          a reference time of Sunday at midnight to ensure bins break between
-          Sunday and Monday at midnight.
-      variables {Value Table}:
-          The numeric field containing attribute values that will be brought
-          into the space-time cube. Available fill types are:
+         * REFERENCE_TIME-Time steps align to a particular date/time that you
+         specify. If all points in the input features have a timestamp larger
+         than the reference time you provide (or it falls exactly on the start
+         time of the input features), the time-step interval will begin with
+         that reference time and aggregate forward in time (as occurs with a
+         START_TIME alignment). If all points in the input features have a
+         timestamp smaller than the reference time you provide (or it falls
+         exactly on the end time of the input features), the time-step interval
+         will end with that reference time and aggregate backward in time (as
+         occurs with an END_TIME alignment). If the reference time you provide
+         is in the middle of the time extent of your data, a time-step interval
+         will be created ending with the reference time provided (as occurs
+         with an END_TIME alignment); additional intervals will be created both
+         before and after the reference time until the full time extent of your
+         data is covered.
+     reference_time {Date}:
+         The date/time to used to align the time-step intervals. If you want to
+         bin your data weekly from Monday to Sunday, for example, you could set
+         a reference time of Sunday at midnight to ensure bins break between
+         Sunday and Monday at midnight.
+     variables {Value Table}:
+         The numeric field containing attribute values that will be brought
+         into the space-time cube. Available fill types are:
 
-          * DROP_LOCATIONS-Locations with missing data for any of the variables
-          will be dropped from the output space-time cube.
+         * DROP_LOCATIONS-Locations with missing data for any of the variables
+         will be dropped from the output space-time cube.
 
-          * ZEROS-Fills empty bins with zeros.
+         * ZEROS-Fills empty bins with zeros.
 
-          * SPATIAL_NEIGHBORS-Fills empty bins with the average value of spatial
-          neighbors.
+         * SPATIAL_NEIGHBORS-Fills empty bins with the average value of spatial
+         neighbors.
 
-          * SPACE_TIME_NEIGHBORS-Fills empty bins with the average value of
-          space time neighbors.
+         * SPACE_TIME_NEIGHBORS-Fills empty bins with the average value of
+         space time neighbors.
 
-          * TEMPORAL_TREND-Fills empty bins using an interpolated univariate
-          spline algorithm.
-          Null values present in any of the variable records will result in an
-          empty bin. If there are null values present in your input features, it
-          is highly recommended that you run the Fill Missing Values tool first.
-      summary_fields {Value Table}:
-          The numeric field containing attribute values used to calculate the
-          specified statistic when aggregating into a space-time cube. Multiple
-          statistic and field combinations can be specified. Null values in any
-          of the fields specified will result in that feature being dropped from
-          the output cube. If there are null values present in your input
-          features, it is highly recommended you run the Fill Missing Values
-          tool before creating a space time cube. Available statistic
-          types are:
+         * TEMPORAL_TREND-Fills empty bins using an interpolated univariate
+         spline algorithm.
+         Null values present in any of the variable records will result in an
+         empty bin. If there are null values present in your input features, it
+         is highly recommended that you run the Fill Missing Values tool first.
+     summary_fields {Value Table}:
+         The numeric field containing attribute values used to calculate the
+         specified statistic when aggregating into a space-time cube. Multiple
+         statistic and field combinations can be specified. Null values in any
+         of the fields specified will result in that feature being dropped from
+         the output cube. If there are null values present in your input
+         features, it is highly recommended you run the Fill Missing Values
+         tool before creating a space time cube. Available statistic
+         types are:
 
-          * SUM-Adds the total value for the specified field within each bin.
+         * SUM-Adds the total value for the specified field within each bin.
 
-          * MEAN-Calculates the average for the specified field within each bin.
+         * MEAN-Calculates the average for the specified field within each bin.
 
-          * MIN-Finds the smallest value for all records of the specified field
-          within each bin.
+         * MIN-Finds the smallest value for all records of the specified field
+         within each bin.
 
-          * MAX-Finds the largest value for all records of the specified field
-          within each bin.
+         * MAX-Finds the largest value for all records of the specified field
+         within each bin.
 
-          * STD-Finds the standard deviation on values in the specified field
-          within each bin.
+         * STD-Finds the standard deviation on values in the specified field
+         within each bin.
 
-          * MEDIAN-Finds the sorted middle value of all records of the specified
-          field within each bin.
-                  Available fill types are:
+         * MEDIAN-Finds the sorted middle value of all records of the specified
+         field within each bin.
+                 Available fill types are:
 
-          * ZEROS-Fills empty bins with zeros.
+         * ZEROS-Fills empty bins with zeros.
 
-          * SPATIAL_NEIGHBORS-Fills empty bins with the average value of spatial
-          neighbors
+         * SPATIAL_NEIGHBORS-Fills empty bins with the average value of spatial
+         neighbors
 
-          * SPACE_TIME_NEIGHBORS-Fills empty bins with the average value of
-          space time neighbors.
+         * SPACE_TIME_NEIGHBORS-Fills empty bins with the average value of
+         space time neighbors.
 
-          * TEMPORAL_TREND-Fills empty bins using an interpolated univariate
-          spline algorithm.
-          Null values present in any of the summary field records will result in
-          those features being excluded from the output cube. If there are null
-          values present in your Input Features, it is highly recommended that
-          you run the Fill Missing Values tool first. If, after running the Fill
-          Missing Values tool, there are still null values present and having
-          the count of points in each bin is part of your analysis strategy, you
-          may want to consider creating separate cubes, one for the count
-          (without Summary Fields) and one for Summary Fields. If the set of
-          null values is different for each summary field, you may also consider
-          creating a separate cube for each summary field.
-      in_related_table {Table View}:
-          The table or table view to be related to the input features.
-      related_location_id {Field}:
-          An integer field in the related table that contains the location ID on
-          which the relate will be based.
+         * TEMPORAL_TREND-Fills empty bins using an interpolated univariate
+         spline algorithm.
+         Null values present in any of the summary field records will result in
+         those features being excluded from the output cube. If there are null
+         values present in your Input Features, it is highly recommended that
+         you run the Fill Missing Values tool first. If, after running the Fill
+         Missing Values tool, there are still null values present and having
+         the count of points in each bin is part of your analysis strategy, you
+         may want to consider creating separate cubes, one for the count
+         (without Summary Fields) and one for Summary Fields. If the set of
+         null values is different for each summary field, you may also consider
+         creating a separate cube for each summary field.
+     in_related_table {Table View}:
+         The table or table view to be related to the input features.
+     related_location_id {Field}:
+         An integer field in the related table that contains the location ID on
+         which the relate will be based.
 
-     OUTPUTS:
-      output_cube (File):
-          The output netCDF data cube that will be created."""
+    OUTPUTS:
+     output_cube (File):
+         The output netCDF data cube that will be created."""
     ...
 
-@gptooldoc('CreateSpaceTimeCubeMDRasterLayer_stpm', None)
-def CreateSpaceTimeCubeMDRasterLayer(in_md_raster=..., output_cube=..., fill_empty_bins=...): # -> conversion | int | float | complex | basestring | list[Unknown] | tuple[Unknown, ...] | dict[Unknown, Unknown]:
+@gptooldoc("CreateSpaceTimeCubeMDRasterLayer_stpm", None)
+def CreateSpaceTimeCubeMDRasterLayer(
+    in_md_raster=..., output_cube=..., fill_empty_bins=...
+):  # -> conversion | int | float | complex | basestring | list[Unknown] | tuple[Unknown, ...] | dict[Unknown, Unknown]:
     """CreateSpaceTimeCubeMDRasterLayer_stpm(in_md_raster, output_cube, {fill_empty_bins})
 
-        Creates a space-time cube from a multidimensional raster layer and
-        structures the data into space-time bins for efficient space-time
-        analysis and visualization.
+       Creates a space-time cube from a multidimensional raster layer and
+       structures the data into space-time bins for efficient space-time
+       analysis and visualization.
 
-     INPUTS:
-      in_md_raster (Raster Layer):
-          The input multidimensional raster layer that will be converted into a
-          space-time cube.
-      fill_empty_bins {String}:
-          Specifies how missing values in the output space-time cube will be
-          filled. Each space-time bin in the output must have a value, so you
-          must choose how to fill in values for raster cells with NoData values.
+    INPUTS:
+     in_md_raster (Raster Layer):
+         The input multidimensional raster layer that will be converted into a
+         space-time cube.
+     fill_empty_bins {String}:
+         Specifies how missing values in the output space-time cube will be
+         filled. Each space-time bin in the output must have a value, so you
+         must choose how to fill in values for raster cells with NoData values.
 
-          * ZEROS-Empty bins with be filled with zeros. This is the default.
+         * ZEROS-Empty bins with be filled with zeros. This is the default.
 
-          * SPATIAL_NEIGHBORS-Empty bins will be filled with the average value
-          of spatial neighbors.
+         * SPATIAL_NEIGHBORS-Empty bins will be filled with the average value
+         of spatial neighbors.
 
-          * SPACE_TIME_NEIGHBORS-Empty bins will be filled with the average
-          value of space-time neighbors.
+         * SPACE_TIME_NEIGHBORS-Empty bins will be filled with the average
+         value of space-time neighbors.
 
-          * TEMPORAL_TREND-Empty bins will be filled using an interpolated
-          univariate spline algorithm.
+         * TEMPORAL_TREND-Empty bins will be filled using an interpolated
+         univariate spline algorithm.
 
-     OUTPUTS:
-      output_cube (File):
-          The output netCDF data cube that will be created."""
+    OUTPUTS:
+     output_cube (File):
+         The output netCDF data cube that will be created."""
     ...
 
-@gptooldoc('VisualizeSpaceTimeCube2D_stpm', None)
-def VisualizeSpaceTimeCube2D(in_cube=..., cube_variable=..., display_theme=..., output_features=..., enable_time_series_popups=...): # -> conversion | int | float | complex | basestring | list[Unknown] | tuple[Unknown, ...] | dict[Unknown, Unknown]:
+@gptooldoc("VisualizeSpaceTimeCube2D_stpm", None)
+def VisualizeSpaceTimeCube2D(
+    in_cube=...,
+    cube_variable=...,
+    display_theme=...,
+    output_features=...,
+    enable_time_series_popups=...,
+):  # -> conversion | int | float | complex | basestring | list[Unknown] | tuple[Unknown, ...] | dict[Unknown, Unknown]:
     """VisualizeSpaceTimeCube2D_stpm(in_cube, cube_variable, display_theme, output_features, {enable_time_series_popups})
 
-        Visualizes the variables stored in a netCDF space-time cube and the
-        results generated by the Space Time Pattern Mining tools. Output from
-        this tool is a two-dimensional representation uniquely rendered based
-        on the variable and theme specified.
+       Visualizes the variables stored in a netCDF space-time cube and the
+       results generated by the Space Time Pattern Mining tools. Output from
+       this tool is a two-dimensional representation uniquely rendered based
+       on the variable and theme specified.
 
-     INPUTS:
-      in_cube (File):
-          The space-time cube containing the variable to be analyzed. Space-time
-          cubes have a .nc file extension and are created using various tools in
-          the Space Time Pattern Mining toolbox.
-      cube_variable (String):
-          The numeric variable in the netCDF cube that will be explored. The
-          space-time cube will always contain the COUNT variable. Any Summary
-          Fields or Variables values will also be available if they were
-          included when the cube was created.
-      display_theme (String):
-          Specifies the characteristic of the Cube Variable value to display.
-          Options will vary depending on how the cube was created and the
-          analyses that were run.If the cube was created by aggregating points,
-          the Locations with data
-          and Trends options will be available. The Number of estimated bins and
-          Locations excluded from analysis options will only be available for
-          those Summary Fields values that were included in the cube creation
-          process.If the cube was created from defined locations, the Trends
-          option will
-          be available for those Summary Fields or Variables values that were
-          included in the cube creation process.The Hot and cold spot trends and
-          Emerging Hot Spot Analysis results
-          options will only be available after Emerging Hot Spot Analysis has
-          been run on the selected Cube Variable value. The Percentage of local
-          outliers, Local outlier in the most recent time period, Local Outlier
-          Analysis results, and Locations without spatial neighbors options will
-          only be available when the Local Outlier Analysis tool has been
-          run.The Forecast results option will only be available for cubes
-          created
-          by tools in the Time Series Forecasting toolset. The Time series
-          outlier results option will only be available when the Outlier Option
-          parameter in the Time Series Forecasting tools has been specified.For
-          in-depth information about each option, including descriptions of
-          the output and created charts, see the Visualization display themes
-          for the space-time cube topic.
+    INPUTS:
+     in_cube (File):
+         The space-time cube containing the variable to be analyzed. Space-time
+         cubes have a .nc file extension and are created using various tools in
+         the Space Time Pattern Mining toolbox.
+     cube_variable (String):
+         The numeric variable in the netCDF cube that will be explored. The
+         space-time cube will always contain the COUNT variable. Any Summary
+         Fields or Variables values will also be available if they were
+         included when the cube was created.
+     display_theme (String):
+         Specifies the characteristic of the Cube Variable value to display.
+         Options will vary depending on how the cube was created and the
+         analyses that were run.If the cube was created by aggregating points,
+         the Locations with data
+         and Trends options will be available. The Number of estimated bins and
+         Locations excluded from analysis options will only be available for
+         those Summary Fields values that were included in the cube creation
+         process.If the cube was created from defined locations, the Trends
+         option will
+         be available for those Summary Fields or Variables values that were
+         included in the cube creation process.The Hot and cold spot trends and
+         Emerging Hot Spot Analysis results
+         options will only be available after Emerging Hot Spot Analysis has
+         been run on the selected Cube Variable value. The Percentage of local
+         outliers, Local outlier in the most recent time period, Local Outlier
+         Analysis results, and Locations without spatial neighbors options will
+         only be available when the Local Outlier Analysis tool has been
+         run.The Forecast results option will only be available for cubes
+         created
+         by tools in the Time Series Forecasting toolset. The Time series
+         outlier results option will only be available when the Outlier Option
+         parameter in the Time Series Forecasting tools has been specified.For
+         in-depth information about each option, including descriptions of
+         the output and created charts, see the Visualization display themes
+         for the space-time cube topic.
 
-          * LOCATIONS_WITH_DATA-All locations that contain data for the Cube
-          Variable parameter will be displayed.
+         * LOCATIONS_WITH_DATA-All locations that contain data for the Cube
+         Variable parameter will be displayed.
 
-          * TRENDS-The trend of values at each location that were determined
-          using the Mann-Kendall statistic will be displayed.
+         * TRENDS-The trend of values at each location that were determined
+         using the Mann-Kendall statistic will be displayed.
 
-          * HOT_AND_COLD_SPOT_TRENDS-The trend of z-scores at each location that
-          were determined using the Mann-Kendall statistic will be displayed.
+         * HOT_AND_COLD_SPOT_TRENDS-The trend of z-scores at each location that
+         were determined using the Mann-Kendall statistic will be displayed.
 
-          * EMERGING_HOT_SPOT_ANALYSIS_RESULTS-The results of the Emerging Hot
-          Spot Analysis tool for the specified Cube Variable parameter value
-          will be displayed.
+         * EMERGING_HOT_SPOT_ANALYSIS_RESULTS-The results of the Emerging Hot
+         Spot Analysis tool for the specified Cube Variable parameter value
+         will be displayed.
 
-          * LOCAL_OUTLIER_ANALYSIS_RESULTS-The results of the Local Outlier
-          Analysis tool for the specified Cube Variable parameter value will be
-          displayed.
+         * LOCAL_OUTLIER_ANALYSIS_RESULTS-The results of the Local Outlier
+         Analysis tool for the specified Cube Variable parameter value will be
+         displayed.
 
-          * PERCENTAGE_OF_LOCAL_OUTLIERS-The total percentage of outliers at
-          each location will be displayed.
+         * PERCENTAGE_OF_LOCAL_OUTLIERS-The total percentage of outliers at
+         each location will be displayed.
 
-          * LOCAL_OUTLIER_IN_MOST_RECENT_TIME_PERIOD-The outliers occurring in
-          the most recent time period will be displayed.
+         * LOCAL_OUTLIER_IN_MOST_RECENT_TIME_PERIOD-The outliers occurring in
+         the most recent time period will be displayed.
 
-          * TIME_SERIES_CLUSTERING_RESULTS-The results of the Time Series
-          Clustering tool for the specified Cube Variable parameter value will
-          be displayed.
+         * TIME_SERIES_CLUSTERING_RESULTS-The results of the Time Series
+         Clustering tool for the specified Cube Variable parameter value will
+         be displayed.
 
-          * LOCATIONS_WITHOUT_SPATIAL_NEIGHBORS-Locations that have no spatial
-          neighbors for the last analysis run will be displayed. These locations
-          rely only on temporal neighbors for analysis.
+         * LOCATIONS_WITHOUT_SPATIAL_NEIGHBORS-Locations that have no spatial
+         neighbors for the last analysis run will be displayed. These locations
+         rely only on temporal neighbors for analysis.
 
-          * NUMBER_OF_ESTIMATED_BINS-The number of bins that were estimated for
-          each location will be displayed.
+         * NUMBER_OF_ESTIMATED_BINS-The number of bins that were estimated for
+         each location will be displayed.
 
-          * LOCATIONS_EXCLUDED_FROM_ANALYSIS-The locations that were excluded
-          from analysis because they had empty bins that did not meet the
-          criteria for estimation will be displayed.
+         * LOCATIONS_EXCLUDED_FROM_ANALYSIS-The locations that were excluded
+         from analysis because they had empty bins that did not meet the
+         criteria for estimation will be displayed.
 
-          * FORECAST_RESULTS-The results of the Time Series Forecasting tool
-          used for the specified Analysis Variable parameter value will be
-          displayed.
+         * FORECAST_RESULTS-The results of the Time Series Forecasting tool
+         used for the specified Analysis Variable parameter value will be
+         displayed.
 
-          * TIME_SERIES_OUTLIER_RESULTS-The results of the Outlier Option
-          parameter in the Time Series Forecasting tools will be displayed.
+         * TIME_SERIES_OUTLIER_RESULTS-The results of the Outlier Option
+         parameter in the Time Series Forecasting tools will be displayed.
 
-          * TIME_SERIES_CHANGE_POINTS-The results of the Change Point Detection
-          tool. The output features display the number of change points at each
-          location, along with pop-up charts that display the original time
-          series, change points, and estimates of the mean or standard deviation
-          of each segment.
-      enable_time_series_popups {Boolean}:
-          Specifies whether time series pop-ups will be generated for each
-          output feature. Pop-up charts are not supported for shapefile outputs.
+         * TIME_SERIES_CHANGE_POINTS-The results of the Change Point Detection
+         tool. The output features display the number of change points at each
+         location, along with pop-up charts that display the original time
+         series, change points, and estimates of the mean or standard deviation
+         of each segment.
+     enable_time_series_popups {Boolean}:
+         Specifies whether time series pop-ups will be generated for each
+         output feature. Pop-up charts are not supported for shapefile outputs.
 
-          * CREATE_POPUP-Time series pop-ups will be generated for each feature
-          in the dataset.
+         * CREATE_POPUP-Time series pop-ups will be generated for each feature
+         in the dataset.
 
-          * NO_POPUP-Time series pop-ups will not be generated. This is the
-          default.
+         * NO_POPUP-Time series pop-ups will not be generated. This is the
+         default.
 
-     OUTPUTS:
-      output_features (Feature Class):
-          The output feature class results. This feature class will be a two-
-          dimensional map representation of the specified display variable."""
+    OUTPUTS:
+     output_features (Feature Class):
+         The output feature class results. This feature class will be a two-
+         dimensional map representation of the specified display variable."""
     ...
 
-@gptooldoc('VisualizeSpaceTimeCube3D_stpm', None)
-def VisualizeSpaceTimeCube3D(in_cube=..., cube_variable=..., display_theme=..., output_features=...): # -> conversion | int | float | complex | basestring | list[Unknown] | tuple[Unknown, ...] | dict[Unknown, Unknown]:
+@gptooldoc("VisualizeSpaceTimeCube3D_stpm", None)
+def VisualizeSpaceTimeCube3D(
+    in_cube=..., cube_variable=..., display_theme=..., output_features=...
+):  # -> conversion | int | float | complex | basestring | list[Unknown] | tuple[Unknown, ...] | dict[Unknown, Unknown]:
     """VisualizeSpaceTimeCube3D_stpm(in_cube, cube_variable, display_theme, output_features)
 
-        Visualizes the variables stored in a netCDF space-time cube created
-        with the Space Time Pattern Mining tools. Output from this tool is a
-        three-dimensional representation uniquely rendered based on the
-        variable and theme specified.
+       Visualizes the variables stored in a netCDF space-time cube created
+       with the Space Time Pattern Mining tools. Output from this tool is a
+       three-dimensional representation uniquely rendered based on the
+       variable and theme specified.
 
-     INPUTS:
-      in_cube (File):
-          The space-time cube containing the variable to be analyzed. Space-time
-          cubes have a .nc file extension and are created using various tools in
-          the Space Time Pattern Mining toolbox.
-      cube_variable (String):
-          The numeric variable in the netCDF cube that will be explored. The
-          space-time cube will always contain the COUNT variable if aggregation
-          was used when creating the cube. Any summary fields or variables will
-          also be available if they were included when the cube was created.
-      display_theme (String):
-          Specifies the characteristic of the Cube Variable parameter value to
-          be displayed. Options will vary depending on how the cube was created
-          and the analyses that were run.
+    INPUTS:
+     in_cube (File):
+         The space-time cube containing the variable to be analyzed. Space-time
+         cubes have a .nc file extension and are created using various tools in
+         the Space Time Pattern Mining toolbox.
+     cube_variable (String):
+         The numeric variable in the netCDF cube that will be explored. The
+         space-time cube will always contain the COUNT variable if aggregation
+         was used when creating the cube. Any summary fields or variables will
+         also be available if they were included when the cube was created.
+     display_theme (String):
+         Specifies the characteristic of the Cube Variable parameter value to
+         be displayed. Options will vary depending on how the cube was created
+         and the analyses that were run.
 
-          * VALUE-The numeric value of the Cube Variable parameter will be
-          displayed.
+         * VALUE-The numeric value of the Cube Variable parameter will be
+         displayed.
 
-          * HOT_AND_COLD_SPOT_RESULTS-The statistical significance of each bin
-          will be displayed based on the space-time hot spot analysis run in
-          Emerging Hot Spot Analysis.
+         * HOT_AND_COLD_SPOT_RESULTS-The statistical significance of each bin
+         will be displayed based on the space-time hot spot analysis run in
+         Emerging Hot Spot Analysis.
 
-          * ESTIMATED_BINS-Bins with estimated values will be displayed.
+         * ESTIMATED_BINS-Bins with estimated values will be displayed.
 
-          * LOCAL_OUTLIER_RESULTS-The cluster or outlier type (COType) for each
-          bin determined by Local Outlier Analysis will be displayed.
+         * LOCAL_OUTLIER_RESULTS-The cluster or outlier type (COType) for each
+         bin determined by Local Outlier Analysis will be displayed.
 
-          * TEMPORAL_AGGREGATION_COUNT-The count of records aggregated into each
-          space-time bin will be displayed.
+         * TEMPORAL_AGGREGATION_COUNT-The count of records aggregated into each
+         space-time bin will be displayed.
 
-          * FORECAST_RESULTS-The input time steps and the resulting forecasted
-          values from the Time Series Forecasting tools will be displayed.
+         * FORECAST_RESULTS-The input time steps and the resulting forecasted
+         values from the Time Series Forecasting tools will be displayed.
 
-          * TIME_SERIES_OUTLIER_RESULTS-The results of the Outlier Option
-          parameter in the Time Series Forecasting tools will be displayed.
+         * TIME_SERIES_OUTLIER_RESULTS-The results of the Outlier Option
+         parameter in the Time Series Forecasting tools will be displayed.
 
-          * TIME_SERIES_CHANGE_POINTS-The results of the Change Point Detection
-          tool will be displayed. The output will contain fields indicating
-          whether each time step is a change point along with estimates of the
-          mean or standard deviation for the current and previous time step.
-          Value is the numeric value of the Cube Variable parameter and is
-          always available. Estimated bins values are only available for the
-          summary fields that were included when the cube was created. Hot and
-          cold spot results values will only be available for the Cube Variable
-          parameter value for which Emerging Hot Spot Analysis has been run.
-          Cluster and outlier results values will only be available for Cube
-          Variable values for which Local Outlier Analysis has been run.
-          Temporal aggregation count values will only be available for defined
-          location cubes that have been aggregated temporally. Forecast results
-          values will only be available for the Cube Variable parameter value
-          for which a Time Series Forecasting tool has been run. Time series
-          outlier results values will only be available when the Outlier Option
-          parameter has been set for a tool in the the Time Series Forecasting
-          toolset. Time series change points values will only be available for
-          Cube Variable values for which Change Point Detection has been run.For
-          in-depth information about each option, including descriptions of
-          the output and created charts, see the Visualization display themes
-          for the space-time cube topic.
+         * TIME_SERIES_CHANGE_POINTS-The results of the Change Point Detection
+         tool will be displayed. The output will contain fields indicating
+         whether each time step is a change point along with estimates of the
+         mean or standard deviation for the current and previous time step.
+         Value is the numeric value of the Cube Variable parameter and is
+         always available. Estimated bins values are only available for the
+         summary fields that were included when the cube was created. Hot and
+         cold spot results values will only be available for the Cube Variable
+         parameter value for which Emerging Hot Spot Analysis has been run.
+         Cluster and outlier results values will only be available for Cube
+         Variable values for which Local Outlier Analysis has been run.
+         Temporal aggregation count values will only be available for defined
+         location cubes that have been aggregated temporally. Forecast results
+         values will only be available for the Cube Variable parameter value
+         for which a Time Series Forecasting tool has been run. Time series
+         outlier results values will only be available when the Outlier Option
+         parameter has been set for a tool in the the Time Series Forecasting
+         toolset. Time series change points values will only be available for
+         Cube Variable values for which Change Point Detection has been run.For
+         in-depth information about each option, including descriptions of
+         the output and created charts, see the Visualization display themes
+         for the space-time cube topic.
 
-     OUTPUTS:
-      output_features (Feature Class):
-          The output feature class results. This feature class will be a three-
-          dimensional map representation of the display variable that can be
-          displayed in a 3D scene."""
+    OUTPUTS:
+     output_features (Feature Class):
+         The output feature class results. This feature class will be a three-
+         dimensional map representation of the display variable that can be
+         displayed in a 3D scene."""
     ...
 
-@gptooldoc('ChangePointDetection_stpm', None)
-def ChangePointDetection(in_cube=..., analysis_variable=..., output_features=..., change_type=..., method=..., num_change_points=..., sensitivity=..., min_seg_len=...): # -> conversion | int | float | complex | basestring | list[Unknown] | tuple[Unknown, ...] | dict[Unknown, Unknown]:
+@gptooldoc("ChangePointDetection_stpm", None)
+def ChangePointDetection(
+    in_cube=...,
+    analysis_variable=...,
+    output_features=...,
+    change_type=...,
+    method=...,
+    num_change_points=...,
+    sensitivity=...,
+    min_seg_len=...,
+):  # -> conversion | int | float | complex | basestring | list[Unknown] | tuple[Unknown, ...] | dict[Unknown, Unknown]:
     """ChangePointDetection_stpm(in_cube, analysis_variable, output_features, {change_type}, {method}, {num_change_points}, {sensitivity}, {min_seg_len})
 
-        Detects time steps when a statistical property of the time series
-        changes for each location of a space-time cube.
+       Detects time steps when a statistical property of the time series
+       changes for each location of a space-time cube.
 
-     INPUTS:
-      in_cube (File):
-          The space-time cube containing the variable to be analyzed. Space-time
-          cubes have a .nc file extension and are created using various tools in
-          the Space Time Pattern Mining toolbox.
-      analysis_variable (String):
-          The numeric variable of the space-time cube containing the time series
-          values of each location.
-      change_type {String}:
-          Specifies the type of change that will be detected. Each option
-          specifies a statistical property of the time series that is assumed to
-          be constant in each segment. The value changes to a new constant value
-          at each change point in the time series.
+    INPUTS:
+     in_cube (File):
+         The space-time cube containing the variable to be analyzed. Space-time
+         cubes have a .nc file extension and are created using various tools in
+         the Space Time Pattern Mining toolbox.
+     analysis_variable (String):
+         The numeric variable of the space-time cube containing the time series
+         values of each location.
+     change_type {String}:
+         Specifies the type of change that will be detected. Each option
+         specifies a statistical property of the time series that is assumed to
+         be constant in each segment. The value changes to a new constant value
+         at each change point in the time series.
 
-          * MEAN-Shifts in mean value will be detected. This is the default.
+         * MEAN-Shifts in mean value will be detected. This is the default.
 
-          * STANDARD_DEVIATION-Changes in standard deviation will be detected.
+         * STANDARD_DEVIATION-Changes in standard deviation will be detected.
 
-          * SLOPE-Changes in slope (linear trend) will be detected.
+         * SLOPE-Changes in slope (linear trend) will be detected.
 
-          * COUNT-Changes in the mean of count data will be detected.
-      method {String}:
-          Specifies whether the number of change points will be detected
-          automatically or specified by a defined number of change points used
-          for all locations.
+         * COUNT-Changes in the mean of count data will be detected.
+     method {String}:
+         Specifies whether the number of change points will be detected
+         automatically or specified by a defined number of change points used
+         for all locations.
 
-          * AUTO_DETECT-The number of change points will be detected
-          automatically. The sensitivity of the detection will be defined by the
-          sensitivity parameter. This is the default.
+         * AUTO_DETECT-The number of change points will be detected
+         automatically. The sensitivity of the detection will be defined by the
+         sensitivity parameter. This is the default.
 
-          * DEFINED_NUMBER-The number of change points will be defined by the
-          num_change_points parameter.
-      num_change_points {Long}:
-          The number of change points that will be detected at each location.
-          The default is 1.
-      sensitivity {Double}:
-          A number between 0 and 1 that defines the sensitivity of the
-          detection. Larger values will result in more detected change points at
-          each location. The default is 0.5.
-      min_seg_len {Long}:
-          The minimum number of time steps within each segment. The change
-          points will divide each time series into segments in which each
-          segment has at least this number of time steps. For change in mean,
-          standard deviation, and count, the default is 1, meaning that every
-          time step can be a change point. For change in slope (linear trend),
-          the default is 2 because at least two values are required to fit a
-          line. The value must be less than half the number of time steps in the
-          time series.
+         * DEFINED_NUMBER-The number of change points will be defined by the
+         num_change_points parameter.
+     num_change_points {Long}:
+         The number of change points that will be detected at each location.
+         The default is 1.
+     sensitivity {Double}:
+         A number between 0 and 1 that defines the sensitivity of the
+         detection. Larger values will result in more detected change points at
+         each location. The default is 0.5.
+     min_seg_len {Long}:
+         The minimum number of time steps within each segment. The change
+         points will divide each time series into segments in which each
+         segment has at least this number of time steps. For change in mean,
+         standard deviation, and count, the default is 1, meaning that every
+         time step can be a change point. For change in slope (linear trend),
+         the default is 2 because at least two values are required to fit a
+         line. The value must be less than half the number of time steps in the
+         time series.
 
-     OUTPUTS:
-      output_features (Feature Class):
-          The output feature class that will contain the change point detection
-          results. The layer displays the number of change points detected at
-          each location and contains pop-up line charts showing the time series
-          values, change points, and estimates of mean or standard deviation of
-          each segment."""
+    OUTPUTS:
+     output_features (Feature Class):
+         The output feature class that will contain the change point detection
+         results. The layer displays the number of change points detected at
+         each location and contains pop-up line charts showing the time series
+         values, change points, and estimates of mean or standard deviation of
+         each segment."""
     ...
 
-@gptooldoc('EmergingHotSpotAnalysis_stpm', None)
-def EmergingHotSpotAnalysis(in_cube=..., analysis_variable=..., output_features=..., neighborhood_distance=..., neighborhood_time_step=..., polygon_mask=..., conceptualization_of_spatial_relationships=..., number_of_neighbors=..., define_global_window=...): # -> conversion | int | float | complex | basestring | list[Unknown] | tuple[Unknown, ...] | dict[Unknown, Unknown]:
+@gptooldoc("EmergingHotSpotAnalysis_stpm", None)
+def EmergingHotSpotAnalysis(
+    in_cube=...,
+    analysis_variable=...,
+    output_features=...,
+    neighborhood_distance=...,
+    neighborhood_time_step=...,
+    polygon_mask=...,
+    conceptualization_of_spatial_relationships=...,
+    number_of_neighbors=...,
+    define_global_window=...,
+):  # -> conversion | int | float | complex | basestring | list[Unknown] | tuple[Unknown, ...] | dict[Unknown, Unknown]:
     """EmergingHotSpotAnalysis_stpm(in_cube, analysis_variable, output_features, {neighborhood_distance}, {neighborhood_time_step}, {polygon_mask}, {conceptualization_of_spatial_relationships}, {number_of_neighbors}, {define_global_window})
 
-        Identifies trends in the clustering of point densities (counts) or
-        values in a space-time cube created using either the Create Space Time
-        Cube By Aggregating Points, Create Space Time Cube From Defined
-        Locations or Create Space Time Cube from Multidimensional Raster Layer
-        tool. Categories include new, consecutive, intensifying, persistent,
-        diminishing, sporadic, oscillating, and historical hot and cold spots.
+       Identifies trends in the clustering of point densities (counts) or
+       values in a space-time cube created using either the Create Space Time
+       Cube By Aggregating Points, Create Space Time Cube From Defined
+       Locations or Create Space Time Cube from Multidimensional Raster Layer
+       tool. Categories include new, consecutive, intensifying, persistent,
+       diminishing, sporadic, oscillating, and historical hot and cold spots.
 
-     INPUTS:
-      in_cube (File):
-          The space-time cube containing the variable to be analyzed. Space-time
-          cubes have a .nc file extension and are created using various tools in
-          the Space Time Pattern Mining toolbox.
-      analysis_variable (String):
-          The numeric variable in the netCDF file you want to analyze.
-      neighborhood_distance {Linear Unit}:
-          The spatial extent of the analysis neighborhood. This value determines
-          which features are analyzed together in order to assess local space-
-          time clustering.
-      neighborhood_time_step {Long}:
-          The number of time-step intervals to include in the analysis
-          neighborhood. This value determines which features are analyzed
-          together in order to assess local space-time clustering.
-      polygon_mask {Feature Layer}:
-          A polygon feature layer with one or more polygons defining the
-          analysis study area. You would use a polygon analysis mask to exclude
-          a large lake from the analysis, for example. Bins defined in the
-          in_cube that fall outside of the mask will not be included in the
-          analysis.This parameter is only available for grid cubes.
-      conceptualization_of_spatial_relationships {String}:
-          Specifies how spatial relationships among bins are defined.
+    INPUTS:
+     in_cube (File):
+         The space-time cube containing the variable to be analyzed. Space-time
+         cubes have a .nc file extension and are created using various tools in
+         the Space Time Pattern Mining toolbox.
+     analysis_variable (String):
+         The numeric variable in the netCDF file you want to analyze.
+     neighborhood_distance {Linear Unit}:
+         The spatial extent of the analysis neighborhood. This value determines
+         which features are analyzed together in order to assess local space-
+         time clustering.
+     neighborhood_time_step {Long}:
+         The number of time-step intervals to include in the analysis
+         neighborhood. This value determines which features are analyzed
+         together in order to assess local space-time clustering.
+     polygon_mask {Feature Layer}:
+         A polygon feature layer with one or more polygons defining the
+         analysis study area. You would use a polygon analysis mask to exclude
+         a large lake from the analysis, for example. Bins defined in the
+         in_cube that fall outside of the mask will not be included in the
+         analysis.This parameter is only available for grid cubes.
+     conceptualization_of_spatial_relationships {String}:
+         Specifies how spatial relationships among bins are defined.
 
-          * FIXED_DISTANCE-Each bin is analyzed within the context of
-          neighboring bins. Neighboring bins inside the specified critical
-          distance (neighborhood_distance) receive a weight of one and exert
-          influence on computations for the target bin. Neighboring bins outside
-          the critical distance receive a weight of zero and have no influence
-          on a target bin's computations.
+         * FIXED_DISTANCE-Each bin is analyzed within the context of
+         neighboring bins. Neighboring bins inside the specified critical
+         distance (neighborhood_distance) receive a weight of one and exert
+         influence on computations for the target bin. Neighboring bins outside
+         the critical distance receive a weight of zero and have no influence
+         on a target bin's computations.
 
-          * K_NEAREST_NEIGHBORS-The closest k bins are included in the analysis
-          for the target bin; k is a specified numeric parameter.
+         * K_NEAREST_NEIGHBORS-The closest k bins are included in the analysis
+         for the target bin; k is a specified numeric parameter.
 
-          * CONTIGUITY_EDGES_ONLY-Only neighboring bins that share an edge will
-          influence computations for the target polygon bin.
+         * CONTIGUITY_EDGES_ONLY-Only neighboring bins that share an edge will
+         influence computations for the target polygon bin.
 
-          * CONTIGUITY_EDGES_CORNERS-Bins that share an edge or share a node
-          will influence computations for the target polygon bin.
-      number_of_neighbors {Long}:
-          An integer specifying either the minimum or the exact number of
-          neighbors to include in calculations for the target bin. For
-          K_NEAREST_NEIGHBORS, each bin will have exactly this specified number
-          of neighbors. For FIXED_DISTANCE_BAND, each bin will have at least
-          this many neighbors (the threshold distance will be temporarily
-          extended to ensure this many neighbors if necessary). When one of the
-          contiguity conceptualizations are selected, each bin will be assigned
-          this minimum number of neighbors. For bins with fewer than this number
-          of contiguous neighbors, additional neighbors will be based on feature
-          centroid proximity.
-      define_global_window {String}:
-          The statistic works by comparing a local statistic calculated from the
-          neighbors for each bin to a global value. This parameter can be used
-          to control which bins are used to calculate the global value.
+         * CONTIGUITY_EDGES_CORNERS-Bins that share an edge or share a node
+         will influence computations for the target polygon bin.
+     number_of_neighbors {Long}:
+         An integer specifying either the minimum or the exact number of
+         neighbors to include in calculations for the target bin. For
+         K_NEAREST_NEIGHBORS, each bin will have exactly this specified number
+         of neighbors. For FIXED_DISTANCE_BAND, each bin will have at least
+         this many neighbors (the threshold distance will be temporarily
+         extended to ensure this many neighbors if necessary). When one of the
+         contiguity conceptualizations are selected, each bin will be assigned
+         this minimum number of neighbors. For bins with fewer than this number
+         of contiguous neighbors, additional neighbors will be based on feature
+         centroid proximity.
+     define_global_window {String}:
+         The statistic works by comparing a local statistic calculated from the
+         neighbors for each bin to a global value. This parameter can be used
+         to control which bins are used to calculate the global value.
 
-          * ENTIRE_CUBE-Each neighborhood is analyzed in comparison to the
-          entire cube. This is the default.
+         * ENTIRE_CUBE-Each neighborhood is analyzed in comparison to the
+         entire cube. This is the default.
 
-          * NEIGHBORHOOD_TIME_STEP-Each neighborhood is analyzed in comparison
-          to the bins contained within the Neighborhood Time Step specified.
+         * NEIGHBORHOOD_TIME_STEP-Each neighborhood is analyzed in comparison
+         to the bins contained within the Neighborhood Time Step specified.
 
-          * INDIVIDUAL_TIME_STEP-Each neighborhood is analyzed in comparison to
-          the bins in the same time step.
+         * INDIVIDUAL_TIME_STEP-Each neighborhood is analyzed in comparison to
+         the bins in the same time step.
 
-     OUTPUTS:
-      output_features (Feature Class):
-          The output feature class results. This feature class will be a two-
-          dimensional map representation of the hot and cold spot trends in your
-          data. It will show, for example, any new or intensifying hot spots."""
+    OUTPUTS:
+     output_features (Feature Class):
+         The output feature class results. This feature class will be a two-
+         dimensional map representation of the hot and cold spot trends in your
+         data. It will show, for example, any new or intensifying hot spots."""
     ...
 
-@gptooldoc('LocalOutlierAnalysis_stpm', None)
-def LocalOutlierAnalysis(in_cube=..., analysis_variable=..., output_features=..., neighborhood_distance=..., neighborhood_time_step=..., number_of_permutations=..., polygon_mask=..., conceptualization_of_spatial_relationships=..., number_of_neighbors=..., define_global_window=...): # -> conversion | int | float | complex | basestring | list[Unknown] | tuple[Unknown, ...] | dict[Unknown, Unknown]:
+@gptooldoc("LocalOutlierAnalysis_stpm", None)
+def LocalOutlierAnalysis(
+    in_cube=...,
+    analysis_variable=...,
+    output_features=...,
+    neighborhood_distance=...,
+    neighborhood_time_step=...,
+    number_of_permutations=...,
+    polygon_mask=...,
+    conceptualization_of_spatial_relationships=...,
+    number_of_neighbors=...,
+    define_global_window=...,
+):  # -> conversion | int | float | complex | basestring | list[Unknown] | tuple[Unknown, ...] | dict[Unknown, Unknown]:
     """LocalOutlierAnalysis_stpm(in_cube, analysis_variable, output_features, {neighborhood_distance}, {neighborhood_time_step}, {number_of_permutations}, {polygon_mask}, {conceptualization_of_spatial_relationships}, {number_of_neighbors}, {define_global_window})
 
-        Identifies statistically significant clusters and outliers in the
-        context of both space and time. This tool is a space-time
-        implementation of the Anselin Local Moran's I statistic.
+       Identifies statistically significant clusters and outliers in the
+       context of both space and time. This tool is a space-time
+       implementation of the Anselin Local Moran's I statistic.
 
-     INPUTS:
-      in_cube (File):
-          The space-time cube containing the variable to be analyzed. Space-time
-          cubes have a .nc file extension and are created using various tools in
-          the Space Time Pattern Mining toolbox.
-      analysis_variable (String):
-          The numeric variable in the netCDF file you want to analyze.
-      neighborhood_distance {Linear Unit}:
-          The spatial extent of the analysis neighborhood. This value determines
-          which features are analyzed together in order to assess local space-
-          time clustering.
-      neighborhood_time_step {Long}:
-          The number of time-step intervals to include in the analysis
-          neighborhood. This value determines which features are analyzed
-          together in order to assess local space-time clustering.
-      number_of_permutations {Long}:
-          The number of random permutations for the calculation of pseudo
-          p-values. The default number of permutations is 499. If you choose 0
-          permutations, the standard p-value is calculated.
+    INPUTS:
+     in_cube (File):
+         The space-time cube containing the variable to be analyzed. Space-time
+         cubes have a .nc file extension and are created using various tools in
+         the Space Time Pattern Mining toolbox.
+     analysis_variable (String):
+         The numeric variable in the netCDF file you want to analyze.
+     neighborhood_distance {Linear Unit}:
+         The spatial extent of the analysis neighborhood. This value determines
+         which features are analyzed together in order to assess local space-
+         time clustering.
+     neighborhood_time_step {Long}:
+         The number of time-step intervals to include in the analysis
+         neighborhood. This value determines which features are analyzed
+         together in order to assess local space-time clustering.
+     number_of_permutations {Long}:
+         The number of random permutations for the calculation of pseudo
+         p-values. The default number of permutations is 499. If you choose 0
+         permutations, the standard p-value is calculated.
 
-          * 0-Permutations are not used and a standard p-value is calculated.
+         * 0-Permutations are not used and a standard p-value is calculated.
 
-          * 99-With 99 permutations, the smallest possible pseudo p-value is
-          0.01 and all other pseudo p-values will be even multiples of this
-          value.
+         * 99-With 99 permutations, the smallest possible pseudo p-value is
+         0.01 and all other pseudo p-values will be even multiples of this
+         value.
 
-          * 199-With 199 permutations, the smallest possible pseudo p-value is
-          0.005 and all other pseudo p-values will be even multiples of this
-          value.
+         * 199-With 199 permutations, the smallest possible pseudo p-value is
+         0.005 and all other pseudo p-values will be even multiples of this
+         value.
 
-          * 499-With 499 permutations, the smallest possible pseudo p-value is
-          0.002 and all other pseudo p-values will be even multiples of this
-          value.
+         * 499-With 499 permutations, the smallest possible pseudo p-value is
+         0.002 and all other pseudo p-values will be even multiples of this
+         value.
 
-          * 999-With 999 permutations, the smallest possible pseudo p-value is
-          0.001 and all other pseudo p-values will be even multiples of this
-          value.
+         * 999-With 999 permutations, the smallest possible pseudo p-value is
+         0.001 and all other pseudo p-values will be even multiples of this
+         value.
 
-          * 9999-With 9999 permutations, the smallest possible pseudo p-value is
-          0.0001 and all other pseudo p-values will be even multiples of this
-          value.
-      polygon_mask {Feature Layer}:
-          A polygon feature layer with one or more polygons defining the
-          analysis study area. You would use a polygon analysis mask to exclude
-          a large lake from the analysis, for example. Bins defined in the
-          in_cube that fall outside of the mask will not be included in the
-          analysis.This parameter is only available for grid cubes.
-      conceptualization_of_spatial_relationships {String}:
-          Specifies how spatial relationships among bins are defined.
+         * 9999-With 9999 permutations, the smallest possible pseudo p-value is
+         0.0001 and all other pseudo p-values will be even multiples of this
+         value.
+     polygon_mask {Feature Layer}:
+         A polygon feature layer with one or more polygons defining the
+         analysis study area. You would use a polygon analysis mask to exclude
+         a large lake from the analysis, for example. Bins defined in the
+         in_cube that fall outside of the mask will not be included in the
+         analysis.This parameter is only available for grid cubes.
+     conceptualization_of_spatial_relationships {String}:
+         Specifies how spatial relationships among bins are defined.
 
-          * FIXED_DISTANCE-Each bin is analyzed within the context of
-          neighboring bins. Neighboring bins inside the specified critical
-          distance (neighborhood_distance) receive a weight of one and exert
-          influence on computations for the target bin. Neighboring bins outside
-          the critical distance receive a weight of zero and have no influence
-          on a target bin's computations.
+         * FIXED_DISTANCE-Each bin is analyzed within the context of
+         neighboring bins. Neighboring bins inside the specified critical
+         distance (neighborhood_distance) receive a weight of one and exert
+         influence on computations for the target bin. Neighboring bins outside
+         the critical distance receive a weight of zero and have no influence
+         on a target bin's computations.
 
-          * K_NEAREST_NEIGHBORS-The closest k bins are included in the analysis
-          for the target bin; k is a specified numeric parameter.
+         * K_NEAREST_NEIGHBORS-The closest k bins are included in the analysis
+         for the target bin; k is a specified numeric parameter.
 
-          * CONTIGUITY_EDGES_ONLY-Only neighboring bins that share an edge will
-          influence computations for the target polygon bin.
+         * CONTIGUITY_EDGES_ONLY-Only neighboring bins that share an edge will
+         influence computations for the target polygon bin.
 
-          * CONTIGUITY_EDGES_CORNERS-Bins that share an edge or share a node
-          will influence computations for the target polygon bin.
-      number_of_neighbors {Long}:
-          An integer specifying either the minimum or the exact number of
-          neighbors to include in calculations for the target bin. For
-          K_NEAREST_NEIGHBORS, each bin will have exactly this specified number
-          of neighbors. For FIXED_DISTANCE, each bin will have at least this
-          many neighbors (the neighborhood_distance will be temporarily extended
-          to ensure this many neighbors if necessary). When one of the
-          contiguity conceptualizations are selected, each bin will be assigned
-          this minimum number of neighbors. For bins with fewer than this number
-          of contiguous neighbors, additional neighbors will be based on feature
-          centroid proximity.
-      define_global_window {String}:
-          The Anselin Local Moran's I statistic works by comparing a local
-          statistic calculated from the neighbors for each bin to a global
-          value. This parameter can be used to control which bins are used to
-          calculate the global value.
+         * CONTIGUITY_EDGES_CORNERS-Bins that share an edge or share a node
+         will influence computations for the target polygon bin.
+     number_of_neighbors {Long}:
+         An integer specifying either the minimum or the exact number of
+         neighbors to include in calculations for the target bin. For
+         K_NEAREST_NEIGHBORS, each bin will have exactly this specified number
+         of neighbors. For FIXED_DISTANCE, each bin will have at least this
+         many neighbors (the neighborhood_distance will be temporarily extended
+         to ensure this many neighbors if necessary). When one of the
+         contiguity conceptualizations are selected, each bin will be assigned
+         this minimum number of neighbors. For bins with fewer than this number
+         of contiguous neighbors, additional neighbors will be based on feature
+         centroid proximity.
+     define_global_window {String}:
+         The Anselin Local Moran's I statistic works by comparing a local
+         statistic calculated from the neighbors for each bin to a global
+         value. This parameter can be used to control which bins are used to
+         calculate the global value.
 
-          * ENTIRE_CUBE-Each neighborhood is analyzed in comparison to the
-          entire cube. This is the default.
+         * ENTIRE_CUBE-Each neighborhood is analyzed in comparison to the
+         entire cube. This is the default.
 
-          * NEIGHBORHOOD_TIME_STEP-Each neighborhood is analyzed in comparison
-          to the bins contained within the specified Neighborhood Time Step.
+         * NEIGHBORHOOD_TIME_STEP-Each neighborhood is analyzed in comparison
+         to the bins contained within the specified Neighborhood Time Step.
 
-          * INDIVIDUAL_TIME_STEP-Each neighborhood is analyzed in comparison to
-          the bins in the same time step.
+         * INDIVIDUAL_TIME_STEP-Each neighborhood is analyzed in comparison to
+         the bins in the same time step.
 
-     OUTPUTS:
-      output_features (Feature Class):
-          The output feature class containing locations that were considered
-          statistically significant clusters or outliers."""
+    OUTPUTS:
+     output_features (Feature Class):
+         The output feature class containing locations that were considered
+         statistically significant clusters or outliers."""
     ...
 
-@gptooldoc('TimeSeriesClustering_stpm', None)
-def TimeSeriesClustering(in_cube=..., analysis_variable=..., output_features=..., characteristic_of_interest=..., cluster_count=..., output_table_for_charts=..., shape_characteristic_to_ignore=..., enable_time_series_popups=...): # -> conversion | int | float | complex | basestring | list[Unknown] | tuple[Unknown, ...] | dict[Unknown, Unknown]:
+@gptooldoc("TimeSeriesClustering_stpm", None)
+def TimeSeriesClustering(
+    in_cube=...,
+    analysis_variable=...,
+    output_features=...,
+    characteristic_of_interest=...,
+    cluster_count=...,
+    output_table_for_charts=...,
+    shape_characteristic_to_ignore=...,
+    enable_time_series_popups=...,
+):  # -> conversion | int | float | complex | basestring | list[Unknown] | tuple[Unknown, ...] | dict[Unknown, Unknown]:
     """TimeSeriesClustering_stpm(in_cube, analysis_variable, output_features, characteristic_of_interest, {cluster_count}, {output_table_for_charts}, {shape_characteristic_to_ignore;shape_characteristic_to_ignore...}, {enable_time_series_popups})
 
-        Partitions a collection of time series, stored in a space-time cube,
-        based on the similarity of time series characteristics. Time series
-        can be clustered based on three criteria: having similar values across
-        time, tending to increase and decrease at the same time, and having
-        similar repeating patterns. The output of this tool is a 2D map
-        displaying each location in the cube symbolized by cluster membership
-        and messages. The output also includes charts containing information
-        about the representative time series signature for each cluster.
+       Partitions a collection of time series, stored in a space-time cube,
+       based on the similarity of time series characteristics. Time series
+       can be clustered based on three criteria: having similar values across
+       time, tending to increase and decrease at the same time, and having
+       similar repeating patterns. The output of this tool is a 2D map
+       displaying each location in the cube symbolized by cluster membership
+       and messages. The output also includes charts containing information
+       about the representative time series signature for each cluster.
 
-     INPUTS:
-      in_cube (File):
-          The space-time cube containing the variable to be analyzed. Space-time
-          cubes have a .nc file extension and are created using various tools in
-          the Space Time Pattern Mining toolbox.
-      analysis_variable (String):
-          The numeric variable in the netCDF file, changing over time, that will
-          be used to distinguish one cluster from another.
-      characteristic_of_interest (String):
-          Specifies the characteristic of the time series that will be used to
-          determine which locations should be clustered together.
+    INPUTS:
+     in_cube (File):
+         The space-time cube containing the variable to be analyzed. Space-time
+         cubes have a .nc file extension and are created using various tools in
+         the Space Time Pattern Mining toolbox.
+     analysis_variable (String):
+         The numeric variable in the netCDF file, changing over time, that will
+         be used to distinguish one cluster from another.
+     characteristic_of_interest (String):
+         Specifies the characteristic of the time series that will be used to
+         determine which locations should be clustered together.
 
-          * VALUE-Locations with similar values across time will be clustered
-          together.
+         * VALUE-Locations with similar values across time will be clustered
+         together.
 
-          * PROFILE-Locations with values that tend to increase and decrease
-          proportionally at the same times will be clustered together.
+         * PROFILE-Locations with values that tend to increase and decrease
+         proportionally at the same times will be clustered together.
 
-          * PROFILE_FOURIER-Locations with values that have similar smooth,
-          periodic patterns will be clustered together.
-      cluster_count {Long}:
-          The number of clusters to create. When left empty, the tool will
-          evaluate the optimal number of clusters using a pseudo-F statistic.
-          The optimal number of clusters will be reported in the messages
-          window.
-      shape_characteristic_to_ignore {String}:
-          Specifies characteristics that will be ignored when determining the
-          similarity between two time series.
+         * PROFILE_FOURIER-Locations with values that have similar smooth,
+         periodic patterns will be clustered together.
+     cluster_count {Long}:
+         The number of clusters to create. When left empty, the tool will
+         evaluate the optimal number of clusters using a pseudo-F statistic.
+         The optimal number of clusters will be reported in the messages
+         window.
+     shape_characteristic_to_ignore {String}:
+         Specifies characteristics that will be ignored when determining the
+         similarity between two time series.
 
-          * TIME_LAG-The starting time of each period, including time lags,
-          will be ignored. For example, if two time series have similar periodic
-          patterns, but the values of one are three days behind the other, the
-          time series will be considered similar.
+         * TIME_LAG-The starting time of each period, including time lags,
+         will be ignored. For example, if two time series have similar periodic
+         patterns, but the values of one are three days behind the other, the
+         time series will be considered similar.
 
-          * RANGE-The magnitude of the values in each period will be ignored.
-          For example, if two time series begin and end their periods at the
-          same times, they will be considered similar, even if the actual values
-          are very different.
-          If both characteristics are ignored, two time series will be
-          considered similar if the durations of the periods are similar, even
-          if they start at different times and have different values within the
-          periods.
-      enable_time_series_popups {Boolean}:
-          Specifies whether time series charts will be created in the pop-ups of
-          each output feature showing the time series of the feature and the
-          average time series of all features in the same cluster as the
-          feature. Time series pop-ups are not supported for shapefile outputs.
+         * RANGE-The magnitude of the values in each period will be ignored.
+         For example, if two time series begin and end their periods at the
+         same times, they will be considered similar, even if the actual values
+         are very different.
+         If both characteristics are ignored, two time series will be
+         considered similar if the durations of the periods are similar, even
+         if they start at different times and have different values within the
+         periods.
+     enable_time_series_popups {Boolean}:
+         Specifies whether time series charts will be created in the pop-ups of
+         each output feature showing the time series of the feature and the
+         average time series of all features in the same cluster as the
+         feature. Time series pop-ups are not supported for shapefile outputs.
 
-          * CREATE_POPUP-Time series charts will be created for the output
-          features.
+         * CREATE_POPUP-Time series charts will be created for the output
+         features.
 
-          * NO_POPUP-Time series charts will not be created. This is the
-          default.
+         * NO_POPUP-Time series charts will not be created. This is the
+         default.
 
-     OUTPUTS:
-      output_features (Feature Class):
-          The new output feature class containing all locations in the space-
-          time cube and a field indicating cluster membership. This feature
-          class will be a two-dimensional representation of the clusters in your
-          data.
-      output_table_for_charts {Table}:
-          If specified, this table contains the representative time series for
-          each cluster based on both the average for each time series cluster
-          and the medoid time series. Charts created from this table can be
-          accessed in the Standalone Tables section."""
+    OUTPUTS:
+     output_features (Feature Class):
+         The new output feature class containing all locations in the space-
+         time cube and a field indicating cluster membership. This feature
+         class will be a two-dimensional representation of the clusters in your
+         data.
+     output_table_for_charts {Table}:
+         If specified, this table contains the representative time series for
+         each cluster based on both the average for each time series cluster
+         and the medoid time series. Charts created from this table can be
+         accessed in the Standalone Tables section."""
     ...
 
-@gptooldoc('CurveFitForecast_stpm', None)
-def CurveFitForecast(in_cube=..., analysis_variable=..., output_features=..., output_cube=..., number_of_time_steps_to_forecast=..., curve_type=..., number_for_validation=..., outlier_option=..., level_of_confidence=..., maximum_number_of_outliers=...): # -> conversion | int | float | complex | basestring | list[Unknown] | tuple[Unknown, ...] | dict[Unknown, Unknown]:
+@gptooldoc("CurveFitForecast_stpm", None)
+def CurveFitForecast(
+    in_cube=...,
+    analysis_variable=...,
+    output_features=...,
+    output_cube=...,
+    number_of_time_steps_to_forecast=...,
+    curve_type=...,
+    number_for_validation=...,
+    outlier_option=...,
+    level_of_confidence=...,
+    maximum_number_of_outliers=...,
+):  # -> conversion | int | float | complex | basestring | list[Unknown] | tuple[Unknown, ...] | dict[Unknown, Unknown]:
     """CurveFitForecast_stpm(in_cube, analysis_variable, output_features, {output_cube}, {number_of_time_steps_to_forecast}, {curve_type}, {number_for_validation}, {outlier_option}, {level_of_confidence}, {maximum_number_of_outliers})
 
-        Forecasts the values of each location of a space-time cube using curve
-        fitting.
+       Forecasts the values of each location of a space-time cube using curve
+       fitting.
 
-     INPUTS:
-      in_cube (File):
-          The netCDF cube containing the variable to forecast to future time
-          steps. This file must have an .nc file extension and must have been
-          created using the Create Space Time Cube By Aggregating Points, Create
-          Space Time Cube From Defined Locations, or Create Space Time Cube From
-          Multidimensional Raster Layer tool.
-      analysis_variable (String):
-          The numeric variable in the netCDF file that will be forecasted to
-          future time steps.
-      number_of_time_steps_to_forecast {Long}:
-          A positive integer specifying the number of time steps to forecast.
-          This value cannot be larger than 50 percent of the total time steps in
-          the input space-time cube. The default value is one time step.
-      curve_type {String}:
-          Specifies the curve type that will be used to forecast the values of
-          the input space-time cube.
+    INPUTS:
+     in_cube (File):
+         The netCDF cube containing the variable to forecast to future time
+         steps. This file must have an .nc file extension and must have been
+         created using the Create Space Time Cube By Aggregating Points, Create
+         Space Time Cube From Defined Locations, or Create Space Time Cube From
+         Multidimensional Raster Layer tool.
+     analysis_variable (String):
+         The numeric variable in the netCDF file that will be forecasted to
+         future time steps.
+     number_of_time_steps_to_forecast {Long}:
+         A positive integer specifying the number of time steps to forecast.
+         This value cannot be larger than 50 percent of the total time steps in
+         the input space-time cube. The default value is one time step.
+     curve_type {String}:
+         Specifies the curve type that will be used to forecast the values of
+         the input space-time cube.
 
-          * LINEAR-The time series increases or decreases linearly over time.
+         * LINEAR-The time series increases or decreases linearly over time.
 
-          * PARABOLIC-The time series follows a parabola or quadratic curve over
-          time.
+         * PARABOLIC-The time series follows a parabola or quadratic curve over
+         time.
 
-          * EXPONENTIAL-The time series increases or decreases exponentially
-          over time.
+         * EXPONENTIAL-The time series increases or decreases exponentially
+         over time.
 
-          * GOMPERTZ-The time series increases or decreases following the shape
-          of an S over time.
+         * GOMPERTZ-The time series increases or decreases following the shape
+         of an S over time.
 
-          * AUTO_DETECT-All four curve types are run for each location and the
-          model is provided the smallest Validation RMSE. If no time slices are
-          excluded for validation, the model with the smallest Forecast RMSE is
-          used. This is the default.
-      number_for_validation {Long}:
-          The number of time steps at the end of each time series to exclude for
-          validation. The default value is 10 percent (rounded down) of the
-          number of input time steps, and this value cannot be larger than 25
-          percent of the number of time steps. Provide the value 0 to not
-          exclude any time steps.
-      outlier_option {String}:
-          Specifies whether statistically significant time series outliers will
-          be identified.
+         * AUTO_DETECT-All four curve types are run for each location and the
+         model is provided the smallest Validation RMSE. If no time slices are
+         excluded for validation, the model with the smallest Forecast RMSE is
+         used. This is the default.
+     number_for_validation {Long}:
+         The number of time steps at the end of each time series to exclude for
+         validation. The default value is 10 percent (rounded down) of the
+         number of input time steps, and this value cannot be larger than 25
+         percent of the number of time steps. Provide the value 0 to not
+         exclude any time steps.
+     outlier_option {String}:
+         Specifies whether statistically significant time series outliers will
+         be identified.
 
-          * NONE-Outliers will not be identified. This is the default.
+         * NONE-Outliers will not be identified. This is the default.
 
-          * IDENTIFY-Outliers will be identified using the Generalized ESD test.
-      level_of_confidence {String}:
-          Specifies the confidence level for the test for time series outliers.
+         * IDENTIFY-Outliers will be identified using the Generalized ESD test.
+     level_of_confidence {String}:
+         Specifies the confidence level for the test for time series outliers.
 
-          * 90%-The confidence level for the test is 90 percent. This is the
-          default.
+         * 90%-The confidence level for the test is 90 percent. This is the
+         default.
 
-          * 95%-The confidence level for the test is 95 percent.
+         * 95%-The confidence level for the test is 95 percent.
 
-          * 99%-The confidence level for the test is 99 percent.
-      maximum_number_of_outliers {Long}:
-          The maximum number of time steps that can be declared outliers for
-          each location. The default value corresponds to 5 percent (rounded
-          down) of the number of time steps of the input space-time cube (a
-          value of at least 1 will always be used). This value cannot exceed 20
-          percent of the number of time steps.
+         * 99%-The confidence level for the test is 99 percent.
+     maximum_number_of_outliers {Long}:
+         The maximum number of time steps that can be declared outliers for
+         each location. The default value corresponds to 5 percent (rounded
+         down) of the number of time steps of the input space-time cube (a
+         value of at least 1 will always be used). This value cannot exceed 20
+         percent of the number of time steps.
 
-     OUTPUTS:
-      output_features (Feature Class):
-          The output feature class of all locations in the space-time cube with
-          forecasted values stored as fields. The layer displays the forecast
-          for the final time step and contains pop-ups charts showing the time
-          series and forecasts for each location.
-      output_cube {File}:
-          A new space-time cube (.nc file) containing the values of the input
-          space-time cube with the forecasted time steps appended. The Visualize
-          Space Time Cube in 3D tool can be used to see all of the observed and
-          forecasted values simultaneously."""
+    OUTPUTS:
+     output_features (Feature Class):
+         The output feature class of all locations in the space-time cube with
+         forecasted values stored as fields. The layer displays the forecast
+         for the final time step and contains pop-ups charts showing the time
+         series and forecasts for each location.
+     output_cube {File}:
+         A new space-time cube (.nc file) containing the values of the input
+         space-time cube with the forecasted time steps appended. The Visualize
+         Space Time Cube in 3D tool can be used to see all of the observed and
+         forecasted values simultaneously."""
     ...
 
-@gptooldoc('EvaluateForecastsByLocation_stpm', None)
-def EvaluateForecastsByLocation(in_cubes=..., output_features=..., output_cube=..., evaluate_using_validation_results=...): # -> conversion | int | float | complex | basestring | list[Unknown] | tuple[Unknown, ...] | dict[Unknown, Unknown]:
+@gptooldoc("EvaluateForecastsByLocation_stpm", None)
+def EvaluateForecastsByLocation(
+    in_cubes=...,
+    output_features=...,
+    output_cube=...,
+    evaluate_using_validation_results=...,
+):  # -> conversion | int | float | complex | basestring | list[Unknown] | tuple[Unknown, ...] | dict[Unknown, Unknown]:
     """EvaluateForecastsByLocation_stpm(in_cubes;in_cubes..., output_features, {output_cube}, {evaluate_using_validation_results})
 
-        Selects the most accurate among multiple forecasting results for each
-        location of a space-time cube. This allows you to use multiple tools
-        in the Time Series Forecasting toolset with the same time series data
-        and select the best forecast for each location.
+       Selects the most accurate among multiple forecasting results for each
+       location of a space-time cube. This allows you to use multiple tools
+       in the Time Series Forecasting toolset with the same time series data
+       and select the best forecast for each location.
 
-     INPUTS:
-      in_cubes (File):
-          The input space-time cubes containing forecasts to be compared. To be
-          compared, all forecast cubes must be created from the same original
-          time series data.
-      evaluate_using_validation_results {Boolean}:
-          Specifies whether the forecast method for a location will be
-          determined using the smallest Validation RMSE or smallest Forecast
-          RMSE.
+    INPUTS:
+     in_cubes (File):
+         The input space-time cubes containing forecasts to be compared. To be
+         compared, all forecast cubes must be created from the same original
+         time series data.
+     evaluate_using_validation_results {Boolean}:
+         Specifies whether the forecast method for a location will be
+         determined using the smallest Validation RMSE or smallest Forecast
+         RMSE.
 
-          * USE_VALIDATION-The forecast method will be determined using the
-          smallest Validation RMSE. This is the default.
+         * USE_VALIDATION-The forecast method will be determined using the
+         smallest Validation RMSE. This is the default.
 
-          * NO_VALIDATION-The forecast method will be determined using the
-          smallest Forecast RMSE.
+         * NO_VALIDATION-The forecast method will be determined using the
+         smallest Forecast RMSE.
 
-     OUTPUTS:
-      output_features (Feature Class):
-          The new output feature class representing the locations of the space-
-          time cube and fields containing the forecast values of the selected
-          method at each location. The pop-ups of the features display charts of
-          the original time series data and the forecasts of all methods.
-      output_cube {File}:
-          The output space-time cube (.nc file) containing the original time
-          series data with the forecasts of the selected method at each
-          location. The Visualize Space Time Cube in 3D tool can be used to view
-          the original and forecasted values simultaneously."""
+    OUTPUTS:
+     output_features (Feature Class):
+         The new output feature class representing the locations of the space-
+         time cube and fields containing the forecast values of the selected
+         method at each location. The pop-ups of the features display charts of
+         the original time series data and the forecasts of all methods.
+     output_cube {File}:
+         The output space-time cube (.nc file) containing the original time
+         series data with the forecasts of the selected method at each
+         location. The Visualize Space Time Cube in 3D tool can be used to view
+         the original and forecasted values simultaneously."""
     ...
 
-@gptooldoc('ExponentialSmoothingForecast_stpm', None)
-def ExponentialSmoothingForecast(in_cube=..., analysis_variable=..., output_features=..., output_cube=..., number_of_time_steps_to_forecast=..., season_length=..., number_for_validation=..., outlier_option=..., level_of_confidence=..., maximum_number_of_outliers=...): # -> conversion | int | float | complex | basestring | list[Unknown] | tuple[Unknown, ...] | dict[Unknown, Unknown]:
+@gptooldoc("ExponentialSmoothingForecast_stpm", None)
+def ExponentialSmoothingForecast(
+    in_cube=...,
+    analysis_variable=...,
+    output_features=...,
+    output_cube=...,
+    number_of_time_steps_to_forecast=...,
+    season_length=...,
+    number_for_validation=...,
+    outlier_option=...,
+    level_of_confidence=...,
+    maximum_number_of_outliers=...,
+):  # -> conversion | int | float | complex | basestring | list[Unknown] | tuple[Unknown, ...] | dict[Unknown, Unknown]:
     """ExponentialSmoothingForecast_stpm(in_cube, analysis_variable, output_features, {output_cube}, {number_of_time_steps_to_forecast}, {season_length}, {number_for_validation}, {outlier_option}, {level_of_confidence}, {maximum_number_of_outliers})
 
-        Forecasts the values of each location of a space-time cube using the
-        Holt-Winters exponential smoothing method by decomposing the time
-        series at each location cube into seasonal and trend components.
+       Forecasts the values of each location of a space-time cube using the
+       Holt-Winters exponential smoothing method by decomposing the time
+       series at each location cube into seasonal and trend components.
 
-     INPUTS:
-      in_cube (File):
-          The netCDF cube containing the variable to forecast to future time
-          steps. This file must have an .nc file extension and must have been
-          created using the Create Space Time Cube By Aggregating Points, Create
-          Space Time Cube From Defined Locations, or Create Space Time Cube From
-          Multidimensional Raster Layer tool.
-      analysis_variable (String):
-          The numeric variable in the netCDF file that will be forecasted to
-          future time steps.
-      number_of_time_steps_to_forecast {Long}:
-          A positive integer specifying the number of time steps to forecast.
-          This value cannot be larger than 50 percent of the total time steps in
-          the input space-time cube. The default value is one time step.
-      season_length {Long}:
-          The number of time steps corresponding to one season at each location.
-          If there are multiple seasons in the data, it is recommended that you
-          use the longest season to produce the most reliable result. If no
-          value is specified, a season length will be estimated by the tool at
-          each location using a spectral density function.
-      number_for_validation {Long}:
-          The number of time steps at the end of each time series to exclude for
-          validation. The default value is 10 percent (rounded down) of the
-          number of input time steps, and this value cannot be larger than 25
-          percent of the number of time steps. Provide the value 0 to not
-          exclude any time steps.
-      outlier_option {String}:
-          Specifies whether statistically significant time series outliers will
-          be identified.
+    INPUTS:
+     in_cube (File):
+         The netCDF cube containing the variable to forecast to future time
+         steps. This file must have an .nc file extension and must have been
+         created using the Create Space Time Cube By Aggregating Points, Create
+         Space Time Cube From Defined Locations, or Create Space Time Cube From
+         Multidimensional Raster Layer tool.
+     analysis_variable (String):
+         The numeric variable in the netCDF file that will be forecasted to
+         future time steps.
+     number_of_time_steps_to_forecast {Long}:
+         A positive integer specifying the number of time steps to forecast.
+         This value cannot be larger than 50 percent of the total time steps in
+         the input space-time cube. The default value is one time step.
+     season_length {Long}:
+         The number of time steps corresponding to one season at each location.
+         If there are multiple seasons in the data, it is recommended that you
+         use the longest season to produce the most reliable result. If no
+         value is specified, a season length will be estimated by the tool at
+         each location using a spectral density function.
+     number_for_validation {Long}:
+         The number of time steps at the end of each time series to exclude for
+         validation. The default value is 10 percent (rounded down) of the
+         number of input time steps, and this value cannot be larger than 25
+         percent of the number of time steps. Provide the value 0 to not
+         exclude any time steps.
+     outlier_option {String}:
+         Specifies whether statistically significant time series outliers will
+         be identified.
 
-          * NONE-Outliers will not be identified. This is the default.
+         * NONE-Outliers will not be identified. This is the default.
 
-          * IDENTIFY-Outliers will be identified using the Generalized ESD test.
-      level_of_confidence {String}:
-          Specifies the confidence level for the test for time series outliers.
+         * IDENTIFY-Outliers will be identified using the Generalized ESD test.
+     level_of_confidence {String}:
+         Specifies the confidence level for the test for time series outliers.
 
-          * 90%-The confidence level for the test is 90 percent. This is the
-          default.
+         * 90%-The confidence level for the test is 90 percent. This is the
+         default.
 
-          * 95%-The confidence level for the test is 95 percent.
+         * 95%-The confidence level for the test is 95 percent.
 
-          * 99%-The confidence level for the test is 99 percent.
-      maximum_number_of_outliers {Long}:
-          The maximum number of time steps that can be declared outliers for
-          each location. The default value corresponds to 5 percent (rounded
-          down) of the number of time steps of the input space-time cube (a
-          value of at least 1 will always be used). This value cannot exceed 20
-          percent of the number of time steps.
+         * 99%-The confidence level for the test is 99 percent.
+     maximum_number_of_outliers {Long}:
+         The maximum number of time steps that can be declared outliers for
+         each location. The default value corresponds to 5 percent (rounded
+         down) of the number of time steps of the input space-time cube (a
+         value of at least 1 will always be used). This value cannot exceed 20
+         percent of the number of time steps.
 
-     OUTPUTS:
-      output_features (Feature Class):
-          The output feature class of all locations in the space-time cube with
-          forecasted values stored as fields. The layer displays the forecast
-          for the final time step and contains pop-up charts showing the time
-          series, forecasts, and 90 percent confidence bounds for each location.
-      output_cube {File}:
-          A new space-time cube (.nc file) containing the values of the input
-          space-time cube with the forecasted time steps appended. The Visualize
-          Space Time Cube in 3D tool can be used to see all of the observed and
-          forecasted values simultaneously."""
+    OUTPUTS:
+     output_features (Feature Class):
+         The output feature class of all locations in the space-time cube with
+         forecasted values stored as fields. The layer displays the forecast
+         for the final time step and contains pop-up charts showing the time
+         series, forecasts, and 90 percent confidence bounds for each location.
+     output_cube {File}:
+         A new space-time cube (.nc file) containing the values of the input
+         space-time cube with the forecasted time steps appended. The Visualize
+         Space Time Cube in 3D tool can be used to see all of the observed and
+         forecasted values simultaneously."""
     ...
 
-@gptooldoc('ForestBasedForecast_stpm', None)
-def ForestBasedForecast(in_cube=..., analysis_variable=..., output_features=..., output_cube=..., number_of_time_steps_to_forecast=..., time_window=..., number_for_validation=..., number_of_trees=..., minimum_leaf_size=..., maximum_depth=..., sample_size=..., forecast_approach=..., outlier_option=..., level_of_confidence=..., maximum_number_of_outliers=..., other_variables=..., importance_threshold=..., output_importance_table=..., model_scale=..., cluster_variable=...): # -> conversion | int | float | complex | basestring | list[Unknown] | tuple[Unknown, ...] | dict[Unknown, Unknown]:
+@gptooldoc("ForestBasedForecast_stpm", None)
+def ForestBasedForecast(
+    in_cube=...,
+    analysis_variable=...,
+    output_features=...,
+    output_cube=...,
+    number_of_time_steps_to_forecast=...,
+    time_window=...,
+    number_for_validation=...,
+    number_of_trees=...,
+    minimum_leaf_size=...,
+    maximum_depth=...,
+    sample_size=...,
+    forecast_approach=...,
+    outlier_option=...,
+    level_of_confidence=...,
+    maximum_number_of_outliers=...,
+    other_variables=...,
+    importance_threshold=...,
+    output_importance_table=...,
+    model_scale=...,
+    cluster_variable=...,
+):  # -> conversion | int | float | complex | basestring | list[Unknown] | tuple[Unknown, ...] | dict[Unknown, Unknown]:
     """ForestBasedForecast_stpm(in_cube, analysis_variable, output_features, {output_cube}, {number_of_time_steps_to_forecast}, {time_window}, {number_for_validation}, {number_of_trees}, {minimum_leaf_size}, {maximum_depth}, {sample_size}, {forecast_approach}, {outlier_option}, {level_of_confidence}, {maximum_number_of_outliers}, {other_variables;other_variables...}, {importance_threshold}, {output_importance_table}, {model_scale}, {cluster_variable})
 
-        Forecasts the values of each location of a space-time cube using an
-        adaptation of  the random forest algorithm, which is a supervised
-        machine learning method developed by Leo Breiman and Adele Cutler. The
-        forest regression model is trained using time windows on each location
-        of the space-time cube.
+       Forecasts the values of each location of a space-time cube using an
+       adaptation of  the random forest algorithm, which is a supervised
+       machine learning method developed by Leo Breiman and Adele Cutler. The
+       forest regression model is trained using time windows on each location
+       of the space-time cube.
 
-     INPUTS:
-      in_cube (File):
-          The netCDF cube containing the variable to forecast to future time
-          steps. This file must have an .nc file extension and must have been
-          created using the Create Space Time Cube By Aggregating Points, Create
-          Space Time Cube From Defined Locations, or Create Space Time Cube From
-          Multidimensional Raster Layer tool.
-      analysis_variable (String):
-          The numeric variable in the netCDF file that will be forecasted to
-          future time steps.
-      number_of_time_steps_to_forecast {Long}:
-          A positive integer specifying the number of time steps to forecast.
-          This value cannot be larger than 50 percent of the total time steps in
-          the input space-time cube. The default value is one time step.
-      time_window {Long}:
-          The number of previous time steps that will be used when training the
-          model. If the data displays seasonality (repeating cycles), provide
-          the number of time steps corresponding to one season. This value
-          cannot be larger than one-third of the number of time steps in the
-          input space-time cube. When using individual location model scale, if
-          no value is provided, a time window is estimated for each location
-          using a spectral density function. When using entire cube or time
-          series cluster model scales, if no value is provided, one-fourth of
-          the number of time steps will be used.
-      number_for_validation {Long}:
-          The number of time steps at the end of each time series to exclude for
-          validation. The default value is 10 percent (rounded down) of the
-          number of input time steps, and this value cannot be larger than 25
-          percent of the number of time steps. Provide the value 0 to not
-          exclude any time steps.
-      number_of_trees {Long}:
-          The number of trees that will be created in the forest model. More
-          trees generally result in more accurate model prediction, but the
-          model will take longer to calculate. The default number of trees is
-          100, and the value must be at least 1 and not greater than 1,000.
-      minimum_leaf_size {Long}:
-          The minimum number of observations that are required to keep a leaf
-          (that is, the terminal node on a tree without further splits). For
-          very large data, increasing this number will decrease the run time of
-          the tool.
-      maximum_depth {Long}:
-          The maximum number of splits that will be made down a tree. Using a
-          large maximum depth, more splits will be created, which may increase
-          the chance of overfitting the model. If no value is provided, a value
-          will be identified by the tool based on the number of trees created by
-          the model and the size of the time step window.
-      sample_size {Long}:
-          The percent of training data that will be used to fit the forecast
-          model. The training data consists of associated explanatory and
-          dependent variables constructed using time windows. All remaining
-          training data will be used to optimize the parameters of the forecast
-          model. The default is 100 percent.
-      forecast_approach {String}:
-          Specifies how the explanatory and dependent variables will be
-          represented when training the forest model at each location.To train
-          the forest model that will be used to forecast, sets of
-          explanatory and dependent variables must be created using time
-          windows. Use this parameter to specify whether these variables will be
-          linearly detrended and whether the dependent variable will be
-          represented by its raw value or by the residual of a linear regression
-          model. This linear regression model uses all time steps within a time
-          window as explanatory variables and uses the following time step as
-          the dependent variable. The residual is calculated by subtracting the
-          predicted value based on linear regression from the raw value of the
-          dependent variable.If any variables are provided in the Other
-          Variables parameter or if
-          Entire cube or Time series cluster is specified for the Model Scale
-          parameter, the Value option will be the only available forecast
-          approach.
+    INPUTS:
+     in_cube (File):
+         The netCDF cube containing the variable to forecast to future time
+         steps. This file must have an .nc file extension and must have been
+         created using the Create Space Time Cube By Aggregating Points, Create
+         Space Time Cube From Defined Locations, or Create Space Time Cube From
+         Multidimensional Raster Layer tool.
+     analysis_variable (String):
+         The numeric variable in the netCDF file that will be forecasted to
+         future time steps.
+     number_of_time_steps_to_forecast {Long}:
+         A positive integer specifying the number of time steps to forecast.
+         This value cannot be larger than 50 percent of the total time steps in
+         the input space-time cube. The default value is one time step.
+     time_window {Long}:
+         The number of previous time steps that will be used when training the
+         model. If the data displays seasonality (repeating cycles), provide
+         the number of time steps corresponding to one season. This value
+         cannot be larger than one-third of the number of time steps in the
+         input space-time cube. When using individual location model scale, if
+         no value is provided, a time window is estimated for each location
+         using a spectral density function. When using entire cube or time
+         series cluster model scales, if no value is provided, one-fourth of
+         the number of time steps will be used.
+     number_for_validation {Long}:
+         The number of time steps at the end of each time series to exclude for
+         validation. The default value is 10 percent (rounded down) of the
+         number of input time steps, and this value cannot be larger than 25
+         percent of the number of time steps. Provide the value 0 to not
+         exclude any time steps.
+     number_of_trees {Long}:
+         The number of trees that will be created in the forest model. More
+         trees generally result in more accurate model prediction, but the
+         model will take longer to calculate. The default number of trees is
+         100, and the value must be at least 1 and not greater than 1,000.
+     minimum_leaf_size {Long}:
+         The minimum number of observations that are required to keep a leaf
+         (that is, the terminal node on a tree without further splits). For
+         very large data, increasing this number will decrease the run time of
+         the tool.
+     maximum_depth {Long}:
+         The maximum number of splits that will be made down a tree. Using a
+         large maximum depth, more splits will be created, which may increase
+         the chance of overfitting the model. If no value is provided, a value
+         will be identified by the tool based on the number of trees created by
+         the model and the size of the time step window.
+     sample_size {Long}:
+         The percent of training data that will be used to fit the forecast
+         model. The training data consists of associated explanatory and
+         dependent variables constructed using time windows. All remaining
+         training data will be used to optimize the parameters of the forecast
+         model. The default is 100 percent.
+     forecast_approach {String}:
+         Specifies how the explanatory and dependent variables will be
+         represented when training the forest model at each location.To train
+         the forest model that will be used to forecast, sets of
+         explanatory and dependent variables must be created using time
+         windows. Use this parameter to specify whether these variables will be
+         linearly detrended and whether the dependent variable will be
+         represented by its raw value or by the residual of a linear regression
+         model. This linear regression model uses all time steps within a time
+         window as explanatory variables and uses the following time step as
+         the dependent variable. The residual is calculated by subtracting the
+         predicted value based on linear regression from the raw value of the
+         dependent variable.If any variables are provided in the Other
+         Variables parameter or if
+         Entire cube or Time series cluster is specified for the Model Scale
+         parameter, the Value option will be the only available forecast
+         approach.
 
-          * VALUE-Values within the time window will not be detrended and the
-          dependent variable will be represented by its raw value. If any other
-          variables are provided or if the model scale is not individual
-          location, this will be the only available forecast approach and will
-          be the default.
+         * VALUE-Values within the time window will not be detrended and the
+         dependent variable will be represented by its raw value. If any other
+         variables are provided or if the model scale is not individual
+         location, this will be the only available forecast approach and will
+         be the default.
 
-          * VALUE_DETREND-Values within the time window will be linearly
-          detrended, and the dependent variable will be represented by its
-          detrended value. This is the default.
+         * VALUE_DETREND-Values within the time window will be linearly
+         detrended, and the dependent variable will be represented by its
+         detrended value. This is the default.
 
-          * RESIDUAL-Values within the time window will not be detrended, and
-          the dependent variable will be represented by the residual of a linear
-          regression model using the values within the time window as
-          explanatory variables.
+         * RESIDUAL-Values within the time window will not be detrended, and
+         the dependent variable will be represented by the residual of a linear
+         regression model using the values within the time window as
+         explanatory variables.
 
-          * RESIDUAL_DETREND-Values within the time window will be linearly
-          detrended, and the dependent variable will be represented by the
-          residual of a linear regression model using the detrended values
-          within the time window as explanatory variables.
-      outlier_option {String}:
-          Specifies whether statistically significant time series outliers will
-          be identified.
+         * RESIDUAL_DETREND-Values within the time window will be linearly
+         detrended, and the dependent variable will be represented by the
+         residual of a linear regression model using the detrended values
+         within the time window as explanatory variables.
+     outlier_option {String}:
+         Specifies whether statistically significant time series outliers will
+         be identified.
 
-          * NONE-Outliers will not be identified. This is the default.
+         * NONE-Outliers will not be identified. This is the default.
 
-          * IDENTIFY-Outliers will be identified using the Generalized ESD test.
-      level_of_confidence {String}:
-          Specifies the confidence level for the test for time series outliers.
+         * IDENTIFY-Outliers will be identified using the Generalized ESD test.
+     level_of_confidence {String}:
+         Specifies the confidence level for the test for time series outliers.
 
-          * 90%-The confidence level for the test is 90 percent. This is the
-          default.
+         * 90%-The confidence level for the test is 90 percent. This is the
+         default.
 
-          * 95%-The confidence level for the test is 95 percent.
+         * 95%-The confidence level for the test is 95 percent.
 
-          * 99%-The confidence level for the test is 99 percent.
-      maximum_number_of_outliers {Long}:
-          The maximum number of time steps that can be declared outliers for
-          each location. The default value corresponds to 5 percent (rounded
-          down) of the number of time steps of the input space-time cube (a
-          value of at least 1 will always be used). This value cannot exceed 20
-          percent of the number of time steps.
-      other_variables {String}:
-          Other variables of the input space-time cube that will be used as
-          explanatory variables to improve the forecasts.
-      importance_threshold {Long}:
-          The percent of factors deemed most important for forecasting the
-          analysis variable. For example, if the value is 20, the top 20 percent
-          of factors for each location will be included in the importance table.
-          Each variable (the analysis variable and each explanatory variable) is
-          represented as a factor once for each time step in the time step
-          window, so the number of factors at each location is the length of the
-          time window multiplied by the number of variables. The number of
-          factors is multiplied by the importance threshold to determine the
-          number of important factors for each forecast model. The default is
-          10, and the value must be an integer between 1 and 100.
-      model_scale {String}:
-          Specifies the scale that will be used to estimate the forecast and
-          validation models.
+         * 99%-The confidence level for the test is 99 percent.
+     maximum_number_of_outliers {Long}:
+         The maximum number of time steps that can be declared outliers for
+         each location. The default value corresponds to 5 percent (rounded
+         down) of the number of time steps of the input space-time cube (a
+         value of at least 1 will always be used). This value cannot exceed 20
+         percent of the number of time steps.
+     other_variables {String}:
+         Other variables of the input space-time cube that will be used as
+         explanatory variables to improve the forecasts.
+     importance_threshold {Long}:
+         The percent of factors deemed most important for forecasting the
+         analysis variable. For example, if the value is 20, the top 20 percent
+         of factors for each location will be included in the importance table.
+         Each variable (the analysis variable and each explanatory variable) is
+         represented as a factor once for each time step in the time step
+         window, so the number of factors at each location is the length of the
+         time window multiplied by the number of variables. The number of
+         factors is multiplied by the importance threshold to determine the
+         number of important factors for each forecast model. The default is
+         10, and the value must be an integer between 1 and 100.
+     model_scale {String}:
+         Specifies the scale that will be used to estimate the forecast and
+         validation models.
 
-          * INDIVIDUAL_LOCATION-A different forecast model and validation model
-          will be estimated for each location. This is the default.
+         * INDIVIDUAL_LOCATION-A different forecast model and validation model
+         will be estimated for each location. This is the default.
 
-          * ENTIRE_CUBE-A single forecast model and validation model will be
-          estimated using all locations as training data.
+         * ENTIRE_CUBE-A single forecast model and validation model will be
+         estimated using all locations as training data.
 
-          * TIME_SERIES_CLUSTER-A forecast and validation model will be
-          estimated for each cluster of a time series clustering result. Provide
-          the variable with time series clustering results in the
-          cluster_variable parameter.
-      cluster_variable {String}:
-          The variable that will be used to group the locations of the space-
-          time cube into regions, and different forecast and validation models
-          will be estimated for each region. The variable must have time series
-          clustering results to be used. The cluster variable can be any
-          variable of the space-time cube including the analysis variable.
+         * TIME_SERIES_CLUSTER-A forecast and validation model will be
+         estimated for each cluster of a time series clustering result. Provide
+         the variable with time series clustering results in the
+         cluster_variable parameter.
+     cluster_variable {String}:
+         The variable that will be used to group the locations of the space-
+         time cube into regions, and different forecast and validation models
+         will be estimated for each region. The variable must have time series
+         clustering results to be used. The cluster variable can be any
+         variable of the space-time cube including the analysis variable.
 
-     OUTPUTS:
-      output_features (Feature Class):
-          The output feature class of all locations in the space-time cube with
-          forecasted values stored as fields. The layer displays the forecast
-          for the final time step and contains pop-up charts showing the time
-          series, forecasts, and 90 percent confidence bounds for each location.
-      output_cube {File}:
-          A new space-time cube (.nc file) containing the values of the input
-          space-time cube with the forecasted time steps appended. The Visualize
-          Space Time Cube in 3D tool can be used to see all of the observed and
-          forecasted values simultaneously.
-      output_importance_table {Table}:
-          The output table that will contain the most important factors at each
-          location. For individual location model scale, each important factor
-          at each location of the space-time cube will be represented as a row
-          in the table with fields containing the name of the variable and
-          associated time lag. For entire cube and time series cluster model
-          scales, all important factors in the entire cube or cluster model will
-          be represented by a row .The table will include a chart displaying the
-          most important factors across all locations separated by time lag. The
-          chart allows you to visualize lagged effects between the explanatory
-          variables and the variable being forecasted."""
+    OUTPUTS:
+     output_features (Feature Class):
+         The output feature class of all locations in the space-time cube with
+         forecasted values stored as fields. The layer displays the forecast
+         for the final time step and contains pop-up charts showing the time
+         series, forecasts, and 90 percent confidence bounds for each location.
+     output_cube {File}:
+         A new space-time cube (.nc file) containing the values of the input
+         space-time cube with the forecasted time steps appended. The Visualize
+         Space Time Cube in 3D tool can be used to see all of the observed and
+         forecasted values simultaneously.
+     output_importance_table {Table}:
+         The output table that will contain the most important factors at each
+         location. For individual location model scale, each important factor
+         at each location of the space-time cube will be represented as a row
+         in the table with fields containing the name of the variable and
+         associated time lag. For entire cube and time series cluster model
+         scales, all important factors in the entire cube or cluster model will
+         be represented by a row .The table will include a chart displaying the
+         most important factors across all locations separated by time lag. The
+         chart allows you to visualize lagged effects between the explanatory
+         variables and the variable being forecasted."""
     ...
 
-@gptooldoc('DescribeSpaceTimeCube_stpm', None)
-def DescribeSpaceTimeCube(in_cube=..., out_characteristics_table=..., out_spatial_extent=...): # -> conversion | int | float | complex | basestring | list[Unknown] | tuple[Unknown, ...] | dict[Unknown, Unknown]:
+@gptooldoc("DescribeSpaceTimeCube_stpm", None)
+def DescribeSpaceTimeCube(
+    in_cube=..., out_characteristics_table=..., out_spatial_extent=...
+):  # -> conversion | int | float | complex | basestring | list[Unknown] | tuple[Unknown, ...] | dict[Unknown, Unknown]:
     """DescribeSpaceTimeCube_stpm(in_cube, {out_characteristics_table}, {out_spatial_extent})
 
-        Summarizes the contents and characteristics of a space-time cube. The
-        tool describes the temporal and spatial extent of the space-time cube,
-        the variables in the space-time cube, the analyses performed on each
-        variable, and the 2D and 3D display themes available for each
-        variable.
+       Summarizes the contents and characteristics of a space-time cube. The
+       tool describes the temporal and spatial extent of the space-time cube,
+       the variables in the space-time cube, the analyses performed on each
+       variable, and the 2D and 3D display themes available for each
+       variable.
 
-     INPUTS:
-      in_cube (File):
-          The space-time cube to be described. Space-time cubes have an .nc file
-          extension and are created using various tools in the Space Time
-          Pattern Mining toolbox.
+    INPUTS:
+     in_cube (File):
+         The space-time cube to be described. Space-time cubes have an .nc file
+         extension and are created using various tools in the Space Time
+         Pattern Mining toolbox.
 
-     OUTPUTS:
-      out_characteristics_table {Table}:
-          The table containing summary information about the input space-time
-          cube.
-      out_spatial_extent {Feature Class}:
-          A feature class with a single rectangle that represents the spatial
-          extent of the input space-time cube."""
+    OUTPUTS:
+     out_characteristics_table {Table}:
+         The table containing summary information about the input space-time
+         cube.
+     out_spatial_extent {Feature Class}:
+         A feature class with a single rectangle that represents the spatial
+         extent of the input space-time cube."""
     ...
 
-@gptooldoc('FillMissingValues_stpm', None)
-def FillMissingValues(in_features=..., out_features=..., fields_to_fill=..., fill_method=..., conceptualization_of_spatial_relationships=..., distance_band=..., temporal_neighborhood=..., time_field=..., number_of_spatial_neighbors=..., location_id=..., related_table=..., related_location_id=..., weights_matrix_file=..., unique_id=..., null_value=..., out_table=..., append_to_input=...): # -> conversion | int | float | complex | basestring | list[Unknown] | tuple[Unknown, ...] | dict[Unknown, Unknown]:
+@gptooldoc("FillMissingValues_stpm", None)
+def FillMissingValues(
+    in_features=...,
+    out_features=...,
+    fields_to_fill=...,
+    fill_method=...,
+    conceptualization_of_spatial_relationships=...,
+    distance_band=...,
+    temporal_neighborhood=...,
+    time_field=...,
+    number_of_spatial_neighbors=...,
+    location_id=...,
+    related_table=...,
+    related_location_id=...,
+    weights_matrix_file=...,
+    unique_id=...,
+    null_value=...,
+    out_table=...,
+    append_to_input=...,
+):  # -> conversion | int | float | complex | basestring | list[Unknown] | tuple[Unknown, ...] | dict[Unknown, Unknown]:
     """FillMissingValues_stpm(in_features, {out_features}, fields_to_fill;fields_to_fill..., fill_method, {conceptualization_of_spatial_relationships}, {distance_band}, {temporal_neighborhood}, {time_field}, {number_of_spatial_neighbors}, {location_id}, {related_table}, {related_location_id}, {weights_matrix_file}, {unique_id}, {null_value}, {out_table}, {append_to_input})
 
-        Replaces missing (null) values with estimated values based on spatial
-        neighbors, space-time neighbors, time-series, or global statistic
-        values.
+       Replaces missing (null) values with estimated values based on spatial
+       neighbors, space-time neighbors, time-series, or global statistic
+       values.
 
-     INPUTS:
-      in_features (Feature Layer / Table View):
-          The point or polygon feature class or stand-alone table containing the
-          null values to be filled.If the related_table parameter value is
-          provided, the null values to
-          be filled will be contained in the related table. The input features
-          will be matched to the rows in the related table to specify the space-
-          time neighborhood.
-      fields_to_fill (Field):
-          The numeric fields containing missing data (null values).
-      fill_method (String):
-          Specifies the type of calculation that will be applied. The
-          TEMPORAL_TREND option is only available if the location_id and
-          time_field parameter values are provided.
+    INPUTS:
+     in_features (Feature Layer / Table View):
+         The point or polygon feature class or stand-alone table containing the
+         null values to be filled.If the related_table parameter value is
+         provided, the null values to
+         be filled will be contained in the related table. The input features
+         will be matched to the rows in the related table to specify the space-
+         time neighborhood.
+     fields_to_fill (Field):
+         The numeric fields containing missing data (null values).
+     fill_method (String):
+         Specifies the type of calculation that will be applied. The
+         TEMPORAL_TREND option is only available if the location_id and
+         time_field parameter values are provided.
 
-          * AVERAGE-Null values will be replaced with the average (mean) value
-          of the feature's neighbors.
+         * AVERAGE-Null values will be replaced with the average (mean) value
+         of the feature's neighbors.
 
-          * MINIMUM-Null values will be replaced with the minimum (smallest)
-          value of the feature's neighbors.
+         * MINIMUM-Null values will be replaced with the minimum (smallest)
+         value of the feature's neighbors.
 
-          * MAXIMUM-Null values will be replaced with the maximum (largest)
-          value of the feature's neighbors.
+         * MAXIMUM-Null values will be replaced with the maximum (largest)
+         value of the feature's neighbors.
 
-          * MEDIAN-Null values will be replaced with the median (sorted middle
-          value) of the feature's neighbors.
+         * MEDIAN-Null values will be replaced with the median (sorted middle
+         value) of the feature's neighbors.
 
-          * TEMPORAL_TREND-Null values will be replaced based on the trend at
-          that unique location.
-      conceptualization_of_spatial_relationships {String}:
-          Specifies how spatial relationships among features will be defined.
+         * TEMPORAL_TREND-Null values will be replaced based on the trend at
+         that unique location.
+     conceptualization_of_spatial_relationships {String}:
+         Specifies how spatial relationships among features will be defined.
 
-          * FIXED_DISTANCE-Neighboring features within a specified critical
-          distance (the distance_band parameter value) of each feature will be
-          included in the calculations; everything outside the critical distance
-          will be excluded.
+         * FIXED_DISTANCE-Neighboring features within a specified critical
+         distance (the distance_band parameter value) of each feature will be
+         included in the calculations; everything outside the critical distance
+         will be excluded.
 
-          * K_NEAREST_NEIGHBORS-The closest k features will be included in the
-          calculations; k is a specified numeric parameter.
+         * K_NEAREST_NEIGHBORS-The closest k features will be included in the
+         calculations; k is a specified numeric parameter.
 
-          * CONTIGUITY_EDGES_ONLY-Only neighboring polygon features that share
-          a boundary or overlap will influence computations for the target
-          polygon feature.
+         * CONTIGUITY_EDGES_ONLY-Only neighboring polygon features that share
+         a boundary or overlap will influence computations for the target
+         polygon feature.
 
-          * CONTIGUITY_EDGES_CORNERS-Polygon features that share a boundary,
-          share a node, or overlap will influence computations for the target
-          polygon feature.
+         * CONTIGUITY_EDGES_CORNERS-Polygon features that share a boundary,
+         share a node, or overlap will influence computations for the target
+         polygon feature.
 
-          * GET_SPATIAL_WEIGHTS_FROM_FILE-Spatial relationships will be defined
-          by a specified spatial weights file. The path to the spatial weights
-          file is specified by the Weights_Matrix_File parameter.
-      distance_band {Linear Unit}:
-          The cutoff distance for the conceptualization_of_spatial_relationships
-          parameter's FIXED_DISTANCE option. Features outside the specified
-          cutoff for a target feature will be ignored in calculations for that
-          feature. This parameter is not available for the CONTIGUITY_EDGES_ONLY
-          or CONTIGUITY_EDGES_CORNERS options.
-      temporal_neighborhood {Time Unit}:
-          An interval forward and backward in time that determines the features
-          that will be used in calculations for the target feature. Features
-          that are not within this interval of the target feature will be
-          ignored in calculations for that feature.
-      time_field {Field}:
-          The field containing the time stamp for each record in the dataset.
-          This field must be of type Date.For feature input, the time field will
-          define temporal neighbors while
-          filling missing values. A value must be provided if a related table is
-          provided.For feature and table input, the time field will be used when
-          filling
-          missing values using temporal trend at the location.
-      number_of_spatial_neighbors {Long}:
-          The number of nearest neighbors that will be included in
-          calculations.If the conceptualization_of_spatial_relationships
-          parameter's
-          FIXED_DISTANCE, CONTIGUITY_EDGES_ONLY, or CONTIGUITY_EDGES_CORNERS
-          option is chosen, this number is the minimum number of neighbors to
-          include in calculations.
-      location_id {Field}:
-          An integer or text field containing a unique ID for each location.If a
-          related table is provided, this field is used to match each input
-          feature to rows in the related table; the values of this field must be
-          unique for every input feature. If a related table is not provided,
-          this field is used to specify each unique location in the input
-          features to determine temporal neighbors. In this case, the values of
-          this field must be unique to every location but do not need to be
-          unique for each feature (because more than one feature can have the
-          same location).
-      related_table {Table View}:
-          The table or table view containing the temporal data for each feature
-          of the in_features parameter.
-      related_location_id {Field}:
-          An integer or text field in the related_table parameter that contains
-          the location_id parameter value on which the relate will be based.
-      weights_matrix_file {File}:
-          The path to a file containing weights that define spatial, and
-          potentially temporal, relationships among features.
-      unique_id {Field}:
-          An integer field containing a different value for every record in the
-          in_features parameter value. This field can be used to join the
-          results back to the original dataset.If you don't have a unique_id
-          field, you can create one by adding an
-          integer field to the feature class table and calculating the field
-          values equal to the FID or OBJECTID field.
-      null_value {Double}:
-          The value that represents null (missing) values. If no value is
-          provided, <Null> is assumed for geodatabase feature classes and
-          tables. If a value is provided, both the value and all <Null> values
-          will be filled. If the input or output is a shapefile or dBASE table,
-          a numeric value of the null placeholder is required.
-      append_to_input {Boolean}:
-          Specifies whether the filled value fields will be appended to the
-          input data or an output feature class or table will be created with
-          the filled value fields. If you append the fields, you cannot provide
-          a related table and the output coordinate system environment will be
-          ignored.
+         * GET_SPATIAL_WEIGHTS_FROM_FILE-Spatial relationships will be defined
+         by a specified spatial weights file. The path to the spatial weights
+         file is specified by the Weights_Matrix_File parameter.
+     distance_band {Linear Unit}:
+         The cutoff distance for the conceptualization_of_spatial_relationships
+         parameter's FIXED_DISTANCE option. Features outside the specified
+         cutoff for a target feature will be ignored in calculations for that
+         feature. This parameter is not available for the CONTIGUITY_EDGES_ONLY
+         or CONTIGUITY_EDGES_CORNERS options.
+     temporal_neighborhood {Time Unit}:
+         An interval forward and backward in time that determines the features
+         that will be used in calculations for the target feature. Features
+         that are not within this interval of the target feature will be
+         ignored in calculations for that feature.
+     time_field {Field}:
+         The field containing the time stamp for each record in the dataset.
+         This field must be of type Date.For feature input, the time field will
+         define temporal neighbors while
+         filling missing values. A value must be provided if a related table is
+         provided.For feature and table input, the time field will be used when
+         filling
+         missing values using temporal trend at the location.
+     number_of_spatial_neighbors {Long}:
+         The number of nearest neighbors that will be included in
+         calculations.If the conceptualization_of_spatial_relationships
+         parameter's
+         FIXED_DISTANCE, CONTIGUITY_EDGES_ONLY, or CONTIGUITY_EDGES_CORNERS
+         option is chosen, this number is the minimum number of neighbors to
+         include in calculations.
+     location_id {Field}:
+         An integer or text field containing a unique ID for each location.If a
+         related table is provided, this field is used to match each input
+         feature to rows in the related table; the values of this field must be
+         unique for every input feature. If a related table is not provided,
+         this field is used to specify each unique location in the input
+         features to determine temporal neighbors. In this case, the values of
+         this field must be unique to every location but do not need to be
+         unique for each feature (because more than one feature can have the
+         same location).
+     related_table {Table View}:
+         The table or table view containing the temporal data for each feature
+         of the in_features parameter.
+     related_location_id {Field}:
+         An integer or text field in the related_table parameter that contains
+         the location_id parameter value on which the relate will be based.
+     weights_matrix_file {File}:
+         The path to a file containing weights that define spatial, and
+         potentially temporal, relationships among features.
+     unique_id {Field}:
+         An integer field containing a different value for every record in the
+         in_features parameter value. This field can be used to join the
+         results back to the original dataset.If you don't have a unique_id
+         field, you can create one by adding an
+         integer field to the feature class table and calculating the field
+         values equal to the FID or OBJECTID field.
+     null_value {Double}:
+         The value that represents null (missing) values. If no value is
+         provided, <Null> is assumed for geodatabase feature classes and
+         tables. If a value is provided, both the value and all <Null> values
+         will be filled. If the input or output is a shapefile or dBASE table,
+         a numeric value of the null placeholder is required.
+     append_to_input {Boolean}:
+         Specifies whether the filled value fields will be appended to the
+         input data or an output feature class or table will be created with
+         the filled value fields. If you append the fields, you cannot provide
+         a related table and the output coordinate system environment will be
+         ignored.
 
-          * APPEND_TO_INPUT-The fields containing the filled values will be
-          appended to the input data. This option modifies the input data.
+         * APPEND_TO_INPUT-The fields containing the filled values will be
+         appended to the input data. This option modifies the input data.
 
-          * NEW_FEATURES-An output feature class or table will be created
-          containing the filled value fields. This is the default.
+         * NEW_FEATURES-An output feature class or table will be created
+         containing the filled value fields. This is the default.
 
-     OUTPUTS:
-      out_features {Feature Class / Table}:
-          The output features or stand-alone table that will include the filled
-          (estimated) values.If the related_table parameter value is provided,
-          the output of this
-          parameter will contain the number of estimated values at each
-          location, and the out_table parameter value will contain the filled
-          (estimated) values.
-      out_table {Table}:
-          The output table containing the filled (estimated) values.The output
-          table is required if a related table is provided."""
+    OUTPUTS:
+     out_features {Feature Class / Table}:
+         The output features or stand-alone table that will include the filled
+         (estimated) values.If the related_table parameter value is provided,
+         the output of this
+         parameter will contain the number of estimated values at each
+         location, and the out_table parameter value will contain the filled
+         (estimated) values.
+     out_table {Table}:
+         The output table containing the filled (estimated) values.The output
+         table is required if a related table is provided."""
     ...
 
-@gptooldoc('SubsetSpaceTimeCube_stpm', None)
-def SubsetSpaceTimeCube(in_cube=..., out_cube=..., spatial_subset_method=..., temporal_subset_method=..., in_subset_features=..., spatial_relationship=..., spatial_extent=..., in_spatial_cube=..., time_span_subset=..., remove_time_steps=..., in_temporal_cube=...): # -> conversion | int | float | complex | basestring | list[Unknown] | tuple[Unknown, ...] | dict[Unknown, Unknown]:
+@gptooldoc("SubsetSpaceTimeCube_stpm", None)
+def SubsetSpaceTimeCube(
+    in_cube=...,
+    out_cube=...,
+    spatial_subset_method=...,
+    temporal_subset_method=...,
+    in_subset_features=...,
+    spatial_relationship=...,
+    spatial_extent=...,
+    in_spatial_cube=...,
+    time_span_subset=...,
+    remove_time_steps=...,
+    in_temporal_cube=...,
+):  # -> conversion | int | float | complex | basestring | list[Unknown] | tuple[Unknown, ...] | dict[Unknown, Unknown]:
     """SubsetSpaceTimeCube_stpm(in_cube, out_cube, spatial_subset_method, temporal_subset_method, {in_subset_features}, {spatial_relationship}, {spatial_extent}, {in_spatial_cube}, {time_span_subset;time_span_subset...}, {remove_time_steps;remove_time_steps...}, {in_temporal_cube})
 
-        Subsets a space-time cube by spatial extent, space, or time.
+       Subsets a space-time cube by spatial extent, space, or time.
 
-     INPUTS:
-      in_cube (File):
-          The space-time cube to be subset. Space-time cubes have an .nc file
-          extension and are created using various tools in the Space Time
-          Pattern Mining toolbox.
-      spatial_subset_method (String):
-          Specifies the method that will be used to spatially subset the input
-          space-time cube. Any location in the input space-time cube that
-          satisfies this spatial subset criteria will be included in the output
-          space-time cube.
+    INPUTS:
+     in_cube (File):
+         The space-time cube to be subset. Space-time cubes have an .nc file
+         extension and are created using various tools in the Space Time
+         Pattern Mining toolbox.
+     spatial_subset_method (String):
+         Specifies the method that will be used to spatially subset the input
+         space-time cube. Any location in the input space-time cube that
+         satisfies this spatial subset criteria will be included in the output
+         space-time cube.
 
-          * FEATURES-A feature class with polygons, points, or lines will be
-          used to subset the input space-time cube. The spatial_relationship
-          parameter specifies how the feature layer will subset the space-time
-          cube.
+         * FEATURES-A feature class with polygons, points, or lines will be
+         used to subset the input space-time cube. The spatial_relationship
+         parameter specifies how the feature layer will subset the space-time
+         cube.
 
-          * EXTENT-The extent specified by the spatial_extent parameter will be
-          used to subset the input space-time cube. The output space-time cube
-          will include all the locations in the input space-time cube that
-          intersect the extent.
+         * EXTENT-The extent specified by the spatial_extent parameter will be
+         used to subset the input space-time cube. The output space-time cube
+         will include all the locations in the input space-time cube that
+         intersect the extent.
 
-          * SPACE_TIME_CUBE-The locations of the space-time cube specified by
-          the in_spatial_cube parameter will be used to subset a space-time
-          cube. The spatial_relationship parameter specifies how this space-time
-          cube will subset the input space-time cube.
+         * SPACE_TIME_CUBE-The locations of the space-time cube specified by
+         the in_spatial_cube parameter will be used to subset a space-time
+         cube. The spatial_relationship parameter specifies how this space-time
+         cube will subset the input space-time cube.
 
-          * NONE-No spatial subset will be applied to the input space-time cube.
-      temporal_subset_method (String):
-          Specifies the method that will be used to temporally subset a space-
-          time cube. Any time step in the input space-time cube that satisfies
-          the temporal subset criteria will be included in the output space-time
-          cube.
+         * NONE-No spatial subset will be applied to the input space-time cube.
+     temporal_subset_method (String):
+         Specifies the method that will be used to temporally subset a space-
+         time cube. Any time step in the input space-time cube that satisfies
+         the temporal subset criteria will be included in the output space-time
+         cube.
 
-          * USER_DEFINED-The temporal range specified by the start time or end
-          time values in the time_span_subset parameter will be used to
-          temporally subset the input space-time cube.
+         * USER_DEFINED-The temporal range specified by the start time or end
+         time values in the time_span_subset parameter will be used to
+         temporally subset the input space-time cube.
 
-          * NUMBER_OF_TIME_STEPS-A number of time steps from the start and the
-          end of the input space-time cube will be used to temporally subset the
-          space-time cube. The number of time steps to remove is specified by
-          the from the start or from the end values in the remove_time_steps
-          parameter.
+         * NUMBER_OF_TIME_STEPS-A number of time steps from the start and the
+         end of the input space-time cube will be used to temporally subset the
+         space-time cube. The number of time steps to remove is specified by
+         the from the start or from the end values in the remove_time_steps
+         parameter.
 
-          * SPACE_TIME_CUBE-The temporal extent of the space-time cube specified
-          by the in_temporal_cube parameter will be used to temporally subset
-          the input space-time cube.
+         * SPACE_TIME_CUBE-The temporal extent of the space-time cube specified
+         by the in_temporal_cube parameter will be used to temporally subset
+         the input space-time cube.
 
-          * NONE-No temporal subset will be applied to the input space-time
-          cube.
-      in_subset_features {Feature Layer}:
-          A feature class that contains polygons, points, or lines to subset a
-          space-time cube. The spatial relationship between the input subset
-          features and the space-time cube is specified by the
-          spatial_relationship parameter.
-      spatial_relationship {String}:
-          The spatial relationship that will be applied between the
-          in_subset_features or in_spatial_cube parameter value and the input
-          space-time cube to spatially subset the space-time cube. The available
-          spatial relationship options will depend on the geometry of the input
-          space-time cube and the input subset features or the input spatial
-          subset cube.
+         * NONE-No temporal subset will be applied to the input space-time
+         cube.
+     in_subset_features {Feature Layer}:
+         A feature class that contains polygons, points, or lines to subset a
+         space-time cube. The spatial relationship between the input subset
+         features and the space-time cube is specified by the
+         spatial_relationship parameter.
+     spatial_relationship {String}:
+         The spatial relationship that will be applied between the
+         in_subset_features or in_spatial_cube parameter value and the input
+         space-time cube to spatially subset the space-time cube. The available
+         spatial relationship options will depend on the geometry of the input
+         space-time cube and the input subset features or the input spatial
+         subset cube.
 
-          * INTERSECT-The output space-time cube will include the locations in
-          the input space-time cube that intersect the in_subset_features or
-          in_spatial_cube parameter value. This is the default.
+         * INTERSECT-The output space-time cube will include the locations in
+         the input space-time cube that intersect the in_subset_features or
+         in_spatial_cube parameter value. This is the default.
 
-          * CONTAINS-The output space-time cube will include the locations in
-          the input space-time cube that contain the in_subset_features or
-          in_spatial_cube parameter value.
+         * CONTAINS-The output space-time cube will include the locations in
+         the input space-time cube that contain the in_subset_features or
+         in_spatial_cube parameter value.
 
-          * WITHIN-The output space-time cube will include the locations in the
-          input space-time cube that are within the in_subset_features or
-          in_spatial_cube parameter value.
+         * WITHIN-The output space-time cube will include the locations in the
+         input space-time cube that are within the in_subset_features or
+         in_spatial_cube parameter value.
 
-          * HAVE_THEIR_CENTER_IN-The output space-time cube will include the
-          locations in the input space-time cube that have their center in the
-          in_subset_features or in_spatial_cube parameter value.
-      spatial_extent {Extent}:
-          The spatial extent that will spatially subset the input space-time
-          cube. The output space-time cube will include the locations in the
-          input space-time cube that intersect the extent.
-      in_spatial_cube {File}:
-          A space-time cube that will spatially subset the input space-time
-          cube. The spatial relationship between the input spatial subset cube
-          and the space-time cube is specified by the spatial_relationship
-          parameter.
-      time_span_subset {Value Table}:
-          The time interval to temporally subset the input space-time cube. Any
-          time step that is within this time interval or that contains the start
-          time or end time values will be included in the output space-time
-          cube.
-      remove_time_steps {Value Table}:
-          The number of time steps from the start and the end of the input
-          space-time cube that will be removed from the output space-time cube.
-      in_temporal_cube {File}:
-          A space-time cube that will temporally subset the input space-time
-          cube. The temporal extent of the temporal subset cube defines the
-          temporal extent of the output space-time cube. Any time step that is
-          within the temporal extent of the input temporal subset cube or that
-          contains the start time or end time of the temporal subset cube will
-          be included in the output space-time cube.
+         * HAVE_THEIR_CENTER_IN-The output space-time cube will include the
+         locations in the input space-time cube that have their center in the
+         in_subset_features or in_spatial_cube parameter value.
+     spatial_extent {Extent}:
+         The spatial extent that will spatially subset the input space-time
+         cube. The output space-time cube will include the locations in the
+         input space-time cube that intersect the extent.
+     in_spatial_cube {File}:
+         A space-time cube that will spatially subset the input space-time
+         cube. The spatial relationship between the input spatial subset cube
+         and the space-time cube is specified by the spatial_relationship
+         parameter.
+     time_span_subset {Value Table}:
+         The time interval to temporally subset the input space-time cube. Any
+         time step that is within this time interval or that contains the start
+         time or end time values will be included in the output space-time
+         cube.
+     remove_time_steps {Value Table}:
+         The number of time steps from the start and the end of the input
+         space-time cube that will be removed from the output space-time cube.
+     in_temporal_cube {File}:
+         A space-time cube that will temporally subset the input space-time
+         cube. The temporal extent of the temporal subset cube defines the
+         temporal extent of the output space-time cube. Any time step that is
+         within the temporal extent of the input temporal subset cube or that
+         contains the start time or end time of the temporal subset cube will
+         be included in the output space-time cube.
 
-     OUTPUTS:
-      out_cube (File):
-          The subset of the input space-time cube that meets the spatial and
-          temporal criteria specified by the spatial_subset_method and
-          temporal_subset_method parameters. The analysis variables stored in
-          the input space-time cube will be excluded from the output space-time
-          cube."""
+    OUTPUTS:
+     out_cube (File):
+         The subset of the input space-time cube that meets the spatial and
+         temporal criteria specified by the spatial_subset_method and
+         temporal_subset_method parameters. The analysis variables stored in
+         the input space-time cube will be excluded from the output space-time
+         cube."""
     ...
-

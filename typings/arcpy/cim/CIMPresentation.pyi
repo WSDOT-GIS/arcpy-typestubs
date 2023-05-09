@@ -6,94 +6,72 @@ from .CIMEnum import *
 from .CIMExternal import *
 from .CIMCore import CIMDefinition
 
-
 class CIMImagePresentationPage:
     """
-      Represents an image media presentation page.
+    Represents an image media presentation page.
     """
-    def __init__(self, *args, **Kwargs) -> None:
-        ...
-    
 
+    def __init__(self, *args, **Kwargs) -> None: ...
 
 class CIMMapPresentationPage:
     """
-      Represents a map presentation page.
+    Represents a map presentation page.
     """
-    def __init__(self, *args, **Kwargs) -> None:
-        ...
-    
 
+    def __init__(self, *args, **Kwargs) -> None: ...
 
 class CIMPresentationMapRestingState:
     """
-      Presentation map resting state.
+    Presentation map resting state.
     """
-    def __init__(self, *args, **Kwargs) -> None:
-        ...
-    
 
+    def __init__(self, *args, **Kwargs) -> None: ...
 
 class CIMPresentationMapView:
     """
-      Represents a map view in a map presentation page.
+    Represents a map view in a map presentation page.
     """
-    def __init__(self, *args, **Kwargs) -> None:
-        ...
-    
 
+    def __init__(self, *args, **Kwargs) -> None: ...
 
 class CIMPresentationPage:
     """
-      Represents a presentation page.
+    Represents a presentation page.
     """
-    def __init__(self, *args, **Kwargs) -> None:
-        ...
-    
 
+    def __init__(self, *args, **Kwargs) -> None: ...
 
 class CIMPresentationTransition:
     """
-      Represents a transition.
+    Represents a transition.
     """
-    def __init__(self, *args, **Kwargs) -> None:
-        ...
-    
 
+    def __init__(self, *args, **Kwargs) -> None: ...
 
 class CIMVideoPresentationPage:
     """
-      Represents an video media presentation page.
+    Represents an video media presentation page.
     """
-    def __init__(self, *args, **Kwargs) -> None:
-        ...
-    
 
+    def __init__(self, *args, **Kwargs) -> None: ...
 
 class CIMPresentation(CIMDefinition):
     """
-      Represents a presentation.
+    Represents a presentation.
     """
-    def __init__(self, *args, **Kwargs) -> None:
-        ...
-    
 
+    def __init__(self, *args, **Kwargs) -> None: ...
 
 class CIMPresentationGravityWellRestingState(CIMPresentationMapRestingState):
     """
-      Presentation map gravity well resting state.
+    Presentation map gravity well resting state.
     """
-    def __init__(self, *args, **Kwargs) -> None:
-        ...
-    
 
+    def __init__(self, *args, **Kwargs) -> None: ...
 
 class CIMPresentationRotateRestingState(CIMPresentationMapRestingState):
     """
-      Presentation map rotate resting state.
+    Presentation map rotate resting state.
     """
-    def __init__(self, *args, **Kwargs) -> None:
-        ...
-    
 
-
+    def __init__(self, *args, **Kwargs) -> None: ...

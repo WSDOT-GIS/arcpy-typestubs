@@ -7,20 +7,22 @@ from arcpy.utils import ArgAdaptor as _ArgAdaptor
 
 class _metadata_constants(_ArgAdaptor):
     """Represents the constants that can be passed into various ExportTo* metadata functions"""
-    __args__ = ...
 
+    __args__ = ...
 
 class Metadata(_ObjectWithoutInitCall):
     """Metadata(uri)
 
-        The Metadata object has properties that provide access to information that provides an overview of the item, as well as the full metadata document. Operations are available to manage the item’s metadata content.
-        
-        When a URI is provided, the Metadata object returned will provide access to the metadata for the item identified by the URI. When this object is returned from an item, the Metadata object will represent the item’s metadata. If the item doesn’t support metadata, or if the item doesn’t exist an empty object is created.
-        
-        When the Metadata object is empty, you can create or import metadata to the object, then save the content to a new XML file or to another item as its metadata.
+    The Metadata object has properties that provide access to information that provides an overview of the item, as well as the full metadata document. Operations are available to manage the item’s metadata content.
 
-          uri{String}:
-        An optional URI that identifies an item from which metadata will be imported to the metadata object."""
+    When a URI is provided, the Metadata object returned will provide access to the metadata for the item identified by the URI. When this object is returned from an item, the Metadata object will represent the item’s metadata. If the item doesn’t support metadata, or if the item doesn’t exist an empty object is created.
+
+    When the Metadata object is empty, you can create or import metadata to the object, then save the content to a new XML file or to another item as its metadata.
+
+      uri{String}:
+    An optional URI that identifies an item from which metadata will be imported to the metadata object.
+    """
+
     uri = ...
     xml = ...
     isReadOnly = ...
@@ -37,114 +39,131 @@ class Metadata(_ObjectWithoutInitCall):
     xMax = ...
     yMin = ...
     yMax = ...
-    def __init__(self, uri=...) -> None:
-        ...
-    
-    def copy(self, inputMetadata): # -> conversion | int | float | complex | basestring | list[Unknown] | tuple[Unknown, ...] | dict[Unknown, Unknown]:
+    def __init__(self, uri=...) -> None: ...
+    def copy(
+        self, inputMetadata
+    ):  # -> conversion | int | float | complex | basestring | list[Unknown] | tuple[Unknown, ...] | dict[Unknown, Unknown]:
         """Metadata.copy(inputMetadata)
 
-           Copy the metadata content from the input metadata object. Only xml content will be copied.
+        Copy the metadata content from the input metadata object. Only xml content will be copied.
 
-              inputMetadata(object):
-           The metadata object defining the ArcGIS metadata content."""
+           inputMetadata(object):
+        The metadata object defining the ArcGIS metadata content."""
         ...
-    
     @_metadata_constants.maskargs
-    def importMetadata(self, sourceUri, metadata_import_option=..., customStylesheetPath=...): # -> conversion | int | float | complex | basestring | list[Unknown] | tuple[Unknown, ...] | dict[Unknown, Unknown]:
+    def importMetadata(
+        self, sourceUri, metadata_import_option=..., customStylesheetPath=...
+    ):  # -> conversion | int | float | complex | basestring | list[Unknown] | tuple[Unknown, ...] | dict[Unknown, Unknown]:
         """Metadata.importMetadata(sourceUri, metadata_import_option, customStylesheetPath)
 
-           Import content to the metadata object from the item identified by the sourceURI. An item’s metadata must be stored in the ArcGIS metadata XML format. The imported XML file will be converted from the standard metadata XML format, identified by the metadata_export_option, to the ArcGIS metadata format and the resulting content is stored in the metadata object.
+        Import content to the metadata object from the item identified by the sourceURI. An item’s metadata must be stored in the ArcGIS metadata XML format. The imported XML file will be converted from the standard metadata XML format, identified by the metadata_export_option, to the ArcGIS metadata format and the resulting content is stored in the metadata object.
 
-              sourceUri(string):
-           A URI that identifies an item from which metadata will be imported to the metadata object. 
-              metadata_import_option{string}:
-           This option determines how content is imported to the metadata object from the source item. This value indicates the XML format of metadata stored in the source item. The source item’s content will be converted from the indicated format to the ArcGIS metadata XML format before being saved to the metadata object. 
-              customStylesheetPath{string}:
-           A local or network file path identifying the custom XSLT stylesheet that will be used to import metadata from a custom XML format. The value in this parameter will only be considered if the metadata_export_option is CUSTOM."""
+           sourceUri(string):
+        A URI that identifies an item from which metadata will be imported to the metadata object.
+           metadata_import_option{string}:
+        This option determines how content is imported to the metadata object from the source item. This value indicates the XML format of metadata stored in the source item. The source item’s content will be converted from the indicated format to the ArcGIS metadata XML format before being saved to the metadata object.
+           customStylesheetPath{string}:
+        A local or network file path identifying the custom XSLT stylesheet that will be used to import metadata from a custom XML format. The value in this parameter will only be considered if the metadata_export_option is CUSTOM.
+        """
         ...
-    
     @_metadata_constants.maskargs
-    def exportMetadata(self, outputPath, metadata_export_option=..., metadata_removal_option=..., customStylesheetPath=...): # -> conversion | int | float | complex | basestring | list[Unknown] | tuple[Unknown, ...] | dict[Unknown, Unknown]:
+    def exportMetadata(
+        self,
+        outputPath,
+        metadata_export_option=...,
+        metadata_removal_option=...,
+        customStylesheetPath=...,
+    ):  # -> conversion | int | float | complex | basestring | list[Unknown] | tuple[Unknown, ...] | dict[Unknown, Unknown]:
         """Metadata.exportMetadata(outputPath, metadata_export_option, metadata_removal_option, customStylesheetPath)
 
-           Export metadata to the specified file. An item’s metadata is stored in the ArcGIS metadata XML format. The exported XML file will be formatted to follow a metadata standard as identified by the metadata_export_option parameter.
+        Export metadata to the specified file. An item’s metadata is stored in the ArcGIS metadata XML format. The exported XML file will be formatted to follow a metadata standard as identified by the metadata_export_option parameter.
 
-              outputPath(string):
-           A local or network file path identifying the output XML file will be created.
-              metadata_export_option{string}:
-           The option determines how the item’s metadata is exported. The value indicates what XML format will be used by the output XML file. The item’s ArcGIS metadata content will be converted to the appropriate XML format. 
-              metadata_removal_option{string}:
-           This option determines if sensitive information is removed from the item’s metadata as part of the export process. The value indicates what content is filtered out. The remaining metadata content is exported.
-              customStylesheetPath{string}:
-           A local or network file path identifying the custom XSLT stylesheet that will be used to export metadata to a custom XML format. The value in this parameter will only be considered if the metadata_export_option is CUSTOM."""
+           outputPath(string):
+        A local or network file path identifying the output XML file will be created.
+           metadata_export_option{string}:
+        The option determines how the item’s metadata is exported. The value indicates what XML format will be used by the output XML file. The item’s ArcGIS metadata content will be converted to the appropriate XML format.
+           metadata_removal_option{string}:
+        This option determines if sensitive information is removed from the item’s metadata as part of the export process. The value indicates what content is filtered out. The remaining metadata content is exported.
+           customStylesheetPath{string}:
+        A local or network file path identifying the custom XSLT stylesheet that will be used to export metadata to a custom XML format. The value in this parameter will only be considered if the metadata_export_option is CUSTOM.
+        """
         ...
-    
     @_metadata_constants.maskargs
-    def synchronize(self, metadata_sync_option=..., interval=...): # -> conversion | int | float | complex | basestring | list[Unknown] | tuple[Unknown, ...] | dict[Unknown, Unknown]:
+    def synchronize(
+        self, metadata_sync_option=..., interval=...
+    ):  # -> conversion | int | float | complex | basestring | list[Unknown] | tuple[Unknown, ...] | dict[Unknown, Unknown]:
         """Metadata.synchronize(metadata_sync_option, interval)
 
-           Syncrhonize metadata object from the item identified by the URI. 
+        Syncrhonize metadata object from the item identified by the URI.
 
-              metadata_sync_option{string}:
-           This option determines how metadata object will be synchronized. 
-              interval{int}:
-           How often the metadata will be synchronized. If the elapsed since the last synchronization is less than interval seconds, this synchronization will be skipped."""
+           metadata_sync_option{string}:
+        This option determines how metadata object will be synchronized.
+           interval{int}:
+        How often the metadata will be synchronized. If the elapsed since the last synchronization is less than interval seconds, this synchronization will be skipped.
+        """
         ...
-    
-    def reload(self): # -> conversion | int | float | complex | basestring | list[Unknown] | tuple[Unknown, ...] | dict[Unknown, Unknown]:
+    def reload(
+        self,
+    ):  # -> conversion | int | float | complex | basestring | list[Unknown] | tuple[Unknown, ...] | dict[Unknown, Unknown]:
         """Metadata.reload()
-        
-            Reload the metadata object from the source URI if needed."""
+
+        Reload the metadata object from the source URI if needed."""
         ...
-    
-    def save(self): # -> conversion | int | float | complex | basestring | list[Unknown] | tuple[Unknown, ...] | dict[Unknown, Unknown]:
+    def save(
+        self,
+    ):  # -> conversion | int | float | complex | basestring | list[Unknown] | tuple[Unknown, ...] | dict[Unknown, Unknown]:
         """Metadata.save()
-        
-            Save content from the metadata object to the current item identified by the URI."""
+
+        Save content from the metadata object to the current item identified by the URI.
+        """
         ...
-    
     @_metadata_constants.maskargs
-    def saveAsXML(self, outputPath, metadata_save_as_xml_option=...): # -> conversion | int | float | complex | basestring | list[Unknown] | tuple[Unknown, ...] | dict[Unknown, Unknown]:
+    def saveAsXML(
+        self, outputPath, metadata_save_as_xml_option=...
+    ):  # -> conversion | int | float | complex | basestring | list[Unknown] | tuple[Unknown, ...] | dict[Unknown, Unknown]:
         """Metadata.saveAsXML(outputPath, metadata_save_as_xml_option)
 
-           Save a copy of the item’s metadata to a stand-alone metadata XML file. 
+        Save a copy of the item’s metadata to a stand-alone metadata XML file.
 
-              outputPath(string):
-           A local or network file path identifying the output XML file that will be created. The output file will contain metadata stored in the ArcGIS Metadata XML format.
-              metadata_save_as_xml_option{string}:
-           The option to remove sensitive information. This option determines if information is removed from the item’s metadata as part of the process of saving the item’s metadata to a stand-alone metadata XML file. The value indicates the amount and type of content that is filtered out of the item’s metadata."""
+           outputPath(string):
+        A local or network file path identifying the output XML file that will be created. The output file will contain metadata stored in the ArcGIS Metadata XML format.
+           metadata_save_as_xml_option{string}:
+        The option to remove sensitive information. This option determines if information is removed from the item’s metadata as part of the process of saving the item’s metadata to a stand-alone metadata XML file. The value indicates the amount and type of content that is filtered out of the item’s metadata.
+        """
         ...
-    
-    def saveAsUsingCustomXSLT(self, outputPath, customStylesheetPath): # -> conversion | int | float | complex | basestring | list[Unknown] | tuple[Unknown, ...] | dict[Unknown, Unknown]:
+    def saveAsUsingCustomXSLT(
+        self, outputPath, customStylesheetPath
+    ):  # -> conversion | int | float | complex | basestring | list[Unknown] | tuple[Unknown, ...] | dict[Unknown, Unknown]:
         """Metadata.saveAsUsingCustomXSLT(outputPath, customStylesheetPath)
 
-           Save metadata out as using the provided stylesheet.
+        Save metadata out as using the provided stylesheet.
 
-              outputPath(string):
-           A local or network file path identifying the output XML file that will be created. The output file will contain metadata stored in the ArcGIS Metadata XML format.
-              customStylesheetPath(string):
-           A local or network file path identifying the custom XSLT stylesheet that will be used to export metadata to a custom XML format."""
+           outputPath(string):
+        A local or network file path identifying the output XML file that will be created. The output file will contain metadata stored in the ArcGIS Metadata XML format.
+           customStylesheetPath(string):
+        A local or network file path identifying the custom XSLT stylesheet that will be used to export metadata to a custom XML format.
+        """
         ...
-    
     @_metadata_constants.maskargs
-    def upgrade(self, metadata_upgrade_option): # -> conversion | int | float | complex | basestring | list[Unknown] | tuple[Unknown, ...] | dict[Unknown, Unknown]:
+    def upgrade(
+        self, metadata_upgrade_option
+    ):  # -> conversion | int | float | complex | basestring | list[Unknown] | tuple[Unknown, ...] | dict[Unknown, Unknown]:
         """Metadata.upgrade(metadata_upgrade_option)
 
-           Upgrade the metadata of the current item. A metadata document that was created with ArcGIS Desktop 8.x or 9.x can be upgraded to the ArcGIS metadata format.
+        Upgrade the metadata of the current item. A metadata document that was created with ArcGIS Desktop 8.x or 9.x can be upgraded to the ArcGIS metadata format.
 
-              metadata_upgrade_option(string):
-           This option indicates how the item’s metadata will be upgraded to the ArcGIS metadata format. This option is provided to update metadata that was created with ArcGIS Desktop 8.x or 9.x."""
+           metadata_upgrade_option(string):
+        This option indicates how the item’s metadata will be upgraded to the ArcGIS metadata format. This option is provided to update metadata that was created with ArcGIS Desktop 8.x or 9.x.
+        """
         ...
-    
     @_metadata_constants.maskargs
-    def deleteContent(self, metadata_delete_content_option): # -> conversion | int | float | complex | basestring | list[Unknown] | tuple[Unknown, ...] | dict[Unknown, Unknown]:
+    def deleteContent(
+        self, metadata_delete_content_option
+    ):  # -> conversion | int | float | complex | basestring | list[Unknown] | tuple[Unknown, ...] | dict[Unknown, Unknown]:
         """Metadata.deleteContent(metadata_delete_content_option)
 
-           Delete certain content from metadata.
+        Delete certain content from metadata.
 
-              metadata_delete_content_option(string):
-           This option indicates what content will be deleted from metadata."""
+           metadata_delete_content_option(string):
+        This option indicates what content will be deleted from metadata."""
         ...
-    
-
-

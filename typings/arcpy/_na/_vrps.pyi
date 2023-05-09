@@ -6,9 +6,18 @@ from enum import IntEnum
 from arcgisscripting import na as cna
 
 """Module for working with Vehicle Routing Problem Solver."""
-__all__ = ["VehicleRoutingProblemInputDataType", "VehicleRoutingProblemOutputDataType", "VehicleRoutingProblemInputDataType2", "VehicleRoutingProblemOutputDataType2", "VehicleRoutingProblemSchemaVersion", "VehicleRoutingProblem"]
+__all__ = [
+    "VehicleRoutingProblemInputDataType",
+    "VehicleRoutingProblemOutputDataType",
+    "VehicleRoutingProblemInputDataType2",
+    "VehicleRoutingProblemOutputDataType2",
+    "VehicleRoutingProblemSchemaVersion",
+    "VehicleRoutingProblem",
+]
+
 class VehicleRoutingProblemInputDataType(IntEnum):
     """Enumeration for feature class names used by the Vehicle Routing Problem solver to store inputs."""
+
     Orders = ...
     Depots = ...
     Routes = ...
@@ -20,9 +29,9 @@ class VehicleRoutingProblemInputDataType(IntEnum):
     LineBarriers = ...
     PolygonBarriers = ...
 
-
 class VehicleRoutingProblemInputDataType2(IntEnum):
     """Enumeration for feature class names used by the Vehicle Routing Problem solver version 2 to store inputs."""
+
     Orders = ...
     Depots = ...
     Routes = ...
@@ -36,17 +45,17 @@ class VehicleRoutingProblemInputDataType2(IntEnum):
     OrderSpecialties = ...
     RouteSpecialties = ...
 
-
 class VehicleRoutingProblemOutputDataType(IntEnum):
     """Enumeration for feature class names used by the Vehicle Routing Problem solver to store outputs."""
+
     UnassignedStops = ...
     Stops = ...
     Routes = ...
     Directions = ...
 
-
 class VehicleRoutingProblemOutputDataType2(IntEnum):
     """Enumeration for feature class names used by the Vehicle Routing Problem solver version 2 to store outputs."""
+
     Orders = ...
     Depots = ...
     DepotVisits = ...
@@ -55,12 +64,11 @@ class VehicleRoutingProblemOutputDataType2(IntEnum):
     DirectionPoints = ...
     DirectionLines = ...
 
-
 class VehicleRoutingProblemSchemaVersion(IntEnum):
     """Enumeration for feature class names used by the Vehicle Routing Problem solver to store outputs."""
+
     One = ...
     Two = ...
-
 
 class VehicleRoutingProblem(cna.VehicleRoutingProblem):
     """Perform vehicle routing problem analysis.
@@ -105,6 +113,7 @@ class VehicleRoutingProblem(cna.VehicleRoutingProblem):
         print(result.solverMessages())
 
     """
+
     __slots__ = ...
     def __init__(self, in_network, version=...) -> None:
         """Create a vehicle routing problem solver object based on the input network dataset.
@@ -124,6 +133,3 @@ class VehicleRoutingProblem(cna.VehicleRoutingProblem):
 
         """
         ...
-    
-
-

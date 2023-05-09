@@ -8,109 +8,99 @@ from enum import IntEnum
 
 class Attribute:
     """The unique identifier of a network attribute within a network dataset."""
-    ...
 
+    ...
 
 class NetworkTimeUsage(IntEnum):
     """Enumeration for time usage types."""
+
     Unused = ...
     BeforeTraversal = ...
     AfterTraversal = ...
 
-
 class AttributeUsage(IntEnum):
     """Enumeration for network attribute usage types."""
+
     Cost = ...
     Descriptor = ...
     Restriction = ...
     Hierarchy = ...
 
-
 class AttributeParameterUsage(IntEnum):
     """Enumeration for network attribute parameter usage types."""
+
     General = ...
     Restriction = ...
 
-
 class AttributeParameter:
     """A parameter associated with a network attribute."""
+
     @property
     def name(self) -> str:
         """The attribute parameter name."""
         ...
-    
     @property
     def value(self) -> Union[float, int, str, bool, None]:
         """The attribute parameter value."""
         ...
-    
     @property
     def usage(self) -> AttributeParameterUsage:
         """The attribute parameter usage."""
         ...
-    
-
 
 class NetworkElement:
     """A network element of the network dataset."""
+
     @property
     def isJunction(self) -> bool:
         """Indicates if the network element is a junction."""
         ...
-    
     @property
     def isTurn(self) -> bool:
         """Indicates if the network element is a turn."""
         ...
-    
     @property
     def isEdge(self) -> bool:
         """Indicates if the network element is an edge."""
         ...
-    
-
 
 class Edge(NetworkElement):
     """An edge."""
+
     @property
     def isAlong(self) -> bool:
         """Indicates if the direction of the edge is along the source feature."""
         ...
-    
     @property
     def isAgainst(self) -> bool:
         """Indicates if the direction of the edge is against the source feature."""
         ...
-    
     @property
     def opposite(self) -> Edge:
         """The edge that is the opposite direction of the current edge."""
         ...
-    
-
 
 class Junction(NetworkElement):
     """A junction."""
-    ...
 
+    ...
 
 class Turn(NetworkElement):
     """A turn."""
-    ...
 
+    ...
 
 class NetworkQuery:
     """Provides access to the properties, attributes, attribute values, and elements of a network dataset."""
+
     @property
     def networkName(self) -> str:
         """The name of the network."""
         ...
-    
     @property
     def sourceNames(self) -> Iterable[str]:
         """The names of the sources referenced by the network."""
         ...
-    
     def attribute(self, attribute_name: str) -> Attribute | None:
         """Return an attribute of the specified attribute name.
 
@@ -123,7 +113,6 @@ class NetworkQuery:
             Attribute:  An attribute object.
         """
         ...
-    
     def attributeUsage(self, attribute: Attribute) -> AttributeUsage:
         """Return usage type of the specified attribute.
 
@@ -134,7 +123,6 @@ class NetworkQuery:
             AttributeUsage: An attribute usage enum.
         """
         ...
-    
     def attributeParameters(self, attribute: Attribute) -> Iterable[AttributeParameter]:
         """Return the parameters of the specified attribute.
 
@@ -145,15 +133,12 @@ class NetworkQuery:
             Iterable[AttributeParameter]: Iterable of attribute parameters.
         """
         ...
-    
     def fromJunction(self, edge: Edge) -> Junction:
         """Return the 'from' junctions for the specified edge."""
         ...
-    
     def toJunction(self, edge: Edge) -> Junction:
         """Return the 'to' junctions for the specified edge."""
         ...
-    
     def atJunction(self, turn: Turn) -> Junction:
         """Return the junction that connects first and second edges of the turn.
 
@@ -164,7 +149,6 @@ class NetworkQuery:
             Junction: Junction that connects first and second edges of the turn.
         """
         ...
-    
     def turns(self, junction: Junction) -> Iterable[Turn]:
         """Return the turns for the specified junction where the junction connects the first and second edges of each turn.
 
@@ -175,7 +159,6 @@ class NetworkQuery:
             Iterable[Turn]: Iterable of turns.
         """
         ...
-    
     def edges(self, element: Junction | Turn) -> Iterable[Edge]:
         """Return the edges that are connected to the specified element.
 
@@ -186,7 +169,6 @@ class NetworkQuery:
             Iterable[Edge]: Iterable of edges.
         """
         ...
-    
     def edgePositions(self, edge: Edge) -> tuple[float, float]:
         """Return the 'from' and 'to' positions along the source feature for the specified edge.
 
@@ -200,7 +182,6 @@ class NetworkQuery:
             tuple[float, float]: Tuple containing the 'from' and 'to' position values.
         """
         ...
-    
     def edgeAzimuths(self, edge: Edge) -> tuple[float, float]:
         """Return the 'from' and 'to' azimuths for the specified edge.
 
@@ -211,7 +192,6 @@ class NetworkQuery:
             tuple[float, float]: Tuple containing the 'from' and 'to' azimuths values.
         """
         ...
-    
     def sourceInfo(self, element: Junction | Edge | Turn) -> tuple[int, int]:
         """Return source information for the specified network element.
 
@@ -222,8 +202,13 @@ class NetworkQuery:
             tuple[int, int]: Tuple of network source id and network source object id.
         """
         ...
-    
-    def attributeValue(self, element: Junction | Edge | Turn, attribute: Attribute, time_usage: NetworkTimeUsage = ..., local_time: datetime | None = ...) -> Union[int, float, bool]:
+    def attributeValue(
+        self,
+        element: Junction | Edge | Turn,
+        attribute: Attribute,
+        time_usage: NetworkTimeUsage = ...,
+        local_time: datetime | None = ...,
+    ) -> Union[int, float, bool]:
         """Attribute value for a specified element, with optional time.
 
         Args:
@@ -236,12 +221,13 @@ class NetworkQuery:
             Union[int, float, bool]: The attribute value for a specified element at a given time.
         """
         ...
-    
-
 
 class AttributeEvaluator:
     """Base class for network attribute custom evaluator."""
-    def __init__(self, attribute_name: str, specific_sources: list[str] | None = ...) -> None:
+
+    def __init__(
+        self, attribute_name: str, specific_sources: list[str] | None = ...
+    ) -> None:
         """Initialize of attribute evaluator object.
 
         If specific sources is not set then the custom evaluator will apply to all sources.
@@ -251,22 +237,18 @@ class AttributeEvaluator:
             specific_sources (list[str] | None, optional): List of specific network source names. Defaults to None.
         """
         ...
-    
     @property
     def attributeName(self) -> str:
         """The network attribute name that the custom evaluator applies to."""
         ...
-    
     @property
     def attribute(self) -> Attribute:
         """The network attribute that the custom evaluator applies to."""
         ...
-    
     @property
     def sourceNames(self) -> list[str]:
         """The list of network source names that the custom evaluator applies to."""
         ...
-    
     @property
     def networkQuery(self) -> NetworkQuery:
         """The network query object for the network the attribute evaluator is attached to.
@@ -275,7 +257,6 @@ class AttributeEvaluator:
             NetworkQuery: NetworkQuery object or None if the evaluator was not attached yet.
         """
         ...
-    
     @property
     def attached(self) -> bool:
         """Indicates if the evaluator is attached to a network.
@@ -284,7 +265,6 @@ class AttributeEvaluator:
             bool: True if the evaluator is correctly attached to the network dataset.
         """
         ...
-    
     def attach(self, network_query: NetworkQuery) -> bool:
         """Used to verify that the attribute evaluator can be applied to the network.
 
@@ -299,7 +279,6 @@ class AttributeEvaluator:
             bool: True if the network has the specified attribute.
         """
         ...
-    
     def refresh(self) -> None:
         """Used to for state management of the attribute evaluator.
 
@@ -308,7 +287,6 @@ class AttributeEvaluator:
         Invoked on just prior to each a solve being executed.
         """
         ...
-    
     def edgeValue(self, edge: Edge) -> Union[int, float, bool]:
         """Used to set the final evaluated attribute value for an edge.
 
@@ -322,8 +300,9 @@ class AttributeEvaluator:
             Union[int, float, bool]: Returns the attribute value back to the solver.
         """
         ...
-    
-    def edgeValueAtTime(self, edge: Edge, time: datetime, time_usage: NetworkTimeUsage) -> Union[int, float, bool]:
+    def edgeValueAtTime(
+        self, edge: Edge, time: datetime, time_usage: NetworkTimeUsage
+    ) -> Union[int, float, bool]:
         """Used to set the final evaluated attribute value for an edge, when time is used.
 
         Custom logic can be applied in this method to determine the final attribute value.
@@ -339,7 +318,6 @@ class AttributeEvaluator:
             Union[int, float, bool]: Returns the attribute value back to the solver.
         """
         ...
-    
     def junctionValue(self, junction: Junction) -> Union[int, float, bool]:
         """Used to set the final evaluated attribute value for a junction.
 
@@ -353,8 +331,9 @@ class AttributeEvaluator:
             Union[int, float, bool]: Returns the attribute value back to the solver.
         """
         ...
-    
-    def junctionValueAtTime(self, junction: Junction, time: datetime, time_usage: NetworkTimeUsage) -> Union[int, float, bool]:
+    def junctionValueAtTime(
+        self, junction: Junction, time: datetime, time_usage: NetworkTimeUsage
+    ) -> Union[int, float, bool]:
         """Used to set the final evaluated attribute value for a junction, when time is used.
 
         Custom logic can be applied in this method to determine the final attribute value.
@@ -370,7 +349,6 @@ class AttributeEvaluator:
             Union[int, float, bool]: Returns the attribute value back to the solver.
         """
         ...
-    
     def turnValue(self, turn: Turn) -> Union[int, float, bool]:
         """Used to set the final evaluated attribute value for a turn.
 
@@ -384,8 +362,9 @@ class AttributeEvaluator:
             Union[int, float, bool]: Returns the attribute value back to the solver.
         """
         ...
-    
-    def turnValueAtTime(self, turn: Turn, time: datetime, time_usage: NetworkTimeUsage) -> Union[int, float, bool]:
+    def turnValueAtTime(
+        self, turn: Turn, time: datetime, time_usage: NetworkTimeUsage
+    ) -> Union[int, float, bool]:
         """Used to set the final evaluated attribute value for a turn, when time is used.
 
          Custom logic can be applied in this method to determine the final attribute value.
@@ -401,6 +380,3 @@ class AttributeEvaluator:
             Union[int, float, bool]: Returns the attribute value back to the solver.
         """
         ...
-    
-
-

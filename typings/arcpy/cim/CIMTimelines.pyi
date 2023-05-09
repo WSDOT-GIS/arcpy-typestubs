@@ -6,31 +6,23 @@ from .CIMEnum import *
 from .CIMExternal import *
 from .CIMCore import CIMDefinition
 
-
 class CIMTimelineLayer:
     """
-      Represents a layer in a timeline.
+    Represents a layer in a timeline.
     """
-    def __init__(self, *args, **Kwargs) -> None:
-        ...
-    
 
+    def __init__(self, *args, **Kwargs) -> None: ...
 
 class CIMTimelineSwimlane:
     """
-      Represents a swimlane in a timeline.
+    Represents a swimlane in a timeline.
     """
-    def __init__(self, *args, **Kwargs) -> None:
-        ...
-    
 
+    def __init__(self, *args, **Kwargs) -> None: ...
 
 class CIMTimeline(CIMDefinition):
     """
-      Represents a timeline.
+    Represents a timeline.
     """
-    def __init__(self, *args, **Kwargs) -> None:
-        ...
-    
 
-
+    def __init__(self, *args, **Kwargs) -> None: ...

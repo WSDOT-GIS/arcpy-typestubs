@@ -9,2425 +9,2763 @@ refine data to support the production of maps. This includes the
 creation of masks, the simplification and aggregation of features and
 reduction of their density, as well as tools for annotation and the
 creation of map series."""
-__all__ = ['AggregatePoints', 'AggregatePolygons', 'AlignMarkerToStrokeOrFill', 'AnnotateSelectedFeatures', 'CalculateAdjacentFields', 'CalculateCentralMeridianAndParallels', 'CalculateGridConvergenceAngle', 'CalculateLineCaps', 'CalculatePolygonMainAngle', 'CalculateUTMZone', 'CollapseHydroPolygon', 'CollapseRoadDetail', 'ContourAnnotation', 'ConvertLabelsToAnnotation', 'ConvertLabelsToGraphics', 'CreateCartographicPartitions', 'CreateOverpass', 'CreateUnderpass', 'CulDeSacMasks', 'DelineateBuiltUpAreas', 'DetectGraphicConflict', 'DisperseMarkers', 'FeatureOutlineMasks', 'GenerateHachuresForDefinedSlopes', 'GridIndexFeatures', 'IntersectingLayersMasks', 'MapServerCacheTilingSchemeToPolygons', 'MergeDividedRoads', 'PropagateDisplacement', 'ResolveBuildingConflicts', 'ResolveRoadConflicts', 'SetControlPointAtIntersect', 'SetControlPointByAngle', 'SimplifyBuilding', 'SimplifyLine', 'SimplifyPolygon', 'SimplifySharedEdges', 'SmoothLine', 'SmoothPolygon', 'SmoothSharedEdges', 'StripMapIndexFeatures', 'ThinRoadNetwork', 'TiledLabelsToAnnotation', 'UpdateAnnotationReferenceScale']
+__all__ = [
+    "AggregatePoints",
+    "AggregatePolygons",
+    "AlignMarkerToStrokeOrFill",
+    "AnnotateSelectedFeatures",
+    "CalculateAdjacentFields",
+    "CalculateCentralMeridianAndParallels",
+    "CalculateGridConvergenceAngle",
+    "CalculateLineCaps",
+    "CalculatePolygonMainAngle",
+    "CalculateUTMZone",
+    "CollapseHydroPolygon",
+    "CollapseRoadDetail",
+    "ContourAnnotation",
+    "ConvertLabelsToAnnotation",
+    "ConvertLabelsToGraphics",
+    "CreateCartographicPartitions",
+    "CreateOverpass",
+    "CreateUnderpass",
+    "CulDeSacMasks",
+    "DelineateBuiltUpAreas",
+    "DetectGraphicConflict",
+    "DisperseMarkers",
+    "FeatureOutlineMasks",
+    "GenerateHachuresForDefinedSlopes",
+    "GridIndexFeatures",
+    "IntersectingLayersMasks",
+    "MapServerCacheTilingSchemeToPolygons",
+    "MergeDividedRoads",
+    "PropagateDisplacement",
+    "ResolveBuildingConflicts",
+    "ResolveRoadConflicts",
+    "SetControlPointAtIntersect",
+    "SetControlPointByAngle",
+    "SimplifyBuilding",
+    "SimplifyLine",
+    "SimplifyPolygon",
+    "SimplifySharedEdges",
+    "SmoothLine",
+    "SmoothPolygon",
+    "SmoothSharedEdges",
+    "StripMapIndexFeatures",
+    "ThinRoadNetwork",
+    "TiledLabelsToAnnotation",
+    "UpdateAnnotationReferenceScale",
+]
 __alias__ = ...
-@gptooldoc('AnnotateSelectedFeatures_cartography', None)
-def AnnotateSelectedFeatures(in_map=..., in_layer=..., anno_layers=..., generate_unplaced=...): # -> conversion | int | float | complex | basestring | list[Unknown] | tuple[Unknown, ...] | dict[Unknown, Unknown]:
+
+@gptooldoc("AnnotateSelectedFeatures_cartography", None)
+def AnnotateSelectedFeatures(
+    in_map=..., in_layer=..., anno_layers=..., generate_unplaced=...
+):  # -> conversion | int | float | complex | basestring | list[Unknown] | tuple[Unknown, ...] | dict[Unknown, Unknown]:
     """AnnotateSelectedFeatures_cartography(in_map, in_layer, anno_layers;anno_layers..., {generate_unplaced})
 
-        Creates annotation for the selected features of a layer. The labeling
-        properties defined in the annotation class properties of the specified
-        related annotation feature classes are used.
+       Creates annotation for the selected features of a layer. The labeling
+       properties defined in the annotation class properties of the specified
+       related annotation feature classes are used.
 
-     INPUTS:
-      in_map (Map):
-          The input map.
-      in_layer (Feature Layer):
-          The layer for which the selected features will have annotation
-          created.
-      anno_layers (Value Table):
-          The feature-linked annotation layers and the specified sublayers that
-          will have annotation converted into them.
-      generate_unplaced {Boolean}:
-          Specifies whether to create unplaced annotation from unplaced labels.
+    INPUTS:
+     in_map (Map):
+         The input map.
+     in_layer (Feature Layer):
+         The layer for which the selected features will have annotation
+         created.
+     anno_layers (Value Table):
+         The feature-linked annotation layers and the specified sublayers that
+         will have annotation converted into them.
+     generate_unplaced {Boolean}:
+         Specifies whether to create unplaced annotation from unplaced labels.
 
-          * ONLY_PLACED-Annotation will only be created for features that are
-          currently labeled. This is the default.
+         * ONLY_PLACED-Annotation will only be created for features that are
+         currently labeled. This is the default.
 
-          * GENERATE_UNPLACED-Unplaced annotation are stored in the annotation
-          feature class. The status field for these annotation is set to
-          Unplaced."""
+         * GENERATE_UNPLACED-Unplaced annotation are stored in the annotation
+         feature class. The status field for these annotation is set to
+         Unplaced."""
     ...
 
-@gptooldoc('ContourAnnotation_cartography', None)
-def ContourAnnotation(in_features=..., out_geodatabase=..., contour_label_field=..., reference_scale_value=..., out_layer=..., contour_color=..., contour_type_field=..., contour_alignment=..., enable_laddering=...): # -> conversion | int | float | complex | basestring | list[Unknown] | tuple[Unknown, ...] | dict[Unknown, Unknown]:
+@gptooldoc("ContourAnnotation_cartography", None)
+def ContourAnnotation(
+    in_features=...,
+    out_geodatabase=...,
+    contour_label_field=...,
+    reference_scale_value=...,
+    out_layer=...,
+    contour_color=...,
+    contour_type_field=...,
+    contour_alignment=...,
+    enable_laddering=...,
+):  # -> conversion | int | float | complex | basestring | list[Unknown] | tuple[Unknown, ...] | dict[Unknown, Unknown]:
     """ContourAnnotation_cartography(in_features, out_geodatabase, contour_label_field, reference_scale_value, out_layer, contour_color, {contour_type_field}, {contour_alignment}, {enable_laddering})
 
-        Creates annotation for contour features.
+       Creates annotation for contour features.
 
-     INPUTS:
-      in_features (Feature Layer):
-          The contour line feature class for which the annotation will be
-          created.
-      out_geodatabase (Workspace / Feature Dataset):
-          The workspace where the output feature classes will be saved. The
-          workspace can be an existing geodatabase or an existing feature
-          dataset.
-      contour_label_field (Field):
-          The field in the input layer attribute table on which the annotation
-          text will be based.
-      reference_scale_value (Double):
-          The scale that will be used as a reference for the annotation. This
-          sets the scale on which all symbol and text sizes in the annotation
-          will be based.
-      contour_color (String):
-          Specifies the color of the output contour layer and annotation
-          features.
+    INPUTS:
+     in_features (Feature Layer):
+         The contour line feature class for which the annotation will be
+         created.
+     out_geodatabase (Workspace / Feature Dataset):
+         The workspace where the output feature classes will be saved. The
+         workspace can be an existing geodatabase or an existing feature
+         dataset.
+     contour_label_field (Field):
+         The field in the input layer attribute table on which the annotation
+         text will be based.
+     reference_scale_value (Double):
+         The scale that will be used as a reference for the annotation. This
+         sets the scale on which all symbol and text sizes in the annotation
+         will be based.
+     contour_color (String):
+         Specifies the color of the output contour layer and annotation
+         features.
 
-          * BLACK-The output contour layer and annotation features will be drawn
-          in black. This is the default.
+         * BLACK-The output contour layer and annotation features will be drawn
+         in black. This is the default.
 
-          * BROWN-The output contour layer and annotation features will be drawn
-          in brown.
+         * BROWN-The output contour layer and annotation features will be drawn
+         in brown.
 
-          * BLUE-The output contour layer and annotation features will be drawn
-          in blue.
-      contour_type_field {Field}:
-          The field in the input layer attribute table containing a value for
-          the type of contour feature. An annotation class will be created for
-          each type value.
-      contour_alignment {String}:
-          Specifies how the annotation will be aligned to contour elevations.
-          The annotation can be aligned to the contour elevations so that the
-          top of the text is always placed uphill or downhill. These options
-          allow the annotation to be placed upside down. The contour annotation
-          can also be aligned to the page, ensuring that the text is never
-          placed upside down.
+         * BLUE-The output contour layer and annotation features will be drawn
+         in blue.
+     contour_type_field {Field}:
+         The field in the input layer attribute table containing a value for
+         the type of contour feature. An annotation class will be created for
+         each type value.
+     contour_alignment {String}:
+         Specifies how the annotation will be aligned to contour elevations.
+         The annotation can be aligned to the contour elevations so that the
+         top of the text is always placed uphill or downhill. These options
+         allow the annotation to be placed upside down. The contour annotation
+         can also be aligned to the page, ensuring that the text is never
+         placed upside down.
 
-          * PAGE-The annotation will be aligned to the page, ensuring that the
-          text is never placed upside down. This is the default.
+         * PAGE-The annotation will be aligned to the page, ensuring that the
+         text is never placed upside down. This is the default.
 
-          * UPHILL-The annotation will be aligned to the contour elevations so
-          that the top of the text is always placed uphill. This option allows
-          the annotation to be placed upside down.
+         * UPHILL-The annotation will be aligned to the contour elevations so
+         that the top of the text is always placed uphill. This option allows
+         the annotation to be placed upside down.
 
-          * DOWNHILL-The annotation will be aligned to the contour elevations so
-          that the top of the text is always placed downhill. This option allows
-          the annotation to be placed upside down.
-      enable_laddering {Boolean}:
-          Specifies whether annotation will be placed in ladders. Placing
-          annotation in ladders will place the text so it appears to step up and
-          step down the contours in a straight path. These ladders will run from
-          the top of a hill to the bottom, will not cross each other, will
-          belong to a single slope, and will not cross any other slope.
+         * DOWNHILL-The annotation will be aligned to the contour elevations so
+         that the top of the text is always placed downhill. This option allows
+         the annotation to be placed upside down.
+     enable_laddering {Boolean}:
+         Specifies whether annotation will be placed in ladders. Placing
+         annotation in ladders will place the text so it appears to step up and
+         step down the contours in a straight path. These ladders will run from
+         the top of a hill to the bottom, will not cross each other, will
+         belong to a single slope, and will not cross any other slope.
 
-          * ENABLE_LADDERING-Annotation will step up and down the contours in a
-          straight path.
+         * ENABLE_LADDERING-Annotation will step up and down the contours in a
+         straight path.
 
-          * NOT_ENABLE_LADDERING-Annotation will not be placed up and down the
-          contours in a straight path. This is the default.
+         * NOT_ENABLE_LADDERING-Annotation will not be placed up and down the
+         contours in a straight path. This is the default.
 
-     OUTPUTS:
-      out_layer (Group Layer):
-          The group layer that will contain the contour layer, the annotation,
-          and the mask layer. When working in the Catalog pane, you can use the
-          Save To Layer File tool to write the output group layer to a layer
-          file. When using ArcGIS Pro, the tool adds the group layer to the
-          display if the Add output datasets to an open map option is checked on
-          the Geoprocessing tab on the Options dialog box. The group layer that
-          is created is temporary and will not persist after the session ends
-          unless the document is saved."""
+    OUTPUTS:
+     out_layer (Group Layer):
+         The group layer that will contain the contour layer, the annotation,
+         and the mask layer. When working in the Catalog pane, you can use the
+         Save To Layer File tool to write the output group layer to a layer
+         file. When using ArcGIS Pro, the tool adds the group layer to the
+         display if the Add output datasets to an open map option is checked on
+         the Geoprocessing tab on the Options dialog box. The group layer that
+         is created is temporary and will not persist after the session ends
+         unless the document is saved."""
     ...
 
-@gptooldoc('ConvertLabelsToAnnotation_cartography', None)
-def ConvertLabelsToAnnotation(input_map=..., conversion_scale=..., output_geodatabase=..., anno_suffix=..., extent=..., generate_unplaced=..., require_symbol_id=..., feature_linked=..., auto_create=..., update_on_shape_change=..., output_group_layer=..., which_layers=..., single_layer=..., multiple_feature_classes=..., merge_label_classes=...): # -> conversion | int | float | complex | basestring | list[Unknown] | tuple[Unknown, ...] | dict[Unknown, Unknown]:
+@gptooldoc("ConvertLabelsToAnnotation_cartography", None)
+def ConvertLabelsToAnnotation(
+    input_map=...,
+    conversion_scale=...,
+    output_geodatabase=...,
+    anno_suffix=...,
+    extent=...,
+    generate_unplaced=...,
+    require_symbol_id=...,
+    feature_linked=...,
+    auto_create=...,
+    update_on_shape_change=...,
+    output_group_layer=...,
+    which_layers=...,
+    single_layer=...,
+    multiple_feature_classes=...,
+    merge_label_classes=...,
+):  # -> conversion | int | float | complex | basestring | list[Unknown] | tuple[Unknown, ...] | dict[Unknown, Unknown]:
     """ConvertLabelsToAnnotation_cartography(input_map, conversion_scale, output_geodatabase, {anno_suffix}, {extent}, {generate_unplaced}, {require_symbol_id}, {feature_linked}, {auto_create}, {update_on_shape_change}, {output_group_layer}, {which_layers}, {single_layer}, {multiple_feature_classes}, {merge_label_classes})
 
-        Converts labels to annotation for a single layer or the entire map.
-        Both standard annotation and feature-linked annotation can be created.
+       Converts labels to annotation for a single layer or the entire map.
+       Both standard annotation and feature-linked annotation can be created.
 
-     INPUTS:
-      input_map (Map):
-          The input map.
-      conversion_scale (Double):
-          The scale at which labels will be converted. If a reference scale is
-          set on the map, the reference scale will be used for symbol sizing and
-          annotation feature class creation, but conversion will occur at this
-          scale.
-      output_geodatabase (LocalDatabase|RemoteDatabase):
-          The workspace where the output feature classes will be saved. The
-          workspace can be an existing geodatabase or an existing feature
-          dataset. If this is not the same database used by all the layers in
-          the map, the feature-linked option will be disabled.
-      anno_suffix {String}:
-          The suffix that will be added to each new annotation feature class.
-          This suffix will be appended to the name of the source feature class
-          for each new annotation feature class.
-      extent {Extent}:
-          Specifies the extent that contains the labels to convert to
-          annotation.
+    INPUTS:
+     input_map (Map):
+         The input map.
+     conversion_scale (Double):
+         The scale at which labels will be converted. If a reference scale is
+         set on the map, the reference scale will be used for symbol sizing and
+         annotation feature class creation, but conversion will occur at this
+         scale.
+     output_geodatabase (LocalDatabase|RemoteDatabase):
+         The workspace where the output feature classes will be saved. The
+         workspace can be an existing geodatabase or an existing feature
+         dataset. If this is not the same database used by all the layers in
+         the map, the feature-linked option will be disabled.
+     anno_suffix {String}:
+         The suffix that will be added to each new annotation feature class.
+         This suffix will be appended to the name of the source feature class
+         for each new annotation feature class.
+     extent {Extent}:
+         Specifies the extent that contains the labels to convert to
+         annotation.
 
-          * MAXOF-The maximum extent of all inputs will be used.
+         * MAXOF-The maximum extent of all inputs will be used.
 
-          * MINOF-The minimum area common to all inputs will be used.
+         * MINOF-The minimum area common to all inputs will be used.
 
-          * DISPLAY-The extent is equal to the visible display.
+         * DISPLAY-The extent is equal to the visible display.
 
-          * Layer name-The extent of the specified layer will be used.
+         * Layer name-The extent of the specified layer will be used.
 
-          * Extent object-The extent of the specified object will be used.
+         * Extent object-The extent of the specified object will be used.
 
-          * Space delimited string of coordinates-The extent of the specified
-          string will be used. Coordinates are expressed in the order of x-min,
-          y-min, x-max, y-max.
-          If no extent value is set, the extent will be based on the maximum
-          extent of all participating inputs. This is the default.
-      generate_unplaced {Boolean}:
-          Specifies whether unplaced annotation will be created from unplaced
-          labels.
+         * Space delimited string of coordinates-The extent of the specified
+         string will be used. Coordinates are expressed in the order of x-min,
+         y-min, x-max, y-max.
+         If no extent value is set, the extent will be based on the maximum
+         extent of all participating inputs. This is the default.
+     generate_unplaced {Boolean}:
+         Specifies whether unplaced annotation will be created from unplaced
+         labels.
 
-          * ONLY_PLACED-Annotation will only be created for features that are
-          currently labeled. This is the default.
+         * ONLY_PLACED-Annotation will only be created for features that are
+         currently labeled. This is the default.
 
-          * GENERATE_UNPLACED-Unplaced annotation will be stored in the
-          annotation feature class. The status field for these annotation is set
-          to Unplaced.
-      require_symbol_id {Boolean}:
-          Specifies whether the text symbol properties that can be edited will
-          be restricted.
+         * GENERATE_UNPLACED-Unplaced annotation will be stored in the
+         annotation feature class. The status field for these annotation is set
+         to Unplaced.
+     require_symbol_id {Boolean}:
+         Specifies whether the text symbol properties that can be edited will
+         be restricted.
 
-          * NO_REQUIRE_ID-All text symbol properties can be edited. This is the
-          default.
+         * NO_REQUIRE_ID-All text symbol properties can be edited. This is the
+         default.
 
-          * REQUIRE_ID-Only symbol properties that enable annotation features
-          can be edited to maintain reference to their associated text symbol in
-          the collection.
-      feature_linked {Boolean}:
-          This parameter is only available with ArcGIS Desktop Standard and
-          ArcGIS Desktop Advanced licenses.Specifies whether the output
-          annotation feature class will be linked
-          to the features in another feature class.
+         * REQUIRE_ID-Only symbol properties that enable annotation features
+         can be edited to maintain reference to their associated text symbol in
+         the collection.
+     feature_linked {Boolean}:
+         This parameter is only available with ArcGIS Desktop Standard and
+         ArcGIS Desktop Advanced licenses.Specifies whether the output
+         annotation feature class will be linked
+         to the features in another feature class.
 
-          * STANDARD-The output annotation feature class will not be linked to
-          the features in another feature class. This is the default.
+         * STANDARD-The output annotation feature class will not be linked to
+         the features in another feature class. This is the default.
 
-          * FEATURE_LINKED-The output annotation feature class will be linked to
-          the features in another feature class.
-      auto_create {Boolean}:
-          Specifies whether annotation will be created when new features are
-          added to the linked feature class if the feature_linked parameter is
-          set to FEATURE_LINKED.
+         * FEATURE_LINKED-The output annotation feature class will be linked to
+         the features in another feature class.
+     auto_create {Boolean}:
+         Specifies whether annotation will be created when new features are
+         added to the linked feature class if the feature_linked parameter is
+         set to FEATURE_LINKED.
 
-          * AUTO_CREATE-Feature-linked annotation will be created when new
-          features are added to the linked feature class. This is the default.
+         * AUTO_CREATE-Feature-linked annotation will be created when new
+         features are added to the linked feature class. This is the default.
 
-          * NO_AUTO_CREATE-Feature-linked annotation will not be created when
-          new features are added to the linked feature class.
-      update_on_shape_change {Boolean}:
-          Specifies whether the position of annotation will be updated when the
-          shape of the linked feature is updated if the feature_linked parameter
-          is set to FEATURE_LINKED.
+         * NO_AUTO_CREATE-Feature-linked annotation will not be created when
+         new features are added to the linked feature class.
+     update_on_shape_change {Boolean}:
+         Specifies whether the position of annotation will be updated when the
+         shape of the linked feature is updated if the feature_linked parameter
+         is set to FEATURE_LINKED.
 
-          * SHAPE_UPDATE-The position of the annotation will be updated when the
-          shape of the linked feature is modified. This is the default.
+         * SHAPE_UPDATE-The position of the annotation will be updated when the
+         shape of the linked feature is modified. This is the default.
 
-          * NO_SHAPE_UPDATE-The position of the annotation will not be updated
-          when the shape of the linked feature is modified.
-      which_layers {String}:
-          Specifies whether annotation will be converted for all layers in the
-          map or for a single layer. The single layer must be specified.
+         * NO_SHAPE_UPDATE-The position of the annotation will not be updated
+         when the shape of the linked feature is modified.
+     which_layers {String}:
+         Specifies whether annotation will be converted for all layers in the
+         map or for a single layer. The single layer must be specified.
 
-          * ALL_LAYERS-Labels will be converted to annotation for all layers in
-          the map. This is the default.
+         * ALL_LAYERS-Labels will be converted to annotation for all layers in
+         the map. This is the default.
 
-          * SINGLE_LAYER-Labels will be converted to annotation for a single
-          layer. The layer must be specified.
-      single_layer {Feature Layer}:
-          The layer with the annotation to convert when the which_layers
-          parameter is set to SINGLE_LAYER. This layer must be in the map.
-      multiple_feature_classes {Boolean}:
-          Specifies whether labels will be converted to individual annotation
-          feature classes or to a single annotation feature class. If converting
-          to a single annotation feature class, the annotation cannot be
-          feature-linked.
+         * SINGLE_LAYER-Labels will be converted to annotation for a single
+         layer. The layer must be specified.
+     single_layer {Feature Layer}:
+         The layer with the annotation to convert when the which_layers
+         parameter is set to SINGLE_LAYER. This layer must be in the map.
+     multiple_feature_classes {Boolean}:
+         Specifies whether labels will be converted to individual annotation
+         feature classes or to a single annotation feature class. If converting
+         to a single annotation feature class, the annotation cannot be
+         feature-linked.
 
-          * SINGLE_FEATURE_CLASS-Labels from all layers will be converted to a
-          single annotation feature class.
+         * SINGLE_FEATURE_CLASS-Labels from all layers will be converted to a
+         single annotation feature class.
 
-          * FEATURE_CLASS_PER_FEATURE_LAYER-Labels will be converted to
-          individual annotation feature classes that correspond to their layers.
-          This is the default.
-      merge_label_classes {Boolean}:
-          Specifies whether similar label classes will be merged when the
-          multiple_feature_classes parameter is set to SINGLE_FEATURE_CLASS.
+         * FEATURE_CLASS_PER_FEATURE_LAYER-Labels will be converted to
+         individual annotation feature classes that correspond to their layers.
+         This is the default.
+     merge_label_classes {Boolean}:
+         Specifies whether similar label classes will be merged when the
+         multiple_feature_classes parameter is set to SINGLE_FEATURE_CLASS.
 
-          * MERGE_LABEL_CLASS-Label classes with similar properties will be
-          merged when the multiple_feature_classes parameter is set to
-          SINGLE_FEATURE_CLASS.
+         * MERGE_LABEL_CLASS-Label classes with similar properties will be
+         merged when the multiple_feature_classes parameter is set to
+         SINGLE_FEATURE_CLASS.
 
-          * NO_MERGE_LABEL_CLASS-Label classes will not be merged when the
-          multiple_feature_classes parameter is set to SINGLE_FEATURE_CLASS.
-          This is the default.
+         * NO_MERGE_LABEL_CLASS-Label classes will not be merged when the
+         multiple_feature_classes parameter is set to SINGLE_FEATURE_CLASS.
+         This is the default.
 
-     OUTPUTS:
-      output_group_layer {Group Layer}:
-          The group layer that will contain the generated annotation. You can
-          use the Save To Layer File tool to write the output group layer to a
-          layer file."""
+    OUTPUTS:
+     output_group_layer {Group Layer}:
+         The group layer that will contain the generated annotation. You can
+         use the Save To Layer File tool to write the output group layer to a
+         layer file."""
     ...
 
-@gptooldoc('ConvertLabelsToGraphics_cartography', None)
-def ConvertLabelsToGraphics(input_map=..., conversion_scale=..., which_layers=..., single_layer=..., graphics_suffix=..., extent=..., multiple_graphics_layers=..., generate_unplaced=..., output_group_layer=...): # -> conversion | int | float | complex | basestring | list[Unknown] | tuple[Unknown, ...] | dict[Unknown, Unknown]:
+@gptooldoc("ConvertLabelsToGraphics_cartography", None)
+def ConvertLabelsToGraphics(
+    input_map=...,
+    conversion_scale=...,
+    which_layers=...,
+    single_layer=...,
+    graphics_suffix=...,
+    extent=...,
+    multiple_graphics_layers=...,
+    generate_unplaced=...,
+    output_group_layer=...,
+):  # -> conversion | int | float | complex | basestring | list[Unknown] | tuple[Unknown, ...] | dict[Unknown, Unknown]:
     """ConvertLabelsToGraphics_cartography(input_map, conversion_scale, {which_layers}, {single_layer}, {graphics_suffix}, {extent}, {multiple_graphics_layers}, {generate_unplaced}, {output_group_layer})
 
-        Converts labels to graphics for a single layer or an entire map.
+       Converts labels to graphics for a single layer or an entire map.
 
-     INPUTS:
-      input_map (Map):
-          The input map object.
-      conversion_scale (Double):
-          The scale at which to convert labels. If a reference scale is set on
-          the map, the reference scale will be used for symbol sizing and
-          graphics layer creation, but conversion will happen at this scale.
-      which_layers {String}:
-          Specifies whether to convert graphics for all layers in the map or for
-          a single layer.
+    INPUTS:
+     input_map (Map):
+         The input map object.
+     conversion_scale (Double):
+         The scale at which to convert labels. If a reference scale is set on
+         the map, the reference scale will be used for symbol sizing and
+         graphics layer creation, but conversion will happen at this scale.
+     which_layers {String}:
+         Specifies whether to convert graphics for all layers in the map or for
+         a single layer.
 
-          * ALL_LAYERS-Labels will be converted to graphics for all layers in
-          the map. This is the default.
+         * ALL_LAYERS-Labels will be converted to graphics for all layers in
+         the map. This is the default.
 
-          * SINGLE_LAYER-Labels will be converted to graphics for a single
-          layer. The layer must be specified in the Feature Layer parameter
-          (single_layer in Python).
-      single_layer {Feature Layer}:
-          The layer with the labels to convert when the which_layers parameter
-          is set to SINGLE_LAYER. This layer must be in the map.
-      graphics_suffix {String}:
-          The suffix that will be added to each new graphics layer. This suffix
-          will be appended to the name of the source feature class for each new
-          graphics layer.
-      extent {Extent}:
-          Specifies the extent that contains the labels to convert to graphics.
+         * SINGLE_LAYER-Labels will be converted to graphics for a single
+         layer. The layer must be specified in the Feature Layer parameter
+         (single_layer in Python).
+     single_layer {Feature Layer}:
+         The layer with the labels to convert when the which_layers parameter
+         is set to SINGLE_LAYER. This layer must be in the map.
+     graphics_suffix {String}:
+         The suffix that will be added to each new graphics layer. This suffix
+         will be appended to the name of the source feature class for each new
+         graphics layer.
+     extent {Extent}:
+         Specifies the extent that contains the labels to convert to graphics.
 
-          * MAXOF-The maximum extent of all inputs will be used.
+         * MAXOF-The maximum extent of all inputs will be used.
 
-          * MINOF-The minimum area common to all inputs will be used.
+         * MINOF-The minimum area common to all inputs will be used.
 
-          * DISPLAY-The extent is equal to the visible display.
+         * DISPLAY-The extent is equal to the visible display.
 
-          * Layer name-The extent of the specified layer will be used.
+         * Layer name-The extent of the specified layer will be used.
 
-          * Extent object-The extent of the specified object will be used.
+         * Extent object-The extent of the specified object will be used.
 
-          * Space delimited string of coordinates-The extent of the specified
-          string will be used. Coordinates are expressed in the order of x-min,
-          y-min, x-max, y-max.
-      multiple_graphics_layers {Boolean}:
-          Specifies whether labels will be converted to individual graphics
-          layers or to a single graphics layer.
+         * Space delimited string of coordinates-The extent of the specified
+         string will be used. Coordinates are expressed in the order of x-min,
+         y-min, x-max, y-max.
+     multiple_graphics_layers {Boolean}:
+         Specifies whether labels will be converted to individual graphics
+         layers or to a single graphics layer.
 
-          * SINGLE_GRAPHICS_LAYER-Labels from all layers will be converted to a
-          single graphics layer.
+         * SINGLE_GRAPHICS_LAYER-Labels from all layers will be converted to a
+         single graphics layer.
 
-          * GRAPHICS_LAYER_PER_FEATURE_LAYER-Labels will be converted to
-          individual graphics layers that correspond to their layers. This is
-          the default.
-      generate_unplaced {Boolean}:
-          Specifies whether graphics will be created from unplaced labels.
+         * GRAPHICS_LAYER_PER_FEATURE_LAYER-Labels will be converted to
+         individual graphics layers that correspond to their layers. This is
+         the default.
+     generate_unplaced {Boolean}:
+         Specifies whether graphics will be created from unplaced labels.
 
-          * ONLY_PLACED-Graphics will only be created for features that are
-          currently labeled. This is the default.
+         * ONLY_PLACED-Graphics will only be created for features that are
+         currently labeled. This is the default.
 
-          * GENERATE_UNPLACED-Unplaced graphics are stored in the graphics layer
-          with their visibility is turned off.
+         * GENERATE_UNPLACED-Unplaced graphics are stored in the graphics layer
+         with their visibility is turned off.
 
-     OUTPUTS:
-      output_group_layer {Group Layer}:
-          The group layer that will contain the generated graphics. You can use
-          the Save To Layer File tool to write the output group layer to a layer
-          file."""
+    OUTPUTS:
+     output_group_layer {Group Layer}:
+         The group layer that will contain the generated graphics. You can use
+         the Save To Layer File tool to write the output group layer to a layer
+         file."""
     ...
 
-@gptooldoc('MapServerCacheTilingSchemeToPolygons_cartography', None)
-def MapServerCacheTilingSchemeToPolygons(input_map=..., tiling_scheme=..., output_feature_class=..., use_map_extent=..., clip_to_horizon=..., antialiasing=..., levels=...): # -> conversion | int | float | complex | basestring | list[Unknown] | tuple[Unknown, ...] | dict[Unknown, Unknown]:
+@gptooldoc("MapServerCacheTilingSchemeToPolygons_cartography", None)
+def MapServerCacheTilingSchemeToPolygons(
+    input_map=...,
+    tiling_scheme=...,
+    output_feature_class=...,
+    use_map_extent=...,
+    clip_to_horizon=...,
+    antialiasing=...,
+    levels=...,
+):  # -> conversion | int | float | complex | basestring | list[Unknown] | tuple[Unknown, ...] | dict[Unknown, Unknown]:
     """MapServerCacheTilingSchemeToPolygons_cartography(input_map, tiling_scheme, output_feature_class, use_map_extent, clip_to_horizon, {antialiasing}, {levels;levels...})
 
-        Creates a new polygon feature class from an existing tiling scheme.
+       Creates a new polygon feature class from an existing tiling scheme.
 
-     INPUTS:
-      input_map (Map):
-          The current map to be used.
-      tiling_scheme (File):
-          A predefined tiling scheme .xml file.
-      use_map_extent (Boolean):
-          Specifies whether polygon features will be created for the entire
-          extent of the tiling scheme or only those tiles that intersect the
-          full extent of the map.
+    INPUTS:
+     input_map (Map):
+         The current map to be used.
+     tiling_scheme (File):
+         A predefined tiling scheme .xml file.
+     use_map_extent (Boolean):
+         Specifies whether polygon features will be created for the entire
+         extent of the tiling scheme or only those tiles that intersect the
+         full extent of the map.
 
-          * USE_MAP_EXTENT-Polygon features will be created for the full extent
-          of the map. This is the default.
+         * USE_MAP_EXTENT-Polygon features will be created for the full extent
+         of the map. This is the default.
 
-          * FULL_TILING_SCHEME-Polygon features will be created for the full
-          extent of the tiling scheme.
-      clip_to_horizon (Boolean):
-          Specifies whether polygons will be constrained to the valid area of
-          use for the geographic or projected coordinate system of the map.
+         * FULL_TILING_SCHEME-Polygon features will be created for the full
+         extent of the tiling scheme.
+     clip_to_horizon (Boolean):
+         Specifies whether polygons will be constrained to the valid area of
+         use for the geographic or projected coordinate system of the map.
 
-          * CLIP_TO_HORIZON-Polygon features will only be created within the
-          valid area of use for the geographic or projected coordinate system of
-          the map. Tiles that are within the extent of the tiling scheme but
-          outside the extent of the coordinate system horizon will be clipped.
-          This is the default.
+         * CLIP_TO_HORIZON-Polygon features will only be created within the
+         valid area of use for the geographic or projected coordinate system of
+         the map. Tiles that are within the extent of the tiling scheme but
+         outside the extent of the coordinate system horizon will be clipped.
+         This is the default.
 
-          * UNIFORM_TILE_SIZE-Polygon features will be created for the full
-          extent of the tiling scheme. Within each scale level, polygons will be
-          of a uniform size and will not be clipped at the coordinate system
-          horizon. This may create data that is outside the valid area of use
-          for the geographic or projected coordinate system. If a scale within
-          the tiling scheme would generate a tile that is larger than the
-          spatial domain of the feature class, null geometry will be created for
-          that feature.
-      antialiasing {Boolean}:
-          Specifies whether polygons that match map service caches with
-          antialiasing enabled will be generated. A map service cache supertile
-          is 2048 x 2048 pixels with antialiasing or 4096 x 4096 pixels without.
-          To see if antialiasing was used in an existing cache, open the tiling
-          scheme file, conf.xml, and see if the <Antialiasing> tag is set to
-          true.
+         * UNIFORM_TILE_SIZE-Polygon features will be created for the full
+         extent of the tiling scheme. Within each scale level, polygons will be
+         of a uniform size and will not be clipped at the coordinate system
+         horizon. This may create data that is outside the valid area of use
+         for the geographic or projected coordinate system. If a scale within
+         the tiling scheme would generate a tile that is larger than the
+         spatial domain of the feature class, null geometry will be created for
+         that feature.
+     antialiasing {Boolean}:
+         Specifies whether polygons that match map service caches with
+         antialiasing enabled will be generated. A map service cache supertile
+         is 2048 x 2048 pixels with antialiasing or 4096 x 4096 pixels without.
+         To see if antialiasing was used in an existing cache, open the tiling
+         scheme file, conf.xml, and see if the <Antialiasing> tag is set to
+         true.
 
-          * ANTIALIASING-Polygon tiles will be generated to match the supertile
-          extent of a map service cache with antialiasing enabled.
+         * ANTIALIASING-Polygon tiles will be generated to match the supertile
+         extent of a map service cache with antialiasing enabled.
 
-          * NONE-Polygon tiles will be generated to match the supertile extent
-          of a map service cache without antialiasing enabled. This is the
-          default.
-      levels {Double}:
-          The scale levels at which polygons will be created. To create polygons
-          for all scale levels included in a tiling scheme, leave this parameter
-          blank. You can create polygons for all or only some of the scale
-          levels that are included in your tiling scheme. To add more scale
-          levels, however, you must modify your tiling scheme file or create a
-          new one.
+         * NONE-Polygon tiles will be generated to match the supertile extent
+         of a map service cache without antialiasing enabled. This is the
+         default.
+     levels {Double}:
+         The scale levels at which polygons will be created. To create polygons
+         for all scale levels included in a tiling scheme, leave this parameter
+         blank. You can create polygons for all or only some of the scale
+         levels that are included in your tiling scheme. To add more scale
+         levels, however, you must modify your tiling scheme file or create a
+         new one.
 
-     OUTPUTS:
-      output_feature_class (Feature Class):
-          The output polygon feature class."""
+    OUTPUTS:
+     output_feature_class (Feature Class):
+         The output polygon feature class."""
     ...
 
-@gptooldoc('TiledLabelsToAnnotation_cartography', None)
-def TiledLabelsToAnnotation(input_map=..., polygon_index_layer=..., out_geodatabase=..., out_layer=..., anno_suffix=..., reference_scale_value=..., reference_scale_field=..., tile_id_field=..., coordinate_sys_field=..., map_rotation_field=..., feature_linked=..., generate_unplaced_annotation=..., which_layers=..., single_layer=..., require_symbol_id=..., auto_create=..., update_on_shape_change=..., multiple_feature_classes=..., merge_label_classes=...): # -> conversion | int | float | complex | basestring | list[Unknown] | tuple[Unknown, ...] | dict[Unknown, Unknown]:
+@gptooldoc("TiledLabelsToAnnotation_cartography", None)
+def TiledLabelsToAnnotation(
+    input_map=...,
+    polygon_index_layer=...,
+    out_geodatabase=...,
+    out_layer=...,
+    anno_suffix=...,
+    reference_scale_value=...,
+    reference_scale_field=...,
+    tile_id_field=...,
+    coordinate_sys_field=...,
+    map_rotation_field=...,
+    feature_linked=...,
+    generate_unplaced_annotation=...,
+    which_layers=...,
+    single_layer=...,
+    require_symbol_id=...,
+    auto_create=...,
+    update_on_shape_change=...,
+    multiple_feature_classes=...,
+    merge_label_classes=...,
+):  # -> conversion | int | float | complex | basestring | list[Unknown] | tuple[Unknown, ...] | dict[Unknown, Unknown]:
     """TiledLabelsToAnnotation_cartography(input_map, polygon_index_layer, out_geodatabase, out_layer, anno_suffix, {reference_scale_value}, {reference_scale_field}, {tile_id_field}, {coordinate_sys_field}, {map_rotation_field}, {feature_linked}, {generate_unplaced_annotation}, {which_layers}, {single_layer}, {require_symbol_id}, {auto_create}, {update_on_shape_change}, {multiple_feature_classes}, {merge_label_classes})
 
-        Converts labels to annotation for layers in a map based on a polygon
-        index layer.
+       Converts labels to annotation for layers in a map based on a polygon
+       index layer.
 
-     INPUTS:
-      input_map (Map):
-          The map that contains the labels to convert to annotation.
-      polygon_index_layer (Table View):
-          The polygon layer that contains tile features.
-      out_geodatabase (Workspace / Feature Dataset):
-          The workspace where the output feature classes will be saved. The
-          workspace can be an existing geodatabase or an existing feature
-          dataset.
-      anno_suffix (String):
-          The suffix that will be added to each new annotation feature class.
-          This suffix will be appended to the name of the source feature class
-          for each new annotation feature class. The reference scale for the
-          annotation will follow this suffix.
-      reference_scale_value {Double}:
-          The scale value that will be used as a reference for the annotation.
-          This is the scale on which all symbol and text sizes in the annotation
-          will be based.
-      reference_scale_field {Field}:
-          The field in the polygon index layer that will determine the reference
-          scale of the annotation. This is the scale on which all symbol and
-          text sizes in the annotation will be based.
-      tile_id_field {Field}:
-          A field in the polygon index layer that uniquely identifies the tiled
-          area. These values will populate the TileID field in the annotation
-          feature class attribute table.
-      coordinate_sys_field {Field}:
-          A field in the polygon index layer that contains the coordinate system
-          information for each tile. Due to the length required for a field to
-          store coordinate system information, a polygon index layer that
-          contains a coordinate system field must be a geodatabase feature
-          class.
-      map_rotation_field {Field}:
-          A field in the polygon index layer that contains the angle by which
-          the map will be rotated.
-      feature_linked {Boolean}:
-          This parameter is only available with ArcGIS Desktop Standard and
-          ArcGIS Desktop Advanced licenses.Specifies whether the output
-          annotation feature class will be linked
-          to the features in another feature class.
+    INPUTS:
+     input_map (Map):
+         The map that contains the labels to convert to annotation.
+     polygon_index_layer (Table View):
+         The polygon layer that contains tile features.
+     out_geodatabase (Workspace / Feature Dataset):
+         The workspace where the output feature classes will be saved. The
+         workspace can be an existing geodatabase or an existing feature
+         dataset.
+     anno_suffix (String):
+         The suffix that will be added to each new annotation feature class.
+         This suffix will be appended to the name of the source feature class
+         for each new annotation feature class. The reference scale for the
+         annotation will follow this suffix.
+     reference_scale_value {Double}:
+         The scale value that will be used as a reference for the annotation.
+         This is the scale on which all symbol and text sizes in the annotation
+         will be based.
+     reference_scale_field {Field}:
+         The field in the polygon index layer that will determine the reference
+         scale of the annotation. This is the scale on which all symbol and
+         text sizes in the annotation will be based.
+     tile_id_field {Field}:
+         A field in the polygon index layer that uniquely identifies the tiled
+         area. These values will populate the TileID field in the annotation
+         feature class attribute table.
+     coordinate_sys_field {Field}:
+         A field in the polygon index layer that contains the coordinate system
+         information for each tile. Due to the length required for a field to
+         store coordinate system information, a polygon index layer that
+         contains a coordinate system field must be a geodatabase feature
+         class.
+     map_rotation_field {Field}:
+         A field in the polygon index layer that contains the angle by which
+         the map will be rotated.
+     feature_linked {Boolean}:
+         This parameter is only available with ArcGIS Desktop Standard and
+         ArcGIS Desktop Advanced licenses.Specifies whether the output
+         annotation feature class will be linked
+         to the features in another feature class.
 
-          * STANDARD-The output annotation feature class will not be linked to
-          the features in another feature class. This is the default.
+         * STANDARD-The output annotation feature class will not be linked to
+         the features in another feature class. This is the default.
 
-          * FEATURE_LINKED-The output annotation feature class will be linked to
-          the features in another feature class.
-      generate_unplaced_annotation {Boolean}:
-          Specifies whether unplaced annotation will be created from unplaced
-          labels.
+         * FEATURE_LINKED-The output annotation feature class will be linked to
+         the features in another feature class.
+     generate_unplaced_annotation {Boolean}:
+         Specifies whether unplaced annotation will be created from unplaced
+         labels.
 
-          * NOT_GENERATE_UNPLACED_ANNOTATION-Annotation will only be created for
-          features that are currently labeled. This is the default.
+         * NOT_GENERATE_UNPLACED_ANNOTATION-Annotation will only be created for
+         features that are currently labeled. This is the default.
 
-          * GENERATE_UNPLACED_ANNOTATION-Unplaced annotation will be stored in
-          the annotation feature class. The status field for these annotation is
-          set to Unplaced.
-      which_layers {String}:
-          Specifies whether annotation will be created for all layers in the map
-          or for a single layer. The single layer must be specified.
+         * GENERATE_UNPLACED_ANNOTATION-Unplaced annotation will be stored in
+         the annotation feature class. The status field for these annotation is
+         set to Unplaced.
+     which_layers {String}:
+         Specifies whether annotation will be created for all layers in the map
+         or for a single layer. The single layer must be specified.
 
-          * ALL_LAYERS-Labels will be converted to annotation for the entire
-          map. This is the default.
+         * ALL_LAYERS-Labels will be converted to annotation for the entire
+         map. This is the default.
 
-          * SINGLE_LAYER-Labels will be converted to annotation for a single
-          layer. The layer must be specified.
-      single_layer {Feature Layer}:
-          The layer that will be converted when the which_layers parameter is
-          set to SINGLE_LAYER. This layer must be in the map.
-      require_symbol_id {Boolean}:
-          Specifies whether all text symbol properties can be edited.
+         * SINGLE_LAYER-Labels will be converted to annotation for a single
+         layer. The layer must be specified.
+     single_layer {Feature Layer}:
+         The layer that will be converted when the which_layers parameter is
+         set to SINGLE_LAYER. This layer must be in the map.
+     require_symbol_id {Boolean}:
+         Specifies whether all text symbol properties can be edited.
 
-          * NO_REQUIRE_ID-All text symbol properties can be edited. This is the
-          default.
+         * NO_REQUIRE_ID-All text symbol properties can be edited. This is the
+         default.
 
-          * REQUIRE_ID-Only symbol properties that enable annotation features to
-          maintain reference to their associated text symbol in the collection
-          can be edited.
-      auto_create {Boolean}:
-          Specifies whether annotation will be created when new features are
-          added to the linked feature class if the feature_linked parameter is
-          set to FEATURE_LINKED.
+         * REQUIRE_ID-Only symbol properties that enable annotation features to
+         maintain reference to their associated text symbol in the collection
+         can be edited.
+     auto_create {Boolean}:
+         Specifies whether annotation will be created when new features are
+         added to the linked feature class if the feature_linked parameter is
+         set to FEATURE_LINKED.
 
-          * AUTO_CREATE-Feature-linked annotation will be created when new
-          features are added to the linked feature class. This is the default.
+         * AUTO_CREATE-Feature-linked annotation will be created when new
+         features are added to the linked feature class. This is the default.
 
-          * NO_AUTO_CREATE-Feature-linked annotation will not be created when
-          new features are added to the linked feature class.
-      update_on_shape_change {Boolean}:
-          Specifies whether the position of annotation will be updated when the
-          shape of the linked feature is updated if the feature_linked parameter
-          is set to FEATURE_LINKED.
+         * NO_AUTO_CREATE-Feature-linked annotation will not be created when
+         new features are added to the linked feature class.
+     update_on_shape_change {Boolean}:
+         Specifies whether the position of annotation will be updated when the
+         shape of the linked feature is updated if the feature_linked parameter
+         is set to FEATURE_LINKED.
 
-          * SHAPE_UPDATE-The position of the annotation will be updated when the
-          shape of the linked feature is modified. This is the default.
+         * SHAPE_UPDATE-The position of the annotation will be updated when the
+         shape of the linked feature is modified. This is the default.
 
-          * NO_SHAPE_UPDATE-The position of the annotation will not be updated
-          when the shape of the linked feature is modified.
-      multiple_feature_classes {Boolean}:
-          Specifies whether labels will be converted to individual annotation
-          feature classes or a single annotation feature class. If converting to
-          a single annotation feature class, the annotation cannot be feature-
-          linked.
+         * NO_SHAPE_UPDATE-The position of the annotation will not be updated
+         when the shape of the linked feature is modified.
+     multiple_feature_classes {Boolean}:
+         Specifies whether labels will be converted to individual annotation
+         feature classes or a single annotation feature class. If converting to
+         a single annotation feature class, the annotation cannot be feature-
+         linked.
 
-          * SINGLE_FEATURE_CLASS-Labels from all layers will be converted to a
-          single annotation feature class.
+         * SINGLE_FEATURE_CLASS-Labels from all layers will be converted to a
+         single annotation feature class.
 
-          * FEATURE_CLASS_PER_FEATURE_LAYER-Labels will be converted to
-          individual annotation feature classes that correspond to their layers.
-          This is the default.
-      merge_label_classes {Boolean}:
-          Specifies whether similar label classes will be merged if the
-          multiple_feature_classes parameter is set to SINGLE_FEATURE_CLASS.
+         * FEATURE_CLASS_PER_FEATURE_LAYER-Labels will be converted to
+         individual annotation feature classes that correspond to their layers.
+         This is the default.
+     merge_label_classes {Boolean}:
+         Specifies whether similar label classes will be merged if the
+         multiple_feature_classes parameter is set to SINGLE_FEATURE_CLASS.
 
-          * MERGE_LABEL_CLASS-Label classes with similar properties will be
-          merged when creating a single feature class.
+         * MERGE_LABEL_CLASS-Label classes with similar properties will be
+         merged when creating a single feature class.
 
-          * NO_MERGE_LABEL_CLASS-Label classes with similar properties will not
-          be merged. This is the default.
+         * NO_MERGE_LABEL_CLASS-Label classes with similar properties will not
+         be merged. This is the default.
 
-     OUTPUTS:
-      out_layer (Group Layer):
-          The group layer that will contain the generated annotation. You can
-          use the Save To Layer File tool to write the output group layer to a
-          layer file."""
+    OUTPUTS:
+     out_layer (Group Layer):
+         The group layer that will contain the generated annotation. You can
+         use the Save To Layer File tool to write the output group layer to a
+         layer file."""
     ...
 
-@gptooldoc('UpdateAnnotationReferenceScale_cartography', None)
-def UpdateAnnotationReferenceScale(in_anno_features=..., reference_scale=...): # -> conversion | int | float | complex | basestring | list[Unknown] | tuple[Unknown, ...] | dict[Unknown, Unknown]:
+@gptooldoc("UpdateAnnotationReferenceScale_cartography", None)
+def UpdateAnnotationReferenceScale(
+    in_anno_features=..., reference_scale=...
+):  # -> conversion | int | float | complex | basestring | list[Unknown] | tuple[Unknown, ...] | dict[Unknown, Unknown]:
     """UpdateAnnotationReferenceScale_cartography(in_anno_features, reference_scale)
 
-        Updates the reference scale of an existing annotation or dimension
-        feature class.
+       Updates the reference scale of an existing annotation or dimension
+       feature class.
 
-     INPUTS:
-      in_anno_features (Annotation Layer / Dimension Layer):
-          The input annotation or dimension features.
-      reference_scale (Double):
-          The feature class reference scale to be updated."""
+    INPUTS:
+     in_anno_features (Annotation Layer / Dimension Layer):
+         The input annotation or dimension features.
+     reference_scale (Double):
+         The feature class reference scale to be updated."""
     ...
 
-@gptooldoc('AlignMarkerToStrokeOrFill_cartography', None)
-def AlignMarkerToStrokeOrFill(in_point_features=..., in_line_or_polygon_features=..., search_distance=..., marker_orientation=...): # -> conversion | int | float | complex | basestring | list[Unknown] | tuple[Unknown, ...] | dict[Unknown, Unknown]:
+@gptooldoc("AlignMarkerToStrokeOrFill_cartography", None)
+def AlignMarkerToStrokeOrFill(
+    in_point_features=...,
+    in_line_or_polygon_features=...,
+    search_distance=...,
+    marker_orientation=...,
+):  # -> conversion | int | float | complex | basestring | list[Unknown] | tuple[Unknown, ...] | dict[Unknown, Unknown]:
     """AlignMarkerToStrokeOrFill_cartography(in_point_features, in_line_or_polygon_features, search_distance, {marker_orientation})
 
-        Aligns the marker symbol layers of a point feature class to the
-        nearest stroke or fill symbol layers in a line or polygon feature
-        class within a specified search distance.
+       Aligns the marker symbol layers of a point feature class to the
+       nearest stroke or fill symbol layers in a line or polygon feature
+       class within a specified search distance.
 
-     INPUTS:
-      in_point_features (Layer):
-          The input point feature layer containing point symbols to be aligned
-          to nearby lines or polygons. Symbols are aligned by storing an angle
-          in the attribute connected to the angle property of the marker symbol
-          layer. This must be connected to a single field with no expression
-          applied.
-      in_line_or_polygon_features (Layer):
-          The input line or polygon feature layer to which the input point
-          symbols will be aligned.
-      search_distance (Linear Unit):
-          The search distance from graphical marker edge to graphical stroke or
-          fill edge. A distance greater than or equal to zero must be specified.
-      marker_orientation {String}:
-          Specifies how the marker symbol layer will be oriented relative to the
-          stroke or fill symbol layer's edge.
+    INPUTS:
+     in_point_features (Layer):
+         The input point feature layer containing point symbols to be aligned
+         to nearby lines or polygons. Symbols are aligned by storing an angle
+         in the attribute connected to the angle property of the marker symbol
+         layer. This must be connected to a single field with no expression
+         applied.
+     in_line_or_polygon_features (Layer):
+         The input line or polygon feature layer to which the input point
+         symbols will be aligned.
+     search_distance (Linear Unit):
+         The search distance from graphical marker edge to graphical stroke or
+         fill edge. A distance greater than or equal to zero must be specified.
+     marker_orientation {String}:
+         Specifies how the marker symbol layer will be oriented relative to the
+         stroke or fill symbol layer's edge.
 
-          * PERPENDICULAR-Marker symbol layers will be aligned perpendicularly
-          to the stroke or fill edge. This is the default.
+         * PERPENDICULAR-Marker symbol layers will be aligned perpendicularly
+         to the stroke or fill edge. This is the default.
 
-          * PARALLEL-Marker symbol layers will be aligned parallel to the stroke
-          or fill edge."""
+         * PARALLEL-Marker symbol layers will be aligned parallel to the stroke
+         or fill edge."""
     ...
 
-@gptooldoc('CalculateLineCaps_cartography', None)
-def CalculateLineCaps(in_features=..., cap_type=..., dangle_option=...): # -> conversion | int | float | complex | basestring | list[Unknown] | tuple[Unknown, ...] | dict[Unknown, Unknown]:
+@gptooldoc("CalculateLineCaps_cartography", None)
+def CalculateLineCaps(
+    in_features=..., cap_type=..., dangle_option=...
+):  # -> conversion | int | float | complex | basestring | list[Unknown] | tuple[Unknown, ...] | dict[Unknown, Unknown]:
     """CalculateLineCaps_cartography(in_features, {cap_type}, {dangle_option})
 
-        Modifies the cap type for stroke symbol layers in the line symbols of
-        the input layer.
+       Modifies the cap type for stroke symbol layers in the line symbols of
+       the input layer.
 
-     INPUTS:
-      in_features (Layer):
-          The input feature layer containing line symbols. Stroke symbol layers
-          must have the Cap Type property connected to a single attribute field
-          with no expression applied. The values in this field are updated by
-          this tool.
-      cap_type {String}:
-          Specifies how the ends of stroke symbol layers are drawn. The default
-          cap type of strokes is round; the symbol is terminated with a
-          semicircle of radius equal to stroke width centered at the line
-          endpoint.
+    INPUTS:
+     in_features (Layer):
+         The input feature layer containing line symbols. Stroke symbol layers
+         must have the Cap Type property connected to a single attribute field
+         with no expression applied. The values in this field are updated by
+         this tool.
+     cap_type {String}:
+         Specifies how the ends of stroke symbol layers are drawn. The default
+         cap type of strokes is round; the symbol is terminated with a
+         semicircle of radius equal to stroke width centered at the line
+         endpoint.
 
-          * BUTT-The stroke symbol ends exactly where the line geometry ends.
-          This is the default.
+         * BUTT-The stroke symbol ends exactly where the line geometry ends.
+         This is the default.
 
-          * SQUARE-The stroke symbol ends with closed, square caps that extend
-          past the endpoint of the line by half of the symbol width.
-      dangle_option {String}:
-          Specifies how line caps are calculated for adjoining line features
-          that share an endpoint but are drawn with different symbology.
+         * SQUARE-The stroke symbol ends with closed, square caps that extend
+         past the endpoint of the line by half of the symbol width.
+     dangle_option {String}:
+         Specifies how line caps are calculated for adjoining line features
+         that share an endpoint but are drawn with different symbology.
 
-          * CASED_LINE_DANGLE-The cap style is modified for dangling lines
-          (those not connected at their endpoints to another line) and also for
-          the lines where a cased-line symbol is joined at the endpoint of a
-          single-stroke layer line symbol. This is the default.
+         * CASED_LINE_DANGLE-The cap style is modified for dangling lines
+         (those not connected at their endpoints to another line) and also for
+         the lines where a cased-line symbol is joined at the endpoint of a
+         single-stroke layer line symbol. This is the default.
 
-          * TRUE_DANGLE-The cap style is modified only for endpoints that are
-          not connected to another feature."""
+         * TRUE_DANGLE-The cap style is modified only for endpoints that are
+         not connected to another feature."""
     ...
 
-@gptooldoc('CalculatePolygonMainAngle_cartography', None)
-def CalculatePolygonMainAngle(in_features=..., angle_field=..., rotation_method=...): # -> conversion | int | float | complex | basestring | list[Unknown] | tuple[Unknown, ...] | dict[Unknown, Unknown]:
+@gptooldoc("CalculatePolygonMainAngle_cartography", None)
+def CalculatePolygonMainAngle(
+    in_features=..., angle_field=..., rotation_method=...
+):  # -> conversion | int | float | complex | basestring | list[Unknown] | tuple[Unknown, ...] | dict[Unknown, Unknown]:
     """CalculatePolygonMainAngle_cartography(in_features, angle_field, {rotation_method})
 
-        Calculates the dominant angles of input polygon features and assigns
-        the values to a specified field in the feature class.
+       Calculates the dominant angles of input polygon features and assigns
+       the values to a specified field in the feature class.
 
-     INPUTS:
-      in_features (Feature Layer):
-          The input polygon features.
-      angle_field (Field):
-          The field that will be updated with the polygon main angle values.
-      rotation_method {String}:
-          Controls the method and origin point of rotation.
+    INPUTS:
+     in_features (Feature Layer):
+         The input polygon features.
+     angle_field (Field):
+         The field that will be updated with the polygon main angle values.
+     rotation_method {String}:
+         Controls the method and origin point of rotation.
 
-          * GEOGRAPHIC-Angle is calculated clockwise with 0 at top/north.
+         * GEOGRAPHIC-Angle is calculated clockwise with 0 at top/north.
 
-          * ARITHMETIC-Angle is calculated counterclockwise with 0 at the
-          right/east.
+         * ARITHMETIC-Angle is calculated counterclockwise with 0 at the
+         right/east.
 
-          * GRAPHIC-Angle is calculated counterclockwise with 0 at top/north.
-          This is the default."""
+         * GRAPHIC-Angle is calculated counterclockwise with 0 at top/north.
+         This is the default."""
     ...
 
-@gptooldoc('CreateOverpass_cartography', None)
-def CreateOverpass(in_above_features=..., in_below_features=..., margin_along=..., margin_across=..., out_overpass_feature_class=..., out_mask_relationship_class=..., where_clause=..., out_decoration_feature_class=..., wing_type=..., wing_tick_length=...): # -> conversion | int | float | complex | basestring | list[Unknown] | tuple[Unknown, ...] | dict[Unknown, Unknown]:
+@gptooldoc("CreateOverpass_cartography", None)
+def CreateOverpass(
+    in_above_features=...,
+    in_below_features=...,
+    margin_along=...,
+    margin_across=...,
+    out_overpass_feature_class=...,
+    out_mask_relationship_class=...,
+    where_clause=...,
+    out_decoration_feature_class=...,
+    wing_type=...,
+    wing_tick_length=...,
+):  # -> conversion | int | float | complex | basestring | list[Unknown] | tuple[Unknown, ...] | dict[Unknown, Unknown]:
     """CreateOverpass_cartography(in_above_features, in_below_features, margin_along, margin_across, out_overpass_feature_class, out_mask_relationship_class, {where_clause}, {out_decoration_feature_class}, {wing_type}, {wing_tick_length})
 
-        Creates bridge parapets and polygon masks at line intersections to
-        indicate overpasses.
+       Creates bridge parapets and polygon masks at line intersections to
+       indicate overpasses.
 
-     INPUTS:
-      in_above_features (Layer):
-          The input line feature layer containing lines that intersect-and will
-          be symbolized as passing above-lines in the Input Below Features
-          parameter.
-      in_below_features (Layer):
-          The input line feature layer that intersects-and will be symbolized as
-          passing below-lines in the Input Above Features parameter. These
-          features will be masked by the polygons created in the Output Overpass
-          Feature Class parameter.
-      margin_along (Linear Unit):
-          Sets the length of the mask polygons along the Input Above Features
-          parameter by specifying the distance in page units that the mask
-          should extend beyond the width of the stroke symbol of the Input Below
-          Features parameter. The Margin Along parameter must be specified, and
-          it must be greater than or equal to zero. Choose a page unit (points,
-          millimeters, and so on) for the margin; the default is points.
-      margin_across (Linear Unit):
-          Sets the width of the mask polygons across the Input Above Features
-          parameter by specifying the distance in page units that the mask
-          should extend beyond the width of the stroke symbol of the Input Below
-          Features parameter. The Margin Across parameter must be specified, and
-          it must be greater than or equal to zero. Choose a page unit (points,
-          millimeters, and so on) for the margin; the default is points.
-      where_clause {SQL Expression}:
-          An SQL expression used to select a subset of features in the Input
-          Above Features parameter.Use quotation marks-for example,
-          "MY_FIELD"-or if you're querying
-          personal geodatabases, enclose fields in square brackets-for example,
-          [MY_FIELD].See SQL reference for query expressions used in ArcGIS for
-          more
-          information on SQL syntax.
-      wing_type {String}:
-          Specifies the wing style of the parapet features.
+    INPUTS:
+     in_above_features (Layer):
+         The input line feature layer containing lines that intersect-and will
+         be symbolized as passing above-lines in the Input Below Features
+         parameter.
+     in_below_features (Layer):
+         The input line feature layer that intersects-and will be symbolized as
+         passing below-lines in the Input Above Features parameter. These
+         features will be masked by the polygons created in the Output Overpass
+         Feature Class parameter.
+     margin_along (Linear Unit):
+         Sets the length of the mask polygons along the Input Above Features
+         parameter by specifying the distance in page units that the mask
+         should extend beyond the width of the stroke symbol of the Input Below
+         Features parameter. The Margin Along parameter must be specified, and
+         it must be greater than or equal to zero. Choose a page unit (points,
+         millimeters, and so on) for the margin; the default is points.
+     margin_across (Linear Unit):
+         Sets the width of the mask polygons across the Input Above Features
+         parameter by specifying the distance in page units that the mask
+         should extend beyond the width of the stroke symbol of the Input Below
+         Features parameter. The Margin Across parameter must be specified, and
+         it must be greater than or equal to zero. Choose a page unit (points,
+         millimeters, and so on) for the margin; the default is points.
+     where_clause {SQL Expression}:
+         An SQL expression used to select a subset of features in the Input
+         Above Features parameter.Use quotation marks-for example,
+         "MY_FIELD"-or if you're querying
+         personal geodatabases, enclose fields in square brackets-for example,
+         [MY_FIELD].See SQL reference for query expressions used in ArcGIS for
+         more
+         information on SQL syntax.
+     wing_type {String}:
+         Specifies the wing style of the parapet features.
 
-          * ANGLED-The wing tick of the parapet will be angled between the Input
-          Above Features parameter and the Input Below Features parameter. This
-          is the default.
+         * ANGLED-The wing tick of the parapet will be angled between the Input
+         Above Features parameter and the Input Below Features parameter. This
+         is the default.
 
-          * PARALLEL-The wing tick of the overpass wing will be parallel to the
-          Input Below Features parameter.
+         * PARALLEL-The wing tick of the overpass wing will be parallel to the
+         Input Below Features parameter.
 
-          * NONE-No wing ticks will be created on the parapets.
-      wing_tick_length {Linear Unit}:
-          The length of the parapet wings in page units. The length must be
-          greater than or equal to zero; the default length is 1. Choose a page
-          unit (points, millimeters, and so on) for the length; the default is
-          points. This parameter does not apply to the Wing Type value of NONE.
+         * NONE-No wing ticks will be created on the parapets.
+     wing_tick_length {Linear Unit}:
+         The length of the parapet wings in page units. The length must be
+         greater than or equal to zero; the default length is 1. Choose a page
+         unit (points, millimeters, and so on) for the length; the default is
+         points. This parameter does not apply to the Wing Type value of NONE.
 
-     OUTPUTS:
-      out_overpass_feature_class (Feature Class):
-          The output feature class that will be created to store polygons to
-          mask the Input Below Features parameter.
-      out_mask_relationship_class (Relationship Class):
-          The output relationship class that will be created to store links
-          between overpass mask polygons and the lines of the Input Below
-          Features parameter.
-      out_decoration_feature_class {Feature Class}:
-          The output line feature class that will be created to store parapet
-          features."""
+    OUTPUTS:
+     out_overpass_feature_class (Feature Class):
+         The output feature class that will be created to store polygons to
+         mask the Input Below Features parameter.
+     out_mask_relationship_class (Relationship Class):
+         The output relationship class that will be created to store links
+         between overpass mask polygons and the lines of the Input Below
+         Features parameter.
+     out_decoration_feature_class {Feature Class}:
+         The output line feature class that will be created to store parapet
+         features."""
     ...
 
-@gptooldoc('CreateUnderpass_cartography', None)
-def CreateUnderpass(in_above_features=..., in_below_features=..., margin_along=..., margin_across=..., out_underpass_feature_class=..., out_mask_relationship_class=..., where_clause=..., out_decoration_feature_class=..., wing_type=..., wing_tick_length=...): # -> conversion | int | float | complex | basestring | list[Unknown] | tuple[Unknown, ...] | dict[Unknown, Unknown]:
+@gptooldoc("CreateUnderpass_cartography", None)
+def CreateUnderpass(
+    in_above_features=...,
+    in_below_features=...,
+    margin_along=...,
+    margin_across=...,
+    out_underpass_feature_class=...,
+    out_mask_relationship_class=...,
+    where_clause=...,
+    out_decoration_feature_class=...,
+    wing_type=...,
+    wing_tick_length=...,
+):  # -> conversion | int | float | complex | basestring | list[Unknown] | tuple[Unknown, ...] | dict[Unknown, Unknown]:
     """CreateUnderpass_cartography(in_above_features, in_below_features, margin_along, margin_across, out_underpass_feature_class, out_mask_relationship_class, {where_clause}, {out_decoration_feature_class}, {wing_type}, {wing_tick_length})
 
-        Creates bridge parapets and polygon masks at line intersections to
-        indicate underpasses.
+       Creates bridge parapets and polygon masks at line intersections to
+       indicate underpasses.
 
-     INPUTS:
-      in_above_features (Layer):
-          The input line feature layer containing lines that intersect-and will
-          be symbolized as passing above-lines in the Input Below Features
-          parameter.
-      in_below_features (Layer):
-          The input line feature layer that intersects-and will be symbolized as
-          passing below-lines in the Input Above Features parameter. These
-          features will be masked by the polygons created in the Output
-          Underpass Feature Class parameter.
-      margin_along (Linear Unit):
-          Sets the length of the mask polygons along the Input Above Features
-          parameter by specifying the distance in page units that the mask
-          should extend beyond the width of the stroke symbol of the Input Below
-          Features parameter. The Margin Along parameter must be specified, and
-          it must be greater than or equal to zero. Choose a page unit for the
-          margin; the default is points.
-      margin_across (Linear Unit):
-          Sets the width of the mask polygons across the Input Above Features
-          parameter by specifying the distance in page units that the mask
-          should extend beyond the width of the stroke symbol of the Input Below
-          Features parameter. The Margin Across parameter must be specified, and
-          it must be greater than or equal to zero. Choose a page unit for the
-          margin; the default is points.
-      where_clause {SQL Expression}:
-          An SQL expression used to select a subset of features in the Input
-          Above Features parameter.Use quotation marks-for example,
-          "MY_FIELD"-or if you're querying
-          personal geodatabases, enclose fields in square brackets-for example,
-          [MY_FIELD].See SQL reference for query expressions used in ArcGIS for
-          more
-          information on SQL syntax.
-      wing_type {String}:
-          Specifies the wing style of the parapet features.
+    INPUTS:
+     in_above_features (Layer):
+         The input line feature layer containing lines that intersect-and will
+         be symbolized as passing above-lines in the Input Below Features
+         parameter.
+     in_below_features (Layer):
+         The input line feature layer that intersects-and will be symbolized as
+         passing below-lines in the Input Above Features parameter. These
+         features will be masked by the polygons created in the Output
+         Underpass Feature Class parameter.
+     margin_along (Linear Unit):
+         Sets the length of the mask polygons along the Input Above Features
+         parameter by specifying the distance in page units that the mask
+         should extend beyond the width of the stroke symbol of the Input Below
+         Features parameter. The Margin Along parameter must be specified, and
+         it must be greater than or equal to zero. Choose a page unit for the
+         margin; the default is points.
+     margin_across (Linear Unit):
+         Sets the width of the mask polygons across the Input Above Features
+         parameter by specifying the distance in page units that the mask
+         should extend beyond the width of the stroke symbol of the Input Below
+         Features parameter. The Margin Across parameter must be specified, and
+         it must be greater than or equal to zero. Choose a page unit for the
+         margin; the default is points.
+     where_clause {SQL Expression}:
+         An SQL expression used to select a subset of features in the Input
+         Above Features parameter.Use quotation marks-for example,
+         "MY_FIELD"-or if you're querying
+         personal geodatabases, enclose fields in square brackets-for example,
+         [MY_FIELD].See SQL reference for query expressions used in ArcGIS for
+         more
+         information on SQL syntax.
+     wing_type {String}:
+         Specifies the wing style of the parapet features.
 
-          * ANGLED-The wing tick of the parapet will be angled between the Input
-          Above Features parameter and the Input Below Features parameter. This
-          is the default.
+         * ANGLED-The wing tick of the parapet will be angled between the Input
+         Above Features parameter and the Input Below Features parameter. This
+         is the default.
 
-          * PARALLEL-The wing tick of the underpass wing will be parallel to the
-          Input Below Features parameter.
+         * PARALLEL-The wing tick of the underpass wing will be parallel to the
+         Input Below Features parameter.
 
-          * NONE-No wing ticks will be created on the parapets.
-      wing_tick_length {Linear Unit}:
-          The length of the parapet wings in page units. The length must be
-          greater than or equal to zero; the default length is 1. Choose a page
-          unit (points, millimeters, and so on) for the length; the default is
-          points. This parameter does not apply to the Wing Type value of NONE.
+         * NONE-No wing ticks will be created on the parapets.
+     wing_tick_length {Linear Unit}:
+         The length of the parapet wings in page units. The length must be
+         greater than or equal to zero; the default length is 1. Choose a page
+         unit (points, millimeters, and so on) for the length; the default is
+         points. This parameter does not apply to the Wing Type value of NONE.
 
-     OUTPUTS:
-      out_underpass_feature_class (Feature Class):
-          The output feature class that will be created to store polygons to
-          mask the Input Below Features parameter.
-      out_mask_relationship_class (Relationship Class):
-          The output relationship class that will be created to store links
-          between underpass mask polygons and the lines of the Input Below
-          Features parameter.
-      out_decoration_feature_class {Feature Class}:
-          The output line feature class that will be created to store parapet
-          features."""
+    OUTPUTS:
+     out_underpass_feature_class (Feature Class):
+         The output feature class that will be created to store polygons to
+         mask the Input Below Features parameter.
+     out_mask_relationship_class (Relationship Class):
+         The output relationship class that will be created to store links
+         between underpass mask polygons and the lines of the Input Below
+         Features parameter.
+     out_decoration_feature_class {Feature Class}:
+         The output line feature class that will be created to store parapet
+         features."""
     ...
 
-@gptooldoc('DisperseMarkers_cartography', None)
-def DisperseMarkers(in_point_features=..., minimum_spacing=..., dispersal_pattern=...): # -> conversion | int | float | complex | basestring | list[Unknown] | tuple[Unknown, ...] | dict[Unknown, Unknown]:
+@gptooldoc("DisperseMarkers_cartography", None)
+def DisperseMarkers(
+    in_point_features=..., minimum_spacing=..., dispersal_pattern=...
+):  # -> conversion | int | float | complex | basestring | list[Unknown] | tuple[Unknown, ...] | dict[Unknown, Unknown]:
     """DisperseMarkers_cartography(in_point_features, minimum_spacing, {dispersal_pattern})
 
-        Finds point symbols that overlap or are too close to one another based
-        on symbology at reference scale and spreads them apart based on a
-        minimum spacing and dispersal pattern.
+       Finds point symbols that overlap or are too close to one another based
+       on symbology at reference scale and spreads them apart based on a
+       minimum spacing and dispersal pattern.
 
-     INPUTS:
-      in_point_features (Layer):
-          The input point feature layer to be dispersed.
-      minimum_spacing (Linear Unit):
-          The minimum separation distance between individual point symbols in
-          page units. A distance must be specified and must be greater than or
-          equal to zero. When a positive value is specified, markers will be
-          separated by that value; when a value of zero is specified, point
-          symbols will touch. The default page unit is Points.
-      dispersal_pattern {String}:
-          Specifies the pattern that will be used to place the dispersed point
-          symbols. A group of point symbols will have a center of mass derived
-          from the locations of all points in the group. The center of mass is
-          used as the anchor point around which the dispersal pattern operates.
+    INPUTS:
+     in_point_features (Layer):
+         The input point feature layer to be dispersed.
+     minimum_spacing (Linear Unit):
+         The minimum separation distance between individual point symbols in
+         page units. A distance must be specified and must be greater than or
+         equal to zero. When a positive value is specified, markers will be
+         separated by that value; when a value of zero is specified, point
+         symbols will touch. The default page unit is Points.
+     dispersal_pattern {String}:
+         Specifies the pattern that will be used to place the dispersed point
+         symbols. A group of point symbols will have a center of mass derived
+         from the locations of all points in the group. The center of mass is
+         used as the anchor point around which the dispersal pattern operates.
 
-          * EXPANDED-The general pattern of the point symbols will be maintained
-          as they are spread apart. Points that were exactly coincident will be
-          dispersed to a circle around their center of mass. This is the
-          default.
+         * EXPANDED-The general pattern of the point symbols will be maintained
+         as they are spread apart. Points that were exactly coincident will be
+         dispersed to a circle around their center of mass. This is the
+         default.
 
-          * RANDOM-Point symbols will be placed around the center of mass in a
-          random dispersal that respects the minimum spacing.
+         * RANDOM-Point symbols will be placed around the center of mass in a
+         random dispersal that respects the minimum spacing.
 
-          * SQUARES-Point symbols will be placed in multiple square rings around
-          the center of mass, ensuring that all points are placed as closely
-          together as allowable by the minimum spacing parameter.
+         * SQUARES-Point symbols will be placed in multiple square rings around
+         the center of mass, ensuring that all points are placed as closely
+         together as allowable by the minimum spacing parameter.
 
-          * RINGS-Point symbols will be placed in multiple circular rings around
-          the center of mass, ensuring that all points are placed as closely
-          together as allowable by the minimum spacing parameter.
+         * RINGS-Point symbols will be placed in multiple circular rings around
+         the center of mass, ensuring that all points are placed as closely
+         together as allowable by the minimum spacing parameter.
 
-          * SQUARE-Point symbols will be placed evenly around the center of mass
-          in a single square pattern.
+         * SQUARE-Point symbols will be placed evenly around the center of mass
+         in a single square pattern.
 
-          * RING-Point symbols will be placed evenly around the center of mass
-          in a single circular pattern.
+         * RING-Point symbols will be placed evenly around the center of mass
+         in a single circular pattern.
 
-          * CROSS-Point symbols will be spaced evenly on horizontal and vertical
-          axes originating from the center of mass.
+         * CROSS-Point symbols will be spaced evenly on horizontal and vertical
+         axes originating from the center of mass.
 
-          * X_CROSS-Point symbols will be spaced evenly on 45° axes originating
-          from the center of mass.
+         * X_CROSS-Point symbols will be spaced evenly on 45° axes originating
+         from the center of mass.
 
-          * COLUMN-Point symbols will be spaced evenly on a vertical axis
-          originating from the center of mass.
+         * COLUMN-Point symbols will be spaced evenly on a vertical axis
+         originating from the center of mass.
 
-          * ROW-Point symbols will be spaced evenly on a horizontal axis
-          originating from the center of mass."""
+         * ROW-Point symbols will be spaced evenly on a horizontal axis
+         originating from the center of mass."""
     ...
 
-@gptooldoc('GenerateHachuresForDefinedSlopes_cartography', None)
-def GenerateHachuresForDefinedSlopes(upper_lines=..., lower_lines=..., output_feature_class=..., output_type=..., fully_connected=..., search_distance=..., interval=..., minimum_length=..., alternate_hachures=..., perpendicular=..., polygon_base_width=...): # -> conversion | int | float | complex | basestring | list[Unknown] | tuple[Unknown, ...] | dict[Unknown, Unknown]:
+@gptooldoc("GenerateHachuresForDefinedSlopes_cartography", None)
+def GenerateHachuresForDefinedSlopes(
+    upper_lines=...,
+    lower_lines=...,
+    output_feature_class=...,
+    output_type=...,
+    fully_connected=...,
+    search_distance=...,
+    interval=...,
+    minimum_length=...,
+    alternate_hachures=...,
+    perpendicular=...,
+    polygon_base_width=...,
+):  # -> conversion | int | float | complex | basestring | list[Unknown] | tuple[Unknown, ...] | dict[Unknown, Unknown]:
     """GenerateHachuresForDefinedSlopes_cartography(upper_lines, lower_lines, output_feature_class, {output_type}, {fully_connected}, {search_distance}, {interval}, {minimum_length}, {alternate_hachures}, {perpendicular}, {polygon_base_width})
 
-        Creates multipart lines or polygons representing the slope between the
-        lines representing the upper and lower parts of a slope.
+       Creates multipart lines or polygons representing the slope between the
+       lines representing the upper and lower parts of a slope.
 
-     INPUTS:
-      upper_lines (Feature Layer):
-          The line features that represent the top of a slope.
-      lower_lines (Feature Layer):
-          The line features that represent the bottom of a slope.
-      output_type {String}:
-          Specifies whether polygon triangles or tick lines will be created to
-          represent the slope.
+    INPUTS:
+     upper_lines (Feature Layer):
+         The line features that represent the top of a slope.
+     lower_lines (Feature Layer):
+         The line features that represent the bottom of a slope.
+     output_type {String}:
+         Specifies whether polygon triangles or tick lines will be created to
+         represent the slope.
 
-          * POLYGON_TRIANGLES-Multipart polygon features will be created in
-          which a triangular polygon is created for each hachure, with the base
-          along the upper line. This is the default.
+         * POLYGON_TRIANGLES-Multipart polygon features will be created in
+         which a triangular polygon is created for each hachure, with the base
+         along the upper line. This is the default.
 
-          * LINE_TICKS-Multipart line features will be created in which a linear
-          tick is created for each hachure.
-      fully_connected {Boolean}:
-          Specifies whether the upper and lower lines in the input data form
-          fully connected areas. If the upper and lower lines are not fully
-          connected, choose NOT_CONNECTED to create hachures inside areas that
-          are derived by connecting the extremities of the upper and lower
-          features. If the upper and lower lines are fully connected, choose
-          FULLY_CONNECTED to create hachures inside the fully enclosed areas.
+         * LINE_TICKS-Multipart line features will be created in which a linear
+         tick is created for each hachure.
+     fully_connected {Boolean}:
+         Specifies whether the upper and lower lines in the input data form
+         fully connected areas. If the upper and lower lines are not fully
+         connected, choose NOT_CONNECTED to create hachures inside areas that
+         are derived by connecting the extremities of the upper and lower
+         features. If the upper and lower lines are fully connected, choose
+         FULLY_CONNECTED to create hachures inside the fully enclosed areas.
 
-          * NOT_CONNECTED-The upper and lower features are not fully connected
-          in the input data. New connections between the upper and lower
-          features will be derived. This is the default.
+         * NOT_CONNECTED-The upper and lower features are not fully connected
+         in the input data. New connections between the upper and lower
+         features will be derived. This is the default.
 
-          * FULLY_CONNECTED-The upper and lower features are fully connected in
-          the input data. New connections between features will not be derived.
-      search_distance {Linear Unit}:
-          The distance used when deriving connections between the upper and
-          lower features. When the extremities for the upper and lower feature
-          are within this distance, the area between the features is used for
-          creating hachures. The default value is 20 meters. When the
-          fully_connected parameter is set to FULLY_CONNECTED, this parameter is
-          ignored.
-      interval {Linear Unit}:
-          The distance between the hachure ticks or triangles within the slope
-          area. The default value is 10 meters.
-      minimum_length {Linear Unit}:
-          The length a hachure tick or triangle must be to be created. Hachures
-          that are shorter than this length will not be created. The default
-          value is 0 meters.
-      alternate_hachures {Boolean}:
-          Specifies whether the length of every other hachure triangle or tick
-          will differ.
+         * FULLY_CONNECTED-The upper and lower features are fully connected in
+         the input data. New connections between features will not be derived.
+     search_distance {Linear Unit}:
+         The distance used when deriving connections between the upper and
+         lower features. When the extremities for the upper and lower feature
+         are within this distance, the area between the features is used for
+         creating hachures. The default value is 20 meters. When the
+         fully_connected parameter is set to FULLY_CONNECTED, this parameter is
+         ignored.
+     interval {Linear Unit}:
+         The distance between the hachure ticks or triangles within the slope
+         area. The default value is 10 meters.
+     minimum_length {Linear Unit}:
+         The length a hachure tick or triangle must be to be created. Hachures
+         that are shorter than this length will not be created. The default
+         value is 0 meters.
+     alternate_hachures {Boolean}:
+         Specifies whether the length of every other hachure triangle or tick
+         will differ.
 
-          * UNIFORM_HACHURES-All hachures will be of uniform length, which is
-          the distance between the upper and lower slope lines. This is the
-          default.
+         * UNIFORM_HACHURES-All hachures will be of uniform length, which is
+         the distance between the upper and lower slope lines. This is the
+         default.
 
-          * ALTERNATE_HACHURES-Every other hachure will be one-half the distance
-          between the upper and lower slope lines.
-      perpendicular {Boolean}:
-          Specifies whether the hachure ticks or triangles will be perpendicular
-          to the upper slope line.
+         * ALTERNATE_HACHURES-Every other hachure will be one-half the distance
+         between the upper and lower slope lines.
+     perpendicular {Boolean}:
+         Specifies whether the hachure ticks or triangles will be perpendicular
+         to the upper slope line.
 
-          * NOT_PERPENDICULAR-Hachures will be oriented to obtain even spacing.
-          This is the default.
+         * NOT_PERPENDICULAR-Hachures will be oriented to obtain even spacing.
+         This is the default.
 
-          * PERPENDICULAR-Hachures will be oriented perpendicularly to the upper
-          line.
-      polygon_base_width {Linear Unit}:
-          The width of the base of triangular polygon hachures. This parameter
-          is enabled only when the output_type parameter is set to
-          polygon_triangles. The default value is 5 meters.
+         * PERPENDICULAR-Hachures will be oriented perpendicularly to the upper
+         line.
+     polygon_base_width {Linear Unit}:
+         The width of the base of triangular polygon hachures. This parameter
+         is enabled only when the output_type parameter is set to
+         polygon_triangles. The default value is 5 meters.
 
-     OUTPUTS:
-      output_feature_class (Feature Class):
-          The output feature class containing multipart line or polygon hachures
-          representing the slope area."""
+    OUTPUTS:
+     output_feature_class (Feature Class):
+         The output feature class containing multipart line or polygon hachures
+         representing the slope area."""
     ...
 
-@gptooldoc('SetControlPointAtIntersect_cartography', None)
-def SetControlPointAtIntersect(in_line_or_polygon_features=..., in_features=...): # -> conversion | int | float | complex | basestring | list[Unknown] | tuple[Unknown, ...] | dict[Unknown, Unknown]:
+@gptooldoc("SetControlPointAtIntersect_cartography", None)
+def SetControlPointAtIntersect(
+    in_line_or_polygon_features=..., in_features=...
+):  # -> conversion | int | float | complex | basestring | list[Unknown] | tuple[Unknown, ...] | dict[Unknown, Unknown]:
     """SetControlPointAtIntersect_cartography(in_line_or_polygon_features, {in_features})
 
-        Creates a control point at vertices that are shared by one or more
-        line or polygon features. This tool is commonly used to synchronize
-        boundary symbology on adjacent polygons.
+       Creates a control point at vertices that are shared by one or more
+       line or polygon features. This tool is commonly used to synchronize
+       boundary symbology on adjacent polygons.
 
-     INPUTS:
-      in_line_or_polygon_features (Feature Layer):
-          The line or polygon feature layer.
-      in_features {Feature Layer}:
-          The line or polygon feature layer with features coincident to the
-          input features."""
+    INPUTS:
+     in_line_or_polygon_features (Feature Layer):
+         The line or polygon feature layer.
+     in_features {Feature Layer}:
+         The line or polygon feature layer with features coincident to the
+         input features."""
     ...
 
-@gptooldoc('SetControlPointByAngle_cartography', None)
-def SetControlPointByAngle(in_features=..., maximum_angle=...): # -> conversion | int | float | complex | basestring | list[Unknown] | tuple[Unknown, ...] | dict[Unknown, Unknown]:
+@gptooldoc("SetControlPointByAngle_cartography", None)
+def SetControlPointByAngle(
+    in_features=..., maximum_angle=...
+):  # -> conversion | int | float | complex | basestring | list[Unknown] | tuple[Unknown, ...] | dict[Unknown, Unknown]:
     """SetControlPointByAngle_cartography(in_features, maximum_angle)
 
-        Places a control point at vertices along a line or polygon outline
-        where the angle created by a change in line direction is less than or
-        equal to a specified maximum angle.
+       Places a control point at vertices along a line or polygon outline
+       where the angle created by a change in line direction is less than or
+       equal to a specified maximum angle.
 
-     INPUTS:
-      in_features (Feature Layer):
-          The feature layer containing line or polygon features.
-      maximum_angle (Double):
-          The angle used to determine whether a vertex along a line or polygon
-          outline will be set as a control point. The angle value must be
-          greater than zero and less than 180 decimal degrees."""
+    INPUTS:
+     in_features (Feature Layer):
+         The feature layer containing line or polygon features.
+     maximum_angle (Double):
+         The angle used to determine whether a vertex along a line or polygon
+         outline will be set as a control point. The angle value must be
+         greater than zero and less than 180 decimal degrees."""
     ...
 
-@gptooldoc('AggregatePoints_cartography', None)
-def AggregatePoints(in_features=..., out_feature_class=..., aggregation_distance=...): # -> conversion | int | float | complex | basestring | list[Unknown] | tuple[Unknown, ...] | dict[Unknown, Unknown]:
+@gptooldoc("AggregatePoints_cartography", None)
+def AggregatePoints(
+    in_features=..., out_feature_class=..., aggregation_distance=...
+):  # -> conversion | int | float | complex | basestring | list[Unknown] | tuple[Unknown, ...] | dict[Unknown, Unknown]:
     """AggregatePoints_cartography(in_features, out_feature_class, aggregation_distance)
 
-        Creates polygon features around clusters of proximate point features.
+       Creates polygon features around clusters of proximate point features.
 
-     INPUTS:
-      in_features (Feature Layer):
-          The input point features that will be assessed for proximity and
-          clustering.
-      aggregation_distance (Linear Unit):
-          The distance between points that will be clustered.
+    INPUTS:
+     in_features (Feature Layer):
+         The input point features that will be assessed for proximity and
+         clustering.
+     aggregation_distance (Linear Unit):
+         The distance between points that will be clustered.
 
-     OUTPUTS:
-      out_feature_class (Feature Class):
-          The feature class created to hold the polygons that represent the
-          point clusters."""
+    OUTPUTS:
+     out_feature_class (Feature Class):
+         The feature class created to hold the polygons that represent the
+         point clusters."""
     ...
 
-@gptooldoc('AggregatePolygons_cartography', None)
-def AggregatePolygons(in_features=..., out_feature_class=..., aggregation_distance=..., minimum_area=..., minimum_hole_size=..., orthogonality_option=..., barrier_features=..., out_table=..., aggregate_field=...): # -> conversion | int | float | complex | basestring | list[Unknown] | tuple[Unknown, ...] | dict[Unknown, Unknown]:
+@gptooldoc("AggregatePolygons_cartography", None)
+def AggregatePolygons(
+    in_features=...,
+    out_feature_class=...,
+    aggregation_distance=...,
+    minimum_area=...,
+    minimum_hole_size=...,
+    orthogonality_option=...,
+    barrier_features=...,
+    out_table=...,
+    aggregate_field=...,
+):  # -> conversion | int | float | complex | basestring | list[Unknown] | tuple[Unknown, ...] | dict[Unknown, Unknown]:
     """AggregatePolygons_cartography(in_features, out_feature_class, aggregation_distance, {minimum_area}, {minimum_hole_size}, {orthogonality_option}, {barrier_features;barrier_features...}, {out_table}, {aggregate_field})
 
-        Combines polygons that are within a specified distance of each other
-        into new polygons.
+       Combines polygons that are within a specified distance of each other
+       into new polygons.
 
-     INPUTS:
-      in_features (Feature Layer):
-          The polygon features to be aggregated. If this is a layer referencing
-          a representation and shape overrides are present on the input
-          features, the overridden shapes, not the feature shapes, will be
-          considered in aggregation processing.
-      aggregation_distance (Linear Unit):
-          The distance to be satisfied between polygon boundaries for
-          aggregation to occur. A distance must be specified, and it must be
-          greater than zero. You can choose a preferred unit; the default is the
-          feature unit.
-      minimum_area {Areal Unit}:
-          The minimum area for an aggregated polygon to be retained. The default
-          value is zero, that is, to keep all polygons. You can specify a
-          preferred unit; the default is the feature unit.
-      minimum_hole_size {Areal Unit}:
-          The minimum size of a polygon hole to be retained. The default value
-          is zero, that is, to keep all polygon holes. You can specify a
-          preferred unit; the default is the feature unit.
-      orthogonality_option {Boolean}:
-          Specifies the characteristic of the output features when constructing
-          the aggregated boundaries.
+    INPUTS:
+     in_features (Feature Layer):
+         The polygon features to be aggregated. If this is a layer referencing
+         a representation and shape overrides are present on the input
+         features, the overridden shapes, not the feature shapes, will be
+         considered in aggregation processing.
+     aggregation_distance (Linear Unit):
+         The distance to be satisfied between polygon boundaries for
+         aggregation to occur. A distance must be specified, and it must be
+         greater than zero. You can choose a preferred unit; the default is the
+         feature unit.
+     minimum_area {Areal Unit}:
+         The minimum area for an aggregated polygon to be retained. The default
+         value is zero, that is, to keep all polygons. You can specify a
+         preferred unit; the default is the feature unit.
+     minimum_hole_size {Areal Unit}:
+         The minimum size of a polygon hole to be retained. The default value
+         is zero, that is, to keep all polygon holes. You can specify a
+         preferred unit; the default is the feature unit.
+     orthogonality_option {Boolean}:
+         Specifies the characteristic of the output features when constructing
+         the aggregated boundaries.
 
-          * NON_ORTHOGONAL-Organically shaped output features will be created.
-          This is suitable for natural features, such as vegetation or soil
-          polygons. This is the default.
+         * NON_ORTHOGONAL-Organically shaped output features will be created.
+         This is suitable for natural features, such as vegetation or soil
+         polygons. This is the default.
 
-          * ORTHOGONAL-Orthogonally shaped output features will be created. This
-          is suitable for preserving the geometric characteristic of
-          anthropogenic input features, such as building footprints.
-      barrier_features {Feature Layer}:
-          The layers containing the line or polygon features that are
-          aggregation barriers for input features. Features will not be
-          aggregated across barrier features. Barrier features that are in
-          geometric conflict with input features will be ignored.
-      aggregate_field {Field}:
-          The field that contains attributes for aggregation. Features must
-          share the same attribute value to be considered for aggregation. For
-          example, use a building classification field as the aggregate field to
-          prevent commercial buildings from aggregating with residential
-          buildings.
+         * ORTHOGONAL-Orthogonally shaped output features will be created. This
+         is suitable for preserving the geometric characteristic of
+         anthropogenic input features, such as building footprints.
+     barrier_features {Feature Layer}:
+         The layers containing the line or polygon features that are
+         aggregation barriers for input features. Features will not be
+         aggregated across barrier features. Barrier features that are in
+         geometric conflict with input features will be ignored.
+     aggregate_field {Field}:
+         The field that contains attributes for aggregation. Features must
+         share the same attribute value to be considered for aggregation. For
+         example, use a building classification field as the aggregate field to
+         prevent commercial buildings from aggregating with residential
+         buildings.
 
-     OUTPUTS:
-      out_feature_class (Feature Class):
-          The output feature class to be created.
-      out_table {Table}:
-          A one-to-many relationship table that links the aggregated polygons to
-          their source polygon features. This table contains two fields,
-          OUTPUT_FID and INPUT_FID, that store the aggregated feature IDs and
-          their source feature IDs, respectively. Use this table to derive
-          necessary attributes for the output features from their source
-          features. The default name for this table is the name of the output
-          feature class, appended with _tbl. The default path is the same as the
-          output feature class. If the output features location is specified in
-          a feature dataset, this table will be created one level higher, at the
-          geodatabase level. No table is created when this parameter is left
-          blank."""
+    OUTPUTS:
+     out_feature_class (Feature Class):
+         The output feature class to be created.
+     out_table {Table}:
+         A one-to-many relationship table that links the aggregated polygons to
+         their source polygon features. This table contains two fields,
+         OUTPUT_FID and INPUT_FID, that store the aggregated feature IDs and
+         their source feature IDs, respectively. Use this table to derive
+         necessary attributes for the output features from their source
+         features. The default name for this table is the name of the output
+         feature class, appended with _tbl. The default path is the same as the
+         output feature class. If the output features location is specified in
+         a feature dataset, this table will be created one level higher, at the
+         geodatabase level. No table is created when this parameter is left
+         blank."""
     ...
 
-@gptooldoc('CollapseHydroPolygon_cartography', None)
-def CollapseHydroPolygon(in_features=..., out_line_feature_class=..., merge_adjacent_input_polygons=..., connecting_features=..., collapse_width=..., collapse_width_tolerance=..., minimum_length=..., taper_length_percentage=..., out_poly_feature_class=...): # -> conversion | int | float | complex | basestring | list[Unknown] | tuple[Unknown, ...] | dict[Unknown, Unknown]:
+@gptooldoc("CollapseHydroPolygon_cartography", None)
+def CollapseHydroPolygon(
+    in_features=...,
+    out_line_feature_class=...,
+    merge_adjacent_input_polygons=...,
+    connecting_features=...,
+    collapse_width=...,
+    collapse_width_tolerance=...,
+    minimum_length=...,
+    taper_length_percentage=...,
+    out_poly_feature_class=...,
+):  # -> conversion | int | float | complex | basestring | list[Unknown] | tuple[Unknown, ...] | dict[Unknown, Unknown]:
     """CollapseHydroPolygon_cartography(in_features;in_features..., out_line_feature_class, {merge_adjacent_input_polygons}, {connecting_features;connecting_features...}, {collapse_width}, {collapse_width_tolerance}, {minimum_length}, {taper_length_percentage}, {out_poly_feature_class})
 
-        Collapses or partially collapses hydro polygons to a centerline based
-        on a collapse width.
+       Collapses or partially collapses hydro polygons to a centerline based
+       on a collapse width.
 
-     INPUTS:
-      in_features (Feature Layer):
-          One or more feature layers containing hydro polygons.
-      merge_adjacent_input_polygons {Boolean}:
-          Specifies whether adjacent input polygons will be merged before
-          calculating the centerlines.
+    INPUTS:
+     in_features (Feature Layer):
+         One or more feature layers containing hydro polygons.
+     merge_adjacent_input_polygons {Boolean}:
+         Specifies whether adjacent input polygons will be merged before
+         calculating the centerlines.
 
-          * MERGE_ADJACENT-Input hydro polygons will be merged before
-          calculating the centerlines. This is the default.
+         * MERGE_ADJACENT-Input hydro polygons will be merged before
+         calculating the centerlines. This is the default.
 
-          * NO_MERGE-Centerlines will be calculated from input hydro polygons
-          that are not merged.
-      connecting_features {Feature Layer}:
-          Input hydro line features that connect to the input hydro polygons to
-          be collapsed. Line features will be created to maintain these
-          connections.
-      collapse_width {Linear Unit}:
-          The threshold width of an input hydro polygon to be considered for
-          collapse. All polygons below the specified width will be collapsed.
-          The default value is 0, which will collapse all features.
-      collapse_width_tolerance {Double}:
-          A percentage tolerance within which features will be analyzed and the
-          surrounding context will be considered when determining whether to
-          collapse a feature. This is to minimize oscillations within the
-          collapse. The default value is 20 percent. This parameter is applied
-          only when the collapse_width parameter value is specified.
-      minimum_length {Linear Unit}:
-          The minimum length required for a polygon to be retained in the output
-          polygon feature class. The minimum length is based on the length of
-          the centerline created for the polygon. If the centerline of a polygon
-          is longer than the collapse width but shorter than the minimum length,
-          the polygon will not be included in the output polygon feature class.
-          The default value is 0. This parameter is applied only when the
-          collapse_width parameter value is specified.
-      taper_length_percentage {Double}:
-          The length that connections between polygons in the output polygon
-          feature class and the output line feature class will be tapered. This
-          parameter specifies the length of the tapering as a percentage of the
-          width at the connection location. A taper length percentage value of 0
-          will result in no tapering. The default value is 50. This parameter is
-          applied only when the collapse_width parameter value is specified.
+         * NO_MERGE-Centerlines will be calculated from input hydro polygons
+         that are not merged.
+     connecting_features {Feature Layer}:
+         Input hydro line features that connect to the input hydro polygons to
+         be collapsed. Line features will be created to maintain these
+         connections.
+     collapse_width {Linear Unit}:
+         The threshold width of an input hydro polygon to be considered for
+         collapse. All polygons below the specified width will be collapsed.
+         The default value is 0, which will collapse all features.
+     collapse_width_tolerance {Double}:
+         A percentage tolerance within which features will be analyzed and the
+         surrounding context will be considered when determining whether to
+         collapse a feature. This is to minimize oscillations within the
+         collapse. The default value is 20 percent. This parameter is applied
+         only when the collapse_width parameter value is specified.
+     minimum_length {Linear Unit}:
+         The minimum length required for a polygon to be retained in the output
+         polygon feature class. The minimum length is based on the length of
+         the centerline created for the polygon. If the centerline of a polygon
+         is longer than the collapse width but shorter than the minimum length,
+         the polygon will not be included in the output polygon feature class.
+         The default value is 0. This parameter is applied only when the
+         collapse_width parameter value is specified.
+     taper_length_percentage {Double}:
+         The length that connections between polygons in the output polygon
+         feature class and the output line feature class will be tapered. This
+         parameter specifies the length of the tapering as a percentage of the
+         width at the connection location. A taper length percentage value of 0
+         will result in no tapering. The default value is 50. This parameter is
+         applied only when the collapse_width parameter value is specified.
 
-     OUTPUTS:
-      out_line_feature_class (Feature Class):
-          The line feature class containing the centerlines of the collapsed
-          polygons. It contains centerlines of all input polygons including
-          those that are not collapsed. This feature class has a COLLAPSED
-          attribute that specifies whether the centerline feature represents a
-          collapsed polygon.
-      out_poly_feature_class {Feature Class}:
-          The polygon feature class containing the portions of the input hydro
-          polygons that are not collapsed. This parameter is applied only when
-          the collapse_width parameter value is specified."""
+    OUTPUTS:
+     out_line_feature_class (Feature Class):
+         The line feature class containing the centerlines of the collapsed
+         polygons. It contains centerlines of all input polygons including
+         those that are not collapsed. This feature class has a COLLAPSED
+         attribute that specifies whether the centerline feature represents a
+         collapsed polygon.
+     out_poly_feature_class {Feature Class}:
+         The polygon feature class containing the portions of the input hydro
+         polygons that are not collapsed. This parameter is applied only when
+         the collapse_width parameter value is specified."""
     ...
 
-@gptooldoc('CollapseRoadDetail_cartography', None)
-def CollapseRoadDetail(in_features=..., collapse_distance=..., output_feature_class=..., locking_field=...): # -> conversion | int | float | complex | basestring | list[Unknown] | tuple[Unknown, ...] | dict[Unknown, Unknown]:
+@gptooldoc("CollapseRoadDetail_cartography", None)
+def CollapseRoadDetail(
+    in_features=..., collapse_distance=..., output_feature_class=..., locking_field=...
+):  # -> conversion | int | float | complex | basestring | list[Unknown] | tuple[Unknown, ...] | dict[Unknown, Unknown]:
     """CollapseRoadDetail_cartography(in_features, collapse_distance, output_feature_class, {locking_field})
 
-        Collapses small, open configurations of road segments that interrupt
-        the general trend of a road network, such as traffic circles, and
-        replaces them with a simplified depiction.
+       Collapses small, open configurations of road segments that interrupt
+       the general trend of a road network, such as traffic circles, and
+       replaces them with a simplified depiction.
 
-     INPUTS:
-      in_features (Feature Layer):
-          The input features containing small enclosed road details, such as
-          traffic circles, to be collapsed.
-      collapse_distance (Linear Unit):
-          The diameter of, or distance across, the road detail that will be
-          considered for collapse.
-      locking_field {Field}:
-          The field that contains locking information for the features. A value
-          of 1 indicates that a feature will not be collapsed.
+    INPUTS:
+     in_features (Feature Layer):
+         The input features containing small enclosed road details, such as
+         traffic circles, to be collapsed.
+     collapse_distance (Linear Unit):
+         The diameter of, or distance across, the road detail that will be
+         considered for collapse.
+     locking_field {Field}:
+         The field that contains locking information for the features. A value
+         of 1 indicates that a feature will not be collapsed.
 
-     OUTPUTS:
-      output_feature_class (Feature Class):
-          The output feature class containing the collapsed features-features
-          that were modified to accommodate the collapse-and all unaffected
-          features."""
+    OUTPUTS:
+     output_feature_class (Feature Class):
+         The output feature class containing the collapsed features-features
+         that were modified to accommodate the collapse-and all unaffected
+         features."""
     ...
 
-@gptooldoc('CreateCartographicPartitions_cartography', None)
-def CreateCartographicPartitions(in_features=..., out_features=..., feature_count=..., partition_method=...): # -> conversion | int | float | complex | basestring | list[Unknown] | tuple[Unknown, ...] | dict[Unknown, Unknown]:
+@gptooldoc("CreateCartographicPartitions_cartography", None)
+def CreateCartographicPartitions(
+    in_features=..., out_features=..., feature_count=..., partition_method=...
+):  # -> conversion | int | float | complex | basestring | list[Unknown] | tuple[Unknown, ...] | dict[Unknown, Unknown]:
     """CreateCartographicPartitions_cartography(in_features;in_features..., out_features, feature_count, {partition_method})
 
-        Creates a mesh of polygon features that cover the input feature class
-        in which each output polygon encloses no more than a specified number
-        of input features or input vertices. as determined by the density and
-        distribution of the input features.
+       Creates a mesh of polygon features that cover the input feature class
+       in which each output polygon encloses no more than a specified number
+       of input features or input vertices. as determined by the density and
+       distribution of the input features.
 
-     INPUTS:
-      in_features (Feature Layer):
-          The input feature classes or layers with feature distribution and
-          density, or vertex distribution and density, that determine the size
-          and arrangement of output polygons. The input features are typically
-          destined for subsequent processing with other geoprocessing tools.
-          Typically, the input features, when considered simultaneously, would
-          exceed memory limitations of other tools, so partitions are created to
-          subdivide inputs for processing.
-      feature_count (Long):
-          The ideal number of features or vertices (depending on the
-          partition_method parameter value) to be enclosed by each polygon in
-          the output feature class. The recommended count for features is
-          50,000, which is the default value. For vertices, 1 million vertices
-          will consume approximately 0.5 GB of memory depending on the tool
-          using the partitions. The feature count cannot be less than 500.
-      partition_method {String}:
-          Specifies whether the feature_count parameter references the ideal
-          number of features or the ideal number of vertices in each output
-          polygon.
+    INPUTS:
+     in_features (Feature Layer):
+         The input feature classes or layers with feature distribution and
+         density, or vertex distribution and density, that determine the size
+         and arrangement of output polygons. The input features are typically
+         destined for subsequent processing with other geoprocessing tools.
+         Typically, the input features, when considered simultaneously, would
+         exceed memory limitations of other tools, so partitions are created to
+         subdivide inputs for processing.
+     feature_count (Long):
+         The ideal number of features or vertices (depending on the
+         partition_method parameter value) to be enclosed by each polygon in
+         the output feature class. The recommended count for features is
+         50,000, which is the default value. For vertices, 1 million vertices
+         will consume approximately 0.5 GB of memory depending on the tool
+         using the partitions. The feature count cannot be less than 500.
+     partition_method {String}:
+         Specifies whether the feature_count parameter references the ideal
+         number of features or the ideal number of vertices in each output
+         polygon.
 
-          * FEATURES-Partitioning considers the number and density of individual
-          features. This method is applicable in most cases and is the default.
+         * FEATURES-Partitioning considers the number and density of individual
+         features. This method is applicable in most cases and is the default.
 
-          * VERTICES-Partitioning considers the number and density of vertices.
-          This method is used in cases in which the input data contains a
-          relatively small number of very complex features, such as high-
-          resolution country polygons, or when very long features are likely to
-          cross multiple partition boundaries, such as contour lines.
+         * VERTICES-Partitioning considers the number and density of vertices.
+         This method is used in cases in which the input data contains a
+         relatively small number of very complex features, such as high-
+         resolution country polygons, or when very long features are likely to
+         cross multiple partition boundaries, such as contour lines.
 
-     OUTPUTS:
-      out_features (Feature Class):
-          The output polygon feature class of partitions each of which encloses
-          a manageable number of input features or manageable number of input
-          vertices not exceeding the number specified by the feature_count
-          parameter."""
+    OUTPUTS:
+     out_features (Feature Class):
+         The output polygon feature class of partitions each of which encloses
+         a manageable number of input features or manageable number of input
+         vertices not exceeding the number specified by the feature_count
+         parameter."""
     ...
 
-@gptooldoc('DelineateBuiltUpAreas_cartography', None)
-def DelineateBuiltUpAreas(in_buildings=..., identifier_field=..., edge_features=..., grouping_distance=..., minimum_detail_size=..., out_feature_class=..., minimum_building_count=...): # -> conversion | int | float | complex | basestring | list[Unknown] | tuple[Unknown, ...] | dict[Unknown, Unknown]:
+@gptooldoc("DelineateBuiltUpAreas_cartography", None)
+def DelineateBuiltUpAreas(
+    in_buildings=...,
+    identifier_field=...,
+    edge_features=...,
+    grouping_distance=...,
+    minimum_detail_size=...,
+    out_feature_class=...,
+    minimum_building_count=...,
+):  # -> conversion | int | float | complex | basestring | list[Unknown] | tuple[Unknown, ...] | dict[Unknown, Unknown]:
     """DelineateBuiltUpAreas_cartography(in_buildings;in_buildings..., {identifier_field}, {edge_features;edge_features...}, grouping_distance, minimum_detail_size, out_feature_class, {minimum_building_count})
 
-        Creates polygons to represent built-up areas by delineating densely
-        clustered arrangements of buildings on small-scale maps.
+       Creates polygons to represent built-up areas by delineating densely
+       clustered arrangements of buildings on small-scale maps.
 
-     INPUTS:
-      in_buildings (Feature Layer):
-          The layers containing buildings with density and arrangement that are
-          used to define appropriate output built-up polygons. Multiple building
-          layers can be assessed simultaneously. Building features can be points
-          or polygons.
-      identifier_field {String}:
-          A field in the input feature classes that will hold a status
-          code indicating whether the input feature is part of the resulting
-          built-up area . This field must be either short or long integer type
-          and common to all input layers if multiple input layers are used.
+    INPUTS:
+     in_buildings (Feature Layer):
+         The layers containing buildings with density and arrangement that are
+         used to define appropriate output built-up polygons. Multiple building
+         layers can be assessed simultaneously. Building features can be points
+         or polygons.
+     identifier_field {String}:
+         A field in the input feature classes that will hold a status
+         code indicating whether the input feature is part of the resulting
+         built-up area . This field must be either short or long integer type
+         and common to all input layers if multiple input layers are used.
 
-          * 0-The building is not represented by an output built-up area
-          polygon.
+         * 0-The building is not represented by an output built-up area
+         polygon.
 
-          * 1-The building is represented by an output built-up area polygon and
-          is within the resulting polygon.
+         * 1-The building is represented by an output built-up area polygon and
+         is within the resulting polygon.
 
-          * 2-The building is represented by an output built-up area polygon and
-          is outside the resulting polygon.
-      edge_features {Feature Layer}:
-          The layers that will be used to define the edges of the built-up area
-          polygons. Typically, these are roads, but other common examples are
-          rivers, coastlines, and administrative areas. Built-up area polygons
-          snap to an edge feature if one is generally aligned with the trend of
-          the polygon edge and within the grouping distance away. Edge features
-          can be lines or polygons.
-      grouping_distance (Linear Unit):
-          Buildings closer together than the grouping distance are considered
-          collectively as candidates for representation by an output built-up
-          area polygon. This distance is measured from the edges of polygon
-          buildings and the centers of point buildings.
-      minimum_detail_size (Linear Unit):
-          The relative degree of detail in the output built-up area polygons.
-          This is approximately to the minimum allowable diameter of a hole or
-          cavity in the built-up area polygon. The actual size and shape of
-          holes and cavities within the polygon is determined also by the
-          arrangement of the input buildings, the grouping distance, and the
-          presence of edge features if they are used.
-      minimum_building_count {Long}:
-          The minimum number of buildings that must be collectively considered
-          for representation by an output built-up area polygon. The default
-          value is 4. The minimum building count must be greater than or equal
-          to 0.
+         * 2-The building is represented by an output built-up area polygon and
+         is outside the resulting polygon.
+     edge_features {Feature Layer}:
+         The layers that will be used to define the edges of the built-up area
+         polygons. Typically, these are roads, but other common examples are
+         rivers, coastlines, and administrative areas. Built-up area polygons
+         snap to an edge feature if one is generally aligned with the trend of
+         the polygon edge and within the grouping distance away. Edge features
+         can be lines or polygons.
+     grouping_distance (Linear Unit):
+         Buildings closer together than the grouping distance are considered
+         collectively as candidates for representation by an output built-up
+         area polygon. This distance is measured from the edges of polygon
+         buildings and the centers of point buildings.
+     minimum_detail_size (Linear Unit):
+         The relative degree of detail in the output built-up area polygons.
+         This is approximately to the minimum allowable diameter of a hole or
+         cavity in the built-up area polygon. The actual size and shape of
+         holes and cavities within the polygon is determined also by the
+         arrangement of the input buildings, the grouping distance, and the
+         presence of edge features if they are used.
+     minimum_building_count {Long}:
+         The minimum number of buildings that must be collectively considered
+         for representation by an output built-up area polygon. The default
+         value is 4. The minimum building count must be greater than or equal
+         to 0.
 
-     OUTPUTS:
-      out_feature_class (Feature Class):
-          The output feature class containing built-up area polygons
-          representing clustered arrangements of input buildings."""
+    OUTPUTS:
+     out_feature_class (Feature Class):
+         The output feature class containing built-up area polygons
+         representing clustered arrangements of input buildings."""
     ...
 
-@gptooldoc('MergeDividedRoads_cartography', None)
-def MergeDividedRoads(in_features=..., merge_field=..., merge_distance=..., out_features=..., out_displacement_features=..., character_field=..., out_table=...): # -> conversion | int | float | complex | basestring | list[Unknown] | tuple[Unknown, ...] | dict[Unknown, Unknown]:
+@gptooldoc("MergeDividedRoads_cartography", None)
+def MergeDividedRoads(
+    in_features=...,
+    merge_field=...,
+    merge_distance=...,
+    out_features=...,
+    out_displacement_features=...,
+    character_field=...,
+    out_table=...,
+):  # -> conversion | int | float | complex | basestring | list[Unknown] | tuple[Unknown, ...] | dict[Unknown, Unknown]:
     """MergeDividedRoads_cartography(in_features, merge_field, merge_distance, out_features, {out_displacement_features}, {character_field}, {out_table})
 
-        Generates single-line road features in place of matched pairs of
-        divided road lanes.
+       Generates single-line road features in place of matched pairs of
+       divided road lanes.
 
-     INPUTS:
-      in_features (Feature Layer):
-          The input linear road features that contain matched pairs of divided
-          road lanes that will be merged into a single output line feature.
-      merge_field (Field):
-          The field that contains road classification information. Only
-          parallel, proximate roads of equal classification will be merged. A
-          value of 0 (zero) locks a feature to prevent it from participating in
-          merging.
-      merge_distance (Linear Unit):
-          The minimum distance apart, in the specified units, for equal-class,
-          relatively parallel road features to be merged. This distance must be
-          greater than zero. If the units are in points, millimeters,
-          centimeters, or inches, the value is considered as page units and
-          takes into account the reference scale.
-      character_field {Field}:
-          Specify a numeric field that indicate the character of road segments,
-          independent of their road classification. These values help the tool
-          to refine the assessment of candidate feature pairs for merging. Use
-          this parameter in unusual or complex road networks to improve the
-          quality of the output. If there are null values (or if this parameter
-          is not specified at all), the road character (and merge candidacy) is
-          based only on the shapes and arrangement of features. Use value 999 to
-          lock features from participating in a merge at all. Field
-          values are assessed as follows:
+    INPUTS:
+     in_features (Feature Layer):
+         The input linear road features that contain matched pairs of divided
+         road lanes that will be merged into a single output line feature.
+     merge_field (Field):
+         The field that contains road classification information. Only
+         parallel, proximate roads of equal classification will be merged. A
+         value of 0 (zero) locks a feature to prevent it from participating in
+         merging.
+     merge_distance (Linear Unit):
+         The minimum distance apart, in the specified units, for equal-class,
+         relatively parallel road features to be merged. This distance must be
+         greater than zero. If the units are in points, millimeters,
+         centimeters, or inches, the value is considered as page units and
+         takes into account the reference scale.
+     character_field {Field}:
+         Specify a numeric field that indicate the character of road segments,
+         independent of their road classification. These values help the tool
+         to refine the assessment of candidate feature pairs for merging. Use
+         this parameter in unusual or complex road networks to improve the
+         quality of the output. If there are null values (or if this parameter
+         is not specified at all), the road character (and merge candidacy) is
+         based only on the shapes and arrangement of features. Use value 999 to
+         lock features from participating in a merge at all. Field
+         values are assessed as follows:
 
-          * 0-Traffic circles or roundabouts
+         * 0-Traffic circles or roundabouts
 
-          * 1-Carriageways, boulevards, dual-lane highways, or other parallel
-          trending roads
+         * 1-Carriageways, boulevards, dual-lane highways, or other parallel
+         trending roads
 
-          * 2-On- or off-ramps, highway intersection connectors
+         * 2-On- or off-ramps, highway intersection connectors
 
-          * 999-Features will not be merged
+         * 999-Features will not be merged
 
-     OUTPUTS:
-      out_features (Feature Class):
-          The output feature class containing single-line merged road features
-          and all unmerged road features.
-      out_displacement_features {Feature Class}:
-          The output polygon features containing the degree and direction of
-          road displacement.
-      out_table {Table}:
-          A many-to-many relationship table that links the merged road features
-          to their source features. This table contains two fields, OUTPUT_FID
-          and INPUT_FID, which store the merged feature IDs and their source
-          feature IDs, respectively. Use this table to derive necessary
-          attributes for the output features from their source features. No
-          table is created when this parameter is left blank."""
+    OUTPUTS:
+     out_features (Feature Class):
+         The output feature class containing single-line merged road features
+         and all unmerged road features.
+     out_displacement_features {Feature Class}:
+         The output polygon features containing the degree and direction of
+         road displacement.
+     out_table {Table}:
+         A many-to-many relationship table that links the merged road features
+         to their source features. This table contains two fields, OUTPUT_FID
+         and INPUT_FID, which store the merged feature IDs and their source
+         feature IDs, respectively. Use this table to derive necessary
+         attributes for the output features from their source features. No
+         table is created when this parameter is left blank."""
     ...
 
-@gptooldoc('SimplifyBuilding_cartography', None)
-def SimplifyBuilding(in_features=..., out_feature_class=..., simplification_tolerance=..., minimum_area=..., conflict_option=..., in_barriers=..., collapsed_point_option=...): # -> conversion | int | float | complex | basestring | list[Unknown] | tuple[Unknown, ...] | dict[Unknown, Unknown]:
+@gptooldoc("SimplifyBuilding_cartography", None)
+def SimplifyBuilding(
+    in_features=...,
+    out_feature_class=...,
+    simplification_tolerance=...,
+    minimum_area=...,
+    conflict_option=...,
+    in_barriers=...,
+    collapsed_point_option=...,
+):  # -> conversion | int | float | complex | basestring | list[Unknown] | tuple[Unknown, ...] | dict[Unknown, Unknown]:
     """SimplifyBuilding_cartography(in_features, out_feature_class, simplification_tolerance, {minimum_area}, {conflict_option}, {in_barriers;in_barriers...}, {collapsed_point_option})
 
-        Simplifies the boundary or footprint of building polygons while
-        maintaining their essential shape and size.
+       Simplifies the boundary or footprint of building polygons while
+       maintaining their essential shape and size.
 
-     INPUTS:
-      in_features (Feature Layer):
-          The building polygons to be simplified.
-      simplification_tolerance (Linear Unit):
-          The tolerance for building simplification. A tolerance must be
-          specified, and it must be greater than zero. You can choose a
-          preferred unit; the default is the feature unit.
-      minimum_area {Areal Unit}:
-          The minimum area for a simplified building to be retained in feature
-          units. The default value is zero, that is, to keep all buildings. You
-          can specify a preferred unit; the default is the feature unit.
-      conflict_option {Boolean}:
-          Specifies whether spatial conflicts-that is, overlapping or touching
-          among buildings-will be identified. A SimBldFlag field is added to the
-          output to store conflict flags. A value of 0 means no conflict; a
-          value of 1 means conflict.
+    INPUTS:
+     in_features (Feature Layer):
+         The building polygons to be simplified.
+     simplification_tolerance (Linear Unit):
+         The tolerance for building simplification. A tolerance must be
+         specified, and it must be greater than zero. You can choose a
+         preferred unit; the default is the feature unit.
+     minimum_area {Areal Unit}:
+         The minimum area for a simplified building to be retained in feature
+         units. The default value is zero, that is, to keep all buildings. You
+         can specify a preferred unit; the default is the feature unit.
+     conflict_option {Boolean}:
+         Specifies whether spatial conflicts-that is, overlapping or touching
+         among buildings-will be identified. A SimBldFlag field is added to the
+         output to store conflict flags. A value of 0 means no conflict; a
+         value of 1 means conflict.
 
-          * NO_CHECK-Spatial conflicts will not be identified; the resulting
-          buildings may overlap. This is the default.
+         * NO_CHECK-Spatial conflicts will not be identified; the resulting
+         buildings may overlap. This is the default.
 
-          * CHECK_CONFLICTS-Spatial conflicts will be identified and the
-          conflicting buildings will be flagged.
-      in_barriers {Feature Layer}:
-          The input layers containing features to act as barriers for
-          simplification. Resulting simplified buildings will not touch or cross
-          barrier features. For example, when simplifying buildings, the
-          resulting simplified building areas do not cross road features defined
-          as barriers.
-      collapsed_point_option {Boolean}:
-          Specifies whether an output point feature class will be created to
-          store the centers of any buildings that are removed because they are
-          smaller than the minimum_area parameter value. The point output is
-          derived, is named the same as the output feature class specified in
-          the out_feature_class parameter but with a _Pnt suffix, and is located
-          in the same folder.
+         * CHECK_CONFLICTS-Spatial conflicts will be identified and the
+         conflicting buildings will be flagged.
+     in_barriers {Feature Layer}:
+         The input layers containing features to act as barriers for
+         simplification. Resulting simplified buildings will not touch or cross
+         barrier features. For example, when simplifying buildings, the
+         resulting simplified building areas do not cross road features defined
+         as barriers.
+     collapsed_point_option {Boolean}:
+         Specifies whether an output point feature class will be created to
+         store the centers of any buildings that are removed because they are
+         smaller than the minimum_area parameter value. The point output is
+         derived, is named the same as the output feature class specified in
+         the out_feature_class parameter but with a _Pnt suffix, and is located
+         in the same folder.
 
-          * KEEP_COLLAPSED_POINTS-A derived output point feature class will be
-          created to store the centers of buildings that are removed.
+         * KEEP_COLLAPSED_POINTS-A derived output point feature class will be
+         created to store the centers of buildings that are removed.
 
-          * NO_KEEP-An output point feature class will not be created. This is
-          the default.
+         * NO_KEEP-An output point feature class will not be created. This is
+         the default.
 
-     OUTPUTS:
-      out_feature_class (Feature Class):
-          The output feature class to be created."""
+    OUTPUTS:
+     out_feature_class (Feature Class):
+         The output feature class to be created."""
     ...
 
-@gptooldoc('SimplifyLine_cartography', None)
-def SimplifyLine(in_features=..., out_feature_class=..., algorithm=..., tolerance=..., error_resolving_option=..., collapsed_point_option=..., error_checking_option=..., in_barriers=..., error_option=...): # -> conversion | int | float | complex | basestring | list[Unknown] | tuple[Unknown, ...] | dict[Unknown, Unknown]:
+@gptooldoc("SimplifyLine_cartography", None)
+def SimplifyLine(
+    in_features=...,
+    out_feature_class=...,
+    algorithm=...,
+    tolerance=...,
+    error_resolving_option=...,
+    collapsed_point_option=...,
+    error_checking_option=...,
+    in_barriers=...,
+    error_option=...,
+):  # -> conversion | int | float | complex | basestring | list[Unknown] | tuple[Unknown, ...] | dict[Unknown, Unknown]:
     """SimplifyLine_cartography(in_features, out_feature_class, algorithm, tolerance, {error_resolving_option}, {collapsed_point_option}, {error_checking_option}, {in_barriers;in_barriers...}, {error_option})
 
-        Simplifies lines by removing relatively extraneous vertices while
-        preserving essential shape.
+       Simplifies lines by removing relatively extraneous vertices while
+       preserving essential shape.
 
-     INPUTS:
-      in_features (Feature Layer):
-          The input line features that will be simplified.
-      algorithm (String):
-          Specifies the line simplification algorithm that will be used.
+    INPUTS:
+     in_features (Feature Layer):
+         The input line features that will be simplified.
+     algorithm (String):
+         Specifies the line simplification algorithm that will be used.
 
-          * POINT_REMOVE-Critical points that preserve the essential shape of a
-          line will be retained, and all other points will be removed (Douglas-
-          Peucker). This is the default.
+         * POINT_REMOVE-Critical points that preserve the essential shape of a
+         line will be retained, and all other points will be removed (Douglas-
+         Peucker). This is the default.
 
-          * BEND_SIMPLIFY-Critical bends will be retained, and extraneous bends
-          will be removed from a line (Wang-Müller).
+         * BEND_SIMPLIFY-Critical bends will be retained, and extraneous bends
+         will be removed from a line (Wang-Müller).
 
-          * WEIGHTED_AREA-Vertices that form triangles of effective area that
-          have been weighted by triangle shape will be retained (Zhou-Jones).
+         * WEIGHTED_AREA-Vertices that form triangles of effective area that
+         have been weighted by triangle shape will be retained (Zhou-Jones).
 
-          * EFFECTIVE_AREA-Vertices that form triangles of effective area will
-          be retained (Visvalingam-Whyatt).
-      tolerance (Linear Unit):
-          The degree of simplification that will be used. You can choose a
-          preferred unit; otherwise, the units of the input will be used. The
-          MinSimpTol and MaxSimpTol fields will be added to the output to store
-          the tolerance that was used when processing occurred.
+         * EFFECTIVE_AREA-Vertices that form triangles of effective area will
+         be retained (Visvalingam-Whyatt).
+     tolerance (Linear Unit):
+         The degree of simplification that will be used. You can choose a
+         preferred unit; otherwise, the units of the input will be used. The
+         MinSimpTol and MaxSimpTol fields will be added to the output to store
+         the tolerance that was used when processing occurred.
 
-          * For the POINT_REMOVE algorithm, the tolerance is the maximum
-          allowable perpendicular distance between each vertex and the newly
-          created line.
+         * For the POINT_REMOVE algorithm, the tolerance is the maximum
+         allowable perpendicular distance between each vertex and the newly
+         created line.
 
-          * For the BEND_SIMPLIFY algorithm, the tolerance is the diameter of a
-          circle that approximates a significant bend.
+         * For the BEND_SIMPLIFY algorithm, the tolerance is the diameter of a
+         circle that approximates a significant bend.
 
-          * For the WEIGHTED_AREA algorithm, the square of the tolerance is the
-          area of a significant triangle defined by three adjacent vertices. The
-          further a triangle deviates from equilateral, the higher weight it is
-          given, and the less likely it is to be removed.
+         * For the WEIGHTED_AREA algorithm, the square of the tolerance is the
+         area of a significant triangle defined by three adjacent vertices. The
+         further a triangle deviates from equilateral, the higher weight it is
+         given, and the less likely it is to be removed.
 
-          * For the EFFECTIVE_AREA algorithm, the square of the tolerance is the
-          area of a significant triangle defined by three adjacent vertices.
-      error_resolving_option {Boolean}:
-          This is a legacy parameter that is no longer used. It was formerly
-          used to indicate how topological errors, possibly introduced during
-          processing, were resolved. This parameter is still included in the
-          tool's syntax for compatibility in scripts and models but is hidden
-          from the Geoprocessing pane.
-      collapsed_point_option {Boolean}:
-          Specifies whether an output point feature class will be created to
-          store the endpoints of lines that are smaller than the spatial
-          tolerance. The point output is derived; it will use the same name and
-          location as the out_feature_class parameter value but with a _Pnt
-          suffix.
+         * For the EFFECTIVE_AREA algorithm, the square of the tolerance is the
+         area of a significant triangle defined by three adjacent vertices.
+     error_resolving_option {Boolean}:
+         This is a legacy parameter that is no longer used. It was formerly
+         used to indicate how topological errors, possibly introduced during
+         processing, were resolved. This parameter is still included in the
+         tool's syntax for compatibility in scripts and models but is hidden
+         from the Geoprocessing pane.
+     collapsed_point_option {Boolean}:
+         Specifies whether an output point feature class will be created to
+         store the endpoints of lines that are smaller than the spatial
+         tolerance. The point output is derived; it will use the same name and
+         location as the out_feature_class parameter value but with a _Pnt
+         suffix.
 
-          * KEEP_COLLAPSED_POINTS-A derived output point feature class will be
-          created to store the endpoints of collapsed zero length lines. This is
-          the default.
+         * KEEP_COLLAPSED_POINTS-A derived output point feature class will be
+         created to store the endpoints of collapsed zero length lines. This is
+         the default.
 
-          * NO_KEEP-A derived output point feature class will not be created.
-      error_checking_option {Boolean}:
-          This is a legacy parameter that is no longer used. It was formerly
-          used to indicate how topological errors, possibly introduced during
-          processing, were handled. This parameter is still included in the
-          tool's syntax for compatibility in scripts and models but is hidden
-          from the Geoprocessing pane.
-      in_barriers {Feature Layer}:
-          Inputs containing features to act as barriers for simplification.
-          Resulting simplified lines will not touch or cross barrier features.
-          For example, when simplifying contour lines, spot height features
-          input as barriers ensure that the simplified contour lines will not
-          simplify across these points. The output will not violate the
-          elevation as described by measured spot heights.
-      error_option {String}:
-          Specifies how topological errors will be handled. Topological errors
-          may be introduced in the simplification process and can include lines
-          crossing or overlapping lines.
+         * NO_KEEP-A derived output point feature class will not be created.
+     error_checking_option {Boolean}:
+         This is a legacy parameter that is no longer used. It was formerly
+         used to indicate how topological errors, possibly introduced during
+         processing, were handled. This parameter is still included in the
+         tool's syntax for compatibility in scripts and models but is hidden
+         from the Geoprocessing pane.
+     in_barriers {Feature Layer}:
+         Inputs containing features to act as barriers for simplification.
+         Resulting simplified lines will not touch or cross barrier features.
+         For example, when simplifying contour lines, spot height features
+         input as barriers ensure that the simplified contour lines will not
+         simplify across these points. The output will not violate the
+         elevation as described by measured spot heights.
+     error_option {String}:
+         Specifies how topological errors will be handled. Topological errors
+         may be introduced in the simplification process and can include lines
+         crossing or overlapping lines.
 
-          * NO_CHECK-Topological errors will not be identified. This is the
-          default.
+         * NO_CHECK-Topological errors will not be identified. This is the
+         default.
 
-          * FLAG_ERRORS-Topological errors will be flagged.
+         * FLAG_ERRORS-Topological errors will be flagged.
 
-          * RESOLVE_ERRORS-Topological errors will be resolved.
+         * RESOLVE_ERRORS-Topological errors will be resolved.
 
-     OUTPUTS:
-      out_feature_class (Feature Class):
-          The simplified output line feature class. It will contain all the
-          fields from the input feature class. The output line feature class is
-          topologically correct. The tool does not introduce topology errors,
-          but topological errors in the input data will be flagged in the output
-          line feature class. The output feature class will include the
-          InLine_FID and SimLnFlag fields to contain the input feature IDs and
-          the input topological errors, respectively. A SimLnFlag value of 1
-          indicates that an input topological error is present; a value of 0
-          (zero) indicates that no input error is present."""
+    OUTPUTS:
+     out_feature_class (Feature Class):
+         The simplified output line feature class. It will contain all the
+         fields from the input feature class. The output line feature class is
+         topologically correct. The tool does not introduce topology errors,
+         but topological errors in the input data will be flagged in the output
+         line feature class. The output feature class will include the
+         InLine_FID and SimLnFlag fields to contain the input feature IDs and
+         the input topological errors, respectively. A SimLnFlag value of 1
+         indicates that an input topological error is present; a value of 0
+         (zero) indicates that no input error is present."""
     ...
 
-@gptooldoc('SimplifyPolygon_cartography', None)
-def SimplifyPolygon(in_features=..., out_feature_class=..., algorithm=..., tolerance=..., minimum_area=..., error_option=..., collapsed_point_option=..., in_barriers=...): # -> conversion | int | float | complex | basestring | list[Unknown] | tuple[Unknown, ...] | dict[Unknown, Unknown]:
+@gptooldoc("SimplifyPolygon_cartography", None)
+def SimplifyPolygon(
+    in_features=...,
+    out_feature_class=...,
+    algorithm=...,
+    tolerance=...,
+    minimum_area=...,
+    error_option=...,
+    collapsed_point_option=...,
+    in_barriers=...,
+):  # -> conversion | int | float | complex | basestring | list[Unknown] | tuple[Unknown, ...] | dict[Unknown, Unknown]:
     """SimplifyPolygon_cartography(in_features, out_feature_class, algorithm, tolerance, {minimum_area}, {error_option}, {collapsed_point_option}, {in_barriers;in_barriers...})
 
-        Simplifies polygons by removing relatively extraneous vertices while
-        preserving essential shape.
+       Simplifies polygons by removing relatively extraneous vertices while
+       preserving essential shape.
 
-     INPUTS:
-      in_features (Feature Layer):
-          The input polygon features that will be simplified.
-      algorithm (String):
-          Specifies the polygon simplification algorithm that will be used.
+    INPUTS:
+     in_features (Feature Layer):
+         The input polygon features that will be simplified.
+     algorithm (String):
+         Specifies the polygon simplification algorithm that will be used.
 
-          * POINT_REMOVE-Critical points that preserve the essential shape of a
-          polygon outline will be retained, and all other points will be removed
-          (Douglas-Peucker). This is the default.
+         * POINT_REMOVE-Critical points that preserve the essential shape of a
+         polygon outline will be retained, and all other points will be removed
+         (Douglas-Peucker). This is the default.
 
-          * BEND_SIMPLIFY-Critical bends will be retained, and extraneous bends
-          will be removed from a line (Wang-Müller).
+         * BEND_SIMPLIFY-Critical bends will be retained, and extraneous bends
+         will be removed from a line (Wang-Müller).
 
-          * WEIGHTED_AREA-Vertices that form triangles of effective area that
-          have been weighted by triangle shape will be retained (Zhou-Jones).
+         * WEIGHTED_AREA-Vertices that form triangles of effective area that
+         have been weighted by triangle shape will be retained (Zhou-Jones).
 
-          * EFFECTIVE_AREA-Vertices that form triangles of effective area will
-          be retained (Visvalingam-Whyatt).
-      tolerance (Linear Unit):
-          The degree of simplification that will be used. You can choose a
-          preferred unit; otherwise, the units of the input will be used. The
-          MinSimpTol and MaxSimpTol fields will be added to the output to store
-          the tolerance that was used when processing occurred.
+         * EFFECTIVE_AREA-Vertices that form triangles of effective area will
+         be retained (Visvalingam-Whyatt).
+     tolerance (Linear Unit):
+         The degree of simplification that will be used. You can choose a
+         preferred unit; otherwise, the units of the input will be used. The
+         MinSimpTol and MaxSimpTol fields will be added to the output to store
+         the tolerance that was used when processing occurred.
 
-          * For the POINT_REMOVE algorithm, the tolerance is the maximum
-          allowable perpendicular distance between each vertex and the newly
-          created line.
+         * For the POINT_REMOVE algorithm, the tolerance is the maximum
+         allowable perpendicular distance between each vertex and the newly
+         created line.
 
-          * For the BEND_SIMPLIFY algorithm, the tolerance is the diameter of a
-          circle that approximates a significant bend.
+         * For the BEND_SIMPLIFY algorithm, the tolerance is the diameter of a
+         circle that approximates a significant bend.
 
-          * For the WEIGHTED_AREA algorithm, the square of the tolerance is the
-          area of a significant triangle defined by three adjacent vertices. The
-          further a triangle deviates from equilateral, the higher weight it is
-          given, and the less likely it is to be removed.
+         * For the WEIGHTED_AREA algorithm, the square of the tolerance is the
+         area of a significant triangle defined by three adjacent vertices. The
+         further a triangle deviates from equilateral, the higher weight it is
+         given, and the less likely it is to be removed.
 
-          * For the EFFECTIVE_AREA algorithm, the square of the tolerance is the
-          area of a significant triangle defined by three adjacent vertices.
-      minimum_area {Areal Unit}:
-          The minimum area for a polygon to be retained. The default value is
-          zero, that is, to keep all polygons. You can choose a preferred unit
-          for the specified value; otherwise, the units of the input will be
-          used.
-      error_option {String}:
-          Specifies how topological errors will be handled. Topological errors
-          may be introduced in the simplification process and can include lines
-          crossing or overlapping lines.
+         * For the EFFECTIVE_AREA algorithm, the square of the tolerance is the
+         area of a significant triangle defined by three adjacent vertices.
+     minimum_area {Areal Unit}:
+         The minimum area for a polygon to be retained. The default value is
+         zero, that is, to keep all polygons. You can choose a preferred unit
+         for the specified value; otherwise, the units of the input will be
+         used.
+     error_option {String}:
+         Specifies how topological errors will be handled. Topological errors
+         may be introduced in the simplification process and can include lines
+         crossing or overlapping lines.
 
-          * NO_CHECK-Topological errors will not be identified. This is the
-          default.
+         * NO_CHECK-Topological errors will not be identified. This is the
+         default.
 
-          * FLAG_ERRORS-Topological errors will be flagged.
+         * FLAG_ERRORS-Topological errors will be flagged.
 
-          * RESOLVE_ERRORS-Topological errors will be resolved.
-      collapsed_point_option {Boolean}:
-          Specifies whether an output point feature class will be created to
-          store the centers of polygons that are removed because they are
-          smaller than the minimum_area parameter value. The point output is
-          derived; it will use the same name and location as the
-          out_feature_class parameter value but with a _Pnt suffix.
+         * RESOLVE_ERRORS-Topological errors will be resolved.
+     collapsed_point_option {Boolean}:
+         Specifies whether an output point feature class will be created to
+         store the centers of polygons that are removed because they are
+         smaller than the minimum_area parameter value. The point output is
+         derived; it will use the same name and location as the
+         out_feature_class parameter value but with a _Pnt suffix.
 
-          * KEEP_COLLAPSED_POINTS-A derived output point feature class will be
-          created to store the centers of polygons that are removed because they
-          are smaller than the minimum area. This is the default.
+         * KEEP_COLLAPSED_POINTS-A derived output point feature class will be
+         created to store the centers of polygons that are removed because they
+         are smaller than the minimum area. This is the default.
 
-          * NO_KEEP-A derived output point feature class will not be created.
-      in_barriers {Feature Layer}:
-          The inputs containing features to act as barriers for simplification.
-          Resulting simplified polygons will not touch or cross barrier
-          features. For example, when simplifying forested areas, the resulting
-          simplified forest polygons will not cross road features defined as
-          barriers.
+         * NO_KEEP-A derived output point feature class will not be created.
+     in_barriers {Feature Layer}:
+         The inputs containing features to act as barriers for simplification.
+         Resulting simplified polygons will not touch or cross barrier
+         features. For example, when simplifying forested areas, the resulting
+         simplified forest polygons will not cross road features defined as
+         barriers.
 
-     OUTPUTS:
-      out_feature_class (Feature Class):
-          The simplified output polygon feature class. It will contain all the
-          fields from the input feature class. The output polygon feature class
-          is topologically correct. The tool does not introduce topology errors,
-          but topological errors in the input data will be flagged in the output
-          polygon feature class.The output feature class will include the
-          InPoly_FID and
-          SimPgnFlagfields to contain the input feature IDs and the input
-          topological errors or discrepancies, respectively. The
-          SimPgnFlag attribute values are as follows:
+    OUTPUTS:
+     out_feature_class (Feature Class):
+         The simplified output polygon feature class. It will contain all the
+         fields from the input feature class. The output polygon feature class
+         is topologically correct. The tool does not introduce topology errors,
+         but topological errors in the input data will be flagged in the output
+         polygon feature class.The output feature class will include the
+         InPoly_FID and
+         SimPgnFlagfields to contain the input feature IDs and the input
+         topological errors or discrepancies, respectively. The
+         SimPgnFlag attribute values are as follows:
 
-          * SimPgnFlag = 0 indicates that no errors are present.
+         * SimPgnFlag = 0 indicates that no errors are present.
 
-          * SimPgnFlag = 1 indicates a topological error is present.
+         * SimPgnFlag = 1 indicates a topological error is present.
 
-          * SimPgnFlag = 2 indicates features that have been split by a
-          partition and are now smaller than the minimum area after
-          simplification. The flag may appear on only one part of the split
-          feature. These features will be retained in the output feature class.
-          This situation occurs only when the Cartographic Partitions
-          environment setting is used."""
+         * SimPgnFlag = 2 indicates features that have been split by a
+         partition and are now smaller than the minimum area after
+         simplification. The flag may appear on only one part of the split
+         feature. These features will be retained in the output feature class.
+         This situation occurs only when the Cartographic Partitions
+         environment setting is used."""
     ...
 
-@gptooldoc('SimplifySharedEdges_cartography', None)
-def SimplifySharedEdges(in_features=..., algorithm=..., tolerance=..., shared_edge_features=..., minimum_area=..., in_barriers=...): # -> conversion | int | float | complex | basestring | list[Unknown] | tuple[Unknown, ...] | dict[Unknown, Unknown]:
+@gptooldoc("SimplifySharedEdges_cartography", None)
+def SimplifySharedEdges(
+    in_features=...,
+    algorithm=...,
+    tolerance=...,
+    shared_edge_features=...,
+    minimum_area=...,
+    in_barriers=...,
+):  # -> conversion | int | float | complex | basestring | list[Unknown] | tuple[Unknown, ...] | dict[Unknown, Unknown]:
     """SimplifySharedEdges_cartography(in_features;in_features..., algorithm, tolerance, {shared_edge_features;shared_edge_features...}, {minimum_area}, {in_barriers;in_barriers...})
 
-        Simplifies the edges of input features while maintaining the
-        topological relationship with edges shared with other features.
+       Simplifies the edges of input features while maintaining the
+       topological relationship with edges shared with other features.
 
-     INPUTS:
-      in_features (Feature Layer):
-          The lines or polygons to be simplified.
-      algorithm (String):
-          Specifies the simplification algorithm.
+    INPUTS:
+     in_features (Feature Layer):
+         The lines or polygons to be simplified.
+     algorithm (String):
+         Specifies the simplification algorithm.
 
-          * POINT_REMOVE-Retains critical points that preserve the essential
-          shape of a polygon outline and removes all other points (Douglas-
-          Peucker). This is the default.
+         * POINT_REMOVE-Retains critical points that preserve the essential
+         shape of a polygon outline and removes all other points (Douglas-
+         Peucker). This is the default.
 
-          * BEND_SIMPLIFY-Retains the critical bends and removes extraneous
-          bends from a line (Wang-Müller).
+         * BEND_SIMPLIFY-Retains the critical bends and removes extraneous
+         bends from a line (Wang-Müller).
 
-          * WEIGHTED_AREA-Retains vertices that form triangles of effective area
-          that have been weighted by triangle shape (Zhou-Jones).
+         * WEIGHTED_AREA-Retains vertices that form triangles of effective area
+         that have been weighted by triangle shape (Zhou-Jones).
 
-          * EFFECTIVE_AREA-Retains vertices that form triangles of effective
-          area (Visvalingam-Whyatt).
-      tolerance (Linear Unit):
-          Determines the degree of simplification. If a unit is not specified,
-          the units of the input will be used.
+         * EFFECTIVE_AREA-Retains vertices that form triangles of effective
+         area (Visvalingam-Whyatt).
+     tolerance (Linear Unit):
+         Determines the degree of simplification. If a unit is not specified,
+         the units of the input will be used.
 
-          * For the POINT_REMOVE algorithm, the tolerance is the maximum
-          allowable perpendicular distance between each vertex and the new line
-          created.
+         * For the POINT_REMOVE algorithm, the tolerance is the maximum
+         allowable perpendicular distance between each vertex and the new line
+         created.
 
-          * For the BEND_SIMPLIFY algorithm, the tolerance is the diameter of a
-          circle that approximates a significant bend.
+         * For the BEND_SIMPLIFY algorithm, the tolerance is the diameter of a
+         circle that approximates a significant bend.
 
-          * For the WEIGHTED_AREA algorithm, the square of the tolerance is the
-          area of a significant triangle defined by three adjacent vertices. The
-          further a triangle deviates from equilateral, the higher weight it is
-          given, and the less likely it is to be removed.
+         * For the WEIGHTED_AREA algorithm, the square of the tolerance is the
+         area of a significant triangle defined by three adjacent vertices. The
+         further a triangle deviates from equilateral, the higher weight it is
+         given, and the less likely it is to be removed.
 
-          * For the EFFECTIVE_AREA algorithm, the square of the tolerance is the
-          area of a significant triangle defined by three adjacent vertices.
-      shared_edge_features {Feature Layer}:
-          Line or polygon features that will be simplified along edges shared
-          with input features. Other edges are not simplified.
-      minimum_area {Areal Unit}:
-          The minimum area for a polygon to be retained. The default value is
-          zero, which will retain all polygons. A unit can be specified; if no
-          unit is specified, the unit of the input will be used. This parameter
-          is available only when at least one of the inputs is a polygon feature
-          class.
-      in_barriers {Feature Layer}:
-          Point, line, or polygon features that act as barriers for the
-          simplification. The simplified features will not touch or cross
-          barrier features."""
+         * For the EFFECTIVE_AREA algorithm, the square of the tolerance is the
+         area of a significant triangle defined by three adjacent vertices.
+     shared_edge_features {Feature Layer}:
+         Line or polygon features that will be simplified along edges shared
+         with input features. Other edges are not simplified.
+     minimum_area {Areal Unit}:
+         The minimum area for a polygon to be retained. The default value is
+         zero, which will retain all polygons. A unit can be specified; if no
+         unit is specified, the unit of the input will be used. This parameter
+         is available only when at least one of the inputs is a polygon feature
+         class.
+     in_barriers {Feature Layer}:
+         Point, line, or polygon features that act as barriers for the
+         simplification. The simplified features will not touch or cross
+         barrier features."""
     ...
 
-@gptooldoc('SmoothLine_cartography', None)
-def SmoothLine(in_features=..., out_feature_class=..., algorithm=..., tolerance=..., endpoint_option=..., error_option=..., in_barriers=...): # -> conversion | int | float | complex | basestring | list[Unknown] | tuple[Unknown, ...] | dict[Unknown, Unknown]:
+@gptooldoc("SmoothLine_cartography", None)
+def SmoothLine(
+    in_features=...,
+    out_feature_class=...,
+    algorithm=...,
+    tolerance=...,
+    endpoint_option=...,
+    error_option=...,
+    in_barriers=...,
+):  # -> conversion | int | float | complex | basestring | list[Unknown] | tuple[Unknown, ...] | dict[Unknown, Unknown]:
     """SmoothLine_cartography(in_features, out_feature_class, algorithm, tolerance, {endpoint_option}, {error_option}, {in_barriers;in_barriers...})
 
-        Smooths sharp angles in lines to improve aesthetic or cartographic
-        quality.
+       Smooths sharp angles in lines to improve aesthetic or cartographic
+       quality.
 
-     INPUTS:
-      in_features (Feature Layer):
-          The line features to be smoothed.
-      algorithm (String):
-          Specifies the smoothing algorithm.
+    INPUTS:
+     in_features (Feature Layer):
+         The line features to be smoothed.
+     algorithm (String):
+         Specifies the smoothing algorithm.
 
-          * PAEK-This is the acronym for Polynomial Approximation with
-          Exponential Kernel. A smoothed line that will not pass through the
-          input line vertices will be calculated. This is the default.
+         * PAEK-This is the acronym for Polynomial Approximation with
+         Exponential Kernel. A smoothed line that will not pass through the
+         input line vertices will be calculated. This is the default.
 
-          * BEZIER_INTERPOLATION-Bezier curves will be fitted between vertices.
-          The resulting lines pass through the vertices of the input lines. This
-          algorithm does not require a tolerance. Bezier curves will be
-          approximated in the output.
-      tolerance (Linear Unit):
-          A tolerance used by the PAEK algorithm. A tolerance must be specified,
-          and it must be greater than zero. You can choose a preferred unit; the
-          default is the feature unit. You must enter a 0 as a placeholder when
-          using the BEZIER_INTERPOLATION smoothing algorithm.
-      endpoint_option {Boolean}:
-          This is a legacy parameter that is no longer used. It was formerly
-          used to specify whether endpoints of closed lines would be preserved.
-          This parameter is still included in the tool's syntax for
-          compatibility in scripts and models but is hidden from the tool's
-          dialog box.Specifies whether the endpoints of closed lines will be
-          preserved.
-          This option works with the PAEK algorithm only.
+         * BEZIER_INTERPOLATION-Bezier curves will be fitted between vertices.
+         The resulting lines pass through the vertices of the input lines. This
+         algorithm does not require a tolerance. Bezier curves will be
+         approximated in the output.
+     tolerance (Linear Unit):
+         A tolerance used by the PAEK algorithm. A tolerance must be specified,
+         and it must be greater than zero. You can choose a preferred unit; the
+         default is the feature unit. You must enter a 0 as a placeholder when
+         using the BEZIER_INTERPOLATION smoothing algorithm.
+     endpoint_option {Boolean}:
+         This is a legacy parameter that is no longer used. It was formerly
+         used to specify whether endpoints of closed lines would be preserved.
+         This parameter is still included in the tool's syntax for
+         compatibility in scripts and models but is hidden from the tool's
+         dialog box.Specifies whether the endpoints of closed lines will be
+         preserved.
+         This option works with the PAEK algorithm only.
 
-          * FIXED_CLOSED_ENDPOINT-The endpoint of a closed line will be
-          preserved. This is the default.
+         * FIXED_CLOSED_ENDPOINT-The endpoint of a closed line will be
+         preserved. This is the default.
 
-          * NO_FIXED-The endpoint of a closed line will not be preserved; it
-          will be smoothed.
-      error_option {String}:
-          Specifies how topological errors (possibly introduced in the process,
-          such as line crossing or overlapping) will be handled.
+         * NO_FIXED-The endpoint of a closed line will not be preserved; it
+         will be smoothed.
+     error_option {String}:
+         Specifies how topological errors (possibly introduced in the process,
+         such as line crossing or overlapping) will be handled.
 
-          * NO_CHECK-Topological errors will not be identified. This is the
-          default.
+         * NO_CHECK-Topological errors will not be identified. This is the
+         default.
 
-          * FLAG_ERRORS-If topological errors are found, they will be flagged.
+         * FLAG_ERRORS-If topological errors are found, they will be flagged.
 
-          * RESOLVE_ERRORS-If topological errors are found, they will be
-          resolved.
-      in_barriers {Feature Layer}:
-          Inputs containing features that will act as barriers for smoothing.
-          The resulting smoothed lines will not touch or cross barrier features.
-          For example, when smoothing contour lines, spot height features input
-          as barriers ensure that the smoothed contour lines will not be smooth
-          across these points. The output will not violate the elevation as
-          described by measured spot heights.
+         * RESOLVE_ERRORS-If topological errors are found, they will be
+         resolved.
+     in_barriers {Feature Layer}:
+         Inputs containing features that will act as barriers for smoothing.
+         The resulting smoothed lines will not touch or cross barrier features.
+         For example, when smoothing contour lines, spot height features input
+         as barriers ensure that the smoothed contour lines will not be smooth
+         across these points. The output will not violate the elevation as
+         described by measured spot heights.
 
-     OUTPUTS:
-      out_feature_class (Feature Class):
-          The output feature class to be created."""
+    OUTPUTS:
+     out_feature_class (Feature Class):
+         The output feature class to be created."""
     ...
 
-@gptooldoc('SmoothPolygon_cartography', None)
-def SmoothPolygon(in_features=..., out_feature_class=..., algorithm=..., tolerance=..., endpoint_option=..., error_option=..., in_barriers=...): # -> conversion | int | float | complex | basestring | list[Unknown] | tuple[Unknown, ...] | dict[Unknown, Unknown]:
+@gptooldoc("SmoothPolygon_cartography", None)
+def SmoothPolygon(
+    in_features=...,
+    out_feature_class=...,
+    algorithm=...,
+    tolerance=...,
+    endpoint_option=...,
+    error_option=...,
+    in_barriers=...,
+):  # -> conversion | int | float | complex | basestring | list[Unknown] | tuple[Unknown, ...] | dict[Unknown, Unknown]:
     """SmoothPolygon_cartography(in_features, out_feature_class, algorithm, tolerance, {endpoint_option}, {error_option}, {in_barriers;in_barriers...})
 
-        Smooths sharp angles in polygon outlines to improve aesthetic or
-        cartographic quality.
+       Smooths sharp angles in polygon outlines to improve aesthetic or
+       cartographic quality.
 
-     INPUTS:
-      in_features (Feature Layer):
-          The polygon features to be smoothed.
-      algorithm (String):
-          Specifies the smoothing algorithm.
+    INPUTS:
+     in_features (Feature Layer):
+         The polygon features to be smoothed.
+     algorithm (String):
+         Specifies the smoothing algorithm.
 
-          * PAEK-This is the acronym for Polynomial Approximation with
-          Exponential Kernel. A smoothed polygon that will not pass through the
-          input polygon vertices will be calculated. This is the default.
+         * PAEK-This is the acronym for Polynomial Approximation with
+         Exponential Kernel. A smoothed polygon that will not pass through the
+         input polygon vertices will be calculated. This is the default.
 
-          * BEZIER_INTERPOLATION-Bezier curves will be fitted between vertices.
-          The resulting polygons pass through the vertices of the input
-          polygons. This algorithm does not require a tolerance. Bezier curves
-          will be approximated in the output.
-      tolerance (Linear Unit):
-          Sets a tolerance used by the PAEK algorithm. A tolerance must be
-          specified, and it must be greater than zero. You can choose a
-          preferred unit; the default is the feature unit. You must enter a 0 as
-          a placeholder when using the BEZIER_INTERPOLATION smoothing algorithm.
-      endpoint_option {Boolean}:
-          This is a legacy parameter that is no longer used. It was formerly
-          used to specify whether the endpoint of an isolated polygon ring would
-          be preserved. This parameter is still included in the tool's syntax
-          for compatibility in scripts and models but is hidden from the tool's
-          dialog box.Specifies whether the endpoints of isolated polygon rings
-          will be
-          preserved. This option works with the PAEK algorithm only.
+         * BEZIER_INTERPOLATION-Bezier curves will be fitted between vertices.
+         The resulting polygons pass through the vertices of the input
+         polygons. This algorithm does not require a tolerance. Bezier curves
+         will be approximated in the output.
+     tolerance (Linear Unit):
+         Sets a tolerance used by the PAEK algorithm. A tolerance must be
+         specified, and it must be greater than zero. You can choose a
+         preferred unit; the default is the feature unit. You must enter a 0 as
+         a placeholder when using the BEZIER_INTERPOLATION smoothing algorithm.
+     endpoint_option {Boolean}:
+         This is a legacy parameter that is no longer used. It was formerly
+         used to specify whether the endpoint of an isolated polygon ring would
+         be preserved. This parameter is still included in the tool's syntax
+         for compatibility in scripts and models but is hidden from the tool's
+         dialog box.Specifies whether the endpoints of isolated polygon rings
+         will be
+         preserved. This option works with the PAEK algorithm only.
 
-          * FIXED_ENDPOINT-The endpoint of an isolated polygon ring will be
-          preserved. This is the default.
+         * FIXED_ENDPOINT-The endpoint of an isolated polygon ring will be
+         preserved. This is the default.
 
-          * NO_FIXED-The endpoint of an isolated polygon ring will not be
-          preserved; it will be smoothed.
-      error_option {String}:
-          Specifies how topological errors (possibly introduced in the process,
-          such as line crossing or overlapping) will be handled.
+         * NO_FIXED-The endpoint of an isolated polygon ring will not be
+         preserved; it will be smoothed.
+     error_option {String}:
+         Specifies how topological errors (possibly introduced in the process,
+         such as line crossing or overlapping) will be handled.
 
-          * NO_CHECK-Topological errors will not be identified. This is the
-          default.
+         * NO_CHECK-Topological errors will not be identified. This is the
+         default.
 
-          * FLAG_ERRORS-If topological errors are found, they will be flagged.
+         * FLAG_ERRORS-If topological errors are found, they will be flagged.
 
-          * RESOLVE_ERRORS-If topological errors are found, they will be
-          resolved.
-      in_barriers {Feature Layer}:
-          Inputs containing features that will act as barriers for smoothing.
-          The resulting smoothed polygons will not touch or cross barrier
-          features.
+         * RESOLVE_ERRORS-If topological errors are found, they will be
+         resolved.
+     in_barriers {Feature Layer}:
+         Inputs containing features that will act as barriers for smoothing.
+         The resulting smoothed polygons will not touch or cross barrier
+         features.
 
-     OUTPUTS:
-      out_feature_class (Feature Class):
-          The output polygon feature class to be created."""
+    OUTPUTS:
+     out_feature_class (Feature Class):
+         The output polygon feature class to be created."""
     ...
 
-@gptooldoc('SmoothSharedEdges_cartography', None)
-def SmoothSharedEdges(in_features=..., algorithm=..., tolerance=..., shared_edge_features=..., in_barriers=...): # -> conversion | int | float | complex | basestring | list[Unknown] | tuple[Unknown, ...] | dict[Unknown, Unknown]:
+@gptooldoc("SmoothSharedEdges_cartography", None)
+def SmoothSharedEdges(
+    in_features=...,
+    algorithm=...,
+    tolerance=...,
+    shared_edge_features=...,
+    in_barriers=...,
+):  # -> conversion | int | float | complex | basestring | list[Unknown] | tuple[Unknown, ...] | dict[Unknown, Unknown]:
     """SmoothSharedEdges_cartography(in_features;in_features..., algorithm, tolerance, {shared_edge_features;shared_edge_features...}, {in_barriers;in_barriers...})
 
-        Smooths the edges of the input features while maintaining the
-        topological relationship with edges shared with other features.
+       Smooths the edges of the input features while maintaining the
+       topological relationship with edges shared with other features.
 
-     INPUTS:
-      in_features (Feature Layer):
-          The lines or polygons to be smoothed.
-      algorithm (String):
-          Specifies the smoothing algorithm.
+    INPUTS:
+     in_features (Feature Layer):
+         The lines or polygons to be smoothed.
+     algorithm (String):
+         Specifies the smoothing algorithm.
 
-          * PAEK-Calculates a smoothed polygon that will not pass through the
-          input polygon vertices. It is the acronym for Polynomial Approximation
-          with Exponential Kernel. This is the default.
+         * PAEK-Calculates a smoothed polygon that will not pass through the
+         input polygon vertices. It is the acronym for Polynomial Approximation
+         with Exponential Kernel. This is the default.
 
-          * BEZIER_INTERPOLATION-Fits Bezier curves between vertices. The
-          resulting polygons pass through the vertices of the input polygons.
-          This algorithm does not require a tolerance. Bezier curves will be
-          approximated in the output.
-      tolerance (Linear Unit):
-          Determines the degree of smoothing. A unit can be specified; if no
-          unit is specified, the unit of the input will be used. This is only
-          used for the PAEK algorithm. The parameter will not appear on the tool
-          dialog box when Bezier interpolation is selected and, in scripting, a
-          value of 0 must be used.
-      shared_edge_features {Feature Layer}:
-          Line or polygon features that will be smoothed along edges shared with
-          input features. Other edges are not smoothed.
-      in_barriers {Feature Layer}:
-          Point, line, or polygon features that act as barriers for smoothing.
-          The smoothed features will not touch or cross barrier features."""
+         * BEZIER_INTERPOLATION-Fits Bezier curves between vertices. The
+         resulting polygons pass through the vertices of the input polygons.
+         This algorithm does not require a tolerance. Bezier curves will be
+         approximated in the output.
+     tolerance (Linear Unit):
+         Determines the degree of smoothing. A unit can be specified; if no
+         unit is specified, the unit of the input will be used. This is only
+         used for the PAEK algorithm. The parameter will not appear on the tool
+         dialog box when Bezier interpolation is selected and, in scripting, a
+         value of 0 must be used.
+     shared_edge_features {Feature Layer}:
+         Line or polygon features that will be smoothed along edges shared with
+         input features. Other edges are not smoothed.
+     in_barriers {Feature Layer}:
+         Point, line, or polygon features that act as barriers for smoothing.
+         The smoothed features will not touch or cross barrier features."""
     ...
 
-@gptooldoc('ThinRoadNetwork_cartography', None)
-def ThinRoadNetwork(in_features=..., minimum_length=..., invisibility_field=..., hierarchy_field=...): # -> conversion | int | float | complex | basestring | list[Unknown] | tuple[Unknown, ...] | dict[Unknown, Unknown]:
+@gptooldoc("ThinRoadNetwork_cartography", None)
+def ThinRoadNetwork(
+    in_features=..., minimum_length=..., invisibility_field=..., hierarchy_field=...
+):  # -> conversion | int | float | complex | basestring | list[Unknown] | tuple[Unknown, ...] | dict[Unknown, Unknown]:
     """ThinRoadNetwork_cartography(in_features;in_features..., minimum_length, invisibility_field, hierarchy_field)
 
-        Generates a simplified road network that retains connectivity and
-        general character for display at a smaller scale.
+       Generates a simplified road network that retains connectivity and
+       general character for display at a smaller scale.
 
-     INPUTS:
-      in_features (Feature Layer):
-          The input linear roads that will be thinned to create a simplified
-          collection for display at smaller scales.
-      minimum_length (Linear Unit):
-          An indication of the shortest road segment that is sensible to display
-          at the output scale. This controls the resolution, or density, of the
-          resulting road collection. If the units are in points, millimeters,
-          centimeters, or inches, the value is considered in page units and the
-          reference scale is taken into account.
-      invisibility_field (String):
-          The field that stores the results of the tool. Features that
-          participate in the resulting simplified road collection have a value
-          of 0 (zero). Those that are extraneous have a value of 1. A layer
-          definition query can be used to display the resulting road collection.
-          This field must be present and named the same for each input feature
-          class.
-      hierarchy_field (String):
-          The field that contains hierarchical ranking of feature importance, in
-          which 1 is very important and larger integers reflect decreasing
-          importance. A value of 0 forces the feature to remain visible in the
-          output collection. This field must be present and named the same for
-          each input feature class. Hierarchy values equal to NULL are not
-          accepted and will produce an error."""
+    INPUTS:
+     in_features (Feature Layer):
+         The input linear roads that will be thinned to create a simplified
+         collection for display at smaller scales.
+     minimum_length (Linear Unit):
+         An indication of the shortest road segment that is sensible to display
+         at the output scale. This controls the resolution, or density, of the
+         resulting road collection. If the units are in points, millimeters,
+         centimeters, or inches, the value is considered in page units and the
+         reference scale is taken into account.
+     invisibility_field (String):
+         The field that stores the results of the tool. Features that
+         participate in the resulting simplified road collection have a value
+         of 0 (zero). Those that are extraneous have a value of 1. A layer
+         definition query can be used to display the resulting road collection.
+         This field must be present and named the same for each input feature
+         class.
+     hierarchy_field (String):
+         The field that contains hierarchical ranking of feature importance, in
+         which 1 is very important and larger integers reflect decreasing
+         importance. A value of 0 forces the feature to remain visible in the
+         output collection. This field must be present and named the same for
+         each input feature class. Hierarchy values equal to NULL are not
+         accepted and will produce an error."""
     ...
 
-@gptooldoc('DetectGraphicConflict_cartography', None)
-def DetectGraphicConflict(in_features=..., conflict_features=..., out_feature_class=..., conflict_distance=..., line_connection_allowance=...): # -> conversion | int | float | complex | basestring | list[Unknown] | tuple[Unknown, ...] | dict[Unknown, Unknown]:
+@gptooldoc("DetectGraphicConflict_cartography", None)
+def DetectGraphicConflict(
+    in_features=...,
+    conflict_features=...,
+    out_feature_class=...,
+    conflict_distance=...,
+    line_connection_allowance=...,
+):  # -> conversion | int | float | complex | basestring | list[Unknown] | tuple[Unknown, ...] | dict[Unknown, Unknown]:
     """DetectGraphicConflict_cartography(in_features, conflict_features, out_feature_class, {conflict_distance}, {line_connection_allowance})
 
-        Creates polygons where two or more symbolized features graphically
-        conflict.
+       Creates polygons where two or more symbolized features graphically
+       conflict.
 
-     INPUTS:
-      in_features (Layer):
-          The input feature layer containing symbolized features. CAD, coverage,
-          or VPF annotation, and dimensions, charts, dot-density or proportional
-          symbols, raster layers, network datasets, and 3D symbols are not
-          acceptable inputs.
-      conflict_features (Layer):
-          The feature layer containing symbolized features potentially in
-          conflict with symbolized features in the input layer.
-      conflict_distance {Linear Unit}:
-          The area where input and conflict symbology is closer than a certain
-          distance. Temporary buffers one-half the size of the conflict distance
-          value are created around symbols in both the input and conflict
-          layers. Conflict polygons will be generated where these buffers
-          overlap. Conflict distance is measured in page units (points, inches,
-          millimeters, or centimeters). If you enter a conflict distance in map
-          units, it will be converted to page units using the reference scale.
-          The default conflict distance is 0, where no buffers are created and
-          only symbols that physically overlap one another are detected as
-          conflicts.
-      line_connection_allowance {Linear Unit}:
-          The radius of a circle, centered where lines join, within which
-          graphic overlaps won't be detected. This parameter is only considered
-          when the input layer and the conflict layer are identical. Zero
-          allowance will detect a conflict at each line join (if end caps are
-          overlapping). Line connection allowance is calculated in page units
-          (points, inches, millimeters, or centimeters). If you enter an
-          allowance in map units, it will be converted to page units using the
-          reference scale. The value cannot be negative; the default value is 1
-          point.
+    INPUTS:
+     in_features (Layer):
+         The input feature layer containing symbolized features. CAD, coverage,
+         or VPF annotation, and dimensions, charts, dot-density or proportional
+         symbols, raster layers, network datasets, and 3D symbols are not
+         acceptable inputs.
+     conflict_features (Layer):
+         The feature layer containing symbolized features potentially in
+         conflict with symbolized features in the input layer.
+     conflict_distance {Linear Unit}:
+         The area where input and conflict symbology is closer than a certain
+         distance. Temporary buffers one-half the size of the conflict distance
+         value are created around symbols in both the input and conflict
+         layers. Conflict polygons will be generated where these buffers
+         overlap. Conflict distance is measured in page units (points, inches,
+         millimeters, or centimeters). If you enter a conflict distance in map
+         units, it will be converted to page units using the reference scale.
+         The default conflict distance is 0, where no buffers are created and
+         only symbols that physically overlap one another are detected as
+         conflicts.
+     line_connection_allowance {Linear Unit}:
+         The radius of a circle, centered where lines join, within which
+         graphic overlaps won't be detected. This parameter is only considered
+         when the input layer and the conflict layer are identical. Zero
+         allowance will detect a conflict at each line join (if end caps are
+         overlapping). Line connection allowance is calculated in page units
+         (points, inches, millimeters, or centimeters). If you enter an
+         allowance in map units, it will be converted to page units using the
+         reference scale. The value cannot be negative; the default value is 1
+         point.
 
-     OUTPUTS:
-      out_feature_class (Feature Class):
-          The output feature class to be created to store conflict polygons. It
-          cannot be one of the feature classes associated with the input layers."""
+    OUTPUTS:
+     out_feature_class (Feature Class):
+         The output feature class to be created to store conflict polygons. It
+         cannot be one of the feature classes associated with the input layers."""
     ...
 
-@gptooldoc('PropagateDisplacement_cartography', None)
-def PropagateDisplacement(in_features=..., displacement_features=..., adjustment_style=...): # -> conversion | int | float | complex | basestring | list[Unknown] | tuple[Unknown, ...] | dict[Unknown, Unknown]:
+@gptooldoc("PropagateDisplacement_cartography", None)
+def PropagateDisplacement(
+    in_features=..., displacement_features=..., adjustment_style=...
+):  # -> conversion | int | float | complex | basestring | list[Unknown] | tuple[Unknown, ...] | dict[Unknown, Unknown]:
     """PropagateDisplacement_cartography(in_features, displacement_features, adjustment_style)
 
-        Propagates the displacement resulting from road adjustment in the
-        Resolve Road Conflicts and Merge Divided Roads tools to adjacent
-        features to reestablish spatial relationships.
+       Propagates the displacement resulting from road adjustment in the
+       Resolve Road Conflicts and Merge Divided Roads tools to adjacent
+       features to reestablish spatial relationships.
 
-     INPUTS:
-      in_features (Feature Layer):
-          The input feature layer containing features that may be in conflict.
-          May be point, line, or polygon.
-      displacement_features (Feature Layer):
-          The displacement polygon features created by the Resolve Road
-          Conflicts or the Merge Divided Roads tools that contain the degree and
-          direction of road displacement that took place. These polygons dictate
-          the amount of displacement that will be propagated to the input
-          features.
-      adjustment_style (String):
-          Defines the type of adjustment that will be used when displacing input
-          features.
+    INPUTS:
+     in_features (Feature Layer):
+         The input feature layer containing features that may be in conflict.
+         May be point, line, or polygon.
+     displacement_features (Feature Layer):
+         The displacement polygon features created by the Resolve Road
+         Conflicts or the Merge Divided Roads tools that contain the degree and
+         direction of road displacement that took place. These polygons dictate
+         the amount of displacement that will be propagated to the input
+         features.
+     adjustment_style (String):
+         Defines the type of adjustment that will be used when displacing input
+         features.
 
-          * AUTO-The tool will decide for each input feature whether a SOLID or
-          an ELASTIC adjustment is most appropriate. In general, features with
-          orthogonal shapes will have SOLID adjustment applied, while
-          organically shaped features will have ELASTIC adjustment applied. This
-          is the default.
+         * AUTO-The tool will decide for each input feature whether a SOLID or
+         an ELASTIC adjustment is most appropriate. In general, features with
+         orthogonal shapes will have SOLID adjustment applied, while
+         organically shaped features will have ELASTIC adjustment applied. This
+         is the default.
 
-          * SOLID-The feature will be translated. All vertices will move the
-          same distance and direction. Topological errors may be introduced.
-          This option is most useful when input features have regular geometric
-          shapes.
+         * SOLID-The feature will be translated. All vertices will move the
+         same distance and direction. Topological errors may be introduced.
+         This option is most useful when input features have regular geometric
+         shapes.
 
-          * ELASTIC-The vertices of the feature may be moved independently to
-          best fit the feature to the road network. The shape of the feature may
-          be modified slightly. Topological errors are less likely to be
-          introduced. This option only applies to line and polygon input
-          features. This option is most useful for organically shaped input
-          features."""
+         * ELASTIC-The vertices of the feature may be moved independently to
+         best fit the feature to the road network. The shape of the feature may
+         be modified slightly. Topological errors are less likely to be
+         introduced. This option only applies to line and polygon input
+         features. This option is most useful for organically shaped input
+         features."""
     ...
 
-@gptooldoc('ResolveBuildingConflicts_cartography', None)
-def ResolveBuildingConflicts(in_buildings=..., invisibility_field=..., in_barriers=..., building_gap=..., minimum_size=..., hierarchy_field=...): # -> conversion | int | float | complex | basestring | list[Unknown] | tuple[Unknown, ...] | dict[Unknown, Unknown]:
+@gptooldoc("ResolveBuildingConflicts_cartography", None)
+def ResolveBuildingConflicts(
+    in_buildings=...,
+    invisibility_field=...,
+    in_barriers=...,
+    building_gap=...,
+    minimum_size=...,
+    hierarchy_field=...,
+):  # -> conversion | int | float | complex | basestring | list[Unknown] | tuple[Unknown, ...] | dict[Unknown, Unknown]:
     """ResolveBuildingConflicts_cartography(in_buildings;in_buildings..., invisibility_field, in_barriers;in_barriers..., building_gap, minimum_size, {hierarchy_field})
 
-        Resolves symbol conflicts among buildings with respect to linear
-        barrier features by moving, resizing, or hiding buildings.
+       Resolves symbol conflicts among buildings with respect to linear
+       barrier features by moving, resizing, or hiding buildings.
 
-     INPUTS:
-      in_buildings (Layer):
-          The input layers containing building features that may be in conflict
-          or smaller than allowable size. Buildings can be either points or
-          polygons. Buildings will be modified to resolve conflicts with other
-          buildings and with barrier features.When point building layers are
-          used as inputs, the Angle property of
-          the marker symbol layer must be set to a field in the feature class.
-          This field will store the rotation adjustments
-      invisibility_field (String):
-          The field that stores the invisibility values that can be used to
-          remove some buildings from display to resolve symbol conflicts.
-          Buildings with a value of 1 will be removed from display; those with a
-          value of zero will not be removed. Use a definition query on the layer
-          to display visible buildings only. No features are deleted.
-      in_barriers (Value Table):
-          The layers containing the linear or polygon features that are conflict
-          barriers for input building features. Buildings will be modified to
-          resolve conflicts between buildings and barriers. The orient value is
-          Boolean, specifying whether buildings will be oriented to the barrier
-          layer. Gap specifies the distance that buildings will move
-          toward or
-          away from the barrier layer. A unit must be entered with the value.
+    INPUTS:
+     in_buildings (Layer):
+         The input layers containing building features that may be in conflict
+         or smaller than allowable size. Buildings can be either points or
+         polygons. Buildings will be modified to resolve conflicts with other
+         buildings and with barrier features.When point building layers are
+         used as inputs, the Angle property of
+         the marker symbol layer must be set to a field in the feature class.
+         This field will store the rotation adjustments
+     invisibility_field (String):
+         The field that stores the invisibility values that can be used to
+         remove some buildings from display to resolve symbol conflicts.
+         Buildings with a value of 1 will be removed from display; those with a
+         value of zero will not be removed. Use a definition query on the layer
+         to display visible buildings only. No features are deleted.
+     in_barriers (Value Table):
+         The layers containing the linear or polygon features that are conflict
+         barriers for input building features. Buildings will be modified to
+         resolve conflicts between buildings and barriers. The orient value is
+         Boolean, specifying whether buildings will be oriented to the barrier
+         layer. Gap specifies the distance that buildings will move
+         toward or
+         away from the barrier layer. A unit must be entered with the value.
 
-          * A gap value of 0 (zero) will snap buildings directly to the edge of
-          the barrier line or outline symbology.
+         * A gap value of 0 (zero) will snap buildings directly to the edge of
+         the barrier line or outline symbology.
 
-          * A null (unspecified) gap value means that buildings will not be
-          moved toward or away from barrier lines or outlines except movement
-          required by conflict resolution.
-          If no unit is entered with the gap value (that is, 10 instead of 10
-          meters), the linear unit from the input feature's coordinate system
-          will be used.
-      building_gap (Linear Unit):
-          The minimum allowable distance between symbolized buildings at scale.
-          Buildings that are closer together will be displaced or hidden to
-          enforce this distance. The minimum allowable distance is set relative
-          to the reference scale (that is, 15 meters at 1:50,000 scale). The
-          value is 0 if the reference scale is not set.
-      minimum_size (Linear Unit):
-          The minimum allowable size of the shortest side of a rotated best-fit
-          bounding box around the symbolized building feature drawn at the
-          reference scale. Buildings with a bounding box side smaller than this
-          value will be enlarged to meet it. Resizing may occur
-          nonproportionally, resulting in a change to the building morphology.
-      hierarchy_field {String}:
-          The field that contains hierarchical ranking of feature importance in
-          which 1 is very important and larger integers reflect decreasing
-          importance. A value of 0 (zero) causes the building to retain
-          visibility, although it may be moved somewhat to resolve conflicts. If
-          this parameter is not used, feature importance will be assessed by the
-          tool based on perimeter length and proximity to barrier features."""
+         * A null (unspecified) gap value means that buildings will not be
+         moved toward or away from barrier lines or outlines except movement
+         required by conflict resolution.
+         If no unit is entered with the gap value (that is, 10 instead of 10
+         meters), the linear unit from the input feature's coordinate system
+         will be used.
+     building_gap (Linear Unit):
+         The minimum allowable distance between symbolized buildings at scale.
+         Buildings that are closer together will be displaced or hidden to
+         enforce this distance. The minimum allowable distance is set relative
+         to the reference scale (that is, 15 meters at 1:50,000 scale). The
+         value is 0 if the reference scale is not set.
+     minimum_size (Linear Unit):
+         The minimum allowable size of the shortest side of a rotated best-fit
+         bounding box around the symbolized building feature drawn at the
+         reference scale. Buildings with a bounding box side smaller than this
+         value will be enlarged to meet it. Resizing may occur
+         nonproportionally, resulting in a change to the building morphology.
+     hierarchy_field {String}:
+         The field that contains hierarchical ranking of feature importance in
+         which 1 is very important and larger integers reflect decreasing
+         importance. A value of 0 (zero) causes the building to retain
+         visibility, although it may be moved somewhat to resolve conflicts. If
+         this parameter is not used, feature importance will be assessed by the
+         tool based on perimeter length and proximity to barrier features."""
     ...
 
-@gptooldoc('ResolveRoadConflicts_cartography', None)
-def ResolveRoadConflicts(in_layers=..., hierarchy_field=..., out_displacement_features=...): # -> conversion | int | float | complex | basestring | list[Unknown] | tuple[Unknown, ...] | dict[Unknown, Unknown]:
+@gptooldoc("ResolveRoadConflicts_cartography", None)
+def ResolveRoadConflicts(
+    in_layers=..., hierarchy_field=..., out_displacement_features=...
+):  # -> conversion | int | float | complex | basestring | list[Unknown] | tuple[Unknown, ...] | dict[Unknown, Unknown]:
     """ResolveRoadConflicts_cartography(in_layers;in_layers..., hierarchy_field, {out_displacement_features})
 
-        Resolves graphic conflicts among symbolized road features by adjusting
-        portions of line segments.
+       Resolves graphic conflicts among symbolized road features by adjusting
+       portions of line segments.
 
-     INPUTS:
-      in_layers (Layer):
-          The input feature layers containing symbolized road features that may
-          be in conflict.
-      hierarchy_field (String):
-          The field that contains hierarchical ranking of feature importance in
-          which 1 is very important and larger integers reflect decreasing
-          importance. A value of 0 (zero) locks the feature to ensure that it is
-          not moved. The hierarchy field must be present and named the same for
-          all input feature classes.
+    INPUTS:
+     in_layers (Layer):
+         The input feature layers containing symbolized road features that may
+         be in conflict.
+     hierarchy_field (String):
+         The field that contains hierarchical ranking of feature importance in
+         which 1 is very important and larger integers reflect decreasing
+         importance. A value of 0 (zero) locks the feature to ensure that it is
+         not moved. The hierarchy field must be present and named the same for
+         all input feature classes.
 
-     OUTPUTS:
-      out_displacement_features {Feature Class}:
-          The output polygon features containing the degree and direction of
-          road displacement that will be used by the Propagate Displacement tool
-          to preserve spatial relationships."""
+    OUTPUTS:
+     out_displacement_features {Feature Class}:
+         The output polygon features containing the degree and direction of
+         road displacement that will be used by the Propagate Displacement tool
+         to preserve spatial relationships."""
     ...
 
-@gptooldoc('CalculateAdjacentFields_cartography', None)
-def CalculateAdjacentFields(in_features=..., in_field=...): # -> conversion | int | float | complex | basestring | list[Unknown] | tuple[Unknown, ...] | dict[Unknown, Unknown]:
+@gptooldoc("CalculateAdjacentFields_cartography", None)
+def CalculateAdjacentFields(
+    in_features=..., in_field=...
+):  # -> conversion | int | float | complex | basestring | list[Unknown] | tuple[Unknown, ...] | dict[Unknown, Unknown]:
     """CalculateAdjacentFields_cartography(in_features, in_field)
 
-        Creates fields and calculates values for the neighboring pages
-        (polygon) of a grid polygon feature class.
+       Creates fields and calculates values for the neighboring pages
+       (polygon) of a grid polygon feature class.
 
-     INPUTS:
-      in_features (Feature Layer):
-          The polygon grid index features that will be appended with adjacent
-          field data.
-      in_field (Field):
-          The field whose values will be used to populate adjacent field data."""
+    INPUTS:
+     in_features (Feature Layer):
+         The polygon grid index features that will be appended with adjacent
+         field data.
+     in_field (Field):
+         The field whose values will be used to populate adjacent field data."""
     ...
 
-@gptooldoc('CalculateCentralMeridianAndParallels_cartography', None)
-def CalculateCentralMeridianAndParallels(in_features=..., in_field=..., standard_offset=...): # -> conversion | int | float | complex | basestring | list[Unknown] | tuple[Unknown, ...] | dict[Unknown, Unknown]:
+@gptooldoc("CalculateCentralMeridianAndParallels_cartography", None)
+def CalculateCentralMeridianAndParallels(
+    in_features=..., in_field=..., standard_offset=...
+):  # -> conversion | int | float | complex | basestring | list[Unknown] | tuple[Unknown, ...] | dict[Unknown, Unknown]:
     """CalculateCentralMeridianAndParallels_cartography(in_features, in_field, {standard_offset})
 
-        Calculates the central meridian and optional standard parallels based
-        on the center point of a feature's extent; stores this coordinate
-        system as a spatial reference string in a specified text field; and
-        repeats this for a set, or subset, of features. This field can be used
-        with a spatial map series to update the data frame coordinate system
-        for each page.
+       Calculates the central meridian and optional standard parallels based
+       on the center point of a feature's extent; stores this coordinate
+       system as a spatial reference string in a specified text field; and
+       repeats this for a set, or subset, of features. This field can be used
+       with a spatial map series to update the data frame coordinate system
+       for each page.
 
-     INPUTS:
-      in_features (Feature Layer):
-          The input feature layer.
-      in_field (Field):
-          The text field where the coordinate system string will be stored.
-      standard_offset {Double}:
-          The percentage of the height of the input feature used to offset the
-          standard parallels from the center latitude of the input feature. The
-          default is 25 percent or 0.25. Negative values and values greater than
-          1 are acceptable inputs."""
+    INPUTS:
+     in_features (Feature Layer):
+         The input feature layer.
+     in_field (Field):
+         The text field where the coordinate system string will be stored.
+     standard_offset {Double}:
+         The percentage of the height of the input feature used to offset the
+         standard parallels from the center latitude of the input feature. The
+         default is 25 percent or 0.25. Negative values and values greater than
+         1 are acceptable inputs."""
     ...
 
-@gptooldoc('CalculateGridConvergenceAngle_cartography', None)
-def CalculateGridConvergenceAngle(in_features=..., angle_field=..., rotation_method=..., coordinate_sys_field=...): # -> conversion | int | float | complex | basestring | list[Unknown] | tuple[Unknown, ...] | dict[Unknown, Unknown]:
+@gptooldoc("CalculateGridConvergenceAngle_cartography", None)
+def CalculateGridConvergenceAngle(
+    in_features=..., angle_field=..., rotation_method=..., coordinate_sys_field=...
+):  # -> conversion | int | float | complex | basestring | list[Unknown] | tuple[Unknown, ...] | dict[Unknown, Unknown]:
     """CalculateGridConvergenceAngle_cartography(in_features, angle_field, {rotation_method}, {coordinate_sys_field})
 
-        Calculates the rotation angle for true north based on the center point
-        of each feature in a feature class and populates this value in a
-        specified field. This field can be used in conjunction with a spatial
-        map series to rotate each map to true north.
+       Calculates the rotation angle for true north based on the center point
+       of each feature in a feature class and populates this value in a
+       specified field. This field can be used in conjunction with a spatial
+       map series to rotate each map to true north.
 
-     INPUTS:
-      in_features (Feature Layer):
-          The input feature class (points, multipoints, lines, and polygons).
-      angle_field (Field):
-          The existing field that will be populated with the true north
-          calculation value in decimal degrees.
-      rotation_method {String}:
-          Specifies the method used to calculate the rotation value.
+    INPUTS:
+     in_features (Feature Layer):
+         The input feature class (points, multipoints, lines, and polygons).
+     angle_field (Field):
+         The existing field that will be populated with the true north
+         calculation value in decimal degrees.
+     rotation_method {String}:
+         Specifies the method used to calculate the rotation value.
 
-          * GEOGRAPHIC-The angle is calculated clockwise with 0 at the top. This
-          is the default.
+         * GEOGRAPHIC-The angle is calculated clockwise with 0 at the top. This
+         is the default.
 
-          * ARITHMETIC-The angle is calculated counterclockwise with 0 at the
-          right.
+         * ARITHMETIC-The angle is calculated counterclockwise with 0 at the
+         right.
 
-          * GRAPHIC-The angle is calculated counterclockwise with 0 at the top.
-      coordinate_sys_field {Field}:
-          The field containing a projection engine string for a projected
-          coordinate system to be used for angle calculation. The angle
-          calculation for each feature will be based on the projected coordinate
-          system projection engine string for the specific feature. In cases of
-          an invalid value, the tool will use the cartographic coordinate system
-          specified in the Cartography environment settings. The default is
-          none, or no field specified. When no field is specified, the projected
-          coordinate system used for calculation will be taken from the
-          Cartography environment settings."""
+         * GRAPHIC-The angle is calculated counterclockwise with 0 at the top.
+     coordinate_sys_field {Field}:
+         The field containing a projection engine string for a projected
+         coordinate system to be used for angle calculation. The angle
+         calculation for each feature will be based on the projected coordinate
+         system projection engine string for the specific feature. In cases of
+         an invalid value, the tool will use the cartographic coordinate system
+         specified in the Cartography environment settings. The default is
+         none, or no field specified. When no field is specified, the projected
+         coordinate system used for calculation will be taken from the
+         Cartography environment settings."""
     ...
 
-@gptooldoc('CalculateUTMZone_cartography', None)
-def CalculateUTMZone(in_features=..., in_field=...): # -> conversion | int | float | complex | basestring | list[Unknown] | tuple[Unknown, ...] | dict[Unknown, Unknown]:
+@gptooldoc("CalculateUTMZone_cartography", None)
+def CalculateUTMZone(
+    in_features=..., in_field=...
+):  # -> conversion | int | float | complex | basestring | list[Unknown] | tuple[Unknown, ...] | dict[Unknown, Unknown]:
     """CalculateUTMZone_cartography(in_features, in_field)
 
-        Calculates the UTM zone of each feature based on the center point and
-        stores this spatial reference string in a specified field. This field
-        can be used with a spatial map series to update the spatial reference
-        to the correct UTM zone for each map.
+       Calculates the UTM zone of each feature based on the center point and
+       stores this spatial reference string in a specified field. This field
+       can be used with a spatial map series to update the spatial reference
+       to the correct UTM zone for each map.
 
-     INPUTS:
-      in_features (Feature Layer):
-          The input feature layer.
-      in_field (Field):
-          The string field that stores the spatial reference string for the
-          coordinate system. The field should have sufficient length (more than
-          600 characters) to hold the spatial reference string."""
+    INPUTS:
+     in_features (Feature Layer):
+         The input feature layer.
+     in_field (Field):
+         The string field that stores the spatial reference string for the
+         coordinate system. The field should have sufficient length (more than
+         600 characters) to hold the spatial reference string."""
     ...
 
-@gptooldoc('GridIndexFeatures_cartography', None)
-def GridIndexFeatures(out_feature_class=..., in_features=..., intersect_feature=..., use_page_unit=..., scale=..., polygon_width=..., polygon_height=..., origin_coord=..., number_rows=..., number_columns=..., starting_page_number=..., label_from_origin=...): # -> conversion | int | float | complex | basestring | list[Unknown] | tuple[Unknown, ...] | dict[Unknown, Unknown]:
+@gptooldoc("GridIndexFeatures_cartography", None)
+def GridIndexFeatures(
+    out_feature_class=...,
+    in_features=...,
+    intersect_feature=...,
+    use_page_unit=...,
+    scale=...,
+    polygon_width=...,
+    polygon_height=...,
+    origin_coord=...,
+    number_rows=...,
+    number_columns=...,
+    starting_page_number=...,
+    label_from_origin=...,
+):  # -> conversion | int | float | complex | basestring | list[Unknown] | tuple[Unknown, ...] | dict[Unknown, Unknown]:
     """GridIndexFeatures_cartography(out_feature_class, {in_features;in_features...}, {intersect_feature}, {use_page_unit}, {scale}, {polygon_width}, {polygon_height}, {origin_coord}, {number_rows}, {number_columns}, {starting_page_number}, {label_from_origin})
 
-        Creates a grid of rectangular polygon features that can be used as an
-        index to specify pages in a spatial map series. A grid can be created
-        that includes only polygon features that intersect another feature
-        layer.
+       Creates a grid of rectangular polygon features that can be used as an
+       index to specify pages in a spatial map series. A grid can be created
+       that includes only polygon features that intersect another feature
+       layer.
 
-     INPUTS:
-      in_features {Feature Layer / Raster Layer}:
-          The input features to be used to define the extent of the polygon grid
-          that will be created.
-      intersect_feature {Boolean}:
-          Limits the output grid feature class to areas that intersect input
-          feature layers or datasets. The intersection of input features will be
-          used to create index features.
+    INPUTS:
+     in_features {Feature Layer / Raster Layer}:
+         The input features to be used to define the extent of the polygon grid
+         that will be created.
+     intersect_feature {Boolean}:
+         Limits the output grid feature class to areas that intersect input
+         feature layers or datasets. The intersection of input features will be
+         used to create index features.
 
-          * INTERSECTFEATURE-Limits the output grid feature class to areas that
-          intersect input feature layers or datasets. When input features are
-          specified, this is the default.
+         * INTERSECTFEATURE-Limits the output grid feature class to areas that
+         intersect input feature layers or datasets. When input features are
+         specified, this is the default.
 
-          * NO_INTERSECTFEATURE-An output grid feature class is created using
-          specified coordinates, rows, and columns.
-      use_page_unit {Boolean}:
-          Specifies whether index polygon size input is in page units.
+         * NO_INTERSECTFEATURE-An output grid feature class is created using
+         specified coordinates, rows, and columns.
+     use_page_unit {Boolean}:
+         Specifies whether index polygon size input is in page units.
 
-          * USEPAGEUNIT-Index polygon height and width are calculated in page
-          units.
+         * USEPAGEUNIT-Index polygon height and width are calculated in page
+         units.
 
-          * NO_USEPAGEUNIT-Index polygon height and width are calculated in map
-          units. This is the default.
-      scale {Long}:
-          The map scale. The scale must be specified if the index polygon height
-          and width are to be calculated in page units. If the tool is used
-          outside an active ArcGIS Pro session, the default scale value is 1.
-      polygon_width {Linear Unit}:
-          The width of the index polygon specified in either map or page units.
-          If page units are used, the default value is 1 inch. If map units are
-          used, the default value is 1 degree.
-      polygon_height {Linear Unit}:
-          The height of the index polygon specified in either map or page units.
-          If page units are used, the default value is 1 inch. If map units are
-          used, the default value is 1 degree.
-      origin_coord {Point}:
-          The coordinate value for the lower left origin of the output grid
-          feature class. If input features are specified, the default value is
-          determined by the extent of the union of extents for these features.
-          If there are no input features specified, the default coordinates are
-          0 and 0.
-      number_rows {Long}:
-          The number of rows to create in the y direction from the point of
-          origin. The default is 10.
-      number_columns {Long}:
-          The number of columns to create in the x direction from the point of
-          origin. The default is 10.
-      starting_page_number {Long}:
-          Each grid index feature is assigned a sequential page number starting
-          with a specified starting page number. The default is 1.
-      label_from_origin {Boolean}:
-          Specifies where page numbers (labels) begin.
+         * NO_USEPAGEUNIT-Index polygon height and width are calculated in map
+         units. This is the default.
+     scale {Long}:
+         The map scale. The scale must be specified if the index polygon height
+         and width are to be calculated in page units. If the tool is used
+         outside an active ArcGIS Pro session, the default scale value is 1.
+     polygon_width {Linear Unit}:
+         The width of the index polygon specified in either map or page units.
+         If page units are used, the default value is 1 inch. If map units are
+         used, the default value is 1 degree.
+     polygon_height {Linear Unit}:
+         The height of the index polygon specified in either map or page units.
+         If page units are used, the default value is 1 inch. If map units are
+         used, the default value is 1 degree.
+     origin_coord {Point}:
+         The coordinate value for the lower left origin of the output grid
+         feature class. If input features are specified, the default value is
+         determined by the extent of the union of extents for these features.
+         If there are no input features specified, the default coordinates are
+         0 and 0.
+     number_rows {Long}:
+         The number of rows to create in the y direction from the point of
+         origin. The default is 10.
+     number_columns {Long}:
+         The number of columns to create in the x direction from the point of
+         origin. The default is 10.
+     starting_page_number {Long}:
+         Each grid index feature is assigned a sequential page number starting
+         with a specified starting page number. The default is 1.
+     label_from_origin {Boolean}:
+         Specifies where page numbers (labels) begin.
 
-          * LABELFROMORIGIN-Page numbers (labels) begin with the polygon feature
-          in the lower left corner of the output grid.
+         * LABELFROMORIGIN-Page numbers (labels) begin with the polygon feature
+         in the lower left corner of the output grid.
 
-          * NO_LABELFROMORIGIN-Page numbers (labels) begin with the polygon
-          feature in the upper left corner of the output grid. This is the
-          default.
+         * NO_LABELFROMORIGIN-Page numbers (labels) begin with the polygon
+         feature in the upper left corner of the output grid. This is the
+         default.
 
-     OUTPUTS:
-      out_feature_class (Feature Class):
-          The resulting feature class of polygon index features.The coordinate
-          system of the output feature class is determined in the
-          following order:
+    OUTPUTS:
+     out_feature_class (Feature Class):
+         The resulting feature class of polygon index features.The coordinate
+         system of the output feature class is determined in the
+         following order:
 
-          * If a coordinate system is specified by the Output Coordinate System
-          environment, the output feature class will use this coordinate system.
+         * If a coordinate system is specified by the Output Coordinate System
+         environment, the output feature class will use this coordinate system.
 
-          * If a coordinate system is not specified by the Output Coordinate
-          System environment, the output feature class will use the coordinate
-          system of the active map (ArcGIS Pro is open).
+         * If a coordinate system is not specified by the Output Coordinate
+         System environment, the output feature class will use the coordinate
+         system of the active map (ArcGIS Pro is open).
 
-          * If a coordinate system is not specified by the Output Coordinate
-          System environment, and there is no active map (ArcGIS Pro is not
-          open), the output feature class will use the coordinate system of the
-          first input feature.
+         * If a coordinate system is not specified by the Output Coordinate
+         System environment, and there is no active map (ArcGIS Pro is not
+         open), the output feature class will use the coordinate system of the
+         first input feature.
 
-          * If a coordinate system is not specified by the Output Coordinate
-          System environment, there is no active map (ArcGIS Pro is not open),
-          and there are no specified input features, the coordinate system of
-          the output feature class will be unknown."""
+         * If a coordinate system is not specified by the Output Coordinate
+         System environment, there is no active map (ArcGIS Pro is not open),
+         and there are no specified input features, the coordinate system of
+         the output feature class will be unknown."""
     ...
 
-@gptooldoc('StripMapIndexFeatures_cartography', None)
-def StripMapIndexFeatures(in_features=..., out_feature_class=..., use_page_unit=..., scale=..., length_along_line=..., length_perpendicular_to_line=..., page_orientation=..., overlap_percentage=..., starting_page_number=..., direction_type=...): # -> conversion | int | float | complex | basestring | list[Unknown] | tuple[Unknown, ...] | dict[Unknown, Unknown]:
+@gptooldoc("StripMapIndexFeatures_cartography", None)
+def StripMapIndexFeatures(
+    in_features=...,
+    out_feature_class=...,
+    use_page_unit=...,
+    scale=...,
+    length_along_line=...,
+    length_perpendicular_to_line=...,
+    page_orientation=...,
+    overlap_percentage=...,
+    starting_page_number=...,
+    direction_type=...,
+):  # -> conversion | int | float | complex | basestring | list[Unknown] | tuple[Unknown, ...] | dict[Unknown, Unknown]:
     """StripMapIndexFeatures_cartography(in_features, out_feature_class, {use_page_unit}, {scale}, {length_along_line}, {length_perpendicular_to_line}, {page_orientation}, {overlap_percentage}, {starting_page_number}, {direction_type})
 
-        Creates a series of rectangular polygons, or index features, that
-        follow a single linear feature or a group of linear features. These
-        index features can be used with spatial map series to define pages in
-        a strip map or a set of maps that follow a linear feature. The
-        resulting index features contain attributes that can be used to rotate
-        and orient the map on the page and determine which index features, or
-        pages, are next to the current page (to the left and right or to the
-        top and bottom).
+       Creates a series of rectangular polygons, or index features, that
+       follow a single linear feature or a group of linear features. These
+       index features can be used with spatial map series to define pages in
+       a strip map or a set of maps that follow a linear feature. The
+       resulting index features contain attributes that can be used to rotate
+       and orient the map on the page and determine which index features, or
+       pages, are next to the current page (to the left and right or to the
+       top and bottom).
 
-     INPUTS:
-      in_features (Feature Layer):
-          The input polyline features defining the path of the strip map index
-          features.
-      use_page_unit {Boolean}:
-          Specifies whether index feature size input is in page units.
+    INPUTS:
+     in_features (Feature Layer):
+         The input polyline features defining the path of the strip map index
+         features.
+     use_page_unit {Boolean}:
+         Specifies whether index feature size input is in page units.
 
-          * USEPAGEUNIT-Index polygon height and width are calculated in page
-          units.
+         * USEPAGEUNIT-Index polygon height and width are calculated in page
+         units.
 
-          * NO_USEPAGEUNIT-Index polygon height and width are calculated in map
-          units. This is the default.
-      scale {Long}:
-          Map scale must be specified if index feature lengths (along the line
-          and perpendicular to the line) are to be calculated in page units. If
-          you're using ArcGIS Pro, the default value will be the scale of the
-          active data frame; otherwise, the default will be 1.
-      length_along_line {Linear Unit}:
-          The length of the polygon index feature along the input line feature
-          specified in either map or page units. The default value is determined
-          by the spatial reference of the input line feature or features. This
-          value will be 1/100 of the input feature class extent along the x
-          axis.
-      length_perpendicular_to_line {Linear Unit}:
-          The length of the polygon index feature perpendicular to the input
-          line feature specified in either map or page units. The default value
-          is determined by the spatial reference of the input line feature or
-          features. This value will be one-half the number used for the length
-          along the line.
-      page_orientation {String}:
-          Specifies the orientation of the input line features on the layout
-          page.
+         * NO_USEPAGEUNIT-Index polygon height and width are calculated in map
+         units. This is the default.
+     scale {Long}:
+         Map scale must be specified if index feature lengths (along the line
+         and perpendicular to the line) are to be calculated in page units. If
+         you're using ArcGIS Pro, the default value will be the scale of the
+         active data frame; otherwise, the default will be 1.
+     length_along_line {Linear Unit}:
+         The length of the polygon index feature along the input line feature
+         specified in either map or page units. The default value is determined
+         by the spatial reference of the input line feature or features. This
+         value will be 1/100 of the input feature class extent along the x
+         axis.
+     length_perpendicular_to_line {Linear Unit}:
+         The length of the polygon index feature perpendicular to the input
+         line feature specified in either map or page units. The default value
+         is determined by the spatial reference of the input line feature or
+         features. This value will be one-half the number used for the length
+         along the line.
+     page_orientation {String}:
+         Specifies the orientation of the input line features on the layout
+         page.
 
-          * VERTICAL-The direction of the strip map series on the page is top to
-          bottom.
+         * VERTICAL-The direction of the strip map series on the page is top to
+         bottom.
 
-          * HORIZONTAL-The direction of the strip map series on the page is left
-          to right. This is the default.
-      overlap_percentage {Double}:
-          The approximate percentage of geographic overlap between an individual
-          map page and its adjoining pages in the series. The default is 10.
-      starting_page_number {Long}:
-          The page number of the starting page. Each grid index feature is
-          assigned a sequential page number beginning with the specified
-          starting page number. The default is 1.
-      direction_type {String}:
-          Specifies the initial direction of the strip maps.
+         * HORIZONTAL-The direction of the strip map series on the page is left
+         to right. This is the default.
+     overlap_percentage {Double}:
+         The approximate percentage of geographic overlap between an individual
+         map page and its adjoining pages in the series. The default is 10.
+     starting_page_number {Long}:
+         The page number of the starting page. Each grid index feature is
+         assigned a sequential page number beginning with the specified
+         starting page number. The default is 1.
+     direction_type {String}:
+         Specifies the initial direction of the strip maps.
 
-          * WE_NS-If the line's directional trend is West to East, the starting
-          point will be at the westernmost end of the line, or if the line's
-          direction trend is North to South, the starting point will be at the
-          northernmost end of the line. This is the default.
+         * WE_NS-If the line's directional trend is West to East, the starting
+         point will be at the westernmost end of the line, or if the line's
+         direction trend is North to South, the starting point will be at the
+         northernmost end of the line. This is the default.
 
-          * WE_SN-If the line's directional trend is West to East, the starting
-          point will be at the westernmost end of the line, or if the line's
-          direction trend is South to North, the starting point will be at the
-          southernmost end of the line.
+         * WE_SN-If the line's directional trend is West to East, the starting
+         point will be at the westernmost end of the line, or if the line's
+         direction trend is South to North, the starting point will be at the
+         southernmost end of the line.
 
-          * EW_NS-If the line's directional trend is East to West, the starting
-          point will be at the easternmost end of the line, or if the line's
-          direction trend is North to South, the starting point will be at the
-          northernmost end of the line.
+         * EW_NS-If the line's directional trend is East to West, the starting
+         point will be at the easternmost end of the line, or if the line's
+         direction trend is North to South, the starting point will be at the
+         northernmost end of the line.
 
-          * EW_SN-If the line's directional trend is East to West, the starting
-          point will be at the easternmost end of the line, or if the line's
-          direction trend is South to North, the starting point will be at the
-          southernmost end of the line.
+         * EW_SN-If the line's directional trend is East to West, the starting
+         point will be at the easternmost end of the line, or if the line's
+         direction trend is South to North, the starting point will be at the
+         southernmost end of the line.
 
-     OUTPUTS:
-      out_feature_class (Feature Class):
-          The output feature class of polygon index features."""
+    OUTPUTS:
+     out_feature_class (Feature Class):
+         The output feature class of polygon index features."""
     ...
 
-@gptooldoc('CulDeSacMasks_cartography', None)
-def CulDeSacMasks(input_layer=..., output_fc=..., reference_scale=..., spatial_reference=..., margin=..., attributes=...): # -> conversion | int | float | complex | basestring | list[Unknown] | tuple[Unknown, ...] | dict[Unknown, Unknown]:
+@gptooldoc("CulDeSacMasks_cartography", None)
+def CulDeSacMasks(
+    input_layer=...,
+    output_fc=...,
+    reference_scale=...,
+    spatial_reference=...,
+    margin=...,
+    attributes=...,
+):  # -> conversion | int | float | complex | basestring | list[Unknown] | tuple[Unknown, ...] | dict[Unknown, Unknown]:
     """CulDeSacMasks_cartography(input_layer, output_fc, reference_scale, spatial_reference, margin, attributes)
 
-        Creates a feature class of polygon masks from a symbolized input line
-        layer.
+       Creates a feature class of polygon masks from a symbolized input line
+       layer.
 
-     INPUTS:
-      input_layer (Layer):
-          The input line layer from which the masks will be created.
-      reference_scale (Double):
-          The reference scale used for calculating the masking geometry when
-          masks are specified in page units. This is typically the reference
-          scale of the map.
-      spatial_reference (Spatial Reference):
-          The spatial reference of the map in which the masking polygons will be
-          created. This is not the spatial reference that will be assigned to
-          the output feature class. It is the spatial reference of the map in
-          which the masking polygons will be used, since the position of
-          symbology may change when features are projected.
-      margin (Linear Unit):
-          The space in page units surrounding the symbolized input features used
-          to create the mask polygons. Typically, masking polygons are created
-          with a small margin around the symbol to improve visual appearance.
-          Margin values are specified in either page units or map units. Most of
-          the time, you will specify your margin distance value in page
-          units.The margin cannot be negative.
-      attributes (String):
-          Specifies the attributes that will be transferred from the input
-          features to the output features.
+    INPUTS:
+     input_layer (Layer):
+         The input line layer from which the masks will be created.
+     reference_scale (Double):
+         The reference scale used for calculating the masking geometry when
+         masks are specified in page units. This is typically the reference
+         scale of the map.
+     spatial_reference (Spatial Reference):
+         The spatial reference of the map in which the masking polygons will be
+         created. This is not the spatial reference that will be assigned to
+         the output feature class. It is the spatial reference of the map in
+         which the masking polygons will be used, since the position of
+         symbology may change when features are projected.
+     margin (Linear Unit):
+         The space in page units surrounding the symbolized input features used
+         to create the mask polygons. Typically, masking polygons are created
+         with a small margin around the symbol to improve visual appearance.
+         Margin values are specified in either page units or map units. Most of
+         the time, you will specify your margin distance value in page
+         units.The margin cannot be negative.
+     attributes (String):
+         Specifies the attributes that will be transferred from the input
+         features to the output features.
 
-          * ONLY_FID-Only the FID field from the input features will be
-          transferred to the output features. This is the default.
+         * ONLY_FID-Only the FID field from the input features will be
+         transferred to the output features. This is the default.
 
-          * NO_FID-All the attributes except the FID from the input features
-          will be transferred to the output features.
+         * NO_FID-All the attributes except the FID from the input features
+         will be transferred to the output features.
 
-          * ALL-All the attributes from the input features will be transferred
-          to the output features.
+         * ALL-All the attributes from the input features will be transferred
+         to the output features.
 
-     OUTPUTS:
-      output_fc (Feature Class):
-          The feature class that will contain the mask features."""
+    OUTPUTS:
+     output_fc (Feature Class):
+         The feature class that will contain the mask features."""
     ...
 
-@gptooldoc('FeatureOutlineMasks_cartography', None)
-def FeatureOutlineMasks(input_layer=..., output_fc=..., reference_scale=..., spatial_reference=..., margin=..., method=..., mask_for_non_placed_anno=..., attributes=..., preserve_small_sized_features=...): # -> conversion | int | float | complex | basestring | list[Unknown] | tuple[Unknown, ...] | dict[Unknown, Unknown]:
+@gptooldoc("FeatureOutlineMasks_cartography", None)
+def FeatureOutlineMasks(
+    input_layer=...,
+    output_fc=...,
+    reference_scale=...,
+    spatial_reference=...,
+    margin=...,
+    method=...,
+    mask_for_non_placed_anno=...,
+    attributes=...,
+    preserve_small_sized_features=...,
+):  # -> conversion | int | float | complex | basestring | list[Unknown] | tuple[Unknown, ...] | dict[Unknown, Unknown]:
     """FeatureOutlineMasks_cartography(input_layer, output_fc, reference_scale, spatial_reference, margin, method, mask_for_non_placed_anno, attributes, {preserve_small_sized_features})
 
-        Creates mask polygons at a specified distance and shape around the
-        symbolized features in the input layer.
+       Creates mask polygons at a specified distance and shape around the
+       symbolized features in the input layer.
 
-     INPUTS:
-      input_layer (Layer):
-          The symbolized input layer from which the masks will be created.
-      reference_scale (Double):
-          The reference scale that will be used for calculating the masking
-          geometry when masks are specified in page units. This is typically the
-          reference scale of the map.
-      spatial_reference (Spatial Reference):
-          The spatial reference of the map in which the masking polygons will be
-          created. This is not the spatial reference that will be assigned to
-          the output feature class. It is the spatial reference of the map in
-          which the masking polygons will be used, since the position of
-          symbology may change when features are projected.
-      margin (Linear Unit):
-          The space in page units surrounding the symbolized input features used
-          to create the mask polygons. Typically, masking polygons are created
-          with a small margin around the symbol to improve visual appearance.
-          Margin values can be specified in either page units or map units.The
-          margin cannot be negative.
-      method (String):
-          Specifies the type of masking geometry that will be created.
+    INPUTS:
+     input_layer (Layer):
+         The symbolized input layer from which the masks will be created.
+     reference_scale (Double):
+         The reference scale that will be used for calculating the masking
+         geometry when masks are specified in page units. This is typically the
+         reference scale of the map.
+     spatial_reference (Spatial Reference):
+         The spatial reference of the map in which the masking polygons will be
+         created. This is not the spatial reference that will be assigned to
+         the output feature class. It is the spatial reference of the map in
+         which the masking polygons will be used, since the position of
+         symbology may change when features are projected.
+     margin (Linear Unit):
+         The space in page units surrounding the symbolized input features used
+         to create the mask polygons. Typically, masking polygons are created
+         with a small margin around the symbol to improve visual appearance.
+         Margin values can be specified in either page units or map units.The
+         margin cannot be negative.
+     method (String):
+         Specifies the type of masking geometry that will be created.
 
-          * BOX-A polygon representing the extent of the symbolized feature will
-          be created.
+         * BOX-A polygon representing the extent of the symbolized feature will
+         be created.
 
-          * CONVEX_HULL-The convex hull of the symbolized geometry of the
-          feature will be created. This is the default.
+         * CONVEX_HULL-The convex hull of the symbolized geometry of the
+         feature will be created. This is the default.
 
-          * EXACT_SIMPLIFIED-A generalized polygon representing the exact shape
-          of the symbolized feature will be created. Polygons created with this
-          method will have a significantly smaller number of vertices compared
-          to polygons created with the EXACT option.
+         * EXACT_SIMPLIFIED-A generalized polygon representing the exact shape
+         of the symbolized feature will be created. Polygons created with this
+         method will have a significantly smaller number of vertices compared
+         to polygons created with the EXACT option.
 
-          * EXACT-A polygon representing the exact shape of the symbolized
-          feature will be created.
-      mask_for_non_placed_anno (String):
-          Specifies whether masks for unplaced annotation will be created. This
-          parameter is only used when masking geodatabase annotation layers.
+         * EXACT-A polygon representing the exact shape of the symbolized
+         feature will be created.
+     mask_for_non_placed_anno (String):
+         Specifies whether masks for unplaced annotation will be created. This
+         parameter is only used when masking geodatabase annotation layers.
 
-          * ALL_FEATURES-Masks will be created for all annotation features. This
-          is the default.
+         * ALL_FEATURES-Masks will be created for all annotation features. This
+         is the default.
 
-          * ONLY_PLACED-Masks will only be created for features with a status of
-          placed.
-      attributes (String):
-          Specifies the attributes that will be transferred from the input
-          features to the output features.
+         * ONLY_PLACED-Masks will only be created for features with a status of
+         placed.
+     attributes (String):
+         Specifies the attributes that will be transferred from the input
+         features to the output features.
 
-          * ONLY_FID-Only the FID field from the input features will be
-          transferred to the output features. This is the default.
+         * ONLY_FID-Only the FID field from the input features will be
+         transferred to the output features. This is the default.
 
-          * NO_FID-All attributes except the FID field from the input features
-          will be transferred to the output features.
+         * NO_FID-All attributes except the FID field from the input features
+         will be transferred to the output features.
 
-          * ALL-All attributes from the input features will be transferred to
-          the output features.
-      preserve_small_sized_features {Boolean}:
-          Specifies whether small mask features will be included in the output
-          feature class.
+         * ALL-All attributes from the input features will be transferred to
+         the output features.
+     preserve_small_sized_features {Boolean}:
+         Specifies whether small mask features will be included in the output
+         feature class.
 
-          * DO_NOT_PRESERVE_SMALL_SIZED_FEATURES-Small mask features will not
-          be included in the output feature class. This is the default.
+         * DO_NOT_PRESERVE_SMALL_SIZED_FEATURES-Small mask features will not
+         be included in the output feature class. This is the default.
 
-          * PRESERVE_SMALL_SIZED_FEATURES-All mask features will be included in
-          the output feature class.
+         * PRESERVE_SMALL_SIZED_FEATURES-All mask features will be included in
+         the output feature class.
 
-     OUTPUTS:
-      output_fc (Feature Class):
-          The feature class that will contain the mask features."""
+    OUTPUTS:
+     output_fc (Feature Class):
+         The feature class that will contain the mask features."""
     ...
 
-@gptooldoc('IntersectingLayersMasks_cartography', None)
-def IntersectingLayersMasks(masking_layer=..., masked_layer=..., output_fc=..., reference_scale=..., spatial_reference=..., margin=..., method=..., mask_for_non_placed_anno=..., attributes=...): # -> conversion | int | float | complex | basestring | list[Unknown] | tuple[Unknown, ...] | dict[Unknown, Unknown]:
+@gptooldoc("IntersectingLayersMasks_cartography", None)
+def IntersectingLayersMasks(
+    masking_layer=...,
+    masked_layer=...,
+    output_fc=...,
+    reference_scale=...,
+    spatial_reference=...,
+    margin=...,
+    method=...,
+    mask_for_non_placed_anno=...,
+    attributes=...,
+):  # -> conversion | int | float | complex | basestring | list[Unknown] | tuple[Unknown, ...] | dict[Unknown, Unknown]:
     """IntersectingLayersMasks_cartography(masking_layer, masked_layer, output_fc, reference_scale, spatial_reference, margin, method, mask_for_non_placed_anno, attributes)
 
-        Creates masking polygons at a specified shape and size at the
-        intersection of two symbolized input layers: the masking layer and the
-        masked layer.
+       Creates masking polygons at a specified shape and size at the
+       intersection of two symbolized input layers: the masking layer and the
+       masked layer.
 
-     INPUTS:
-      masking_layer (Layer):
-          The symbolized input layer that will intersect the masked layer to
-          create masking polygons. This is the layer that will be displayed when
-          masking is applied to the masked layer.
-      masked_layer (Layer):
-          The symbolized input layer that will be masked. This is the layer that
-          will be obscured by the masking polygons.
-      reference_scale (Double):
-          The reference scale that will be used for calculating the masking
-          geometry when masks are specified in page units. This is typically the
-          reference scale of the map.
-      spatial_reference (Spatial Reference):
-          The spatial reference of the map in which the masking polygons will be
-          created. This is not the spatial reference that will be assigned to
-          the output feature class. It is the spatial reference of the map in
-          which the masking polygons will be used, since the position of
-          symbology may change when features are projected.
-      margin (Linear Unit):
-          The space in page units surrounding the symbolized input features used
-          to create the mask polygons. Typically, masking polygons are created
-          with a small margin around the symbol to improve visual appearance.
-          Margin values can be specified in either page units or map units. Most
-          of the time margin distance values are specified in page units.The
-          margin cannot be negative.
-      method (String):
-          Specifies the type of masking geometry that will be created.
+    INPUTS:
+     masking_layer (Layer):
+         The symbolized input layer that will intersect the masked layer to
+         create masking polygons. This is the layer that will be displayed when
+         masking is applied to the masked layer.
+     masked_layer (Layer):
+         The symbolized input layer that will be masked. This is the layer that
+         will be obscured by the masking polygons.
+     reference_scale (Double):
+         The reference scale that will be used for calculating the masking
+         geometry when masks are specified in page units. This is typically the
+         reference scale of the map.
+     spatial_reference (Spatial Reference):
+         The spatial reference of the map in which the masking polygons will be
+         created. This is not the spatial reference that will be assigned to
+         the output feature class. It is the spatial reference of the map in
+         which the masking polygons will be used, since the position of
+         symbology may change when features are projected.
+     margin (Linear Unit):
+         The space in page units surrounding the symbolized input features used
+         to create the mask polygons. Typically, masking polygons are created
+         with a small margin around the symbol to improve visual appearance.
+         Margin values can be specified in either page units or map units. Most
+         of the time margin distance values are specified in page units.The
+         margin cannot be negative.
+     method (String):
+         Specifies the type of masking geometry that will be created.
 
-          * BOX-A polygon representing the extent of the symbolized feature will
-          be created.
+         * BOX-A polygon representing the extent of the symbolized feature will
+         be created.
 
-          * CONVEX_HULL-The convex hull of the symbolized geometry of the
-          feature will be created. This is the default.
+         * CONVEX_HULL-The convex hull of the symbolized geometry of the
+         feature will be created. This is the default.
 
-          * EXACT_SIMPLIFIED-A generalized polygon representing the exact shape
-          of the symbolized feature will be created. Polygons created with this
-          method will have a significantly smaller number of vertices compared
-          to polygons created with the EXACT option.
+         * EXACT_SIMPLIFIED-A generalized polygon representing the exact shape
+         of the symbolized feature will be created. Polygons created with this
+         method will have a significantly smaller number of vertices compared
+         to polygons created with the EXACT option.
 
-          * EXACT-A polygon representing the exact shape of the symbolized
-          feature will be created.
-      mask_for_non_placed_anno (String):
-          Specifies whether masks for unplaced annotation will be created. This
-          parameter is only used when masking geodatabase annotation layers.
+         * EXACT-A polygon representing the exact shape of the symbolized
+         feature will be created.
+     mask_for_non_placed_anno (String):
+         Specifies whether masks for unplaced annotation will be created. This
+         parameter is only used when masking geodatabase annotation layers.
 
-          * ALL_FEATURES-Masks will be created for all annotation features. This
-          is the default.
+         * ALL_FEATURES-Masks will be created for all annotation features. This
+         is the default.
 
-          * ONLY_PLACED-Masks will only be created for features with a status of
-          placed.
-      attributes (String):
-          Specifies the attributes that will be transferred from the input
-          features to the output features.
+         * ONLY_PLACED-Masks will only be created for features with a status of
+         placed.
+     attributes (String):
+         Specifies the attributes that will be transferred from the input
+         features to the output features.
 
-          * ONLY_FID-Only the FID field from the input features will be
-          transferred to the output features. This is the default.
+         * ONLY_FID-Only the FID field from the input features will be
+         transferred to the output features. This is the default.
 
-          * NO_FID-All the attributes except the FID from the input features
-          will be transferred to the output features.
+         * NO_FID-All the attributes except the FID from the input features
+         will be transferred to the output features.
 
-          * ALL-All the attributes from the input features will be transferred
-          to the output features.
+         * ALL-All the attributes from the input features will be transferred
+         to the output features.
 
-     OUTPUTS:
-      output_fc (Feature Class):
-          The feature class that will contain the mask features."""
+    OUTPUTS:
+     output_fc (Feature Class):
+         The feature class that will contain the mask features."""
     ...
-

@@ -49,8 +49,8 @@ def main():
             print(" | ".join(p_names))
             # Print column separators
             print("|".join(["-" * 5] * len(p_names)))
-            
-        p_values = [f'`{repr(p.value)}`' for p in parameter_properties]
+
+        p_values = [f"`{repr(p.value)}`" for p in parameter_properties]
         print("|".join(p_values))
 
 

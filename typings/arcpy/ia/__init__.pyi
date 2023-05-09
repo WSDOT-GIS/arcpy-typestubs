@@ -19,5 +19,12 @@ __all__ += __Functions.__all__
 __all__ += _ia.__all__
 __all__ += __ParameterClasses.__all__
 __all__ += raster_functions.__all__
-__all__ += ["Extent", "Point", "Raster", "RasterCollection", "PixelBlockCollection", "PixelBlock"]
+__all__ += [
+    "Extent",
+    "Point",
+    "Raster",
+    "RasterCollection",
+    "PixelBlockCollection",
+    "PixelBlock",
+]
 __all__ += ["Mensuration"]

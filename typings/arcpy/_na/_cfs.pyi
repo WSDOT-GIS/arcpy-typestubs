@@ -6,24 +6,31 @@ from enum import IntEnum
 from arcgisscripting import na as cna
 
 """Module for working with Closest Facility Solver."""
-__all__ = ["TimeOfDayUsage", "ClosestFacilityInputDataType", "ClosestFacilityOutputDataType", "ClosestFacility"]
+__all__ = [
+    "TimeOfDayUsage",
+    "ClosestFacilityInputDataType",
+    "ClosestFacilityOutputDataType",
+    "ClosestFacility",
+]
+
 class TimeOfDayUsage(IntEnum):
     """Enumeration for the various time of day usage values."""
+
     DepartureTime = ...
     ArrivalTime = ...
 
-
 class ClosestFacilityInputDataType(IntEnum):
     """Enumeration for feature class names used by the Closest Facility solver to store inputs."""
+
     Incidents = ...
     Facilities = ...
     PointBarriers = ...
     LineBarriers = ...
     PolygonBarriers = ...
 
-
 class ClosestFacilityOutputDataType(IntEnum):
     """Enumeration for feature class names used by the Closest Facility solver to store outputs."""
+
     Incidents = ...
     Facilities = ...
     Routes = ...
@@ -31,7 +38,6 @@ class ClosestFacilityOutputDataType(IntEnum):
     DirectionPoints = ...
     DirectionLines = ...
     Directions = ...
-
 
 class ClosestFacility(cna.ClosestFacility):
     """Perform closest facility analysis.
@@ -65,6 +71,7 @@ class ClosestFacility(cna.ClosestFacility):
         print(result.solverMessages())
 
     """
+
     __slots__ = ...
     def __init__(self, in_network) -> None:
         """Create a closest facility solver object based on the input network dataset.
@@ -84,6 +91,3 @@ class ClosestFacility(cna.ClosestFacility):
 
         """
         ...
-    
-
-

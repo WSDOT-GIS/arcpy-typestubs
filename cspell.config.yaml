@@ -10,7 +10,14 @@ dictionaryDefinitions:
     path: ./.cspell/custom-dictionary.txt
     addWords: true
 dictionaries:
+  - python
   - custom-dictionary
 words: []
 ignoreWords: []
 import: []
+languageSettings:
+  - allowCompoundWords: true
+    caseSensitive: false
+    enabled: true
+    languageId:
+      - python

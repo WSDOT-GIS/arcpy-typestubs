@@ -6,85 +6,65 @@ from .CIMEnum import *
 from .CIMExternal import *
 from .CIMLayer import CIMBaseLayer
 
-
 class CIMFloodSimulationObject:
     """
-      Provides access to properties of a flood simulation object.
+    Provides access to properties of a flood simulation object.
     """
-    def __init__(self, *args, **Kwargs) -> None:
-        ...
-    
 
+    def __init__(self, *args, **Kwargs) -> None: ...
 
 class CIMFloodSimulationRateRaster:
     """
-      Provides access to properties of a rate raster for flood simulation.
+    Provides access to properties of a rate raster for flood simulation.
     """
-    def __init__(self, *args, **Kwargs) -> None:
-        ...
-    
 
+    def __init__(self, *args, **Kwargs) -> None: ...
 
 class CIMFloodSimulationStorage:
     """
-      Represents storage for flood simulation data objects.
+    Represents storage for flood simulation data objects.
     """
-    def __init__(self, *args, **Kwargs) -> None:
-        ...
-    
 
+    def __init__(self, *args, **Kwargs) -> None: ...
 
 class CIMSimulationLayer(CIMBaseLayer):
     """
-      Provides access to properties of a simulation layer.
+    Provides access to properties of a simulation layer.
     """
-    def __init__(self, *args, **Kwargs) -> None:
-        ...
-    
 
+    def __init__(self, *args, **Kwargs) -> None: ...
 
 class CIMFloodSimulationBarrier(CIMFloodSimulationObject):
     """
-      Provides access to properties of a flood simulation barrier.
+    Provides access to properties of a flood simulation barrier.
     """
-    def __init__(self, *args, **Kwargs) -> None:
-        ...
-    
 
+    def __init__(self, *args, **Kwargs) -> None: ...
 
 class CIMFloodSimulationCulvert(CIMFloodSimulationObject):
     """
-      Provides access to properties of a flood simulation culvert.
+    Provides access to properties of a flood simulation culvert.
     """
-    def __init__(self, *args, **Kwargs) -> None:
-        ...
-    
 
+    def __init__(self, *args, **Kwargs) -> None: ...
 
 class CIMFloodSimulationDepthRaster(CIMFloodSimulationObject):
     """
-      Provides access to properties of a depth raster for flood simulation.
+    Provides access to properties of a depth raster for flood simulation.
     """
-    def __init__(self, *args, **Kwargs) -> None:
-        ...
-    
 
+    def __init__(self, *args, **Kwargs) -> None: ...
 
 class CIMFloodSimulationLayer(CIMSimulationLayer):
     """
-      Provides access to properties of a flood simulation layer.
+    Provides access to properties of a flood simulation layer.
     """
-    def __init__(self, *args, **Kwargs) -> None:
-        ...
-    
 
+    def __init__(self, *args, **Kwargs) -> None: ...
 
 class CIMFloodSimulationWaterSource(CIMFloodSimulationObject):
     """
-      Provides access to properties of a flood simulation water source.
+    Provides access to properties of a flood simulation water source.
     """
-    def __init__(self, *args, **Kwargs) -> None:
-        ...
-    
 
-
+    def __init__(self, *args, **Kwargs) -> None: ...

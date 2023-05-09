@@ -6,94 +6,72 @@ from .CIMEnum import *
 from .CIMExternal import *
 from .CIMCore import CIMDefinition
 
-
 class CIMLinkChartEntity:
     """
-      Represents a link chart entity.
+    Represents a link chart entity.
     """
-    def __init__(self, *args, **Kwargs) -> None:
-        ...
-    
 
+    def __init__(self, *args, **Kwargs) -> None: ...
 
 class CIMLinkChartLabelingInfo:
     """
-      Represents the link chart labeling information.
+    Represents the link chart labeling information.
     """
-    def __init__(self, *args, **Kwargs) -> None:
-        ...
-    
 
+    def __init__(self, *args, **Kwargs) -> None: ...
 
 class CIMLinkChartLinkDrawingInfo:
     """
-      Represents the link chart link drawing information.
+    Represents the link chart link drawing information.
     """
-    def __init__(self, *args, **Kwargs) -> None:
-        ...
-    
 
+    def __init__(self, *args, **Kwargs) -> None: ...
 
 class CIMLinkChartNodeDrawingInfo:
     """
-      Represents the link chart node drawing information.
+    Represents the link chart node drawing information.
     """
-    def __init__(self, *args, **Kwargs) -> None:
-        ...
-    
 
+    def __init__(self, *args, **Kwargs) -> None: ...
 
 class CIMLinkChartRelationship:
     """
-      Represents a link chart relationship.
+    Represents a link chart relationship.
     """
-    def __init__(self, *args, **Kwargs) -> None:
-        ...
-    
 
+    def __init__(self, *args, **Kwargs) -> None: ...
 
 class CIMLinkChartViewport:
     """
-      Represents the link chart viewport.
+    Represents the link chart viewport.
     """
-    def __init__(self, *args, **Kwargs) -> None:
-        ...
-    
 
+    def __init__(self, *args, **Kwargs) -> None: ...
 
 class CIMLinkChartBase(CIMDefinition):
     """
-      Represents the base definition of a link chart.
+    Represents the base definition of a link chart.
     """
-    def __init__(self, *args, **Kwargs) -> None:
-        ...
-    
 
+    def __init__(self, *args, **Kwargs) -> None: ...
 
 class CIMLinkChart(CIMLinkChartBase):
     """
-      Represents a link chart.
+    Represents a link chart.
     """
-    def __init__(self, *args, **Kwargs) -> None:
-        ...
-    
 
+    def __init__(self, *args, **Kwargs) -> None: ...
 
 class CIMLinkChartLinkLabelingInfo(CIMLinkChartLabelingInfo):
     """
-      Represents the link chart link labeling information.
+    Represents the link chart link labeling information.
     """
-    def __init__(self, *args, **Kwargs) -> None:
-        ...
-    
 
+    def __init__(self, *args, **Kwargs) -> None: ...
 
 class CIMLinkChartNodeLabelingInfo(CIMLinkChartLabelingInfo):
     """
-      Represents the link chart node labeling information.
+    Represents the link chart node labeling information.
     """
-    def __init__(self, *args, **Kwargs) -> None:
-        ...
-    
 
-
+    def __init__(self, *args, **Kwargs) -> None: ...

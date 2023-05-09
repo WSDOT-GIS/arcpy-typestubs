@@ -6,49 +6,37 @@ from .CIMEnum import *
 from .CIMExternal import *
 from .CIMDocument import CIMView
 
-
 class CIMDataEngineeringFieldStatistics:
     """
-      Contains the field statistics.
+    Contains the field statistics.
     """
-    def __init__(self, *args, **Kwargs) -> None:
-        ...
-    
 
+    def __init__(self, *args, **Kwargs) -> None: ...
 
 class CIMDataEngineeringPreviewChart:
     """
-      Provide information of a preview chart.
+    Provide information of a preview chart.
     """
-    def __init__(self, *args, **Kwargs) -> None:
-        ...
-    
 
+    def __init__(self, *args, **Kwargs) -> None: ...
 
 class CIMDataEngineeringStatisticColumn:
     """
-      Provide access to the statistic column.
+    Provide access to the statistic column.
     """
-    def __init__(self, *args, **Kwargs) -> None:
-        ...
-    
 
+    def __init__(self, *args, **Kwargs) -> None: ...
 
 class CIMDataEngineeringStatisticValue:
     """
-      Contains a statistic value.
+    Contains a statistic value.
     """
-    def __init__(self, *args, **Kwargs) -> None:
-        ...
-    
 
+    def __init__(self, *args, **Kwargs) -> None: ...
 
 class CIMDataEngineeringView(CIMView):
     """
-      Represents a data engineering statistics view.
+    Represents a data engineering statistics view.
     """
-    def __init__(self, *args, **Kwargs) -> None:
-        ...
-    
 
-
+    def __init__(self, *args, **Kwargs) -> None: ...

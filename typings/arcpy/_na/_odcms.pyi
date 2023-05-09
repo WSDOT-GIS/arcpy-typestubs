@@ -6,22 +6,27 @@ from enum import IntEnum
 from arcgisscripting import na as cna
 
 """Module for working with Origin Destination Cost Matrix Solver."""
-__all__ = ["OriginDestinationCostMatrixInputDataType", "OriginDestinationCostMatrixOutputDataType", "OriginDestinationCostMatrix"]
+__all__ = [
+    "OriginDestinationCostMatrixInputDataType",
+    "OriginDestinationCostMatrixOutputDataType",
+    "OriginDestinationCostMatrix",
+]
+
 class OriginDestinationCostMatrixInputDataType(IntEnum):
     """Enumeration for feature class names used by the Origin Destination Cost Matrix solver to store inputs."""
+
     Origins = ...
     Destinations = ...
     PointBarriers = ...
     LineBarriers = ...
     PolygonBarriers = ...
 
-
 class OriginDestinationCostMatrixOutputDataType(IntEnum):
     """Enumeration for feature class names used by the Origin Destination Cost Matrix solver to store outputs."""
+
     Origins = ...
     Destinations = ...
     Lines = ...
-
 
 class OriginDestinationCostMatrix(cna.OriginDestinationCostMatrix):
     """Perform origin destination cost matrix analysis.
@@ -55,6 +60,7 @@ class OriginDestinationCostMatrix(cna.OriginDestinationCostMatrix):
         print(result.solverMessages())
 
     """
+
     __slots__ = ...
     def __init__(self, in_network) -> None:
         """Create an origin destination cost matrix solver object based on the input network dataset.
@@ -74,6 +80,3 @@ class OriginDestinationCostMatrix(cna.OriginDestinationCostMatrix):
 
         """
         ...
-    
-
-

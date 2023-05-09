@@ -8,40 +8,30 @@ from .CIMVectorLayers import CIMDataConnection
 from .CIMSymbolizers import CIMClassBreaksRendererBase
 from .CIMLayer import CIMBaseLayer
 
-
 class CIMGAMethod:
     """
-      Represents the GA method.
+    Represents the GA method.
     """
-    def __init__(self, *args, **Kwargs) -> None:
-        ...
-    
 
+    def __init__(self, *args, **Kwargs) -> None: ...
 
 class CIMGADataConnection(CIMDataConnection):
     """
-      Represents GA data connection.
+    Represents GA data connection.
     """
-    def __init__(self, *args, **Kwargs) -> None:
-        ...
-    
 
+    def __init__(self, *args, **Kwargs) -> None: ...
 
 class CIMGAIsoRenderer(CIMClassBreaksRendererBase):
     """
-      Represents GA iso renderer.
+    Represents GA iso renderer.
     """
-    def __init__(self, *args, **Kwargs) -> None:
-        ...
-    
 
+    def __init__(self, *args, **Kwargs) -> None: ...
 
 class CIMGALayer(CIMBaseLayer):
     """
-      Represents the GA layer.
+    Represents the GA layer.
     """
-    def __init__(self, *args, **Kwargs) -> None:
-        ...
-    
 
-
+    def __init__(self, *args, **Kwargs) -> None: ...

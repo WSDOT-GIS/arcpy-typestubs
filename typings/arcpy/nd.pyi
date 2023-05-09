@@ -6,4949 +6,5563 @@ from arcpy.geoprocessing._base import gptooldoc
 
 r"""The Network Diagram toolbox provides various tools to manage diagrams
 and configure diagram templates."""
-__all__ = ['AddAngleDirectedLayout', 'AddCollapseContainerByAttributeRule', 'AddCollapseContainerRule', 'AddCompressionLayout', 'AddConnectivityAssociationsRule', 'AddDiagramFeatureCapabilityByAttributeRule', 'AddDiagramTemplate', 'AddExpandContainerByAttributeRule', 'AddExpandContainerRule', 'AddForceDirectedLayout', 'AddGridLayout', 'AddLinearDispatchLayout', 'AddMainRingLayout', 'AddMainlineTreeLayout', 'AddPartialOverlappingEdgesLayout', 'AddRadialTreeLayout', 'AddReduceEdgeByAttributeRule', 'AddReduceJunctionByAttributeRule', 'AddReduceJunctionRule', 'AddRelativeMainlineLayout', 'AddRemoveFeatureByAttributeRule', 'AddRemoveFeatureRule', 'AddReshapeDiagramEdgesLayout', 'AddSetRootJunctionByAttributeRule', 'AddSetStartingPointByAttributeRule', 'AddSmartTreeLayout', 'AddSpatialDispatchLayout', 'AddSpatialQueryRule', 'AddStartIterationRule', 'AddStopIterationRule', 'AddStructuralAttachmentsRule', 'AddTraceRule', 'AlterDiagramProperties', 'AlterDiagramTemplate', 'AppendToDiagram', 'ApplyAngleDirectedLayout', 'ApplyCompressionLayout', 'ApplyForceDirectedLayout', 'ApplyGeoPositionsLayout', 'ApplyGridLayout', 'ApplyLinearDispatchLayout', 'ApplyMainRingLayout', 'ApplyMainlineTreeLayout', 'ApplyPartialOverlappingEdgesLayout', 'ApplyRadialTreeLayout', 'ApplyRelativeMainlineLayout', 'ApplyRotateTreeLayout', 'ApplySmartTreeLayout', 'ApplySpatialDispatchLayout', 'ApplyTemplateLayouts', 'ChangeDiagramsOwner', 'CreateDiagram', 'CreateDiagramLayerDefinition', 'DeleteDiagram', 'DeleteDiagramTemplate', 'ExportDiagramContent', 'ExportDiagramLayerDefinition', 'ExportDiagramTemplateDefinitions', 'ExtendDiagram', 'GetDiagramTemplateNames', 'ImportDiagramTemplateDefinitions', 'MakeDiagramLayer', 'OverwriteDiagram', 'PurgeTemporaryDiagrams', 'ReshapeDiagramEdgesLayout', 'StoreDiagram', 'UpdateDiagram']
+__all__ = [
+    "AddAngleDirectedLayout",
+    "AddCollapseContainerByAttributeRule",
+    "AddCollapseContainerRule",
+    "AddCompressionLayout",
+    "AddConnectivityAssociationsRule",
+    "AddDiagramFeatureCapabilityByAttributeRule",
+    "AddDiagramTemplate",
+    "AddExpandContainerByAttributeRule",
+    "AddExpandContainerRule",
+    "AddForceDirectedLayout",
+    "AddGridLayout",
+    "AddLinearDispatchLayout",
+    "AddMainRingLayout",
+    "AddMainlineTreeLayout",
+    "AddPartialOverlappingEdgesLayout",
+    "AddRadialTreeLayout",
+    "AddReduceEdgeByAttributeRule",
+    "AddReduceJunctionByAttributeRule",
+    "AddReduceJunctionRule",
+    "AddRelativeMainlineLayout",
+    "AddRemoveFeatureByAttributeRule",
+    "AddRemoveFeatureRule",
+    "AddReshapeDiagramEdgesLayout",
+    "AddSetRootJunctionByAttributeRule",
+    "AddSetStartingPointByAttributeRule",
+    "AddSmartTreeLayout",
+    "AddSpatialDispatchLayout",
+    "AddSpatialQueryRule",
+    "AddStartIterationRule",
+    "AddStopIterationRule",
+    "AddStructuralAttachmentsRule",
+    "AddTraceRule",
+    "AlterDiagramProperties",
+    "AlterDiagramTemplate",
+    "AppendToDiagram",
+    "ApplyAngleDirectedLayout",
+    "ApplyCompressionLayout",
+    "ApplyForceDirectedLayout",
+    "ApplyGeoPositionsLayout",
+    "ApplyGridLayout",
+    "ApplyLinearDispatchLayout",
+    "ApplyMainRingLayout",
+    "ApplyMainlineTreeLayout",
+    "ApplyPartialOverlappingEdgesLayout",
+    "ApplyRadialTreeLayout",
+    "ApplyRelativeMainlineLayout",
+    "ApplyRotateTreeLayout",
+    "ApplySmartTreeLayout",
+    "ApplySpatialDispatchLayout",
+    "ApplyTemplateLayouts",
+    "ChangeDiagramsOwner",
+    "CreateDiagram",
+    "CreateDiagramLayerDefinition",
+    "DeleteDiagram",
+    "DeleteDiagramTemplate",
+    "ExportDiagramContent",
+    "ExportDiagramLayerDefinition",
+    "ExportDiagramTemplateDefinitions",
+    "ExtendDiagram",
+    "GetDiagramTemplateNames",
+    "ImportDiagramTemplateDefinitions",
+    "MakeDiagramLayer",
+    "OverwriteDiagram",
+    "PurgeTemporaryDiagrams",
+    "ReshapeDiagramEdgesLayout",
+    "StoreDiagram",
+    "UpdateDiagram",
+]
 __alias__ = ...
-@gptooldoc('AlterDiagramProperties_nd', None)
-def AlterDiagramProperties(in_network_diagram_layer=..., out_name=..., access_right_type=..., tags=...): # -> conversion | int | float | complex | basestring | list[Unknown] | tuple[Unknown, ...] | dict[Unknown, Unknown]:
+
+@gptooldoc("AlterDiagramProperties_nd", None)
+def AlterDiagramProperties(
+    in_network_diagram_layer=..., out_name=..., access_right_type=..., tags=...
+):  # -> conversion | int | float | complex | basestring | list[Unknown] | tuple[Unknown, ...] | dict[Unknown, Unknown]:
     """AlterDiagramProperties_nd(in_network_diagram_layer, {out_name}, {access_right_type}, {tags})
 
-        Alters properties for a stored network diagram.
+       Alters properties for a stored network diagram.
 
-     INPUTS:
-      in_network_diagram_layer (Diagram Layer):
-          The stored network diagram to alter.
-      out_name {String}:
-          The new name for the input network diagram.
-      access_right_type {String}:
-          Specifies the access right level of the input diagram.
+    INPUTS:
+     in_network_diagram_layer (Diagram Layer):
+         The stored network diagram to alter.
+     out_name {String}:
+         The new name for the input network diagram.
+     access_right_type {String}:
+         Specifies the access right level of the input diagram.
 
-          * PUBLIC-Other users will have full access to the diagram; everyone
-          can see, edit, update, and overwrite the diagram. However, no one
-          except the diagram owner and the portal utility network owner-in the
-          case of diagrams related to a utility network in an enterprise
-          geodatabase-can use the Alter Diagram Properties tool to change the
-          access right level. This is the default.
+         * PUBLIC-Other users will have full access to the diagram; everyone
+         can see, edit, update, and overwrite the diagram. However, no one
+         except the diagram owner and the portal utility network owner-in the
+         case of diagrams related to a utility network in an enterprise
+         geodatabase-can use the Alter Diagram Properties tool to change the
+         access right level. This is the default.
 
-          * PROTECTED-Other users will have read-only access to the diagram.
-          They cannot edit, update, or overwrite the diagram.
+         * PROTECTED-Other users will have read-only access to the diagram.
+         They cannot edit, update, or overwrite the diagram.
 
-          * PRIVATE-Other users will not have access to the diagram. The
-          corresponding diagram item will be hidden from other users in the Find
-          Diagrams pane.
-      tags {String}:
-          One or several tags that will help find the stored diagram. These tags
-          can be used in the Find Diagrams pane.To add several tags, use the
-          number sign (#) to separate each tag.
-          This also allows a more thorough and efficient diagram search."""
+         * PRIVATE-Other users will not have access to the diagram. The
+         corresponding diagram item will be hidden from other users in the Find
+         Diagrams pane.
+     tags {String}:
+         One or several tags that will help find the stored diagram. These tags
+         can be used in the Find Diagrams pane.To add several tags, use the
+         number sign (#) to separate each tag.
+         This also allows a more thorough and efficient diagram search."""
     ...
 
-@gptooldoc('AppendToDiagram_nd', None)
-def AppendToDiagram(in_network_diagram_layer=..., map=...): # -> conversion | int | float | complex | basestring | list[Unknown] | tuple[Unknown, ...] | dict[Unknown, Unknown]:
+@gptooldoc("AppendToDiagram_nd", None)
+def AppendToDiagram(
+    in_network_diagram_layer=..., map=...
+):  # -> conversion | int | float | complex | basestring | list[Unknown] | tuple[Unknown, ...] | dict[Unknown, Unknown]:
     """AppendToDiagram_nd(in_network_diagram_layer, map)
 
-        Appends network elements to a network diagram.
+       Appends network elements to a network diagram.
 
-     INPUTS:
-      in_network_diagram_layer (Diagram Layer):
-          The network diagram layer to which network elements will be appended.
-      map (Map):
-          The map with selected network elements to append to the network
-          diagram."""
+    INPUTS:
+     in_network_diagram_layer (Diagram Layer):
+         The network diagram layer to which network elements will be appended.
+     map (Map):
+         The map with selected network elements to append to the network
+         diagram."""
     ...
 
-@gptooldoc('ChangeDiagramsOwner_nd', None)
-def ChangeDiagramsOwner(in_diagrams=..., target_owner=..., source_owner=..., diagram_names=...): # -> conversion | int | float | complex | basestring | list[Unknown] | tuple[Unknown, ...] | dict[Unknown, Unknown]:
+@gptooldoc("ChangeDiagramsOwner_nd", None)
+def ChangeDiagramsOwner(
+    in_diagrams=..., target_owner=..., source_owner=..., diagram_names=...
+):  # -> conversion | int | float | complex | basestring | list[Unknown] | tuple[Unknown, ...] | dict[Unknown, Unknown]:
     """ChangeDiagramsOwner_nd(in_diagrams, target_owner, {source_owner}, {diagram_names;diagram_names...})
 
-        Changes ownership of stored network diagrams.
+       Changes ownership of stored network diagrams.
 
-     INPUTS:
-      in_diagrams (Utility Network / Trace Network / Utility Network Layer / Trace Network Layer / Diagram Layer):
-          The input network layer or network diagram layer related to the
-          utility network or trace network of interest with the stored network
-          diagrams whose ownership will be transferred.
-      target_owner (String):
-          The name of the user that will become the new owner of the specified
-          diagrams.
-      source_owner {String}:
-          The name of the user whose ownership of the network diagrams will be
-          changed.This parameter is only used when there are no specified
-          diagram names.
-          When diagram names are specified, it will be ignored.
-      diagram_names {String}:
-          The names of the diagrams to be processed."""
+    INPUTS:
+     in_diagrams (Utility Network / Trace Network / Utility Network Layer / Trace Network Layer / Diagram Layer):
+         The input network layer or network diagram layer related to the
+         utility network or trace network of interest with the stored network
+         diagrams whose ownership will be transferred.
+     target_owner (String):
+         The name of the user that will become the new owner of the specified
+         diagrams.
+     source_owner {String}:
+         The name of the user whose ownership of the network diagrams will be
+         changed.This parameter is only used when there are no specified
+         diagram names.
+         When diagram names are specified, it will be ignored.
+     diagram_names {String}:
+         The names of the diagrams to be processed."""
     ...
 
-@gptooldoc('CreateDiagram_nd', None)
-def CreateDiagram(in_utility_network=..., template_name=..., features=...): # -> conversion | int | float | complex | basestring | list[Unknown] | tuple[Unknown, ...] | dict[Unknown, Unknown]:
+@gptooldoc("CreateDiagram_nd", None)
+def CreateDiagram(
+    in_utility_network=..., template_name=..., features=...
+):  # -> conversion | int | float | complex | basestring | list[Unknown] | tuple[Unknown, ...] | dict[Unknown, Unknown]:
     """CreateDiagram_nd(in_utility_network, template_name, {features;features...})
 
-        Creates a temporary network diagram from network elements currently
-        selected in the active map or from layers created from a Python
-        script.
+       Creates a temporary network diagram from network elements currently
+       selected in the active map or from layers created from a Python
+       script.
 
-     INPUTS:
-      in_utility_network (Utility Network / Trace Network / Utility Network Layer / Trace Network Layer):
-          The utility network or trace network from which the diagram will be
-          created.
-      template_name (String):
-          The name of the template that will be used to create the diagram.
-      features {Feature Layer}:
-          One or more feature layers that will be used as input for diagram
-          generation."""
+    INPUTS:
+     in_utility_network (Utility Network / Trace Network / Utility Network Layer / Trace Network Layer):
+         The utility network or trace network from which the diagram will be
+         created.
+     template_name (String):
+         The name of the template that will be used to create the diagram.
+     features {Feature Layer}:
+         One or more feature layers that will be used as input for diagram
+         generation."""
     ...
 
-@gptooldoc('DeleteDiagram_nd', None)
-def DeleteDiagram(in_diagrams=..., template_names=..., diagram_names=...): # -> conversion | int | float | complex | basestring | list[Unknown] | tuple[Unknown, ...] | dict[Unknown, Unknown]:
+@gptooldoc("DeleteDiagram_nd", None)
+def DeleteDiagram(
+    in_diagrams=..., template_names=..., diagram_names=...
+):  # -> conversion | int | float | complex | basestring | list[Unknown] | tuple[Unknown, ...] | dict[Unknown, Unknown]:
     """DeleteDiagram_nd(in_diagrams, {template_names;template_names...}, {diagram_names;diagram_names...})
 
-        Deletes one or more stored network diagrams, which are optionally
-        filtered by their diagram template names, related to a given network.
+       Deletes one or more stored network diagrams, which are optionally
+       filtered by their diagram template names, related to a given network.
 
-     INPUTS:
-      in_diagrams (Utility Network / Trace Network / Utility Network Layer / Trace Network Layer / Diagram Layer):
-          The input network diagram layer to delete, or the utility network or
-          trace network layer on which the set of specified input diagram names
-          to delete are based.
-      template_names {String}:
-          The names of the templates for which the related diagrams will be
-          processed.
-      diagram_names {String}:
-          The names of the diagrams to be processed."""
+    INPUTS:
+     in_diagrams (Utility Network / Trace Network / Utility Network Layer / Trace Network Layer / Diagram Layer):
+         The input network diagram layer to delete, or the utility network or
+         trace network layer on which the set of specified input diagram names
+         to delete are based.
+     template_names {String}:
+         The names of the templates for which the related diagrams will be
+         processed.
+     diagram_names {String}:
+         The names of the diagrams to be processed."""
     ...
 
-@gptooldoc('ExportDiagramContent_nd', None)
-def ExportDiagramContent(in_utility_network=..., network_diagram_name=..., out_file=..., include_diagram_properties=..., include_geometries=..., include_attributes=..., include_aggregations=..., use_domains=...): # -> conversion | int | float | complex | basestring | list[Unknown] | tuple[Unknown, ...] | dict[Unknown, Unknown]:
+@gptooldoc("ExportDiagramContent_nd", None)
+def ExportDiagramContent(
+    in_utility_network=...,
+    network_diagram_name=...,
+    out_file=...,
+    include_diagram_properties=...,
+    include_geometries=...,
+    include_attributes=...,
+    include_aggregations=...,
+    use_domains=...,
+):  # -> conversion | int | float | complex | basestring | list[Unknown] | tuple[Unknown, ...] | dict[Unknown, Unknown]:
     """ExportDiagramContent_nd(in_utility_network, network_diagram_name, out_file, {include_diagram_properties}, {include_geometries}, {include_attributes}, {include_aggregations}, {use_domains})
 
-        Exports diagram content in a simple format (JSON) that reflects basic
-        connectivity. Additional optional information such as diagram
-        properties, diagram feature geometry, network element attributes, and
-        aggregated elements can also be exported.
+       Exports diagram content in a simple format (JSON) that reflects basic
+       connectivity. Additional optional information such as diagram
+       properties, diagram feature geometry, network element attributes, and
+       aggregated elements can also be exported.
 
-     INPUTS:
-      in_utility_network (Utility Network / Trace Network / Utility Network Layer / Trace Network Layer / Diagram Layer):
-          The utility network or trace network layer, utility network or trace
-          network data element, or network diagram layer related to the network
-          diagram to export.
-      network_diagram_name (String):
-          The name of the network diagram to export.
-      include_diagram_properties {Boolean}:
-          Specifies whether the diagram properties will be exported.
+    INPUTS:
+     in_utility_network (Utility Network / Trace Network / Utility Network Layer / Trace Network Layer / Diagram Layer):
+         The utility network or trace network layer, utility network or trace
+         network data element, or network diagram layer related to the network
+         diagram to export.
+     network_diagram_name (String):
+         The name of the network diagram to export.
+     include_diagram_properties {Boolean}:
+         Specifies whether the diagram properties will be exported.
 
-          * INCLUDE_DIAGRAM_PROPERTIES-The diagram properties (statistics,
-          creation and update dates, and so on) will be exported.
+         * INCLUDE_DIAGRAM_PROPERTIES-The diagram properties (statistics,
+         creation and update dates, and so on) will be exported.
 
-          * EXCLUDE_DIAGRAM_PROPERTIES-The diagram properties will not be
-          exported. This is the default.
-      include_geometries {Boolean}:
-          Specifies whether the geometry of the diagram features will be
-          exported.
+         * EXCLUDE_DIAGRAM_PROPERTIES-The diagram properties will not be
+         exported. This is the default.
+     include_geometries {Boolean}:
+         Specifies whether the geometry of the diagram features will be
+         exported.
 
-          * INCLUDE_GEOMETRIES-Each diagram feature will be exported with its
-          geometry.
+         * INCLUDE_GEOMETRIES-Each diagram feature will be exported with its
+         geometry.
 
-          * EXCLUDE_GEOMETRIES-Each diagram feature will be exported without its
-          geometry. This is the default.
-      include_attributes {Boolean}:
-          Specifies whether the attributes of the associated network elements
-          will be exported.
+         * EXCLUDE_GEOMETRIES-Each diagram feature will be exported without its
+         geometry. This is the default.
+     include_attributes {Boolean}:
+         Specifies whether the attributes of the associated network elements
+         will be exported.
 
-          * INCLUDE_ATTRIBUTES-The associated network element attributes will be
-          exported.
+         * INCLUDE_ATTRIBUTES-The associated network element attributes will be
+         exported.
 
-          * EXCLUDE_ATTRIBUTES-The associated network element attributes will
-          not be exported. This is the default.
-      include_aggregations {Boolean}:
-          Specifies whether each diagram feature will be exported with a list of
-          network elements it aggregates.
+         * EXCLUDE_ATTRIBUTES-The associated network element attributes will
+         not be exported. This is the default.
+     include_aggregations {Boolean}:
+         Specifies whether each diagram feature will be exported with a list of
+         network elements it aggregates.
 
-          * INCLUDE_AGGREGATIONS-Each diagram feature will be exported with a
-          list of network elements it aggregates with their asset group and
-          asset type values.
+         * INCLUDE_AGGREGATIONS-Each diagram feature will be exported with a
+         list of network elements it aggregates with their asset group and
+         asset type values.
 
-          * EXCLUDE_AGGREGATIONS-The diagram feature aggregations will not be
-          exported. This is the default.
-      use_domains {Boolean}:
-          Specifies how coded domain and subtype values will be exported. This
-          parameter is enabled when the include_attributes parameter is set to
-          INCLUDE_ATTRIBUTES or the include_aggregations parameter is set to
-          INCLUDE_AGGREGATIONS.
+         * EXCLUDE_AGGREGATIONS-The diagram feature aggregations will not be
+         exported. This is the default.
+     use_domains {Boolean}:
+         Specifies how coded domain and subtype values will be exported. This
+         parameter is enabled when the include_attributes parameter is set to
+         INCLUDE_ATTRIBUTES or the include_aggregations parameter is set to
+         INCLUDE_AGGREGATIONS.
 
-          * USE_CODED_VALUE_NAMES-Coded domain and subtype values will be
-          exported using their string descriptions rather than raw values.
+         * USE_CODED_VALUE_NAMES-Coded domain and subtype values will be
+         exported using their string descriptions rather than raw values.
 
-          * DONT_USE_CODED_VALUE_NAMES-Coded domain and subtype values will be
-          exported as raw values. This is the default.
+         * DONT_USE_CODED_VALUE_NAMES-Coded domain and subtype values will be
+         exported as raw values. This is the default.
 
-     OUTPUTS:
-      out_file (File):
-          The output .json file that will be created with the exported diagram
-          content."""
+    OUTPUTS:
+     out_file (File):
+         The output .json file that will be created with the exported diagram
+         content."""
     ...
 
-@gptooldoc('ExtendDiagram_nd', None)
-def ExtendDiagram(in_network_diagram_layer=..., ignore_traversability=..., extension_type=...): # -> conversion | int | float | complex | basestring | list[Unknown] | tuple[Unknown, ...] | dict[Unknown, Unknown]:
+@gptooldoc("ExtendDiagram_nd", None)
+def ExtendDiagram(
+    in_network_diagram_layer=..., ignore_traversability=..., extension_type=...
+):  # -> conversion | int | float | complex | basestring | list[Unknown] | tuple[Unknown, ...] | dict[Unknown, Unknown]:
     """ExtendDiagram_nd(in_network_diagram_layer, {ignore_traversability}, {extension_type})
 
-        Extends a network diagram one network element level based on network
-        connectivity or traversability or on containment or structural
-        attachment associations.
+       Extends a network diagram one network element level based on network
+       connectivity or traversability or on containment or structural
+       attachment associations.
 
-     INPUTS:
-      in_network_diagram_layer (Diagram Layer):
-          The network diagram to extend.
-      ignore_traversability {Boolean}:
-          Specifies whether traversability or connectivity will be used
-          to extend the diagram. This parameter was deprecated at ArcGIS
-          Pro 2.2. It is systematically
-          ignored regardless of its value when the extension_type parameter is
-          specified. To maintain compatibility with models and Python scripts
-          written at ArcGIS Pro 2.1, it remains enabled when the extension_type
-          parameter is not specified.
+    INPUTS:
+     in_network_diagram_layer (Diagram Layer):
+         The network diagram to extend.
+     ignore_traversability {Boolean}:
+         Specifies whether traversability or connectivity will be used
+         to extend the diagram. This parameter was deprecated at ArcGIS
+         Pro 2.2. It is systematically
+         ignored regardless of its value when the extension_type parameter is
+         specified. To maintain compatibility with models and Python scripts
+         written at ArcGIS Pro 2.1, it remains enabled when the extension_type
+         parameter is not specified.
 
-          * IGNORE_TRAVERSABILITY-The traversability of the network will be
-          ignored. This is the default.
+         * IGNORE_TRAVERSABILITY-The traversability of the network will be
+         ignored. This is the default.
 
-          * HONOR_TRAVERSABILITY-The traversability of the network will be
-          honored.
-      extension_type {String}:
-          Specifies how the diagram will be extended.
+         * HONOR_TRAVERSABILITY-The traversability of the network will be
+         honored.
+     extension_type {String}:
+         Specifies how the diagram will be extended.
 
-          * BY_CONNECTIVITY-The network diagram will be extended one network
-          element level based on network connectivity. This is the default.
+         * BY_CONNECTIVITY-The network diagram will be extended one network
+         element level based on network connectivity. This is the default.
 
-          * BY_TRAVERSABILITY-The network diagram will be extended one network
-          element level based on network traversability.
+         * BY_TRAVERSABILITY-The network diagram will be extended one network
+         element level based on network traversability.
 
-          * BY_ATTACHMENT-The network diagram will be extended one network
-          element level based on structural attachment associations.
+         * BY_ATTACHMENT-The network diagram will be extended one network
+         element level based on structural attachment associations.
 
-          * BY_CONTAINMENT-The network diagram will be extended one network
-          element level based on containment associations."""
+         * BY_CONTAINMENT-The network diagram will be extended one network
+         element level based on containment associations."""
     ...
 
-@gptooldoc('MakeDiagramLayer_nd', None)
-def MakeDiagramLayer(in_utility_network=..., network_diagram_name=..., out_layer=...): # -> conversion | int | float | complex | basestring | list[Unknown] | tuple[Unknown, ...] | dict[Unknown, Unknown]:
+@gptooldoc("MakeDiagramLayer_nd", None)
+def MakeDiagramLayer(
+    in_utility_network=..., network_diagram_name=..., out_layer=...
+):  # -> conversion | int | float | complex | basestring | list[Unknown] | tuple[Unknown, ...] | dict[Unknown, Unknown]:
     """MakeDiagramLayer_nd(in_utility_network, network_diagram_name, out_layer)
 
-        Creates a network diagram layer from a network diagram.
+       Creates a network diagram layer from a network diagram.
 
-     INPUTS:
-      in_utility_network (Utility Network / Trace Network / Utility Network Layer / Trace Network Layer):
-          The utility network or trace network the diagram is related to.
-      network_diagram_name (String):
-          The network diagram name.
+    INPUTS:
+     in_utility_network (Utility Network / Trace Network / Utility Network Layer / Trace Network Layer):
+         The utility network or trace network the diagram is related to.
+     network_diagram_name (String):
+         The network diagram name.
 
-     OUTPUTS:
-      out_layer (Diagram Layer):
-          The name of the diagram layer that will be created.The output diagram
-          layer can be used as input to geoprocessing tools
-          that accept a diagram layer as input, including the Store Diagram,
-          Update Diagram, and Apply Smart Tree Layout tools."""
+    OUTPUTS:
+     out_layer (Diagram Layer):
+         The name of the diagram layer that will be created.The output diagram
+         layer can be used as input to geoprocessing tools
+         that accept a diagram layer as input, including the Store Diagram,
+         Update Diagram, and Apply Smart Tree Layout tools."""
     ...
 
-@gptooldoc('OverwriteDiagram_nd', None)
-def OverwriteDiagram(in_network_diagram_layer=..., map=...): # -> conversion | int | float | complex | basestring | list[Unknown] | tuple[Unknown, ...] | dict[Unknown, Unknown]:
+@gptooldoc("OverwriteDiagram_nd", None)
+def OverwriteDiagram(
+    in_network_diagram_layer=..., map=...
+):  # -> conversion | int | float | complex | basestring | list[Unknown] | tuple[Unknown, ...] | dict[Unknown, Unknown]:
     """OverwriteDiagram_nd(in_network_diagram_layer, map)
 
-        Overwrites the contents of a network diagram with the network elements
-        currently selected in the specified map. These network elements become
-        the new initial content of the diagram.
+       Overwrites the contents of a network diagram with the network elements
+       currently selected in the specified map. These network elements become
+       the new initial content of the diagram.
 
-     INPUTS:
-      in_network_diagram_layer (Diagram Layer):
-          The network diagram that will be overwritten.
-      map (Map):
-          The map referencing the set of selected network elements that will be
-          used to overwrite the input network diagram."""
+    INPUTS:
+     in_network_diagram_layer (Diagram Layer):
+         The network diagram that will be overwritten.
+     map (Map):
+         The map referencing the set of selected network elements that will be
+         used to overwrite the input network diagram."""
     ...
 
-@gptooldoc('PurgeTemporaryDiagrams_nd', None)
-def PurgeTemporaryDiagrams(in_utility_network=..., created_before=...): # -> conversion | int | float | complex | basestring | list[Unknown] | tuple[Unknown, ...] | dict[Unknown, Unknown]:
+@gptooldoc("PurgeTemporaryDiagrams_nd", None)
+def PurgeTemporaryDiagrams(
+    in_utility_network=..., created_before=...
+):  # -> conversion | int | float | complex | basestring | list[Unknown] | tuple[Unknown, ...] | dict[Unknown, Unknown]:
     """PurgeTemporaryDiagrams_nd(in_utility_network, {created_before})
 
-        Purges temporary network diagrams related to a given utility network
-        or trace network.
+       Purges temporary network diagrams related to a given utility network
+       or trace network.
 
-     INPUTS:
-      in_utility_network (Utility Network / Trace Network):
-          The utility network or trace network data element with the temporary
-          diagrams to be purged.
-      created_before {Date}:
-          The cutoff date for temporary network diagrams to be purged. All
-          temporary network diagrams created before this date will be purged.If
-          no date is specified, all temporary diagrams in the database will
-          be purged."""
+    INPUTS:
+     in_utility_network (Utility Network / Trace Network):
+         The utility network or trace network data element with the temporary
+         diagrams to be purged.
+     created_before {Date}:
+         The cutoff date for temporary network diagrams to be purged. All
+         temporary network diagrams created before this date will be purged.If
+         no date is specified, all temporary diagrams in the database will
+         be purged."""
     ...
 
-@gptooldoc('StoreDiagram_nd', None)
-def StoreDiagram(in_network_diagram_layer=..., out_name=..., access_right_type=..., tags=...): # -> conversion | int | float | complex | basestring | list[Unknown] | tuple[Unknown, ...] | dict[Unknown, Unknown]:
+@gptooldoc("StoreDiagram_nd", None)
+def StoreDiagram(
+    in_network_diagram_layer=..., out_name=..., access_right_type=..., tags=...
+):  # -> conversion | int | float | complex | basestring | list[Unknown] | tuple[Unknown, ...] | dict[Unknown, Unknown]:
     """StoreDiagram_nd(in_network_diagram_layer, out_name, {access_right_type}, {tags})
 
-        Stores a temporary network diagram in the database. Access rights and
-        tags can be assigned to control security and searchability of the
-        diagram.
+       Stores a temporary network diagram in the database. Access rights and
+       tags can be assigned to control security and searchability of the
+       diagram.
 
-     INPUTS:
-      in_network_diagram_layer (Diagram Layer):
-          The temporary network diagram layer to be stored.
-      access_right_type {String}:
-          Specifies the access right level of the input diagram.
+    INPUTS:
+     in_network_diagram_layer (Diagram Layer):
+         The temporary network diagram layer to be stored.
+     access_right_type {String}:
+         Specifies the access right level of the input diagram.
 
-          * PUBLIC-Other users will have full access to the diagram; everyone
-          can see, edit, update, and overwrite the diagram. However, no one
-          except the diagram owner and the portal utility network owner-in the
-          case of diagrams related to a utility network in an enterprise
-          geodatabase-can use the Alter Diagram Properties tool to change the
-          access right level. This is the default.
+         * PUBLIC-Other users will have full access to the diagram; everyone
+         can see, edit, update, and overwrite the diagram. However, no one
+         except the diagram owner and the portal utility network owner-in the
+         case of diagrams related to a utility network in an enterprise
+         geodatabase-can use the Alter Diagram Properties tool to change the
+         access right level. This is the default.
 
-          * PROTECTED-Other users will have read-only access to the diagram.
-          They cannot edit, update, or overwrite the diagram.
+         * PROTECTED-Other users will have read-only access to the diagram.
+         They cannot edit, update, or overwrite the diagram.
 
-          * PRIVATE-Other users will not have access to the diagram. The
-          corresponding diagram item will be hidden from other users in the Find
-          Diagrams pane.
-      tags {String}:
-          Tags help with querying the stored diagram using the Find Diagrams
-          pane.Use the # character to separate each tag and aid in efficient
-          diagram
-          searches.
+         * PRIVATE-Other users will not have access to the diagram. The
+         corresponding diagram item will be hidden from other users in the Find
+         Diagrams pane.
+     tags {String}:
+         Tags help with querying the stored diagram using the Find Diagrams
+         pane.Use the # character to separate each tag and aid in efficient
+         diagram
+         searches.
 
-     OUTPUTS:
-      out_name (Diagram Layer):
-          The name of the output network diagram."""
+    OUTPUTS:
+     out_name (Diagram Layer):
+         The name of the output network diagram."""
     ...
 
-@gptooldoc('UpdateDiagram_nd', None)
-def UpdateDiagram(in_diagrams=..., template_names=..., diagram_names=..., update_option=..., autolayout_option=...): # -> conversion | int | float | complex | basestring | list[Unknown] | tuple[Unknown, ...] | dict[Unknown, Unknown]:
+@gptooldoc("UpdateDiagram_nd", None)
+def UpdateDiagram(
+    in_diagrams=...,
+    template_names=...,
+    diagram_names=...,
+    update_option=...,
+    autolayout_option=...,
+):  # -> conversion | int | float | complex | basestring | list[Unknown] | tuple[Unknown, ...] | dict[Unknown, Unknown]:
     """UpdateDiagram_nd(in_diagrams, {template_names;template_names...}, {diagram_names;diagram_names...}, {update_option}, {autolayout_option})
 
-        Updates one or more network diagrams that are related to a given
-        utility network or trace network.
+       Updates one or more network diagrams that are related to a given
+       utility network or trace network.
 
-     INPUTS:
-      in_diagrams (Utility Network / Trace Network / Utility Network Layer / Trace Network Layer / Diagram Layer):
-          The input network diagram layer that will be updated, or the utility
-          network or trace network-on which the set of specified input diagram
-          names are based-that will be updated.
-      template_names {String}:
-          The names of the templates for which the related diagrams will be
-          processed.
-      diagram_names {String}:
-          The names of the diagrams to be processed.
-      update_option {Boolean}:
-          Specifies whether only inconsistent diagrams (the default) or all
-          diagrams regardless of their consistency state will be updated.
+    INPUTS:
+     in_diagrams (Utility Network / Trace Network / Utility Network Layer / Trace Network Layer / Diagram Layer):
+         The input network diagram layer that will be updated, or the utility
+         network or trace network-on which the set of specified input diagram
+         names are based-that will be updated.
+     template_names {String}:
+         The names of the templates for which the related diagrams will be
+         processed.
+     diagram_names {String}:
+         The names of the diagrams to be processed.
+     update_option {Boolean}:
+         Specifies whether only inconsistent diagrams (the default) or all
+         diagrams regardless of their consistency state will be updated.
 
-          * INCONSISTENT_DIAGRAMS_ONLY-Only inconsistent diagrams will be
-          updated. This is the default.
+         * INCONSISTENT_DIAGRAMS_ONLY-Only inconsistent diagrams will be
+         updated. This is the default.
 
-          * ALL_SELECTED_DIAGRAMS-Both consistent and inconsistent diagrams will
-          be updated.
-      autolayout_option {Boolean}:
-          Specifies whether automatic layouts that are configured on the
-          template on which the diagrams are based will be reapplied during the
-          update process. By default, when automatic layouts are specified on a
-          template, they are not reapplied during the update process.
+         * ALL_SELECTED_DIAGRAMS-Both consistent and inconsistent diagrams will
+         be updated.
+     autolayout_option {Boolean}:
+         Specifies whether automatic layouts that are configured on the
+         template on which the diagrams are based will be reapplied during the
+         update process. By default, when automatic layouts are specified on a
+         template, they are not reapplied during the update process.
 
-          * REAPPLY_AUTOLAYOUT-The automatic layouts that are configured on the
-          template will be reapplied to diagrams at the end of the update
-          process.
+         * REAPPLY_AUTOLAYOUT-The automatic layouts that are configured on the
+         template will be reapplied to diagrams at the end of the update
+         process.
 
-          * DO_NOT_REAPPLY_AUTOLAYOUT-None of the automatic layouts configured
-          on the template will be reapplied to diagrams during the update
-          process. This is the default."""
+         * DO_NOT_REAPPLY_AUTOLAYOUT-None of the automatic layouts configured
+         on the template will be reapplied to diagrams during the update
+         process. This is the default."""
     ...
 
-@gptooldoc('AddAngleDirectedLayout_nd', None)
-def AddAngleDirectedLayout(in_utility_network=..., template_name=..., is_active=..., are_containers_preserved=..., iterations_number=..., number_of_directions=...): # -> conversion | int | float | complex | basestring | list[Unknown] | tuple[Unknown, ...] | dict[Unknown, Unknown]:
+@gptooldoc("AddAngleDirectedLayout_nd", None)
+def AddAngleDirectedLayout(
+    in_utility_network=...,
+    template_name=...,
+    is_active=...,
+    are_containers_preserved=...,
+    iterations_number=...,
+    number_of_directions=...,
+):  # -> conversion | int | float | complex | basestring | list[Unknown] | tuple[Unknown, ...] | dict[Unknown, Unknown]:
     """AddAngleDirectedLayout_nd(in_utility_network, template_name, is_active, {are_containers_preserved}, {iterations_number}, {number_of_directions})
 
-        Adds the Angle Directed Layout algorithm to the list of layouts to be
-        automatically chained at the end of the generation of diagrams based
-        on a given template. This tool also presets the Angle Directed Layout
-        algorithm parameters for any diagram based on that template.
+       Adds the Angle Directed Layout algorithm to the list of layouts to be
+       automatically chained at the end of the generation of diagrams based
+       on a given template. This tool also presets the Angle Directed Layout
+       algorithm parameters for any diagram based on that template.
 
-     INPUTS:
-      in_utility_network (Utility Network / Trace Network):
-          The utility network or trace network containing the diagram template
-          that will be modified.
-      template_name (String):
-          The name of the diagram template that will be modified.
-      is_active (Boolean):
-          Specifies whether the layout algorithm will automatically run when
-          generating diagrams based on the specified template.
+    INPUTS:
+     in_utility_network (Utility Network / Trace Network):
+         The utility network or trace network containing the diagram template
+         that will be modified.
+     template_name (String):
+         The name of the diagram template that will be modified.
+     is_active (Boolean):
+         Specifies whether the layout algorithm will automatically run when
+         generating diagrams based on the specified template.
 
-          * ACTIVE-The added layout algorithm will automatically run during the
-          generation of any diagram that is based on the template_name parameter
-          value. This is the default.The parameter values specified for the
-          layout algorithm are used to run the layout during diagram generation.
-          They are also loaded by default when the algorithm is to be run on any
-          diagram based on the input template.
+         * ACTIVE-The added layout algorithm will automatically run during the
+         generation of any diagram that is based on the template_name parameter
+         value. This is the default.The parameter values specified for the
+         layout algorithm are used to run the layout during diagram generation.
+         They are also loaded by default when the algorithm is to be run on any
+         diagram based on the input template.
 
-          * INACTIVE-All the parameter values currently specified for the added
-          layout algorithm will be loaded by default when the algorithm is to be
-          run on any diagram based on the input template.
-      are_containers_preserved {Boolean}:
-          Specifies how the algorithm will process containers.
+         * INACTIVE-All the parameter values currently specified for the added
+         layout algorithm will be loaded by default when the algorithm is to be
+         run on any diagram based on the input template.
+     are_containers_preserved {Boolean}:
+         Specifies how the algorithm will process containers.
 
-          * PRESERVE_CONTAINERS-The layout algorithm will apply to the top
-          graph of the diagram so containers are preserved.
+         * PRESERVE_CONTAINERS-The layout algorithm will apply to the top
+         graph of the diagram so containers are preserved.
 
-          * IGNORE_CONTAINERS-The layout algorithm will apply to both content
-          and noncontent features in the diagram. This is the default.
-      iterations_number {Long}:
-          The number of iterations to process. The default is 1.
-      number_of_directions {String}:
-          The number of directions that will be used to align the diagram edges
-          and their connected junctions.
+         * IGNORE_CONTAINERS-The layout algorithm will apply to both content
+         and noncontent features in the diagram. This is the default.
+     iterations_number {Long}:
+         The number of iterations to process. The default is 1.
+     number_of_directions {String}:
+         The number of directions that will be used to align the diagram edges
+         and their connected junctions.
 
-          * TWELVE_DIRECTIONS-The edges will move so they progressively approach
-          one of the 12 axes, starting with the edge's origin junction and
-          inclined at 30, 60, 90, 120, 150, 180, 210, 240, 270, 300, 330, or 360
-          degrees.
+         * TWELVE_DIRECTIONS-The edges will move so they progressively approach
+         one of the 12 axes, starting with the edge's origin junction and
+         inclined at 30, 60, 90, 120, 150, 180, 210, 240, 270, 300, 330, or 360
+         degrees.
 
-          * EIGHT_DIRECTIONS-The edges will move so they progressively approach
-          one of the 8 axes, starting with the edge's origin junction and
-          inclined at 45, 90, 135, 180, 225, 270, 315, or 360 degrees. This is
-          the default.
+         * EIGHT_DIRECTIONS-The edges will move so they progressively approach
+         one of the 8 axes, starting with the edge's origin junction and
+         inclined at 45, 90, 135, 180, 225, 270, 315, or 360 degrees. This is
+         the default.
 
-          * FOUR_DIRECTIONS-The edges will move so they progressively approach
-          one of the 4 axes, starting with the edge's origin junction and
-          inclined at 90, 180, 270, or 360 degrees."""
+         * FOUR_DIRECTIONS-The edges will move so they progressively approach
+         one of the 4 axes, starting with the edge's origin junction and
+         inclined at 90, 180, 270, or 360 degrees."""
     ...
 
-@gptooldoc('AddCollapseContainerByAttributeRule_nd', None)
-def AddCollapseContainerByAttributeRule(in_utility_network=..., template_name=..., is_active=..., container_source=..., where_clause=..., description=..., reconnected_edges_option=...): # -> conversion | int | float | complex | basestring | list[Unknown] | tuple[Unknown, ...] | dict[Unknown, Unknown]:
+@gptooldoc("AddCollapseContainerByAttributeRule_nd", None)
+def AddCollapseContainerByAttributeRule(
+    in_utility_network=...,
+    template_name=...,
+    is_active=...,
+    container_source=...,
+    where_clause=...,
+    description=...,
+    reconnected_edges_option=...,
+):  # -> conversion | int | float | complex | basestring | list[Unknown] | tuple[Unknown, ...] | dict[Unknown, Unknown]:
     """AddCollapseContainerByAttributeRule_nd(in_utility_network, template_name, is_active, container_source, {where_clause}, {description}, {reconnected_edges_option})
 
-        Adds a diagram rule to the rule sequence specified on a diagram
-        template to automatically collapse all contents related to containers
-        during diagram building. The containers with contents to be collapsed
-        are identified using an SQL query based on their attributes.
+       Adds a diagram rule to the rule sequence specified on a diagram
+       template to automatically collapse all contents related to containers
+       during diagram building. The containers with contents to be collapsed
+       are identified using an SQL query based on their attributes.
 
-     INPUTS:
-      in_utility_network (Utility Network / Trace Network):
-          The utility network or trace network containing the diagram template
-          that will be modified.
-      template_name (String):
-          The name of the diagram template that will be modified.
-      is_active (Boolean):
-          Specifies whether the rule will be enabled when generating and
-          updating diagrams based on the specified template.
+    INPUTS:
+     in_utility_network (Utility Network / Trace Network):
+         The utility network or trace network containing the diagram template
+         that will be modified.
+     template_name (String):
+         The name of the diagram template that will be modified.
+     is_active (Boolean):
+         Specifies whether the rule will be enabled when generating and
+         updating diagrams based on the specified template.
 
-          * ACTIVE-The added rule will become enabled during the generation and
-          update of any diagrams based on the input template. This is the
-          default.
+         * ACTIVE-The added rule will become enabled during the generation and
+         update of any diagrams based on the input template. This is the
+         default.
 
-          * INACTIVE-The added rule will not become enabled during the
-          generation or update of any diagrams based on the input template.
-      container_source (Table / Feature Class):
-          The container source class or object table that references the
-          containers with the contents to be collapsed during the Collapse
-          Container rule process.
-      where_clause {SQL Expression}:
-          An SQL expression used to select the subset of containers in this
-          source class or object table with the contents to be collapsed in the
-          generated diagrams. For more information about SQL syntax, see SQL
-          reference for query expressions used in ArcGIS.
-      description {String}:
-          The description of the rule.
-      reconnected_edges_option {Boolean}:
-          Specifies whether the rule will aggregate the edges that are
-          reconnected to the collapsed junctions.
+         * INACTIVE-The added rule will not become enabled during the
+         generation or update of any diagrams based on the input template.
+     container_source (Table / Feature Class):
+         The container source class or object table that references the
+         containers with the contents to be collapsed during the Collapse
+         Container rule process.
+     where_clause {SQL Expression}:
+         An SQL expression used to select the subset of containers in this
+         source class or object table with the contents to be collapsed in the
+         generated diagrams. For more information about SQL syntax, see SQL
+         reference for query expressions used in ArcGIS.
+     description {String}:
+         The description of the rule.
+     reconnected_edges_option {Boolean}:
+         Specifies whether the rule will aggregate the edges that are
+         reconnected to the collapsed junctions.
 
-          * DONT_AGGREGATE_RECONNECTED_EDGES-Any edge connecting a content
-          junction will be kept and reconnected to the collapsed container
-          junction.
+         * DONT_AGGREGATE_RECONNECTED_EDGES-Any edge connecting a content
+         junction will be kept and reconnected to the collapsed container
+         junction.
 
-          * AGGREGATE_RECONNECTED_EDGES-Any edge connecting a content junction
-          will be replaced by a reduction edge that is reconnected to the
-          collapsed container junction. Multiple edges between two collapsed
-          junctions will be systematically aggregated under the same reduction
-          edge. This is the default."""
+         * AGGREGATE_RECONNECTED_EDGES-Any edge connecting a content junction
+         will be replaced by a reduction edge that is reconnected to the
+         collapsed container junction. Multiple edges between two collapsed
+         junctions will be systematically aggregated under the same reduction
+         edge. This is the default."""
     ...
 
-@gptooldoc('AddCollapseContainerRule_nd', None)
-def AddCollapseContainerRule(in_utility_network=..., template_name=..., is_active=..., container_type=..., inverse_source_selection=..., container_sources=..., description=..., reconnected_edges_option=...): # -> conversion | int | float | complex | basestring | list[Unknown] | tuple[Unknown, ...] | dict[Unknown, Unknown]:
+@gptooldoc("AddCollapseContainerRule_nd", None)
+def AddCollapseContainerRule(
+    in_utility_network=...,
+    template_name=...,
+    is_active=...,
+    container_type=...,
+    inverse_source_selection=...,
+    container_sources=...,
+    description=...,
+    reconnected_edges_option=...,
+):  # -> conversion | int | float | complex | basestring | list[Unknown] | tuple[Unknown, ...] | dict[Unknown, Unknown]:
     """AddCollapseContainerRule_nd(in_utility_network, template_name, is_active, container_type, inverse_source_selection, {container_sources;container_sources...}, {description}, {reconnected_edges_option})
 
-        Adds a diagram rule that automatically collapses container contents
-        during the building of diagrams based on an existing template. This
-        rule collapses the entire contents of containers in the diagrams.
+       Adds a diagram rule that automatically collapses container contents
+       during the building of diagrams based on an existing template. This
+       rule collapses the entire contents of containers in the diagrams.
 
-     INPUTS:
-      in_utility_network (Utility Network / Trace Network):
-          The utility network or trace network containing the diagram template
-          that will be modified.
-      template_name (String):
-          The name of the diagram template that will be modified.
-      is_active (Boolean):
-          Specifies whether the rule will be enabled when generating and
-          updating diagrams based on the specified template.
+    INPUTS:
+     in_utility_network (Utility Network / Trace Network):
+         The utility network or trace network containing the diagram template
+         that will be modified.
+     template_name (String):
+         The name of the diagram template that will be modified.
+     is_active (Boolean):
+         Specifies whether the rule will be enabled when generating and
+         updating diagrams based on the specified template.
 
-          * ACTIVE-The added rule will become enabled during the generation and
-          update of any diagrams based on the input template. This is the
-          default.
+         * ACTIVE-The added rule will become enabled during the generation and
+         update of any diagrams based on the input template. This is the
+         default.
 
-          * INACTIVE-The added rule will not become enabled during the
-          generation or update of any diagrams based on the input template.
-      container_type (String):
-          Specifies the geometry type of the container source class or object
-          table the rule will process.
+         * INACTIVE-The added rule will not become enabled during the
+         generation or update of any diagrams based on the input template.
+     container_type (String):
+         Specifies the geometry type of the container source class or object
+         table the rule will process.
 
-          * JUNCTIONS-The Collapse Container rule will process the junction
-          container source classes and object tables only. Only the polygon
-          container source classes, point container source classes, and
-          container junction object tables will be processed.
+         * JUNCTIONS-The Collapse Container rule will process the junction
+         container source classes and object tables only. Only the polygon
+         container source classes, point container source classes, and
+         container junction object tables will be processed.
 
-          * EDGES-The Collapse Container rule will process the edge container
-          source classes and object tables only. Only the linear container
-          source classes or container edge object tables will be processed.
+         * EDGES-The Collapse Container rule will process the edge container
+         source classes and object tables only. Only the linear container
+         source classes or container edge object tables will be processed.
 
-          * BOTH-The Collapse Container rule will process any container source
-          classes and object tables regardless of their type. Both junction and
-          edge types will be processed. This is the default.
-      inverse_source_selection (String):
-          Specifies how the rule will process the specified container source
-          classes and object tables.
+         * BOTH-The Collapse Container rule will process any container source
+         classes and object tables regardless of their type. Both junction and
+         edge types will be processed. This is the default.
+     inverse_source_selection (String):
+         Specifies how the rule will process the specified container source
+         classes and object tables.
 
-          * EXCLUDE_SOURCE_CLASSES-Containers that are based on the specified
-          source classes and object tables will not be collapsed, while other
-          containers will be collapsed. This is the default.
+         * EXCLUDE_SOURCE_CLASSES-Containers that are based on the specified
+         source classes and object tables will not be collapsed, while other
+         containers will be collapsed. This is the default.
 
-          * INCLUDE_SOURCE_CLASSES-Containers that are based on the specified
-          source classes and object tables will be collapsed.
-      container_sources {Table / Feature Class}:
-          The container source class (or classes) and object table (or tables)
-          that will be excluded or included during the Collapse Container rule
-          process.If Rule Process is set to Exclude source classes
-          (inverse_source_selection = "EXCLUDE_SOURCE_CLASSES" in Python), the
-          rule can be configured without specifying a network source class or
-          object table, in which case it will collapse contents of any container
-          source classes and object tables in the generated diagrams. However,
-          if Rule Process is set to Include source classes
-          (inverse_source_selection = "INCLUDE_SOURCE_CLASSES" in Python), the
-          container source class (or classes) or object table (or tables) to be
-          collapsed must be specified.When Rule Process is set to Exclude source
-          classes
-          (inverse_source_selection = "EXCLUDE_SOURCE_CLASSES" in Python), the
-          contents related to any container features or container objects
-          belonging to the specified classes or object tables will not be
-          collapsed in the generated diagrams, while contents related to
-          container features and container objects that don't belong to those
-          classes and object tables will be collapsed. Conversely, when Rule
-          Process is set to Include source classes (inverse_source_selection =
-          "INCLUDE_SOURCE_CLASSES" in Python), the contents related to any
-          container features and container objects belonging to the specified
-          source classes and object tables will be collapsed in the generated
-          diagrams, while contents related to container features and container
-          objects that don't belong to those source classes and object tables
-          will not be collapsed.
-      description {String}:
-          The description of the rule.
-      reconnected_edges_option {Boolean}:
-          Specifies whether the rule will aggregate the edges that are
-          reconnected to the collapsed junctions.
+         * INCLUDE_SOURCE_CLASSES-Containers that are based on the specified
+         source classes and object tables will be collapsed.
+     container_sources {Table / Feature Class}:
+         The container source class (or classes) and object table (or tables)
+         that will be excluded or included during the Collapse Container rule
+         process.If Rule Process is set to Exclude source classes
+         (inverse_source_selection = "EXCLUDE_SOURCE_CLASSES" in Python), the
+         rule can be configured without specifying a network source class or
+         object table, in which case it will collapse contents of any container
+         source classes and object tables in the generated diagrams. However,
+         if Rule Process is set to Include source classes
+         (inverse_source_selection = "INCLUDE_SOURCE_CLASSES" in Python), the
+         container source class (or classes) or object table (or tables) to be
+         collapsed must be specified.When Rule Process is set to Exclude source
+         classes
+         (inverse_source_selection = "EXCLUDE_SOURCE_CLASSES" in Python), the
+         contents related to any container features or container objects
+         belonging to the specified classes or object tables will not be
+         collapsed in the generated diagrams, while contents related to
+         container features and container objects that don't belong to those
+         classes and object tables will be collapsed. Conversely, when Rule
+         Process is set to Include source classes (inverse_source_selection =
+         "INCLUDE_SOURCE_CLASSES" in Python), the contents related to any
+         container features and container objects belonging to the specified
+         source classes and object tables will be collapsed in the generated
+         diagrams, while contents related to container features and container
+         objects that don't belong to those source classes and object tables
+         will not be collapsed.
+     description {String}:
+         The description of the rule.
+     reconnected_edges_option {Boolean}:
+         Specifies whether the rule will aggregate the edges that are
+         reconnected to the collapsed junctions.
 
-          * DONT_AGGREGATE_RECONNECTED_EDGES-Any edge connecting a content
-          junction will be kept and reconnected to the collapsed container
-          junction.
+         * DONT_AGGREGATE_RECONNECTED_EDGES-Any edge connecting a content
+         junction will be kept and reconnected to the collapsed container
+         junction.
 
-          * AGGREGATE_RECONNECTED_EDGES-Any edge connecting a content junction
-          will be replaced by a reduction edge that is reconnected to the
-          collapsed container junction. Multiple edges between two collapsed
-          junctions will be systematically aggregated under the same reduction
-          edge. This is the default."""
+         * AGGREGATE_RECONNECTED_EDGES-Any edge connecting a content junction
+         will be replaced by a reduction edge that is reconnected to the
+         collapsed container junction. Multiple edges between two collapsed
+         junctions will be systematically aggregated under the same reduction
+         edge. This is the default."""
     ...
 
-@gptooldoc('AddCompressionLayout_nd', None)
-def AddCompressionLayout(in_utility_network=..., template_name=..., is_active=..., are_containers_preserved=..., grouping_distance_absolute=..., vertices_removal_rule=...): # -> conversion | int | float | complex | basestring | list[Unknown] | tuple[Unknown, ...] | dict[Unknown, Unknown]:
+@gptooldoc("AddCompressionLayout_nd", None)
+def AddCompressionLayout(
+    in_utility_network=...,
+    template_name=...,
+    is_active=...,
+    are_containers_preserved=...,
+    grouping_distance_absolute=...,
+    vertices_removal_rule=...,
+):  # -> conversion | int | float | complex | basestring | list[Unknown] | tuple[Unknown, ...] | dict[Unknown, Unknown]:
     """AddCompressionLayout_nd(in_utility_network, template_name, is_active, {are_containers_preserved}, {grouping_distance_absolute}, {vertices_removal_rule})
 
-        Adds the Compression layout algorithm to the layout list of the input
-        diagram template so it automatically runs at the end of diagram
-        buildings. This tool also presets the Compression layout algorithm
-        parameters for any diagram based on that template.
+       Adds the Compression layout algorithm to the layout list of the input
+       diagram template so it automatically runs at the end of diagram
+       buildings. This tool also presets the Compression layout algorithm
+       parameters for any diagram based on that template.
 
-     INPUTS:
-      in_utility_network (Utility Network / Trace Network):
-          The utility network or trace network containing the diagram template
-          that will be modified.
-      template_name (String):
-          The name of the diagram template that will be modified.
-      is_active (Boolean):
-          Specifies whether the layout algorithm will automatically run when
-          generating diagrams based on the specified template.
+    INPUTS:
+     in_utility_network (Utility Network / Trace Network):
+         The utility network or trace network containing the diagram template
+         that will be modified.
+     template_name (String):
+         The name of the diagram template that will be modified.
+     is_active (Boolean):
+         Specifies whether the layout algorithm will automatically run when
+         generating diagrams based on the specified template.
 
-          * ACTIVE-The added layout algorithm will automatically run during the
-          generation of any diagram that is based on the template_name parameter
-          value. This is the default.The parameter values specified for the
-          layout algorithm are used to run the layout during diagram generation.
-          They are also loaded by default when the algorithm is to be run on any
-          diagram based on the input template.
+         * ACTIVE-The added layout algorithm will automatically run during the
+         generation of any diagram that is based on the template_name parameter
+         value. This is the default.The parameter values specified for the
+         layout algorithm are used to run the layout during diagram generation.
+         They are also loaded by default when the algorithm is to be run on any
+         diagram based on the input template.
 
-          * INACTIVE-All the parameter values currently specified for the added
-          layout algorithm will be loaded by default when the algorithm is to be
-          run on any diagram based on the input template.
-      are_containers_preserved {Boolean}:
-          Specifies how containers will be processed by the Compression layout
-          algorithm.
+         * INACTIVE-All the parameter values currently specified for the added
+         layout algorithm will be loaded by default when the algorithm is to be
+         run on any diagram based on the input template.
+     are_containers_preserved {Boolean}:
+         Specifies how containers will be processed by the Compression layout
+         algorithm.
 
-          * PRESERVE_CONTAINERS-The Compression layout algorithm will apply to
-          the top graph of the diagram so containers are preserved. This is the
-          default.
+         * PRESERVE_CONTAINERS-The Compression layout algorithm will apply to
+         the top graph of the diagram so containers are preserved. This is the
+         default.
 
-          * IGNORE_CONTAINERS-The Compression layout algorithm will apply to
-          both content and noncontent features in the diagram.
-      grouping_distance_absolute {Linear Unit}:
-          The maximum distance that will be used to determine whether two
-          connected junctions are close enough to be considered part of the same
-          junctions group. A junctions group represents many junctions that are
-          moved as a group during the layout algorithm process. The group can
-          contain both junctions and containers. To group two junctions, they
-          must also be connected in the diagram by an edge. The default is 20
-          units in the diagram's coordinate system.
-      vertices_removal_rule {String}:
-          Specifies the edge vertices that will be removed from the diagram.
+         * IGNORE_CONTAINERS-The Compression layout algorithm will apply to
+         both content and noncontent features in the diagram.
+     grouping_distance_absolute {Linear Unit}:
+         The maximum distance that will be used to determine whether two
+         connected junctions are close enough to be considered part of the same
+         junctions group. A junctions group represents many junctions that are
+         moved as a group during the layout algorithm process. The group can
+         contain both junctions and containers. To group two junctions, they
+         must also be connected in the diagram by an edge. The default is 20
+         units in the diagram's coordinate system.
+     vertices_removal_rule {String}:
+         Specifies the edge vertices that will be removed from the diagram.
 
-          * ALL-All edge vertices will be removed from the diagram.
+         * ALL-All edge vertices will be removed from the diagram.
 
-          * OUTER-Any edge vertices that are within the detected junctions'
-          groups will be maintained; edge vertices that are outside the detected
-          junctions' groups will be removed.When containers in the diagram have
-          edges that intersect the container polygons, a vertex will be added at
-          the intersection of the edge and container polygon. This is the
-          default.
+         * OUTER-Any edge vertices that are within the detected junctions'
+         groups will be maintained; edge vertices that are outside the detected
+         junctions' groups will be removed.When containers in the diagram have
+         edges that intersect the container polygons, a vertex will be added at
+         the intersection of the edge and container polygon. This is the
+         default.
 
-          * OUTER_EXCEPT_FIRST-Any edge vertices that are within the detected
-          junctions' groups will be maintained; edge vertices that are outside
-          the detected junctions' groups will be removed.When containers in the
-          diagram have edges that intersect the container polygons, the first
-          (or last) outside vertex will be preserved on edges that intersect a
-          container polygon. A vertex will be inserted at the intersection of
-          the edges and container polygons."""
+         * OUTER_EXCEPT_FIRST-Any edge vertices that are within the detected
+         junctions' groups will be maintained; edge vertices that are outside
+         the detected junctions' groups will be removed.When containers in the
+         diagram have edges that intersect the container polygons, the first
+         (or last) outside vertex will be preserved on edges that intersect a
+         container polygon. A vertex will be inserted at the intersection of
+         the edges and container polygons."""
     ...
 
-@gptooldoc('AddConnectivityAssociationsRule_nd', None)
-def AddConnectivityAssociationsRule(in_utility_network=..., template_name=..., is_active=..., description=...): # -> conversion | int | float | complex | basestring | list[Unknown] | tuple[Unknown, ...] | dict[Unknown, Unknown]:
+@gptooldoc("AddConnectivityAssociationsRule_nd", None)
+def AddConnectivityAssociationsRule(
+    in_utility_network=..., template_name=..., is_active=..., description=...
+):  # -> conversion | int | float | complex | basestring | list[Unknown] | tuple[Unknown, ...] | dict[Unknown, Unknown]:
     """AddConnectivityAssociationsRule_nd(in_utility_network, template_name, is_active, {description})
 
-        Adds a diagram rule to automatically represent connectivity
-        associations during the building of diagrams based on an existing
-        template. This rule processes connectivity associations in which both
-        the from and to junctions are currently represented in the diagrams.
+       Adds a diagram rule to automatically represent connectivity
+       associations during the building of diagrams based on an existing
+       template. This rule processes connectivity associations in which both
+       the from and to junctions are currently represented in the diagrams.
 
-     INPUTS:
-      in_utility_network (Utility Network / Trace Network):
-          The utility network or trace network containing the diagram template
-          that will be modified.
-      template_name (String):
-          The name of the diagram template that will be modified.
-      is_active (Boolean):
-          Specifies whether the rule will be enabled when generating and
-          updating diagrams based on the specified template.
+    INPUTS:
+     in_utility_network (Utility Network / Trace Network):
+         The utility network or trace network containing the diagram template
+         that will be modified.
+     template_name (String):
+         The name of the diagram template that will be modified.
+     is_active (Boolean):
+         Specifies whether the rule will be enabled when generating and
+         updating diagrams based on the specified template.
 
-          * ACTIVE-The added rule will become enabled during the generation and
-          update of any diagrams based on the input template. This is the
-          default.
+         * ACTIVE-The added rule will become enabled during the generation and
+         update of any diagrams based on the input template. This is the
+         default.
 
-          * INACTIVE-The added rule will not become enabled during the
-          generation or update of any diagrams based on the input template.
-      description {String}:
-          The description of the rule."""
+         * INACTIVE-The added rule will not become enabled during the
+         generation or update of any diagrams based on the input template.
+     description {String}:
+         The description of the rule."""
     ...
 
-@gptooldoc('AddDiagramFeatureCapabilityByAttributeRule_nd', None)
-def AddDiagramFeatureCapabilityByAttributeRule(in_utility_network=..., template_name=..., is_active=..., network_source=..., where_clause=..., capability=..., description=...): # -> conversion | int | float | complex | basestring | list[Unknown] | tuple[Unknown, ...] | dict[Unknown, Unknown]:
+@gptooldoc("AddDiagramFeatureCapabilityByAttributeRule_nd", None)
+def AddDiagramFeatureCapabilityByAttributeRule(
+    in_utility_network=...,
+    template_name=...,
+    is_active=...,
+    network_source=...,
+    where_clause=...,
+    capability=...,
+    description=...,
+):  # -> conversion | int | float | complex | basestring | list[Unknown] | tuple[Unknown, ...] | dict[Unknown, Unknown]:
     """AddDiagramFeatureCapabilityByAttributeRule_nd(in_utility_network, template_name, is_active, network_source, where_clause, capability, {description})
 
-        Adds a diagram rule to a diagram template to assign a particular
-        capability on diagram features currently represented in the diagram.
-        This capability is used by other rules run later in the rule sequence.
-        The diagram features that will be processed are queried from a network
-        source class or object table by attributes.
+       Adds a diagram rule to a diagram template to assign a particular
+       capability on diagram features currently represented in the diagram.
+       This capability is used by other rules run later in the rule sequence.
+       The diagram features that will be processed are queried from a network
+       source class or object table by attributes.
 
-     INPUTS:
-      in_utility_network (Utility Network / Trace Network):
-          The utility network or trace network containing the diagram template
-          that will be modified.
-      template_name (String):
-          The name of the diagram template that will be modified.
-      is_active (Boolean):
-          Specifies whether the rule will be enabled when generating and
-          updating diagrams based on the specified template.
+    INPUTS:
+     in_utility_network (Utility Network / Trace Network):
+         The utility network or trace network containing the diagram template
+         that will be modified.
+     template_name (String):
+         The name of the diagram template that will be modified.
+     is_active (Boolean):
+         Specifies whether the rule will be enabled when generating and
+         updating diagrams based on the specified template.
 
-          * ACTIVE-The added rule will become enabled during the generation and
-          update of any diagrams based on the input template. This is the
-          default.
+         * ACTIVE-The added rule will become enabled during the generation and
+         update of any diagrams based on the input template. This is the
+         default.
 
-          * INACTIVE-The added rule will not become enabled during the
-          generation or update of any diagrams based on the input template.
-      network_source (Table / Feature Class):
-          The network source class or object table that references the features
-          or objects associated with the diagram features to which the
-          particular capability will be assigned.
-      where_clause (SQL Expression):
-          An SQL expression used to filter out the features or objects of
-          interest among the specified network source feature class or objet
-          table. For more information about SQL syntax, see SQL reference for
-          query expressions used in ArcGIS.
-      capability (String):
-          Specifies the capability that will be assigned to the queried diagram
-          features at the end of the rule operation. This capability will be
-          used by other rules run later in the rule sequence.
+         * INACTIVE-The added rule will not become enabled during the
+         generation or update of any diagrams based on the input template.
+     network_source (Table / Feature Class):
+         The network source class or object table that references the features
+         or objects associated with the diagram features to which the
+         particular capability will be assigned.
+     where_clause (SQL Expression):
+         An SQL expression used to filter out the features or objects of
+         interest among the specified network source feature class or objet
+         table. For more information about SQL syntax, see SQL reference for
+         query expressions used in ArcGIS.
+     capability (String):
+         Specifies the capability that will be assigned to the queried diagram
+         features at the end of the rule operation. This capability will be
+         used by other rules run later in the rule sequence.
 
-          * PREVENT_TO_COLLAPSE_CONTAINER-All queried features will be flagged
-          to prevent their related container from being collapsed by Collapse
-          Container rules run later in the rule sequence. This is the default.
+         * PREVENT_TO_COLLAPSE_CONTAINER-All queried features will be flagged
+         to prevent their related container from being collapsed by Collapse
+         Container rules run later in the rule sequence. This is the default.
 
-          * ALLOW_TO_COLLAPSE_CONTAINER-All queried features will be flagged to
-          allow their related container to be collapsed by Collapse Container
-          rules run later in the rule sequence.
+         * ALLOW_TO_COLLAPSE_CONTAINER-All queried features will be flagged to
+         allow their related container to be collapsed by Collapse Container
+         rules run later in the rule sequence.
 
-          * PREVENT_TO_REDUCE_JUNCTION-All queried junctions will be flagged to
-          prevent reduction by Reduce Junction rules run later in the rule
-          sequence.
+         * PREVENT_TO_REDUCE_JUNCTION-All queried junctions will be flagged to
+         prevent reduction by Reduce Junction rules run later in the rule
+         sequence.
 
-          * ALLOW_TO_REDUCE_JUNCTION-All queried junctions will be flagged to
-          allow reduction by Reduce Junction rules run later in the rule
-          sequence.
-      description {String}:
-          The description of the rule."""
+         * ALLOW_TO_REDUCE_JUNCTION-All queried junctions will be flagged to
+         allow reduction by Reduce Junction rules run later in the rule
+         sequence.
+     description {String}:
+         The description of the rule."""
     ...
 
-@gptooldoc('AddDiagramTemplate_nd', None)
-def AddDiagramTemplate(in_utility_network=..., template_name=..., ndbd_file=..., ndld_file=...): # -> conversion | int | float | complex | basestring | list[Unknown] | tuple[Unknown, ...] | dict[Unknown, Unknown]:
+@gptooldoc("AddDiagramTemplate_nd", None)
+def AddDiagramTemplate(
+    in_utility_network=..., template_name=..., ndbd_file=..., ndld_file=...
+):  # -> conversion | int | float | complex | basestring | list[Unknown] | tuple[Unknown, ...] | dict[Unknown, Unknown]:
     """AddDiagramTemplate_nd(in_utility_network, template_name, {ndbd_file}, {ndld_file})
 
-        Adds a new diagram template to a network. A network diagram rule and
-        layout definitions file (.ndbd) and a network diagram layer definition
-        file (.ndld) can be imported.
+       Adds a new diagram template to a network. A network diagram rule and
+       layout definitions file (.ndbd) and a network diagram layer definition
+       file (.ndld) can be imported.
 
-     INPUTS:
-      in_utility_network (Utility Network / Trace Network):
-          The utility network or trace network to which the template will be
-          added.
-      template_name (String):
-          The name of the output diagram template.
-      ndbd_file {File}:
-          The network diagram rule and layout definitions file (.ndbd) that will
-          be imported. This file can be created using the Export Diagram
-          Template Definitions tool on an existing template.
-      ndld_file {File}:
-          The diagram layer definition file (.ndld) that will be imported. This
-          file can be created using the Export Diagram Template Definitions or
-          Export Diagram Layer Definition tool on an existing template.When this
-          parameter is not specified or loads an empty .ndld file, a
-          default diagram layer definition is systematically initialized on the
-          input diagram template."""
+    INPUTS:
+     in_utility_network (Utility Network / Trace Network):
+         The utility network or trace network to which the template will be
+         added.
+     template_name (String):
+         The name of the output diagram template.
+     ndbd_file {File}:
+         The network diagram rule and layout definitions file (.ndbd) that will
+         be imported. This file can be created using the Export Diagram
+         Template Definitions tool on an existing template.
+     ndld_file {File}:
+         The diagram layer definition file (.ndld) that will be imported. This
+         file can be created using the Export Diagram Template Definitions or
+         Export Diagram Layer Definition tool on an existing template.When this
+         parameter is not specified or loads an empty .ndld file, a
+         default diagram layer definition is systematically initialized on the
+         input diagram template."""
     ...
 
-@gptooldoc('AddExpandContainerByAttributeRule_nd', None)
-def AddExpandContainerByAttributeRule(in_utility_network=..., template_name=..., is_active=..., containers_visibility=..., container_source=..., where_clause=..., description=...): # -> conversion | int | float | complex | basestring | list[Unknown] | tuple[Unknown, ...] | dict[Unknown, Unknown]:
+@gptooldoc("AddExpandContainerByAttributeRule_nd", None)
+def AddExpandContainerByAttributeRule(
+    in_utility_network=...,
+    template_name=...,
+    is_active=...,
+    containers_visibility=...,
+    container_source=...,
+    where_clause=...,
+    description=...,
+):  # -> conversion | int | float | complex | basestring | list[Unknown] | tuple[Unknown, ...] | dict[Unknown, Unknown]:
     """AddExpandContainerByAttributeRule_nd(in_utility_network, template_name, is_active, containers_visibility, container_source, {where_clause}, {description})
 
-        Adds a diagram rule to automatically expand container contents during
-        diagram building based on an existing template. The containers to
-        expand are filtered by attributes from a given container source class
-        or object table.
+       Adds a diagram rule to automatically expand container contents during
+       diagram building based on an existing template. The containers to
+       expand are filtered by attributes from a given container source class
+       or object table.
 
-     INPUTS:
-      in_utility_network (Utility Network / Trace Network):
-          The utility network or trace network containing the diagram template
-          that will be modified.
-      template_name (String):
-          The name of the diagram template that will be modified.
-      is_active (Boolean):
-          Specifies whether the rule will be enabled when generating and
-          updating diagrams based on the specified template.
+    INPUTS:
+     in_utility_network (Utility Network / Trace Network):
+         The utility network or trace network containing the diagram template
+         that will be modified.
+     template_name (String):
+         The name of the diagram template that will be modified.
+     is_active (Boolean):
+         Specifies whether the rule will be enabled when generating and
+         updating diagrams based on the specified template.
 
-          * ACTIVE-The added rule will become enabled during the generation and
-          update of any diagrams based on the input template. This is the
-          default.
+         * ACTIVE-The added rule will become enabled during the generation and
+         update of any diagrams based on the input template. This is the
+         default.
 
-          * INACTIVE-The added rule will not become enabled during the
-          generation or update of any diagrams based on the input template.
-      containers_visibility (Boolean):
-          Specifies whether the containers stay visible after they are expanded.
+         * INACTIVE-The added rule will not become enabled during the
+         generation or update of any diagrams based on the input template.
+     containers_visibility (Boolean):
+         Specifies whether the containers stay visible after they are expanded.
 
-          * KEEP_VISIBLE-The containers will stay visible after they are
-          expanded. This is the default.
+         * KEEP_VISIBLE-The containers will stay visible after they are
+         expanded. This is the default.
 
-          * HIDE-The containers will be hidden after they are expanded.
-      container_source (Table / Feature Class):
-          The container source class or object table that references the
-          containers to be expanded.
-      where_clause {SQL Expression}:
-          An SQL expression used to select the subset of containers in the
-          container source class or object table that will be expanded in the
-          generated diagrams. For more information on SQL syntax, see the SQL
-          reference for query expressions used in ArcGIS help topic.
-      description {String}:
-          The description of the rule."""
+         * HIDE-The containers will be hidden after they are expanded.
+     container_source (Table / Feature Class):
+         The container source class or object table that references the
+         containers to be expanded.
+     where_clause {SQL Expression}:
+         An SQL expression used to select the subset of containers in the
+         container source class or object table that will be expanded in the
+         generated diagrams. For more information on SQL syntax, see the SQL
+         reference for query expressions used in ArcGIS help topic.
+     description {String}:
+         The description of the rule."""
     ...
 
-@gptooldoc('AddExpandContainerRule_nd', None)
-def AddExpandContainerRule(in_utility_network=..., template_name=..., is_active=..., containers_visibility=..., container_type=..., inverse_source_selection=..., container_sources=..., description=...): # -> conversion | int | float | complex | basestring | list[Unknown] | tuple[Unknown, ...] | dict[Unknown, Unknown]:
+@gptooldoc("AddExpandContainerRule_nd", None)
+def AddExpandContainerRule(
+    in_utility_network=...,
+    template_name=...,
+    is_active=...,
+    containers_visibility=...,
+    container_type=...,
+    inverse_source_selection=...,
+    container_sources=...,
+    description=...,
+):  # -> conversion | int | float | complex | basestring | list[Unknown] | tuple[Unknown, ...] | dict[Unknown, Unknown]:
     """AddExpandContainerRule_nd(in_utility_network, template_name, is_active, containers_visibility, container_type, inverse_source_selection, {container_sources;container_sources...}, {description})
 
-        Adds a diagram rule that automatically expands container contents
-        during diagram building based on an existing template. This rule
-        expands all of the container contents in the diagrams.
+       Adds a diagram rule that automatically expands container contents
+       during diagram building based on an existing template. This rule
+       expands all of the container contents in the diagrams.
 
-     INPUTS:
-      in_utility_network (Utility Network / Trace Network):
-          The utility network or trace network containing the diagram template
-          that will be modified.
-      template_name (String):
-          The name of the diagram template that will be modified.
-      is_active (Boolean):
-          Specifies whether the rule will be enabled when generating and
-          updating diagrams based on the specified template.
+    INPUTS:
+     in_utility_network (Utility Network / Trace Network):
+         The utility network or trace network containing the diagram template
+         that will be modified.
+     template_name (String):
+         The name of the diagram template that will be modified.
+     is_active (Boolean):
+         Specifies whether the rule will be enabled when generating and
+         updating diagrams based on the specified template.
 
-          * ACTIVE-The added rule will become enabled during the generation and
-          update of any diagrams based on the input template. This is the
-          default.
+         * ACTIVE-The added rule will become enabled during the generation and
+         update of any diagrams based on the input template. This is the
+         default.
 
-          * INACTIVE-The added rule will not become enabled during the
-          generation or update of any diagrams based on the input template.
-      containers_visibility (Boolean):
-          Specifies whether the containers stay visible after they are expanded.
+         * INACTIVE-The added rule will not become enabled during the
+         generation or update of any diagrams based on the input template.
+     containers_visibility (Boolean):
+         Specifies whether the containers stay visible after they are expanded.
 
-          * KEEP_VISIBLE-The containers will stay visible after they are
-          expanded. This is the default.
+         * KEEP_VISIBLE-The containers will stay visible after they are
+         expanded. This is the default.
 
-          * HIDE-The containers will be hidden after they are expanded.
-      container_type (String):
-          Specifies the geometry type of the container source class or object
-          table to be processed.
+         * HIDE-The containers will be hidden after they are expanded.
+     container_type (String):
+         Specifies the geometry type of the container source class or object
+         table to be processed.
 
-          * JUNCTIONS-Only junction container source classes or object tables
-          (polygon container source classes, point container source classes, or
-          container junction object tables) will be processed.
+         * JUNCTIONS-Only junction container source classes or object tables
+         (polygon container source classes, point container source classes, or
+         container junction object tables) will be processed.
 
-          * EDGES-Only edge container source classes or object tables (linear
-          container source classes or container edge object tables) will be
-          processed.
+         * EDGES-Only edge container source classes or object tables (linear
+         container source classes or container edge object tables) will be
+         processed.
 
-          * BOTH-All container source classes and object tables regardless of
-          their type (both junction and edge types), will be processed. This is
-          the default.
-      inverse_source_selection (String):
-          Specifies how the specified container source classes and object tables
-          will be processed.
+         * BOTH-All container source classes and object tables regardless of
+         their type (both junction and edge types), will be processed. This is
+         the default.
+     inverse_source_selection (String):
+         Specifies how the specified container source classes and object tables
+         will be processed.
 
-          * EXCLUDE_SOURCE_CLASSES-Containers based on the specified source
-          classes and object tables will not be expanded, while other containers
-          will be expanded. This is the default.
+         * EXCLUDE_SOURCE_CLASSES-Containers based on the specified source
+         classes and object tables will not be expanded, while other containers
+         will be expanded. This is the default.
 
-          * INCLUDE_SOURCE_CLASSES-Containers based on the specified source
-          classes and object tables will be expanded.
-      container_sources {Table / Feature Class}:
-          The container source class (or classes) and object table (or tables)
-          that will be excluded or included depending on the rule process.When
-          Rule Process is set to Exclude source classes
-          (inverse_source_selection = "EXCLUDE_SOURCE_CLASSES" in Python), no
-          particular container source class or object table can be specified. In
-          this case, all containers in the generated diagrams regardless of
-          their source class or object table will be expanded. When Rule Process
-          is set to Include source classes (inverse_source_selection =
-          "INCLUDE_SOURCE_CLASSES" in Python), the particular container source
-          class (or classes) and object table (or tables) to be expanded must be
-          specified.When running the Exclude source classes option
-          (inverse_source_selection = "EXCLUDE_SOURCE_CLASSES" in Python), the
-          containers belonging to the specified source classes or object tables
-          will not be expanded in the generated diagrams; however, container
-          features and container objects that don't belong to those source
-          classes and tables will be expanded. Conversely, when running the
-          Include source classes option (inverse_source_selection =
-          "INCLUDE_SOURCE_CLASSES" in Python), the containers belonging to the
-          specified source classes and object tables will be expanded in the
-          generated diagrams; however, container features and container objects
-          that don't belong to those source classes and object tables will not
-          be expanded.
-      description {String}:
-          The description of the rule."""
+         * INCLUDE_SOURCE_CLASSES-Containers based on the specified source
+         classes and object tables will be expanded.
+     container_sources {Table / Feature Class}:
+         The container source class (or classes) and object table (or tables)
+         that will be excluded or included depending on the rule process.When
+         Rule Process is set to Exclude source classes
+         (inverse_source_selection = "EXCLUDE_SOURCE_CLASSES" in Python), no
+         particular container source class or object table can be specified. In
+         this case, all containers in the generated diagrams regardless of
+         their source class or object table will be expanded. When Rule Process
+         is set to Include source classes (inverse_source_selection =
+         "INCLUDE_SOURCE_CLASSES" in Python), the particular container source
+         class (or classes) and object table (or tables) to be expanded must be
+         specified.When running the Exclude source classes option
+         (inverse_source_selection = "EXCLUDE_SOURCE_CLASSES" in Python), the
+         containers belonging to the specified source classes or object tables
+         will not be expanded in the generated diagrams; however, container
+         features and container objects that don't belong to those source
+         classes and tables will be expanded. Conversely, when running the
+         Include source classes option (inverse_source_selection =
+         "INCLUDE_SOURCE_CLASSES" in Python), the containers belonging to the
+         specified source classes and object tables will be expanded in the
+         generated diagrams; however, container features and container objects
+         that don't belong to those source classes and object tables will not
+         be expanded.
+     description {String}:
+         The description of the rule."""
     ...
 
-@gptooldoc('AddForceDirectedLayout_nd', None)
-def AddForceDirectedLayout(in_utility_network=..., template_name=..., is_active=..., are_containers_preserved=..., iterations_number=..., repel_factor=..., degree_freedom=..., breakpoint_position=..., edge_display_type=...): # -> conversion | int | float | complex | basestring | list[Unknown] | tuple[Unknown, ...] | dict[Unknown, Unknown]:
+@gptooldoc("AddForceDirectedLayout_nd", None)
+def AddForceDirectedLayout(
+    in_utility_network=...,
+    template_name=...,
+    is_active=...,
+    are_containers_preserved=...,
+    iterations_number=...,
+    repel_factor=...,
+    degree_freedom=...,
+    breakpoint_position=...,
+    edge_display_type=...,
+):  # -> conversion | int | float | complex | basestring | list[Unknown] | tuple[Unknown, ...] | dict[Unknown, Unknown]:
     """AddForceDirectedLayout_nd(in_utility_network, template_name, is_active, {are_containers_preserved}, {iterations_number}, {repel_factor}, {degree_freedom}, {breakpoint_position}, {edge_display_type})
 
-        Adds the Force Directed Layout algorithm to the list of layouts to be
-        automatically chained at the end of the building of diagrams based on
-        a given template. This tool also presets the Force Directed Layout
-        algorithm parameters for any diagram based on that template.
+       Adds the Force Directed Layout algorithm to the list of layouts to be
+       automatically chained at the end of the building of diagrams based on
+       a given template. This tool also presets the Force Directed Layout
+       algorithm parameters for any diagram based on that template.
 
-     INPUTS:
-      in_utility_network (Utility Network / Trace Network):
-          The utility network or trace network containing the diagram template
-          that will be modified.
-      template_name (String):
-          The name of the diagram template that will be modified.
-      is_active (Boolean):
-          Specifies whether the layout algorithm will automatically run when
-          generating diagrams based on the specified template.
+    INPUTS:
+     in_utility_network (Utility Network / Trace Network):
+         The utility network or trace network containing the diagram template
+         that will be modified.
+     template_name (String):
+         The name of the diagram template that will be modified.
+     is_active (Boolean):
+         Specifies whether the layout algorithm will automatically run when
+         generating diagrams based on the specified template.
 
-          * ACTIVE-The added layout algorithm will automatically run during the
-          generation of any diagram that is based on the template_name parameter
-          value. This is the default.The parameter values specified for the
-          layout algorithm are used to run the layout during diagram generation.
-          They are also loaded by default when the algorithm is to be run on any
-          diagram based on the input template.
+         * ACTIVE-The added layout algorithm will automatically run during the
+         generation of any diagram that is based on the template_name parameter
+         value. This is the default.The parameter values specified for the
+         layout algorithm are used to run the layout during diagram generation.
+         They are also loaded by default when the algorithm is to be run on any
+         diagram based on the input template.
 
-          * INACTIVE-All the parameter values currently specified for the added
-          layout algorithm will be loaded by default when the algorithm is to be
-          run on any diagram based on the input template.
-      are_containers_preserved {Boolean}:
-          Specifies how the algorithm will process containers.
+         * INACTIVE-All the parameter values currently specified for the added
+         layout algorithm will be loaded by default when the algorithm is to be
+         run on any diagram based on the input template.
+     are_containers_preserved {Boolean}:
+         Specifies how the algorithm will process containers.
 
-          * PRESERVE_CONTAINERS-The layout algorithm will apply to the top
-          graph of the diagram so containers are preserved.
+         * PRESERVE_CONTAINERS-The layout algorithm will apply to the top
+         graph of the diagram so containers are preserved.
 
-          * IGNORE_CONTAINERS-The layout algorithm will apply to both content
-          and noncontent features in the diagram. This is the default.
-      iterations_number {Long}:
-          The number of iterations to process. The default is 20.
-      repel_factor {Double}:
-          Adds distance between diagram junctions that are close together. The
-          larger the repel factor, the greater the distance that will be added
-          between nearly overlapping diagram junctions. The default is 1.
-      degree_freedom {String}:
-          Specifies the area used to move the diagram junctions during each
-          algorithm iteration.
+         * IGNORE_CONTAINERS-The layout algorithm will apply to both content
+         and noncontent features in the diagram. This is the default.
+     iterations_number {Long}:
+         The number of iterations to process. The default is 20.
+     repel_factor {Double}:
+         Adds distance between diagram junctions that are close together. The
+         larger the repel factor, the greater the distance that will be added
+         between nearly overlapping diagram junctions. The default is 1.
+     degree_freedom {String}:
+         Specifies the area used to move the diagram junctions during each
+         algorithm iteration.
 
-          * LOW-The area used to move the diagram junctions will be limited.
-          This is the default.
+         * LOW-The area used to move the diagram junctions will be limited.
+         This is the default.
 
-          * HIGH-The area used to move the diagram junctions will be large.
+         * HIGH-The area used to move the diagram junctions will be large.
 
-          * MEDIUM-The area used to move the diagram junctions will be moderate.
-      breakpoint_position {Double}:
-          The relative position of the two inflexion points that will be
-          inserted along the diagram edges to compute the curved edges geometry
-          when Edge Display Type is set to Curved edges (edges_display_type =
-          "CURVED_EDGES" in Python). It is a percentage between 15 and 40; the
-          default is 30. For example, with a Break Point Relative Position (%)
-          parameter value of N between 15 and 40, the following is true:
+         * MEDIUM-The area used to move the diagram junctions will be moderate.
+     breakpoint_position {Double}:
+         The relative position of the two inflexion points that will be
+         inserted along the diagram edges to compute the curved edges geometry
+         when Edge Display Type is set to Curved edges (edges_display_type =
+         "CURVED_EDGES" in Python). It is a percentage between 15 and 40; the
+         default is 30. For example, with a Break Point Relative Position (%)
+         parameter value of N between 15 and 40, the following is true:
 
-          * X being the x-coordinate of the edge's from junction and Y
-          being the y-coordinate of the edge's to junction for a horizontal
-          tree:
+         * X being the x-coordinate of the edge's from junction and Y
+         being the y-coordinate of the edge's to junction for a horizontal
+         tree:
 
-          * The first inflexion point will be positioned at N% of the length of
-          the [XY] segment
+         * The first inflexion point will be positioned at N% of the length of
+         the [XY] segment
 
-          * The second inflexion point will be positioned at (100 - N)% of the
-          length of the [XY] segment
+         * The second inflexion point will be positioned at (100 - N)% of the
+         length of the [XY] segment
 
-          * Y being the y-coordinate of the edge's from junction and X
-          being the x-coordinate of the edge's to junction for a vertical tree:
+         * Y being the y-coordinate of the edge's from junction and X
+         being the x-coordinate of the edge's to junction for a vertical tree:
 
-          * The first inflexion point will be positioned at N% of the length of
-          the [YX] segment
+         * The first inflexion point will be positioned at N% of the length of
+         the [YX] segment
 
-          * The second inflexion point will be positioned at (100 - N)% of the
-          length of the [XY] segment
+         * The second inflexion point will be positioned at (100 - N)% of the
+         length of the [XY] segment
 
-          The concept of the from and to junctions above is relative to the tree
-          direction; it is not related to the topology of the network feature or
-          object edge.This parameter is ignored when the Edge Display Type
-          parameter is set
-          to Regular edges (edges_display_type = "REGULAR_EDGES" in Python).
-      edge_display_type {String}:
-          Specifies the type of display for the diagram edges.
+         The concept of the from and to junctions above is relative to the tree
+         direction; it is not related to the topology of the network feature or
+         object edge.This parameter is ignored when the Edge Display Type
+         parameter is set
+         to Regular edges (edges_display_type = "REGULAR_EDGES" in Python).
+     edge_display_type {String}:
+         Specifies the type of display for the diagram edges.
 
-          * REGULAR_EDGES-All diagram edges display as straight lines. This is
-          the default.
+         * REGULAR_EDGES-All diagram edges display as straight lines. This is
+         the default.
 
-          * CURVED_EDGES-All diagram edges are curved."""
+         * CURVED_EDGES-All diagram edges are curved."""
     ...
 
-@gptooldoc('AddGridLayout_nd', None)
-def AddGridLayout(in_utility_network=..., template_name=..., is_active=..., are_containers_preserved=..., cell_width_absolute=..., cell_height_absolute=...): # -> conversion | int | float | complex | basestring | list[Unknown] | tuple[Unknown, ...] | dict[Unknown, Unknown]:
+@gptooldoc("AddGridLayout_nd", None)
+def AddGridLayout(
+    in_utility_network=...,
+    template_name=...,
+    is_active=...,
+    are_containers_preserved=...,
+    cell_width_absolute=...,
+    cell_height_absolute=...,
+):  # -> conversion | int | float | complex | basestring | list[Unknown] | tuple[Unknown, ...] | dict[Unknown, Unknown]:
     """AddGridLayout_nd(in_utility_network, template_name, is_active, {are_containers_preserved}, {cell_width_absolute}, {cell_height_absolute})
 
-        Adds the Grid Layout algorithm to the list of layouts to be
-        automatically chained at the end of the building of diagrams based on
-        a given template. This tool also presets the Grid Layout algorithm
-        parameters for any diagram based on that template.
+       Adds the Grid Layout algorithm to the list of layouts to be
+       automatically chained at the end of the building of diagrams based on
+       a given template. This tool also presets the Grid Layout algorithm
+       parameters for any diagram based on that template.
 
-     INPUTS:
-      in_utility_network (Utility Network / Trace Network):
-          The utility network or trace network containing the diagram template
-          that will be modified.
-      template_name (String):
-          The name of the diagram template that will be modified.
-      is_active (Boolean):
-          Specifies whether the layout algorithm will automatically run when
-          generating diagrams based on the specified template.
+    INPUTS:
+     in_utility_network (Utility Network / Trace Network):
+         The utility network or trace network containing the diagram template
+         that will be modified.
+     template_name (String):
+         The name of the diagram template that will be modified.
+     is_active (Boolean):
+         Specifies whether the layout algorithm will automatically run when
+         generating diagrams based on the specified template.
 
-          * ACTIVE-The added layout algorithm will automatically run during the
-          generation of any diagram that is based on the template_name parameter
-          value. This is the default.The parameter values specified for the
-          layout algorithm are used to run the layout during diagram generation.
-          They are also loaded by default when the algorithm is to be run on any
-          diagram based on the input template.
+         * ACTIVE-The added layout algorithm will automatically run during the
+         generation of any diagram that is based on the template_name parameter
+         value. This is the default.The parameter values specified for the
+         layout algorithm are used to run the layout during diagram generation.
+         They are also loaded by default when the algorithm is to be run on any
+         diagram based on the input template.
 
-          * INACTIVE-All the parameter values currently specified for the added
-          layout algorithm will be loaded by default when the algorithm is to be
-          run on any diagram based on the input template.
-      are_containers_preserved {Boolean}:
-          Specifies how the algorithm will process containers.
+         * INACTIVE-All the parameter values currently specified for the added
+         layout algorithm will be loaded by default when the algorithm is to be
+         run on any diagram based on the input template.
+     are_containers_preserved {Boolean}:
+         Specifies how the algorithm will process containers.
 
-          * PRESERVE_CONTAINERS-The layout algorithm will apply to the top
-          graph of the diagram so containers are preserved.
+         * PRESERVE_CONTAINERS-The layout algorithm will apply to the top
+         graph of the diagram so containers are preserved.
 
-          * IGNORE_CONTAINERS-The layout algorithm will apply to both content
-          and noncontent features in the diagram. This is the default.
-      cell_width_absolute {Linear Unit}:
-          The width of each grid cell. The default is 2 in the units of the
-          diagram's coordinate system.
-      cell_height_absolute {Linear Unit}:
-          The height of each grid cell. The default is 2 in the units of the
-          diagram's coordinate system."""
+         * IGNORE_CONTAINERS-The layout algorithm will apply to both content
+         and noncontent features in the diagram. This is the default.
+     cell_width_absolute {Linear Unit}:
+         The width of each grid cell. The default is 2 in the units of the
+         diagram's coordinate system.
+     cell_height_absolute {Linear Unit}:
+         The height of each grid cell. The default is 2 in the units of the
+         diagram's coordinate system."""
     ...
 
-@gptooldoc('AddLinearDispatchLayout_nd', None)
-def AddLinearDispatchLayout(in_utility_network=..., template_name=..., is_active=..., junction_placement_type=..., is_unit_absolute=..., maximum_shift_absolute=..., maximum_shift_proportional=..., minimum_shift_absolute=..., minimum_shift_proportional=..., iterations_number=..., is_path_preserved=..., are_leaves_moved=..., are_leaves_expanded=..., expand_shift_absolute=..., expand_shift_proportional=...): # -> conversion | int | float | complex | basestring | list[Unknown] | tuple[Unknown, ...] | dict[Unknown, Unknown]:
+@gptooldoc("AddLinearDispatchLayout_nd", None)
+def AddLinearDispatchLayout(
+    in_utility_network=...,
+    template_name=...,
+    is_active=...,
+    junction_placement_type=...,
+    is_unit_absolute=...,
+    maximum_shift_absolute=...,
+    maximum_shift_proportional=...,
+    minimum_shift_absolute=...,
+    minimum_shift_proportional=...,
+    iterations_number=...,
+    is_path_preserved=...,
+    are_leaves_moved=...,
+    are_leaves_expanded=...,
+    expand_shift_absolute=...,
+    expand_shift_proportional=...,
+):  # -> conversion | int | float | complex | basestring | list[Unknown] | tuple[Unknown, ...] | dict[Unknown, Unknown]:
     """AddLinearDispatchLayout_nd(in_utility_network, template_name, is_active, {junction_placement_type}, {is_unit_absolute}, {maximum_shift_absolute}, {maximum_shift_proportional}, {minimum_shift_absolute}, {minimum_shift_proportional}, {iterations_number}, {is_path_preserved}, {are_leaves_moved}, {are_leaves_expanded}, {expand_shift_absolute}, {expand_shift_proportional})
 
-        Adds the Linear Dispatch Layout algorithm to the list of layouts to be
-        automatically chained at the end of the building of diagrams based on
-        a given template. This tool also presets the Linear Dispatch Layout
-        algorithm parameters for any diagram based on that template.
+       Adds the Linear Dispatch Layout algorithm to the list of layouts to be
+       automatically chained at the end of the building of diagrams based on
+       a given template. This tool also presets the Linear Dispatch Layout
+       algorithm parameters for any diagram based on that template.
 
-     INPUTS:
-      in_utility_network (Utility Network / Trace Network):
-          The utility network or trace network containing the diagram template
-          that will be modified.
-      template_name (String):
-          The name of the diagram template that will be modified.
-      is_active (Boolean):
-          Specifies whether the layout algorithm will automatically run when
-          generating diagrams based on the specified template.
+    INPUTS:
+     in_utility_network (Utility Network / Trace Network):
+         The utility network or trace network containing the diagram template
+         that will be modified.
+     template_name (String):
+         The name of the diagram template that will be modified.
+     is_active (Boolean):
+         Specifies whether the layout algorithm will automatically run when
+         generating diagrams based on the specified template.
 
-          * ACTIVE-The added layout algorithm will automatically run during the
-          generation of any diagram that is based on the template_name parameter
-          value. This is the default.The parameter values specified for the
-          layout algorithm are used to run the layout during diagram generation.
-          They are also loaded by default when the algorithm is to be run on any
-          diagram based on the input template.
+         * ACTIVE-The added layout algorithm will automatically run during the
+         generation of any diagram that is based on the template_name parameter
+         value. This is the default.The parameter values specified for the
+         layout algorithm are used to run the layout during diagram generation.
+         They are also loaded by default when the algorithm is to be run on any
+         diagram based on the input template.
 
-          * INACTIVE-All the parameter values currently specified for the added
-          layout algorithm will be loaded by default when the algorithm is to be
-          run on any diagram based on the input template.
-      junction_placement_type {String}:
-          Specifies how the junctions will be moved.
+         * INACTIVE-All the parameter values currently specified for the added
+         layout algorithm will be loaded by default when the algorithm is to be
+         run on any diagram based on the input template.
+     junction_placement_type {String}:
+         Specifies how the junctions will be moved.
 
-          * EQUAL_DISTANCE-All junctions with two connected edges will be moved
-          so the distances between them and their two connected junctions are
-          equal. This is the default.
+         * EQUAL_DISTANCE-All junctions with two connected edges will be moved
+         so the distances between them and their two connected junctions are
+         equal. This is the default.
 
-          * USER_DEFINE_DISTANCE-All junctions with two connected edges will be
-          moved so there is a minimum distance (the minimum_shift_ parameter
-          value) between them and the other end of the edges to which they
-          connect. This occurs at the end of the layout algorithm process.
+         * USER_DEFINE_DISTANCE-All junctions with two connected edges will be
+         moved so there is a minimum distance (the minimum_shift_ parameter
+         value) between them and the other end of the edges to which they
+         connect. This occurs at the end of the layout algorithm process.
 
-          * ITERATIVE_DISTANCE-All junctions with two connected edges will be
-          moved slightly according to the iterations_number and maximum_shift_
-          parameter values.
-      is_unit_absolute {Boolean}:
-          Specifies how parameters representing distances will be interpreted.
+         * ITERATIVE_DISTANCE-All junctions with two connected edges will be
+         moved slightly according to the iterations_number and maximum_shift_
+         parameter values.
+     is_unit_absolute {Boolean}:
+         Specifies how parameters representing distances will be interpreted.
 
-          * ABSOLUTE_UNIT-The layout algorithm will interpret distance values as
-          linear units.
+         * ABSOLUTE_UNIT-The layout algorithm will interpret distance values as
+         linear units.
 
-          * PROPORTIONAL_UNIT-The layout algorithm will interpret distance
-          values as relative units to an estimation of the average of the
-          junction sizes in the current diagram extent. This is the default.
-      maximum_shift_absolute {Linear Unit}:
-          The maximum distance the junctions with two connections will be spaced
-          from the junctions to which they connect. The default is 2 in the
-          units of the diagram's coordinate system. At the time this distance is
-          reached, junctions will not be moved during additional iterations.
-          This parameter can only be used with the ITERATIVE_DISTANCE junction
-          placement type and absolute units.
-      maximum_shift_proportional {Double}:
-          The maximum distance the junctions with two connections will be spaced
-          from the junctions to which they connect. The default is 2. At the
-          time this distance is reached, junctions will not be moved during
-          additional iterations. This parameter can only be used with the
-          ITERATIVE_DISTANCE junction placement type and proportional units.
-      minimum_shift_absolute {Linear Unit}:
-          The minimum distance that will separate each junction with two
-          connected edges from its two edge extremities after the layout
-          algorithm runs. The default is 2 in the units of the diagram's
-          coordinate system. When this parameter value is too large, the
-          junctions with two connections are moved so the distances between each
-          moved junction and its edge extremities are equal along the path
-          defined by its two connected edges. This parameter can only be used
-          with the USER_DEFINE_DISTANCE junction placement type and absolute
-          units.
-      minimum_shift_proportional {Double}:
-          The minimum distance that will separate each junction with two
-          connected edges from its two edge extremities after the layout
-          algorithm runs. The default is 2. When this parameter value is too
-          large, the junctions with two connections are moved so the distances
-          between each moved junction and its edge extremities are equal along
-          the path defined by its two connected edges. This parameter is used
-          with the USER_DEFINE_DISTANCE junction placement type and proportional
-          units.
-      iterations_number {Long}:
-          The number of iterations that will be processed. The default is 5.
-          This parameter can only be used with the ITERATIVE_DISTANCE junction
-          placement type.
-      is_path_preserved {Boolean}:
-          Specifies how vertices along edges will be processed.
+         * PROPORTIONAL_UNIT-The layout algorithm will interpret distance
+         values as relative units to an estimation of the average of the
+         junction sizes in the current diagram extent. This is the default.
+     maximum_shift_absolute {Linear Unit}:
+         The maximum distance the junctions with two connections will be spaced
+         from the junctions to which they connect. The default is 2 in the
+         units of the diagram's coordinate system. At the time this distance is
+         reached, junctions will not be moved during additional iterations.
+         This parameter can only be used with the ITERATIVE_DISTANCE junction
+         placement type and absolute units.
+     maximum_shift_proportional {Double}:
+         The maximum distance the junctions with two connections will be spaced
+         from the junctions to which they connect. The default is 2. At the
+         time this distance is reached, junctions will not be moved during
+         additional iterations. This parameter can only be used with the
+         ITERATIVE_DISTANCE junction placement type and proportional units.
+     minimum_shift_absolute {Linear Unit}:
+         The minimum distance that will separate each junction with two
+         connected edges from its two edge extremities after the layout
+         algorithm runs. The default is 2 in the units of the diagram's
+         coordinate system. When this parameter value is too large, the
+         junctions with two connections are moved so the distances between each
+         moved junction and its edge extremities are equal along the path
+         defined by its two connected edges. This parameter can only be used
+         with the USER_DEFINE_DISTANCE junction placement type and absolute
+         units.
+     minimum_shift_proportional {Double}:
+         The minimum distance that will separate each junction with two
+         connected edges from its two edge extremities after the layout
+         algorithm runs. The default is 2. When this parameter value is too
+         large, the junctions with two connections are moved so the distances
+         between each moved junction and its edge extremities are equal along
+         the path defined by its two connected edges. This parameter is used
+         with the USER_DEFINE_DISTANCE junction placement type and proportional
+         units.
+     iterations_number {Long}:
+         The number of iterations that will be processed. The default is 5.
+         This parameter can only be used with the ITERATIVE_DISTANCE junction
+         placement type.
+     is_path_preserved {Boolean}:
+         Specifies how vertices along edges will be processed.
 
-          * PRESERVE_PATH-All vertices along the connected edges will be
-          preserved, and new vertices will be added at the moved junctions'
-          original locations. This is the default.
+         * PRESERVE_PATH-All vertices along the connected edges will be
+         preserved, and new vertices will be added at the moved junctions'
+         original locations. This is the default.
 
-          * IGNORE_PATH-Vertices along edges will not be preserved.
-      are_leaves_moved {Boolean}:
-          Specifies whether leaf junctions-junctions with one connection-will be
-          moved during the layout algorithm process.
+         * IGNORE_PATH-Vertices along edges will not be preserved.
+     are_leaves_moved {Boolean}:
+         Specifies whether leaf junctions-junctions with one connection-will be
+         moved during the layout algorithm process.
 
-          * MOVE_LEAVES-Leaf junctions will be moved.
+         * MOVE_LEAVES-Leaf junctions will be moved.
 
-          * DO_NOT_MOVE_LEAVES-Leaf junctions will not be moved. This is the
-          default unless the specified input network diagram is based on a
-          template for which the Linear Dispatch Layout algorithm has been
-          configured with another parameter value.
-      are_leaves_expanded {Boolean}:
-          Specifies whether leaf junctions will be expanded:
+         * DO_NOT_MOVE_LEAVES-Leaf junctions will not be moved. This is the
+         default unless the specified input network diagram is based on a
+         template for which the Linear Dispatch Layout algorithm has been
+         configured with another parameter value.
+     are_leaves_expanded {Boolean}:
+         Specifies whether leaf junctions will be expanded:
 
-          * EXPAND_LEAVES-Leaf junctions will be expanded. The
-          expand_shift_absolute parameter value specifies the maximum distance
-          the leaf junctions can be expanded from the junctions to which they
-          connect.
+         * EXPAND_LEAVES-Leaf junctions will be expanded. The
+         expand_shift_absolute parameter value specifies the maximum distance
+         the leaf junctions can be expanded from the junctions to which they
+         connect.
 
-          * DO_NOT_EXPAND_LEAVES-Leaf junctions will not be expanded. This is
-          the default unless the specified input network diagram is based on a
-          template for which the Linear Dispatch Layout algorithm has been
-          configured with another parameter value.
-      expand_shift_absolute {Linear Unit}:
-          The maximum distance leaf junctions will be expanded from the
-          junctions to which they connect. The default is 2 in the units of the
-          diagram's coordinate system unless the specified input network diagram
-          is based on a template for which the Linear Dispatch Layout algorithm
-          has been configured with another parameter value. At the time this
-          distance is reached, leaf junctions will not be moved during
-          additional iterations. This parameter can only be used with the Expand
-          leaves parameter and absolute units.
-      expand_shift_proportional {Double}:
-          The maximum distance the leaf junctions will be expanded from the
-          junctions to which they connect. The default is 2 unless the specified
-          input network diagram is based on a template for which the Linear
-          Dispatch Layout algorithm has been configured with another parameter
-          value. At the time this distance is reached, leaf junctions will not
-          be moved during additional iterations. This parameter can only be used
-          with the Expand leaves parameter and proportional units."""
+         * DO_NOT_EXPAND_LEAVES-Leaf junctions will not be expanded. This is
+         the default unless the specified input network diagram is based on a
+         template for which the Linear Dispatch Layout algorithm has been
+         configured with another parameter value.
+     expand_shift_absolute {Linear Unit}:
+         The maximum distance leaf junctions will be expanded from the
+         junctions to which they connect. The default is 2 in the units of the
+         diagram's coordinate system unless the specified input network diagram
+         is based on a template for which the Linear Dispatch Layout algorithm
+         has been configured with another parameter value. At the time this
+         distance is reached, leaf junctions will not be moved during
+         additional iterations. This parameter can only be used with the Expand
+         leaves parameter and absolute units.
+     expand_shift_proportional {Double}:
+         The maximum distance the leaf junctions will be expanded from the
+         junctions to which they connect. The default is 2 unless the specified
+         input network diagram is based on a template for which the Linear
+         Dispatch Layout algorithm has been configured with another parameter
+         value. At the time this distance is reached, leaf junctions will not
+         be moved during additional iterations. This parameter can only be used
+         with the Expand leaves parameter and proportional units."""
     ...
 
-@gptooldoc('AddMainRingLayout_nd', None)
-def AddMainRingLayout(in_utility_network=..., template_name=..., is_active=..., are_containers_preserved=..., ring_type=..., is_unit_absolute=..., ring_width_absolute=..., ring_width_proportional=..., ring_height_absolute=..., ring_height_proportional=..., tree_type=..., perpendicular_absolute=..., perpendicular_proportional=..., along_absolute=..., along_proportional=..., breakpoint_position=..., edge_display_type=..., offset_absolute=..., offset_proportional=...): # -> conversion | int | float | complex | basestring | list[Unknown] | tuple[Unknown, ...] | dict[Unknown, Unknown]:
+@gptooldoc("AddMainRingLayout_nd", None)
+def AddMainRingLayout(
+    in_utility_network=...,
+    template_name=...,
+    is_active=...,
+    are_containers_preserved=...,
+    ring_type=...,
+    is_unit_absolute=...,
+    ring_width_absolute=...,
+    ring_width_proportional=...,
+    ring_height_absolute=...,
+    ring_height_proportional=...,
+    tree_type=...,
+    perpendicular_absolute=...,
+    perpendicular_proportional=...,
+    along_absolute=...,
+    along_proportional=...,
+    breakpoint_position=...,
+    edge_display_type=...,
+    offset_absolute=...,
+    offset_proportional=...,
+):  # -> conversion | int | float | complex | basestring | list[Unknown] | tuple[Unknown, ...] | dict[Unknown, Unknown]:
     """AddMainRingLayout_nd(in_utility_network, template_name, is_active, {are_containers_preserved}, {ring_type}, {is_unit_absolute}, {ring_width_absolute}, {ring_width_proportional}, {ring_height_absolute}, {ring_height_proportional}, {tree_type}, {perpendicular_absolute}, {perpendicular_proportional}, {along_absolute}, {along_proportional}, {breakpoint_position}, {edge_display_type}, {offset_absolute}, {offset_proportional})
 
-        Adds the Main Ring Layout algorithm to the list of layouts to be
-        automatically chained at the end of the building of diagrams based on
-        a given template. This tool also presets the Main Ring Layout
-        algorithm parameters for any diagram based on that template.
+       Adds the Main Ring Layout algorithm to the list of layouts to be
+       automatically chained at the end of the building of diagrams based on
+       a given template. This tool also presets the Main Ring Layout
+       algorithm parameters for any diagram based on that template.
 
-     INPUTS:
-      in_utility_network (Utility Network / Trace Network):
-          The utility network or trace network containing the diagram template
-          that will be modified.
-      template_name (String):
-          The name of the diagram template that will be modified.
-      is_active (Boolean):
-          Specifies whether the layout algorithm will automatically run when
-          generating diagrams based on the specified template.
+    INPUTS:
+     in_utility_network (Utility Network / Trace Network):
+         The utility network or trace network containing the diagram template
+         that will be modified.
+     template_name (String):
+         The name of the diagram template that will be modified.
+     is_active (Boolean):
+         Specifies whether the layout algorithm will automatically run when
+         generating diagrams based on the specified template.
 
-          * ACTIVE-The added layout algorithm will automatically run during the
-          generation of any diagram that is based on the template_name parameter
-          value. This is the default.The parameter values specified for the
-          layout algorithm are used to run the layout during diagram generation.
-          They are also loaded by default when the algorithm is to be run on any
-          diagram based on the input template.
+         * ACTIVE-The added layout algorithm will automatically run during the
+         generation of any diagram that is based on the template_name parameter
+         value. This is the default.The parameter values specified for the
+         layout algorithm are used to run the layout during diagram generation.
+         They are also loaded by default when the algorithm is to be run on any
+         diagram based on the input template.
 
-          * INACTIVE-All the parameter values currently specified for the added
-          layout algorithm will be loaded by default when the algorithm is to be
-          run on any diagram based on the input template.
-      are_containers_preserved {Boolean}:
-          Specifies how the algorithm will process containers.
+         * INACTIVE-All the parameter values currently specified for the added
+         layout algorithm will be loaded by default when the algorithm is to be
+         run on any diagram based on the input template.
+     are_containers_preserved {Boolean}:
+         Specifies how the algorithm will process containers.
 
-          * PRESERVE_CONTAINERS-The layout algorithm will apply to the top
-          graph of the diagram so containers are preserved.
+         * PRESERVE_CONTAINERS-The layout algorithm will apply to the top
+         graph of the diagram so containers are preserved.
 
-          * IGNORE_CONTAINERS-The layout algorithm will apply to both content
-          and noncontent features in the diagram. This is the default.
-      ring_type {String}:
-          Specifies the type of ring.
+         * IGNORE_CONTAINERS-The layout algorithm will apply to both content
+         and noncontent features in the diagram. This is the default.
+     ring_type {String}:
+         Specifies the type of ring.
 
-          * ELLIPSE-The diagram features of the detected main ring will display
-          along an ellipse. This is the default.
+         * ELLIPSE-The diagram features of the detected main ring will display
+         along an ellipse. This is the default.
 
-          * RECTANGLE-The diagram features of the detected main ring will
-          display along a rectangle.
-      is_unit_absolute {Boolean}:
-          Specifies how parameters representing distances will be interpreted.
+         * RECTANGLE-The diagram features of the detected main ring will
+         display along a rectangle.
+     is_unit_absolute {Boolean}:
+         Specifies how parameters representing distances will be interpreted.
 
-          * ABSOLUTE_UNIT-The layout algorithm will interpret distance values as
-          linear units.
+         * ABSOLUTE_UNIT-The layout algorithm will interpret distance values as
+         linear units.
 
-          * PROPORTIONAL_UNIT-The layout algorithm will interpret distance
-          values as relative units to an estimation of the average of the
-          junction sizes in the current diagram extent. This is the default.
-      ring_width_absolute {Linear Unit}:
-          The width of the ring. The default is in the units of the diagram's
-          coordinate system. This parameter can only be used with absolute
-          units.
-      ring_width_proportional {Double}:
-          The width of the ring. The default is 50. This parameter can only be
-          used with proportional units.
-      ring_height_absolute {Linear Unit}:
-          The height of the ring. The default is in the units of the diagram's
-          coordinate system. This parameter can only be used with absolute
-          units.
-      ring_height_proportional {Double}:
-          The height of the ring. The default is 20. This parameter can only be
-          used with proportional units.
-      tree_type {String}:
-          Specifies how the trees coming out of the main ring's junctions will
-          be positioned.
+         * PROPORTIONAL_UNIT-The layout algorithm will interpret distance
+         values as relative units to an estimation of the average of the
+         junction sizes in the current diagram extent. This is the default.
+     ring_width_absolute {Linear Unit}:
+         The width of the ring. The default is in the units of the diagram's
+         coordinate system. This parameter can only be used with absolute
+         units.
+     ring_width_proportional {Double}:
+         The width of the ring. The default is 50. This parameter can only be
+         used with proportional units.
+     ring_height_absolute {Linear Unit}:
+         The height of the ring. The default is in the units of the diagram's
+         coordinate system. This parameter can only be used with absolute
+         units.
+     ring_height_proportional {Double}:
+         The height of the ring. The default is 20. This parameter can only be
+         used with proportional units.
+     tree_type {String}:
+         Specifies how the trees coming out of the main ring's junctions will
+         be positioned.
 
-          * BOTH_SIDES-Each tree will be displayed along a main line, and its
-          related branches will be arranged on both the left and right sides of
-          this main line.
+         * BOTH_SIDES-Each tree will be displayed along a main line, and its
+         related branches will be arranged on both the left and right sides of
+         this main line.
 
-          * LEFT_SIDE-Each tree will be displayed hierarchically along a main
-          line, and its related branches will be arranged on the left side of
-          this main line.
+         * LEFT_SIDE-Each tree will be displayed hierarchically along a main
+         line, and its related branches will be arranged on the left side of
+         this main line.
 
-          * RIGHT_SIDE-Each tree will be displayed hierarchically along a main
-          line, and its related branches will be arranged on the right side of
-          this main line.
+         * RIGHT_SIDE-Each tree will be displayed hierarchically along a main
+         line, and its related branches will be arranged on the right side of
+         this main line.
 
-          * SMART_TREE-Each tree will be displayed hierarchically as a smart
-          tree. This is the default.
-      perpendicular_absolute {Linear Unit}:
-          The spacing between diagram junctions that are displayed perpendicular
-          to the tree direction and belong to the same subtree level. The
-          default is 2 in the units of the diagram's coordinate system. This
-          parameter can only be used with absolute units.
-      perpendicular_proportional {Double}:
-          The spacing between diagram junctions that are displayed perpendicular
-          to the tree direction and belong to the same subtree level. The
-          default is 2. This parameter can only be used with proportional units.
-      along_absolute {Linear Unit}:
-          The spacing between diagram junctions that are displayed along the
-          tree direction. The default is 2 in the units of the diagram's
-          coordinate system. This parameter can only be used with absolute
-          units.
-      along_proportional {Double}:
-          The spacing between diagram junctions that are displayed along the
-          tree direction. The default is 2. This parameter can only be used with
-          proportional units.
-      breakpoint_position {Double}:
-          The relative position of the break point that will be inserted
-          along the diagram edges when Edge Display Type is set to Regular edges
-          (edge_display_type = "REGULAR_EDGES" in Python) or Edge Display Type
-          is set to Orthogonal edges (edge_display_type = "ORTHOGONAL_EDGES" in
-          Python). It is a percentage between 0 and 100.
+         * SMART_TREE-Each tree will be displayed hierarchically as a smart
+         tree. This is the default.
+     perpendicular_absolute {Linear Unit}:
+         The spacing between diagram junctions that are displayed perpendicular
+         to the tree direction and belong to the same subtree level. The
+         default is 2 in the units of the diagram's coordinate system. This
+         parameter can only be used with absolute units.
+     perpendicular_proportional {Double}:
+         The spacing between diagram junctions that are displayed perpendicular
+         to the tree direction and belong to the same subtree level. The
+         default is 2. This parameter can only be used with proportional units.
+     along_absolute {Linear Unit}:
+         The spacing between diagram junctions that are displayed along the
+         tree direction. The default is 2 in the units of the diagram's
+         coordinate system. This parameter can only be used with absolute
+         units.
+     along_proportional {Double}:
+         The spacing between diagram junctions that are displayed along the
+         tree direction. The default is 2. This parameter can only be used with
+         proportional units.
+     breakpoint_position {Double}:
+         The relative position of the break point that will be inserted
+         along the diagram edges when Edge Display Type is set to Regular edges
+         (edge_display_type = "REGULAR_EDGES" in Python) or Edge Display Type
+         is set to Orthogonal edges (edge_display_type = "ORTHOGONAL_EDGES" in
+         Python). It is a percentage between 0 and 100.
 
-          * With a Break Point Relative Position (%) value of 0, the break point
-          is positioned at the x-coordinate of the edge's from junction and at
-          the y-coordinate of the edge's to junction for a horizontal tree. It
-          is positioned at the y-coordinate of the edge's from junction and at
-          the x-coordinate of the edge's to junction for a vertical tree.
+         * With a Break Point Relative Position (%) value of 0, the break point
+         is positioned at the x-coordinate of the edge's from junction and at
+         the y-coordinate of the edge's to junction for a horizontal tree. It
+         is positioned at the y-coordinate of the edge's from junction and at
+         the x-coordinate of the edge's to junction for a vertical tree.
 
-          * With a Break Point Relative Position (%) value of 100, there is no
-          break point inserted on the diagram edges; each diagram edge directly
-          connects its from and to junctions.
+         * With a Break Point Relative Position (%) value of 100, there is no
+         break point inserted on the diagram edges; each diagram edge directly
+         connects its from and to junctions.
 
-          * With a Break Point Relative Position (%) value of N between 0 and
-          100, the break point is positioned at N% of the length of the [XY]
-          segment, X being the x-coordinate of the edge's from junction and Y
-          being the y-coordinate of the edge's to junction for a horizontal
-          tree. It is positioned at N% of the length of the [YX] segment, Y
-          being the y-coordinate of the edge's from junction and X being the
-          x-coordinate of the edge's to junction for a vertical tree.
-                  The relative position of the two inflection points that will
-          be inserted along the diagram edges to compute the curved edges
-          geometry when Edge Display Type is set to Curved edges
-          (edge_display_type = "CURVED_EDGES" in Python). It is a percentage
-          between 15 and 40. With a Break Point Relative Position (%) value of N
-          between 15 and 40:
+         * With a Break Point Relative Position (%) value of N between 0 and
+         100, the break point is positioned at N% of the length of the [XY]
+         segment, X being the x-coordinate of the edge's from junction and Y
+         being the y-coordinate of the edge's to junction for a horizontal
+         tree. It is positioned at N% of the length of the [YX] segment, Y
+         being the y-coordinate of the edge's from junction and X being the
+         x-coordinate of the edge's to junction for a vertical tree.
+                 The relative position of the two inflection points that will
+         be inserted along the diagram edges to compute the curved edges
+         geometry when Edge Display Type is set to Curved edges
+         (edge_display_type = "CURVED_EDGES" in Python). It is a percentage
+         between 15 and 40. With a Break Point Relative Position (%) value of N
+         between 15 and 40:
 
-          * X being the x-coordinate of the edge's from junction and Y
-          being the y-coordinate of the edge's to junction for a horizontal
-          tree:
+         * X being the x-coordinate of the edge's from junction and Y
+         being the y-coordinate of the edge's to junction for a horizontal
+         tree:
 
-          * The first inflection point will be positioned at N% of the length of
-          the [XY] segment.
+         * The first inflection point will be positioned at N% of the length of
+         the [XY] segment.
 
-          * The second inflection point will be positioned at (100 - N)% of the
-          length of the [XY] segment.
+         * The second inflection point will be positioned at (100 - N)% of the
+         length of the [XY] segment.
 
-          * Y being the y-coordinate of the edge's from junction and X
-          being the x-coordinate of the edge's to junction for a vertical tree:
+         * Y being the y-coordinate of the edge's from junction and X
+         being the x-coordinate of the edge's to junction for a vertical tree:
 
-          * The first inflection point will be positioned at N% of the length of
-          the [YX] segment.
+         * The first inflection point will be positioned at N% of the length of
+         the [YX] segment.
 
-          * The second inflection point will be positioned at (100 - N)% of the
-          length of the [XY] segment.
+         * The second inflection point will be positioned at (100 - N)% of the
+         length of the [XY] segment.
 
-          The concept of the from and to junctions above is relative to the tree
-          direction; it has nothing to do with the real topology of the edge
-          feature or edge object in the network.
-      edge_display_type {String}:
-          Specifies the type of display for the diagram edges related to the
-          tree branches.
+         The concept of the from and to junctions above is relative to the tree
+         direction; it has nothing to do with the real topology of the edge
+         feature or edge object in the network.
+     edge_display_type {String}:
+         Specifies the type of display for the diagram edges related to the
+         tree branches.
 
-          * REGULAR_EDGES-All diagram edges related to the tree branches will
-          not display with right angles. This is the default.
+         * REGULAR_EDGES-All diagram edges related to the tree branches will
+         not display with right angles. This is the default.
 
-          * ORTHOGONAL_EDGES-All diagram edges related to the tree branches will
-          display with right angles.
+         * ORTHOGONAL_EDGES-All diagram edges related to the tree branches will
+         display with right angles.
 
-          * CURVED_EDGES-All diagram edges related to the tree branches will be
-          curved.
-      offset_absolute {Linear Unit}:
-          The offset that will be used to separate overlapping segments when
-          is_unit_absolute = "ABSOLUTE_UNIT" and edge_display_type =
-          "ORTHOGONAL_EDGES". The value cannot exceed 10 percent of the smallest
-          value specified for the other spacing parameters. The default is 0.
-      offset_proportional {Double}:
-          The offset that will be used to separate overlapping segments when
-          is_unit_absolute = "PROPORTIONAL_UNIT" and edge_display_type =
-          "ORTHOGONAL_EDGES". It is a double value that cannot exceed 10 percent
-          of the smallest value specified for the other spacing parameters. The
-          default is 0."""
+         * CURVED_EDGES-All diagram edges related to the tree branches will be
+         curved.
+     offset_absolute {Linear Unit}:
+         The offset that will be used to separate overlapping segments when
+         is_unit_absolute = "ABSOLUTE_UNIT" and edge_display_type =
+         "ORTHOGONAL_EDGES". The value cannot exceed 10 percent of the smallest
+         value specified for the other spacing parameters. The default is 0.
+     offset_proportional {Double}:
+         The offset that will be used to separate overlapping segments when
+         is_unit_absolute = "PROPORTIONAL_UNIT" and edge_display_type =
+         "ORTHOGONAL_EDGES". It is a double value that cannot exceed 10 percent
+         of the smallest value specified for the other spacing parameters. The
+         default is 0."""
     ...
 
-@gptooldoc('AddMainlineTreeLayout_nd', None)
-def AddMainlineTreeLayout(in_utility_network=..., template_name=..., is_active=..., are_containers_preserved=..., tree_direction=..., branches_placement=..., is_unit_absolute=..., perpendicular_absolute=..., perpendicular_proportional=..., along_absolute=..., along_proportional=..., disjoined_graph_absolute=..., disjoined_graph_proportional=..., are_edges_orthogonal=..., breakpoint_position=..., edge_display_type=..., offset_absolute=..., offset_proportional=...): # -> conversion | int | float | complex | basestring | list[Unknown] | tuple[Unknown, ...] | dict[Unknown, Unknown]:
+@gptooldoc("AddMainlineTreeLayout_nd", None)
+def AddMainlineTreeLayout(
+    in_utility_network=...,
+    template_name=...,
+    is_active=...,
+    are_containers_preserved=...,
+    tree_direction=...,
+    branches_placement=...,
+    is_unit_absolute=...,
+    perpendicular_absolute=...,
+    perpendicular_proportional=...,
+    along_absolute=...,
+    along_proportional=...,
+    disjoined_graph_absolute=...,
+    disjoined_graph_proportional=...,
+    are_edges_orthogonal=...,
+    breakpoint_position=...,
+    edge_display_type=...,
+    offset_absolute=...,
+    offset_proportional=...,
+):  # -> conversion | int | float | complex | basestring | list[Unknown] | tuple[Unknown, ...] | dict[Unknown, Unknown]:
     """AddMainlineTreeLayout_nd(in_utility_network, template_name, is_active, {are_containers_preserved}, {tree_direction}, {branches_placement}, {is_unit_absolute}, {perpendicular_absolute}, {perpendicular_proportional}, {along_absolute}, {along_proportional}, {disjoined_graph_absolute}, {disjoined_graph_proportional}, {are_edges_orthogonal}, {breakpoint_position}, {edge_display_type}, {offset_absolute}, {offset_proportional})
 
-        Adds the Mainline Tree Layout algorithm to the list of layouts to be
-        automatically chained at the end of the building of diagrams based on
-        a given template. This tool also presets the Mainline Tree Layout
-        algorithm parameters for any diagram based on that template.
+       Adds the Mainline Tree Layout algorithm to the list of layouts to be
+       automatically chained at the end of the building of diagrams based on
+       a given template. This tool also presets the Mainline Tree Layout
+       algorithm parameters for any diagram based on that template.
 
-     INPUTS:
-      in_utility_network (Utility Network / Trace Network):
-          The utility network or trace network containing the diagram template
-          that will be modified.
-      template_name (String):
-          The name of the diagram template that will be modified.
-      is_active (Boolean):
-          Specifies whether the layout algorithm will automatically run when
-          generating diagrams based on the specified template.
+    INPUTS:
+     in_utility_network (Utility Network / Trace Network):
+         The utility network or trace network containing the diagram template
+         that will be modified.
+     template_name (String):
+         The name of the diagram template that will be modified.
+     is_active (Boolean):
+         Specifies whether the layout algorithm will automatically run when
+         generating diagrams based on the specified template.
 
-          * ACTIVE-The added layout algorithm will automatically run during the
-          generation of any diagram that is based on the template_name parameter
-          value. This is the default.The parameter values specified for the
-          layout algorithm are used to run the layout during diagram generation.
-          They are also loaded by default when the algorithm is to be run on any
-          diagram based on the input template.
+         * ACTIVE-The added layout algorithm will automatically run during the
+         generation of any diagram that is based on the template_name parameter
+         value. This is the default.The parameter values specified for the
+         layout algorithm are used to run the layout during diagram generation.
+         They are also loaded by default when the algorithm is to be run on any
+         diagram based on the input template.
 
-          * INACTIVE-All the parameter values currently specified for the added
-          layout algorithm will be loaded by default when the algorithm is to be
-          run on any diagram based on the input template.
-      are_containers_preserved {Boolean}:
-          Specifies how the algorithm will process containers.
+         * INACTIVE-All the parameter values currently specified for the added
+         layout algorithm will be loaded by default when the algorithm is to be
+         run on any diagram based on the input template.
+     are_containers_preserved {Boolean}:
+         Specifies how the algorithm will process containers.
 
-          * PRESERVE_CONTAINERS-The layout algorithm will apply to the top
-          graph of the diagram so containers are preserved.
+         * PRESERVE_CONTAINERS-The layout algorithm will apply to the top
+         graph of the diagram so containers are preserved.
 
-          * IGNORE_CONTAINERS-The layout algorithm will apply to both content
-          and noncontent features in the diagram. This is the default.
-      tree_direction {String}:
-          Specifies the direction of the main line.
+         * IGNORE_CONTAINERS-The layout algorithm will apply to both content
+         and noncontent features in the diagram. This is the default.
+     tree_direction {String}:
+         Specifies the direction of the main line.
 
-          * FROM_LEFT_TO_RIGHT-The main line will be drawn as a horizontal line
-          starting from the left and ending on the right. This is the default.
+         * FROM_LEFT_TO_RIGHT-The main line will be drawn as a horizontal line
+         starting from the left and ending on the right. This is the default.
 
-          * FROM_RIGHT_TO_LEFT-The main line will be drawn as a horizontal line
-          starting from the right and ending on the left.
+         * FROM_RIGHT_TO_LEFT-The main line will be drawn as a horizontal line
+         starting from the right and ending on the left.
 
-          * FROM_BOTTOM_TO_TOP-The main line will be drawn as a vertical line
-          starting from the bottom and ending at the top.
+         * FROM_BOTTOM_TO_TOP-The main line will be drawn as a vertical line
+         starting from the bottom and ending at the top.
 
-          * FROM_TOP_TO_BOTTOM-The main line will be drawn as a vertical line
-          starting from the top and ending at the bottom.
-      branches_placement {String}:
-          Specifies how branches from the main line will be relatively placed
-          with regard to its direction.
+         * FROM_TOP_TO_BOTTOM-The main line will be drawn as a vertical line
+         starting from the top and ending at the bottom.
+     branches_placement {String}:
+         Specifies how branches from the main line will be relatively placed
+         with regard to its direction.
 
-          * BOTH_SIDES-Branches will be placed on both the left and right sides
-          of the main line. This is the default.
+         * BOTH_SIDES-Branches will be placed on both the left and right sides
+         of the main line. This is the default.
 
-          * LEFT_SIDE-Branches will only be placed on the left side of the main
-          line.
+         * LEFT_SIDE-Branches will only be placed on the left side of the main
+         line.
 
-          * RIGHT_SIDE-Branches will only be placed on the right side of the
-          main line.
-      is_unit_absolute {Boolean}:
-          Specifies how parameters representing distances will be interpreted.
+         * RIGHT_SIDE-Branches will only be placed on the right side of the
+         main line.
+     is_unit_absolute {Boolean}:
+         Specifies how parameters representing distances will be interpreted.
 
-          * ABSOLUTE_UNIT-The layout algorithm will interpret distance values as
-          linear units.
+         * ABSOLUTE_UNIT-The layout algorithm will interpret distance values as
+         linear units.
 
-          * PROPORTIONAL_UNIT-The layout algorithm will interpret distance
-          values as relative units to an estimation of the average of the
-          junction sizes in the current diagram extent. This is the default.
-      perpendicular_absolute {Linear Unit}:
-          The spacing between diagram junctions that are displayed along the
-          axis perpendicular to the main line. The default is 2 in the diagram's
-          coordinate system. This parameter can only be used with absolute
-          units.
-      perpendicular_proportional {Double}:
-          The spacing between diagram junctions that are displayed along the
-          axis perpendicular to the main line. The default is 2. This parameter
-          can only be used with proportional units.
-      along_absolute {Linear Unit}:
-          The spacing between diagram junctions that are displayed along the
-          main line, as well as the spacing between diagram junctions that are
-          displayed along the axis parallel to the main line. This parameter can
-          only be used with absolute units. The default is 2 in the units of the
-          diagram's coordinate system.
-      along_proportional {Double}:
-          The spacing between diagram junctions that are displayed along the
-          main line, as well as the spacing between diagram junctions that are
-          displayed along the axis parallel to the main line. This parameter is
-          used with proportional units. The default is 2.
-      disjoined_graph_absolute {Linear Unit}:
-          The minimum spacing that will separate features belonging to disjoined
-          graphs when the diagram contains such graphs. This parameter is used
-          with absolute units. The default is 4 in the units of the diagram's
-          coordinate system.
-      disjoined_graph_proportional {Double}:
-          The minimum spacing that will separate features belonging to disjoined
-          graphs when the diagram contains such graphs. This parameter is used
-          with proportional units. The default is 4.
-      are_edges_orthogonal {Boolean}:
-          Specifies how diagram edges that are related to the tree
-          branches will display. This parameter is deprecated at ArcGIS
-          Pro 3.1. It is systematically
-          ignored regardless of its value when the edge_display_type parameter
-          is specified. However, to maintain compatibility with ArcGIS Pro 2.1,
-          it remains enabled when the edge_display_type parameter is not
-          specified.
+         * PROPORTIONAL_UNIT-The layout algorithm will interpret distance
+         values as relative units to an estimation of the average of the
+         junction sizes in the current diagram extent. This is the default.
+     perpendicular_absolute {Linear Unit}:
+         The spacing between diagram junctions that are displayed along the
+         axis perpendicular to the main line. The default is 2 in the diagram's
+         coordinate system. This parameter can only be used with absolute
+         units.
+     perpendicular_proportional {Double}:
+         The spacing between diagram junctions that are displayed along the
+         axis perpendicular to the main line. The default is 2. This parameter
+         can only be used with proportional units.
+     along_absolute {Linear Unit}:
+         The spacing between diagram junctions that are displayed along the
+         main line, as well as the spacing between diagram junctions that are
+         displayed along the axis parallel to the main line. This parameter can
+         only be used with absolute units. The default is 2 in the units of the
+         diagram's coordinate system.
+     along_proportional {Double}:
+         The spacing between diagram junctions that are displayed along the
+         main line, as well as the spacing between diagram junctions that are
+         displayed along the axis parallel to the main line. This parameter is
+         used with proportional units. The default is 2.
+     disjoined_graph_absolute {Linear Unit}:
+         The minimum spacing that will separate features belonging to disjoined
+         graphs when the diagram contains such graphs. This parameter is used
+         with absolute units. The default is 4 in the units of the diagram's
+         coordinate system.
+     disjoined_graph_proportional {Double}:
+         The minimum spacing that will separate features belonging to disjoined
+         graphs when the diagram contains such graphs. This parameter is used
+         with proportional units. The default is 4.
+     are_edges_orthogonal {Boolean}:
+         Specifies how diagram edges that are related to the tree
+         branches will display. This parameter is deprecated at ArcGIS
+         Pro 3.1. It is systematically
+         ignored regardless of its value when the edge_display_type parameter
+         is specified. However, to maintain compatibility with ArcGIS Pro 2.1,
+         it remains enabled when the edge_display_type parameter is not
+         specified.
 
-          * ORTHOGONAL_EDGES-All diagram edges related to the tree branches will
-          display with right angles.
+         * ORTHOGONAL_EDGES-All diagram edges related to the tree branches will
+         display with right angles.
 
-          * SLANTED_EDGES-All diagram edges related to the tree branches will
-          not display with right angles. This is the default.
-      breakpoint_position {Double}:
-          The relative position of the break point that will be inserted
-          along the diagram edges when Edge Display Type is set to Regular edges
-          (edge_display_type = "REGULAR_EDGES" in Python) or Edge Display Type
-          is set to Orthogonal edges (edge_display_type = "ORTHOGONAL_EDGES" in
-          Python). It is a percentage between 0 and 100.
+         * SLANTED_EDGES-All diagram edges related to the tree branches will
+         not display with right angles. This is the default.
+     breakpoint_position {Double}:
+         The relative position of the break point that will be inserted
+         along the diagram edges when Edge Display Type is set to Regular edges
+         (edge_display_type = "REGULAR_EDGES" in Python) or Edge Display Type
+         is set to Orthogonal edges (edge_display_type = "ORTHOGONAL_EDGES" in
+         Python). It is a percentage between 0 and 100.
 
-          * With a Break Point Relative Position (%) value of 0, the break point
-          is positioned at the x-coordinate of the edge's from junction and at
-          the y-coordinate of the edge's to junction for a horizontal tree. It
-          is positioned at the y-coordinate of the edge's from junction and at
-          the x-coordinate of the edge's to junction for a vertical tree.
+         * With a Break Point Relative Position (%) value of 0, the break point
+         is positioned at the x-coordinate of the edge's from junction and at
+         the y-coordinate of the edge's to junction for a horizontal tree. It
+         is positioned at the y-coordinate of the edge's from junction and at
+         the x-coordinate of the edge's to junction for a vertical tree.
 
-          * With a Break Point Relative Position (%) value of 100, there is no
-          break point inserted on the diagram edges; each diagram edge directly
-          connects its from and to junctions.
+         * With a Break Point Relative Position (%) value of 100, there is no
+         break point inserted on the diagram edges; each diagram edge directly
+         connects its from and to junctions.
 
-          * With a Break Point Relative Position (%) value of N between 0 and
-          100, the break point is positioned at N% of the length of the [XY]
-          segment, X being the x-coordinate of the edge's from junction and Y
-          being the y-coordinate of the edge's to junction for a horizontal
-          tree. It is positioned at N% of the length of the [YX] segment, Y
-          being the y-coordinate of the edge's from junction and X being the
-          x-coordinate of the edge's to junction for a vertical tree.
-                  The relative position of the two inflection points that will
-          be inserted along the diagram edges to compute the curved edges
-          geometry when Edge Display Type is set to Curved edges
-          (edge_display_type = "CURVED_EDGES" in Python). It is a percentage
-          between 15 and 40. With a Break Point Relative Position (%) value of N
-          between 15 and 40:
+         * With a Break Point Relative Position (%) value of N between 0 and
+         100, the break point is positioned at N% of the length of the [XY]
+         segment, X being the x-coordinate of the edge's from junction and Y
+         being the y-coordinate of the edge's to junction for a horizontal
+         tree. It is positioned at N% of the length of the [YX] segment, Y
+         being the y-coordinate of the edge's from junction and X being the
+         x-coordinate of the edge's to junction for a vertical tree.
+                 The relative position of the two inflection points that will
+         be inserted along the diagram edges to compute the curved edges
+         geometry when Edge Display Type is set to Curved edges
+         (edge_display_type = "CURVED_EDGES" in Python). It is a percentage
+         between 15 and 40. With a Break Point Relative Position (%) value of N
+         between 15 and 40:
 
-          * X being the x-coordinate of the edge's from junction and Y
-          being the y-coordinate of the edge's to junction for a horizontal
-          tree:
+         * X being the x-coordinate of the edge's from junction and Y
+         being the y-coordinate of the edge's to junction for a horizontal
+         tree:
 
-          * The first inflection point will be positioned at N% of the length of
-          the [XY] segment.
+         * The first inflection point will be positioned at N% of the length of
+         the [XY] segment.
 
-          * The second inflection point will be positioned at (100 - N)% of the
-          length of the [XY] segment.
+         * The second inflection point will be positioned at (100 - N)% of the
+         length of the [XY] segment.
 
-          * Y being the y-coordinate of the edge's from junction and X
-          being the x-coordinate of the edge's to junction for a vertical tree:
+         * Y being the y-coordinate of the edge's from junction and X
+         being the x-coordinate of the edge's to junction for a vertical tree:
 
-          * The first inflection point will be positioned at N% of the length of
-          the [YX] segment.
+         * The first inflection point will be positioned at N% of the length of
+         the [YX] segment.
 
-          * The second inflection point will be positioned at (100 - N)% of the
-          length of the [XY] segment.
+         * The second inflection point will be positioned at (100 - N)% of the
+         length of the [XY] segment.
 
-          The concept of the from and to junctions above is relative to the tree
-          direction; it has nothing to do with the real topology of the edge
-          feature or edge object in the network.
-      edge_display_type {String}:
-          Specifies the type of display for the diagram edges related to the
-          tree branches.
+         The concept of the from and to junctions above is relative to the tree
+         direction; it has nothing to do with the real topology of the edge
+         feature or edge object in the network.
+     edge_display_type {String}:
+         Specifies the type of display for the diagram edges related to the
+         tree branches.
 
-          * REGULAR_EDGES-All diagram edges related to the tree branches will
-          not display with right angles. This is the default.
+         * REGULAR_EDGES-All diagram edges related to the tree branches will
+         not display with right angles. This is the default.
 
-          * ORTHOGONAL_EDGES-All diagram edges related to the tree branches will
-          display with right angles.
+         * ORTHOGONAL_EDGES-All diagram edges related to the tree branches will
+         display with right angles.
 
-          * CURVED_EDGES-All diagram edges related to the tree branches will be
-          curved.
-      offset_absolute {Linear Unit}:
-          The offset that will be used to separate overlapping segments when
-          is_unit_absolute = "ABSOLUTE_UNIT" and edge_display_type =
-          "ORTHOGONAL_EDGES". The value cannot exceed 10 percent of the smallest
-          value specified for the other spacing parameters. The default is 0.
-      offset_proportional {Double}:
-          The offset that will be used to separate overlapping segments when
-          is_unit_absolute = "PROPORTIONAL_UNIT" and edge_display_type =
-          "ORTHOGONAL_EDGES". It is a double value that cannot exceed 10 percent
-          of the smallest value specified for the other spacing parameters. The
-          default is 0."""
+         * CURVED_EDGES-All diagram edges related to the tree branches will be
+         curved.
+     offset_absolute {Linear Unit}:
+         The offset that will be used to separate overlapping segments when
+         is_unit_absolute = "ABSOLUTE_UNIT" and edge_display_type =
+         "ORTHOGONAL_EDGES". The value cannot exceed 10 percent of the smallest
+         value specified for the other spacing parameters. The default is 0.
+     offset_proportional {Double}:
+         The offset that will be used to separate overlapping segments when
+         is_unit_absolute = "PROPORTIONAL_UNIT" and edge_display_type =
+         "ORTHOGONAL_EDGES". It is a double value that cannot exceed 10 percent
+         of the smallest value specified for the other spacing parameters. The
+         default is 0."""
     ...
 
-@gptooldoc('AddPartialOverlappingEdgesLayout_nd', None)
-def AddPartialOverlappingEdgesLayout(in_utility_network=..., template_name=..., is_active=..., buffer_width_absolute=..., offset_absolute=..., optimize_edges=...): # -> conversion | int | float | complex | basestring | list[Unknown] | tuple[Unknown, ...] | dict[Unknown, Unknown]:
+@gptooldoc("AddPartialOverlappingEdgesLayout_nd", None)
+def AddPartialOverlappingEdgesLayout(
+    in_utility_network=...,
+    template_name=...,
+    is_active=...,
+    buffer_width_absolute=...,
+    offset_absolute=...,
+    optimize_edges=...,
+):  # -> conversion | int | float | complex | basestring | list[Unknown] | tuple[Unknown, ...] | dict[Unknown, Unknown]:
     """AddPartialOverlappingEdgesLayout_nd(in_utility_network, template_name, is_active, buffer_width_absolute, offset_absolute, {optimize_edges})
 
-        Adds the Partial Overlapping Edges Layout algorithm to the list of
-        layouts to be automatically chained at the end of the building of
-        diagrams based on a given template. This tool also presets the Partial
-        Overlapping Edges Layout algorithm parameters for any diagram based on
-        that template.
+       Adds the Partial Overlapping Edges Layout algorithm to the list of
+       layouts to be automatically chained at the end of the building of
+       diagrams based on a given template. This tool also presets the Partial
+       Overlapping Edges Layout algorithm parameters for any diagram based on
+       that template.
 
-     INPUTS:
-      in_utility_network (Utility Network / Trace Network):
-          The utility network or trace network containing the diagram template
-          that will be modified.
-      template_name (String):
-          The name of the diagram template that will be modified.
-      is_active (Boolean):
-          Specifies whether the layout algorithm will automatically run when
-          generating diagrams based on the specified template.
+    INPUTS:
+     in_utility_network (Utility Network / Trace Network):
+         The utility network or trace network containing the diagram template
+         that will be modified.
+     template_name (String):
+         The name of the diagram template that will be modified.
+     is_active (Boolean):
+         Specifies whether the layout algorithm will automatically run when
+         generating diagrams based on the specified template.
 
-          * ACTIVE-The added layout algorithm will automatically run during the
-          generation of any diagram that is based on the template_name parameter
-          value. This is the default.The parameter values specified for the
-          layout algorithm are used to run the layout during diagram generation.
-          They are also loaded by default when the algorithm is to be run on any
-          diagram based on the input template.
+         * ACTIVE-The added layout algorithm will automatically run during the
+         generation of any diagram that is based on the template_name parameter
+         value. This is the default.The parameter values specified for the
+         layout algorithm are used to run the layout during diagram generation.
+         They are also loaded by default when the algorithm is to be run on any
+         diagram based on the input template.
 
-          * INACTIVE-All the parameter values currently specified for the added
-          layout algorithm will be loaded by default when the algorithm is to be
-          run on any diagram based on the input template.
-      buffer_width_absolute (Linear Unit):
-          The width of the buffer zone in which to search for collinear edge
-          segments.
-      offset_absolute (Linear Unit):
-          The distance that will separate the detected edge segments.
-      optimize_edges {Boolean}:
-          Specifies how segments will be placed along edges:
+         * INACTIVE-All the parameter values currently specified for the added
+         layout algorithm will be loaded by default when the algorithm is to be
+         run on any diagram based on the input template.
+     buffer_width_absolute (Linear Unit):
+         The width of the buffer zone in which to search for collinear edge
+         segments.
+     offset_absolute (Linear Unit):
+         The distance that will separate the detected edge segments.
+     optimize_edges {Boolean}:
+         Specifies how segments will be placed along edges:
 
-          * OPTIMIZE_EDGES-The placement of segments will be optimized in each
-          set of collinear segments. This is done by focusing on their
-          connections instead of their positions. Segments that cross each other
-          can be repositioned so they do not cross.
+         * OPTIMIZE_EDGES-The placement of segments will be optimized in each
+         set of collinear segments. This is done by focusing on their
+         connections instead of their positions. Segments that cross each other
+         can be repositioned so they do not cross.
 
-          * DO_NOT_OPTIMIZE_EDGES-The initial position of each segment will be
-          maintained in the collinear segment set and crossings will be
-          preserved. This is the default."""
+         * DO_NOT_OPTIMIZE_EDGES-The initial position of each segment will be
+         maintained in the collinear segment set and crossings will be
+         preserved. This is the default."""
     ...
 
-@gptooldoc('AddRadialTreeLayout_nd', None)
-def AddRadialTreeLayout(in_utility_network=..., template_name=..., is_active=..., are_containers_preserved=..., is_unit_absolute=..., initial_radius_absolute=..., initial_radius_proportional=..., disjoined_graph_absolute=..., disjoined_graph_proportional=..., radius_factor=...): # -> conversion | int | float | complex | basestring | list[Unknown] | tuple[Unknown, ...] | dict[Unknown, Unknown]:
+@gptooldoc("AddRadialTreeLayout_nd", None)
+def AddRadialTreeLayout(
+    in_utility_network=...,
+    template_name=...,
+    is_active=...,
+    are_containers_preserved=...,
+    is_unit_absolute=...,
+    initial_radius_absolute=...,
+    initial_radius_proportional=...,
+    disjoined_graph_absolute=...,
+    disjoined_graph_proportional=...,
+    radius_factor=...,
+):  # -> conversion | int | float | complex | basestring | list[Unknown] | tuple[Unknown, ...] | dict[Unknown, Unknown]:
     """AddRadialTreeLayout_nd(in_utility_network, template_name, is_active, {are_containers_preserved}, {is_unit_absolute}, {initial_radius_absolute}, {initial_radius_proportional}, {disjoined_graph_absolute}, {disjoined_graph_proportional}, {radius_factor})
 
-        Adds the Radial Tree Layout algorithm to the list of layouts to be
-        automatically chained at the end of the building of diagrams based on
-        a given template. This tool also presets the Radial Tree Layout
-        algorithm parameters for any diagram based on that template.
+       Adds the Radial Tree Layout algorithm to the list of layouts to be
+       automatically chained at the end of the building of diagrams based on
+       a given template. This tool also presets the Radial Tree Layout
+       algorithm parameters for any diagram based on that template.
 
-     INPUTS:
-      in_utility_network (Utility Network / Trace Network):
-          The utility network or trace network containing the diagram template
-          that will be modified.
-      template_name (String):
-          The name of the diagram template that will be modified.
-      is_active (Boolean):
-          Specifies whether the layout algorithm will automatically run when
-          generating diagrams based on the specified template.
+    INPUTS:
+     in_utility_network (Utility Network / Trace Network):
+         The utility network or trace network containing the diagram template
+         that will be modified.
+     template_name (String):
+         The name of the diagram template that will be modified.
+     is_active (Boolean):
+         Specifies whether the layout algorithm will automatically run when
+         generating diagrams based on the specified template.
 
-          * ACTIVE-The added layout algorithm will automatically run during the
-          generation of any diagram that is based on the template_name parameter
-          value. This is the default.The parameter values specified for the
-          layout algorithm are used to run the layout during diagram generation.
-          They are also loaded by default when the algorithm is to be run on any
-          diagram based on the input template.
+         * ACTIVE-The added layout algorithm will automatically run during the
+         generation of any diagram that is based on the template_name parameter
+         value. This is the default.The parameter values specified for the
+         layout algorithm are used to run the layout during diagram generation.
+         They are also loaded by default when the algorithm is to be run on any
+         diagram based on the input template.
 
-          * INACTIVE-All the parameter values currently specified for the added
-          layout algorithm will be loaded by default when the algorithm is to be
-          run on any diagram based on the input template.
-      are_containers_preserved {Boolean}:
-          Specifies how the algorithm will process containers.
+         * INACTIVE-All the parameter values currently specified for the added
+         layout algorithm will be loaded by default when the algorithm is to be
+         run on any diagram based on the input template.
+     are_containers_preserved {Boolean}:
+         Specifies how the algorithm will process containers.
 
-          * PRESERVE_CONTAINERS-The layout algorithm will apply to the top
-          graph of the diagram so containers are preserved.
+         * PRESERVE_CONTAINERS-The layout algorithm will apply to the top
+         graph of the diagram so containers are preserved.
 
-          * IGNORE_CONTAINERS-The layout algorithm will apply to both content
-          and noncontent features in the diagram. This is the default.
-      is_unit_absolute {Boolean}:
-          Specifies how parameters representing distances will be interpreted.
+         * IGNORE_CONTAINERS-The layout algorithm will apply to both content
+         and noncontent features in the diagram. This is the default.
+     is_unit_absolute {Boolean}:
+         Specifies how parameters representing distances will be interpreted.
 
-          * ABSOLUTE_UNIT-The layout algorithm will interpret distance values as
-          linear units.
+         * ABSOLUTE_UNIT-The layout algorithm will interpret distance values as
+         linear units.
 
-          * PROPORTIONAL_UNIT-The layout algorithm will interpret distance
-          values as relative units to an estimation of the average of the
-          junction sizes in the current diagram extent. This is the default.
-      initial_radius_absolute {Linear Unit}:
-          The radius of the first concentric circle whose center is the radial
-          tree root junction-that is, the radius of the circle around which the
-          diagram junctions belonging to the first hierarchical level are
-          placed. The default is 5 in the units of the diagram's coordinate
-          system. This parameter can only be used with absolute units.
-      initial_radius_proportional {Double}:
-          The radius of the first concentric circle whose center is the radial
-          tree root junction-that is, the radius of the circle around which the
-          diagram junctions belonging to the first hierarchical level are
-          placed. The default is 5. This parameter can only be used with
-          proportional units.
-      disjoined_graph_absolute {Linear Unit}:
-          The minimum spacing that will separate features belonging to disjoined
-          graphs when the diagram contains such graphs. This parameter is used
-          with absolute units. The default is 4 in the units of the diagram's
-          coordinate system.
-      disjoined_graph_proportional {Double}:
-          The minimum spacing that will separate features belonging to disjoined
-          graphs when the diagram contains such graphs. This parameter is used
-          with proportional units. The default is 4.
-      radius_factor {Double}:
-          The multiplicative factor used to increase or decrease the radius of
-          each concentric circle. It is also the distance that separates each
-          concentric circle related to a hierarchical level. When using a radius
-          factor less than 1, the distance that separates the diagram junctions
-          belonging to the (n) hierarchical level and the (n+1) hierarchical
-          level progressively decreases. With a factor greater than 1, the
-          distance between the hierarchical levels increases progressively. The
-          default is 1."""
+         * PROPORTIONAL_UNIT-The layout algorithm will interpret distance
+         values as relative units to an estimation of the average of the
+         junction sizes in the current diagram extent. This is the default.
+     initial_radius_absolute {Linear Unit}:
+         The radius of the first concentric circle whose center is the radial
+         tree root junction-that is, the radius of the circle around which the
+         diagram junctions belonging to the first hierarchical level are
+         placed. The default is 5 in the units of the diagram's coordinate
+         system. This parameter can only be used with absolute units.
+     initial_radius_proportional {Double}:
+         The radius of the first concentric circle whose center is the radial
+         tree root junction-that is, the radius of the circle around which the
+         diagram junctions belonging to the first hierarchical level are
+         placed. The default is 5. This parameter can only be used with
+         proportional units.
+     disjoined_graph_absolute {Linear Unit}:
+         The minimum spacing that will separate features belonging to disjoined
+         graphs when the diagram contains such graphs. This parameter is used
+         with absolute units. The default is 4 in the units of the diagram's
+         coordinate system.
+     disjoined_graph_proportional {Double}:
+         The minimum spacing that will separate features belonging to disjoined
+         graphs when the diagram contains such graphs. This parameter is used
+         with proportional units. The default is 4.
+     radius_factor {Double}:
+         The multiplicative factor used to increase or decrease the radius of
+         each concentric circle. It is also the distance that separates each
+         concentric circle related to a hierarchical level. When using a radius
+         factor less than 1, the distance that separates the diagram junctions
+         belonging to the (n) hierarchical level and the (n+1) hierarchical
+         level progressively decreases. With a factor greater than 1, the
+         distance between the hierarchical levels increases progressively. The
+         default is 1."""
     ...
 
-@gptooldoc('AddReduceEdgeByAttributeRule_nd', None)
-def AddReduceEdgeByAttributeRule(in_utility_network=..., template_name=..., is_active=..., network_source=..., where_clause=..., description=..., reconnected_edges_option=...): # -> conversion | int | float | complex | basestring | list[Unknown] | tuple[Unknown, ...] | dict[Unknown, Unknown]:
+@gptooldoc("AddReduceEdgeByAttributeRule_nd", None)
+def AddReduceEdgeByAttributeRule(
+    in_utility_network=...,
+    template_name=...,
+    is_active=...,
+    network_source=...,
+    where_clause=...,
+    description=...,
+    reconnected_edges_option=...,
+):  # -> conversion | int | float | complex | basestring | list[Unknown] | tuple[Unknown, ...] | dict[Unknown, Unknown]:
     """AddReduceEdgeByAttributeRule_nd(in_utility_network, template_name, is_active, network_source, {where_clause}, {description}, {reconnected_edges_option})
 
-        Adds a diagram rule to automatically reduce diagram edges during
-        diagram building based on an existing template. This rule can be set
-        up to reduce diagram edges by attributes.
+       Adds a diagram rule to automatically reduce diagram edges during
+       diagram building based on an existing template. This rule can be set
+       up to reduce diagram edges by attributes.
 
-     INPUTS:
-      in_utility_network (Utility Network / Trace Network):
-          The utility network or trace network containing the diagram template
-          that will be modified.
-      template_name (String):
-          The name of the diagram template that will be modified.
-      is_active (Boolean):
-          Specifies whether the rule will be enabled when generating and
-          updating diagrams based on the specified template.
+    INPUTS:
+     in_utility_network (Utility Network / Trace Network):
+         The utility network or trace network containing the diagram template
+         that will be modified.
+     template_name (String):
+         The name of the diagram template that will be modified.
+     is_active (Boolean):
+         Specifies whether the rule will be enabled when generating and
+         updating diagrams based on the specified template.
 
-          * ACTIVE-The added rule will become enabled during the generation and
-          update of any diagrams based on the input template. This is the
-          default.
+         * ACTIVE-The added rule will become enabled during the generation and
+         update of any diagrams based on the input template. This is the
+         default.
 
-          * INACTIVE-The added rule will not become enabled during the
-          generation or update of any diagrams based on the input template.
-      network_source (Table / Feature Class):
-          The network edge source class or object table to reduce. All diagram
-          edges related to network lines or edge objects that belong to this
-          source class or object table are candidates for the reduction.
-      where_clause {SQL Expression}:
-          An SQL expression used to select the subset of network edges among the
-          edges that are candidates for the reduction based on the input
-          template. For more information on SQL syntax, see the SQL reference
-          for query expressions used in ArcGIS help topic.
-      description {String}:
-          The description of the rule.
-      reconnected_edges_option {Boolean}:
-          Specifies whether the rule will aggregate the edges that are
-          reconnected to the reduction junctions.
+         * INACTIVE-The added rule will not become enabled during the
+         generation or update of any diagrams based on the input template.
+     network_source (Table / Feature Class):
+         The network edge source class or object table to reduce. All diagram
+         edges related to network lines or edge objects that belong to this
+         source class or object table are candidates for the reduction.
+     where_clause {SQL Expression}:
+         An SQL expression used to select the subset of network edges among the
+         edges that are candidates for the reduction based on the input
+         template. For more information on SQL syntax, see the SQL reference
+         for query expressions used in ArcGIS help topic.
+     description {String}:
+         The description of the rule.
+     reconnected_edges_option {Boolean}:
+         Specifies whether the rule will aggregate the edges that are
+         reconnected to the reduction junctions.
 
-          * DONT_AGGREGATE_RECONNECTED_EDGES-Any edge connecting a point along
-          the edge that is reduced is reconnected to the reduction junction.
+         * DONT_AGGREGATE_RECONNECTED_EDGES-Any edge connecting a point along
+         the edge that is reduced is reconnected to the reduction junction.
 
-          * AGGREGATE_RECONNECTED_EDGES-Any edge connecting a point along the
-          edge that is reduced is replaced by a reduction edge. This reduction
-          edge is reconnected to the reduction junction. This is the default."""
+         * AGGREGATE_RECONNECTED_EDGES-Any edge connecting a point along the
+         edge that is reduced is replaced by a reduction edge. This reduction
+         edge is reconnected to the reduction junction. This is the default."""
     ...
 
-@gptooldoc('AddReduceJunctionByAttributeRule_nd', None)
-def AddReduceJunctionByAttributeRule(in_utility_network=..., template_name=..., is_active=..., junction_source=..., where_clause=..., connectivity_options=..., unconnected_junctions=..., one_connected_junction=..., two_connected_junctions=..., edges_attributes=..., description=...): # -> conversion | int | float | complex | basestring | list[Unknown] | tuple[Unknown, ...] | dict[Unknown, Unknown]:
+@gptooldoc("AddReduceJunctionByAttributeRule_nd", None)
+def AddReduceJunctionByAttributeRule(
+    in_utility_network=...,
+    template_name=...,
+    is_active=...,
+    junction_source=...,
+    where_clause=...,
+    connectivity_options=...,
+    unconnected_junctions=...,
+    one_connected_junction=...,
+    two_connected_junctions=...,
+    edges_attributes=...,
+    description=...,
+):  # -> conversion | int | float | complex | basestring | list[Unknown] | tuple[Unknown, ...] | dict[Unknown, Unknown]:
     """AddReduceJunctionByAttributeRule_nd(in_utility_network, template_name, is_active, junction_source, {where_clause}, {connectivity_options}, {unconnected_junctions}, {one_connected_junction}, {two_connected_junctions}, {edges_attributes;edges_attributes...}, {description})
 
-        Adds a diagram rule to automatically reduce diagram junctions during
-        diagram building based on an existing template. The junctions to
-        reduce are queried from a given network junction source class or
-        object table by attributes according to the number of other junctions
-        to which they are connected.
+       Adds a diagram rule to automatically reduce diagram junctions during
+       diagram building based on an existing template. The junctions to
+       reduce are queried from a given network junction source class or
+       object table by attributes according to the number of other junctions
+       to which they are connected.
 
-     INPUTS:
-      in_utility_network (Utility Network / Trace Network):
-          The utility network or trace network containing the diagram template
-          that will be modified.
-      template_name (String):
-          The name of the diagram template that will be modified.
-      is_active (Boolean):
-          Specifies whether the rule will be enabled when generating and
-          updating diagrams based on the specified template.
+    INPUTS:
+     in_utility_network (Utility Network / Trace Network):
+         The utility network or trace network containing the diagram template
+         that will be modified.
+     template_name (String):
+         The name of the diagram template that will be modified.
+     is_active (Boolean):
+         Specifies whether the rule will be enabled when generating and
+         updating diagrams based on the specified template.
 
-          * ACTIVE-The added rule will become enabled during the generation and
-          update of any diagrams based on the input template. This is the
-          default.
+         * ACTIVE-The added rule will become enabled during the generation and
+         update of any diagrams based on the input template. This is the
+         default.
 
-          * INACTIVE-The added rule will not become enabled during the
-          generation or update of any diagrams based on the input template.
-      junction_source (Table / Feature Class):
-          The network junction source class or object table to process. All
-          diagram junctions related to network junctions that belong to this
-          source class or object table are reduction candidates.
-      where_clause {SQL Expression}:
-          An SQL expression used to select the subset of network junctions from
-          the junction reduction candidates in the diagrams based on the input
-          template. For more information on SQL syntax, see the SQL reference
-          for query expressions used in ArcGIS help topic.
-      connectivity_options {String}:
-          Specifies the number of junction connections that will be considered
-          for reduction.
+         * INACTIVE-The added rule will not become enabled during the
+         generation or update of any diagrams based on the input template.
+     junction_source (Table / Feature Class):
+         The network junction source class or object table to process. All
+         diagram junctions related to network junctions that belong to this
+         source class or object table are reduction candidates.
+     where_clause {SQL Expression}:
+         An SQL expression used to select the subset of network junctions from
+         the junction reduction candidates in the diagrams based on the input
+         template. For more information on SQL syntax, see the SQL reference
+         for query expressions used in ArcGIS help topic.
+     connectivity_options {String}:
+         Specifies the number of junction connections that will be considered
+         for reduction.
 
-          * MAX_2_CONNECTED_JUNCTIONS-Junctions with two or less connections
-          will be considered. In this case, a specific process will be run
-          according to the number of candidate junction connections that will be
-          reduced. This is the default.
+         * MAX_2_CONNECTED_JUNCTIONS-Junctions with two or less connections
+         will be considered. In this case, a specific process will be run
+         according to the number of candidate junction connections that will be
+         reduced. This is the default.
 
-          * MIN_3_CONNECTED_JUNCTIONS-Junctions with three or more connections
-          will be considered. In this case, upstream traces will be run to
-          determine whether candidate junction connections will be reduced.
-      unconnected_junctions {Boolean}:
-          Specifies whether each unconnected network diagram junction candidate
-          will be reduced. This parameter is only enabled when
-          connectivity_options = "MAX_2_CONNECTED_JUNCTIONS".
+         * MIN_3_CONNECTED_JUNCTIONS-Junctions with three or more connections
+         will be considered. In this case, upstream traces will be run to
+         determine whether candidate junction connections will be reduced.
+     unconnected_junctions {Boolean}:
+         Specifies whether each unconnected network diagram junction candidate
+         will be reduced. This parameter is only enabled when
+         connectivity_options = "MAX_2_CONNECTED_JUNCTIONS".
 
-          * REDUCE_UNCONNECTED_JCT-Unconnected network diagram junction
-          candidates will be reduced. Each junction will be removed.
+         * REDUCE_UNCONNECTED_JCT-Unconnected network diagram junction
+         candidates will be reduced. Each junction will be removed.
 
-          * KEEP_UNCONNECTED_JCT-Unconnected network diagram junction candidates
-          will not be reduced; they will be kept. This is the default.
-      one_connected_junction {Boolean}:
-          Specifies whether each network diagram junction reduction candidate
-          that is connected to a single junction will be reduced. This parameter
-          is only enabled when connectivity_options =
-          "MAX_2_CONNECTED_JUNCTIONS".
+         * KEEP_UNCONNECTED_JCT-Unconnected network diagram junction candidates
+         will not be reduced; they will be kept. This is the default.
+     one_connected_junction {Boolean}:
+         Specifies whether each network diagram junction reduction candidate
+         that is connected to a single junction will be reduced. This parameter
+         is only enabled when connectivity_options =
+         "MAX_2_CONNECTED_JUNCTIONS".
 
-          * REDUCE_JCT_TO_1JCT-Network diagram junction reduction candidates
-          that are connected to a single junction will be reduced. Each junction
-          and its incident edge will be reduced onto its single connected
-          junction.
+         * REDUCE_JCT_TO_1JCT-Network diagram junction reduction candidates
+         that are connected to a single junction will be reduced. Each junction
+         and its incident edge will be reduced onto its single connected
+         junction.
 
-          * KEEP_JCT_TO_1JCT-Network diagram junction reduction candidates that
-          are connected to a single junction will not be reduced; they will be
-          kept. This is the default.
-      two_connected_junctions {Boolean}:
-          Specifies whether each network diagram junction reduction candidate
-          that is connected to two other junctions will be reduced. This
-          parameter is only enabled when connectivity_options =
-          "MAX_2_CONNECTED_JUNCTIONS".
+         * KEEP_JCT_TO_1JCT-Network diagram junction reduction candidates that
+         are connected to a single junction will not be reduced; they will be
+         kept. This is the default.
+     two_connected_junctions {Boolean}:
+         Specifies whether each network diagram junction reduction candidate
+         that is connected to two other junctions will be reduced. This
+         parameter is only enabled when connectivity_options =
+         "MAX_2_CONNECTED_JUNCTIONS".
 
-          * REDUCE_JCT_TO_2JCTS-Network diagram junction reduction candidates
-          that connect two other junctions will be reduced. Each junction and
-          its incident edges will be reduced onto a super span edge (the
-          reduction edge). This is the default.
+         * REDUCE_JCT_TO_2JCTS-Network diagram junction reduction candidates
+         that connect two other junctions will be reduced. Each junction and
+         its incident edges will be reduced onto a super span edge (the
+         reduction edge). This is the default.
 
-          * KEEP_JCT_TO_2JCTS-Network diagram junction reduction candidates that
-          connect two other junctions will not be reduced; they will be kept.
-      edges_attributes {String}:
-          The alias of the edge attributes adjacent to the junction reduction
-          candidate.The junction will be reduced only when all of its adjacent
-          edges have
-          the same values for each specified attribute alias.
-      description {String}:
-          The description of the rule."""
+         * KEEP_JCT_TO_2JCTS-Network diagram junction reduction candidates that
+         connect two other junctions will not be reduced; they will be kept.
+     edges_attributes {String}:
+         The alias of the edge attributes adjacent to the junction reduction
+         candidate.The junction will be reduced only when all of its adjacent
+         edges have
+         the same values for each specified attribute alias.
+     description {String}:
+         The description of the rule."""
     ...
 
-@gptooldoc('AddReduceJunctionRule_nd', None)
-def AddReduceJunctionRule(in_utility_network=..., template_name=..., is_active=..., inverse_source_selection=..., junction_source=..., connectivity_options=..., unconnected_junctions=..., one_connected_junction=..., two_connected_junctions=..., edges_attributes=..., description=...): # -> conversion | int | float | complex | basestring | list[Unknown] | tuple[Unknown, ...] | dict[Unknown, Unknown]:
+@gptooldoc("AddReduceJunctionRule_nd", None)
+def AddReduceJunctionRule(
+    in_utility_network=...,
+    template_name=...,
+    is_active=...,
+    inverse_source_selection=...,
+    junction_source=...,
+    connectivity_options=...,
+    unconnected_junctions=...,
+    one_connected_junction=...,
+    two_connected_junctions=...,
+    edges_attributes=...,
+    description=...,
+):  # -> conversion | int | float | complex | basestring | list[Unknown] | tuple[Unknown, ...] | dict[Unknown, Unknown]:
     """AddReduceJunctionRule_nd(in_utility_network, template_name, is_active, inverse_source_selection, {junction_source;junction_source...}, {connectivity_options}, {unconnected_junctions}, {one_connected_junction}, {two_connected_junctions}, {edges_attributes;edges_attributes...}, {description})
 
-        Adds a diagram rule to automatically reduce diagram junctions during
-        diagram building based on an existing template. This tool reduces
-        junctions based on several network junction source classes and object
-        tables according to the number of other junctions to which they are
-        connected.
+       Adds a diagram rule to automatically reduce diagram junctions during
+       diagram building based on an existing template. This tool reduces
+       junctions based on several network junction source classes and object
+       tables according to the number of other junctions to which they are
+       connected.
 
-     INPUTS:
-      in_utility_network (Utility Network / Trace Network):
-          The utility network or trace network containing the diagram template
-          that will be modified.
-      template_name (String):
-          The name of the diagram template that will be modified.
-      is_active (Boolean):
-          Specifies whether the rule will be enabled when generating and
-          updating diagrams based on the specified template.
+    INPUTS:
+     in_utility_network (Utility Network / Trace Network):
+         The utility network or trace network containing the diagram template
+         that will be modified.
+     template_name (String):
+         The name of the diagram template that will be modified.
+     is_active (Boolean):
+         Specifies whether the rule will be enabled when generating and
+         updating diagrams based on the specified template.
 
-          * ACTIVE-The added rule will become enabled during the generation and
-          update of any diagrams based on the input template. This is the
-          default.
+         * ACTIVE-The added rule will become enabled during the generation and
+         update of any diagrams based on the input template. This is the
+         default.
 
-          * INACTIVE-The added rule will not become enabled during the
-          generation or update of any diagrams based on the input template.
-      inverse_source_selection (String):
-          Specifies how the specified junction source classes and object tables
-          will be processed.
+         * INACTIVE-The added rule will not become enabled during the
+         generation or update of any diagrams based on the input template.
+     inverse_source_selection (String):
+         Specifies how the specified junction source classes and object tables
+         will be processed.
 
-          * EXCLUDE_SOURCE_CLASSES-Junctions based on the specified source
-          classes and object tables will not be processed, while other junctions
-          will be processed.
+         * EXCLUDE_SOURCE_CLASSES-Junctions based on the specified source
+         classes and object tables will not be processed, while other junctions
+         will be processed.
 
-          * INCLUDE_SOURCE_CLASSES-Only junctions based on the specified source
-          classes and object tables will be processed. This is the default.
-      junction_source {Table / Feature Class}:
-          A list of the network junction source class (or classes) and object
-          table (or tables) that will be excluded or included depending on the
-          rule process. When Rule Process is set to Include source
-          classes
-          (inverse_source_selection = "INCLUDE_SOURCE_CLASSES" in Python), the
-          default, one or more network junction source classes or object tables
-          will be processed. All diagram junctions related to network junctions
-          that belong to those source classes and object tables are reduction
-          candidates. The Add Reduce Junction Rule tool will process the
-          junction source
-          classes and object tables in the order of this list, from the junction
-          class or table with the highest priority-the first class or table in
-          the list-to the junction class or table with the lowest priority-the
-          last class or table in the list.When Rule Process is set to Exclude
-          source classes
-          (inverse_source_selection = "EXCLUDE_SOURCE_CLASSES" in Python), no
-          particular junction source class or object table must be specified. In
-          this case, all junctions in the generated diagrams, regardless of
-          their source class or object table, will be reduced.When specifying
-          the SystemJunctions class among the network junction
-          source classes, the rule will systematically process both system
-          junctions and system junction objects.
-      connectivity_options {String}:
-          Specifies the number of junction connections that will be considered
-          for reduction.
+         * INCLUDE_SOURCE_CLASSES-Only junctions based on the specified source
+         classes and object tables will be processed. This is the default.
+     junction_source {Table / Feature Class}:
+         A list of the network junction source class (or classes) and object
+         table (or tables) that will be excluded or included depending on the
+         rule process. When Rule Process is set to Include source
+         classes
+         (inverse_source_selection = "INCLUDE_SOURCE_CLASSES" in Python), the
+         default, one or more network junction source classes or object tables
+         will be processed. All diagram junctions related to network junctions
+         that belong to those source classes and object tables are reduction
+         candidates. The Add Reduce Junction Rule tool will process the
+         junction source
+         classes and object tables in the order of this list, from the junction
+         class or table with the highest priority-the first class or table in
+         the list-to the junction class or table with the lowest priority-the
+         last class or table in the list.When Rule Process is set to Exclude
+         source classes
+         (inverse_source_selection = "EXCLUDE_SOURCE_CLASSES" in Python), no
+         particular junction source class or object table must be specified. In
+         this case, all junctions in the generated diagrams, regardless of
+         their source class or object table, will be reduced.When specifying
+         the SystemJunctions class among the network junction
+         source classes, the rule will systematically process both system
+         junctions and system junction objects.
+     connectivity_options {String}:
+         Specifies the number of junction connections that will be considered
+         for reduction.
 
-          * MAX_2_CONNECTED_JUNCTIONS-Junctions with two or less connections
-          will be considered. In this case, a specific process will be run
-          according to the number of candidate junction connections that will be
-          reduced. This is the default.
+         * MAX_2_CONNECTED_JUNCTIONS-Junctions with two or less connections
+         will be considered. In this case, a specific process will be run
+         according to the number of candidate junction connections that will be
+         reduced. This is the default.
 
-          * MIN_3_CONNECTED_JUNCTIONS-Junctions with three or more connections
-          will be considered. In this case, upstream traces will be run to
-          determine whether candidate junction connections will be reduced.
-      unconnected_junctions {Boolean}:
-          Specifies whether each unconnected network diagram junction candidate
-          will be reduced. This parameter is only enabled when
-          connectivity_options = "MAX_2_CONNECTED_JUNCTIONS".
+         * MIN_3_CONNECTED_JUNCTIONS-Junctions with three or more connections
+         will be considered. In this case, upstream traces will be run to
+         determine whether candidate junction connections will be reduced.
+     unconnected_junctions {Boolean}:
+         Specifies whether each unconnected network diagram junction candidate
+         will be reduced. This parameter is only enabled when
+         connectivity_options = "MAX_2_CONNECTED_JUNCTIONS".
 
-          * REDUCE_UNCONNECTED_JCT-Unconnected network diagram junction
-          candidates will be reduced. Each junction will be removed.
+         * REDUCE_UNCONNECTED_JCT-Unconnected network diagram junction
+         candidates will be reduced. Each junction will be removed.
 
-          * KEEP_UNCONNECTED_JCT-Unconnected network diagram junction candidates
-          will not be reduced; they will be kept. This is the default.
-      one_connected_junction {Boolean}:
-          Specifies whether each network diagram junction reduction candidate
-          that is connected to a single junction will be reduced. This parameter
-          is only enabled when connectivity_options =
-          "MAX_2_CONNECTED_JUNCTIONS".
+         * KEEP_UNCONNECTED_JCT-Unconnected network diagram junction candidates
+         will not be reduced; they will be kept. This is the default.
+     one_connected_junction {Boolean}:
+         Specifies whether each network diagram junction reduction candidate
+         that is connected to a single junction will be reduced. This parameter
+         is only enabled when connectivity_options =
+         "MAX_2_CONNECTED_JUNCTIONS".
 
-          * REDUCE_JCT_TO_1JCT-Network diagram junction reduction candidates
-          that are connected to a single junction will be reduced. Each junction
-          and its incident edge will be reduced onto its single connected
-          junction.
+         * REDUCE_JCT_TO_1JCT-Network diagram junction reduction candidates
+         that are connected to a single junction will be reduced. Each junction
+         and its incident edge will be reduced onto its single connected
+         junction.
 
-          * KEEP_JCT_TO_1JCT-Network diagram junction reduction candidates that
-          are connected to a single junction will not be reduced; they will be
-          kept. This is the default.
-      two_connected_junctions {Boolean}:
-          Specifies whether each network diagram junction reduction candidate
-          that is connected to two other junctions will be reduced. This
-          parameter is only enabled when connectivity_options =
-          "MAX_2_CONNECTED_JUNCTIONS".
+         * KEEP_JCT_TO_1JCT-Network diagram junction reduction candidates that
+         are connected to a single junction will not be reduced; they will be
+         kept. This is the default.
+     two_connected_junctions {Boolean}:
+         Specifies whether each network diagram junction reduction candidate
+         that is connected to two other junctions will be reduced. This
+         parameter is only enabled when connectivity_options =
+         "MAX_2_CONNECTED_JUNCTIONS".
 
-          * REDUCE_JCT_TO_2JCTS-Network diagram junction reduction candidates
-          that connect two other junctions will be reduced. Each junction and
-          its incident edges will be reduced onto a super span edge (the
-          reduction edge). This is the default.
+         * REDUCE_JCT_TO_2JCTS-Network diagram junction reduction candidates
+         that connect two other junctions will be reduced. Each junction and
+         its incident edges will be reduced onto a super span edge (the
+         reduction edge). This is the default.
 
-          * KEEP_JCT_TO_2JCTS-Network diagram junction reduction candidates that
-          connect two other junctions will not be reduced; they will be kept.
-      edges_attributes {String}:
-          The alias of the edge attributes adjacent to the junction reduction
-          candidate.The junction will be reduced only when all of its adjacent
-          edges have
-          the same values for each specified attribute alias.
-      description {String}:
-          The description of the rule."""
+         * KEEP_JCT_TO_2JCTS-Network diagram junction reduction candidates that
+         connect two other junctions will not be reduced; they will be kept.
+     edges_attributes {String}:
+         The alias of the edge attributes adjacent to the junction reduction
+         candidate.The junction will be reduced only when all of its adjacent
+         edges have
+         the same values for each specified attribute alias.
+     description {String}:
+         The description of the rule."""
     ...
 
-@gptooldoc('AddRelativeMainlineLayout_nd', None)
-def AddRelativeMainlineLayout(in_utility_network=..., template_name=..., is_active=..., line_attribute=..., mainline_direction=..., offset_between_branches=..., breakpoint_angle=..., type_attribute=..., mainline_values=..., branch_values=..., excluded_values=..., is_compressing=..., compression_ratio=..., minimal_distance=..., alignment_attribute=..., initial_distances=..., length_attribute=...): # -> conversion | int | float | complex | basestring | list[Unknown] | tuple[Unknown, ...] | dict[Unknown, Unknown]:
+@gptooldoc("AddRelativeMainlineLayout_nd", None)
+def AddRelativeMainlineLayout(
+    in_utility_network=...,
+    template_name=...,
+    is_active=...,
+    line_attribute=...,
+    mainline_direction=...,
+    offset_between_branches=...,
+    breakpoint_angle=...,
+    type_attribute=...,
+    mainline_values=...,
+    branch_values=...,
+    excluded_values=...,
+    is_compressing=...,
+    compression_ratio=...,
+    minimal_distance=...,
+    alignment_attribute=...,
+    initial_distances=...,
+    length_attribute=...,
+):  # -> conversion | int | float | complex | basestring | list[Unknown] | tuple[Unknown, ...] | dict[Unknown, Unknown]:
     """AddRelativeMainlineLayout_nd(in_utility_network, template_name, is_active, line_attribute, {mainline_direction}, {offset_between_branches}, {breakpoint_angle}, {type_attribute}, {mainline_values;mainline_values...}, {branch_values;branch_values...}, {excluded_values;excluded_values...}, {is_compressing}, {compression_ratio}, {minimal_distance}, {alignment_attribute}, {initial_distances}, {length_attribute})
 
-        Adds the Relative Mainline Layout algorithm to the list of layouts to
-        be automatically chained at the end of the building of diagrams based
-        on a given template. This tool also presets the Relative Mainline
-        Layout algorithm parameters for any diagram based on that template.
+       Adds the Relative Mainline Layout algorithm to the list of layouts to
+       be automatically chained at the end of the building of diagrams based
+       on a given template. This tool also presets the Relative Mainline
+       Layout algorithm parameters for any diagram based on that template.
 
-     INPUTS:
-      in_utility_network (Utility Network / Trace Network):
-          The utility network or trace network containing the diagram template
-          that will be modified.
-      template_name (String):
-          The name of the diagram template that will be modified.
-      is_active (Boolean):
-          Specifies whether the layout algorithm will automatically run when
-          generating diagrams based on the specified template.
+    INPUTS:
+     in_utility_network (Utility Network / Trace Network):
+         The utility network or trace network containing the diagram template
+         that will be modified.
+     template_name (String):
+         The name of the diagram template that will be modified.
+     is_active (Boolean):
+         Specifies whether the layout algorithm will automatically run when
+         generating diagrams based on the specified template.
 
-          * ACTIVE-The added layout algorithm will automatically run during the
-          generation of any diagram that is based on the template_name parameter
-          value. This is the default.The parameter values specified for the
-          layout algorithm are used to run the layout during diagram generation.
-          They are also loaded by default when the algorithm is to be run on any
-          diagram based on the input template.
+         * ACTIVE-The added layout algorithm will automatically run during the
+         generation of any diagram that is based on the template_name parameter
+         value. This is the default.The parameter values specified for the
+         layout algorithm are used to run the layout during diagram generation.
+         They are also loaded by default when the algorithm is to be run on any
+         diagram based on the input template.
 
-          * INACTIVE-All the parameter values currently specified for the added
-          layout algorithm will be loaded by default when the algorithm is to be
-          run on any diagram based on the input template.
-      line_attribute (String):
-          The name of the network attribute that will be used to identify the
-          lines that comprise the straight lines. This network attribute must
-          exist in the network line classes. Its values must be the same for all
-          the edges that comprise a straight line, for example, Line 1, Line 2,
-          and so on.
-      mainline_direction {String}:
-          Specifies the direction of the main line.
+         * INACTIVE-All the parameter values currently specified for the added
+         layout algorithm will be loaded by default when the algorithm is to be
+         run on any diagram based on the input template.
+     line_attribute (String):
+         The name of the network attribute that will be used to identify the
+         lines that comprise the straight lines. This network attribute must
+         exist in the network line classes. Its values must be the same for all
+         the edges that comprise a straight line, for example, Line 1, Line 2,
+         and so on.
+     mainline_direction {String}:
+         Specifies the direction of the main line.
 
-          * FROM_LEFT_TO_RIGHT-The main line will be drawn as a horizontal line
-          starting from the left and ending on the right. This is the default.
+         * FROM_LEFT_TO_RIGHT-The main line will be drawn as a horizontal line
+         starting from the left and ending on the right. This is the default.
 
-          * FROM_TOP_TO_BOTTOM-The main line will be drawn as a vertical line
-          starting from the top and ending at the bottom.
-      offset_between_branches {Linear Unit}:
-          The spacing between two adjacent branches along the axis perpendicular
-          to the direction of the lines.
-      breakpoint_angle {Double}:
-          The angle that will be used to position the break point on the
-          branches. It is a value between 30 and 90 degrees that is combined
-          with the offset_between_branches parameter value to compute this
-          position. When the break point angle value is 90 degrees, each branch
-          displays orthogonally.
-      type_attribute {String}:
-          The name of the network attribute that will be used to qualify the
-          lines. This network attribute may exist in the network line
-          classes.The type_attribute and line_attribute parameter values can be
-          the
-          same.
-      mainline_values {Value Table}:
-          The type_attribute values that identify the main lines. When such
-          values exist, they must be the same for any edge that comprises the
-          main lines, regardless of their related network feature line classes
-          or edge object tables.
-      branch_values {Value Table}:
-          The type_attribute values that identify the branches.
-      excluded_values {Value Table}:
-          The type_attribute values that identify the edges that will be
-          excluded from the straight lines (crossovers or ladders).
-      is_compressing {Boolean}:
-          Specifies whether the graph will be compressed.
+         * FROM_TOP_TO_BOTTOM-The main line will be drawn as a vertical line
+         starting from the top and ending at the bottom.
+     offset_between_branches {Linear Unit}:
+         The spacing between two adjacent branches along the axis perpendicular
+         to the direction of the lines.
+     breakpoint_angle {Double}:
+         The angle that will be used to position the break point on the
+         branches. It is a value between 30 and 90 degrees that is combined
+         with the offset_between_branches parameter value to compute this
+         position. When the break point angle value is 90 degrees, each branch
+         displays orthogonally.
+     type_attribute {String}:
+         The name of the network attribute that will be used to qualify the
+         lines. This network attribute may exist in the network line
+         classes.The type_attribute and line_attribute parameter values can be
+         the
+         same.
+     mainline_values {Value Table}:
+         The type_attribute values that identify the main lines. When such
+         values exist, they must be the same for any edge that comprises the
+         main lines, regardless of their related network feature line classes
+         or edge object tables.
+     branch_values {Value Table}:
+         The type_attribute values that identify the branches.
+     excluded_values {Value Table}:
+         The type_attribute values that identify the edges that will be
+         excluded from the straight lines (crossovers or ladders).
+     is_compressing {Boolean}:
+         Specifies whether the graph will be compressed.
 
-          * USE_COMPRESSION-Compression will be used. An additional step is run
-          at the end of the process to reduce the distances between adjacent
-          groups of neighbor junctions along the direction while maintaining
-          relative positioning between these groups. Neighbor junctions are
-          junctions that are geographically close to each other without being
-          directly connected.
+         * USE_COMPRESSION-Compression will be used. An additional step is run
+         at the end of the process to reduce the distances between adjacent
+         groups of neighbor junctions along the direction while maintaining
+         relative positioning between these groups. Neighbor junctions are
+         junctions that are geographically close to each other without being
+         directly connected.
 
-          * DO_NOT_USE_COMPRESSION-Compression will not be used. This is the
-          default.
-      compression_ratio {Double}:
-          A value between 0 and 100 that is applied to the length of any edge
-          after subtracting the minimal distance of its length. When the value
-          is 100, the distance between each detected junction group is equal to
-          the minimal distance.
-      minimal_distance {Linear Unit}:
-          The minimal distance between two adjacent groups of neighbor
-          junctions. This minimal distance is also used to group neighbor
-          junctions based on their projection along the direction axis. Two
-          junctions projected on this axis will belong to the same group when
-          the distance between the two projected points is less than this
-          distance.
-      alignment_attribute {String}:
-          The name of the network attribute that will be used to align lines
-          that are split. Lines with the same attribute value will be aligned.
-      initial_distances {String}:
-          Specifies how the length of the diagram edges will be assessed. This
-          length determines the positions of the junctions along the direction.
-          The distances between the connected junctions along the direction are
-          not equidistant; they are relative to each other and depend on the
-          current edge length and the length of the shortest edge.
+         * DO_NOT_USE_COMPRESSION-Compression will not be used. This is the
+         default.
+     compression_ratio {Double}:
+         A value between 0 and 100 that is applied to the length of any edge
+         after subtracting the minimal distance of its length. When the value
+         is 100, the distance between each detected junction group is equal to
+         the minimal distance.
+     minimal_distance {Linear Unit}:
+         The minimal distance between two adjacent groups of neighbor
+         junctions. This minimal distance is also used to group neighbor
+         junctions based on their projection along the direction axis. Two
+         junctions projected on this axis will belong to the same group when
+         the distance between the two projected points is less than this
+         distance.
+     alignment_attribute {String}:
+         The name of the network attribute that will be used to align lines
+         that are split. Lines with the same attribute value will be aligned.
+     initial_distances {String}:
+         Specifies how the length of the diagram edges will be assessed. This
+         length determines the positions of the junctions along the direction.
+         The distances between the connected junctions along the direction are
+         not equidistant; they are relative to each other and depend on the
+         current edge length and the length of the shortest edge.
 
-          * FROM_CURRENT_EDGE_GEOMETRY-The distances will be computed from the
-          current edge geometry. This is the default.
+         * FROM_CURRENT_EDGE_GEOMETRY-The distances will be computed from the
+         current edge geometry. This is the default.
 
-          * FROM_ATTRIBUTE_EDGE-The distances will be computed from a given
-          attribute that exists on an edge.
-      length_attribute {String}:
-          The network attribute from which the distances will be computed when
-          initial_distances is FROM_ATTRIBUTE_EDGE."""
+         * FROM_ATTRIBUTE_EDGE-The distances will be computed from a given
+         attribute that exists on an edge.
+     length_attribute {String}:
+         The network attribute from which the distances will be computed when
+         initial_distances is FROM_ATTRIBUTE_EDGE."""
     ...
 
-@gptooldoc('AddRemoveFeatureByAttributeRule_nd', None)
-def AddRemoveFeatureByAttributeRule(in_utility_network=..., template_name=..., is_active=..., network_source=..., where_clause=..., description=..., unconnected_junctions=..., one_connected_junction=...): # -> conversion | int | float | complex | basestring | list[Unknown] | tuple[Unknown, ...] | dict[Unknown, Unknown]:
+@gptooldoc("AddRemoveFeatureByAttributeRule_nd", None)
+def AddRemoveFeatureByAttributeRule(
+    in_utility_network=...,
+    template_name=...,
+    is_active=...,
+    network_source=...,
+    where_clause=...,
+    description=...,
+    unconnected_junctions=...,
+    one_connected_junction=...,
+):  # -> conversion | int | float | complex | basestring | list[Unknown] | tuple[Unknown, ...] | dict[Unknown, Unknown]:
     """AddRemoveFeatureByAttributeRule_nd(in_utility_network, template_name, is_active, network_source, {where_clause}, {description}, {unconnected_junctions}, {one_connected_junction})
 
-        Adds a diagram rule to automatically remove diagram features during
-        diagram building based on an existing template. The features to be
-        removed are queried by attributes from a given network source class or
-        object table. You can also constrain the removal of features based on
-        connectivity.
+       Adds a diagram rule to automatically remove diagram features during
+       diagram building based on an existing template. The features to be
+       removed are queried by attributes from a given network source class or
+       object table. You can also constrain the removal of features based on
+       connectivity.
 
-     INPUTS:
-      in_utility_network (Utility Network / Trace Network):
-          The utility network or trace network containing the diagram template
-          that will be modified.
-      template_name (String):
-          The name of the diagram template that will be modified.
-      is_active (Boolean):
-          Specifies whether the rule will be enabled when generating and
-          updating diagrams based on the specified template.
+    INPUTS:
+     in_utility_network (Utility Network / Trace Network):
+         The utility network or trace network containing the diagram template
+         that will be modified.
+     template_name (String):
+         The name of the diagram template that will be modified.
+     is_active (Boolean):
+         Specifies whether the rule will be enabled when generating and
+         updating diagrams based on the specified template.
 
-          * ACTIVE-The added rule will become enabled during the generation and
-          update of any diagrams based on the input template. This is the
-          default.
+         * ACTIVE-The added rule will become enabled during the generation and
+         update of any diagrams based on the input template. This is the
+         default.
 
-          * INACTIVE-The added rule will not become enabled during the
-          generation or update of any diagrams based on the input template.
-      network_source (Table / Feature Class):
-          The network source class or object table that will be processed. All
-          diagram features related to network features or objects that belong to
-          this source class or object table are removal candidates.
-      where_clause {SQL Expression}:
-          An SQL expression that will be used to select the subset of network
-          elements from the element removal candidates in the diagrams based on
-          the input template. For more information about SQL syntax, see the SQL
-          reference for query expressions used in ArcGIS help topic.
-      description {String}:
-          The description of the rule.
-      unconnected_junctions {Boolean}:
-          Specifies whether diagram junctions and diagram containers must be
-          unconnected to be removed.
+         * INACTIVE-The added rule will not become enabled during the
+         generation or update of any diagrams based on the input template.
+     network_source (Table / Feature Class):
+         The network source class or object table that will be processed. All
+         diagram features related to network features or objects that belong to
+         this source class or object table are removal candidates.
+     where_clause {SQL Expression}:
+         An SQL expression that will be used to select the subset of network
+         elements from the element removal candidates in the diagrams based on
+         the input template. For more information about SQL syntax, see the SQL
+         reference for query expressions used in ArcGIS help topic.
+     description {String}:
+         The description of the rule.
+     unconnected_junctions {Boolean}:
+         Specifies whether diagram junctions and diagram containers must be
+         unconnected to be removed.
 
-          * MUST_BE_UNCONNECTED-Diagram junctions and diagram containers must be
-          unconnected to be removed.
+         * MUST_BE_UNCONNECTED-Diagram junctions and diagram containers must be
+         unconnected to be removed.
 
-          * NO_CONSTRAINT-Diagram junctions and diagram containers do not need
-          to be unconnected to be removed. This is the default.
-          This parameter is enabled when the specified network_source parameter
-          value corresponds to junctions or containers in the network diagrams.
-      one_connected_junction {Boolean}:
-          Specifies whether diagram junctions and diagram containers must be
-          connected to a single diagram junction or diagram container to be
-          removed.
+         * NO_CONSTRAINT-Diagram junctions and diagram containers do not need
+         to be unconnected to be removed. This is the default.
+         This parameter is enabled when the specified network_source parameter
+         value corresponds to junctions or containers in the network diagrams.
+     one_connected_junction {Boolean}:
+         Specifies whether diagram junctions and diagram containers must be
+         connected to a single diagram junction or diagram container to be
+         removed.
 
-          * MUST_BE_CONNECTED_TO_SINGLE_JUNCTION-Diagram junctions and diagram
-          containers must be connected to a single diagram junction or diagram
-          container to be removed.
+         * MUST_BE_CONNECTED_TO_SINGLE_JUNCTION-Diagram junctions and diagram
+         containers must be connected to a single diagram junction or diagram
+         container to be removed.
 
-          * NO_CONSTRAINT-Diagram junctions and diagram containers do not need
-          to be connected to a single diagram junction or diagram container to
-          be removed. This is the default.
-          This parameter is enabled when the specified network_source parameter
-          value corresponds to junctions or containers in the network diagrams."""
+         * NO_CONSTRAINT-Diagram junctions and diagram containers do not need
+         to be connected to a single diagram junction or diagram container to
+         be removed. This is the default.
+         This parameter is enabled when the specified network_source parameter
+         value corresponds to junctions or containers in the network diagrams."""
     ...
 
-@gptooldoc('AddRemoveFeatureRule_nd', None)
-def AddRemoveFeatureRule(in_utility_network=..., template_name=..., is_active=..., source_type=..., inverse_source_selection=..., network_source=..., description=..., unconnected_junctions=..., one_connected_junction=...): # -> conversion | int | float | complex | basestring | list[Unknown] | tuple[Unknown, ...] | dict[Unknown, Unknown]:
+@gptooldoc("AddRemoveFeatureRule_nd", None)
+def AddRemoveFeatureRule(
+    in_utility_network=...,
+    template_name=...,
+    is_active=...,
+    source_type=...,
+    inverse_source_selection=...,
+    network_source=...,
+    description=...,
+    unconnected_junctions=...,
+    one_connected_junction=...,
+):  # -> conversion | int | float | complex | basestring | list[Unknown] | tuple[Unknown, ...] | dict[Unknown, Unknown]:
     """AddRemoveFeatureRule_nd(in_utility_network, template_name, is_active, source_type, inverse_source_selection, network_source;network_source..., {description}, {unconnected_junctions}, {one_connected_junction})
 
-        Adds a diagram rule to automatically remove diagram features during
-        diagram building based on an existing template. This rule removes
-        diagram features based on different network source classes and object
-        tables. You can constrain the removal of features based on
-        connectivity.
+       Adds a diagram rule to automatically remove diagram features during
+       diagram building based on an existing template. This rule removes
+       diagram features based on different network source classes and object
+       tables. You can constrain the removal of features based on
+       connectivity.
 
-     INPUTS:
-      in_utility_network (Utility Network / Trace Network):
-          The utility network or trace network containing the diagram template
-          that will be modified.
-      template_name (String):
-          The name of the diagram template that will be modified.
-      is_active (Boolean):
-          Specifies whether the rule will be enabled when generating and
-          updating diagrams based on the specified template.
+    INPUTS:
+     in_utility_network (Utility Network / Trace Network):
+         The utility network or trace network containing the diagram template
+         that will be modified.
+     template_name (String):
+         The name of the diagram template that will be modified.
+     is_active (Boolean):
+         Specifies whether the rule will be enabled when generating and
+         updating diagrams based on the specified template.
 
-          * ACTIVE-The added rule will become enabled during the generation and
-          update of any diagrams based on the input template. This is the
-          default.
+         * ACTIVE-The added rule will become enabled during the generation and
+         update of any diagrams based on the input template. This is the
+         default.
 
-          * INACTIVE-The added rule will not become enabled during the
-          generation or update of any diagrams based on the input template.
-      source_type (String):
-          Specifies the geometry type of the source class or object table that
-          will be processed.
+         * INACTIVE-The added rule will not become enabled during the
+         generation or update of any diagrams based on the input template.
+     source_type (String):
+         Specifies the geometry type of the source class or object table that
+         will be processed.
 
-          * JUNCTIONS-Only junction source classes or object tables (network
-          polygon source classes, network point source classes, or junction
-          object tables) will be processed.
+         * JUNCTIONS-Only junction source classes or object tables (network
+         polygon source classes, network point source classes, or junction
+         object tables) will be processed.
 
-          * EDGES-Only edge source classes or object tables (network line source
-          classes or edge object tables) will be processed.
+         * EDGES-Only edge source classes or object tables (network line source
+         classes or edge object tables) will be processed.
 
-          * BOTH-Both junction and edge types will be processed. This is the
-          default.
-      inverse_source_selection (String):
-          Specifies how the specified network source classes and object tables
-          will be processed.
+         * BOTH-Both junction and edge types will be processed. This is the
+         default.
+     inverse_source_selection (String):
+         Specifies how the specified network source classes and object tables
+         will be processed.
 
-          * EXCLUDE_SOURCE_CLASSES-Features and objects based on the specified
-          network source classes and object tables will not be removed, while
-          other features and objects will be removed.
+         * EXCLUDE_SOURCE_CLASSES-Features and objects based on the specified
+         network source classes and object tables will not be removed, while
+         other features and objects will be removed.
 
-          * INCLUDE_SOURCE_CLASSES-Features and objects based on the specified
-          network source classes and object tables will be removed. This is the
-          default.
-      network_source (Table / Feature Class):
-          The network source class (or classes) and object table (or tables)
-          that will be excluded or included depending on the rule process.By
-          default, the inverse_source_selection parameter is set to
-          INCLUDE_SOURCE_CLASSES, and one or more network source classes or
-          object tables will be processed. All diagram features related to
-          network features and objects that belong to those classes and object
-          tables will be removed.When specifying the SystemJunctions class among
-          the network source
-          classes, the rule will systematically process both system junctions
-          and system junction objects.
-      description {String}:
-          The description of the rule.
-      unconnected_junctions {Boolean}:
-          Specifies whether diagram junction and diagram container candidates
-          must be unconnected to be removed.
+         * INCLUDE_SOURCE_CLASSES-Features and objects based on the specified
+         network source classes and object tables will be removed. This is the
+         default.
+     network_source (Table / Feature Class):
+         The network source class (or classes) and object table (or tables)
+         that will be excluded or included depending on the rule process.By
+         default, the inverse_source_selection parameter is set to
+         INCLUDE_SOURCE_CLASSES, and one or more network source classes or
+         object tables will be processed. All diagram features related to
+         network features and objects that belong to those classes and object
+         tables will be removed.When specifying the SystemJunctions class among
+         the network source
+         classes, the rule will systematically process both system junctions
+         and system junction objects.
+     description {String}:
+         The description of the rule.
+     unconnected_junctions {Boolean}:
+         Specifies whether diagram junction and diagram container candidates
+         must be unconnected to be removed.
 
-          * MUST_BE_UNCONNECTED-Diagram junction and diagram container
-          candidates must be unconnected to be removed.
+         * MUST_BE_UNCONNECTED-Diagram junction and diagram container
+         candidates must be unconnected to be removed.
 
-          * NO_CONSTRAINT-Neither diagram junction nor diagram container
-          candidates need to be unconnected to be removed. This is the default.
-          This parameter is only used when the source_type parameter is set to
-          JUNCTIONS.
-      one_connected_junction {Boolean}:
-          Specifies whether diagram junction and diagram container candidates
-          must be connected to a single diagram junction or diagram container to
-          be removed.
+         * NO_CONSTRAINT-Neither diagram junction nor diagram container
+         candidates need to be unconnected to be removed. This is the default.
+         This parameter is only used when the source_type parameter is set to
+         JUNCTIONS.
+     one_connected_junction {Boolean}:
+         Specifies whether diagram junction and diagram container candidates
+         must be connected to a single diagram junction or diagram container to
+         be removed.
 
-          * MUST_BE_CONNECTED_TO_SINGLE_JUNCTION-Diagram junction and diagram
-          container candidates must be connected to a single diagram junction or
-          diagram container to be removed.
+         * MUST_BE_CONNECTED_TO_SINGLE_JUNCTION-Diagram junction and diagram
+         container candidates must be connected to a single diagram junction or
+         diagram container to be removed.
 
-          * NO_CONSTRAINT-Neither diagram junction nor diagram container
-          candidates need to be connected to a single diagram junction or
-          diagram container to be removed. This is the default.
-          This parameter is only used when the source_type parameter is set to
-          JUNCTIONS."""
+         * NO_CONSTRAINT-Neither diagram junction nor diagram container
+         candidates need to be connected to a single diagram junction or
+         diagram container to be removed. This is the default.
+         This parameter is only used when the source_type parameter is set to
+         JUNCTIONS."""
     ...
 
-@gptooldoc('AddReshapeDiagramEdgesLayout_nd', None)
-def AddReshapeDiagramEdgesLayout(in_utility_network=..., template_name=..., is_active=..., are_containers_preserved=..., reshape_type=..., is_path_preserved=..., offset_between_segment_absolute=..., breakpoint_absolute=..., shift_between_edge_absolute=..., angle_threshold=..., circular_arc_radius=..., circular_arc_position=...): # -> conversion | int | float | complex | basestring | list[Unknown] | tuple[Unknown, ...] | dict[Unknown, Unknown]:
+@gptooldoc("AddReshapeDiagramEdgesLayout_nd", None)
+def AddReshapeDiagramEdgesLayout(
+    in_utility_network=...,
+    template_name=...,
+    is_active=...,
+    are_containers_preserved=...,
+    reshape_type=...,
+    is_path_preserved=...,
+    offset_between_segment_absolute=...,
+    breakpoint_absolute=...,
+    shift_between_edge_absolute=...,
+    angle_threshold=...,
+    circular_arc_radius=...,
+    circular_arc_position=...,
+):  # -> conversion | int | float | complex | basestring | list[Unknown] | tuple[Unknown, ...] | dict[Unknown, Unknown]:
     """AddReshapeDiagramEdgesLayout_nd(in_utility_network, template_name, is_active, {are_containers_preserved}, {reshape_type}, {is_path_preserved}, {offset_between_segment_absolute}, {breakpoint_absolute}, {shift_between_edge_absolute}, {angle_threshold}, {circular_arc_radius}, {circular_arc_position})
 
-        Adds the Reshape Diagram Edges Layout algorithm to the list of layouts
-        to be automatically chained at the end of the building of diagrams
-        based on a given template. This tool also presets the Reshape Diagram
-        Edges Layout algorithm parameters for any diagram based on that
-        template.
+       Adds the Reshape Diagram Edges Layout algorithm to the list of layouts
+       to be automatically chained at the end of the building of diagrams
+       based on a given template. This tool also presets the Reshape Diagram
+       Edges Layout algorithm parameters for any diagram based on that
+       template.
 
-     INPUTS:
-      in_utility_network (Utility Network / Trace Network):
-          The utility network or trace network containing the diagram template
-          that will be modified.
-      template_name (String):
-          The name of the diagram template that will be modified.
-      is_active (Boolean):
-          Specifies whether the layout algorithm will automatically run when
-          generating diagrams based on the specified template.
+    INPUTS:
+     in_utility_network (Utility Network / Trace Network):
+         The utility network or trace network containing the diagram template
+         that will be modified.
+     template_name (String):
+         The name of the diagram template that will be modified.
+     is_active (Boolean):
+         Specifies whether the layout algorithm will automatically run when
+         generating diagrams based on the specified template.
 
-          * ACTIVE-The added layout algorithm will automatically run during the
-          generation of any diagram that is based on the template_name parameter
-          value. This is the default.The parameter values specified for the
-          layout algorithm are used to run the layout during diagram generation.
-          They are also loaded by default when the algorithm is to be run on any
-          diagram based on the input template.
+         * ACTIVE-The added layout algorithm will automatically run during the
+         generation of any diagram that is based on the template_name parameter
+         value. This is the default.The parameter values specified for the
+         layout algorithm are used to run the layout during diagram generation.
+         They are also loaded by default when the algorithm is to be run on any
+         diagram based on the input template.
 
-          * INACTIVE-All the parameter values currently specified for the added
-          layout algorithm will be loaded by default when the algorithm is to be
-          run on any diagram based on the input template.
-      are_containers_preserved {Boolean}:
-          Specifies how the algorithm will process containers.
+         * INACTIVE-All the parameter values currently specified for the added
+         layout algorithm will be loaded by default when the algorithm is to be
+         run on any diagram based on the input template.
+     are_containers_preserved {Boolean}:
+         Specifies how the algorithm will process containers.
 
-          * PRESERVE_CONTAINERS-The layout algorithm will apply to the top
-          graph of the diagram so containers are preserved.
+         * PRESERVE_CONTAINERS-The layout algorithm will apply to the top
+         graph of the diagram so containers are preserved.
 
-          * IGNORE_CONTAINERS-The layout algorithm will apply to both content
-          and noncontent features in the diagram. This is the default.
-      reshape_type {String}:
-          Specifies how edges will be reshaped.
+         * IGNORE_CONTAINERS-The layout algorithm will apply to both content
+         and noncontent features in the diagram. This is the default.
+     reshape_type {String}:
+         Specifies how edges will be reshaped.
 
-          * REMOVE_VERTICES-Vertices along edges in the diagram will be removed.
+         * REMOVE_VERTICES-Vertices along edges in the diagram will be removed.
 
-          * SQUARE_EDGES-Vertices will be placed along diagram edges, and the
-          edges will be displayed with right angles. This is the default.
+         * SQUARE_EDGES-Vertices will be placed along diagram edges, and the
+         edges will be displayed with right angles. This is the default.
 
-          * SEPARATE_OVERLAPPING_EDGES-Edges that connect the same origin and
-          extremity junctions will be separated when they are overlapping.
+         * SEPARATE_OVERLAPPING_EDGES-Edges that connect the same origin and
+         extremity junctions will be separated when they are overlapping.
 
-          * REDUCE_VERTICES_BY_ANGLE-Some or all vertices displayed along
-          diagram edges will be reduced according to the angle that separates
-          the segments incident to those vertices.
+         * REDUCE_VERTICES_BY_ANGLE-Some or all vertices displayed along
+         diagram edges will be reduced according to the angle that separates
+         the segments incident to those vertices.
 
-          * MARK_CROSSING_EDGES-The horizontal and vertical diagram edges that
-          cross each other at a right angle in the diagram will be marked, and
-          the geometry of one of the crossing edges will be reshaped to display
-          a circular arc at this location.
-      is_path_preserved {Boolean}:
-          Specifies whether vertices along the edges that will be squared will
-          be preserved. This parameter is enabled when reshape_type is
-          SQUARE_EDGES.
+         * MARK_CROSSING_EDGES-The horizontal and vertical diagram edges that
+         cross each other at a right angle in the diagram will be marked, and
+         the geometry of one of the crossing edges will be reshaped to display
+         a circular arc at this location.
+     is_path_preserved {Boolean}:
+         Specifies whether vertices along the edges that will be squared will
+         be preserved. This parameter is enabled when reshape_type is
+         SQUARE_EDGES.
 
-          * PRESERVE_PATH-The direction of any edge will be considered, and
-          vertices along that edge will be preserved from the first vertex to
-          the last. This is the default.
+         * PRESERVE_PATH-The direction of any edge will be considered, and
+         vertices along that edge will be preserved from the first vertex to
+         the last. This is the default.
 
-          * IGNORE_PATH-Vertices along the diagram edges will not be considered,
-          and the vertices will be removed.
-      offset_between_segment_absolute {Linear Unit}:
-          The spacing that will separate parallel segments of squared edges
-          incident to the same junction. The default is 5 in the units of the
-          diagram's coordinate system. This parameter is enabled when
-          reshape_type is SQUARE_EDGES.
-      breakpoint_absolute {Linear Unit}:
-          The maximum distance between each junction to the first or last break
-          point along edges incident to that junction when those edges are
-          squared. The default is 8.66 in the units of the diagram's coordinate
-          system. This parameter is enabled when reshape_type is SQUARE_EDGES.
-      shift_between_edge_absolute {Linear Unit}:
-          The absolute spacing that will separate two edges. The default is 0.5
-          in the units of the diagram's coordinate system. This parameter is
-          enabled when reshape_type is SEPARATE_OVERLAPPING_EDGES.
-      angle_threshold {Double}:
-          The angle formed by the incident segments over which the vertex
-          related to these segments will be reduced. The wider the angle, the
-          fewer number of vertices will be reduced. The default is 160 degrees.
-          This parameter is enabled when reshape_type is
-          REDUCE_VERTICES_BY_ANGLE.
-      circular_arc_radius {Linear Unit}:
-          The radius of the circular arc that will be added to the crossing edge
-          locations. The default is 5.
-      circular_arc_position {String}:
-          Specifies the segment on which a circular arc will be placed.
+         * IGNORE_PATH-Vertices along the diagram edges will not be considered,
+         and the vertices will be removed.
+     offset_between_segment_absolute {Linear Unit}:
+         The spacing that will separate parallel segments of squared edges
+         incident to the same junction. The default is 5 in the units of the
+         diagram's coordinate system. This parameter is enabled when
+         reshape_type is SQUARE_EDGES.
+     breakpoint_absolute {Linear Unit}:
+         The maximum distance between each junction to the first or last break
+         point along edges incident to that junction when those edges are
+         squared. The default is 8.66 in the units of the diagram's coordinate
+         system. This parameter is enabled when reshape_type is SQUARE_EDGES.
+     shift_between_edge_absolute {Linear Unit}:
+         The absolute spacing that will separate two edges. The default is 0.5
+         in the units of the diagram's coordinate system. This parameter is
+         enabled when reshape_type is SEPARATE_OVERLAPPING_EDGES.
+     angle_threshold {Double}:
+         The angle formed by the incident segments over which the vertex
+         related to these segments will be reduced. The wider the angle, the
+         fewer number of vertices will be reduced. The default is 160 degrees.
+         This parameter is enabled when reshape_type is
+         REDUCE_VERTICES_BY_ANGLE.
+     circular_arc_radius {Linear Unit}:
+         The radius of the circular arc that will be added to the crossing edge
+         locations. The default is 5.
+     circular_arc_position {String}:
+         Specifies the segment on which a circular arc will be placed.
 
-          * LEFT_OF_VERTICAL_SEGMENT-A circular arc will be placed to the left
-          of the vertical segment.
+         * LEFT_OF_VERTICAL_SEGMENT-A circular arc will be placed to the left
+         of the vertical segment.
 
-          * RIGHT_OF_VERTICAL_SEGMENT-A circular arc will be placed to the right
-          of the vertical segment.
+         * RIGHT_OF_VERTICAL_SEGMENT-A circular arc will be placed to the right
+         of the vertical segment.
 
-          * ABOVE_HORIZONTAL_SEGMENT-A circular arc will be placed above the
-          horizontal segment.
+         * ABOVE_HORIZONTAL_SEGMENT-A circular arc will be placed above the
+         horizontal segment.
 
-          * BELOW_HORIZONTAL_SEGMENT-A circular arc will be placed below the
-          horizontal segment."""
+         * BELOW_HORIZONTAL_SEGMENT-A circular arc will be placed below the
+         horizontal segment."""
     ...
 
-@gptooldoc('AddSetRootJunctionByAttributeRule_nd', None)
-def AddSetRootJunctionByAttributeRule(in_utility_network=..., template_name=..., is_active=..., junction_source=..., where_clause=..., description=...): # -> conversion | int | float | complex | basestring | list[Unknown] | tuple[Unknown, ...] | dict[Unknown, Unknown]:
+@gptooldoc("AddSetRootJunctionByAttributeRule_nd", None)
+def AddSetRootJunctionByAttributeRule(
+    in_utility_network=...,
+    template_name=...,
+    is_active=...,
+    junction_source=...,
+    where_clause=...,
+    description=...,
+):  # -> conversion | int | float | complex | basestring | list[Unknown] | tuple[Unknown, ...] | dict[Unknown, Unknown]:
     """AddSetRootJunctionByAttributeRule_nd(in_utility_network, template_name, is_active, junction_source, {where_clause}, {description})
 
-        Adds a diagram rule to automatically flag diagram junctions as root
-        junctions during diagram building based on an existing template. This
-        rule specifies root junctions based on a particular junction source
-        class or object table and filters using their attributes.
+       Adds a diagram rule to automatically flag diagram junctions as root
+       junctions during diagram building based on an existing template. This
+       rule specifies root junctions based on a particular junction source
+       class or object table and filters using their attributes.
 
-     INPUTS:
-      in_utility_network (Utility Network / Trace Network):
-          The utility network or trace network containing the diagram template
-          that will be modified.
-      template_name (String):
-          The name of the diagram template that will be modified.
-      is_active (Boolean):
-          Specifies whether the rule will be enabled when generating and
-          updating diagrams based on the specified template.
+    INPUTS:
+     in_utility_network (Utility Network / Trace Network):
+         The utility network or trace network containing the diagram template
+         that will be modified.
+     template_name (String):
+         The name of the diagram template that will be modified.
+     is_active (Boolean):
+         Specifies whether the rule will be enabled when generating and
+         updating diagrams based on the specified template.
 
-          * ACTIVE-The added rule will become enabled during the generation and
-          update of any diagrams based on the input template. This is the
-          default.
+         * ACTIVE-The added rule will become enabled during the generation and
+         update of any diagrams based on the input template. This is the
+         default.
 
-          * INACTIVE-The added rule will not become enabled during the
-          generation or update of any diagrams based on the input template.
-      junction_source (Table / Feature Class):
-          The network junction source class or object table to process. All
-          diagram junctions related to network features or objects that belong
-          to this source class or table are root junction candidates.
-      where_clause {SQL Expression}:
-          An optional SQL expression used to filter out the expected root
-          junctions from the root junction candidates in the diagrams based on
-          the input template. For more information on SQL syntax, see SQL
-          reference for query expressions used in ArcGIS.
-      description {String}:
-          The description of the rule."""
+         * INACTIVE-The added rule will not become enabled during the
+         generation or update of any diagrams based on the input template.
+     junction_source (Table / Feature Class):
+         The network junction source class or object table to process. All
+         diagram junctions related to network features or objects that belong
+         to this source class or table are root junction candidates.
+     where_clause {SQL Expression}:
+         An optional SQL expression used to filter out the expected root
+         junctions from the root junction candidates in the diagrams based on
+         the input template. For more information on SQL syntax, see SQL
+         reference for query expressions used in ArcGIS.
+     description {String}:
+         The description of the rule."""
     ...
 
-@gptooldoc('AddSetStartingPointByAttributeRule_nd', None)
-def AddSetStartingPointByAttributeRule(in_utility_network=..., template_name=..., is_active=..., network_source=..., where_clause=..., junction_terminals=..., description=...): # -> conversion | int | float | complex | basestring | list[Unknown] | tuple[Unknown, ...] | dict[Unknown, Unknown]:
+@gptooldoc("AddSetStartingPointByAttributeRule_nd", None)
+def AddSetStartingPointByAttributeRule(
+    in_utility_network=...,
+    template_name=...,
+    is_active=...,
+    network_source=...,
+    where_clause=...,
+    junction_terminals=...,
+    description=...,
+):  # -> conversion | int | float | complex | basestring | list[Unknown] | tuple[Unknown, ...] | dict[Unknown, Unknown]:
     """AddSetStartingPointByAttributeRule_nd(in_utility_network, template_name, is_active, network_source, {where_clause}, {junction_terminals;junction_terminals...}, {description})
 
-        Adds a diagram rule to a diagram template to set diagram features
-        currently represented in the diagram as starting points for tracing
-        rules. The diagram features are queried from a given network source
-        class or object table and can be filtered by their attributes.
+       Adds a diagram rule to a diagram template to set diagram features
+       currently represented in the diagram as starting points for tracing
+       rules. The diagram features are queried from a given network source
+       class or object table and can be filtered by their attributes.
 
-     INPUTS:
-      in_utility_network (Utility Network / Trace Network):
-          The utility network or trace network containing the diagram template
-          that will be modified.
-      template_name (String):
-          The name of the diagram template that will be modified.
-      is_active (Boolean):
-          Specifies whether the rule will be enabled when generating and
-          updating diagrams based on the specified template.
+    INPUTS:
+     in_utility_network (Utility Network / Trace Network):
+         The utility network or trace network containing the diagram template
+         that will be modified.
+     template_name (String):
+         The name of the diagram template that will be modified.
+     is_active (Boolean):
+         Specifies whether the rule will be enabled when generating and
+         updating diagrams based on the specified template.
 
-          * ACTIVE-The added rule will become enabled during the generation and
-          update of any diagrams based on the input template. This is the
-          default.
+         * ACTIVE-The added rule will become enabled during the generation and
+         update of any diagrams based on the input template. This is the
+         default.
 
-          * INACTIVE-The added rule will not become enabled during the
-          generation or update of any diagrams based on the input template.
-      network_source (Table / Feature Class):
-          The network source class or object table that references the features
-          or objects that will be set as starting points.
-      where_clause {SQL Expression}:
-          An SQL expression to select the subset of features or objects in the
-          specified source class or object table that will be set as starting
-          points. For more information on SQL syntax, see SQL reference for
-          query expressions used in ArcGIS.
-      junction_terminals {Long}:
-          The terminal IDs that will start tracing if the network source class
-          or object table references junctions with terminals.The terminal IDs
-          are all listed in the Terminal Configurations section
-          on the Network Properties tab.When both the where_clause and
-          junction_terminals parameters are
-          configured, the specified terminals must correspond to queried
-          features or objects; otherwise, no starting points will be set.
-      description {String}:
-          The description of the rule."""
+         * INACTIVE-The added rule will not become enabled during the
+         generation or update of any diagrams based on the input template.
+     network_source (Table / Feature Class):
+         The network source class or object table that references the features
+         or objects that will be set as starting points.
+     where_clause {SQL Expression}:
+         An SQL expression to select the subset of features or objects in the
+         specified source class or object table that will be set as starting
+         points. For more information on SQL syntax, see SQL reference for
+         query expressions used in ArcGIS.
+     junction_terminals {Long}:
+         The terminal IDs that will start tracing if the network source class
+         or object table references junctions with terminals.The terminal IDs
+         are all listed in the Terminal Configurations section
+         on the Network Properties tab.When both the where_clause and
+         junction_terminals parameters are
+         configured, the specified terminals must correspond to queried
+         features or objects; otherwise, no starting points will be set.
+     description {String}:
+         The description of the rule."""
     ...
 
-@gptooldoc('AddSmartTreeLayout_nd', None)
-def AddSmartTreeLayout(in_utility_network=..., template_name=..., is_active=..., are_containers_preserved=..., tree_direction=..., is_unit_absolute=..., subtree_absolute=..., subtree_proportional=..., perpendicular_absolute=..., perpendicular_proportional=..., along_absolute=..., along_proportional=..., disjoined_graph_absolute=..., disjoined_graph_proportional=..., are_edges_orthogonal=..., breakpoint_position=..., edge_display_type=..., offset_absolute=..., offset_proportional=...): # -> conversion | int | float | complex | basestring | list[Unknown] | tuple[Unknown, ...] | dict[Unknown, Unknown]:
+@gptooldoc("AddSmartTreeLayout_nd", None)
+def AddSmartTreeLayout(
+    in_utility_network=...,
+    template_name=...,
+    is_active=...,
+    are_containers_preserved=...,
+    tree_direction=...,
+    is_unit_absolute=...,
+    subtree_absolute=...,
+    subtree_proportional=...,
+    perpendicular_absolute=...,
+    perpendicular_proportional=...,
+    along_absolute=...,
+    along_proportional=...,
+    disjoined_graph_absolute=...,
+    disjoined_graph_proportional=...,
+    are_edges_orthogonal=...,
+    breakpoint_position=...,
+    edge_display_type=...,
+    offset_absolute=...,
+    offset_proportional=...,
+):  # -> conversion | int | float | complex | basestring | list[Unknown] | tuple[Unknown, ...] | dict[Unknown, Unknown]:
     """AddSmartTreeLayout_nd(in_utility_network, template_name, is_active, {are_containers_preserved}, {tree_direction}, {is_unit_absolute}, {subtree_absolute}, {subtree_proportional}, {perpendicular_absolute}, {perpendicular_proportional}, {along_absolute}, {along_proportional}, {disjoined_graph_absolute}, {disjoined_graph_proportional}, {are_edges_orthogonal}, {breakpoint_position}, {edge_display_type}, {offset_absolute}, {offset_proportional})
 
-        Adds the Smart Tree Layout algorithm to the list of layouts to be
-        automatically chained at the end of the building of diagrams based on
-        a given template. This tool also presets the Smart Tree Layout
-        algorithm parameters for any diagram based on that template.
+       Adds the Smart Tree Layout algorithm to the list of layouts to be
+       automatically chained at the end of the building of diagrams based on
+       a given template. This tool also presets the Smart Tree Layout
+       algorithm parameters for any diagram based on that template.
 
-     INPUTS:
-      in_utility_network (Utility Network / Trace Network):
-          The utility network or trace network containing the diagram template
-          that will be modified.
-      template_name (String):
-          The name of the diagram template that will be modified.
-      is_active (Boolean):
-          Specifies whether the layout algorithm will automatically run when
-          generating diagrams based on the specified template.
+    INPUTS:
+     in_utility_network (Utility Network / Trace Network):
+         The utility network or trace network containing the diagram template
+         that will be modified.
+     template_name (String):
+         The name of the diagram template that will be modified.
+     is_active (Boolean):
+         Specifies whether the layout algorithm will automatically run when
+         generating diagrams based on the specified template.
 
-          * ACTIVE-The added layout algorithm will automatically run during the
-          generation of any diagram that is based on the template_name parameter
-          value. This is the default.The parameter values specified for the
-          layout algorithm are used to run the layout during diagram generation.
-          They are also loaded by default when the algorithm is to be run on any
-          diagram based on the input template.
+         * ACTIVE-The added layout algorithm will automatically run during the
+         generation of any diagram that is based on the template_name parameter
+         value. This is the default.The parameter values specified for the
+         layout algorithm are used to run the layout during diagram generation.
+         They are also loaded by default when the algorithm is to be run on any
+         diagram based on the input template.
 
-          * INACTIVE-All the parameter values currently specified for the added
-          layout algorithm will be loaded by default when the algorithm is to be
-          run on any diagram based on the input template.
-      are_containers_preserved {Boolean}:
-          Specifies how the algorithm will process containers.
+         * INACTIVE-All the parameter values currently specified for the added
+         layout algorithm will be loaded by default when the algorithm is to be
+         run on any diagram based on the input template.
+     are_containers_preserved {Boolean}:
+         Specifies how the algorithm will process containers.
 
-          * PRESERVE_CONTAINERS-The layout algorithm will apply to the top
-          graph of the diagram so containers are preserved.
+         * PRESERVE_CONTAINERS-The layout algorithm will apply to the top
+         graph of the diagram so containers are preserved.
 
-          * IGNORE_CONTAINERS-The layout algorithm will apply to both content
-          and noncontent features in the diagram. This is the default.
-      tree_direction {String}:
-          Specifies the direction of the tree.
+         * IGNORE_CONTAINERS-The layout algorithm will apply to both content
+         and noncontent features in the diagram. This is the default.
+     tree_direction {String}:
+         Specifies the direction of the tree.
 
-          * FROM_LEFT_TO_RIGHT-The tree will be drawn from left to right. This
-          is the default.
+         * FROM_LEFT_TO_RIGHT-The tree will be drawn from left to right. This
+         is the default.
 
-          * FROM_RIGHT_TO_LEFT-The tree will be drawn from right to left.
+         * FROM_RIGHT_TO_LEFT-The tree will be drawn from right to left.
 
-          * FROM_BOTTOM_TO_TOP-The tree will be drawn from bottom to top.
+         * FROM_BOTTOM_TO_TOP-The tree will be drawn from bottom to top.
 
-          * FROM_TOP_TO_BOTTOM-The tree will be drawn from top to bottom.
-      is_unit_absolute {Boolean}:
-          Specifies how parameters representing distances will be interpreted.
+         * FROM_TOP_TO_BOTTOM-The tree will be drawn from top to bottom.
+     is_unit_absolute {Boolean}:
+         Specifies how parameters representing distances will be interpreted.
 
-          * ABSOLUTE_UNIT-The layout algorithm will interpret distance values as
-          linear units.
+         * ABSOLUTE_UNIT-The layout algorithm will interpret distance values as
+         linear units.
 
-          * PROPORTIONAL_UNIT-The layout algorithm will interpret distance
-          values as relative units to an estimation of the average of the
-          junction sizes in the current diagram extent. This is the default.
-      subtree_absolute {Linear Unit}:
-          The spacing between two neighboring subtrees-that is, the spacing
-          between diagram junctions that are displayed perpendicular to the
-          smart tree direction and belong to a different subtree. The default is
-          in the units of the diagram's coordinate system. This parameter can
-          only be used with absolute units.
-      subtree_proportional {Double}:
-          The spacing between two neighboring subtrees-that is, the spacing
-          between diagram junctions that are displayed perpendicular to the
-          smart tree direction and belong to a different subtree. The default is
-          2. This parameter can only be used with proportional units.
-      perpendicular_absolute {Linear Unit}:
-          The spacing between diagram junctions that are displayed perpendicular
-          to the smart tree direction and belong to the same subtree level. The
-          default is 2 in the units of the diagram's coordinate system. This
-          parameter can only be used with absolute units.
-      perpendicular_proportional {Double}:
-          The spacing between diagram junctions that are displayed perpendicular
-          to the smart tree direction and belong to the same subtree level. The
-          default is 2. This parameter can only be used with proportional units.
-      along_absolute {Linear Unit}:
-          The spacing between diagram junctions that are displayed along the
-          smart tree direction. The default is 2 in the units of the diagram's
-          coordinate system. This parameter can only be used with absolute
-          units.
-      along_proportional {Double}:
-          The spacing between diagram junctions that are displayed along the
-          smart tree direction. The default is 2. This parameter can only be
-          used with proportional units.
-      disjoined_graph_absolute {Linear Unit}:
-          The minimum spacing that will separate features belonging to disjoined
-          graphs when the diagram contains such graphs. This parameter is used
-          with absolute units. The default is 4 in the units of the diagram's
-          coordinate system.
-      disjoined_graph_proportional {Double}:
-          The minimum spacing that will separate features belonging to disjoined
-          graphs when the diagram contains such graphs. This parameter is used
-          with proportional units. The default is 4.
-      are_edges_orthogonal {Boolean}:
-          Specifies how diagram edges that are related to the tree
-          branches will display. This parameter is deprecated at ArcGIS
-          Pro 3.1. It is systematically
-          ignored regardless of its value when the edge_display_type parameter
-          is specified. However, to maintain compatibility with ArcGIS Pro 2.1,
-          it remains enabled when the edge_display_type parameter is not
-          specified.
+         * PROPORTIONAL_UNIT-The layout algorithm will interpret distance
+         values as relative units to an estimation of the average of the
+         junction sizes in the current diagram extent. This is the default.
+     subtree_absolute {Linear Unit}:
+         The spacing between two neighboring subtrees-that is, the spacing
+         between diagram junctions that are displayed perpendicular to the
+         smart tree direction and belong to a different subtree. The default is
+         in the units of the diagram's coordinate system. This parameter can
+         only be used with absolute units.
+     subtree_proportional {Double}:
+         The spacing between two neighboring subtrees-that is, the spacing
+         between diagram junctions that are displayed perpendicular to the
+         smart tree direction and belong to a different subtree. The default is
+         2. This parameter can only be used with proportional units.
+     perpendicular_absolute {Linear Unit}:
+         The spacing between diagram junctions that are displayed perpendicular
+         to the smart tree direction and belong to the same subtree level. The
+         default is 2 in the units of the diagram's coordinate system. This
+         parameter can only be used with absolute units.
+     perpendicular_proportional {Double}:
+         The spacing between diagram junctions that are displayed perpendicular
+         to the smart tree direction and belong to the same subtree level. The
+         default is 2. This parameter can only be used with proportional units.
+     along_absolute {Linear Unit}:
+         The spacing between diagram junctions that are displayed along the
+         smart tree direction. The default is 2 in the units of the diagram's
+         coordinate system. This parameter can only be used with absolute
+         units.
+     along_proportional {Double}:
+         The spacing between diagram junctions that are displayed along the
+         smart tree direction. The default is 2. This parameter can only be
+         used with proportional units.
+     disjoined_graph_absolute {Linear Unit}:
+         The minimum spacing that will separate features belonging to disjoined
+         graphs when the diagram contains such graphs. This parameter is used
+         with absolute units. The default is 4 in the units of the diagram's
+         coordinate system.
+     disjoined_graph_proportional {Double}:
+         The minimum spacing that will separate features belonging to disjoined
+         graphs when the diagram contains such graphs. This parameter is used
+         with proportional units. The default is 4.
+     are_edges_orthogonal {Boolean}:
+         Specifies how diagram edges that are related to the tree
+         branches will display. This parameter is deprecated at ArcGIS
+         Pro 3.1. It is systematically
+         ignored regardless of its value when the edge_display_type parameter
+         is specified. However, to maintain compatibility with ArcGIS Pro 2.1,
+         it remains enabled when the edge_display_type parameter is not
+         specified.
 
-          * ORTHOGONAL_EDGES-All diagram edges related to the tree branches will
-          display with right angles.
+         * ORTHOGONAL_EDGES-All diagram edges related to the tree branches will
+         display with right angles.
 
-          * SLANTED_EDGES-All diagram edges related to the tree branches will
-          not display with right angles. This is the default.
-      breakpoint_position {Double}:
-          The relative position of the break point that will be inserted
-          along the diagram edges when Edge Display Type is set to Regular edges
-          (edge_display_type = "REGULAR_EDGES" in Python) or Edge Display Type
-          is set to Orthogonal edges (edge_display_type = "ORTHOGONAL_EDGES" in
-          Python). It is a percentage between 0 and 100.
+         * SLANTED_EDGES-All diagram edges related to the tree branches will
+         not display with right angles. This is the default.
+     breakpoint_position {Double}:
+         The relative position of the break point that will be inserted
+         along the diagram edges when Edge Display Type is set to Regular edges
+         (edge_display_type = "REGULAR_EDGES" in Python) or Edge Display Type
+         is set to Orthogonal edges (edge_display_type = "ORTHOGONAL_EDGES" in
+         Python). It is a percentage between 0 and 100.
 
-          * With a Break Point Relative Position (%) value of 0, the break point
-          is positioned at the x-coordinate of the edge's from junction and at
-          the y-coordinate of the edge's to junction for a horizontal tree. It
-          is positioned at the y-coordinate of the edge's from junction and at
-          the x-coordinate of the edge's to junction for a vertical tree.
+         * With a Break Point Relative Position (%) value of 0, the break point
+         is positioned at the x-coordinate of the edge's from junction and at
+         the y-coordinate of the edge's to junction for a horizontal tree. It
+         is positioned at the y-coordinate of the edge's from junction and at
+         the x-coordinate of the edge's to junction for a vertical tree.
 
-          * With a Break Point Relative Position (%) value of 100, there is no
-          break point inserted on the diagram edges; each diagram edge directly
-          connects its from and to junctions.
+         * With a Break Point Relative Position (%) value of 100, there is no
+         break point inserted on the diagram edges; each diagram edge directly
+         connects its from and to junctions.
 
-          * With a Break Point Relative Position (%) value of N between 0 and
-          100, the break point is positioned at N% of the length of the [XY]
-          segment, X being the x-coordinate of the edge's from junction and Y
-          being the y-coordinate of the edge's to junction for a horizontal
-          tree. It is positioned at N% of the length of the [YX] segment, Y
-          being the y-coordinate of the edge's from junction and X being the
-          x-coordinate of the edge's to junction for a vertical tree.
-                  The relative position of the two inflection points that will
-          be inserted along the diagram edges to compute the curved edges
-          geometry when Edge Display Type is set to Curved edges
-          (edge_display_type = "CURVED_EDGES" in Python). It is a percentage
-          between 15 and 40. With a Break Point Relative Position (%) value of N
-          between 15 and 40:
+         * With a Break Point Relative Position (%) value of N between 0 and
+         100, the break point is positioned at N% of the length of the [XY]
+         segment, X being the x-coordinate of the edge's from junction and Y
+         being the y-coordinate of the edge's to junction for a horizontal
+         tree. It is positioned at N% of the length of the [YX] segment, Y
+         being the y-coordinate of the edge's from junction and X being the
+         x-coordinate of the edge's to junction for a vertical tree.
+                 The relative position of the two inflection points that will
+         be inserted along the diagram edges to compute the curved edges
+         geometry when Edge Display Type is set to Curved edges
+         (edge_display_type = "CURVED_EDGES" in Python). It is a percentage
+         between 15 and 40. With a Break Point Relative Position (%) value of N
+         between 15 and 40:
 
-          * X being the x-coordinate of the edge's from junction and Y
-          being the y-coordinate of the edge's to junction for a horizontal
-          tree:
+         * X being the x-coordinate of the edge's from junction and Y
+         being the y-coordinate of the edge's to junction for a horizontal
+         tree:
 
-          * The first inflection point will be positioned at N% of the length of
-          the [XY] segment.
+         * The first inflection point will be positioned at N% of the length of
+         the [XY] segment.
 
-          * The second inflection point will be positioned at (100 - N)% of the
-          length of the [XY] segment.
+         * The second inflection point will be positioned at (100 - N)% of the
+         length of the [XY] segment.
 
-          * Y being the y-coordinate of the edge's from junction and X
-          being the x-coordinate of the edge's to junction for a vertical tree:
+         * Y being the y-coordinate of the edge's from junction and X
+         being the x-coordinate of the edge's to junction for a vertical tree:
 
-          * The first inflection point will be positioned at N% of the length of
-          the [YX] segment.
+         * The first inflection point will be positioned at N% of the length of
+         the [YX] segment.
 
-          * The second inflection point will be positioned at (100 - N)% of the
-          length of the [XY] segment.
+         * The second inflection point will be positioned at (100 - N)% of the
+         length of the [XY] segment.
 
-          The concept of the from and to junctions above is relative to the tree
-          direction; it has nothing to do with the real topology of the edge
-          feature or edge object in the network.
-      edge_display_type {String}:
-          Specifies the type of display for the diagram edges related to the
-          tree branches.
+         The concept of the from and to junctions above is relative to the tree
+         direction; it has nothing to do with the real topology of the edge
+         feature or edge object in the network.
+     edge_display_type {String}:
+         Specifies the type of display for the diagram edges related to the
+         tree branches.
 
-          * REGULAR_EDGES-All diagram edges related to the tree branches will
-          not display with right angles. This is the default.
+         * REGULAR_EDGES-All diagram edges related to the tree branches will
+         not display with right angles. This is the default.
 
-          * ORTHOGONAL_EDGES-All diagram edges related to the tree branches will
-          display with right angles.
+         * ORTHOGONAL_EDGES-All diagram edges related to the tree branches will
+         display with right angles.
 
-          * CURVED_EDGES-All diagram edges related to the tree branches will be
-          curved.
-      offset_absolute {Linear Unit}:
-          The offset that will be used to separate overlapping segments when
-          is_unit_absolute = "ABSOLUTE_UNIT" and edge_display_type =
-          "ORTHOGONAL_EDGES". The value cannot exceed 10 percent of the smallest
-          value specified for the other spacing parameters. The default is 0.
-      offset_proportional {Double}:
-          The offset that will be used to separate overlapping segments when
-          is_unit_absolute = "PROPORTIONAL_UNIT" and edge_display_type =
-          "ORTHOGONAL_EDGES". It is a double value that cannot exceed 10 percent
-          of the smallest value specified for the other spacing parameters. The
-          default is 0."""
+         * CURVED_EDGES-All diagram edges related to the tree branches will be
+         curved.
+     offset_absolute {Linear Unit}:
+         The offset that will be used to separate overlapping segments when
+         is_unit_absolute = "ABSOLUTE_UNIT" and edge_display_type =
+         "ORTHOGONAL_EDGES". The value cannot exceed 10 percent of the smallest
+         value specified for the other spacing parameters. The default is 0.
+     offset_proportional {Double}:
+         The offset that will be used to separate overlapping segments when
+         is_unit_absolute = "PROPORTIONAL_UNIT" and edge_display_type =
+         "ORTHOGONAL_EDGES". It is a double value that cannot exceed 10 percent
+         of the smallest value specified for the other spacing parameters. The
+         default is 0."""
     ...
 
-@gptooldoc('AddSpatialDispatchLayout_nd', None)
-def AddSpatialDispatchLayout(in_utility_network=..., template_name=..., is_active=..., are_containers_preserved=..., iterations_number=..., maximum_shift_factor=...): # -> conversion | int | float | complex | basestring | list[Unknown] | tuple[Unknown, ...] | dict[Unknown, Unknown]:
+@gptooldoc("AddSpatialDispatchLayout_nd", None)
+def AddSpatialDispatchLayout(
+    in_utility_network=...,
+    template_name=...,
+    is_active=...,
+    are_containers_preserved=...,
+    iterations_number=...,
+    maximum_shift_factor=...,
+):  # -> conversion | int | float | complex | basestring | list[Unknown] | tuple[Unknown, ...] | dict[Unknown, Unknown]:
     """AddSpatialDispatchLayout_nd(in_utility_network, template_name, is_active, {are_containers_preserved}, {iterations_number}, {maximum_shift_factor})
 
-        Adds the Spatial Dispatch Layout algorithm to the list of layouts to
-        be automatically chained at the end of the building of diagrams based
-        on a given template. This tool also presets the Spatial Dispatch
-        Layout algorithm parameters for any diagram based on that template.
+       Adds the Spatial Dispatch Layout algorithm to the list of layouts to
+       be automatically chained at the end of the building of diagrams based
+       on a given template. This tool also presets the Spatial Dispatch
+       Layout algorithm parameters for any diagram based on that template.
 
-     INPUTS:
-      in_utility_network (Utility Network / Trace Network):
-          The utility network or trace network containing the diagram template
-          that will be modified.
-      template_name (String):
-          The name of the diagram template that will be modified.
-      is_active (Boolean):
-          Specifies whether the layout algorithm will automatically run when
-          generating diagrams based on the specified template.
+    INPUTS:
+     in_utility_network (Utility Network / Trace Network):
+         The utility network or trace network containing the diagram template
+         that will be modified.
+     template_name (String):
+         The name of the diagram template that will be modified.
+     is_active (Boolean):
+         Specifies whether the layout algorithm will automatically run when
+         generating diagrams based on the specified template.
 
-          * ACTIVE-The added layout algorithm will automatically run during the
-          generation of any diagram that is based on the template_name parameter
-          value. This is the default.The parameter values specified for the
-          layout algorithm are used to run the layout during diagram generation.
-          They are also loaded by default when the algorithm is to be run on any
-          diagram based on the input template.
+         * ACTIVE-The added layout algorithm will automatically run during the
+         generation of any diagram that is based on the template_name parameter
+         value. This is the default.The parameter values specified for the
+         layout algorithm are used to run the layout during diagram generation.
+         They are also loaded by default when the algorithm is to be run on any
+         diagram based on the input template.
 
-          * INACTIVE-All the parameter values currently specified for the added
-          layout algorithm will be loaded by default when the algorithm is to be
-          run on any diagram based on the input template.
-      are_containers_preserved {Boolean}:
-          Specifies how the algorithm will process containers.
+         * INACTIVE-All the parameter values currently specified for the added
+         layout algorithm will be loaded by default when the algorithm is to be
+         run on any diagram based on the input template.
+     are_containers_preserved {Boolean}:
+         Specifies how the algorithm will process containers.
 
-          * PRESERVE_CONTAINERS-The layout algorithm will apply to the top
-          graph of the diagram so containers are preserved.
+         * PRESERVE_CONTAINERS-The layout algorithm will apply to the top
+         graph of the diagram so containers are preserved.
 
-          * IGNORE_CONTAINERS-The layout algorithm will apply to both content
-          and noncontent features in the diagram. This is the default.
-      iterations_number {Long}:
-          The number of iterations to process. The default is 5.
-      maximum_shift_factor {Double}:
-          The maximum value used to increase the diagram junctions' displacement
-          for junctions that are very close together. The greater the shift
-          factor, the larger the separation between the diagram junctions that
-          almost overlap. The default is 2."""
+         * IGNORE_CONTAINERS-The layout algorithm will apply to both content
+         and noncontent features in the diagram. This is the default.
+     iterations_number {Long}:
+         The number of iterations to process. The default is 5.
+     maximum_shift_factor {Double}:
+         The maximum value used to increase the diagram junctions' displacement
+         for junctions that are very close together. The greater the shift
+         factor, the larger the separation between the diagram junctions that
+         almost overlap. The default is 2."""
     ...
 
-@gptooldoc('AddSpatialQueryRule_nd', None)
-def AddSpatialQueryRule(in_utility_network=..., template_name=..., is_active=..., added_features=..., overlap_type=..., existing_features=..., search_distance=..., added_where_clause=..., existing_where_clause=..., description=...): # -> conversion | int | float | complex | basestring | list[Unknown] | tuple[Unknown, ...] | dict[Unknown, Unknown]:
+@gptooldoc("AddSpatialQueryRule_nd", None)
+def AddSpatialQueryRule(
+    in_utility_network=...,
+    template_name=...,
+    is_active=...,
+    added_features=...,
+    overlap_type=...,
+    existing_features=...,
+    search_distance=...,
+    added_where_clause=...,
+    existing_where_clause=...,
+    description=...,
+):  # -> conversion | int | float | complex | basestring | list[Unknown] | tuple[Unknown, ...] | dict[Unknown, Unknown]:
     """AddSpatialQueryRule_nd(in_utility_network, template_name, is_active, added_features, overlap_type, existing_features, {search_distance}, {added_where_clause}, {existing_where_clause}, {description})
 
-        Adds a diagram rule that automatically appends new network features to
-        the diagrams based on their location relative to the network features
-        currently represented in the diagram.
+       Adds a diagram rule that automatically appends new network features to
+       the diagrams based on their location relative to the network features
+       currently represented in the diagram.
 
-     INPUTS:
-      in_utility_network (Utility Network / Trace Network):
-          The utility network or trace network containing the diagram template
-          that will be modified.
-      template_name (String):
-          The name of the diagram template that will be modified.
-      is_active (Boolean):
-          Specifies whether the rule will be enabled when generating and
-          updating diagrams based on the specified template.
+    INPUTS:
+     in_utility_network (Utility Network / Trace Network):
+         The utility network or trace network containing the diagram template
+         that will be modified.
+     template_name (String):
+         The name of the diagram template that will be modified.
+     is_active (Boolean):
+         Specifies whether the rule will be enabled when generating and
+         updating diagrams based on the specified template.
 
-          * ACTIVE-The added rule will become enabled during the generation and
-          update of any diagrams based on the input template. This is the
-          default.
+         * ACTIVE-The added rule will become enabled during the generation and
+         update of any diagrams based on the input template. This is the
+         default.
 
-          * INACTIVE-The added rule will not become enabled during the
-          generation or update of any diagrams based on the input template.
-      added_features (Feature Class):
-          The source feature class to which features will be added.
-      overlap_type (String):
-          Specifies the spatial relationship that will be evaluated.
+         * INACTIVE-The added rule will not become enabled during the
+         generation or update of any diagrams based on the input template.
+     added_features (Feature Class):
+         The source feature class to which features will be added.
+     overlap_type (String):
+         Specifies the spatial relationship that will be evaluated.
 
-          * INTERSECT-The features in the added_features source feature class
-          will be appended to the diagram if they intersect one of the
-          existing_features. This is the default.
+         * INTERSECT-The features in the added_features source feature class
+         will be appended to the diagram if they intersect one of the
+         existing_features. This is the default.
 
-          * WITHIN_A_DISTANCE-The features in the added_features source feature
-          class will be appended to the diagram if they are within the specified
-          distance (using Euclidean distance) of one of the existing_features.
-          Use the search_distance parameter to specify the distance.
+         * WITHIN_A_DISTANCE-The features in the added_features source feature
+         class will be appended to the diagram if they are within the specified
+         distance (using Euclidean distance) of one of the existing_features.
+         Use the search_distance parameter to specify the distance.
 
-          * CONTAINS-The features in the added_features source feature class
-          will be appended to the diagram if they contain features from or are
-          contained in the existing_features.
+         * CONTAINS-The features in the added_features source feature class
+         will be appended to the diagram if they contain features from or are
+         contained in the existing_features.
 
-          * WITHIN-The features in the added_features source feature class will
-          be appended to the diagram if they are within the existing_features.
+         * WITHIN-The features in the added_features source feature class will
+         be appended to the diagram if they are within the existing_features.
 
-          * BOUNDARY_TOUCHES-The features in the added_features source feature
-          class will be appended to the diagram if they have a boundary that
-          touches one of the existing_features. When the existing_features are
-          lines or polygons, the boundary of the added_features can only touch
-          the boundary of one of the existing_features, and no part of the input
-          feature can cross the boundary of one of the existing_features.
+         * BOUNDARY_TOUCHES-The features in the added_features source feature
+         class will be appended to the diagram if they have a boundary that
+         touches one of the existing_features. When the existing_features are
+         lines or polygons, the boundary of the added_features can only touch
+         the boundary of one of the existing_features, and no part of the input
+         feature can cross the boundary of one of the existing_features.
 
-          * SHARE_A_LINE_SEGMENT_WITH-The features in the added_features source
-          feature class will be appended to the diagram if they share a line
-          segment with one of the existing_features. The added and existing
-          features must be line or polygon.
+         * SHARE_A_LINE_SEGMENT_WITH-The features in the added_features source
+         feature class will be appended to the diagram if they share a line
+         segment with one of the existing_features. The added and existing
+         features must be line or polygon.
 
-          * CROSSED_BY_THE_OUTLINE_OF-The features in the added_features source
-          feature class will be appended to the diagram if they are crossed by
-          the outline of one of the existing_features. The added and existing
-          features must be lines or polygons. If polygons are used for the
-          existing_features, the polygon's boundary (line) will be used. Lines
-          that cross at a point will be appended; lines that share a line
-          segment will not.
-      existing_features (Feature Class):
-          The source feature class on which the spatial query will run.
-      search_distance {Linear Unit}:
-          The distance between features in the existing_features parameter and
-          features in the added_features parameter. This parameter is only valid
-          if the overlap_type parameter is set to INTERSECT, WITHIN_A_DISTANCE,
-          CONTAINS, or WITHIN.
-      added_where_clause {SQL Expression}:
-          The SQL query that will be used to filter the features that will be
-          added to the diagram. Without an SQL query, the features based on the
-          specified source class that are spatially related to the specified
-          existing features will be appended to the diagram.
-      existing_where_clause {SQL Expression}:
-          The SQL query that will be used to filter the features existing in the
-          diagram. Without an SQL query, the features based on the specified
-          source class that exist in the diagram will be considered.
-      description {String}:
-          The description of the rule."""
+         * CROSSED_BY_THE_OUTLINE_OF-The features in the added_features source
+         feature class will be appended to the diagram if they are crossed by
+         the outline of one of the existing_features. The added and existing
+         features must be lines or polygons. If polygons are used for the
+         existing_features, the polygon's boundary (line) will be used. Lines
+         that cross at a point will be appended; lines that share a line
+         segment will not.
+     existing_features (Feature Class):
+         The source feature class on which the spatial query will run.
+     search_distance {Linear Unit}:
+         The distance between features in the existing_features parameter and
+         features in the added_features parameter. This parameter is only valid
+         if the overlap_type parameter is set to INTERSECT, WITHIN_A_DISTANCE,
+         CONTAINS, or WITHIN.
+     added_where_clause {SQL Expression}:
+         The SQL query that will be used to filter the features that will be
+         added to the diagram. Without an SQL query, the features based on the
+         specified source class that are spatially related to the specified
+         existing features will be appended to the diagram.
+     existing_where_clause {SQL Expression}:
+         The SQL query that will be used to filter the features existing in the
+         diagram. Without an SQL query, the features based on the specified
+         source class that exist in the diagram will be considered.
+     description {String}:
+         The description of the rule."""
     ...
 
-@gptooldoc('AddStartIterationRule_nd', None)
-def AddStartIterationRule(in_utility_network=..., template_name=..., is_active=..., description=...): # -> conversion | int | float | complex | basestring | list[Unknown] | tuple[Unknown, ...] | dict[Unknown, Unknown]:
+@gptooldoc("AddStartIterationRule_nd", None)
+def AddStartIterationRule(
+    in_utility_network=..., template_name=..., is_active=..., description=...
+):  # -> conversion | int | float | complex | basestring | list[Unknown] | tuple[Unknown, ...] | dict[Unknown, Unknown]:
     """AddStartIterationRule_nd(in_utility_network, template_name, is_active, {description})
 
-        Adds a diagram rule to specify the beginning of a rule sequence during
-        diagram building based on an existing template.
+       Adds a diagram rule to specify the beginning of a rule sequence during
+       diagram building based on an existing template.
 
-     INPUTS:
-      in_utility_network (Utility Network / Trace Network):
-          The utility network or trace network containing the diagram template
-          that will be modified.
-      template_name (String):
-          The name of the diagram template that will be modified.
-      is_active (Boolean):
-          Specifies whether the rule will be enabled when generating and
-          updating diagrams based on the specified template.
+    INPUTS:
+     in_utility_network (Utility Network / Trace Network):
+         The utility network or trace network containing the diagram template
+         that will be modified.
+     template_name (String):
+         The name of the diagram template that will be modified.
+     is_active (Boolean):
+         Specifies whether the rule will be enabled when generating and
+         updating diagrams based on the specified template.
 
-          * ACTIVE-The added rule will become enabled during the generation and
-          update of any diagrams based on the input template. This is the
-          default.
+         * ACTIVE-The added rule will become enabled during the generation and
+         update of any diagrams based on the input template. This is the
+         default.
 
-          * INACTIVE-The added rule will not become enabled during the
-          generation or update of any diagrams based on the input template.
-      description {String}:
-          The description of the rule."""
+         * INACTIVE-The added rule will not become enabled during the
+         generation or update of any diagrams based on the input template.
+     description {String}:
+         The description of the rule."""
     ...
 
-@gptooldoc('AddStopIterationRule_nd', None)
-def AddStopIterationRule(in_utility_network=..., template_name=..., is_active=..., description=...): # -> conversion | int | float | complex | basestring | list[Unknown] | tuple[Unknown, ...] | dict[Unknown, Unknown]:
+@gptooldoc("AddStopIterationRule_nd", None)
+def AddStopIterationRule(
+    in_utility_network=..., template_name=..., is_active=..., description=...
+):  # -> conversion | int | float | complex | basestring | list[Unknown] | tuple[Unknown, ...] | dict[Unknown, Unknown]:
     """AddStopIterationRule_nd(in_utility_network, template_name, is_active, {description})
 
-        Adds a diagram rule to specify the end of a rule sequence during
-        diagram building based on an existing template.
+       Adds a diagram rule to specify the end of a rule sequence during
+       diagram building based on an existing template.
 
-     INPUTS:
-      in_utility_network (Utility Network / Trace Network):
-          The utility network or trace network containing the diagram template
-          that will be modified.
-      template_name (String):
-          The name of the diagram template that will be modified.
-      is_active (Boolean):
-          Specifies whether the rule will be enabled when generating and
-          updating diagrams based on the specified template.
+    INPUTS:
+     in_utility_network (Utility Network / Trace Network):
+         The utility network or trace network containing the diagram template
+         that will be modified.
+     template_name (String):
+         The name of the diagram template that will be modified.
+     is_active (Boolean):
+         Specifies whether the rule will be enabled when generating and
+         updating diagrams based on the specified template.
 
-          * ACTIVE-The added rule will become enabled during the generation and
-          update of any diagrams based on the input template. This is the
-          default.
+         * ACTIVE-The added rule will become enabled during the generation and
+         update of any diagrams based on the input template. This is the
+         default.
 
-          * INACTIVE-The added rule will not become enabled during the
-          generation or update of any diagrams based on the input template.
-      description {String}:
-          The description of the rule."""
+         * INACTIVE-The added rule will not become enabled during the
+         generation or update of any diagrams based on the input template.
+     description {String}:
+         The description of the rule."""
     ...
 
-@gptooldoc('AddStructuralAttachmentsRule_nd', None)
-def AddStructuralAttachmentsRule(in_utility_network=..., template_name=..., is_active=..., description=...): # -> conversion | int | float | complex | basestring | list[Unknown] | tuple[Unknown, ...] | dict[Unknown, Unknown]:
+@gptooldoc("AddStructuralAttachmentsRule_nd", None)
+def AddStructuralAttachmentsRule(
+    in_utility_network=..., template_name=..., is_active=..., description=...
+):  # -> conversion | int | float | complex | basestring | list[Unknown] | tuple[Unknown, ...] | dict[Unknown, Unknown]:
     """AddStructuralAttachmentsRule_nd(in_utility_network, template_name, is_active, {description})
 
-        Adds a diagram rule to automatically represent structural attachments
-        during diagram building based on an existing template. This rule
-        applies to structural attachment associations in which both the
-        attached network element and the structure element are currently
-        represented in the diagrams.
+       Adds a diagram rule to automatically represent structural attachments
+       during diagram building based on an existing template. This rule
+       applies to structural attachment associations in which both the
+       attached network element and the structure element are currently
+       represented in the diagrams.
 
-     INPUTS:
-      in_utility_network (Utility Network):
-          The utility network containing the diagram template to modify.
-      template_name (String):
-          The name of the diagram template that will be modified.
-      is_active (Boolean):
-          Specifies whether the rule will be enabled when generating and
-          updating diagrams based on the specified template.
+    INPUTS:
+     in_utility_network (Utility Network):
+         The utility network containing the diagram template to modify.
+     template_name (String):
+         The name of the diagram template that will be modified.
+     is_active (Boolean):
+         Specifies whether the rule will be enabled when generating and
+         updating diagrams based on the specified template.
 
-          * ACTIVE-The added rule will become enabled during the generation and
-          update of any diagrams based on the input template. This is the
-          default.
+         * ACTIVE-The added rule will become enabled during the generation and
+         update of any diagrams based on the input template. This is the
+         default.
 
-          * INACTIVE-The added rule will not become enabled during the
-          generation or update of any diagrams based on the input template.
-      description {String}:
-          The description of the rule."""
+         * INACTIVE-The added rule will not become enabled during the
+         generation or update of any diagrams based on the input template.
+     description {String}:
+         The description of the rule."""
     ...
 
-@gptooldoc('AddTraceRule_nd', None)
-def AddTraceRule(in_utility_network=..., template_name=..., is_active=..., trace_type=..., domain_network=..., tier=..., target_tier=..., include_structures=..., include_barriers=..., condition_barriers=..., function_barriers=..., traversability_scope=..., filter_barriers=..., filter_function_barriers=..., filter_scope=..., filter_bitset_network_attribute_name=..., filter_nearest=..., nearest_count=..., nearest_cost_network_attribute=..., nearest_categories=..., nearest_assets=..., propagators=..., description=..., allow_indeterminate_flow=..., path_direction=..., path_network_weight_name=...): # -> conversion | int | float | complex | basestring | list[Unknown] | tuple[Unknown, ...] | dict[Unknown, Unknown]:
+@gptooldoc("AddTraceRule_nd", None)
+def AddTraceRule(
+    in_utility_network=...,
+    template_name=...,
+    is_active=...,
+    trace_type=...,
+    domain_network=...,
+    tier=...,
+    target_tier=...,
+    include_structures=...,
+    include_barriers=...,
+    condition_barriers=...,
+    function_barriers=...,
+    traversability_scope=...,
+    filter_barriers=...,
+    filter_function_barriers=...,
+    filter_scope=...,
+    filter_bitset_network_attribute_name=...,
+    filter_nearest=...,
+    nearest_count=...,
+    nearest_cost_network_attribute=...,
+    nearest_categories=...,
+    nearest_assets=...,
+    propagators=...,
+    description=...,
+    allow_indeterminate_flow=...,
+    path_direction=...,
+    path_network_weight_name=...,
+):  # -> conversion | int | float | complex | basestring | list[Unknown] | tuple[Unknown, ...] | dict[Unknown, Unknown]:
     """AddTraceRule_nd(in_utility_network, template_name, is_active, trace_type, {domain_network}, {tier}, {target_tier}, {include_structures}, {include_barriers}, {condition_barriers;condition_barriers...}, {function_barriers;function_barriers...}, {traversability_scope}, {filter_barriers;filter_barriers...}, {filter_function_barriers;filter_function_barriers...}, {filter_scope}, {filter_bitset_network_attribute_name}, {filter_nearest}, {nearest_count}, {nearest_cost_network_attribute}, {nearest_categories;nearest_categories...}, {nearest_assets;nearest_assets...}, {propagators;propagators...}, {description}, {allow_indeterminate_flow}, {path_direction}, {path_network_weight_name})
 
-        Adds a diagram rule to automatically run a trace on a utility network
-        or trace network during the building of diagrams based on an existing
-        template. The resulting traced network features and network objects
-        are used to build the diagram content.
-
-     INPUTS:
-      in_utility_network (Utility Network / Trace Network):
-          The utility network or trace network containing the diagram template
-          that will be modified.
-      template_name (String):
-          The name of the diagram template that will be modified.
-      is_active (Boolean):
-          Specifies whether the rule will be enabled when generating and
-          updating diagrams based on the specified template.
-
-          * ACTIVE-The added rule will become enabled during the generation and
-          update of any diagrams based on the input template. This is the
-          default.
-
-          * INACTIVE-The added rule will not become enabled during the
-          generation or update of any diagrams based on the input template.
-      trace_type (String):
-          Specifies the type of trace the rule will perform to build the diagram
-          content.
-
-          * CONNECTED-A connected trace will be run from the utility network or
-          trace network elements currently represented in the diagram when the
-          rule starts and spans outward along connected elements. This is the
-          default.
-
-          * SUBNETWORK-A subnetwork trace will be run from the utility network
-          elements currently represented in the diagram when the rule starts and
-          spans outward along connected elements to find sources or sinks from
-          which it spans outward along the related subnetwork.
-
-          * UPSTREAM-An upstream trace will be run from the utility network or
-          trace network elements currently represented in the diagram when the
-          rule starts to discover elements upstream.
-
-          * DOWNSTREAM-A downstream trace will be run from the utility network
-          or trace network elements currently represented in the diagram when
-          the rule starts to discover elements downstream.
-
-          * SHORTEST_PATH-A shortest path trace will be run from the utility
-          network or trace network features currently specified as starting
-          points in the diagram when the rule starts to discover features along
-          the shortest path between those starting points. The cost of
-          traversing the path is determined based on the network attribute set
-          for the path_network_weight_name parameter value regardless of flow
-          direction.
-      domain_network {String}:
-          The name of the domain network where the trace will be run for a
-          utility network. This parameter is required when running the
-          subnetwork, upstream, and downstream trace types.
-      tier {String}:
-          The name of the tier where the trace will start for a utility network.
-          This parameter is optional when running the connected trace type; it
-          is required when running the subnetwork, upstream, and downstream
-          trace types.
-      target_tier {String}:
-          The name of the target tier to which the input tier will flow for a
-          utility network. If this parameter is missing for upstream and
-          downstream traces, those traces will stop when they reach the boundary
-          of the starting subnetwork. This parameter can be used to allow these
-          traces to continue either farther up or farther down the hierarchy.
-      include_structures {Boolean}:
-          Specifies whether structure features and objects will be included in
-          the trace results.
-
-          * INCLUDE_STRUCTURES-Structure features and objects will be included
-          in the trace results.
-
-          * EXCLUDE_STRUCTURES-Structure features and objects will not be
-          included in the trace results. This is the default.
-      include_barriers {Boolean}:
-          Specifies whether the traversability barrier features will be included
-          in the trace results. Traversability barriers are optional even if
-          they have been preset in the subnetwork definition. This parameter
-          does not apply to device features with terminals.
-
-          * INCLUDE_BARRIERS-Traversability barrier features will be included in
-          the trace results. This is the default.
-
-          * EXCLUDE_BARRIERS-Traversability barrier features will not be
-          included in the trace results.
-      condition_barriers {Value Table}:
-          Sets a traversability barrier condition on features based on a
-          comparison to a network attribute or check for a category string. A
-          condition barrier uses a network attribute, an operator and a type,
-          and an attribute value. For example, stop a trace when a feature has
-          the Device Status attribute equal to the specific value of Open. When
-          a feature meets this condition, the trace stops. If you're using more
-          than one attribute, you can use the Combine using parameter to define
-          an And or an Or condition. Condition barrier components are as
-          follows:
-
-          * Name-Filter by any network attribute defined in the system.
-
-          * Operator-Choose from a number of different operators.
-
-          * Type-Choose a specific value or network attribute from the value
-          that is specified in the name parameter.
+       Adds a diagram rule to automatically run a trace on a utility network
+       or trace network during the building of diagrams based on an existing
+       template. The resulting traced network features and network objects
+       are used to build the diagram content.
+
+    INPUTS:
+     in_utility_network (Utility Network / Trace Network):
+         The utility network or trace network containing the diagram template
+         that will be modified.
+     template_name (String):
+         The name of the diagram template that will be modified.
+     is_active (Boolean):
+         Specifies whether the rule will be enabled when generating and
+         updating diagrams based on the specified template.
+
+         * ACTIVE-The added rule will become enabled during the generation and
+         update of any diagrams based on the input template. This is the
+         default.
+
+         * INACTIVE-The added rule will not become enabled during the
+         generation or update of any diagrams based on the input template.
+     trace_type (String):
+         Specifies the type of trace the rule will perform to build the diagram
+         content.
+
+         * CONNECTED-A connected trace will be run from the utility network or
+         trace network elements currently represented in the diagram when the
+         rule starts and spans outward along connected elements. This is the
+         default.
+
+         * SUBNETWORK-A subnetwork trace will be run from the utility network
+         elements currently represented in the diagram when the rule starts and
+         spans outward along connected elements to find sources or sinks from
+         which it spans outward along the related subnetwork.
+
+         * UPSTREAM-An upstream trace will be run from the utility network or
+         trace network elements currently represented in the diagram when the
+         rule starts to discover elements upstream.
+
+         * DOWNSTREAM-A downstream trace will be run from the utility network
+         or trace network elements currently represented in the diagram when
+         the rule starts to discover elements downstream.
+
+         * SHORTEST_PATH-A shortest path trace will be run from the utility
+         network or trace network features currently specified as starting
+         points in the diagram when the rule starts to discover features along
+         the shortest path between those starting points. The cost of
+         traversing the path is determined based on the network attribute set
+         for the path_network_weight_name parameter value regardless of flow
+         direction.
+     domain_network {String}:
+         The name of the domain network where the trace will be run for a
+         utility network. This parameter is required when running the
+         subnetwork, upstream, and downstream trace types.
+     tier {String}:
+         The name of the tier where the trace will start for a utility network.
+         This parameter is optional when running the connected trace type; it
+         is required when running the subnetwork, upstream, and downstream
+         trace types.
+     target_tier {String}:
+         The name of the target tier to which the input tier will flow for a
+         utility network. If this parameter is missing for upstream and
+         downstream traces, those traces will stop when they reach the boundary
+         of the starting subnetwork. This parameter can be used to allow these
+         traces to continue either farther up or farther down the hierarchy.
+     include_structures {Boolean}:
+         Specifies whether structure features and objects will be included in
+         the trace results.
+
+         * INCLUDE_STRUCTURES-Structure features and objects will be included
+         in the trace results.
+
+         * EXCLUDE_STRUCTURES-Structure features and objects will not be
+         included in the trace results. This is the default.
+     include_barriers {Boolean}:
+         Specifies whether the traversability barrier features will be included
+         in the trace results. Traversability barriers are optional even if
+         they have been preset in the subnetwork definition. This parameter
+         does not apply to device features with terminals.
+
+         * INCLUDE_BARRIERS-Traversability barrier features will be included in
+         the trace results. This is the default.
+
+         * EXCLUDE_BARRIERS-Traversability barrier features will not be
+         included in the trace results.
+     condition_barriers {Value Table}:
+         Sets a traversability barrier condition on features based on a
+         comparison to a network attribute or check for a category string. A
+         condition barrier uses a network attribute, an operator and a type,
+         and an attribute value. For example, stop a trace when a feature has
+         the Device Status attribute equal to the specific value of Open. When
+         a feature meets this condition, the trace stops. If you're using more
+         than one attribute, you can use the Combine using parameter to define
+         an And or an Or condition. Condition barrier components are as
+         follows:
+
+         * Name-Filter by any network attribute defined in the system.
+
+         * Operator-Choose from a number of different operators.
+
+         * Type-Choose a specific value or network attribute from the value
+         that is specified in the name parameter.
 
-          * Value-Provide a specific value for the input attribute type that
-          would cause termination based on the operator value.
+         * Value-Provide a specific value for the input attribute type that
+         would cause termination based on the operator value.
 
-          * Combine Using-Set this value if you have multiple attributes to add.
-          You can combine them using an And or an Or condition.
-          The condition barriers operator value options are as follows:
+         * Combine Using-Set this value if you have multiple attributes to add.
+         You can combine them using an And or an Or condition.
+         The condition barriers operator value options are as follows:
 
-          * IS_EQUAL_TO-The attribute is equal to the value.
+         * IS_EQUAL_TO-The attribute is equal to the value.
 
-          * DOES_NOT_EQUAL-The attribute is not equal to the value.
+         * DOES_NOT_EQUAL-The attribute is not equal to the value.
 
-          * IS_GREATER_THAN-The attribute is greater than the value.
+         * IS_GREATER_THAN-The attribute is greater than the value.
 
-          * IS_GREATER_THAN_OR_EQUAL_TO-The attribute is greater than or equal
-          to the value.
+         * IS_GREATER_THAN_OR_EQUAL_TO-The attribute is greater than or equal
+         to the value.
 
-          * IS_LESS_THAN-The attribute is less than the value.
+         * IS_LESS_THAN-The attribute is less than the value.
 
-          * IS_LESS_THAN_OR_EQUAL_TO-The attribute is less than or equal to the
-          value.
+         * IS_LESS_THAN_OR_EQUAL_TO-The attribute is less than or equal to the
+         value.
 
-          * INCLUDES_THE_VALUES-A bitwise AND operation in which all bits in the
-          value are present in the attribute (bitwise AND == value).
+         * INCLUDES_THE_VALUES-A bitwise AND operation in which all bits in the
+         value are present in the attribute (bitwise AND == value).
 
-          * DOES_NOT_INCLUDE_THE_VALUES-A bitwise AND operation in which not all
-          of the bits in the value are present in the attribute (bitwise AND !=
-          value).
+         * DOES_NOT_INCLUDE_THE_VALUES-A bitwise AND operation in which not all
+         of the bits in the value are present in the attribute (bitwise AND !=
+         value).
 
-          * INCLUDES_ANY-A bitwise AND operation in which at least one bit in
-          the value is present in the attribute (bitwise AND == True).
+         * INCLUDES_ANY-A bitwise AND operation in which at least one bit in
+         the value is present in the attribute (bitwise AND == True).
 
-          * DOES_NOT_INCLUDE_ANY-A bitwise AND operation in which none of the
-          bits in the value are present in the attribute (bitwise AND == False).
-          The condition barriers Type value options are as follows:
+         * DOES_NOT_INCLUDE_ANY-A bitwise AND operation in which none of the
+         bits in the value are present in the attribute (bitwise AND == False).
+         The condition barriers Type value options are as follows:
 
-          * SPECIFIC_VALUE-Filter by a specific value.
+         * SPECIFIC_VALUE-Filter by a specific value.
 
-          * NETWORK_ATTRIBUTE-Filter by a network attribute.
-          The condition barriers Combine Using value options are as follows:
+         * NETWORK_ATTRIBUTE-Filter by a network attribute.
+         The condition barriers Combine Using value options are as follows:
 
-          * AND-Combine the condition barriers.
+         * AND-Combine the condition barriers.
 
-          * OR-Use if either condition barrier is met.
-      function_barriers {Value Table}:
-          Sets a traversability barrier on features based on a function.
-          Function barriers can be used to do such things as restrict how far
-          the trace travels from the starting point, or set a maximum value to
-          stop a trace. For example, the length of each line traveled is added
-          to the total distance traveled so far. When the total length traveled
-          reaches the value specified, the trace stops. Function barrier
-          components are as follows:
+         * OR-Use if either condition barrier is met.
+     function_barriers {Value Table}:
+         Sets a traversability barrier on features based on a function.
+         Function barriers can be used to do such things as restrict how far
+         the trace travels from the starting point, or set a maximum value to
+         stop a trace. For example, the length of each line traveled is added
+         to the total distance traveled so far. When the total length traveled
+         reaches the value specified, the trace stops. Function barrier
+         components are as follows:
 
-          * Function-Choose from a number of different calculation functions.
+         * Function-Choose from a number of different calculation functions.
 
-          * Attribute-Filter by any network attribute defined in the system.
+         * Attribute-Filter by any network attribute defined in the system.
 
-          * Operator-Choose from a number of different operators.
+         * Operator-Choose from a number of different operators.
 
-          * Value-Provide a specific value for the input attribute type that, if
-          discovered, will cause the termination.
+         * Value-Provide a specific value for the input attribute type that, if
+         discovered, will cause the termination.
 
-          * Use Local Values-Calculate values in each direction as opposed to an
-          overall global value. For example, a function barrier that is
-          calculating the sum of Shape length in which the trace terminates if
-          the value is greater than or equal to 4. In the global case, after you
-          traverse two edges with a value of 2, you will have reached a shape
-          length sum of 4, so the trace stops. If local values are used, the
-          local values along each path change, and the trace continues.
-          The function barrier Function value options are as follows:
+         * Use Local Values-Calculate values in each direction as opposed to an
+         overall global value. For example, a function barrier that is
+         calculating the sum of Shape length in which the trace terminates if
+         the value is greater than or equal to 4. In the global case, after you
+         traverse two edges with a value of 2, you will have reached a shape
+         length sum of 4, so the trace stops. If local values are used, the
+         local values along each path change, and the trace continues.
+         The function barrier Function value options are as follows:
 
-          * AVERAGE-The average of the input values will be used.
+         * AVERAGE-The average of the input values will be used.
 
-          * COUNT-The number of features will be used.
+         * COUNT-The number of features will be used.
 
-          * MAX-The maximum of the input values will be used.
+         * MAX-The maximum of the input values will be used.
 
-          * MIN-The minimum of the input values will be used.
+         * MIN-The minimum of the input values will be used.
 
-          * ADD-The sum of the values will be used.
+         * ADD-The sum of the values will be used.
 
-          * SUBTRACT-The difference between the values will be used. Subnetwork
-          controllers and loops trace types do not support the subtract
-          function.
-          The function barrier Operator value options are as follows:
+         * SUBTRACT-The difference between the values will be used. Subnetwork
+         controllers and loops trace types do not support the subtract
+         function.
+         The function barrier Operator value options are as follows:
 
-          * IS_EQUAL_TO-The attribute is equal to the value.
+         * IS_EQUAL_TO-The attribute is equal to the value.
 
-          * DOES_NOT_EQUAL-The attribute is not equal to the value.
+         * DOES_NOT_EQUAL-The attribute is not equal to the value.
 
-          * IS_GREATER_THAN-The attribute is greater than the value.
+         * IS_GREATER_THAN-The attribute is greater than the value.
 
-          * IS_GREATER_THAN_OR_EQUAL_TO-The attribute is greater than or equal
-          to the value.
+         * IS_GREATER_THAN_OR_EQUAL_TO-The attribute is greater than or equal
+         to the value.
 
-          * IS_LESS_THAN-The attribute is less than the value.
+         * IS_LESS_THAN-The attribute is less than the value.
 
-          * IS_LESS_THAN_OR_EQUAL_TO-The attribute is less than or equal to the
-          value.
+         * IS_LESS_THAN_OR_EQUAL_TO-The attribute is less than or equal to the
+         value.
 
-          * INCLUDES_THE_VALUES-A bitwise AND operation in which all bits in the
-          value are present in the attribute (bitwise AND == value).
+         * INCLUDES_THE_VALUES-A bitwise AND operation in which all bits in the
+         value are present in the attribute (bitwise AND == value).
 
-          * DOES_NOT_INCLUDE_THE_VALUES-A bitwise AND operation in which not all
-          of the bits in the value are present in the attribute (bitwise AND !=
-          value).
+         * DOES_NOT_INCLUDE_THE_VALUES-A bitwise AND operation in which not all
+         of the bits in the value are present in the attribute (bitwise AND !=
+         value).
 
-          * INCLUDES_ANY-A bitwise AND operation in which at least one bit in
-          the value is present in the attribute (bitwise AND == True).
+         * INCLUDES_ANY-A bitwise AND operation in which at least one bit in
+         the value is present in the attribute (bitwise AND == True).
 
-          * DOES_NOT_INCLUDE_ANY-A bitwise AND operation in which none of the
-          bits in the value are present in the attribute (bitwise AND == False).
-          The function barrier Use Local Values options are as follows:
+         * DOES_NOT_INCLUDE_ANY-A bitwise AND operation in which none of the
+         bits in the value are present in the attribute (bitwise AND == False).
+         The function barrier Use Local Values options are as follows:
 
-          * TRUE-Local values will be used.
+         * TRUE-Local values will be used.
 
-          * FALSE-Global values will be used. This is the default.
-      traversability_scope {String}:
-          The type of traversability that will be applied. Traversability scope
-          determines whether traversability is applied at junctions, edges, or
-          both. For example, if a condition barrier is defined to stop the trace
-          if Device Status is equal to Open and traversability scope is set to
-          edges only, even if the trace encounters an open device, the trace
-          will not stop because Device Status is only applicable to junctions.
-          In other words, this parameter indicates to the trace whether to
-          ignore junctions, edges, or both.
+         * FALSE-Global values will be used. This is the default.
+     traversability_scope {String}:
+         The type of traversability that will be applied. Traversability scope
+         determines whether traversability is applied at junctions, edges, or
+         both. For example, if a condition barrier is defined to stop the trace
+         if Device Status is equal to Open and traversability scope is set to
+         edges only, even if the trace encounters an open device, the trace
+         will not stop because Device Status is only applicable to junctions.
+         In other words, this parameter indicates to the trace whether to
+         ignore junctions, edges, or both.
 
-          * BOTH_JUNCTIONS_AND_EDGES-Traversability will be applied to both
-          junctions and edges. This is the default.
+         * BOTH_JUNCTIONS_AND_EDGES-Traversability will be applied to both
+         junctions and edges. This is the default.
 
-          * JUNCTIONS_ONLY-Traversability will be applied to junctions only.
+         * JUNCTIONS_ONLY-Traversability will be applied to junctions only.
 
-          * EDGES_ONLY-Traversability will be applied to edges only.
-      filter_barriers {Value Table}:
-          Specifies when a trace will stop for a specific category or network
-          attribute. For example, stop a trace at features that have a life
-          cycle status attribute that is equal to a certain value. This
-          parameter is used to set a terminator based on a value of a network
-          attribute that is defined in the system. If using more than one
-          attribute, you can use the Combine Using option to define an And or an
-          Or condition. Filter barrier components are as follows:
+         * EDGES_ONLY-Traversability will be applied to edges only.
+     filter_barriers {Value Table}:
+         Specifies when a trace will stop for a specific category or network
+         attribute. For example, stop a trace at features that have a life
+         cycle status attribute that is equal to a certain value. This
+         parameter is used to set a terminator based on a value of a network
+         attribute that is defined in the system. If using more than one
+         attribute, you can use the Combine Using option to define an And or an
+         Or condition. Filter barrier components are as follows:
 
-          * Name-Filter by category or any network attribute defined in the
-          system.
+         * Name-Filter by category or any network attribute defined in the
+         system.
 
-          * Operator-Choose from a number of different operators.
+         * Operator-Choose from a number of different operators.
 
-          * Type-Choose a specific value or network attribute from the value
-          that is specified in the name parameter.
+         * Type-Choose a specific value or network attribute from the value
+         that is specified in the name parameter.
 
-          * Value-Provide a specific value of the input attribute type that
-          would cause termination based on the operator value.
+         * Value-Provide a specific value of the input attribute type that
+         would cause termination based on the operator value.
 
-          * Combine Using-Set this value if you have multiple attributes to add.
-          You can combine them using an And or an Or condition.
-          The filter barriers Operator value options are as follows:
+         * Combine Using-Set this value if you have multiple attributes to add.
+         You can combine them using an And or an Or condition.
+         The filter barriers Operator value options are as follows:
 
-          * IS_EQUAL_TO-The attribute is equal to the value.
+         * IS_EQUAL_TO-The attribute is equal to the value.
 
-          * DOES_NOT_EQUAL-The attribute is not equal to the value.
+         * DOES_NOT_EQUAL-The attribute is not equal to the value.
 
-          * IS_GREATER_THAN-The attribute is greater than the value.
+         * IS_GREATER_THAN-The attribute is greater than the value.
 
-          * IS_GREATER_THAN_OR_EQUAL_TO-The attribute is greater than or equal
-          to the value.
+         * IS_GREATER_THAN_OR_EQUAL_TO-The attribute is greater than or equal
+         to the value.
 
-          * IS_LESS_THAN-The attribute is less than the value.
+         * IS_LESS_THAN-The attribute is less than the value.
 
-          * IS_LESS_THAN_OR_EQUAL_TO-The attribute is less than or equal to the
-          value.
+         * IS_LESS_THAN_OR_EQUAL_TO-The attribute is less than or equal to the
+         value.
 
-          * INCLUDES_THE_VALUES-A bitwise AND operation in which all bits in the
-          value are present in the attribute (bitwise AND == value).
+         * INCLUDES_THE_VALUES-A bitwise AND operation in which all bits in the
+         value are present in the attribute (bitwise AND == value).
 
-          * DOES_NOT_INCLUDE_THE_VALUES-A bitwise AND operation in which not all
-          of the bits in the value are present in the attribute (bitwise AND !=
-          value).
+         * DOES_NOT_INCLUDE_THE_VALUES-A bitwise AND operation in which not all
+         of the bits in the value are present in the attribute (bitwise AND !=
+         value).
 
-          * INCLUDES_ANY-A bitwise AND operation in which at least one bit in
-          the value is present in the attribute (bitwise AND == True).
+         * INCLUDES_ANY-A bitwise AND operation in which at least one bit in
+         the value is present in the attribute (bitwise AND == True).
 
-          * DOES_NOT_INLCUDE_ANY-A bitwise AND operation in which none of the
-          bits in the value are present in the attribute (bitwise AND == False).
-          The filter barriers Type value options are as follows:
+         * DOES_NOT_INLCUDE_ANY-A bitwise AND operation in which none of the
+         bits in the value are present in the attribute (bitwise AND == False).
+         The filter barriers Type value options are as follows:
 
-          * SPECIFIC_VALUE-Filter by a specific value.
+         * SPECIFIC_VALUE-Filter by a specific value.
 
-          * NETWORK_ATTRIBUTE-Filter by a network attribute.
-          The filter barriers Combine Using value options are as follows:
+         * NETWORK_ATTRIBUTE-Filter by a network attribute.
+         The filter barriers Combine Using value options are as follows:
 
-          * AND-Combine the condition barriers.
+         * AND-Combine the condition barriers.
 
-          * OR-Use if either condition barrier is met.
-      filter_function_barriers {Value Table}:
-          Filters the results of the trace for a specific category.
-          Filter function barriers components are as follows:
+         * OR-Use if either condition barrier is met.
+     filter_function_barriers {Value Table}:
+         Filters the results of the trace for a specific category.
+         Filter function barriers components are as follows:
 
-          * Function-Choose from a number of different calculation functions.
+         * Function-Choose from a number of different calculation functions.
 
-          * Attribute-Filter by any network attribute defined in the system.
+         * Attribute-Filter by any network attribute defined in the system.
 
-          * Operator-Choose from a number of different operators.
+         * Operator-Choose from a number of different operators.
 
-          * Value-Provide a specific value for the input attribute type that, if
-          discovered, will cause the termination.
+         * Value-Provide a specific value for the input attribute type that, if
+         discovered, will cause the termination.
 
-          * Use Local Values-Calculate values in each direction as opposed to an
-          overall global value. For example, a function barrier is calculating
-          the sum of Shape length in which the trace terminates if the value is
-          greater than or equal to 4. In the global case, after you traverse two
-          edges with a value of 2, you will have reached a shape length sum of
-          4, so the trace stops. If local values are used, the local values
-          along each path change, or the trace continues.
-          The filter function barriers Function value options are as follows:
+         * Use Local Values-Calculate values in each direction as opposed to an
+         overall global value. For example, a function barrier is calculating
+         the sum of Shape length in which the trace terminates if the value is
+         greater than or equal to 4. In the global case, after you traverse two
+         edges with a value of 2, you will have reached a shape length sum of
+         4, so the trace stops. If local values are used, the local values
+         along each path change, or the trace continues.
+         The filter function barriers Function value options are as follows:
 
-          * AVERAGE-The average of the input values will be used.
+         * AVERAGE-The average of the input values will be used.
 
-          * COUNT-The number of features will be used.
+         * COUNT-The number of features will be used.
 
-          * MAX-The maximum of the input values will be used.
+         * MAX-The maximum of the input values will be used.
 
-          * MIN-The minimum of the input values will be used.
+         * MIN-The minimum of the input values will be used.
 
-          * ADD-The sum of the values will be used.
+         * ADD-The sum of the values will be used.
 
-          * SUBTRACT-The difference between the values will be used. Subnetwork
-          controllers and loops trace types do not support the subtract
-          function.
-          The filter function barriers Operator value options are as follows:
+         * SUBTRACT-The difference between the values will be used. Subnetwork
+         controllers and loops trace types do not support the subtract
+         function.
+         The filter function barriers Operator value options are as follows:
 
-          * IS_EQUAL_TO-The attribute is equal to the value.
+         * IS_EQUAL_TO-The attribute is equal to the value.
 
-          * DOES_NOT_EQUAL-The attribute is not equal to the value.
+         * DOES_NOT_EQUAL-The attribute is not equal to the value.
 
-          * IS_GREATER_THAN-The attribute is greater than the value.
+         * IS_GREATER_THAN-The attribute is greater than the value.
 
-          * IS_GREATER_THAN_OR_EQUAL_TO-The attribute is greater than or equal
-          to the value.
+         * IS_GREATER_THAN_OR_EQUAL_TO-The attribute is greater than or equal
+         to the value.
 
-          * IS_LESS_THAN-The attribute is less than the value.
+         * IS_LESS_THAN-The attribute is less than the value.
 
-          * IS_LESS_THAN_OR_EQUAL_TO-The attribute is less than or equal to the
-          value.
+         * IS_LESS_THAN_OR_EQUAL_TO-The attribute is less than or equal to the
+         value.
 
-          * INCLUDES_THE_VALUES-A bitwise AND operation in which all bits in the
-          value are present in the attribute (bitwise AND == value).
+         * INCLUDES_THE_VALUES-A bitwise AND operation in which all bits in the
+         value are present in the attribute (bitwise AND == value).
 
-          * DOES_NOT_INCLUDE_THE_VALUES-A bitwise AND operation in which not all
-          of the bits in the value are present in the attribute (bitwise AND !=
-          value).
+         * DOES_NOT_INCLUDE_THE_VALUES-A bitwise AND operation in which not all
+         of the bits in the value are present in the attribute (bitwise AND !=
+         value).
 
-          * INCLUDES_ANY-A bitwise AND operation in which at least one bit in
-          the value is present in the attribute (bitwise AND == True).
+         * INCLUDES_ANY-A bitwise AND operation in which at least one bit in
+         the value is present in the attribute (bitwise AND == True).
 
-          * DOES_NOT_INCLUDE_ANY-A bitwise AND operation in which none of the
-          bits in the value are present in the attribute (bitwise AND == False).
-          The filter function barriers Use Local Values options are as follows:
+         * DOES_NOT_INCLUDE_ANY-A bitwise AND operation in which none of the
+         bits in the value are present in the attribute (bitwise AND == False).
+         The filter function barriers Use Local Values options are as follows:
 
-          * TRUE-Local values will be used.
+         * TRUE-Local values will be used.
 
-          * FALSE-Global values will be used. This is the default.
-      filter_scope {String}:
-          Specifies whether the filter for a specific category will be applied
-          to junctions, edges, or both. For example, if a filter barrier is
-          defined to stop the trace if Device Status is equal to Open and
-          traversability scope is set to edges only, the trace will not
-          stop-even if the trace encounters an open device-because Device Status
-          is only applicable to junctions. In other words, this parameter
-          indicates to the trace whether to ignore junctions, edges, or both.
+         * FALSE-Global values will be used. This is the default.
+     filter_scope {String}:
+         Specifies whether the filter for a specific category will be applied
+         to junctions, edges, or both. For example, if a filter barrier is
+         defined to stop the trace if Device Status is equal to Open and
+         traversability scope is set to edges only, the trace will not
+         stop-even if the trace encounters an open device-because Device Status
+         is only applicable to junctions. In other words, this parameter
+         indicates to the trace whether to ignore junctions, edges, or both.
 
-          * BOTH_JUNCTIONS_AND_EDGES-The filter will be applied to both
-          junctions and edges. This is the default.
+         * BOTH_JUNCTIONS_AND_EDGES-The filter will be applied to both
+         junctions and edges. This is the default.
 
-          * JUNCTIONS_ONLY-The filter will be applied to junctions only.
+         * JUNCTIONS_ONLY-The filter will be applied to junctions only.
 
-          * EDGES_ONLY-The filter will be applied to edges only.
-      filter_bitset_network_attribute_name {String}:
-          The name of the network attribute that will be used to filter by
-          bitset. This parameter is only applicable to upstream, downstream, and
-          loops trace types. This parameter can be used to add special logic
-          during a trace so the trace more closely reflects real-world
-          scenarios. For example, for a loops trace, the Phases current network
-          attribute can determine if the loop is a true electrical loop (the
-          same phase is energized all around the loop, that is, A) and return
-          only real electrical loops for the trace results. An example for an
-          upstream trace is when tracing an electric distribution network,
-          specify a Phases current network attribute, and the trace results will
-          only include valid paths that are specified in the network attribute,
-          not all paths.
-      filter_nearest {Boolean}:
-          Specifies whether the k-nearest neighbors algorithm will be used to
-          return a number of features of a certain type within a given distance.
-          You can specify a count and a cost as well as a collection of
-          categories, an asset type, or both.
+         * EDGES_ONLY-The filter will be applied to edges only.
+     filter_bitset_network_attribute_name {String}:
+         The name of the network attribute that will be used to filter by
+         bitset. This parameter is only applicable to upstream, downstream, and
+         loops trace types. This parameter can be used to add special logic
+         during a trace so the trace more closely reflects real-world
+         scenarios. For example, for a loops trace, the Phases current network
+         attribute can determine if the loop is a true electrical loop (the
+         same phase is energized all around the loop, that is, A) and return
+         only real electrical loops for the trace results. An example for an
+         upstream trace is when tracing an electric distribution network,
+         specify a Phases current network attribute, and the trace results will
+         only include valid paths that are specified in the network attribute,
+         not all paths.
+     filter_nearest {Boolean}:
+         Specifies whether the k-nearest neighbors algorithm will be used to
+         return a number of features of a certain type within a given distance.
+         You can specify a count and a cost as well as a collection of
+         categories, an asset type, or both.
 
-          * FILTER_BY_NEAREST-The k-nearest neighbors algorithm will be used to
-          return a number of features as specified in the nearest_count,
-          nearest_cost_network_attribute, nearest_categories, or nearest_assets
-          parameter.
+         * FILTER_BY_NEAREST-The k-nearest neighbors algorithm will be used to
+         return a number of features as specified in the nearest_count,
+         nearest_cost_network_attribute, nearest_categories, or nearest_assets
+         parameter.
 
-          * DO_NOT_FILTER-The k-nearest neighbors algorithm will not be used to
-          filter results. This is the default.
-      nearest_count {Long}:
-          The number of features to be returned when filter_nearest is
-          FILTER_BY_NEAREST.
-      nearest_cost_network_attribute {String}:
-          The numeric network attribute that will be used to calculate nearness,
-          cost, or distance when filter_nearest is FILTER_BY_NEAREST-for
-          example, shape length.
-      nearest_categories {String}:
-          The categories that will be returned when filter_nearest is
-          FILTER_BY_NEAREST-for example, protective.
-      nearest_assets {String}:
-          The asset groups and asset types that will be returned when
-          filter_nearest is FILTER_BY_NEAREST-for example,
-          ElectricDistributionDevice/Transformer/Step Down.
-      propagators {Value Table}:
-          Specifies the network attributes to propagate as well as how that
-          propagation will occur during a trace. Propagated class attributes
-          denote the key values on subnetwork controllers that are disseminated
-          to the rest of the features in the subnetwork. For example, in an
-          electric distribution model, you can propagate the phase value.
-          Propagators components are as follows:
+         * DO_NOT_FILTER-The k-nearest neighbors algorithm will not be used to
+         filter results. This is the default.
+     nearest_count {Long}:
+         The number of features to be returned when filter_nearest is
+         FILTER_BY_NEAREST.
+     nearest_cost_network_attribute {String}:
+         The numeric network attribute that will be used to calculate nearness,
+         cost, or distance when filter_nearest is FILTER_BY_NEAREST-for
+         example, shape length.
+     nearest_categories {String}:
+         The categories that will be returned when filter_nearest is
+         FILTER_BY_NEAREST-for example, protective.
+     nearest_assets {String}:
+         The asset groups and asset types that will be returned when
+         filter_nearest is FILTER_BY_NEAREST-for example,
+         ElectricDistributionDevice/Transformer/Step Down.
+     propagators {Value Table}:
+         Specifies the network attributes to propagate as well as how that
+         propagation will occur during a trace. Propagated class attributes
+         denote the key values on subnetwork controllers that are disseminated
+         to the rest of the features in the subnetwork. For example, in an
+         electric distribution model, you can propagate the phase value.
+         Propagators components are as follows:
 
-          * Attribute-Filter by any network attribute defined in the system.
+         * Attribute-Filter by any network attribute defined in the system.
 
-          * Substitution Attribute-Use a substituted value instead of bitset
-          network attribute values. Substitutions are encoded based on the
-          number of bits in the network attribute being propagated. A
-          substitution is a mapping of each bit in phase to another bit. For
-          example, for Phase AC, one substitution could map bit A to B, and bit
-          C to null. In this example, the substitution for 1010 (Phase AC) is
-          0000-0010-0000-0000 (512). The substitution captures the mapping so
-          you know that Phase A was mapped to B and Phase C was mapped to null,
-          and not the other way around (that is, Phase A was not mapped to null
-          and Phase C was not mapped to B).
+         * Substitution Attribute-Use a substituted value instead of bitset
+         network attribute values. Substitutions are encoded based on the
+         number of bits in the network attribute being propagated. A
+         substitution is a mapping of each bit in phase to another bit. For
+         example, for Phase AC, one substitution could map bit A to B, and bit
+         C to null. In this example, the substitution for 1010 (Phase AC) is
+         0000-0010-0000-0000 (512). The substitution captures the mapping so
+         you know that Phase A was mapped to B and Phase C was mapped to null,
+         and not the other way around (that is, Phase A was not mapped to null
+         and Phase C was not mapped to B).
 
-          * Function-Choose from a number of calculation functions.
+         * Function-Choose from a number of calculation functions.
 
-          * Operator-Choose from a number of operators.
+         * Operator-Choose from a number of operators.
 
-          * Value-Provide a specific value for the input attribute type that
-          would cause termination based on the operator value.
-          The propagators Function value options are as follows:
+         * Value-Provide a specific value for the input attribute type that
+         would cause termination based on the operator value.
+         The propagators Function value options are as follows:
 
-          * PROPAGATED_BITWISE_AND-Values will be compared from one feature to
-          the next.
+         * PROPAGATED_BITWISE_AND-Values will be compared from one feature to
+         the next.
 
-          * PROPAGATED_MIN-The minimum value will be propagated.
+         * PROPAGATED_MIN-The minimum value will be propagated.
 
-          * PROPAGATED_MAX-The maximum value will be propagated.
-          The propagators Operator value options are as follows:
+         * PROPAGATED_MAX-The maximum value will be propagated.
+         The propagators Operator value options are as follows:
 
-          * IS_EQUAL_TO-The attribute is equal to the value.
+         * IS_EQUAL_TO-The attribute is equal to the value.
 
-          * DOES_NOT_EQUAL-The attribute is not equal to the value.
+         * DOES_NOT_EQUAL-The attribute is not equal to the value.
 
-          * IS_GREATER_THAN-The attribute is greater than the value.
+         * IS_GREATER_THAN-The attribute is greater than the value.
 
-          * IS_GREATER_THAN_OR_EQUAL_TO-The attribute is greater than or equal
-          to the value.
+         * IS_GREATER_THAN_OR_EQUAL_TO-The attribute is greater than or equal
+         to the value.
 
-          * IS_LESS_THAN-The attribute is less than the value.
+         * IS_LESS_THAN-The attribute is less than the value.
 
-          * IS_LESS_THAN_OR_EQUAL_TO-The attribute is less than or equal to the
-          value.
+         * IS_LESS_THAN_OR_EQUAL_TO-The attribute is less than or equal to the
+         value.
 
-          * INCLUDES_THE_VALUES-A bitwise AND operation in which all bits in the
-          value are present in the attribute (bitwise AND == value).
+         * INCLUDES_THE_VALUES-A bitwise AND operation in which all bits in the
+         value are present in the attribute (bitwise AND == value).
 
-          * DOES_NOT_INCLUDE_THE_VALUES-A bitwise AND operation in which not all
-          of the bits in the value are present in the attribute (bitwise AND !=
-          value).
+         * DOES_NOT_INCLUDE_THE_VALUES-A bitwise AND operation in which not all
+         of the bits in the value are present in the attribute (bitwise AND !=
+         value).
 
-          * INCLUDES_ANY-A bitwise AND operation in which at least one bit in
-          the value is present in the attribute (bitwise AND == True).
+         * INCLUDES_ANY-A bitwise AND operation in which at least one bit in
+         the value is present in the attribute (bitwise AND == True).
 
-          * DOES_NOT_INCLUDE_ANY-A bitwise AND operation in which none of the
-          bits in the value are present in the attribute (bitwise AND == False).
-          This parameter is only available via Python.
-      description {String}:
-          The description of the rule.
-      allow_indeterminate_flow {Boolean}:
-          Specifies whether trace network features that have indeterminate or
-          uninitialized flow will be traced. This parameter is only honored when
-          running an upstream or downstream trace type.
+         * DOES_NOT_INCLUDE_ANY-A bitwise AND operation in which none of the
+         bits in the value are present in the attribute (bitwise AND == False).
+         This parameter is only available via Python.
+     description {String}:
+         The description of the rule.
+     allow_indeterminate_flow {Boolean}:
+         Specifies whether trace network features that have indeterminate or
+         uninitialized flow will be traced. This parameter is only honored when
+         running an upstream or downstream trace type.
 
-          * TRACE_INDETERMINATE_FLOW-Trace network features that have
-          indeterminate or uninitialized flow direction in the trace will be
-          included.
+         * TRACE_INDETERMINATE_FLOW-Trace network features that have
+         indeterminate or uninitialized flow direction in the trace will be
+         included.
 
-          * IGNORE_INDETERMINATE_FLOW-Trace network features that have
-          indeterminate or uninitialized flow direction will not be included.
-          This is the default.
-      path_direction {String}:
-          Specifies the direction of the path for a trace network. The cost of
-          traversing the path is determined by the path_network_weight_name
-          parameter value. This parameter is only honored when running a
-          SHORTEST_PATH trace type.
+         * IGNORE_INDETERMINATE_FLOW-Trace network features that have
+         indeterminate or uninitialized flow direction will not be included.
+         This is the default.
+     path_direction {String}:
+         Specifies the direction of the path for a trace network. The cost of
+         traversing the path is determined by the path_network_weight_name
+         parameter value. This parameter is only honored when running a
+         SHORTEST_PATH trace type.
 
-          * NO_DIRECTION-The path will be between the two starting points
-          regardless of the direction of flow. This is the default.
+         * NO_DIRECTION-The path will be between the two starting points
+         regardless of the direction of flow. This is the default.
 
-          * PATH_UPSTREAM-The direction of the path will be downstream between
-          the two starting points.
+         * PATH_UPSTREAM-The direction of the path will be downstream between
+         the two starting points.
 
-          * PATH_DOWNSTREAM-The direction of the path will be upstream between
-          the two starting points.
-      path_network_weight_name {String}:
-          The network attribute that will be used to calculate the path for a
-          utility network or trace network. When running a shortest path trace
-          type, the shortest path is calculated using a numeric network
-          attribute such as shape length. Cost- and distance-based paths can
-          both be achieved. This parameter is required when running a shortest
-          path trace."""
+         * PATH_DOWNSTREAM-The direction of the path will be upstream between
+         the two starting points.
+     path_network_weight_name {String}:
+         The network attribute that will be used to calculate the path for a
+         utility network or trace network. When running a shortest path trace
+         type, the shortest path is calculated using a numeric network
+         attribute such as shape length. Cost- and distance-based paths can
+         both be achieved. This parameter is required when running a shortest
+         path trace."""
     ...
 
-@gptooldoc('AlterDiagramTemplate_nd', None)
-def AlterDiagramTemplate(in_utility_network=..., template_name=..., out_name=..., is_default_template=..., are_rules_and_layouts_removed=..., are_vertices_kept=..., container_margin=..., is_diagram_storage_enabled=..., is_diagram_extension_enabled=..., description=..., are_layer_definitions_removed=...): # -> conversion | int | float | complex | basestring | list[Unknown] | tuple[Unknown, ...] | dict[Unknown, Unknown]:
+@gptooldoc("AlterDiagramTemplate_nd", None)
+def AlterDiagramTemplate(
+    in_utility_network=...,
+    template_name=...,
+    out_name=...,
+    is_default_template=...,
+    are_rules_and_layouts_removed=...,
+    are_vertices_kept=...,
+    container_margin=...,
+    is_diagram_storage_enabled=...,
+    is_diagram_extension_enabled=...,
+    description=...,
+    are_layer_definitions_removed=...,
+):  # -> conversion | int | float | complex | basestring | list[Unknown] | tuple[Unknown, ...] | dict[Unknown, Unknown]:
     """AlterDiagramTemplate_nd(in_utility_network, template_name, {out_name}, {is_default_template}, {are_rules_and_layouts_removed}, {are_vertices_kept}, {container_margin}, {is_diagram_storage_enabled}, {is_diagram_extension_enabled}, {description}, {are_layer_definitions_removed})
 
-        Alters the properties of a diagram template such as its name, how it
-        handles vertices along input network edges, whether the related
-        diagrams can be stored or extended, the margin between containers and
-        their contents in these diagrams, the removal of its rule and layout,
-        and the reset of the diagram layer definition to the default.
+       Alters the properties of a diagram template such as its name, how it
+       handles vertices along input network edges, whether the related
+       diagrams can be stored or extended, the margin between containers and
+       their contents in these diagrams, the removal of its rule and layout,
+       and the reset of the diagram layer definition to the default.
 
-     INPUTS:
-      in_utility_network (Utility Network / Trace Network):
-          The utility network or trace network of the diagram template to alter.
-      template_name (String):
-          The name of the diagram template to alter.
-      out_name {String}:
-          The new name of the template.
-      is_default_template {Boolean}:
-          Specifies the default status of the input template.
+    INPUTS:
+     in_utility_network (Utility Network / Trace Network):
+         The utility network or trace network of the diagram template to alter.
+     template_name (String):
+         The name of the diagram template to alter.
+     out_name {String}:
+         The new name of the template.
+     is_default_template {Boolean}:
+         Specifies the default status of the input template.
 
-          * DEFAULT_TEMPLATE-The input diagram template will be the default
-          template.
+         * DEFAULT_TEMPLATE-The input diagram template will be the default
+         template.
 
-          * NOT_DEFAULT_TEMPLATE-The input diagram template will not be the
-          default template. This is the default.
-          The default template is used when generating a diagram if a template
-          is not specified.
-      are_rules_and_layouts_removed {Boolean}:
-          Specifies whether the template rule and layout definitions will be
-          removed.
+         * NOT_DEFAULT_TEMPLATE-The input diagram template will not be the
+         default template. This is the default.
+         The default template is used when generating a diagram if a template
+         is not specified.
+     are_rules_and_layouts_removed {Boolean}:
+         Specifies whether the template rule and layout definitions will be
+         removed.
 
-          * REMOVE_RULES_AND_LAYOUTS-The rule and layout definitions related to
-          the input diagram template will be removed.
+         * REMOVE_RULES_AND_LAYOUTS-The rule and layout definitions related to
+         the input diagram template will be removed.
 
-          * DO_NOT_REMOVE_RULES_AND_LAYOUTS-The rule and layout definitions
-          related to the input diagram template will not be removed. This is the
-          default.
-      are_vertices_kept {Boolean}:
-          Specifies how vertices along the GIS edges will be managed in the
-          diagrams based on the template.
+         * DO_NOT_REMOVE_RULES_AND_LAYOUTS-The rule and layout definitions
+         related to the input diagram template will not be removed. This is the
+         default.
+     are_vertices_kept {Boolean}:
+         Specifies how vertices along the GIS edges will be managed in the
+         diagrams based on the template.
 
-          * KEEP_VERTICES-All vertices that display along GIS edges will be
-          preserved on the associated edges in each network diagram based on the
-          template.
+         * KEEP_VERTICES-All vertices that display along GIS edges will be
+         preserved on the associated edges in each network diagram based on the
+         template.
 
-          * DO_NOT_KEEP_VERTICES-Diagram edges will be drawn as straight lines
-          between their connected junctions. This is the default.
-          For performance quality, use the KEEP_VERTICES option only when
-          needed. If your template is configured to run an automatic layout at
-          diagram generation, for example, the KEEP_VERTICES option makes sense
-          for the Relative Mainline and Partial Overlapping Edges diagram
-          layouts. The other diagram layouts don't use diagram edges geometry.
-      container_margin {Linear Unit}:
-          The minimum distance between the center of any junctions inside the
-          container and the container border.
-      is_diagram_storage_enabled {Boolean}:
-          Specifies whether the diagrams based on the template can be stored.
+         * DO_NOT_KEEP_VERTICES-Diagram edges will be drawn as straight lines
+         between their connected junctions. This is the default.
+         For performance quality, use the KEEP_VERTICES option only when
+         needed. If your template is configured to run an automatic layout at
+         diagram generation, for example, the KEEP_VERTICES option makes sense
+         for the Relative Mainline and Partial Overlapping Edges diagram
+         layouts. The other diagram layouts don't use diagram edges geometry.
+     container_margin {Linear Unit}:
+         The minimum distance between the center of any junctions inside the
+         container and the container border.
+     is_diagram_storage_enabled {Boolean}:
+         Specifies whether the diagrams based on the template can be stored.
 
-          * ENABLE_DIAGRAM_STORAGE-The diagrams based on the template can be
-          stored. This is the default.
+         * ENABLE_DIAGRAM_STORAGE-The diagrams based on the template can be
+         stored. This is the default.
 
-          * DISABLE_DIAGRAM_STORAGE-The diagrams based on the template cannot be
-          stored.
-      is_diagram_extension_enabled {Boolean}:
-          Specifies whether the diagrams based on the template can be extended.
+         * DISABLE_DIAGRAM_STORAGE-The diagrams based on the template cannot be
+         stored.
+     is_diagram_extension_enabled {Boolean}:
+         Specifies whether the diagrams based on the template can be extended.
 
-          * ENABLE_DIAGRAM_EXTENSION-The diagrams based on the template can be
-          extended by connectivity, traversability, containment, or attachment.
+         * ENABLE_DIAGRAM_EXTENSION-The diagrams based on the template can be
+         extended by connectivity, traversability, containment, or attachment.
 
-          * DISABLE_DIAGRAM_EXTENSION-The diagrams based on the template cannot
-          be extended. This is the default.
-      description {String}:
-          The description of the template.
-      are_layer_definitions_removed {Boolean}:
-          Specifies whether the diagram template layer definition will be reset
-          to the default.
+         * DISABLE_DIAGRAM_EXTENSION-The diagrams based on the template cannot
+         be extended. This is the default.
+     description {String}:
+         The description of the template.
+     are_layer_definitions_removed {Boolean}:
+         Specifies whether the diagram template layer definition will be reset
+         to the default.
 
-          * REMOVE_LAYER_DEFINITIONS-The diagram layer definition related to the
-          input diagram template will be reset to the default (removed).
+         * REMOVE_LAYER_DEFINITIONS-The diagram layer definition related to the
+         input diagram template will be reset to the default (removed).
 
-          * DO_NOT_REMOVE_LAYER_DEFINITIONS-The diagram layer definition related
-          to the input diagram template will not be removed. This is the
-          default."""
+         * DO_NOT_REMOVE_LAYER_DEFINITIONS-The diagram layer definition related
+         to the input diagram template will not be removed. This is the
+         default."""
     ...
 
-@gptooldoc('CreateDiagramLayerDefinition_nd', None)
-def CreateDiagramLayerDefinition(in_utility_network=..., template_name=..., system_junctions=..., connectivity_associations=..., structural_attachments=..., reduction_edges=..., point_subLayers=..., polygon_subLayers=..., junction_object_point_subLayers=..., edge_object_polyline_subLayers=..., overwrite_all_layers=...): # -> conversion | int | float | complex | basestring | list[Unknown] | tuple[Unknown, ...] | dict[Unknown, Unknown]:
+@gptooldoc("CreateDiagramLayerDefinition_nd", None)
+def CreateDiagramLayerDefinition(
+    in_utility_network=...,
+    template_name=...,
+    system_junctions=...,
+    connectivity_associations=...,
+    structural_attachments=...,
+    reduction_edges=...,
+    point_subLayers=...,
+    polygon_subLayers=...,
+    junction_object_point_subLayers=...,
+    edge_object_polyline_subLayers=...,
+    overwrite_all_layers=...,
+):  # -> conversion | int | float | complex | basestring | list[Unknown] | tuple[Unknown, ...] | dict[Unknown, Unknown]:
     """CreateDiagramLayerDefinition_nd(in_utility_network, template_name, {system_junctions}, {connectivity_associations}, {structural_attachments}, {reduction_edges}, {point_subLayers;point_subLayers...}, {polygon_subLayers;polygon_subLayers...}, {junction_object_point_subLayers;junction_object_point_subLayers...}, {edge_object_polyline_subLayers;edge_object_polyline_subLayers...}, {overwrite_all_layers})
 
-        Creates a diagram layer definition for the input diagram template
-        using the settings of the network feature layers in the active map.
+       Creates a diagram layer definition for the input diagram template
+       using the settings of the network feature layers in the active map.
 
-     INPUTS:
-      in_utility_network (Utility Network Layer / Trace Network Layer):
-          The utility network or trace network layer in the active map.
-      template_name (String):
-          The name of the diagram template that will be modified.
-      system_junctions {Boolean}:
-          Specifies whether system junctions and system junction objects will be
-          represented in the diagrams based on the specified template.
+    INPUTS:
+     in_utility_network (Utility Network Layer / Trace Network Layer):
+         The utility network or trace network layer in the active map.
+     template_name (String):
+         The name of the diagram template that will be modified.
+     system_junctions {Boolean}:
+         Specifies whether system junctions and system junction objects will be
+         represented in the diagrams based on the specified template.
 
-          * SHOW-The system junctions along the network lines and the system
-          junction objects along the network edge objects will be represented in
-          the diagrams by a System Junction layer and a System Junction Objects
-          layer, respectively. This is the default.
+         * SHOW-The system junctions along the network lines and the system
+         junction objects along the network edge objects will be represented in
+         the diagrams by a System Junction layer and a System Junction Objects
+         layer, respectively. This is the default.
 
-          * HIDE-System junctions and system junction objects will not be
-          represented in the diagrams.
-      connectivity_associations {Boolean}:
-          Specifies whether connectivity associations will be represented in the
-          diagrams based on the specified template.
+         * HIDE-System junctions and system junction objects will not be
+         represented in the diagrams.
+     connectivity_associations {Boolean}:
+         Specifies whether connectivity associations will be represented in the
+         diagrams based on the specified template.
 
-          * SHOW-Connectivity associations will be represented in the diagrams
-          by the Connectivity Associations layer. This is the default.
+         * SHOW-Connectivity associations will be represented in the diagrams
+         by the Connectivity Associations layer. This is the default.
 
-          * HIDE-Connectivity associations will not be represented in the
-          diagrams.
-      structural_attachments {Boolean}:
-          Specifies whether structural attachment associations will be
-          represented in the diagrams based on the specified template.
+         * HIDE-Connectivity associations will not be represented in the
+         diagrams.
+     structural_attachments {Boolean}:
+         Specifies whether structural attachment associations will be
+         represented in the diagrams based on the specified template.
 
-          * SHOW-Structural attachment associations will be represented in the
-          diagrams by the Structural Attachments layer. This is the default.
+         * SHOW-Structural attachment associations will be represented in the
+         diagrams by the Structural Attachments layer. This is the default.
 
-          * HIDE-Structural attachment associations will not be represented in
-          the diagrams.
-      reduction_edges {Boolean}:
-          Specifies whether reduction edges will be represented in the diagrams
-          based on the specified template.
+         * HIDE-Structural attachment associations will not be represented in
+         the diagrams.
+     reduction_edges {Boolean}:
+         Specifies whether reduction edges will be represented in the diagrams
+         based on the specified template.
 
-          * SHOW-Reduction edges will be represented in the diagrams by the
-          Reduction Edges layer. This is the default.
+         * SHOW-Reduction edges will be represented in the diagrams by the
+         Reduction Edges layer. This is the default.
 
-          * HIDE-Reduction edges will not be represented in the diagrams.
-      point_subLayers {Value Table}:
-          Specifies whether layers will be added to represent container polygon
-          features, network line features, or network edge objects as point
-          features in the diagrams. The second column is used as follows:
+         * HIDE-Reduction edges will not be represented in the diagrams.
+     point_subLayers {Value Table}:
+         Specifies whether layers will be added to represent container polygon
+         features, network line features, or network edge objects as point
+         features in the diagrams. The second column is used as follows:
 
-          * True-The layer will be created with subtype group layers.
+         * True-The layer will be created with subtype group layers.
 
-          * False-The layer will be created as a simple layer. This is the
-          default.
-      polygon_subLayers {Value Table}:
-          Specifies whether layers will be added to represent container point
-          features or container junction objects as polygon features in the
-          diagrams. The second column is used as follows:
+         * False-The layer will be created as a simple layer. This is the
+         default.
+     polygon_subLayers {Value Table}:
+         Specifies whether layers will be added to represent container point
+         features or container junction objects as polygon features in the
+         diagrams. The second column is used as follows:
 
-          * True-The layer will be created with subtype group layers.
+         * True-The layer will be created with subtype group layers.
 
-          * False-The layer will be created as a simple layer. This is the
-          default.
-      junction_object_point_subLayers {Value Table}:
-          Specifies whether layers will be added to represent junction objects
-          as point features in the diagrams. The second column is used as
-          follows:
+         * False-The layer will be created as a simple layer. This is the
+         default.
+     junction_object_point_subLayers {Value Table}:
+         Specifies whether layers will be added to represent junction objects
+         as point features in the diagrams. The second column is used as
+         follows:
 
-          * True-The layer will be created with subtype group layers.
+         * True-The layer will be created with subtype group layers.
 
-          * False-The layer will be created as a simple layer. This is the
-          default.
-      edge_object_polyline_subLayers {Value Table}:
-          Specifies whether layers will be added to represent edge objects as
-          polyline features in the diagrams. The second column is used as
-          follows:
+         * False-The layer will be created as a simple layer. This is the
+         default.
+     edge_object_polyline_subLayers {Value Table}:
+         Specifies whether layers will be added to represent edge objects as
+         polyline features in the diagrams. The second column is used as
+         follows:
 
-          * True-The layer will be created with subtype group layers.
+         * True-The layer will be created with subtype group layers.
 
-          * False-The layer will be created as a simple layer. This is the
-          default.
-      overwrite_all_layers {Boolean}:
-          Specifies whether all existing layers under the diagram layer will be
-          overwritten or preserved, except those in the input network map and
-          explicitly specified additional sublayers.
+         * False-The layer will be created as a simple layer. This is the
+         default.
+     overwrite_all_layers {Boolean}:
+         Specifies whether all existing layers under the diagram layer will be
+         overwritten or preserved, except those in the input network map and
+         explicitly specified additional sublayers.
 
-          * OVERWRITE_ALL-The diagram layer definition is initialized or
-          entirely reset (overwritten) including layers in the input map and
-          specified additional sublayers. This is the default.
+         * OVERWRITE_ALL-The diagram layer definition is initialized or
+         entirely reset (overwritten) including layers in the input map and
+         specified additional sublayers. This is the default.
 
-          * MERGE-All existing layers under the diagram layer will be preserved
-          except those in the input network map as well as additional sublayers
-          explicitly specified."""
+         * MERGE-All existing layers under the diagram layer will be preserved
+         except those in the input network map as well as additional sublayers
+         explicitly specified."""
     ...
 
-@gptooldoc('DeleteDiagramTemplate_nd', None)
-def DeleteDiagramTemplate(in_utility_network=..., template_name=...): # -> conversion | int | float | complex | basestring | list[Unknown] | tuple[Unknown, ...] | dict[Unknown, Unknown]:
+@gptooldoc("DeleteDiagramTemplate_nd", None)
+def DeleteDiagramTemplate(
+    in_utility_network=..., template_name=...
+):  # -> conversion | int | float | complex | basestring | list[Unknown] | tuple[Unknown, ...] | dict[Unknown, Unknown]:
     """DeleteDiagramTemplate_nd(in_utility_network, template_name)
 
-        Deletes a diagram template and all diagrams  based on that template.
+       Deletes a diagram template and all diagrams  based on that template.
 
-     INPUTS:
-      in_utility_network (Utility Network / Trace Network):
-          The utility network or trace network related to the diagram template
-          to delete.
-      template_name (String):
-          The name of the diagram template to delete."""
+    INPUTS:
+     in_utility_network (Utility Network / Trace Network):
+         The utility network or trace network related to the diagram template
+         to delete.
+     template_name (String):
+         The name of the diagram template to delete."""
     ...
 
-@gptooldoc('ExportDiagramLayerDefinition_nd', None)
-def ExportDiagramLayerDefinition(in_network_diagram_layer=..., out_ndld_file=...): # -> conversion | int | float | complex | basestring | list[Unknown] | tuple[Unknown, ...] | dict[Unknown, Unknown]:
+@gptooldoc("ExportDiagramLayerDefinition_nd", None)
+def ExportDiagramLayerDefinition(
+    in_network_diagram_layer=..., out_ndld_file=...
+):  # -> conversion | int | float | complex | basestring | list[Unknown] | tuple[Unknown, ...] | dict[Unknown, Unknown]:
     """ExportDiagramLayerDefinition_nd(in_network_diagram_layer, out_ndld_file)
 
-        Exports the diagram layer definition currently set up for the input
-        diagram layer into a network diagram layer definition file (.ndld).
+       Exports the diagram layer definition currently set up for the input
+       diagram layer into a network diagram layer definition file (.ndld).
 
-     INPUTS:
-      in_network_diagram_layer (Diagram Layer):
-          The network diagram layer from which the layer definition will be
-          exported.
+    INPUTS:
+     in_network_diagram_layer (Diagram Layer):
+         The network diagram layer from which the layer definition will be
+         exported.
 
-     OUTPUTS:
-      out_ndld_file (File):
-          The network diagram layer definition file (.ndld) to be created."""
+    OUTPUTS:
+     out_ndld_file (File):
+         The network diagram layer definition file (.ndld) to be created."""
     ...
 
-@gptooldoc('ExportDiagramTemplateDefinitions_nd', None)
-def ExportDiagramTemplateDefinitions(in_utility_network=..., template_name=..., out_ndbd_file=..., out_ndld_file=...): # -> conversion | int | float | complex | basestring | list[Unknown] | tuple[Unknown, ...] | dict[Unknown, Unknown]:
+@gptooldoc("ExportDiagramTemplateDefinitions_nd", None)
+def ExportDiagramTemplateDefinitions(
+    in_utility_network=..., template_name=..., out_ndbd_file=..., out_ndld_file=...
+):  # -> conversion | int | float | complex | basestring | list[Unknown] | tuple[Unknown, ...] | dict[Unknown, Unknown]:
     """ExportDiagramTemplateDefinitions_nd(in_utility_network, template_name, {out_ndbd_file}, {out_ndld_file})
 
-        Exports the network diagram rule and layout definitions and the
-        network diagram layer definition to .ndbd and .ndld files,
-        respectively.
+       Exports the network diagram rule and layout definitions and the
+       network diagram layer definition to .ndbd and .ndld files,
+       respectively.
 
-     INPUTS:
-      in_utility_network (Utility Network / Trace Network):
-          The utility network or trace network referencing the diagram template
-          definitions to export.
-      template_name (String):
-          The name of the diagram template with definitions to be exported.
+    INPUTS:
+     in_utility_network (Utility Network / Trace Network):
+         The utility network or trace network referencing the diagram template
+         definitions to export.
+     template_name (String):
+         The name of the diagram template with definitions to be exported.
 
-     OUTPUTS:
-      out_ndbd_file {File}:
-          The network diagram rule and layout definitions file (.ndbd) to be
-          created.
-      out_ndld_file {File}:
-          The network diagram layer definition file (.ndld) to be created."""
+    OUTPUTS:
+     out_ndbd_file {File}:
+         The network diagram rule and layout definitions file (.ndbd) to be
+         created.
+     out_ndld_file {File}:
+         The network diagram layer definition file (.ndld) to be created."""
     ...
 
-@gptooldoc('GetDiagramTemplateNames_nd', None)
-def GetDiagramTemplateNames(in_utility_network=...): # -> conversion | int | float | complex | basestring | list[Unknown] | tuple[Unknown, ...] | dict[Unknown, Unknown]:
+@gptooldoc("GetDiagramTemplateNames_nd", None)
+def GetDiagramTemplateNames(
+    in_utility_network=...,
+):  # -> conversion | int | float | complex | basestring | list[Unknown] | tuple[Unknown, ...] | dict[Unknown, Unknown]:
     """GetDiagramTemplateNames_nd(in_utility_network)
 
-        Returns the names of all diagram templates related to a network.
+       Returns the names of all diagram templates related to a network.
 
-     INPUTS:
-      in_utility_network (Utility Network / Trace Network):
-          The utility network or trace network to which the diagram template
-          names are related."""
+    INPUTS:
+     in_utility_network (Utility Network / Trace Network):
+         The utility network or trace network to which the diagram template
+         names are related."""
     ...
 
-@gptooldoc('ImportDiagramTemplateDefinitions_nd', None)
-def ImportDiagramTemplateDefinitions(in_utility_network=..., template_name=..., ndbd_file=..., ndld_file=...): # -> conversion | int | float | complex | basestring | list[Unknown] | tuple[Unknown, ...] | dict[Unknown, Unknown]:
+@gptooldoc("ImportDiagramTemplateDefinitions_nd", None)
+def ImportDiagramTemplateDefinitions(
+    in_utility_network=..., template_name=..., ndbd_file=..., ndld_file=...
+):  # -> conversion | int | float | complex | basestring | list[Unknown] | tuple[Unknown, ...] | dict[Unknown, Unknown]:
     """ImportDiagramTemplateDefinitions_nd(in_utility_network, template_name, {ndbd_file}, {ndld_file})
 
-        Imports a network diagram rule and layout definitions file (.ndbd), a
-        network diagram layer definition file (.ndld), or both into an
-        existing template.
+       Imports a network diagram rule and layout definitions file (.ndbd), a
+       network diagram layer definition file (.ndld), or both into an
+       existing template.
 
-     INPUTS:
-      in_utility_network (Utility Network / Trace Network):
-          The utility network or trace network containing the diagram template
-          that will be modified.
-      template_name (String):
-          The name of the diagram template onto which the definitions will be
-          imported.
-      ndbd_file {File}:
-          The network diagram rule and layout definitions file (.ndbd) that will
-          be imported.This file is the result of using the Export Diagram
-          Template
-          Definitions tool on an existing template.At least one of the two input
-          file parameters must be completed; that
-          is, either the network diagram rule and layout definitions file
-          (.ndbd) or the network diagram layer definition file (.ndld) must be
-          completed.
-      ndld_file {File}:
-          The network diagram layer definition file (.ndld) that will be
-          imported.This file is the result of using the Export Diagram Template
-          Definitions or Export Diagram Layer Definition tool on an existing
-          template.At least one of the two input file parameters must be
-          completed; that
-          is, either the network diagram rule and layout definitions file
-          (.ndbd) or the network diagram layer definition file (.ndld) must be
-          completed.When a diagram layer definition does not exist for the input
-          diagram
-          template and this parameter is not specified or loads an empty .ndld
-          file, a default diagram layer definition is systematically initialized
-          on the template."""
+    INPUTS:
+     in_utility_network (Utility Network / Trace Network):
+         The utility network or trace network containing the diagram template
+         that will be modified.
+     template_name (String):
+         The name of the diagram template onto which the definitions will be
+         imported.
+     ndbd_file {File}:
+         The network diagram rule and layout definitions file (.ndbd) that will
+         be imported.This file is the result of using the Export Diagram
+         Template
+         Definitions tool on an existing template.At least one of the two input
+         file parameters must be completed; that
+         is, either the network diagram rule and layout definitions file
+         (.ndbd) or the network diagram layer definition file (.ndld) must be
+         completed.
+     ndld_file {File}:
+         The network diagram layer definition file (.ndld) that will be
+         imported.This file is the result of using the Export Diagram Template
+         Definitions or Export Diagram Layer Definition tool on an existing
+         template.At least one of the two input file parameters must be
+         completed; that
+         is, either the network diagram rule and layout definitions file
+         (.ndbd) or the network diagram layer definition file (.ndld) must be
+         completed.When a diagram layer definition does not exist for the input
+         diagram
+         template and this parameter is not specified or loads an empty .ndld
+         file, a default diagram layer definition is systematically initialized
+         on the template."""
     ...
 
-@gptooldoc('ApplyAngleDirectedLayout_nd', None)
-def ApplyAngleDirectedLayout(in_network_diagram_layer=..., are_containers_preserved=..., iterations_number=..., number_of_directions=..., run_async=...): # -> conversion | int | float | complex | basestring | list[Unknown] | tuple[Unknown, ...] | dict[Unknown, Unknown]:
+@gptooldoc("ApplyAngleDirectedLayout_nd", None)
+def ApplyAngleDirectedLayout(
+    in_network_diagram_layer=...,
+    are_containers_preserved=...,
+    iterations_number=...,
+    number_of_directions=...,
+    run_async=...,
+):  # -> conversion | int | float | complex | basestring | list[Unknown] | tuple[Unknown, ...] | dict[Unknown, Unknown]:
     """ApplyAngleDirectedLayout_nd(in_network_diagram_layer, {are_containers_preserved}, {iterations_number}, {number_of_directions}, {run_async})
 
-        Moves a diagram's edges in specified alignment directions.
+       Moves a diagram's edges in specified alignment directions.
 
-     INPUTS:
-      in_network_diagram_layer (Diagram Layer):
-          The network diagram to which the layout will be applied.
-      are_containers_preserved {Boolean}:
-          Specifies how the algorithm will process containers.
+    INPUTS:
+     in_network_diagram_layer (Diagram Layer):
+         The network diagram to which the layout will be applied.
+     are_containers_preserved {Boolean}:
+         Specifies how the algorithm will process containers.
 
-          * PRESERVE_CONTAINERS-The layout algorithm will apply to the top
-          graph of the diagram so containers are preserved.
+         * PRESERVE_CONTAINERS-The layout algorithm will apply to the top
+         graph of the diagram so containers are preserved.
 
-          * IGNORE_CONTAINERS-The layout algorithm will apply to both content
-          and noncontent features in the diagram. This is the default.
-      iterations_number {Long}:
-          The number of iterations to process. The default is 1.
-      number_of_directions {String}:
-          The number of directions that will be used to align the diagram edges
-          and their connected junctions.
+         * IGNORE_CONTAINERS-The layout algorithm will apply to both content
+         and noncontent features in the diagram. This is the default.
+     iterations_number {Long}:
+         The number of iterations to process. The default is 1.
+     number_of_directions {String}:
+         The number of directions that will be used to align the diagram edges
+         and their connected junctions.
 
-          * TWELVE_DIRECTIONS-The edges will move so they progressively approach
-          one of the 12 axes, starting with the edge's origin junction and
-          inclined at 30, 60, 90, 120, 150, 180, 210, 240, 270, 300, 330, or 360
-          degrees.
+         * TWELVE_DIRECTIONS-The edges will move so they progressively approach
+         one of the 12 axes, starting with the edge's origin junction and
+         inclined at 30, 60, 90, 120, 150, 180, 210, 240, 270, 300, 330, or 360
+         degrees.
 
-          * EIGHT_DIRECTIONS-The edges will move so they progressively approach
-          one of the 8 axes, starting with the edge's origin junction and
-          inclined at 45, 90, 135, 180, 225, 270, 315, or 360 degrees. This is
-          the default.
+         * EIGHT_DIRECTIONS-The edges will move so they progressively approach
+         one of the 8 axes, starting with the edge's origin junction and
+         inclined at 45, 90, 135, 180, 225, 270, 315, or 360 degrees. This is
+         the default.
 
-          * FOUR_DIRECTIONS-The edges will move so they progressively approach
-          one of the 4 axes, starting with the edge's origin junction and
-          inclined at 90, 180, 270, or 360 degrees.
-      run_async {Boolean}:
-          Specifies whether the layout algorithm will run asynchronously or
-          synchronously on the server.
+         * FOUR_DIRECTIONS-The edges will move so they progressively approach
+         one of the 4 axes, starting with the edge's origin junction and
+         inclined at 90, 180, 270, or 360 degrees.
+     run_async {Boolean}:
+         Specifies whether the layout algorithm will run asynchronously or
+         synchronously on the server.
 
-          * RUN_ASYNCHRONOUSLY-The layout algorithm will run asynchronously on
-          the server. This option dedicates server resources to run the layout
-          algorithm with a longer time-out. Running asynchronously is
-          recommended for layouts that are time consuming and may exceed the
-          server time-out (for example, Partial Overlapping Edges) and applying
-          to large diagrams (more than 25,000 features).
+         * RUN_ASYNCHRONOUSLY-The layout algorithm will run asynchronously on
+         the server. This option dedicates server resources to run the layout
+         algorithm with a longer time-out. Running asynchronously is
+         recommended for layouts that are time consuming and may exceed the
+         server time-out (for example, Partial Overlapping Edges) and applying
+         to large diagrams (more than 25,000 features).
 
-          * RUN_SYNCHRONOUSLY-The layout algorithm will run synchronously on the
-          server. It can fail without completion if it exceeds the service
-          default time-out value of 600 seconds. This is the default."""
+         * RUN_SYNCHRONOUSLY-The layout algorithm will run synchronously on the
+         server. It can fail without completion if it exceeds the service
+         default time-out value of 600 seconds. This is the default."""
     ...
 
-@gptooldoc('ApplyCompressionLayout_nd', None)
-def ApplyCompressionLayout(in_network_diagram_layer=..., are_containers_preserved=..., grouping_distance_absolute=..., vertices_removal_rule=..., run_async=...): # -> conversion | int | float | complex | basestring | list[Unknown] | tuple[Unknown, ...] | dict[Unknown, Unknown]:
+@gptooldoc("ApplyCompressionLayout_nd", None)
+def ApplyCompressionLayout(
+    in_network_diagram_layer=...,
+    are_containers_preserved=...,
+    grouping_distance_absolute=...,
+    vertices_removal_rule=...,
+    run_async=...,
+):  # -> conversion | int | float | complex | basestring | list[Unknown] | tuple[Unknown, ...] | dict[Unknown, Unknown]:
     """ApplyCompressionLayout_nd(in_network_diagram_layer, {are_containers_preserved}, {grouping_distance_absolute}, {vertices_removal_rule}, {run_async})
 
-        Compresses the diagram features toward the middle of the diagram.
+       Compresses the diagram features toward the middle of the diagram.
 
-     INPUTS:
-      in_network_diagram_layer (Diagram Layer):
-          The network diagram to which the layout will be applied.
-      are_containers_preserved {Boolean}:
-          Specifies how containers will be processed by the Compression layout
-          algorithm.
+    INPUTS:
+     in_network_diagram_layer (Diagram Layer):
+         The network diagram to which the layout will be applied.
+     are_containers_preserved {Boolean}:
+         Specifies how containers will be processed by the Compression layout
+         algorithm.
 
-          * PRESERVE_CONTAINERS-The Compression layout algorithm will apply to
-          the top graph of the diagram so containers are preserved. This is the
-          default.
+         * PRESERVE_CONTAINERS-The Compression layout algorithm will apply to
+         the top graph of the diagram so containers are preserved. This is the
+         default.
 
-          * IGNORE_CONTAINERS-The Compression layout algorithm will apply to
-          both content and noncontent features in the diagram.
-      grouping_distance_absolute {Linear Unit}:
-          The maximum distance that will be used to determine whether two
-          connected junctions are close enough to be considered part of the same
-          junctions group. A junctions group represents many junctions that are
-          moved as a group during the layout algorithm process. The group can
-          contain both junctions and containers. To group two junctions, they
-          must also be connected in the diagram by an edge. The default is 20
-          units in the diagram's coordinate system.
-      vertices_removal_rule {String}:
-          Specifies the edge vertices that will be removed from the diagram.
+         * IGNORE_CONTAINERS-The Compression layout algorithm will apply to
+         both content and noncontent features in the diagram.
+     grouping_distance_absolute {Linear Unit}:
+         The maximum distance that will be used to determine whether two
+         connected junctions are close enough to be considered part of the same
+         junctions group. A junctions group represents many junctions that are
+         moved as a group during the layout algorithm process. The group can
+         contain both junctions and containers. To group two junctions, they
+         must also be connected in the diagram by an edge. The default is 20
+         units in the diagram's coordinate system.
+     vertices_removal_rule {String}:
+         Specifies the edge vertices that will be removed from the diagram.
 
-          * ALL-All edge vertices will be removed from the diagram.
+         * ALL-All edge vertices will be removed from the diagram.
 
-          * OUTER-Any edge vertices that are within the detected junctions'
-          groups will be maintained; edge vertices that are outside the detected
-          junctions' groups will be removed.When containers in the diagram have
-          edges that intersect the container polygons, a vertex will be added at
-          the intersection of the edge and container polygon. This is the
-          default.
+         * OUTER-Any edge vertices that are within the detected junctions'
+         groups will be maintained; edge vertices that are outside the detected
+         junctions' groups will be removed.When containers in the diagram have
+         edges that intersect the container polygons, a vertex will be added at
+         the intersection of the edge and container polygon. This is the
+         default.
 
-          * OUTER_EXCEPT_FIRST-Any edge vertices that are within the detected
-          junctions' groups will be maintained; edge vertices that are outside
-          the detected junctions' groups will be removed.When containers in the
-          diagram have edges that intersect the container polygons, the first
-          (or last) outside vertex will be preserved on edges that intersect a
-          container polygon. A vertex will be inserted at the intersection of
-          the edges and container polygons.
-      run_async {Boolean}:
-          Specifies whether the layout algorithm will run asynchronously or
-          synchronously on the server.
+         * OUTER_EXCEPT_FIRST-Any edge vertices that are within the detected
+         junctions' groups will be maintained; edge vertices that are outside
+         the detected junctions' groups will be removed.When containers in the
+         diagram have edges that intersect the container polygons, the first
+         (or last) outside vertex will be preserved on edges that intersect a
+         container polygon. A vertex will be inserted at the intersection of
+         the edges and container polygons.
+     run_async {Boolean}:
+         Specifies whether the layout algorithm will run asynchronously or
+         synchronously on the server.
 
-          * RUN_ASYNCHRONOUSLY-The layout algorithm will run asynchronously on
-          the server. This option dedicates server resources to run the layout
-          algorithm with a longer time-out. Running asynchronously is
-          recommended for layouts that are time consuming and may exceed the
-          server time-out (for example, Partial Overlapping Edges) and applying
-          to large diagrams (more than 25,000 features).
+         * RUN_ASYNCHRONOUSLY-The layout algorithm will run asynchronously on
+         the server. This option dedicates server resources to run the layout
+         algorithm with a longer time-out. Running asynchronously is
+         recommended for layouts that are time consuming and may exceed the
+         server time-out (for example, Partial Overlapping Edges) and applying
+         to large diagrams (more than 25,000 features).
 
-          * RUN_SYNCHRONOUSLY-The layout algorithm will run synchronously on the
-          server. It can fail without completion if it exceeds the service
-          default time-out value of 600 seconds. This is the default."""
+         * RUN_SYNCHRONOUSLY-The layout algorithm will run synchronously on the
+         server. It can fail without completion if it exceeds the service
+         default time-out value of 600 seconds. This is the default."""
     ...
 
-@gptooldoc('ApplyForceDirectedLayout_nd', None)
-def ApplyForceDirectedLayout(in_network_diagram_layer=..., are_containers_preserved=..., iterations_number=..., repel_factor=..., degree_freedom=..., breakpoint_position=..., edge_display_type=..., run_async=...): # -> conversion | int | float | complex | basestring | list[Unknown] | tuple[Unknown, ...] | dict[Unknown, Unknown]:
+@gptooldoc("ApplyForceDirectedLayout_nd", None)
+def ApplyForceDirectedLayout(
+    in_network_diagram_layer=...,
+    are_containers_preserved=...,
+    iterations_number=...,
+    repel_factor=...,
+    degree_freedom=...,
+    breakpoint_position=...,
+    edge_display_type=...,
+    run_async=...,
+):  # -> conversion | int | float | complex | basestring | list[Unknown] | tuple[Unknown, ...] | dict[Unknown, Unknown]:
     """ApplyForceDirectedLayout_nd(in_network_diagram_layer, {are_containers_preserved}, {iterations_number}, {repel_factor}, {degree_freedom}, {breakpoint_position}, {edge_display_type}, {run_async})
 
-        Emphasizes loops contained in a network diagram.
+       Emphasizes loops contained in a network diagram.
 
-     INPUTS:
-      in_network_diagram_layer (Diagram Layer):
-          The network diagram to which the layout will be applied.
-      are_containers_preserved {Boolean}:
-          Specifies how the algorithm will process containers.
+    INPUTS:
+     in_network_diagram_layer (Diagram Layer):
+         The network diagram to which the layout will be applied.
+     are_containers_preserved {Boolean}:
+         Specifies how the algorithm will process containers.
 
-          * PRESERVE_CONTAINERS-The layout algorithm will apply to the top
-          graph of the diagram so containers are preserved.
+         * PRESERVE_CONTAINERS-The layout algorithm will apply to the top
+         graph of the diagram so containers are preserved.
 
-          * IGNORE_CONTAINERS-The layout algorithm will apply to both content
-          and noncontent features in the diagram. This is the default.
-      iterations_number {Long}:
-          The number of iterations to process. The default is 20.
-      repel_factor {Double}:
-          Adds distance between diagram junctions that are close together. The
-          larger the repel factor, the greater the distance that will be added
-          between nearly overlapping diagram junctions. The default is 1.
-      degree_freedom {String}:
-          Specifies the area used to move the diagram junctions during each
-          algorithm iteration.
+         * IGNORE_CONTAINERS-The layout algorithm will apply to both content
+         and noncontent features in the diagram. This is the default.
+     iterations_number {Long}:
+         The number of iterations to process. The default is 20.
+     repel_factor {Double}:
+         Adds distance between diagram junctions that are close together. The
+         larger the repel factor, the greater the distance that will be added
+         between nearly overlapping diagram junctions. The default is 1.
+     degree_freedom {String}:
+         Specifies the area used to move the diagram junctions during each
+         algorithm iteration.
 
-          * LOW-The area used to move the diagram junctions will be limited.
-          This is the default.
+         * LOW-The area used to move the diagram junctions will be limited.
+         This is the default.
 
-          * HIGH-The area used to move the diagram junctions will be large.
+         * HIGH-The area used to move the diagram junctions will be large.
 
-          * MEDIUM-The area used to move the diagram junctions will be moderate.
-      breakpoint_position {Double}:
-          The relative position of the two inflexion points that will be
-          inserted along the diagram edges to compute the curved edges geometry
-          when Edge Display Type is set to Curved edges (edges_display_type =
-          "CURVED_EDGES" in Python). It is a percentage between 15 and 40; the
-          default is 30. For example, with a Break Point Relative Position (%)
-          parameter value of N between 15 and 40, the following is true:
+         * MEDIUM-The area used to move the diagram junctions will be moderate.
+     breakpoint_position {Double}:
+         The relative position of the two inflexion points that will be
+         inserted along the diagram edges to compute the curved edges geometry
+         when Edge Display Type is set to Curved edges (edges_display_type =
+         "CURVED_EDGES" in Python). It is a percentage between 15 and 40; the
+         default is 30. For example, with a Break Point Relative Position (%)
+         parameter value of N between 15 and 40, the following is true:
 
-          * X being the x-coordinate of the edge's from junction and Y
-          being the y-coordinate of the edge's to junction for a horizontal
-          tree:
+         * X being the x-coordinate of the edge's from junction and Y
+         being the y-coordinate of the edge's to junction for a horizontal
+         tree:
 
-          * The first inflexion point will be positioned at N% of the length of
-          the [XY] segment
+         * The first inflexion point will be positioned at N% of the length of
+         the [XY] segment
 
-          * The second inflexion point will be positioned at (100 - N)% of the
-          length of the [XY] segment
+         * The second inflexion point will be positioned at (100 - N)% of the
+         length of the [XY] segment
 
-          * Y being the y-coordinate of the edge's from junction and X
-          being the x-coordinate of the edge's to junction for a vertical tree:
+         * Y being the y-coordinate of the edge's from junction and X
+         being the x-coordinate of the edge's to junction for a vertical tree:
 
-          * The first inflexion point will be positioned at N% of the length of
-          the [YX] segment
+         * The first inflexion point will be positioned at N% of the length of
+         the [YX] segment
 
-          * The second inflexion point will be positioned at (100 - N)% of the
-          length of the [XY] segment
+         * The second inflexion point will be positioned at (100 - N)% of the
+         length of the [XY] segment
 
-          The concept of the from and to junctions above is relative to the tree
-          direction; it is not related to the topology of the network feature or
-          object edge.This parameter is ignored when the Edge Display Type
-          parameter is set
-          to Regular edges (edges_display_type = "REGULAR_EDGES" in Python).
-      edge_display_type {String}:
-          Specifies the type of display for the diagram edges.
+         The concept of the from and to junctions above is relative to the tree
+         direction; it is not related to the topology of the network feature or
+         object edge.This parameter is ignored when the Edge Display Type
+         parameter is set
+         to Regular edges (edges_display_type = "REGULAR_EDGES" in Python).
+     edge_display_type {String}:
+         Specifies the type of display for the diagram edges.
 
-          * REGULAR_EDGES-All diagram edges display as straight lines. This is
-          the default.
+         * REGULAR_EDGES-All diagram edges display as straight lines. This is
+         the default.
 
-          * CURVED_EDGES-All diagram edges are curved.
-      run_async {Boolean}:
-          Specifies whether the layout algorithm will run asynchronously or
-          synchronously on the server.
+         * CURVED_EDGES-All diagram edges are curved.
+     run_async {Boolean}:
+         Specifies whether the layout algorithm will run asynchronously or
+         synchronously on the server.
 
-          * RUN_ASYNCHRONOUSLY-The layout algorithm will run asynchronously on
-          the server. This option dedicates server resources to run the layout
-          algorithm with a longer time-out. Running asynchronously is
-          recommended for layouts that are time consuming and may exceed the
-          server time-out (for example, Partial Overlapping Edges) and applying
-          to large diagrams (more than 25,000 features).
+         * RUN_ASYNCHRONOUSLY-The layout algorithm will run asynchronously on
+         the server. This option dedicates server resources to run the layout
+         algorithm with a longer time-out. Running asynchronously is
+         recommended for layouts that are time consuming and may exceed the
+         server time-out (for example, Partial Overlapping Edges) and applying
+         to large diagrams (more than 25,000 features).
 
-          * RUN_SYNCHRONOUSLY-The layout algorithm will run synchronously on the
-          server. It can fail without completion if it exceeds the service
-          default time-out value of 600 seconds. This is the default."""
+         * RUN_SYNCHRONOUSLY-The layout algorithm will run synchronously on the
+         server. It can fail without completion if it exceeds the service
+         default time-out value of 600 seconds. This is the default."""
     ...
 
-@gptooldoc('ApplyGeoPositionsLayout_nd', None)
-def ApplyGeoPositionsLayout(in_network_diagram_layer=..., restore_edges_geo_positions=..., run_async=...): # -> conversion | int | float | complex | basestring | list[Unknown] | tuple[Unknown, ...] | dict[Unknown, Unknown]:
+@gptooldoc("ApplyGeoPositionsLayout_nd", None)
+def ApplyGeoPositionsLayout(
+    in_network_diagram_layer=..., restore_edges_geo_positions=..., run_async=...
+):  # -> conversion | int | float | complex | basestring | list[Unknown] | tuple[Unknown, ...] | dict[Unknown, Unknown]:
     """ApplyGeoPositionsLayout_nd(in_network_diagram_layer, {restore_edges_geo_positions}, {run_async})
 
-        Moves each diagram junction and edge feature so they match the
-        geographical positions of the associated network features.
+       Moves each diagram junction and edge feature so they match the
+       geographical positions of the associated network features.
 
-     INPUTS:
-      in_network_diagram_layer (Diagram Layer):
-          The network diagram to which the layout will be applied.
-      restore_edges_geo_positions {Boolean}:
-          Indicates whether or not diagram edges will be restored to the
-          geographic position of their vertices:
+    INPUTS:
+     in_network_diagram_layer (Diagram Layer):
+         The network diagram to which the layout will be applied.
+     restore_edges_geo_positions {Boolean}:
+         Indicates whether or not diagram edges will be restored to the
+         geographic position of their vertices:
 
-          * RESTORE_EDGES_GEO_POSITIONS-Vertices along diagram edges will be
-          restored when possible, moving them to match the geographic positions
-          of the network features. This is the default.
+         * RESTORE_EDGES_GEO_POSITIONS-Vertices along diagram edges will be
+         restored when possible, moving them to match the geographic positions
+         of the network features. This is the default.
 
-          * DO_NOT_RESTORE_EDGES_GEO_POSITIONS-Vertices along diagram edges will
-          not be restored. They will appear as straight lines between their
-          connecting junctions.
-      run_async {Boolean}:
-          Specifies whether the layout algorithm will run asynchronously or
-          synchronously on the server.
+         * DO_NOT_RESTORE_EDGES_GEO_POSITIONS-Vertices along diagram edges will
+         not be restored. They will appear as straight lines between their
+         connecting junctions.
+     run_async {Boolean}:
+         Specifies whether the layout algorithm will run asynchronously or
+         synchronously on the server.
 
-          * RUN_ASYNCHRONOUSLY-The layout algorithm will run asynchronously on
-          the server. This option dedicates server resources to run the layout
-          algorithm with a longer time-out. Running asynchronously is
-          recommended for layouts that are time consuming and may exceed the
-          server time-out (for example, Partial Overlapping Edges) and applying
-          to large diagrams (more than 25,000 features).
+         * RUN_ASYNCHRONOUSLY-The layout algorithm will run asynchronously on
+         the server. This option dedicates server resources to run the layout
+         algorithm with a longer time-out. Running asynchronously is
+         recommended for layouts that are time consuming and may exceed the
+         server time-out (for example, Partial Overlapping Edges) and applying
+         to large diagrams (more than 25,000 features).
 
-          * RUN_SYNCHRONOUSLY-The layout algorithm will run synchronously on the
-          server. It can fail without completion if it exceeds the service
-          default time-out value of 600 seconds. This is the default."""
+         * RUN_SYNCHRONOUSLY-The layout algorithm will run synchronously on the
+         server. It can fail without completion if it exceeds the service
+         default time-out value of 600 seconds. This is the default."""
     ...
 
-@gptooldoc('ApplyGridLayout_nd', None)
-def ApplyGridLayout(in_network_diagram_layer=..., are_containers_preserved=..., cell_width_absolute=..., cell_height_absolute=..., run_async=...): # -> conversion | int | float | complex | basestring | list[Unknown] | tuple[Unknown, ...] | dict[Unknown, Unknown]:
+@gptooldoc("ApplyGridLayout_nd", None)
+def ApplyGridLayout(
+    in_network_diagram_layer=...,
+    are_containers_preserved=...,
+    cell_width_absolute=...,
+    cell_height_absolute=...,
+    run_async=...,
+):  # -> conversion | int | float | complex | basestring | list[Unknown] | tuple[Unknown, ...] | dict[Unknown, Unknown]:
     """ApplyGridLayout_nd(in_network_diagram_layer, {are_containers_preserved}, {cell_width_absolute}, {cell_height_absolute}, {run_async})
 
-        Positions diagram junctions relative to a predefined magnetic grid.
+       Positions diagram junctions relative to a predefined magnetic grid.
 
-     INPUTS:
-      in_network_diagram_layer (Diagram Layer):
-          The network diagram to which the layout will be applied.
-      are_containers_preserved {Boolean}:
-          Specifies how the algorithm will process containers.
+    INPUTS:
+     in_network_diagram_layer (Diagram Layer):
+         The network diagram to which the layout will be applied.
+     are_containers_preserved {Boolean}:
+         Specifies how the algorithm will process containers.
 
-          * PRESERVE_CONTAINERS-The layout algorithm will apply to the top
-          graph of the diagram so containers are preserved.
+         * PRESERVE_CONTAINERS-The layout algorithm will apply to the top
+         graph of the diagram so containers are preserved.
 
-          * IGNORE_CONTAINERS-The layout algorithm will apply to both content
-          and noncontent features in the diagram. This is the default.
-      cell_width_absolute {Linear Unit}:
-          The width of each grid cell. The default is 2 in the units of the
-          diagram's coordinate system.
-      cell_height_absolute {Linear Unit}:
-          The height of each grid cell. The default is 2 in the units of the
-          diagram's coordinate system.
-      run_async {Boolean}:
-          Specifies whether the layout algorithm will run asynchronously or
-          synchronously on the server.
+         * IGNORE_CONTAINERS-The layout algorithm will apply to both content
+         and noncontent features in the diagram. This is the default.
+     cell_width_absolute {Linear Unit}:
+         The width of each grid cell. The default is 2 in the units of the
+         diagram's coordinate system.
+     cell_height_absolute {Linear Unit}:
+         The height of each grid cell. The default is 2 in the units of the
+         diagram's coordinate system.
+     run_async {Boolean}:
+         Specifies whether the layout algorithm will run asynchronously or
+         synchronously on the server.
 
-          * RUN_ASYNCHRONOUSLY-The layout algorithm will run asynchronously on
-          the server. This option dedicates server resources to run the layout
-          algorithm with a longer time-out. Running asynchronously is
-          recommended for layouts that are time consuming and may exceed the
-          server time-out (for example, Partial Overlapping Edges) and applying
-          to large diagrams (more than 25,000 features).
+         * RUN_ASYNCHRONOUSLY-The layout algorithm will run asynchronously on
+         the server. This option dedicates server resources to run the layout
+         algorithm with a longer time-out. Running asynchronously is
+         recommended for layouts that are time consuming and may exceed the
+         server time-out (for example, Partial Overlapping Edges) and applying
+         to large diagrams (more than 25,000 features).
 
-          * RUN_SYNCHRONOUSLY-The layout algorithm will run synchronously on the
-          server. It can fail without completion if it exceeds the service
-          default time-out value of 600 seconds. This is the default."""
+         * RUN_SYNCHRONOUSLY-The layout algorithm will run synchronously on the
+         server. It can fail without completion if it exceeds the service
+         default time-out value of 600 seconds. This is the default."""
     ...
 
-@gptooldoc('ApplyLinearDispatchLayout_nd', None)
-def ApplyLinearDispatchLayout(in_network_diagram_layer=..., junction_placement_type=..., is_unit_absolute=..., maximum_shift_absolute=..., maximum_shift_proportional=..., minimum_shift_absolute=..., minimum_shift_proportional=..., iterations_number=..., is_path_preserved=..., are_leaves_moved=..., are_leaves_expanded=..., expand_shift_absolute=..., expand_shift_proportional=..., run_async=...): # -> conversion | int | float | complex | basestring | list[Unknown] | tuple[Unknown, ...] | dict[Unknown, Unknown]:
+@gptooldoc("ApplyLinearDispatchLayout_nd", None)
+def ApplyLinearDispatchLayout(
+    in_network_diagram_layer=...,
+    junction_placement_type=...,
+    is_unit_absolute=...,
+    maximum_shift_absolute=...,
+    maximum_shift_proportional=...,
+    minimum_shift_absolute=...,
+    minimum_shift_proportional=...,
+    iterations_number=...,
+    is_path_preserved=...,
+    are_leaves_moved=...,
+    are_leaves_expanded=...,
+    expand_shift_absolute=...,
+    expand_shift_proportional=...,
+    run_async=...,
+):  # -> conversion | int | float | complex | basestring | list[Unknown] | tuple[Unknown, ...] | dict[Unknown, Unknown]:
     """ApplyLinearDispatchLayout_nd(in_network_diagram_layer, {junction_placement_type}, {is_unit_absolute}, {maximum_shift_absolute}, {maximum_shift_proportional}, {minimum_shift_absolute}, {minimum_shift_proportional}, {iterations_number}, {is_path_preserved}, {are_leaves_moved}, {are_leaves_expanded}, {expand_shift_absolute}, {expand_shift_proportional}, {run_async})
 
-        Adds space between diagram junctions that are visually too close,
-        overlapping, or coincident.
+       Adds space between diagram junctions that are visually too close,
+       overlapping, or coincident.
 
-     INPUTS:
-      in_network_diagram_layer (Diagram Layer):
-          The network diagram to which the layout will be applied.
-      junction_placement_type {String}:
-          Specifies how the junctions will be moved.
+    INPUTS:
+     in_network_diagram_layer (Diagram Layer):
+         The network diagram to which the layout will be applied.
+     junction_placement_type {String}:
+         Specifies how the junctions will be moved.
 
-          * EQUAL_DISTANCE-All junctions with two connected edges will be moved
-          so the distances between them and their two connected junctions are
-          equal. This is the default.
+         * EQUAL_DISTANCE-All junctions with two connected edges will be moved
+         so the distances between them and their two connected junctions are
+         equal. This is the default.
 
-          * USER_DEFINE_DISTANCE-All junctions with two connected edges will be
-          moved so there is a minimum distance (the minimum_shift_ parameter
-          value) between them and the other end of the edges to which they
-          connect. This occurs at the end of the layout algorithm process.
+         * USER_DEFINE_DISTANCE-All junctions with two connected edges will be
+         moved so there is a minimum distance (the minimum_shift_ parameter
+         value) between them and the other end of the edges to which they
+         connect. This occurs at the end of the layout algorithm process.
 
-          * ITERATIVE_DISTANCE-All junctions with two connected edges will be
-          moved slightly according to the iterations_number and maximum_shift_
-          parameter values.
-      is_unit_absolute {Boolean}:
-          Specifies how parameters representing distances will be interpreted.
+         * ITERATIVE_DISTANCE-All junctions with two connected edges will be
+         moved slightly according to the iterations_number and maximum_shift_
+         parameter values.
+     is_unit_absolute {Boolean}:
+         Specifies how parameters representing distances will be interpreted.
 
-          * ABSOLUTE_UNIT-The layout algorithm will interpret distance values as
-          linear units.
+         * ABSOLUTE_UNIT-The layout algorithm will interpret distance values as
+         linear units.
 
-          * PROPORTIONAL_UNIT-The layout algorithm will interpret distance
-          values as relative units to an estimation of the average of the
-          junction sizes in the current diagram extent. This is the default.
-      maximum_shift_absolute {Linear Unit}:
-          The maximum distance the junctions with two connections will be spaced
-          from the junctions to which they connect. The default is 2 in the
-          units of the diagram's coordinate system. At the time this distance is
-          reached, junctions will not be moved during additional iterations.
-          This parameter can only be used with the ITERATIVE_DISTANCE junction
-          placement type and absolute units.
-      maximum_shift_proportional {Double}:
-          The maximum distance the junctions with two connections will be spaced
-          from the junctions to which they connect. The default is 2. At the
-          time this distance is reached, junctions will not be moved during
-          additional iterations. This parameter can only be used with the
-          ITERATIVE_DISTANCE junction placement type and proportional units.
-      minimum_shift_absolute {Linear Unit}:
-          The minimum distance that will separate each junction with two
-          connected edges from its two edge extremities after the layout
-          algorithm runs. The default is 2 in the units of the diagram's
-          coordinate system. When this parameter value is too large, the
-          junctions with two connections are moved so the distances between each
-          moved junction and its edge extremities are equal along the path
-          defined by its two connected edges. This parameter can only be used
-          with the USER_DEFINE_DISTANCE junction placement type and absolute
-          units.
-      minimum_shift_proportional {Double}:
-          The minimum distance that will separate each junction with two
-          connected edges from its two edge extremities after the layout
-          algorithm runs. The default is 2. When this parameter value is too
-          large, the junctions with two connections are moved so the distances
-          between each moved junction and its edge extremities are equal along
-          the path defined by its two connected edges. This parameter is used
-          with the USER_DEFINE_DISTANCE junction placement type and proportional
-          units.
-      iterations_number {Long}:
-          The number of iterations that will be processed. The default is 5.
-          This parameter can only be used with the ITERATIVE_DISTANCE junction
-          placement type.
-      is_path_preserved {Boolean}:
-          Specifies how vertices along edges will be processed.
+         * PROPORTIONAL_UNIT-The layout algorithm will interpret distance
+         values as relative units to an estimation of the average of the
+         junction sizes in the current diagram extent. This is the default.
+     maximum_shift_absolute {Linear Unit}:
+         The maximum distance the junctions with two connections will be spaced
+         from the junctions to which they connect. The default is 2 in the
+         units of the diagram's coordinate system. At the time this distance is
+         reached, junctions will not be moved during additional iterations.
+         This parameter can only be used with the ITERATIVE_DISTANCE junction
+         placement type and absolute units.
+     maximum_shift_proportional {Double}:
+         The maximum distance the junctions with two connections will be spaced
+         from the junctions to which they connect. The default is 2. At the
+         time this distance is reached, junctions will not be moved during
+         additional iterations. This parameter can only be used with the
+         ITERATIVE_DISTANCE junction placement type and proportional units.
+     minimum_shift_absolute {Linear Unit}:
+         The minimum distance that will separate each junction with two
+         connected edges from its two edge extremities after the layout
+         algorithm runs. The default is 2 in the units of the diagram's
+         coordinate system. When this parameter value is too large, the
+         junctions with two connections are moved so the distances between each
+         moved junction and its edge extremities are equal along the path
+         defined by its two connected edges. This parameter can only be used
+         with the USER_DEFINE_DISTANCE junction placement type and absolute
+         units.
+     minimum_shift_proportional {Double}:
+         The minimum distance that will separate each junction with two
+         connected edges from its two edge extremities after the layout
+         algorithm runs. The default is 2. When this parameter value is too
+         large, the junctions with two connections are moved so the distances
+         between each moved junction and its edge extremities are equal along
+         the path defined by its two connected edges. This parameter is used
+         with the USER_DEFINE_DISTANCE junction placement type and proportional
+         units.
+     iterations_number {Long}:
+         The number of iterations that will be processed. The default is 5.
+         This parameter can only be used with the ITERATIVE_DISTANCE junction
+         placement type.
+     is_path_preserved {Boolean}:
+         Specifies how vertices along edges will be processed.
 
-          * PRESERVE_PATH-All vertices along the connected edges will be
-          preserved, and new vertices will be added at the moved junctions'
-          original locations. This is the default.
+         * PRESERVE_PATH-All vertices along the connected edges will be
+         preserved, and new vertices will be added at the moved junctions'
+         original locations. This is the default.
 
-          * IGNORE_PATH-Vertices along edges will not be preserved.
-      are_leaves_moved {Boolean}:
-          Specifies whether leaf junctions-junctions with one connection-will be
-          moved during the layout algorithm process.
+         * IGNORE_PATH-Vertices along edges will not be preserved.
+     are_leaves_moved {Boolean}:
+         Specifies whether leaf junctions-junctions with one connection-will be
+         moved during the layout algorithm process.
 
-          * MOVE_LEAVES-Leaf junctions will be moved.
+         * MOVE_LEAVES-Leaf junctions will be moved.
 
-          * DO_NOT_MOVE_LEAVES-Leaf junctions will not be moved. This is the
-          default unless the specified input network diagram is based on a
-          template for which the Linear Dispatch Layout algorithm has been
-          configured with another parameter value.
-      are_leaves_expanded {Boolean}:
-          Specifies whether leaf junctions will be expanded:
+         * DO_NOT_MOVE_LEAVES-Leaf junctions will not be moved. This is the
+         default unless the specified input network diagram is based on a
+         template for which the Linear Dispatch Layout algorithm has been
+         configured with another parameter value.
+     are_leaves_expanded {Boolean}:
+         Specifies whether leaf junctions will be expanded:
 
-          * EXPAND_LEAVES-Leaf junctions will be expanded. The
-          expand_shift_absolute parameter value specifies the maximum distance
-          the leaf junctions can be expanded from the junctions to which they
-          connect.
+         * EXPAND_LEAVES-Leaf junctions will be expanded. The
+         expand_shift_absolute parameter value specifies the maximum distance
+         the leaf junctions can be expanded from the junctions to which they
+         connect.
 
-          * DO_NOT_EXPAND_LEAVES-Leaf junctions will not be expanded. This is
-          the default unless the specified input network diagram is based on a
-          template for which the Linear Dispatch Layout algorithm has been
-          configured with another parameter value.
-      expand_shift_absolute {Linear Unit}:
-          The maximum distance leaf junctions will be expanded from the
-          junctions to which they connect. The default is 2 in the units of the
-          diagram's coordinate system unless the specified input network diagram
-          is based on a template for which the Linear Dispatch Layout algorithm
-          has been configured with another parameter value. At the time this
-          distance is reached, leaf junctions will not be moved during
-          additional iterations. This parameter can only be used with the Expand
-          leaves parameter and absolute units.
-      expand_shift_proportional {Double}:
-          The maximum distance the leaf junctions will be expanded from the
-          junctions to which they connect. The default is 2 unless the specified
-          input network diagram is based on a template for which the Linear
-          Dispatch Layout algorithm has been configured with another parameter
-          value. At the time this distance is reached, leaf junctions will not
-          be moved during additional iterations. This parameter can only be used
-          with the Expand leaves parameter and proportional units.
-      run_async {Boolean}:
-          Specifies whether the layout algorithm will run asynchronously or
-          synchronously on the server.
+         * DO_NOT_EXPAND_LEAVES-Leaf junctions will not be expanded. This is
+         the default unless the specified input network diagram is based on a
+         template for which the Linear Dispatch Layout algorithm has been
+         configured with another parameter value.
+     expand_shift_absolute {Linear Unit}:
+         The maximum distance leaf junctions will be expanded from the
+         junctions to which they connect. The default is 2 in the units of the
+         diagram's coordinate system unless the specified input network diagram
+         is based on a template for which the Linear Dispatch Layout algorithm
+         has been configured with another parameter value. At the time this
+         distance is reached, leaf junctions will not be moved during
+         additional iterations. This parameter can only be used with the Expand
+         leaves parameter and absolute units.
+     expand_shift_proportional {Double}:
+         The maximum distance the leaf junctions will be expanded from the
+         junctions to which they connect. The default is 2 unless the specified
+         input network diagram is based on a template for which the Linear
+         Dispatch Layout algorithm has been configured with another parameter
+         value. At the time this distance is reached, leaf junctions will not
+         be moved during additional iterations. This parameter can only be used
+         with the Expand leaves parameter and proportional units.
+     run_async {Boolean}:
+         Specifies whether the layout algorithm will run asynchronously or
+         synchronously on the server.
 
-          * RUN_ASYNCHRONOUSLY-The layout algorithm will run asynchronously on
-          the server. This option dedicates server resources to run the layout
-          algorithm with a longer time-out. Running asynchronously is
-          recommended for layouts that are time consuming and may exceed the
-          server time-out (for example, Partial Overlapping Edges) and applying
-          to large diagrams (more than 25,000 features).
+         * RUN_ASYNCHRONOUSLY-The layout algorithm will run asynchronously on
+         the server. This option dedicates server resources to run the layout
+         algorithm with a longer time-out. Running asynchronously is
+         recommended for layouts that are time consuming and may exceed the
+         server time-out (for example, Partial Overlapping Edges) and applying
+         to large diagrams (more than 25,000 features).
 
-          * RUN_SYNCHRONOUSLY-The layout algorithm will run synchronously on the
-          server. It can fail without completion if it exceeds the service
-          default time-out value of 600 seconds. This is the default."""
+         * RUN_SYNCHRONOUSLY-The layout algorithm will run synchronously on the
+         server. It can fail without completion if it exceeds the service
+         default time-out value of 600 seconds. This is the default."""
     ...
 
-@gptooldoc('ApplyMainRingLayout_nd', None)
-def ApplyMainRingLayout(in_network_diagram_layer=..., are_containers_preserved=..., ring_type=..., is_unit_absolute=..., ring_width_absolute=..., ring_width_proportional=..., ring_height_absolute=..., ring_height_proportional=..., tree_type=..., perpendicular_absolute=..., perpendicular_proportional=..., along_absolute=..., along_proportional=..., breakpoint_position=..., edge_display_type=..., run_async=..., offset_absolute=..., offset_proportional=...): # -> conversion | int | float | complex | basestring | list[Unknown] | tuple[Unknown, ...] | dict[Unknown, Unknown]:
+@gptooldoc("ApplyMainRingLayout_nd", None)
+def ApplyMainRingLayout(
+    in_network_diagram_layer=...,
+    are_containers_preserved=...,
+    ring_type=...,
+    is_unit_absolute=...,
+    ring_width_absolute=...,
+    ring_width_proportional=...,
+    ring_height_absolute=...,
+    ring_height_proportional=...,
+    tree_type=...,
+    perpendicular_absolute=...,
+    perpendicular_proportional=...,
+    along_absolute=...,
+    along_proportional=...,
+    breakpoint_position=...,
+    edge_display_type=...,
+    run_async=...,
+    offset_absolute=...,
+    offset_proportional=...,
+):  # -> conversion | int | float | complex | basestring | list[Unknown] | tuple[Unknown, ...] | dict[Unknown, Unknown]:
     """ApplyMainRingLayout_nd(in_network_diagram_layer, {are_containers_preserved}, {ring_type}, {is_unit_absolute}, {ring_width_absolute}, {ring_width_proportional}, {ring_height_absolute}, {ring_height_proportional}, {tree_type}, {perpendicular_absolute}, {perpendicular_proportional}, {along_absolute}, {along_proportional}, {breakpoint_position}, {edge_display_type}, {run_async}, {offset_absolute}, {offset_proportional})
 
-        Arranges the diagram features in a network diagram around a main ring.
+       Arranges the diagram features in a network diagram around a main ring.
 
-     INPUTS:
-      in_network_diagram_layer (Diagram Layer):
-          The network diagram to which the layout will be applied.
-      are_containers_preserved {Boolean}:
-          Specifies how the algorithm will process containers.
+    INPUTS:
+     in_network_diagram_layer (Diagram Layer):
+         The network diagram to which the layout will be applied.
+     are_containers_preserved {Boolean}:
+         Specifies how the algorithm will process containers.
 
-          * PRESERVE_CONTAINERS-The layout algorithm will apply to the top
-          graph of the diagram so containers are preserved.
+         * PRESERVE_CONTAINERS-The layout algorithm will apply to the top
+         graph of the diagram so containers are preserved.
 
-          * IGNORE_CONTAINERS-The layout algorithm will apply to both content
-          and noncontent features in the diagram. This is the default.
-      ring_type {String}:
-          Specifies the type of ring.
+         * IGNORE_CONTAINERS-The layout algorithm will apply to both content
+         and noncontent features in the diagram. This is the default.
+     ring_type {String}:
+         Specifies the type of ring.
 
-          * ELLIPSE-The diagram features of the detected main ring will display
-          along an ellipse. This is the default.
+         * ELLIPSE-The diagram features of the detected main ring will display
+         along an ellipse. This is the default.
 
-          * RECTANGLE-The diagram features of the detected main ring will
-          display along a rectangle.
-      is_unit_absolute {Boolean}:
-          Specifies how parameters representing distances will be interpreted.
+         * RECTANGLE-The diagram features of the detected main ring will
+         display along a rectangle.
+     is_unit_absolute {Boolean}:
+         Specifies how parameters representing distances will be interpreted.
 
-          * ABSOLUTE_UNIT-The layout algorithm will interpret distance values as
-          linear units.
+         * ABSOLUTE_UNIT-The layout algorithm will interpret distance values as
+         linear units.
 
-          * PROPORTIONAL_UNIT-The layout algorithm will interpret distance
-          values as relative units to an estimation of the average of the
-          junction sizes in the current diagram extent. This is the default.
-      ring_width_absolute {Linear Unit}:
-          The width of the ring. The default is in the units of the diagram's
-          coordinate system. This parameter can only be used with absolute
-          units.
-      ring_width_proportional {Double}:
-          The width of the ring. The default is 50. This parameter can only be
-          used with proportional units.
-      ring_height_absolute {Linear Unit}:
-          The height of the ring. The default is in the units of the diagram's
-          coordinate system. This parameter can only be used with absolute
-          units.
-      ring_height_proportional {Double}:
-          The height of the ring. The default is 20. This parameter can only be
-          used with proportional units.
-      tree_type {String}:
-          Specifies how the trees coming out of the main ring's junctions will
-          be positioned.
+         * PROPORTIONAL_UNIT-The layout algorithm will interpret distance
+         values as relative units to an estimation of the average of the
+         junction sizes in the current diagram extent. This is the default.
+     ring_width_absolute {Linear Unit}:
+         The width of the ring. The default is in the units of the diagram's
+         coordinate system. This parameter can only be used with absolute
+         units.
+     ring_width_proportional {Double}:
+         The width of the ring. The default is 50. This parameter can only be
+         used with proportional units.
+     ring_height_absolute {Linear Unit}:
+         The height of the ring. The default is in the units of the diagram's
+         coordinate system. This parameter can only be used with absolute
+         units.
+     ring_height_proportional {Double}:
+         The height of the ring. The default is 20. This parameter can only be
+         used with proportional units.
+     tree_type {String}:
+         Specifies how the trees coming out of the main ring's junctions will
+         be positioned.
 
-          * BOTH_SIDES-Each tree will be displayed along a main line, and its
-          related branches will be arranged on both the left and right sides of
-          this main line.
+         * BOTH_SIDES-Each tree will be displayed along a main line, and its
+         related branches will be arranged on both the left and right sides of
+         this main line.
 
-          * LEFT_SIDE-Each tree will be displayed hierarchically along a main
-          line, and its related branches will be arranged on the left side of
-          this main line.
+         * LEFT_SIDE-Each tree will be displayed hierarchically along a main
+         line, and its related branches will be arranged on the left side of
+         this main line.
 
-          * RIGHT_SIDE-Each tree will be displayed hierarchically along a main
-          line, and its related branches will be arranged on the right side of
-          this main line.
+         * RIGHT_SIDE-Each tree will be displayed hierarchically along a main
+         line, and its related branches will be arranged on the right side of
+         this main line.
 
-          * SMART_TREE-Each tree will be displayed hierarchically as a smart
-          tree. This is the default.
-      perpendicular_absolute {Linear Unit}:
-          The spacing between diagram junctions that are displayed perpendicular
-          to the tree direction and belong to the same subtree level. The
-          default is 2 in the units of the diagram's coordinate system. This
-          parameter can only be used with absolute units.
-      perpendicular_proportional {Double}:
-          The spacing between diagram junctions that are displayed perpendicular
-          to the tree direction and belong to the same subtree level. The
-          default is 2. This parameter can only be used with proportional units.
-      along_absolute {Linear Unit}:
-          The spacing between diagram junctions that are displayed along the
-          tree direction. The default is 2 in the units of the diagram's
-          coordinate system. This parameter can only be used with absolute
-          units.
-      along_proportional {Double}:
-          The spacing between diagram junctions that are displayed along the
-          tree direction. The default is 2. This parameter can only be used with
-          proportional units.
-      breakpoint_position {Double}:
-          The relative position of the break point that will be inserted
-          along the diagram edges when Edge Display Type is set to Regular edges
-          (edge_display_type = "REGULAR_EDGES" in Python) or Edge Display Type
-          is set to Orthogonal edges (edge_display_type = "ORTHOGONAL_EDGES" in
-          Python). It is a percentage between 0 and 100.
+         * SMART_TREE-Each tree will be displayed hierarchically as a smart
+         tree. This is the default.
+     perpendicular_absolute {Linear Unit}:
+         The spacing between diagram junctions that are displayed perpendicular
+         to the tree direction and belong to the same subtree level. The
+         default is 2 in the units of the diagram's coordinate system. This
+         parameter can only be used with absolute units.
+     perpendicular_proportional {Double}:
+         The spacing between diagram junctions that are displayed perpendicular
+         to the tree direction and belong to the same subtree level. The
+         default is 2. This parameter can only be used with proportional units.
+     along_absolute {Linear Unit}:
+         The spacing between diagram junctions that are displayed along the
+         tree direction. The default is 2 in the units of the diagram's
+         coordinate system. This parameter can only be used with absolute
+         units.
+     along_proportional {Double}:
+         The spacing between diagram junctions that are displayed along the
+         tree direction. The default is 2. This parameter can only be used with
+         proportional units.
+     breakpoint_position {Double}:
+         The relative position of the break point that will be inserted
+         along the diagram edges when Edge Display Type is set to Regular edges
+         (edge_display_type = "REGULAR_EDGES" in Python) or Edge Display Type
+         is set to Orthogonal edges (edge_display_type = "ORTHOGONAL_EDGES" in
+         Python). It is a percentage between 0 and 100.
 
-          * With a Break Point Relative Position (%) value of 0, the break point
-          is positioned at the x-coordinate of the edge's from junction and at
-          the y-coordinate of the edge's to junction for a horizontal tree. It
-          is positioned at the y-coordinate of the edge's from junction and at
-          the x-coordinate of the edge's to junction for a vertical tree.
+         * With a Break Point Relative Position (%) value of 0, the break point
+         is positioned at the x-coordinate of the edge's from junction and at
+         the y-coordinate of the edge's to junction for a horizontal tree. It
+         is positioned at the y-coordinate of the edge's from junction and at
+         the x-coordinate of the edge's to junction for a vertical tree.
 
-          * With a Break Point Relative Position (%) value of 100, there is no
-          break point inserted on the diagram edges; each diagram edge directly
-          connects its from and to junctions.
+         * With a Break Point Relative Position (%) value of 100, there is no
+         break point inserted on the diagram edges; each diagram edge directly
+         connects its from and to junctions.
 
-          * With a Break Point Relative Position (%) value of N between 0 and
-          100, the break point is positioned at N% of the length of the [XY]
-          segment, X being the x-coordinate of the edge's from junction and Y
-          being the y-coordinate of the edge's to junction for a horizontal
-          tree. It is positioned at N% of the length of the [YX] segment, Y
-          being the y-coordinate of the edge's from junction and X being the
-          x-coordinate of the edge's to junction for a vertical tree.
-                  The relative position of the two inflection points that will
-          be inserted along the diagram edges to compute the curved edges
-          geometry when Edge Display Type is set to Curved edges
-          (edge_display_type = "CURVED_EDGES" in Python). It is a percentage
-          between 15 and 40. With a Break Point Relative Position (%) value of N
-          between 15 and 40:
+         * With a Break Point Relative Position (%) value of N between 0 and
+         100, the break point is positioned at N% of the length of the [XY]
+         segment, X being the x-coordinate of the edge's from junction and Y
+         being the y-coordinate of the edge's to junction for a horizontal
+         tree. It is positioned at N% of the length of the [YX] segment, Y
+         being the y-coordinate of the edge's from junction and X being the
+         x-coordinate of the edge's to junction for a vertical tree.
+                 The relative position of the two inflection points that will
+         be inserted along the diagram edges to compute the curved edges
+         geometry when Edge Display Type is set to Curved edges
+         (edge_display_type = "CURVED_EDGES" in Python). It is a percentage
+         between 15 and 40. With a Break Point Relative Position (%) value of N
+         between 15 and 40:
 
-          * X being the x-coordinate of the edge's from junction and Y
-          being the y-coordinate of the edge's to junction for a horizontal
-          tree:
+         * X being the x-coordinate of the edge's from junction and Y
+         being the y-coordinate of the edge's to junction for a horizontal
+         tree:
 
-          * The first inflection point will be positioned at N% of the length of
-          the [XY] segment.
+         * The first inflection point will be positioned at N% of the length of
+         the [XY] segment.
 
-          * The second inflection point will be positioned at (100 - N)% of the
-          length of the [XY] segment.
+         * The second inflection point will be positioned at (100 - N)% of the
+         length of the [XY] segment.
 
-          * Y being the y-coordinate of the edge's from junction and X
-          being the x-coordinate of the edge's to junction for a vertical tree:
+         * Y being the y-coordinate of the edge's from junction and X
+         being the x-coordinate of the edge's to junction for a vertical tree:
 
-          * The first inflection point will be positioned at N% of the length of
-          the [YX] segment.
+         * The first inflection point will be positioned at N% of the length of
+         the [YX] segment.
 
-          * The second inflection point will be positioned at (100 - N)% of the
-          length of the [XY] segment.
+         * The second inflection point will be positioned at (100 - N)% of the
+         length of the [XY] segment.
 
-          The concept of the from and to junctions above is relative to the tree
-          direction; it has nothing to do with the real topology of the edge
-          feature or edge object in the network.
-      edge_display_type {String}:
-          Specifies the type of display for the diagram edges related to the
-          tree branches.
+         The concept of the from and to junctions above is relative to the tree
+         direction; it has nothing to do with the real topology of the edge
+         feature or edge object in the network.
+     edge_display_type {String}:
+         Specifies the type of display for the diagram edges related to the
+         tree branches.
 
-          * REGULAR_EDGES-All diagram edges related to the tree branches will
-          not display with right angles. This is the default.
+         * REGULAR_EDGES-All diagram edges related to the tree branches will
+         not display with right angles. This is the default.
 
-          * ORTHOGONAL_EDGES-All diagram edges related to the tree branches will
-          display with right angles.
+         * ORTHOGONAL_EDGES-All diagram edges related to the tree branches will
+         display with right angles.
 
-          * CURVED_EDGES-All diagram edges related to the tree branches will be
-          curved.
-      run_async {Boolean}:
-          Specifies whether the layout algorithm will run asynchronously or
-          synchronously on the server.
+         * CURVED_EDGES-All diagram edges related to the tree branches will be
+         curved.
+     run_async {Boolean}:
+         Specifies whether the layout algorithm will run asynchronously or
+         synchronously on the server.
 
-          * RUN_ASYNCHRONOUSLY-The layout algorithm will run asynchronously on
-          the server. This option dedicates server resources to run the layout
-          algorithm with a longer time-out. Running asynchronously is
-          recommended for layouts that are time consuming and may exceed the
-          server time-out (for example, Partial Overlapping Edges) and applying
-          to large diagrams (more than 25,000 features).
+         * RUN_ASYNCHRONOUSLY-The layout algorithm will run asynchronously on
+         the server. This option dedicates server resources to run the layout
+         algorithm with a longer time-out. Running asynchronously is
+         recommended for layouts that are time consuming and may exceed the
+         server time-out (for example, Partial Overlapping Edges) and applying
+         to large diagrams (more than 25,000 features).
 
-          * RUN_SYNCHRONOUSLY-The layout algorithm will run synchronously on the
-          server. It can fail without completion if it exceeds the service
-          default time-out value of 600 seconds. This is the default.
-      offset_absolute {Linear Unit}:
-          The offset that will be used to separate overlapping segments when
-          is_unit_absolute = "ABSOLUTE_UNIT" and edge_display_type =
-          "ORTHOGONAL_EDGES". The value cannot exceed 10 percent of the smallest
-          value specified for the other spacing parameters. The default is 0.
-      offset_proportional {Double}:
-          The offset that will be used to separate overlapping segments when
-          is_unit_absolute = "PROPORTIONAL_UNIT" and edge_display_type =
-          "ORTHOGONAL_EDGES". It is a double value that cannot exceed 10 percent
-          of the smallest value specified for the other spacing parameters. The
-          default is 0."""
+         * RUN_SYNCHRONOUSLY-The layout algorithm will run synchronously on the
+         server. It can fail without completion if it exceeds the service
+         default time-out value of 600 seconds. This is the default.
+     offset_absolute {Linear Unit}:
+         The offset that will be used to separate overlapping segments when
+         is_unit_absolute = "ABSOLUTE_UNIT" and edge_display_type =
+         "ORTHOGONAL_EDGES". The value cannot exceed 10 percent of the smallest
+         value specified for the other spacing parameters. The default is 0.
+     offset_proportional {Double}:
+         The offset that will be used to separate overlapping segments when
+         is_unit_absolute = "PROPORTIONAL_UNIT" and edge_display_type =
+         "ORTHOGONAL_EDGES". It is a double value that cannot exceed 10 percent
+         of the smallest value specified for the other spacing parameters. The
+         default is 0."""
     ...
 
-@gptooldoc('ApplyMainlineTreeLayout_nd', None)
-def ApplyMainlineTreeLayout(in_network_diagram_layer=..., are_containers_preserved=..., tree_direction=..., branches_placement=..., is_unit_absolute=..., perpendicular_absolute=..., perpendicular_proportional=..., along_absolute=..., along_proportional=..., disjoined_graph_absolute=..., disjoined_graph_proportional=..., are_edges_orthogonal=..., breakpoint_position=..., edge_display_type=..., run_async=..., offset_absolute=..., offset_proportional=...): # -> conversion | int | float | complex | basestring | list[Unknown] | tuple[Unknown, ...] | dict[Unknown, Unknown]:
+@gptooldoc("ApplyMainlineTreeLayout_nd", None)
+def ApplyMainlineTreeLayout(
+    in_network_diagram_layer=...,
+    are_containers_preserved=...,
+    tree_direction=...,
+    branches_placement=...,
+    is_unit_absolute=...,
+    perpendicular_absolute=...,
+    perpendicular_proportional=...,
+    along_absolute=...,
+    along_proportional=...,
+    disjoined_graph_absolute=...,
+    disjoined_graph_proportional=...,
+    are_edges_orthogonal=...,
+    breakpoint_position=...,
+    edge_display_type=...,
+    run_async=...,
+    offset_absolute=...,
+    offset_proportional=...,
+):  # -> conversion | int | float | complex | basestring | list[Unknown] | tuple[Unknown, ...] | dict[Unknown, Unknown]:
     """ApplyMainlineTreeLayout_nd(in_network_diagram_layer, {are_containers_preserved}, {tree_direction}, {branches_placement}, {is_unit_absolute}, {perpendicular_absolute}, {perpendicular_proportional}, {along_absolute}, {along_proportional}, {disjoined_graph_absolute}, {disjoined_graph_proportional}, {are_edges_orthogonal}, {breakpoint_position}, {edge_display_type}, {run_async}, {offset_absolute}, {offset_proportional})
 
-        Arranges diagram junctions and edges hierarchically along a main line.
+       Arranges diagram junctions and edges hierarchically along a main line.
 
-     INPUTS:
-      in_network_diagram_layer (Diagram Layer):
-          The network diagram to which the layout will be applied.
-      are_containers_preserved {Boolean}:
-          Specifies how the algorithm will process containers.
+    INPUTS:
+     in_network_diagram_layer (Diagram Layer):
+         The network diagram to which the layout will be applied.
+     are_containers_preserved {Boolean}:
+         Specifies how the algorithm will process containers.
 
-          * PRESERVE_CONTAINERS-The layout algorithm will apply to the top
-          graph of the diagram so containers are preserved.
+         * PRESERVE_CONTAINERS-The layout algorithm will apply to the top
+         graph of the diagram so containers are preserved.
 
-          * IGNORE_CONTAINERS-The layout algorithm will apply to both content
-          and noncontent features in the diagram. This is the default.
-      tree_direction {String}:
-          Specifies the direction of the main line.
+         * IGNORE_CONTAINERS-The layout algorithm will apply to both content
+         and noncontent features in the diagram. This is the default.
+     tree_direction {String}:
+         Specifies the direction of the main line.
 
-          * FROM_LEFT_TO_RIGHT-The main line will be drawn as a horizontal line
-          starting from the left and ending on the right. This is the default.
+         * FROM_LEFT_TO_RIGHT-The main line will be drawn as a horizontal line
+         starting from the left and ending on the right. This is the default.
 
-          * FROM_RIGHT_TO_LEFT-The main line will be drawn as a horizontal line
-          starting from the right and ending on the left.
+         * FROM_RIGHT_TO_LEFT-The main line will be drawn as a horizontal line
+         starting from the right and ending on the left.
 
-          * FROM_BOTTOM_TO_TOP-The main line will be drawn as a vertical line
-          starting from the bottom and ending at the top.
+         * FROM_BOTTOM_TO_TOP-The main line will be drawn as a vertical line
+         starting from the bottom and ending at the top.
 
-          * FROM_TOP_TO_BOTTOM-The main line will be drawn as a vertical line
-          starting from the top and ending at the bottom.
-      branches_placement {String}:
-          Specifies how branches from the main line will be relatively placed
-          with regard to its direction.
+         * FROM_TOP_TO_BOTTOM-The main line will be drawn as a vertical line
+         starting from the top and ending at the bottom.
+     branches_placement {String}:
+         Specifies how branches from the main line will be relatively placed
+         with regard to its direction.
 
-          * BOTH_SIDES-Branches will be placed on both the left and right sides
-          of the main line. This is the default.
+         * BOTH_SIDES-Branches will be placed on both the left and right sides
+         of the main line. This is the default.
 
-          * LEFT_SIDE-Branches will only be placed on the left side of the main
-          line.
+         * LEFT_SIDE-Branches will only be placed on the left side of the main
+         line.
 
-          * RIGHT_SIDE-Branches will only be placed on the right side of the
-          main line.
-      is_unit_absolute {Boolean}:
-          Specifies how parameters representing distances will be interpreted.
+         * RIGHT_SIDE-Branches will only be placed on the right side of the
+         main line.
+     is_unit_absolute {Boolean}:
+         Specifies how parameters representing distances will be interpreted.
 
-          * ABSOLUTE_UNIT-The layout algorithm will interpret distance values as
-          linear units.
+         * ABSOLUTE_UNIT-The layout algorithm will interpret distance values as
+         linear units.
 
-          * PROPORTIONAL_UNIT-The layout algorithm will interpret distance
-          values as relative units to an estimation of the average of the
-          junction sizes in the current diagram extent. This is the default.
-      perpendicular_absolute {Linear Unit}:
-          The spacing between diagram junctions that are displayed along the
-          axis perpendicular to the main line. The default is 2 in the diagram's
-          coordinate system. This parameter can only be used with absolute
-          units.
-      perpendicular_proportional {Double}:
-          The spacing between diagram junctions that are displayed along the
-          axis perpendicular to the main line. The default is 2. This parameter
-          can only be used with proportional units.
-      along_absolute {Linear Unit}:
-          The spacing between diagram junctions that are displayed along the
-          main line, as well as the spacing between diagram junctions that are
-          displayed along the axis parallel to the main line. This parameter can
-          only be used with absolute units. The default is 2 in the units of the
-          diagram's coordinate system.
-      along_proportional {Double}:
-          The spacing between diagram junctions that are displayed along the
-          main line, as well as the spacing between diagram junctions that are
-          displayed along the axis parallel to the main line. This parameter is
-          used with proportional units. The default is 2.
-      disjoined_graph_absolute {Linear Unit}:
-          The minimum spacing that will separate features belonging to disjoined
-          graphs when the diagram contains such graphs. This parameter is used
-          with absolute units. The default is 4 in the units of the diagram's
-          coordinate system.
-      disjoined_graph_proportional {Double}:
-          The minimum spacing that will separate features belonging to disjoined
-          graphs when the diagram contains such graphs. This parameter is used
-          with proportional units. The default is 4.
-      are_edges_orthogonal {Boolean}:
-          Specifies how diagram edges that are related to the tree
-          branches will display. This parameter is deprecated at ArcGIS
-          Pro 3.1. It is systematically
-          ignored regardless of its value when the edge_display_type parameter
-          is specified. However, to maintain compatibility with ArcGIS Pro 2.1,
-          it remains enabled when the edge_display_type parameter is not
-          specified.
+         * PROPORTIONAL_UNIT-The layout algorithm will interpret distance
+         values as relative units to an estimation of the average of the
+         junction sizes in the current diagram extent. This is the default.
+     perpendicular_absolute {Linear Unit}:
+         The spacing between diagram junctions that are displayed along the
+         axis perpendicular to the main line. The default is 2 in the diagram's
+         coordinate system. This parameter can only be used with absolute
+         units.
+     perpendicular_proportional {Double}:
+         The spacing between diagram junctions that are displayed along the
+         axis perpendicular to the main line. The default is 2. This parameter
+         can only be used with proportional units.
+     along_absolute {Linear Unit}:
+         The spacing between diagram junctions that are displayed along the
+         main line, as well as the spacing between diagram junctions that are
+         displayed along the axis parallel to the main line. This parameter can
+         only be used with absolute units. The default is 2 in the units of the
+         diagram's coordinate system.
+     along_proportional {Double}:
+         The spacing between diagram junctions that are displayed along the
+         main line, as well as the spacing between diagram junctions that are
+         displayed along the axis parallel to the main line. This parameter is
+         used with proportional units. The default is 2.
+     disjoined_graph_absolute {Linear Unit}:
+         The minimum spacing that will separate features belonging to disjoined
+         graphs when the diagram contains such graphs. This parameter is used
+         with absolute units. The default is 4 in the units of the diagram's
+         coordinate system.
+     disjoined_graph_proportional {Double}:
+         The minimum spacing that will separate features belonging to disjoined
+         graphs when the diagram contains such graphs. This parameter is used
+         with proportional units. The default is 4.
+     are_edges_orthogonal {Boolean}:
+         Specifies how diagram edges that are related to the tree
+         branches will display. This parameter is deprecated at ArcGIS
+         Pro 3.1. It is systematically
+         ignored regardless of its value when the edge_display_type parameter
+         is specified. However, to maintain compatibility with ArcGIS Pro 2.1,
+         it remains enabled when the edge_display_type parameter is not
+         specified.
 
-          * ORTHOGONAL_EDGES-All diagram edges related to the tree branches will
-          display with right angles.
+         * ORTHOGONAL_EDGES-All diagram edges related to the tree branches will
+         display with right angles.
 
-          * SLANTED_EDGES-All diagram edges related to the tree branches will
-          not display with right angles. This is the default.
-      breakpoint_position {Double}:
-          The relative position of the break point that will be inserted
-          along the diagram edges when Edge Display Type is set to Regular edges
-          (edge_display_type = "REGULAR_EDGES" in Python) or Edge Display Type
-          is set to Orthogonal edges (edge_display_type = "ORTHOGONAL_EDGES" in
-          Python). It is a percentage between 0 and 100.
+         * SLANTED_EDGES-All diagram edges related to the tree branches will
+         not display with right angles. This is the default.
+     breakpoint_position {Double}:
+         The relative position of the break point that will be inserted
+         along the diagram edges when Edge Display Type is set to Regular edges
+         (edge_display_type = "REGULAR_EDGES" in Python) or Edge Display Type
+         is set to Orthogonal edges (edge_display_type = "ORTHOGONAL_EDGES" in
+         Python). It is a percentage between 0 and 100.
 
-          * With a Break Point Relative Position (%) value of 0, the break point
-          is positioned at the x-coordinate of the edge's from junction and at
-          the y-coordinate of the edge's to junction for a horizontal tree. It
-          is positioned at the y-coordinate of the edge's from junction and at
-          the x-coordinate of the edge's to junction for a vertical tree.
+         * With a Break Point Relative Position (%) value of 0, the break point
+         is positioned at the x-coordinate of the edge's from junction and at
+         the y-coordinate of the edge's to junction for a horizontal tree. It
+         is positioned at the y-coordinate of the edge's from junction and at
+         the x-coordinate of the edge's to junction for a vertical tree.
 
-          * With a Break Point Relative Position (%) value of 100, there is no
-          break point inserted on the diagram edges; each diagram edge directly
-          connects its from and to junctions.
+         * With a Break Point Relative Position (%) value of 100, there is no
+         break point inserted on the diagram edges; each diagram edge directly
+         connects its from and to junctions.
 
-          * With a Break Point Relative Position (%) value of N between 0 and
-          100, the break point is positioned at N% of the length of the [XY]
-          segment, X being the x-coordinate of the edge's from junction and Y
-          being the y-coordinate of the edge's to junction for a horizontal
-          tree. It is positioned at N% of the length of the [YX] segment, Y
-          being the y-coordinate of the edge's from junction and X being the
-          x-coordinate of the edge's to junction for a vertical tree.
-                  The relative position of the two inflection points that will
-          be inserted along the diagram edges to compute the curved edges
-          geometry when Edge Display Type is set to Curved edges
-          (edge_display_type = "CURVED_EDGES" in Python). It is a percentage
-          between 15 and 40. With a Break Point Relative Position (%) value of N
-          between 15 and 40:
+         * With a Break Point Relative Position (%) value of N between 0 and
+         100, the break point is positioned at N% of the length of the [XY]
+         segment, X being the x-coordinate of the edge's from junction and Y
+         being the y-coordinate of the edge's to junction for a horizontal
+         tree. It is positioned at N% of the length of the [YX] segment, Y
+         being the y-coordinate of the edge's from junction and X being the
+         x-coordinate of the edge's to junction for a vertical tree.
+                 The relative position of the two inflection points that will
+         be inserted along the diagram edges to compute the curved edges
+         geometry when Edge Display Type is set to Curved edges
+         (edge_display_type = "CURVED_EDGES" in Python). It is a percentage
+         between 15 and 40. With a Break Point Relative Position (%) value of N
+         between 15 and 40:
 
-          * X being the x-coordinate of the edge's from junction and Y
-          being the y-coordinate of the edge's to junction for a horizontal
-          tree:
+         * X being the x-coordinate of the edge's from junction and Y
+         being the y-coordinate of the edge's to junction for a horizontal
+         tree:
 
-          * The first inflection point will be positioned at N% of the length of
-          the [XY] segment.
+         * The first inflection point will be positioned at N% of the length of
+         the [XY] segment.
 
-          * The second inflection point will be positioned at (100 - N)% of the
-          length of the [XY] segment.
+         * The second inflection point will be positioned at (100 - N)% of the
+         length of the [XY] segment.
 
-          * Y being the y-coordinate of the edge's from junction and X
-          being the x-coordinate of the edge's to junction for a vertical tree:
+         * Y being the y-coordinate of the edge's from junction and X
+         being the x-coordinate of the edge's to junction for a vertical tree:
 
-          * The first inflection point will be positioned at N% of the length of
-          the [YX] segment.
+         * The first inflection point will be positioned at N% of the length of
+         the [YX] segment.
 
-          * The second inflection point will be positioned at (100 - N)% of the
-          length of the [XY] segment.
+         * The second inflection point will be positioned at (100 - N)% of the
+         length of the [XY] segment.
 
-          The concept of the from and to junctions above is relative to the tree
-          direction; it has nothing to do with the real topology of the edge
-          feature or edge object in the network.
-      edge_display_type {String}:
-          Specifies the type of display for the diagram edges related to the
-          tree branches.
+         The concept of the from and to junctions above is relative to the tree
+         direction; it has nothing to do with the real topology of the edge
+         feature or edge object in the network.
+     edge_display_type {String}:
+         Specifies the type of display for the diagram edges related to the
+         tree branches.
 
-          * REGULAR_EDGES-All diagram edges related to the tree branches will
-          not display with right angles. This is the default.
+         * REGULAR_EDGES-All diagram edges related to the tree branches will
+         not display with right angles. This is the default.
 
-          * ORTHOGONAL_EDGES-All diagram edges related to the tree branches will
-          display with right angles.
+         * ORTHOGONAL_EDGES-All diagram edges related to the tree branches will
+         display with right angles.
 
-          * CURVED_EDGES-All diagram edges related to the tree branches will be
-          curved.
-      run_async {Boolean}:
-          Specifies whether the layout algorithm will run asynchronously or
-          synchronously on the server.
+         * CURVED_EDGES-All diagram edges related to the tree branches will be
+         curved.
+     run_async {Boolean}:
+         Specifies whether the layout algorithm will run asynchronously or
+         synchronously on the server.
 
-          * RUN_ASYNCHRONOUSLY-The layout algorithm will run asynchronously on
-          the server. This option dedicates server resources to run the layout
-          algorithm with a longer time-out. Running asynchronously is
-          recommended for layouts that are time consuming and may exceed the
-          server time-out (for example, Partial Overlapping Edges) and applying
-          to large diagrams (more than 25,000 features).
+         * RUN_ASYNCHRONOUSLY-The layout algorithm will run asynchronously on
+         the server. This option dedicates server resources to run the layout
+         algorithm with a longer time-out. Running asynchronously is
+         recommended for layouts that are time consuming and may exceed the
+         server time-out (for example, Partial Overlapping Edges) and applying
+         to large diagrams (more than 25,000 features).
 
-          * RUN_SYNCHRONOUSLY-The layout algorithm will run synchronously on the
-          server. It can fail without completion if it exceeds the service
-          default time-out value of 600 seconds. This is the default.
-      offset_absolute {Linear Unit}:
-          The offset that will be used to separate overlapping segments when
-          is_unit_absolute = "ABSOLUTE_UNIT" and edge_display_type =
-          "ORTHOGONAL_EDGES". The value cannot exceed 10 percent of the smallest
-          value specified for the other spacing parameters. The default is 0.
-      offset_proportional {Double}:
-          The offset that will be used to separate overlapping segments when
-          is_unit_absolute = "PROPORTIONAL_UNIT" and edge_display_type =
-          "ORTHOGONAL_EDGES". It is a double value that cannot exceed 10 percent
-          of the smallest value specified for the other spacing parameters. The
-          default is 0."""
+         * RUN_SYNCHRONOUSLY-The layout algorithm will run synchronously on the
+         server. It can fail without completion if it exceeds the service
+         default time-out value of 600 seconds. This is the default.
+     offset_absolute {Linear Unit}:
+         The offset that will be used to separate overlapping segments when
+         is_unit_absolute = "ABSOLUTE_UNIT" and edge_display_type =
+         "ORTHOGONAL_EDGES". The value cannot exceed 10 percent of the smallest
+         value specified for the other spacing parameters. The default is 0.
+     offset_proportional {Double}:
+         The offset that will be used to separate overlapping segments when
+         is_unit_absolute = "PROPORTIONAL_UNIT" and edge_display_type =
+         "ORTHOGONAL_EDGES". It is a double value that cannot exceed 10 percent
+         of the smallest value specified for the other spacing parameters. The
+         default is 0."""
     ...
 
-@gptooldoc('ApplyPartialOverlappingEdgesLayout_nd', None)
-def ApplyPartialOverlappingEdgesLayout(in_network_diagram_layer=..., buffer_width_absolute=..., offset_absolute=..., optimize_edges=..., run_async=...): # -> conversion | int | float | complex | basestring | list[Unknown] | tuple[Unknown, ...] | dict[Unknown, Unknown]:
+@gptooldoc("ApplyPartialOverlappingEdgesLayout_nd", None)
+def ApplyPartialOverlappingEdgesLayout(
+    in_network_diagram_layer=...,
+    buffer_width_absolute=...,
+    offset_absolute=...,
+    optimize_edges=...,
+    run_async=...,
+):  # -> conversion | int | float | complex | basestring | list[Unknown] | tuple[Unknown, ...] | dict[Unknown, Unknown]:
     """ApplyPartialOverlappingEdgesLayout_nd(in_network_diagram_layer, buffer_width_absolute, offset_absolute, {optimize_edges}, {run_async})
 
-        Spaces out collinear edges or collinear portions of edges (edge
-        segments) inside a given buffer zone.
+       Spaces out collinear edges or collinear portions of edges (edge
+       segments) inside a given buffer zone.
 
-     INPUTS:
-      in_network_diagram_layer (Diagram Layer):
-          The network diagram to which the layout will be applied.
-      buffer_width_absolute (Linear Unit):
-          The width of the buffer zone in which to search for collinear edge
-          segments.
-      offset_absolute (Linear Unit):
-          The distance that will separate the detected edge segments.
-      optimize_edges {Boolean}:
-          Specifies how segments will be placed along edges:
+    INPUTS:
+     in_network_diagram_layer (Diagram Layer):
+         The network diagram to which the layout will be applied.
+     buffer_width_absolute (Linear Unit):
+         The width of the buffer zone in which to search for collinear edge
+         segments.
+     offset_absolute (Linear Unit):
+         The distance that will separate the detected edge segments.
+     optimize_edges {Boolean}:
+         Specifies how segments will be placed along edges:
 
-          * OPTIMIZE_EDGES-The placement of segments will be optimized in each
-          set of collinear segments. This is done by focusing on their
-          connections instead of their positions. Segments that cross each other
-          can be repositioned so they do not cross.
+         * OPTIMIZE_EDGES-The placement of segments will be optimized in each
+         set of collinear segments. This is done by focusing on their
+         connections instead of their positions. Segments that cross each other
+         can be repositioned so they do not cross.
 
-          * DO_NOT_OPTIMIZE_EDGES-The initial position of each segment will be
-          maintained in the collinear segment set and crossings will be
-          preserved. This is the default.
-      run_async {Boolean}:
-          Specifies whether the layout algorithm will run asynchronously or
-          synchronously on the server.
+         * DO_NOT_OPTIMIZE_EDGES-The initial position of each segment will be
+         maintained in the collinear segment set and crossings will be
+         preserved. This is the default.
+     run_async {Boolean}:
+         Specifies whether the layout algorithm will run asynchronously or
+         synchronously on the server.
 
-          * RUN_ASYNCHRONOUSLY-The layout algorithm will run asynchronously on
-          the server. This option dedicates server resources to run the layout
-          algorithm with a longer time-out. Running asynchronously is
-          recommended for layouts that are time consuming and may exceed the
-          server time-out (for example, Partial Overlapping Edges) and applying
-          to large diagrams (more than 25,000 features).
+         * RUN_ASYNCHRONOUSLY-The layout algorithm will run asynchronously on
+         the server. This option dedicates server resources to run the layout
+         algorithm with a longer time-out. Running asynchronously is
+         recommended for layouts that are time consuming and may exceed the
+         server time-out (for example, Partial Overlapping Edges) and applying
+         to large diagrams (more than 25,000 features).
 
-          * RUN_SYNCHRONOUSLY-The layout algorithm will run synchronously on the
-          server. It can fail without completion if it exceeds the service
-          default time-out value of 600 seconds. This is the default."""
+         * RUN_SYNCHRONOUSLY-The layout algorithm will run synchronously on the
+         server. It can fail without completion if it exceeds the service
+         default time-out value of 600 seconds. This is the default."""
     ...
 
-@gptooldoc('ApplyRadialTreeLayout_nd', None)
-def ApplyRadialTreeLayout(in_network_diagram_layer=..., are_containers_preserved=..., is_unit_absolute=..., initial_radius_absolute=..., initial_radius_proportional=..., disjoined_graph_absolute=..., disjoined_graph_proportional=..., radius_factor=..., run_async=...): # -> conversion | int | float | complex | basestring | list[Unknown] | tuple[Unknown, ...] | dict[Unknown, Unknown]:
+@gptooldoc("ApplyRadialTreeLayout_nd", None)
+def ApplyRadialTreeLayout(
+    in_network_diagram_layer=...,
+    are_containers_preserved=...,
+    is_unit_absolute=...,
+    initial_radius_absolute=...,
+    initial_radius_proportional=...,
+    disjoined_graph_absolute=...,
+    disjoined_graph_proportional=...,
+    radius_factor=...,
+    run_async=...,
+):  # -> conversion | int | float | complex | basestring | list[Unknown] | tuple[Unknown, ...] | dict[Unknown, Unknown]:
     """ApplyRadialTreeLayout_nd(in_network_diagram_layer, {are_containers_preserved}, {is_unit_absolute}, {initial_radius_absolute}, {initial_radius_proportional}, {disjoined_graph_absolute}, {disjoined_graph_proportional}, {radius_factor}, {run_async})
 
-        Arranges diagram features hierarchically and places them in a radial
-        tree.
+       Arranges diagram features hierarchically and places them in a radial
+       tree.
 
-     INPUTS:
-      in_network_diagram_layer (Diagram Layer):
-          The network diagram to which the layout will be applied.
-      are_containers_preserved {Boolean}:
-          Specifies how the algorithm will process containers.
+    INPUTS:
+     in_network_diagram_layer (Diagram Layer):
+         The network diagram to which the layout will be applied.
+     are_containers_preserved {Boolean}:
+         Specifies how the algorithm will process containers.
 
-          * PRESERVE_CONTAINERS-The layout algorithm will apply to the top
-          graph of the diagram so containers are preserved.
+         * PRESERVE_CONTAINERS-The layout algorithm will apply to the top
+         graph of the diagram so containers are preserved.
 
-          * IGNORE_CONTAINERS-The layout algorithm will apply to both content
-          and noncontent features in the diagram. This is the default.
-      is_unit_absolute {Boolean}:
-          Specifies how parameters representing distances will be interpreted.
+         * IGNORE_CONTAINERS-The layout algorithm will apply to both content
+         and noncontent features in the diagram. This is the default.
+     is_unit_absolute {Boolean}:
+         Specifies how parameters representing distances will be interpreted.
 
-          * ABSOLUTE_UNIT-The layout algorithm will interpret distance values as
-          linear units.
+         * ABSOLUTE_UNIT-The layout algorithm will interpret distance values as
+         linear units.
 
-          * PROPORTIONAL_UNIT-The layout algorithm will interpret distance
-          values as relative units to an estimation of the average of the
-          junction sizes in the current diagram extent. This is the default.
-      initial_radius_absolute {Linear Unit}:
-          The radius of the first concentric circle whose center is the radial
-          tree root junction-that is, the radius of the circle around which the
-          diagram junctions belonging to the first hierarchical level are
-          placed. The default is 5 in the units of the diagram's coordinate
-          system. This parameter can only be used with absolute units.
-      initial_radius_proportional {Double}:
-          The radius of the first concentric circle whose center is the radial
-          tree root junction-that is, the radius of the circle around which the
-          diagram junctions belonging to the first hierarchical level are
-          placed. The default is 5. This parameter can only be used with
-          proportional units.
-      disjoined_graph_absolute {Linear Unit}:
-          The minimum spacing that will separate features belonging to disjoined
-          graphs when the diagram contains such graphs. This parameter is used
-          with absolute units. The default is 4 in the units of the diagram's
-          coordinate system.
-      disjoined_graph_proportional {Double}:
-          The minimum spacing that will separate features belonging to disjoined
-          graphs when the diagram contains such graphs. This parameter is used
-          with proportional units. The default is 4.
-      radius_factor {Double}:
-          The multiplicative factor used to increase or decrease the radius of
-          each concentric circle. It is also the distance that separates each
-          concentric circle related to a hierarchical level. When using a radius
-          factor less than 1, the distance that separates the diagram junctions
-          belonging to the (n) hierarchical level and the (n+1) hierarchical
-          level progressively decreases. With a factor greater than 1, the
-          distance between the hierarchical levels increases progressively. The
-          default is 1.
-      run_async {Boolean}:
-          Specifies whether the layout algorithm will run asynchronously or
-          synchronously on the server.
+         * PROPORTIONAL_UNIT-The layout algorithm will interpret distance
+         values as relative units to an estimation of the average of the
+         junction sizes in the current diagram extent. This is the default.
+     initial_radius_absolute {Linear Unit}:
+         The radius of the first concentric circle whose center is the radial
+         tree root junction-that is, the radius of the circle around which the
+         diagram junctions belonging to the first hierarchical level are
+         placed. The default is 5 in the units of the diagram's coordinate
+         system. This parameter can only be used with absolute units.
+     initial_radius_proportional {Double}:
+         The radius of the first concentric circle whose center is the radial
+         tree root junction-that is, the radius of the circle around which the
+         diagram junctions belonging to the first hierarchical level are
+         placed. The default is 5. This parameter can only be used with
+         proportional units.
+     disjoined_graph_absolute {Linear Unit}:
+         The minimum spacing that will separate features belonging to disjoined
+         graphs when the diagram contains such graphs. This parameter is used
+         with absolute units. The default is 4 in the units of the diagram's
+         coordinate system.
+     disjoined_graph_proportional {Double}:
+         The minimum spacing that will separate features belonging to disjoined
+         graphs when the diagram contains such graphs. This parameter is used
+         with proportional units. The default is 4.
+     radius_factor {Double}:
+         The multiplicative factor used to increase or decrease the radius of
+         each concentric circle. It is also the distance that separates each
+         concentric circle related to a hierarchical level. When using a radius
+         factor less than 1, the distance that separates the diagram junctions
+         belonging to the (n) hierarchical level and the (n+1) hierarchical
+         level progressively decreases. With a factor greater than 1, the
+         distance between the hierarchical levels increases progressively. The
+         default is 1.
+     run_async {Boolean}:
+         Specifies whether the layout algorithm will run asynchronously or
+         synchronously on the server.
 
-          * RUN_ASYNCHRONOUSLY-The layout algorithm will run asynchronously on
-          the server. This option dedicates server resources to run the layout
-          algorithm with a longer time-out. Running asynchronously is
-          recommended for layouts that are time consuming and may exceed the
-          server time-out (for example, Partial Overlapping Edges) and applying
-          to large diagrams (more than 25,000 features).
+         * RUN_ASYNCHRONOUSLY-The layout algorithm will run asynchronously on
+         the server. This option dedicates server resources to run the layout
+         algorithm with a longer time-out. Running asynchronously is
+         recommended for layouts that are time consuming and may exceed the
+         server time-out (for example, Partial Overlapping Edges) and applying
+         to large diagrams (more than 25,000 features).
 
-          * RUN_SYNCHRONOUSLY-The layout algorithm will run synchronously on the
-          server. It can fail without completion if it exceeds the service
-          default time-out value of 600 seconds. This is the default."""
+         * RUN_SYNCHRONOUSLY-The layout algorithm will run synchronously on the
+         server. It can fail without completion if it exceeds the service
+         default time-out value of 600 seconds. This is the default."""
     ...
 
-@gptooldoc('ApplyRelativeMainlineLayout_nd', None)
-def ApplyRelativeMainlineLayout(in_network_diagram_layer=..., line_attribute=..., mainline_direction=..., offset_between_branches=..., breakpoint_angle=..., type_attribute=..., mainline_values=..., branch_values=..., excluded_values=..., is_compressing=..., compression_ratio=..., minimal_distance=..., alignment_attribute=..., initial_distances=..., length_attribute=..., run_async=...): # -> conversion | int | float | complex | basestring | list[Unknown] | tuple[Unknown, ...] | dict[Unknown, Unknown]:
+@gptooldoc("ApplyRelativeMainlineLayout_nd", None)
+def ApplyRelativeMainlineLayout(
+    in_network_diagram_layer=...,
+    line_attribute=...,
+    mainline_direction=...,
+    offset_between_branches=...,
+    breakpoint_angle=...,
+    type_attribute=...,
+    mainline_values=...,
+    branch_values=...,
+    excluded_values=...,
+    is_compressing=...,
+    compression_ratio=...,
+    minimal_distance=...,
+    alignment_attribute=...,
+    initial_distances=...,
+    length_attribute=...,
+    run_async=...,
+):  # -> conversion | int | float | complex | basestring | list[Unknown] | tuple[Unknown, ...] | dict[Unknown, Unknown]:
     """ApplyRelativeMainlineLayout_nd(in_network_diagram_layer, line_attribute, {mainline_direction}, {offset_between_branches}, {breakpoint_angle}, {type_attribute}, {mainline_values;mainline_values...}, {branch_values;branch_values...}, {excluded_values;excluded_values...}, {is_compressing}, {compression_ratio}, {minimal_distance}, {alignment_attribute}, {initial_distances}, {length_attribute}, {run_async})
 
-        Arranges the network diagram features in the active diagram along
-        parallel straight lines.
+       Arranges the network diagram features in the active diagram along
+       parallel straight lines.
 
-     INPUTS:
-      in_network_diagram_layer (Diagram Layer):
-          The network diagram to which the layout will be applied.
-      line_attribute (String):
-          The name of the network attribute that will be used to identify the
-          lines that comprise the straight lines. This network attribute must
-          exist in the network line classes. Its values must be the same for all
-          the edges that comprise a straight line, for example, Line 1, Line 2,
-          and so on.
-      mainline_direction {String}:
-          Specifies the direction of the main line.
+    INPUTS:
+     in_network_diagram_layer (Diagram Layer):
+         The network diagram to which the layout will be applied.
+     line_attribute (String):
+         The name of the network attribute that will be used to identify the
+         lines that comprise the straight lines. This network attribute must
+         exist in the network line classes. Its values must be the same for all
+         the edges that comprise a straight line, for example, Line 1, Line 2,
+         and so on.
+     mainline_direction {String}:
+         Specifies the direction of the main line.
 
-          * FROM_LEFT_TO_RIGHT-The main line will be drawn as a horizontal line
-          starting from the left and ending on the right. This is the default.
+         * FROM_LEFT_TO_RIGHT-The main line will be drawn as a horizontal line
+         starting from the left and ending on the right. This is the default.
 
-          * FROM_TOP_TO_BOTTOM-The main line will be drawn as a vertical line
-          starting from the top and ending at the bottom.
-      offset_between_branches {Linear Unit}:
-          The spacing between two adjacent branches along the axis perpendicular
-          to the direction of the lines.
-      breakpoint_angle {Double}:
-          The angle that will be used to position the break point on the
-          branches. It is a value between 30 and 90 degrees that is combined
-          with the offset_between_branches parameter value to compute this
-          position. When the break point angle value is 90 degrees, each branch
-          displays orthogonally.
-      type_attribute {String}:
-          The name of the network attribute that will be used to qualify the
-          lines. This network attribute may exist in the network line
-          classes.The type_attribute and line_attribute parameter values can be
-          the
-          same.
-      mainline_values {Value Table}:
-          The type_attribute values that identify the main lines. When such
-          values exist, they must be the same for any edge that comprises the
-          main lines, regardless of their related network feature line classes
-          or edge object tables.
-      branch_values {Value Table}:
-          The type_attribute values that identify the branches.
-      excluded_values {Value Table}:
-          The type_attribute values that identify the edges that will be
-          excluded from the straight lines (crossovers or ladders).
-      is_compressing {Boolean}:
-          Specifies whether the graph will be compressed.
+         * FROM_TOP_TO_BOTTOM-The main line will be drawn as a vertical line
+         starting from the top and ending at the bottom.
+     offset_between_branches {Linear Unit}:
+         The spacing between two adjacent branches along the axis perpendicular
+         to the direction of the lines.
+     breakpoint_angle {Double}:
+         The angle that will be used to position the break point on the
+         branches. It is a value between 30 and 90 degrees that is combined
+         with the offset_between_branches parameter value to compute this
+         position. When the break point angle value is 90 degrees, each branch
+         displays orthogonally.
+     type_attribute {String}:
+         The name of the network attribute that will be used to qualify the
+         lines. This network attribute may exist in the network line
+         classes.The type_attribute and line_attribute parameter values can be
+         the
+         same.
+     mainline_values {Value Table}:
+         The type_attribute values that identify the main lines. When such
+         values exist, they must be the same for any edge that comprises the
+         main lines, regardless of their related network feature line classes
+         or edge object tables.
+     branch_values {Value Table}:
+         The type_attribute values that identify the branches.
+     excluded_values {Value Table}:
+         The type_attribute values that identify the edges that will be
+         excluded from the straight lines (crossovers or ladders).
+     is_compressing {Boolean}:
+         Specifies whether the graph will be compressed.
 
-          * USE_COMPRESSION-Compression will be used. An additional step is run
-          at the end of the process to reduce the distances between adjacent
-          groups of neighbor junctions along the direction while maintaining
-          relative positioning between these groups. Neighbor junctions are
-          junctions that are geographically close to each other without being
-          directly connected.
+         * USE_COMPRESSION-Compression will be used. An additional step is run
+         at the end of the process to reduce the distances between adjacent
+         groups of neighbor junctions along the direction while maintaining
+         relative positioning between these groups. Neighbor junctions are
+         junctions that are geographically close to each other without being
+         directly connected.
 
-          * DO_NOT_USE_COMPRESSION-Compression will not be used. This is the
-          default.
-      compression_ratio {Double}:
-          A value between 0 and 100 that is applied to the length of any edge
-          after subtracting the minimal distance of its length. When the value
-          is 100, the distance between each detected junction group is equal to
-          the minimal distance.
-      minimal_distance {Linear Unit}:
-          The minimal distance between two adjacent groups of neighbor
-          junctions. This minimal distance is also used to group neighbor
-          junctions based on their projection along the direction axis. Two
-          junctions projected on this axis will belong to the same group when
-          the distance between the two projected points is less than this
-          distance.
-      alignment_attribute {String}:
-          The name of the network attribute that will be used to align lines
-          that are split. Lines with the same attribute value will be aligned.
-      initial_distances {String}:
-          Specifies how the length of the diagram edges will be assessed. This
-          length determines the positions of the junctions along the direction.
-          The distances between the connected junctions along the direction are
-          not equidistant; they are relative to each other and depend on the
-          current edge length and the length of the shortest edge.
+         * DO_NOT_USE_COMPRESSION-Compression will not be used. This is the
+         default.
+     compression_ratio {Double}:
+         A value between 0 and 100 that is applied to the length of any edge
+         after subtracting the minimal distance of its length. When the value
+         is 100, the distance between each detected junction group is equal to
+         the minimal distance.
+     minimal_distance {Linear Unit}:
+         The minimal distance between two adjacent groups of neighbor
+         junctions. This minimal distance is also used to group neighbor
+         junctions based on their projection along the direction axis. Two
+         junctions projected on this axis will belong to the same group when
+         the distance between the two projected points is less than this
+         distance.
+     alignment_attribute {String}:
+         The name of the network attribute that will be used to align lines
+         that are split. Lines with the same attribute value will be aligned.
+     initial_distances {String}:
+         Specifies how the length of the diagram edges will be assessed. This
+         length determines the positions of the junctions along the direction.
+         The distances between the connected junctions along the direction are
+         not equidistant; they are relative to each other and depend on the
+         current edge length and the length of the shortest edge.
 
-          * FROM_CURRENT_EDGE_GEOMETRY-The distances will be computed from the
-          current edge geometry. This is the default.
+         * FROM_CURRENT_EDGE_GEOMETRY-The distances will be computed from the
+         current edge geometry. This is the default.
 
-          * FROM_ATTRIBUTE_EDGE-The distances will be computed from a given
-          attribute that exists on an edge.
-      length_attribute {String}:
-          The network attribute from which the distances will be computed when
-          initial_distances is FROM_ATTRIBUTE_EDGE.
-      run_async {Boolean}:
-          Specifies whether the layout algorithm will run asynchronously or
-          synchronously on the server.
+         * FROM_ATTRIBUTE_EDGE-The distances will be computed from a given
+         attribute that exists on an edge.
+     length_attribute {String}:
+         The network attribute from which the distances will be computed when
+         initial_distances is FROM_ATTRIBUTE_EDGE.
+     run_async {Boolean}:
+         Specifies whether the layout algorithm will run asynchronously or
+         synchronously on the server.
 
-          * RUN_ASYNCHRONOUSLY-The layout algorithm will run asynchronously on
-          the server. This option dedicates server resources to run the layout
-          algorithm with a longer time-out. Running asynchronously is
-          recommended for layouts that are time consuming and may exceed the
-          server time-out (for example, Partial Overlapping Edges) and applying
-          to large diagrams (more than 25,000 features).
+         * RUN_ASYNCHRONOUSLY-The layout algorithm will run asynchronously on
+         the server. This option dedicates server resources to run the layout
+         algorithm with a longer time-out. Running asynchronously is
+         recommended for layouts that are time consuming and may exceed the
+         server time-out (for example, Partial Overlapping Edges) and applying
+         to large diagrams (more than 25,000 features).
 
-          * RUN_SYNCHRONOUSLY-The layout algorithm will run synchronously on the
-          server. It can fail without completion if it exceeds the service
-          default time-out value of 600 seconds. This is the default."""
+         * RUN_SYNCHRONOUSLY-The layout algorithm will run synchronously on the
+         server. It can fail without completion if it exceeds the service
+         default time-out value of 600 seconds. This is the default."""
     ...
 
-@gptooldoc('ApplyRotateTreeLayout_nd', None)
-def ApplyRotateTreeLayout(in_network_diagram_layer=..., are_containers_preserved=..., rotation_angle=..., run_async=..., rotate_junction=...): # -> conversion | int | float | complex | basestring | list[Unknown] | tuple[Unknown, ...] | dict[Unknown, Unknown]:
+@gptooldoc("ApplyRotateTreeLayout_nd", None)
+def ApplyRotateTreeLayout(
+    in_network_diagram_layer=...,
+    are_containers_preserved=...,
+    rotation_angle=...,
+    run_async=...,
+    rotate_junction=...,
+):  # -> conversion | int | float | complex | basestring | list[Unknown] | tuple[Unknown, ...] | dict[Unknown, Unknown]:
     """ApplyRotateTreeLayout_nd(in_network_diagram_layer, {are_containers_preserved}, {rotation_angle}, {run_async}, {rotate_junction})
 
-        Rotates the tree or trees related to pivot junctions currently set up
-        in a diagram to the specified angle.
+       Rotates the tree or trees related to pivot junctions currently set up
+       in a diagram to the specified angle.
 
-     INPUTS:
-      in_network_diagram_layer (Diagram Layer):
-          The network diagram to which the layout will be applied.
-      are_containers_preserved {Boolean}:
-          Specifies how the algorithm will process containers.
+    INPUTS:
+     in_network_diagram_layer (Diagram Layer):
+         The network diagram to which the layout will be applied.
+     are_containers_preserved {Boolean}:
+         Specifies how the algorithm will process containers.
 
-          * PRESERVE_CONTAINERS-The layout algorithm will apply to the top
-          graph of the diagram so containers are preserved.
+         * PRESERVE_CONTAINERS-The layout algorithm will apply to the top
+         graph of the diagram so containers are preserved.
 
-          * IGNORE_CONTAINERS-The layout algorithm will apply to both content
-          and noncontent features in the diagram. This is the default.
-      rotation_angle {Double}:
-          The angle in degrees that will be used to rotate the tree. The default
-          is 45 degrees.
-      run_async {Boolean}:
-          Specifies whether the layout algorithm will run asynchronously or
-          synchronously on the server.
+         * IGNORE_CONTAINERS-The layout algorithm will apply to both content
+         and noncontent features in the diagram. This is the default.
+     rotation_angle {Double}:
+         The angle in degrees that will be used to rotate the tree. The default
+         is 45 degrees.
+     run_async {Boolean}:
+         Specifies whether the layout algorithm will run asynchronously or
+         synchronously on the server.
 
-          * RUN_ASYNCHRONOUSLY-The layout algorithm will run asynchronously on
-          the server. This option dedicates server resources to run the layout
-          algorithm with a longer time-out. Running asynchronously is
-          recommended for layouts that are time consuming and may exceed the
-          server time-out (for example, Partial Overlapping Edges) and applying
-          to large diagrams (more than 25,000 features).
+         * RUN_ASYNCHRONOUSLY-The layout algorithm will run asynchronously on
+         the server. This option dedicates server resources to run the layout
+         algorithm with a longer time-out. Running asynchronously is
+         recommended for layouts that are time consuming and may exceed the
+         server time-out (for example, Partial Overlapping Edges) and applying
+         to large diagrams (more than 25,000 features).
 
-          * RUN_SYNCHRONOUSLY-The layout algorithm will run synchronously on the
-          server. It can fail without completion if it exceeds the service
-          default time-out value of 600 seconds. This is the default.
-      rotate_junction {Boolean}:
-          Specifies whether the rotation_angle parameter value will be added to
-          the value of the rotation field for each processed diagram junction.
+         * RUN_SYNCHRONOUSLY-The layout algorithm will run synchronously on the
+         server. It can fail without completion if it exceeds the service
+         default time-out value of 600 seconds. This is the default.
+     rotate_junction {Boolean}:
+         Specifies whether the rotation_angle parameter value will be added to
+         the value of the rotation field for each processed diagram junction.
 
-          * ROTATE-The rotation_angle parameter value will be added to the value
-          of the rotation field for each processed diagram junction.
+         * ROTATE-The rotation_angle parameter value will be added to the value
+         of the rotation field for each processed diagram junction.
 
-          * DO_NOT_ROTATE-The rotation_angle parameter value will not be added
-          to the value of the rotation field. This is the default."""
+         * DO_NOT_ROTATE-The rotation_angle parameter value will not be added
+         to the value of the rotation field. This is the default."""
     ...
 
-@gptooldoc('ApplySmartTreeLayout_nd', None)
-def ApplySmartTreeLayout(in_network_diagram_layer=..., are_containers_preserved=..., tree_direction=..., is_unit_absolute=..., subtree_absolute=..., subtree_proportional=..., perpendicular_absolute=..., perpendicular_proportional=..., along_absolute=..., along_proportional=..., disjoined_graph_absolute=..., disjoined_graph_proportional=..., are_edges_orthogonal=..., breakpoint_position=..., edge_display_type=..., run_async=..., offset_absolute=..., offset_proportional=...): # -> conversion | int | float | complex | basestring | list[Unknown] | tuple[Unknown, ...] | dict[Unknown, Unknown]:
+@gptooldoc("ApplySmartTreeLayout_nd", None)
+def ApplySmartTreeLayout(
+    in_network_diagram_layer=...,
+    are_containers_preserved=...,
+    tree_direction=...,
+    is_unit_absolute=...,
+    subtree_absolute=...,
+    subtree_proportional=...,
+    perpendicular_absolute=...,
+    perpendicular_proportional=...,
+    along_absolute=...,
+    along_proportional=...,
+    disjoined_graph_absolute=...,
+    disjoined_graph_proportional=...,
+    are_edges_orthogonal=...,
+    breakpoint_position=...,
+    edge_display_type=...,
+    run_async=...,
+    offset_absolute=...,
+    offset_proportional=...,
+):  # -> conversion | int | float | complex | basestring | list[Unknown] | tuple[Unknown, ...] | dict[Unknown, Unknown]:
     """ApplySmartTreeLayout_nd(in_network_diagram_layer, {are_containers_preserved}, {tree_direction}, {is_unit_absolute}, {subtree_absolute}, {subtree_proportional}, {perpendicular_absolute}, {perpendicular_proportional}, {along_absolute}, {along_proportional}, {disjoined_graph_absolute}, {disjoined_graph_proportional}, {are_edges_orthogonal}, {breakpoint_position}, {edge_display_type}, {run_async}, {offset_absolute}, {offset_proportional})
 
-        Arranges diagram features hierarchically and places them in a smart
-        tree.
+       Arranges diagram features hierarchically and places them in a smart
+       tree.
 
-     INPUTS:
-      in_network_diagram_layer (Diagram Layer):
-          The network diagram to which the layout will be applied.
-      are_containers_preserved {Boolean}:
-          Specifies how the algorithm will process containers.
+    INPUTS:
+     in_network_diagram_layer (Diagram Layer):
+         The network diagram to which the layout will be applied.
+     are_containers_preserved {Boolean}:
+         Specifies how the algorithm will process containers.
 
-          * PRESERVE_CONTAINERS-The layout algorithm will apply to the top
-          graph of the diagram so containers are preserved.
+         * PRESERVE_CONTAINERS-The layout algorithm will apply to the top
+         graph of the diagram so containers are preserved.
 
-          * IGNORE_CONTAINERS-The layout algorithm will apply to both content
-          and noncontent features in the diagram. This is the default.
-      tree_direction {String}:
-          Specifies the direction of the tree.
+         * IGNORE_CONTAINERS-The layout algorithm will apply to both content
+         and noncontent features in the diagram. This is the default.
+     tree_direction {String}:
+         Specifies the direction of the tree.
 
-          * FROM_LEFT_TO_RIGHT-The tree will be drawn from left to right. This
-          is the default.
+         * FROM_LEFT_TO_RIGHT-The tree will be drawn from left to right. This
+         is the default.
 
-          * FROM_RIGHT_TO_LEFT-The tree will be drawn from right to left.
+         * FROM_RIGHT_TO_LEFT-The tree will be drawn from right to left.
 
-          * FROM_BOTTOM_TO_TOP-The tree will be drawn from bottom to top.
+         * FROM_BOTTOM_TO_TOP-The tree will be drawn from bottom to top.
 
-          * FROM_TOP_TO_BOTTOM-The tree will be drawn from top to bottom.
-      is_unit_absolute {Boolean}:
-          Specifies how parameters representing distances will be interpreted.
+         * FROM_TOP_TO_BOTTOM-The tree will be drawn from top to bottom.
+     is_unit_absolute {Boolean}:
+         Specifies how parameters representing distances will be interpreted.
 
-          * ABSOLUTE_UNIT-The layout algorithm will interpret distance values as
-          linear units.
+         * ABSOLUTE_UNIT-The layout algorithm will interpret distance values as
+         linear units.
 
-          * PROPORTIONAL_UNIT-The layout algorithm will interpret distance
-          values as relative units to an estimation of the average of the
-          junction sizes in the current diagram extent. This is the default.
-      subtree_absolute {Linear Unit}:
-          The spacing between two neighboring subtrees-that is, the spacing
-          between diagram junctions that are displayed perpendicular to the
-          smart tree direction and belong to a different subtree. The default is
-          in the units of the diagram's coordinate system. This parameter can
-          only be used with absolute units.
-      subtree_proportional {Double}:
-          The spacing between two neighboring subtrees-that is, the spacing
-          between diagram junctions that are displayed perpendicular to the
-          smart tree direction and belong to a different subtree. The default is
-          2. This parameter can only be used with proportional units.
-      perpendicular_absolute {Linear Unit}:
-          The spacing between diagram junctions that are displayed perpendicular
-          to the smart tree direction and belong to the same subtree level. The
-          default is 2 in the units of the diagram's coordinate system. This
-          parameter can only be used with absolute units.
-      perpendicular_proportional {Double}:
-          The spacing between diagram junctions that are displayed perpendicular
-          to the smart tree direction and belong to the same subtree level. The
-          default is 2. This parameter can only be used with proportional units.
-      along_absolute {Linear Unit}:
-          The spacing between diagram junctions that are displayed along the
-          smart tree direction. The default is 2 in the units of the diagram's
-          coordinate system. This parameter can only be used with absolute
-          units.
-      along_proportional {Double}:
-          The spacing between diagram junctions that are displayed along the
-          smart tree direction. The default is 2. This parameter can only be
-          used with proportional units.
-      disjoined_graph_absolute {Linear Unit}:
-          The minimum spacing that will separate features belonging to disjoined
-          graphs when the diagram contains such graphs. This parameter is used
-          with absolute units. The default is 4 in the units of the diagram's
-          coordinate system.
-      disjoined_graph_proportional {Double}:
-          The minimum spacing that will separate features belonging to disjoined
-          graphs when the diagram contains such graphs. This parameter is used
-          with proportional units. The default is 4.
-      are_edges_orthogonal {Boolean}:
-          Specifies how diagram edges that are related to the tree
-          branches will display. This parameter is deprecated at ArcGIS
-          Pro 3.1. It is systematically
-          ignored regardless of its value when the edge_display_type parameter
-          is specified. However, to maintain compatibility with ArcGIS Pro 2.1,
-          it remains enabled when the edge_display_type parameter is not
-          specified.
+         * PROPORTIONAL_UNIT-The layout algorithm will interpret distance
+         values as relative units to an estimation of the average of the
+         junction sizes in the current diagram extent. This is the default.
+     subtree_absolute {Linear Unit}:
+         The spacing between two neighboring subtrees-that is, the spacing
+         between diagram junctions that are displayed perpendicular to the
+         smart tree direction and belong to a different subtree. The default is
+         in the units of the diagram's coordinate system. This parameter can
+         only be used with absolute units.
+     subtree_proportional {Double}:
+         The spacing between two neighboring subtrees-that is, the spacing
+         between diagram junctions that are displayed perpendicular to the
+         smart tree direction and belong to a different subtree. The default is
+         2. This parameter can only be used with proportional units.
+     perpendicular_absolute {Linear Unit}:
+         The spacing between diagram junctions that are displayed perpendicular
+         to the smart tree direction and belong to the same subtree level. The
+         default is 2 in the units of the diagram's coordinate system. This
+         parameter can only be used with absolute units.
+     perpendicular_proportional {Double}:
+         The spacing between diagram junctions that are displayed perpendicular
+         to the smart tree direction and belong to the same subtree level. The
+         default is 2. This parameter can only be used with proportional units.
+     along_absolute {Linear Unit}:
+         The spacing between diagram junctions that are displayed along the
+         smart tree direction. The default is 2 in the units of the diagram's
+         coordinate system. This parameter can only be used with absolute
+         units.
+     along_proportional {Double}:
+         The spacing between diagram junctions that are displayed along the
+         smart tree direction. The default is 2. This parameter can only be
+         used with proportional units.
+     disjoined_graph_absolute {Linear Unit}:
+         The minimum spacing that will separate features belonging to disjoined
+         graphs when the diagram contains such graphs. This parameter is used
+         with absolute units. The default is 4 in the units of the diagram's
+         coordinate system.
+     disjoined_graph_proportional {Double}:
+         The minimum spacing that will separate features belonging to disjoined
+         graphs when the diagram contains such graphs. This parameter is used
+         with proportional units. The default is 4.
+     are_edges_orthogonal {Boolean}:
+         Specifies how diagram edges that are related to the tree
+         branches will display. This parameter is deprecated at ArcGIS
+         Pro 3.1. It is systematically
+         ignored regardless of its value when the edge_display_type parameter
+         is specified. However, to maintain compatibility with ArcGIS Pro 2.1,
+         it remains enabled when the edge_display_type parameter is not
+         specified.
 
-          * ORTHOGONAL_EDGES-All diagram edges related to the tree branches will
-          display with right angles.
+         * ORTHOGONAL_EDGES-All diagram edges related to the tree branches will
+         display with right angles.
 
-          * SLANTED_EDGES-All diagram edges related to the tree branches will
-          not display with right angles. This is the default.
-      breakpoint_position {Double}:
-          The relative position of the break point that will be inserted
-          along the diagram edges when Edge Display Type is set to Regular edges
-          (edge_display_type = "REGULAR_EDGES" in Python) or Edge Display Type
-          is set to Orthogonal edges (edge_display_type = "ORTHOGONAL_EDGES" in
-          Python). It is a percentage between 0 and 100.
+         * SLANTED_EDGES-All diagram edges related to the tree branches will
+         not display with right angles. This is the default.
+     breakpoint_position {Double}:
+         The relative position of the break point that will be inserted
+         along the diagram edges when Edge Display Type is set to Regular edges
+         (edge_display_type = "REGULAR_EDGES" in Python) or Edge Display Type
+         is set to Orthogonal edges (edge_display_type = "ORTHOGONAL_EDGES" in
+         Python). It is a percentage between 0 and 100.
 
-          * With a Break Point Relative Position (%) value of 0, the break point
-          is positioned at the x-coordinate of the edge's from junction and at
-          the y-coordinate of the edge's to junction for a horizontal tree. It
-          is positioned at the y-coordinate of the edge's from junction and at
-          the x-coordinate of the edge's to junction for a vertical tree.
+         * With a Break Point Relative Position (%) value of 0, the break point
+         is positioned at the x-coordinate of the edge's from junction and at
+         the y-coordinate of the edge's to junction for a horizontal tree. It
+         is positioned at the y-coordinate of the edge's from junction and at
+         the x-coordinate of the edge's to junction for a vertical tree.
 
-          * With a Break Point Relative Position (%) value of 100, there is no
-          break point inserted on the diagram edges; each diagram edge directly
-          connects its from and to junctions.
+         * With a Break Point Relative Position (%) value of 100, there is no
+         break point inserted on the diagram edges; each diagram edge directly
+         connects its from and to junctions.
 
-          * With a Break Point Relative Position (%) value of N between 0 and
-          100, the break point is positioned at N% of the length of the [XY]
-          segment, X being the x-coordinate of the edge's from junction and Y
-          being the y-coordinate of the edge's to junction for a horizontal
-          tree. It is positioned at N% of the length of the [YX] segment, Y
-          being the y-coordinate of the edge's from junction and X being the
-          x-coordinate of the edge's to junction for a vertical tree.
-                  The relative position of the two inflection points that will
-          be inserted along the diagram edges to compute the curved edges
-          geometry when Edge Display Type is set to Curved edges
-          (edge_display_type = "CURVED_EDGES" in Python). It is a percentage
-          between 15 and 40. With a Break Point Relative Position (%) value of N
-          between 15 and 40:
+         * With a Break Point Relative Position (%) value of N between 0 and
+         100, the break point is positioned at N% of the length of the [XY]
+         segment, X being the x-coordinate of the edge's from junction and Y
+         being the y-coordinate of the edge's to junction for a horizontal
+         tree. It is positioned at N% of the length of the [YX] segment, Y
+         being the y-coordinate of the edge's from junction and X being the
+         x-coordinate of the edge's to junction for a vertical tree.
+                 The relative position of the two inflection points that will
+         be inserted along the diagram edges to compute the curved edges
+         geometry when Edge Display Type is set to Curved edges
+         (edge_display_type = "CURVED_EDGES" in Python). It is a percentage
+         between 15 and 40. With a Break Point Relative Position (%) value of N
+         between 15 and 40:
 
-          * X being the x-coordinate of the edge's from junction and Y
-          being the y-coordinate of the edge's to junction for a horizontal
-          tree:
+         * X being the x-coordinate of the edge's from junction and Y
+         being the y-coordinate of the edge's to junction for a horizontal
+         tree:
 
-          * The first inflection point will be positioned at N% of the length of
-          the [XY] segment.
+         * The first inflection point will be positioned at N% of the length of
+         the [XY] segment.
 
-          * The second inflection point will be positioned at (100 - N)% of the
-          length of the [XY] segment.
+         * The second inflection point will be positioned at (100 - N)% of the
+         length of the [XY] segment.
 
-          * Y being the y-coordinate of the edge's from junction and X
-          being the x-coordinate of the edge's to junction for a vertical tree:
+         * Y being the y-coordinate of the edge's from junction and X
+         being the x-coordinate of the edge's to junction for a vertical tree:
 
-          * The first inflection point will be positioned at N% of the length of
-          the [YX] segment.
+         * The first inflection point will be positioned at N% of the length of
+         the [YX] segment.
 
-          * The second inflection point will be positioned at (100 - N)% of the
-          length of the [XY] segment.
+         * The second inflection point will be positioned at (100 - N)% of the
+         length of the [XY] segment.
 
-          The concept of the from and to junctions above is relative to the tree
-          direction; it has nothing to do with the real topology of the edge
-          feature or edge object in the network.
-      edge_display_type {String}:
-          Specifies the type of display for the diagram edges related to the
-          tree branches.
+         The concept of the from and to junctions above is relative to the tree
+         direction; it has nothing to do with the real topology of the edge
+         feature or edge object in the network.
+     edge_display_type {String}:
+         Specifies the type of display for the diagram edges related to the
+         tree branches.
 
-          * REGULAR_EDGES-All diagram edges related to the tree branches will
-          not display with right angles. This is the default.
+         * REGULAR_EDGES-All diagram edges related to the tree branches will
+         not display with right angles. This is the default.
 
-          * ORTHOGONAL_EDGES-All diagram edges related to the tree branches will
-          display with right angles.
+         * ORTHOGONAL_EDGES-All diagram edges related to the tree branches will
+         display with right angles.
 
-          * CURVED_EDGES-All diagram edges related to the tree branches will be
-          curved.
-      run_async {Boolean}:
-          Specifies whether the layout algorithm will run asynchronously or
-          synchronously on the server.
+         * CURVED_EDGES-All diagram edges related to the tree branches will be
+         curved.
+     run_async {Boolean}:
+         Specifies whether the layout algorithm will run asynchronously or
+         synchronously on the server.
 
-          * RUN_ASYNCHRONOUSLY-The layout algorithm will run asynchronously on
-          the server. This option dedicates server resources to run the layout
-          algorithm with a longer time-out. Running asynchronously is
-          recommended for layouts that are time consuming and may exceed the
-          server time-out (for example, Partial Overlapping Edges) and applying
-          to large diagrams (more than 25,000 features).
+         * RUN_ASYNCHRONOUSLY-The layout algorithm will run asynchronously on
+         the server. This option dedicates server resources to run the layout
+         algorithm with a longer time-out. Running asynchronously is
+         recommended for layouts that are time consuming and may exceed the
+         server time-out (for example, Partial Overlapping Edges) and applying
+         to large diagrams (more than 25,000 features).
 
-          * RUN_SYNCHRONOUSLY-The layout algorithm will run synchronously on the
-          server. It can fail without completion if it exceeds the service
-          default time-out value of 600 seconds. This is the default.
-      offset_absolute {Linear Unit}:
-          The offset that will be used to separate overlapping segments when
-          is_unit_absolute = "ABSOLUTE_UNIT" and edge_display_type =
-          "ORTHOGONAL_EDGES". The value cannot exceed 10 percent of the smallest
-          value specified for the other spacing parameters. The default is 0.
-      offset_proportional {Double}:
-          The offset that will be used to separate overlapping segments when
-          is_unit_absolute = "PROPORTIONAL_UNIT" and edge_display_type =
-          "ORTHOGONAL_EDGES". It is a double value that cannot exceed 10 percent
-          of the smallest value specified for the other spacing parameters. The
-          default is 0."""
+         * RUN_SYNCHRONOUSLY-The layout algorithm will run synchronously on the
+         server. It can fail without completion if it exceeds the service
+         default time-out value of 600 seconds. This is the default.
+     offset_absolute {Linear Unit}:
+         The offset that will be used to separate overlapping segments when
+         is_unit_absolute = "ABSOLUTE_UNIT" and edge_display_type =
+         "ORTHOGONAL_EDGES". The value cannot exceed 10 percent of the smallest
+         value specified for the other spacing parameters. The default is 0.
+     offset_proportional {Double}:
+         The offset that will be used to separate overlapping segments when
+         is_unit_absolute = "PROPORTIONAL_UNIT" and edge_display_type =
+         "ORTHOGONAL_EDGES". It is a double value that cannot exceed 10 percent
+         of the smallest value specified for the other spacing parameters. The
+         default is 0."""
     ...
 
-@gptooldoc('ApplySpatialDispatchLayout_nd', None)
-def ApplySpatialDispatchLayout(in_network_diagram_layer=..., are_containers_preserved=..., iterations_number=..., maximum_shift_factor=..., run_async=...): # -> conversion | int | float | complex | basestring | list[Unknown] | tuple[Unknown, ...] | dict[Unknown, Unknown]:
+@gptooldoc("ApplySpatialDispatchLayout_nd", None)
+def ApplySpatialDispatchLayout(
+    in_network_diagram_layer=...,
+    are_containers_preserved=...,
+    iterations_number=...,
+    maximum_shift_factor=...,
+    run_async=...,
+):  # -> conversion | int | float | complex | basestring | list[Unknown] | tuple[Unknown, ...] | dict[Unknown, Unknown]:
     """ApplySpatialDispatchLayout_nd(in_network_diagram_layer, {are_containers_preserved}, {iterations_number}, {maximum_shift_factor}, {run_async})
 
-        Separates diagram junctions that are visibly close to overlapping.
+       Separates diagram junctions that are visibly close to overlapping.
 
-     INPUTS:
-      in_network_diagram_layer (Diagram Layer):
-          The network diagram to which the layout will be applied.
-      are_containers_preserved {Boolean}:
-          Specifies how the algorithm will process containers.
+    INPUTS:
+     in_network_diagram_layer (Diagram Layer):
+         The network diagram to which the layout will be applied.
+     are_containers_preserved {Boolean}:
+         Specifies how the algorithm will process containers.
 
-          * PRESERVE_CONTAINERS-The layout algorithm will apply to the top
-          graph of the diagram so containers are preserved.
+         * PRESERVE_CONTAINERS-The layout algorithm will apply to the top
+         graph of the diagram so containers are preserved.
 
-          * IGNORE_CONTAINERS-The layout algorithm will apply to both content
-          and noncontent features in the diagram. This is the default.
-      iterations_number {Long}:
-          The number of iterations to process. The default is 5.
-      maximum_shift_factor {Double}:
-          The maximum value used to increase the diagram junctions' displacement
-          for junctions that are very close together. The greater the shift
-          factor, the larger the separation between the diagram junctions that
-          almost overlap. The default is 2.
-      run_async {Boolean}:
-          Specifies whether the layout algorithm will run asynchronously or
-          synchronously on the server.
+         * IGNORE_CONTAINERS-The layout algorithm will apply to both content
+         and noncontent features in the diagram. This is the default.
+     iterations_number {Long}:
+         The number of iterations to process. The default is 5.
+     maximum_shift_factor {Double}:
+         The maximum value used to increase the diagram junctions' displacement
+         for junctions that are very close together. The greater the shift
+         factor, the larger the separation between the diagram junctions that
+         almost overlap. The default is 2.
+     run_async {Boolean}:
+         Specifies whether the layout algorithm will run asynchronously or
+         synchronously on the server.
 
-          * RUN_ASYNCHRONOUSLY-The layout algorithm will run asynchronously on
-          the server. This option dedicates server resources to run the layout
-          algorithm with a longer time-out. Running asynchronously is
-          recommended for layouts that are time consuming and may exceed the
-          server time-out (for example, Partial Overlapping Edges) and applying
-          to large diagrams (more than 25,000 features).
+         * RUN_ASYNCHRONOUSLY-The layout algorithm will run asynchronously on
+         the server. This option dedicates server resources to run the layout
+         algorithm with a longer time-out. Running asynchronously is
+         recommended for layouts that are time consuming and may exceed the
+         server time-out (for example, Partial Overlapping Edges) and applying
+         to large diagrams (more than 25,000 features).
 
-          * RUN_SYNCHRONOUSLY-The layout algorithm will run synchronously on the
-          server. It can fail without completion if it exceeds the service
-          default time-out value of 600 seconds. This is the default."""
+         * RUN_SYNCHRONOUSLY-The layout algorithm will run synchronously on the
+         server. It can fail without completion if it exceeds the service
+         default time-out value of 600 seconds. This is the default."""
     ...
 
-@gptooldoc('ApplyTemplateLayouts_nd', None)
-def ApplyTemplateLayouts(in_network_diagram_layer=...): # -> conversion | int | float | complex | basestring | list[Unknown] | tuple[Unknown, ...] | dict[Unknown, Unknown]:
+@gptooldoc("ApplyTemplateLayouts_nd", None)
+def ApplyTemplateLayouts(
+    in_network_diagram_layer=...,
+):  # -> conversion | int | float | complex | basestring | list[Unknown] | tuple[Unknown, ...] | dict[Unknown, Unknown]:
     """ApplyTemplateLayouts_nd(in_network_diagram_layer)
 
-        Applies the list of layout algorithms currently configured for the
-        diagram template to the input network diagram layer.
+       Applies the list of layout algorithms currently configured for the
+       diagram template to the input network diagram layer.
 
-     INPUTS:
-      in_network_diagram_layer (Diagram Layer):
-          The network diagram to which the layout will be applied."""
+    INPUTS:
+     in_network_diagram_layer (Diagram Layer):
+         The network diagram to which the layout will be applied."""
     ...
 
-@gptooldoc('ReshapeDiagramEdgesLayout_nd', None)
-def ReshapeDiagramEdgesLayout(in_network_diagram_layer=..., are_containers_preserved=..., reshape_type=..., is_path_preserved=..., offset_between_segment_absolute=..., breakpoint_absolute=..., shift_between_edge_absolute=..., angle_threshold=..., circular_arc_radius=..., circular_arc_position=..., run_async=...): # -> conversion | int | float | complex | basestring | list[Unknown] | tuple[Unknown, ...] | dict[Unknown, Unknown]:
+@gptooldoc("ReshapeDiagramEdgesLayout_nd", None)
+def ReshapeDiagramEdgesLayout(
+    in_network_diagram_layer=...,
+    are_containers_preserved=...,
+    reshape_type=...,
+    is_path_preserved=...,
+    offset_between_segment_absolute=...,
+    breakpoint_absolute=...,
+    shift_between_edge_absolute=...,
+    angle_threshold=...,
+    circular_arc_radius=...,
+    circular_arc_position=...,
+    run_async=...,
+):  # -> conversion | int | float | complex | basestring | list[Unknown] | tuple[Unknown, ...] | dict[Unknown, Unknown]:
     """ReshapeDiagramEdgesLayout_nd(in_network_diagram_layer, {are_containers_preserved}, {reshape_type}, {is_path_preserved}, {offset_between_segment_absolute}, {breakpoint_absolute}, {shift_between_edge_absolute}, {angle_threshold}, {circular_arc_radius}, {circular_arc_position}, {run_async})
 
-        Processes simple operations on vertices along edges.
+       Processes simple operations on vertices along edges.
 
-     INPUTS:
-      in_network_diagram_layer (Diagram Layer):
-          The network diagram to which the layout will be applied.
-      are_containers_preserved {Boolean}:
-          Specifies how the algorithm will process containers.
+    INPUTS:
+     in_network_diagram_layer (Diagram Layer):
+         The network diagram to which the layout will be applied.
+     are_containers_preserved {Boolean}:
+         Specifies how the algorithm will process containers.
 
-          * PRESERVE_CONTAINERS-The layout algorithm will apply to the top
-          graph of the diagram so containers are preserved.
+         * PRESERVE_CONTAINERS-The layout algorithm will apply to the top
+         graph of the diagram so containers are preserved.
 
-          * IGNORE_CONTAINERS-The layout algorithm will apply to both content
-          and noncontent features in the diagram. This is the default.
-      reshape_type {String}:
-          Specifies how edges will be reshaped.
+         * IGNORE_CONTAINERS-The layout algorithm will apply to both content
+         and noncontent features in the diagram. This is the default.
+     reshape_type {String}:
+         Specifies how edges will be reshaped.
 
-          * REMOVE_VERTICES-Vertices along edges in the diagram will be removed.
+         * REMOVE_VERTICES-Vertices along edges in the diagram will be removed.
 
-          * SQUARE_EDGES-Vertices will be placed along diagram edges, and the
-          edges will be displayed with right angles. This is the default.
+         * SQUARE_EDGES-Vertices will be placed along diagram edges, and the
+         edges will be displayed with right angles. This is the default.
 
-          * SEPARATE_OVERLAPPING_EDGES-Edges that connect the same origin and
-          extremity junctions will be separated when they are overlapping.
+         * SEPARATE_OVERLAPPING_EDGES-Edges that connect the same origin and
+         extremity junctions will be separated when they are overlapping.
 
-          * REDUCE_VERTICES_BY_ANGLE-Some or all vertices displayed along
-          diagram edges will be reduced according to the angle that separates
-          the segments incident to those vertices.
+         * REDUCE_VERTICES_BY_ANGLE-Some or all vertices displayed along
+         diagram edges will be reduced according to the angle that separates
+         the segments incident to those vertices.
 
-          * MARK_CROSSING_EDGES-The horizontal and vertical diagram edges that
-          cross each other at a right angle in the diagram will be marked, and
-          the geometry of one of the crossing edges will be reshaped to display
-          a circular arc at this location.
-      is_path_preserved {Boolean}:
-          Specifies whether vertices along the edges that will be squared will
-          be preserved. This parameter is enabled when reshape_type is
-          SQUARE_EDGES.
+         * MARK_CROSSING_EDGES-The horizontal and vertical diagram edges that
+         cross each other at a right angle in the diagram will be marked, and
+         the geometry of one of the crossing edges will be reshaped to display
+         a circular arc at this location.
+     is_path_preserved {Boolean}:
+         Specifies whether vertices along the edges that will be squared will
+         be preserved. This parameter is enabled when reshape_type is
+         SQUARE_EDGES.
 
-          * PRESERVE_PATH-The direction of any edge will be considered, and
-          vertices along that edge will be preserved from the first vertex to
-          the last. This is the default.
+         * PRESERVE_PATH-The direction of any edge will be considered, and
+         vertices along that edge will be preserved from the first vertex to
+         the last. This is the default.
 
-          * IGNORE_PATH-Vertices along the diagram edges will not be considered,
-          and the vertices will be removed.
-      offset_between_segment_absolute {Linear Unit}:
-          The spacing that will separate parallel segments of squared edges
-          incident to the same junction. The default is 5 in the units of the
-          diagram's coordinate system. This parameter is enabled when
-          reshape_type is SQUARE_EDGES.
-      breakpoint_absolute {Linear Unit}:
-          The maximum distance between each junction to the first or last break
-          point along edges incident to that junction when those edges are
-          squared. The default is 8.66 in the units of the diagram's coordinate
-          system. This parameter is enabled when reshape_type is SQUARE_EDGES.
-      shift_between_edge_absolute {Linear Unit}:
-          The absolute spacing that will separate two edges. The default is 0.5
-          in the units of the diagram's coordinate system. This parameter is
-          enabled when reshape_type is SEPARATE_OVERLAPPING_EDGES.
-      angle_threshold {Double}:
-          The angle formed by the incident segments over which the vertex
-          related to these segments will be reduced. The wider the angle, the
-          fewer number of vertices will be reduced. The default is 160 degrees.
-          This parameter is enabled when reshape_type is
-          REDUCE_VERTICES_BY_ANGLE.
-      circular_arc_radius {Linear Unit}:
-          The radius of the circular arc that will be added to the crossing edge
-          locations. The default is 5.
-      circular_arc_position {String}:
-          Specifies the segment on which a circular arc will be placed.
+         * IGNORE_PATH-Vertices along the diagram edges will not be considered,
+         and the vertices will be removed.
+     offset_between_segment_absolute {Linear Unit}:
+         The spacing that will separate parallel segments of squared edges
+         incident to the same junction. The default is 5 in the units of the
+         diagram's coordinate system. This parameter is enabled when
+         reshape_type is SQUARE_EDGES.
+     breakpoint_absolute {Linear Unit}:
+         The maximum distance between each junction to the first or last break
+         point along edges incident to that junction when those edges are
+         squared. The default is 8.66 in the units of the diagram's coordinate
+         system. This parameter is enabled when reshape_type is SQUARE_EDGES.
+     shift_between_edge_absolute {Linear Unit}:
+         The absolute spacing that will separate two edges. The default is 0.5
+         in the units of the diagram's coordinate system. This parameter is
+         enabled when reshape_type is SEPARATE_OVERLAPPING_EDGES.
+     angle_threshold {Double}:
+         The angle formed by the incident segments over which the vertex
+         related to these segments will be reduced. The wider the angle, the
+         fewer number of vertices will be reduced. The default is 160 degrees.
+         This parameter is enabled when reshape_type is
+         REDUCE_VERTICES_BY_ANGLE.
+     circular_arc_radius {Linear Unit}:
+         The radius of the circular arc that will be added to the crossing edge
+         locations. The default is 5.
+     circular_arc_position {String}:
+         Specifies the segment on which a circular arc will be placed.
 
-          * LEFT_OF_VERTICAL_SEGMENT-A circular arc will be placed to the left
-          of the vertical segment.
+         * LEFT_OF_VERTICAL_SEGMENT-A circular arc will be placed to the left
+         of the vertical segment.
 
-          * RIGHT_OF_VERTICAL_SEGMENT-A circular arc will be placed to the right
-          of the vertical segment.
+         * RIGHT_OF_VERTICAL_SEGMENT-A circular arc will be placed to the right
+         of the vertical segment.
 
-          * ABOVE_HORIZONTAL_SEGMENT-A circular arc will be placed above the
-          horizontal segment.
+         * ABOVE_HORIZONTAL_SEGMENT-A circular arc will be placed above the
+         horizontal segment.
 
-          * BELOW_HORIZONTAL_SEGMENT-A circular arc will be placed below the
-          horizontal segment.
-      run_async {Boolean}:
-          Specifies whether the layout algorithm will run asynchronously or
-          synchronously on the server.
+         * BELOW_HORIZONTAL_SEGMENT-A circular arc will be placed below the
+         horizontal segment.
+     run_async {Boolean}:
+         Specifies whether the layout algorithm will run asynchronously or
+         synchronously on the server.
 
-          * RUN_ASYNCHRONOUSLY-The layout algorithm will run asynchronously on
-          the server. This option dedicates server resources to run the layout
-          algorithm with a longer time-out. Running asynchronously is
-          recommended for layouts that are time consuming and may exceed the
-          server time-out (for example, Partial Overlapping Edges) and applying
-          to large diagrams (more than 25,000 features).
+         * RUN_ASYNCHRONOUSLY-The layout algorithm will run asynchronously on
+         the server. This option dedicates server resources to run the layout
+         algorithm with a longer time-out. Running asynchronously is
+         recommended for layouts that are time consuming and may exceed the
+         server time-out (for example, Partial Overlapping Edges) and applying
+         to large diagrams (more than 25,000 features).
 
-          * RUN_SYNCHRONOUSLY-The layout algorithm will run synchronously on the
-          server. It can fail without completion if it exceeds the service
-          default time-out value of 600 seconds. This is the default."""
+         * RUN_SYNCHRONOUSLY-The layout algorithm will run synchronously on the
+         server. It can fail without completion if it exceeds the service
+         default time-out value of 600 seconds. This is the default."""
     ...
-
