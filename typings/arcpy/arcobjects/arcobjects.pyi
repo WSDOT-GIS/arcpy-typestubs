@@ -2120,11 +2120,7 @@ class Result(mixins.ResultMixin, _BaseArcObject):
           index(Integer):
         The message index position."""
         ...
-    def getOutput(
-        self, index: int
-    ) -> (
-        RecordSet | str
-    ):  # -> conversion | int | float | complex | basestring | list[Unknown] | tuple[Unknown, ...] | dict[Unknown, Unknown]:
+    def getOutput(self, index: int) -> RecordSet | str:
         """Result.getOutput(index)
 
         Returns a given output, either as a recordset or a string.
