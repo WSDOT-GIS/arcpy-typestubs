@@ -486,9 +486,7 @@ class FieldInfo(mixins.FieldInfoMixin, _BaseArcObject):
          feature's attribute gets one-half of the value of the original
          object's attribute."""
         ...
-    def getFieldName(
-        self, *args
-    ):  # -> conversion | int | float | complex | basestring | list[Unknown] | tuple[Unknown, ...] | dict[Unknown, Unknown]:
+    def getFieldName(self, index: int) -> str:
         """FieldInfo.getFieldName(index)
 
         Gets the field name from the table by index position.
