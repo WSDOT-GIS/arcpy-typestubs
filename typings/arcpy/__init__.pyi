@@ -689,14 +689,14 @@ def AddMessage(
     The message to add."""
     ...
 
-MessageType = Literal["ERROR"] | Literal["INFORMATIVE"] | Literal["WARNING"]
+MessageType = Literal["INFORMATIVE", "WARNING", "ERROR"]
 
 def AddIDMessage(
     message_type: MessageType,
     message_ID: int,
     add_argument1: Optional[str | int | float] = None,
     add_argument2: Optional[str | int | float] = None,
-):
+) -> None:
     """AddIDMessage(message_type, message_ID, {add_argument1}, {add_argument2})
 
     Allows you to use system messages with a script tool.  A list of messages
