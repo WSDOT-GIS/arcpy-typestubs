@@ -155,154 +155,154 @@ See https://pro.arcgis.com/en/pro-app/latest/arcpy/geoprocessing_and_python/defi
 | XY Domain                          | GPXYDomain                    | A range of lowest and highest possible values for x,y-coordinates.                                                                                                                                                                           |
 | Z Domain                           | GPZDomain                     | A range of lowest and highest possible values for z-coordinates.                                                                                                                                                                             |
 """
-ParameterDataType = (
-    Literal["DEAddressLocator"]
-    | Literal["analysis_cell_size"]
-    | Literal["GPType"]
-    | Literal["DEMapDocument"]
-    | Literal["GPArealUnit"]
-    | Literal["GPBoolean"]
-    | Literal["DECadDrawingDataset"]
-    | Literal["GPCalculatorExpression"]
-    | Literal["GPCatalogLayer"]
-    | Literal["DECatalogRoot"]
-    | Literal["GPSACellSize"]
-    | Literal["GPCellSizeXY"]
-    | Literal["GPCompositeLayer"]
-    | Literal["GPSAGDBEnvCompression"]
-    | Literal["GPCoordinateSystem"]
-    | Literal["DESpatialReferencesFolder"]
-    | Literal["DECoverage"]
-    | Literal["DECoverageFeatureClasses"]
-    | Literal["DEType"]
-    | Literal["GPDataFile"]
-    | Literal["DERemoteDatabaseFolder"]
-    | Literal["DEDatasetType"]
-    | Literal["GPDate"]
-    | Literal["DEDbaseTable"]
-    | Literal["GP3DADecimate"]
-    | Literal["GPDiagramLayer"]
-    | Literal["DEDiskConnection"]
-    | Literal["GPDouble"]
-    | Literal["GPEncryptedString"]
-    | Literal["GPEnvelope"]
-    | Literal["GPEvaluationScale"]
-    | Literal["GPExtent"]
-    | Literal["GPSAExtractValues"]
-    | Literal["DEFeatureClass"]
-    | Literal["DEFeatureDataset"]
-    | Literal["GPFeatureLayer"]
-    | Literal["GPFeatureRecordSetLayer"]
-    | Literal["Field"]
-    | Literal["GPFieldInfo"]
-    | Literal["GPFieldMapping"]
-    | Literal["DEFile"]
-    | Literal["DEFolder"]
-    | Literal["GPRasterFormulated"]
-    | Literal["GPSAFuzzyFunction"]
-    | Literal["DEGeodatasetType"]
-    | Literal["DEGeoDataServer"]
-    | Literal["DEGeometricNetwork"]
-    | Literal["GPGALayer"]
-    | Literal["GPGASearchNeighborhood"]
-    | Literal["GPGAValueTable"]
-    | Literal["DEGlobeServer"]
-    | Literal["DEGPServer"]
-    | Literal["GPGraph"]
-    | Literal["GPGraphDataTable"]
-    | Literal["GPGroupLayer"]
-    | Literal["GPSAHorizontalFactor"]
-    | Literal["DEImageServer"]
-    | Literal["Index"]
-    | Literal["GPINFOExpression"]
-    | Literal["GPArcInfoItem"]
-    | Literal["DEArcInfoTable"]
-    | Literal["GPInternetTiledLayer"]
-    | Literal["GPKMLLayer"]
-    | Literal["DELasDataset"]
-    | Literal["GPLasDatasetLayer"]
-    | Literal["GPLayer"]
-    | Literal["DELayer"]
-    | Literal["GPLine"]
-    | Literal["GPLinearUnit"]
-    | Literal["GPLong"]
-    | Literal["GPMDomain"]
-    | Literal["GPMap"]
-    | Literal["DEMapServer"]
-    | Literal["GPMapServerLayer"]
-    | Literal["DEMosaicDataset"]
-    | Literal["GPMosaicLayer"]
-    | Literal["GPSANeighborhood"]
-    | Literal["NAClassFieldMap"]
-    | Literal["GPNAHierarchySettings"]
-    | Literal["GPNALayer"]
-    | Literal["GPNetworkDataSource"]
-    | Literal["DENetworkDataset"]
-    | Literal["GPNetworkDatasetLayer"]
-    | Literal["NetworkTravelMode"]
-    | Literal["DECadastralFabric"]
-    | Literal["GPCadastralFabricLayer"]
-    | Literal["GPPoint"]
-    | Literal["GPPolygon"]
-    | Literal["DEPrjFile"]
-    | Literal["GPSAGDBEnvPyramid"]
-    | Literal["GPSARadius"]
-    | Literal["GPRandomNumberGenerator"]
-    | Literal["DERasterBand"]
-    | Literal["GPRasterCalculatorExpression"]
-    | Literal["DERasterCatalog"]
-    | Literal["GPRasterCatalogLayer"]
-    | Literal["GPRasterDataLayer"]
-    | Literal["DERasterDataset"]
-    | Literal["GPRasterLayer"]
-    | Literal["GPSAGDBEnvStatistics"]
-    | Literal["GPRasterBuilder"]
-    | Literal["GPRecordSet"]
-    | Literal["DERelationshipClass"]
-    | Literal["GPSARemap"]
-    | Literal["GPRouteMeasureEventProperties"]
-    | Literal["GPSceneServiceLayer"]
-    | Literal["DESchematicDataset"]
-    | Literal["DESchematicDiagram"]
-    | Literal["DESchematicDiagramClass"]
-    | Literal["DESchematicFolder"]
-    | Literal["GPSchematicLayer"]
-    | Literal["GPSASemiVariogram"]
-    | Literal["DEServerConnection"]
-    | Literal["DEShapeFile"]
-    | Literal["GPSpatialReference"]
-    | Literal["GPSQLExpression"]
-    | Literal["GPString"]
-    | Literal["GPStringHidden"]
-    | Literal["DETable"]
-    | Literal["GPTableView"]
-    | Literal["GPTerrainLayer"]
-    | Literal["DETextfile"]
-    | Literal["GPSAGDBEnvTileSize"]
-    | Literal["GPSATimeConfiguration"]
-    | Literal["GPTimeUnit"]
-    | Literal["DETin"]
-    | Literal["GPTinLayer"]
-    | Literal["DETool"]
-    | Literal["DEToolbox"]
-    | Literal["GPSATopoFeatures"]
-    | Literal["DETopology"]
-    | Literal["GPTopologyLayer"]
-    | Literal["GPSATransformationFunction"]
-    | Literal["GPTrajectoryLayer"]
-    | Literal[" DEUtilityNetwork"]
-    | Literal["GPUtilityNetworkLayer"]
-    | Literal["GPValueTable"]
-    | Literal["GPVariant"]
-    | Literal["GPVectorLayer"]
-    | Literal["GPSAVerticalFactor"]
-    | Literal["DEVPFCoverage"]
-    | Literal["DEVPFTable"]
-    | Literal["DEWCSCoverage"]
-    | Literal["GPSAWeightedOverlayTable"]
-    | Literal["GPSAWeightedSum"]
-    | Literal["DEWMSMap"]
-    | Literal["DEWorkspace"]
-    | Literal["GPXYDomain"]
-    | Literal["GPZDomain"]
-)
+ParameterDataType = Literal[
+    "DEAddressLocator",
+    "analysis_cell_size",
+    "GPType",
+    "DEMapDocument",
+    "GPArealUnit",
+    "GPBoolean",
+    "DECadDrawingDataset",
+    "GPCalculatorExpression",
+    "GPCatalogLayer",
+    "DECatalogRoot",
+    "GPSACellSize",
+    "GPCellSizeXY",
+    "GPCompositeLayer",
+    "GPSAGDBEnvCompression",
+    "GPCoordinateSystem",
+    "DESpatialReferencesFolder",
+    "DECoverage",
+    "DECoverageFeatureClasses",
+    "DEType",
+    "GPDataFile",
+    "DERemoteDatabaseFolder",
+    "DEDatasetType",
+    "GPDate",
+    "DEDbaseTable",
+    "GP3DADecimate",
+    "GPDiagramLayer",
+    "DEDiskConnection",
+    "GPDouble",
+    "GPEncryptedString",
+    "GPEnvelope",
+    "GPEvaluationScale",
+    "GPExtent",
+    "GPSAExtractValues",
+    "DEFeatureClass",
+    "DEFeatureDataset",
+    "GPFeatureLayer",
+    "GPFeatureRecordSetLayer",
+    "Field",
+    "GPFieldInfo",
+    "GPFieldMapping",
+    "DEFile",
+    "DEFolder",
+    "GPRasterFormulated",
+    "GPSAFuzzyFunction",
+    "DEGeodatasetType",
+    "DEGeoDataServer",
+    "DEGeometricNetwork",
+    "GPGALayer",
+    "GPGASearchNeighborhood",
+    "GPGAValueTable",
+    "DEGlobeServer",
+    "DEGPServer",
+    "GPGraph",
+    "GPGraphDataTable",
+    "GPGroupLayer",
+    "GPSAHorizontalFactor",
+    "DEImageServer",
+    "Index",
+    "GPINFOExpression",
+    "GPArcInfoItem",
+    "DEArcInfoTable",
+    "GPInternetTiledLayer",
+    "GPKMLLayer",
+    "DELasDataset",
+    "GPLasDatasetLayer",
+    "GPLayer",
+    "DELayer",
+    "GPLine",
+    "GPLinearUnit",
+    "GPLong",
+    "GPMDomain",
+    "GPMap",
+    "DEMapServer",
+    "GPMapServerLayer",
+    "DEMosaicDataset",
+    "GPMosaicLayer",
+    "GPSANeighborhood",
+    "NAClassFieldMap",
+    "GPNAHierarchySettings",
+    "GPNALayer",
+    "GPNetworkDataSource",
+    "DENetworkDataset",
+    "GPNetworkDatasetLayer",
+    "NetworkTravelMode",
+    "DECadastralFabric",
+    "GPCadastralFabricLayer",
+    "GPPoint",
+    "GPPolygon",
+    "DEPrjFile",
+    "GPSAGDBEnvPyramid",
+    "GPSARadius",
+    "GPRandomNumberGenerator",
+    "DERasterBand",
+    "GPRasterCalculatorExpression",
+    "DERasterCatalog",
+    "GPRasterCatalogLayer",
+    "GPRasterDataLayer",
+    "DERasterDataset",
+    "GPRasterLayer",
+    "GPSAGDBEnvStatistics",
+    "GPRasterBuilder",
+    "GPRecordSet",
+    "DERelationshipClass",
+    "GPSARemap",
+    "GPRouteMeasureEventProperties",
+    "GPSceneServiceLayer",
+    "DESchematicDataset",
+    "DESchematicDiagram",
+    "DESchematicDiagramClass",
+    "DESchematicFolder",
+    "GPSchematicLayer",
+    "GPSASemiVariogram",
+    "DEServerConnection",
+    "DEShapeFile",
+    "GPSpatialReference",
+    "GPSQLExpression",
+    "GPString",
+    "GPStringHidden",
+    "DETable",
+    "GPTableView",
+    "GPTerrainLayer",
+    "DETextfile",
+    "GPSAGDBEnvTileSize",
+    "GPSATimeConfiguration",
+    "GPTimeUnit",
+    "DETin",
+    "GPTinLayer",
+    "DETool",
+    "DEToolbox",
+    "GPSATopoFeatures",
+    "DETopology",
+    "GPTopologyLayer",
+    "GPSATransformationFunction",
+    "GPTrajectoryLayer",
+    "DEUtilityNetwork",
+    "GPUtilityNetworkLayer",
+    "GPValueTable",
+    "GPVariant",
+    "GPVectorLayer",
+    "GPSAVerticalFactor",
+    "DEVPFCoverage",
+    "DEVPFTable",
+    "DEWCSCoverage",
+    "GPSAWeightedOverlayTable",
+    "GPSAWeightedSum",
+    "DEWMSMap",
+    "DEWorkspace",
+    "GPXYDomain",
+    "GPZDomain",
+]

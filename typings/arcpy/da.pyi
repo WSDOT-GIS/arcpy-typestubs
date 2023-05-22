@@ -121,10 +121,13 @@ class SearchCursor:
         in_table: str,
         field_names: str | Sequence[str | SpecialFieldName | Literal["*"]],
         where_clause: str | None = None,
+        spatial_reference: SpatialReference | str | None = None,
         explode_to_points: bool = False,
         sql_clause: SqlClause = SqlClause(None, None),
         datum_transformation: str | None = None,
     ) -> None: ...
+    def __enter__(self) -> None: ...
+    def __exit__(self) -> None: ...
 
 # Classes
 
