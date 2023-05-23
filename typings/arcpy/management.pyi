@@ -7407,8 +7407,8 @@ def CreateDatabaseView(
 
 @gptooldoc("Delete_management", None)
 def Delete(
-    in_data=..., data_type=...
-):  # -> conversion | int | float | complex | basestring | list[Unknown] | tuple[Unknown, ...] | dict[Unknown, Unknown]:
+    in_data: str, data_type: str | None = None
+) -> Result:
     """Delete_management(in_data;in_data..., {data_type})
 
        Permanently deletes data. All types of geographic data supported by
