@@ -2,7 +2,8 @@
 Data Access Module
 """
 
-from typing import Any, Generator, NamedTuple, Optional, Sequence, Literal, Callable
+from typing import Any, Generator, NamedTuple, Optional, Sequence, Callable
+from typing_extensions import Literal
 import numpy
 import pyarrow
 from . import Field, SpatialReference

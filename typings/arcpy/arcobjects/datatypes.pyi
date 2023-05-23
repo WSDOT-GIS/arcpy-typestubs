@@ -1,4 +1,4 @@
-from typing import Literal
+from typing_extensions import Literal
 
 """
 See https://pro.arcgis.com/en/pro-app/latest/arcpy/geoprocessing_and_python/defining-parameter-data-types-in-a-python-toolbox.htm
