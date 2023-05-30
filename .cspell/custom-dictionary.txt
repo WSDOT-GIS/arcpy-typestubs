@@ -4,8 +4,13 @@ arcgis
 arcgispro
 arcpy
 atbx
+dtype
 geodb
+ndarray
 progressor
+pyarrow
 scripting
 SDE
 SQL
+Thiessen
+WKID

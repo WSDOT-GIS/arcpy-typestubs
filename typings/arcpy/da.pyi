@@ -3,7 +3,7 @@ Data Access Module
 """
 
 from typing import Any, Generator, NamedTuple, Optional, Sequence, Callable
-from typing_extensions import Literal
+from typing_extensions import Literal, Self
 import numpy
 import pyarrow
 from . import Field, SpatialReference
@@ -72,10 +72,10 @@ def CreateTable(
       path (String): full path to new table
       fields: define new fields
          1. numpy.dtype() records
-         2. sequance of arcpy.arcobjects.arcobjects.Field, the same as da.Describe()['fields']
-         3. sequance of field descriptions (Field Name, Field Type, Field Alias=None, Field Length=None, IsNullable=True, Default Value = None), the same as arcpy.management.AddFields
+         2. sequence of arcpy.arcobjects.arcobjects.Field, the same as da.Describe()['fields']
+         3. sequence of field descriptions (Field Name, Field Type, Field Alias=None, Field Length=None, IsNullable=True, Default Value = None), the same as arcpy.management.AddFields
       shape:
-        define Shape field. Geometry type (String) or a tuple of (geometry_type, spacialreference=None, has_z=False, has_m=False)
+        define Shape field. Geometry type (String) or a tuple of (geometry_type, spatial_reference=None, has_z=False, has_m=False)
         Spacial Reference can be: WKID, string, or arcpy.SpatialReference()
       configuration {String}:
         the configuration keyword applies to enterprise geodatabase
@@ -87,8 +87,10 @@ def CreateTable(
 
 class __Cursor__:
     def __init__(self) -> None: ...
+    def __enter__(self) -> Self: ...
+    def __exit__(self, exc_type: type, exc_value: Any, traceback: Any) -> bool: ...
 
-class InsertCursor:
+class InsertCursor(__Cursor__):
     def __init__(
         self,
         in_table: str,
@@ -98,13 +100,10 @@ class InsertCursor:
         sql_clause: SqlClause = SqlClause(None, None),
         datum_transformation: str | None = None,
         explicit: bool | Sequence[bool] = False,
-    ) -> None:
-        def insertRow(row: Sequence[Any] | Sequence[Sequence[Any]]) -> int: ...
+    ) -> None: ...
+    def insertRow(self, row: Sequence[Any] | Sequence[Sequence[Any]]) -> int: ...
 
-    def __enter__(self) -> InsertCursor: ...
-    def __exit__(self, exc_type: type, exc_value: Any, traceback: Any) -> bool: ...
-
-class UpdateCursor:
+class UpdateCursor(__Cursor__):
     def __init__(
         self,
         in_table: str,
@@ -116,7 +115,7 @@ class UpdateCursor:
         explicit: bool | Sequence[bool] = False,
     ) -> None: ...
 
-class SearchCursor:
+class SearchCursor(__Cursor__):
     def __init__(
         self,
         in_table: str,
@@ -127,8 +126,6 @@ class SearchCursor:
         sql_clause: SqlClause = SqlClause(None, None),
         datum_transformation: str | None = None,
     ) -> None: ...
-    def __enter__(self) -> None: ...
-    def __exit__(self) -> None: ...
 
 # Classes
 
@@ -176,7 +173,9 @@ def NumPyArrayToFeatureClass(
     """
     ...
 
-def NumPyArrayToTable(*args: Sequence[Any], **kwargs: dict[str, Any]) -> Any: ...
+def NumPyArrayToTable(*args: Sequence[Any], **kwargs: dict[str, Any]) -> Any:
+    ...
+
 def TableToArrowTable(
     in_table: str, field_names: str = "", where_clause: str = ""
 ) -> pyarrow.Table:  # type: ignore
@@ -190,7 +189,9 @@ def TableToArrowTable(
 
 def TableToNumPyArray(
     *args: Sequence[Any], **kwargs: dict[str, Any]
-) -> numpy.ndarray: ...
+) -> numpy.ndarray:
+    ...
+
 def Walk(
     top: str,
     topdown: bool = True,
