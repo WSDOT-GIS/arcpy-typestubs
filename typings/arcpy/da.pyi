@@ -54,9 +54,11 @@ class CreateTableResult(NamedTuple):
     path: str
     field_names: list[str]
 
-class SqlClause(NamedTuple):
-    prefix: Literal["DISTINCT", "TOP"] | None
-    postfix: Literal["ORDER BY", "GROUP BY"] | None
+# class SqlClause(NamedTuple):
+#     prefix: Literal["DISTINCT", "TOP"] | None
+#     postfix: Literal["ORDER BY", "GROUP BY"] | None
+
+SqlClause = tuple[str | None, str | None]
 
 def CreateTable(
     path: str,
@@ -97,7 +99,7 @@ class InsertCursor(__Cursor__):
         field_names: str | Sequence[str | SpecialFieldName | Literal["*"]],
         where_clause: str | None = None,
         explode_to_points: bool = False,
-        sql_clause: SqlClause = SqlClause(None, None),
+        sql_clause: SqlClause = (None, None),
         datum_transformation: str | None = None,
         explicit: bool | Sequence[bool] = False,
     ) -> None: ...
@@ -110,7 +112,7 @@ class UpdateCursor(__Cursor__):
         field_names: str | Sequence[str | SpecialFieldName | Literal["*"]],
         where_clause: str | None = None,
         explode_to_points: bool = False,
-        sql_clause: SqlClause = SqlClause(None, None),
+        sql_clause: SqlClause = (None, None),
         datum_transformation: str | None = None,
         explicit: bool | Sequence[bool] = False,
     ) -> None: ...
@@ -123,9 +125,11 @@ class SearchCursor(__Cursor__):
         where_clause: str | None = None,
         spatial_reference: SpatialReference | str | None = None,
         explode_to_points: bool = False,
-        sql_clause: SqlClause = SqlClause(None, None),
+        sql_clause: tuple[Optional[str], Optional[str]] = (None, None),
         datum_transformation: str | None = None,
     ) -> None: ...
+    def __iter__(self) -> ...: ...
+    def __next__(self) -> ...: ...
 
 # Classes
 
@@ -173,9 +177,7 @@ def NumPyArrayToFeatureClass(
     """
     ...
 
-def NumPyArrayToTable(*args: Sequence[Any], **kwargs: dict[str, Any]) -> Any:
-    ...
-
+def NumPyArrayToTable(*args: Sequence[Any], **kwargs: dict[str, Any]) -> Any: ...
 def TableToArrowTable(
     in_table: str, field_names: str = "", where_clause: str = ""
 ) -> pyarrow.Table:  # type: ignore
@@ -189,9 +191,7 @@ def TableToArrowTable(
 
 def TableToNumPyArray(
     *args: Sequence[Any], **kwargs: dict[str, Any]
-) -> numpy.ndarray:
-    ...
-
+) -> numpy.ndarray: ...
 def Walk(
     top: str,
     topdown: bool = True,
