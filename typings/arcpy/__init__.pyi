@@ -1191,9 +1191,7 @@ def SetParameterAsText(
 
 def GetParameter(
     index: int,
-) -> (
-    Any
-):  # -> conversion | int | float | complex | basestring | list[Unknown] | tuple[Unknown, ...] | dict[Unknown, Unknown]:
+) -> Any:
     """GetParameter(index)
 
     From the parameter list, select the desired parameter by its index value.
