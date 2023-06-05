@@ -27,15 +27,15 @@ from .toolbox import *
 from .toolbox_linux import *
 from .arcobjects import *
 
-from arcgisscripting import (
-    ClearCredentials as _ClearCredentials,
-    ExecuteError,
-    ExecuteWarning,
-    ImportCredentials as _ImportCredentials,
-    NumPyArrayToRaster as _NumPyArrayToRaster,
-    RasterToNumPyArray as _RasterToNumPyArray,
-    SignInToPortal as _SignInToPortal,
-)
+# from arcgisscripting import (
+#     ClearCredentials as _ClearCredentials,
+#     ExecuteError,
+#     ExecuteWarning,
+#     ImportCredentials as _ImportCredentials,
+#     NumPyArrayToRaster as _NumPyArrayToRaster,
+#     RasterToNumPyArray as _RasterToNumPyArray,
+#     SignInToPortal as _SignInToPortal,
+# )
 from . import metadata, mp, nax, sharing
 from .charts import Chart
 from .sa import Raster, RasterInfo
@@ -48,409 +48,431 @@ from . import management
 #  names = [d for d in dir(management) if not d.startswith("_")]
 # stmts = [f"{n} as {n}_management" for n in names]
 
-from management import (
-    Add3DFormats as Add3DFormats_management,
-    AddAttachments as AddAttachments_management,
-    AddAttributeRule as AddAttributeRule_management,
-    AddCodedValueToDomain as AddCodedValueToDomain_management,
-    AddColormap as AddColormap_management,
-    AddContingentValue as AddContingentValue_management,
-    AddDataToTrajectoryDataset as AddDataToTrajectoryDataset_management,
-    AddFeatureClassToTopology as AddFeatureClassToTopology_management,
-    AddField as AddField_management,
-    AddFieldConflictFilter as AddFieldConflictFilter_management,
-    AddFields as AddFields_management,
-    AddFilesToLasDataset as AddFilesToLasDataset_management,
-    AddGPSMetadataFields as AddGPSMetadataFields_management,
-    AddGeometryAttributes as AddGeometryAttributes_management,
-    AddGlobalIDs as AddGlobalIDs_management,
-    AddIncrementingIDField as AddIncrementingIDField_management,
-    AddIndex as AddIndex_management,
-    AddItemsToCatalogDataset as AddItemsToCatalogDataset_management,
-    AddJoin as AddJoin_management,
-    AddPortalItemsToCatalogDataset as AddPortalItemsToCatalogDataset_management,
-    AddRastersToMosaicDataset as AddRastersToMosaicDataset_management,
-    AddRelate as AddRelate_management,
-    AddRuleToRelationshipClass as AddRuleToRelationshipClass_management,
-    AddRuleToTopology as AddRuleToTopology_management,
-    AddSpatialIndex as AddSpatialIndex_management,
-    AddSpatialJoin as AddSpatialJoin_management,
-    AddSubtype as AddSubtype_management,
-    AddXY as AddXY_management,
-    Adjust3DZ as Adjust3DZ_management,
-    AlterAttributeRule as AlterAttributeRule_management,
-    AlterDomain as AlterDomain_management,
-    AlterField as AlterField_management,
-    AlterFieldGroup as AlterFieldGroup_management,
-    AlterMosaicDatasetSchema as AlterMosaicDatasetSchema_management,
-    AlterVersion as AlterVersion_management,
-    Analyze as Analyze_management,
-    AnalyzeControlPoints as AnalyzeControlPoints_management,
-    AnalyzeDatasets as AnalyzeDatasets_management,
-    AnalyzeMosaicDataset as AnalyzeMosaicDataset_management,
-    AnalyzeToolboxForVersion as AnalyzeToolboxForVersion_management,
-    AnalyzeToolsForPro as AnalyzeToolsForPro_management,
-    Append as Append_management,
-    AppendAnnotation as AppendAnnotation_management,
-    AppendControlPoints as AppendControlPoints_management,
-    ApplyBlockAdjustment as ApplyBlockAdjustment_management,
-    ApplySymbologyFromLayer as ApplySymbologyFromLayer_management,
-    AssignDefaultToField as AssignDefaultToField_management,
-    AssignDomainToField as AssignDomainToField_management,
-    BatchBuildPyramids as BatchBuildPyramids_management,
-    BatchCalculateStatistics as BatchCalculateStatistics_management,
-    BatchProject as BatchProject_management,
-    BatchUpdateFields as BatchUpdateFields_management,
-    BearingDistanceToLine as BearingDistanceToLine_management,
-    BuildBoundary as BuildBoundary_management,
-    BuildFootprints as BuildFootprints_management,
-    BuildLasDatasetPyramid as BuildLasDatasetPyramid_management,
-    BuildMosaicDatasetItemCache as BuildMosaicDatasetItemCache_management,
-    BuildMultidimensionalInfo as BuildMultidimensionalInfo_management,
-    BuildMultidimensionalTranspose as BuildMultidimensionalTranspose_management,
-    BuildOverviews as BuildOverviews_management,
-    BuildPyramids as BuildPyramids_management,
-    BuildPyramidsandStatistics as BuildPyramidsandStatistics_management,
-    BuildRasterAttributeTable as BuildRasterAttributeTable_management,
-    BuildSeamlines as BuildSeamlines_management,
-    BuildStereoModel as BuildStereoModel_management,
-    CalculateCellSizeRanges as CalculateCellSizeRanges_management,
-    CalculateDefaultClusterTolerance as CalculateDefaultClusterTolerance_management,
-    CalculateDefaultGridIndex as CalculateDefaultGridIndex_management,
-    CalculateEndTime as CalculateEndTime_management,
-    CalculateField as CalculateField_management,
-    CalculateFields as CalculateFields_management,
-    CalculateGeometryAttributes as CalculateGeometryAttributes_management,
-    CalculateStatistics as CalculateStatistics_management,
-    CalculateValue as CalculateValue_management,
-    ChangePrivileges as ChangePrivileges_management,
-    ChangeVersion as ChangeVersion_management,
-    CheckGeometry as CheckGeometry_management,
-    ClearPixelCache as ClearPixelCache_management,
-    ClearWorkspaceCache as ClearWorkspaceCache_management,
-    Clip as Clip_management,
-    ColorBalanceMosaicDataset as ColorBalanceMosaicDataset_management,
-    Compact as Compact_management,
-    CompareReplicaSchema as CompareReplicaSchema_management,
-    CompositeBands as CompositeBands_management,
-    Compress as Compress_management,
-    CompressFileGeodatabaseData as CompressFileGeodatabaseData_management,
-    ComputeBlockAdjustment as ComputeBlockAdjustment_management,
-    ComputeCameraModel as ComputeCameraModel_management,
-    ComputeControlPoints as ComputeControlPoints_management,
-    ComputeDirtyArea as ComputeDirtyArea_management,
-    ComputeFiducials as ComputeFiducials_management,
-    ComputeMosaicCandidates as ComputeMosaicCandidates_management,
-    ComputePansharpenWeights as ComputePansharpenWeights_management,
-    ComputeTiePoints as ComputeTiePoints_management,
-    ConfigureGeodatabaseLogFileTables as ConfigureGeodatabaseLogFileTables_management,
-    ConsolidateLayer as ConsolidateLayer_management,
-    ConsolidateLocator as ConsolidateLocator_management,
-    ConsolidateMap as ConsolidateMap_management,
-    ConsolidateProject as ConsolidateProject_management,
-    ConsolidateToolbox as ConsolidateToolbox_management,
-    ConvertCoordinateNotation as ConvertCoordinateNotation_management,
-    ConvertRasterFunctionTemplate as ConvertRasterFunctionTemplate_management,
-    ConvertTimeField as ConvertTimeField_management,
-    ConvertTimeZone as ConvertTimeZone_management,
-    Copy as Copy_management,
-    CopyFeatures as CopyFeatures_management,
-    CopyRaster as CopyRaster_management,
-    CopyRows as CopyRows_management,
-    Create3DObjectSceneLayerPackage as Create3DObjectSceneLayerPackage_management,
-    CreateBuildingSceneLayerPackage as CreateBuildingSceneLayerPackage_management,
-    CreateCatalogDataset as CreateCatalogDataset_management,
-    CreateCloudStorageConnectionFile as CreateCloudStorageConnectionFile_management,
-    CreateColorComposite as CreateColorComposite_management,
-    CreateConnectionString as CreateConnectionString_management,
-    CreateCustomGeoTransformation as CreateCustomGeoTransformation_management,
-    CreateDatabaseConnection as CreateDatabaseConnection_management,
-    CreateDatabaseConnectionString as CreateDatabaseConnectionString_management,
-    CreateDatabaseSequence as CreateDatabaseSequence_management,
-    CreateDatabaseUser as CreateDatabaseUser_management,
-    CreateDatabaseView as CreateDatabaseView_management,
-    CreateDomain as CreateDomain_management,
-    CreateEnterpriseGeodatabase as CreateEnterpriseGeodatabase_management,
-    CreateFeatureDataset as CreateFeatureDataset_management,
-    CreateFeatureclass as CreateFeatureclass_management,
-    CreateFieldGroup as CreateFieldGroup_management,
-    CreateFileGDB as CreateFileGDB_management,
-    CreateFishnet as CreateFishnet_management,
-    CreateFolder as CreateFolder_management,
-    CreateIntegratedMeshSceneLayerPackage as CreateIntegratedMeshSceneLayerPackage_management,
-    CreateLasDataset as CreateLasDataset_management,
-    CreateMapTilePackage as CreateMapTilePackage_management,
-    CreateMobileGDB as CreateMobileGDB_management,
-    CreateMobileMapPackage as CreateMobileMapPackage_management,
-    CreateMobileScenePackage as CreateMobileScenePackage_management,
-    CreateMosaicDataset as CreateMosaicDataset_management,
-    CreateOrthoCorrectedRasterDataset as CreateOrthoCorrectedRasterDataset_management,
-    CreatePansharpenedRasterDataset as CreatePansharpenedRasterDataset_management,
-    CreatePointCloudSceneLayerPackage as CreatePointCloudSceneLayerPackage_management,
-    CreatePointSceneLayerPackage as CreatePointSceneLayerPackage_management,
-    CreateRandomPoints as CreateRandomPoints_management,
-    CreateRandomRaster as CreateRandomRaster_management,
-    CreateRasterDataset as CreateRasterDataset_management,
-    CreateRasterType as CreateRasterType_management,
-    CreateReferencedMosaicDataset as CreateReferencedMosaicDataset_management,
-    CreateRelationshipClass as CreateRelationshipClass_management,
-    CreateReplica as CreateReplica_management,
-    CreateReplicaFromServer as CreateReplicaFromServer_management,
-    CreateRole as CreateRole_management,
-    CreateSQLiteDatabase as CreateSQLiteDatabase_management,
-    CreateSceneLayerPackage as CreateSceneLayerPackage_management,
-    CreateSpatialReference as CreateSpatialReference_management,
-    CreateSpatialType as CreateSpatialType_management,
-    CreateTable as CreateTable_management,
-    CreateTopology as CreateTopology_management,
-    CreateTrajectoryDataset as CreateTrajectoryDataset_management,
-    CreateUnRegisteredFeatureclass as CreateUnRegisteredFeatureclass_management,
-    CreateUnRegisteredTable as CreateUnRegisteredTable_management,
-    CreateVectorTileIndex as CreateVectorTileIndex_management,
-    CreateVectorTilePackage as CreateVectorTilePackage_management,
-    CreateVersion as CreateVersion_management,
-    CreateVersionedView as CreateVersionedView_management,
-    CreateVoxelSceneLayerContent as CreateVoxelSceneLayerContent_management,
-    DefineMosaicDatasetNoData as DefineMosaicDatasetNoData_management,
-    DefineOverviews as DefineOverviews_management,
-    DefineProjection as DefineProjection_management,
-    Delete as Delete_management,
-    DeleteAttributeRule as DeleteAttributeRule_management,
-    DeleteCodedValueFromDomain as DeleteCodedValueFromDomain_management,
-    DeleteColormap as DeleteColormap_management,
-    DeleteDatabaseSequence as DeleteDatabaseSequence_management,
-    DeleteDomain as DeleteDomain_management,
-    DeleteFeatures as DeleteFeatures_management,
-    DeleteField as DeleteField_management,
-    DeleteFieldGroup as DeleteFieldGroup_management,
-    DeleteIdentical as DeleteIdentical_management,
-    DeleteMosaicDataset as DeleteMosaicDataset_management,
-    DeleteRasterAttributeTable as DeleteRasterAttributeTable_management,
-    DeleteRows as DeleteRows_management,
-    DeleteSchemaGeodatabase as DeleteSchemaGeodatabase_management,
-    DeleteVersion as DeleteVersion_management,
-    DetectFeatureChanges as DetectFeatureChanges_management,
-    DiagnoseVersionMetadata as DiagnoseVersionMetadata_management,
-    DiagnoseVersionTables as DiagnoseVersionTables_management,
-    Dice as Dice_management,
-    DisableArchiving as DisableArchiving_management,
-    DisableAttachments as DisableAttachments_management,
-    DisableAttributeRules as DisableAttributeRules_management,
-    DisableCOGO as DisableCOGO_management,
-    DisableEditorTracking as DisableEditorTracking_management,
-    DisableFeatureBinning as DisableFeatureBinning_management,
-    DisableReplicaTracking as DisableReplicaTracking_management,
-    Dissolve as Dissolve_management,
-    DomainToTable as DomainToTable_management,
-    DowngradeAttachments as DowngradeAttachments_management,
-    DownloadRasters as DownloadRasters_management,
-    EditRasterFunction as EditRasterFunction_management,
-    Eliminate as Eliminate_management,
-    EliminatePolygonPart as EliminatePolygonPart_management,
-    EnableArchiving as EnableArchiving_management,
-    EnableAttachments as EnableAttachments_management,
-    EnableAttributeRules as EnableAttributeRules_management,
-    EnableCOGO as EnableCOGO_management,
-    EnableEditorTracking as EnableEditorTracking_management,
-    EnableEnterpriseGeodatabase as EnableEnterpriseGeodatabase_management,
-    EnableFeatureBinning as EnableFeatureBinning_management,
-    EnableReplicaTracking as EnableReplicaTracking_management,
-    EncodeField as EncodeField_management,
-    EvaluateRules as EvaluateRules_management,
-    ExportAcknowledgementMessage as ExportAcknowledgementMessage_management,
-    ExportAttributeRules as ExportAttributeRules_management,
-    ExportContingentValues as ExportContingentValues_management,
-    ExportDataChangeMessage as ExportDataChangeMessage_management,
-    ExportFrameAndCameraParameters as ExportFrameAndCameraParameters_management,
-    ExportGeodatabaseConfigurationKeywords as ExportGeodatabaseConfigurationKeywords_management,
-    ExportMosaicDatasetGeometry as ExportMosaicDatasetGeometry_management,
-    ExportMosaicDatasetItems as ExportMosaicDatasetItems_management,
-    ExportMosaicDatasetPaths as ExportMosaicDatasetPaths_management,
-    ExportRasterWorldFile as ExportRasterWorldFile_management,
-    ExportReplicaSchema as ExportReplicaSchema_management,
-    ExportReportToPDF as ExportReportToPDF_management,
-    ExportTileCache as ExportTileCache_management,
-    ExportTopologyErrors as ExportTopologyErrors_management,
-    ExportXMLWorkspaceDocument as ExportXMLWorkspaceDocument_management,
-    ExtractPackage as ExtractPackage_management,
-    ExtractSubDataset as ExtractSubDataset_management,
-    FeatureCompare as FeatureCompare_management,
-    FeatureEnvelopeToPolygon as FeatureEnvelopeToPolygon_management,
-    FeatureToLine as FeatureToLine_management,
-    FeatureToPoint as FeatureToPoint_management,
-    FeatureToPolygon as FeatureToPolygon_management,
-    FeatureVerticesToPoints as FeatureVerticesToPoints_management,
-    FieldStatisticsToTable as FieldStatisticsToTable_management,
-    FileCompare as FileCompare_management,
-    FindIdentical as FindIdentical_management,
-    Flip as Flip_management,
-    GenerateAttachmentMatchTable as GenerateAttachmentMatchTable_management,
-    GenerateBlockAdjustmentReport as GenerateBlockAdjustmentReport_management,
-    GenerateExcludeArea as GenerateExcludeArea_management,
-    GenerateFgdbLicense as GenerateFgdbLicense_management,
-    GenerateLicensedFgdb as GenerateLicensedFgdb_management,
-    GeneratePointCloud as GeneratePointCloud_management,
-    GeneratePointsAlongLines as GeneratePointsAlongLines_management,
-    GenerateRasterCollection as GenerateRasterCollection_management,
-    GenerateRasterFromRasterFunction as GenerateRasterFromRasterFunction_management,
-    GenerateRectanglesAlongLines as GenerateRectanglesAlongLines_management,
-    GenerateTableFromRasterFunction as GenerateTableFromRasterFunction_management,
-    GenerateTessellation as GenerateTessellation_management,
-    GenerateTileCacheTilingScheme as GenerateTileCacheTilingScheme_management,
-    GenerateTransectsAlongLines as GenerateTransectsAlongLines_management,
-    GeoTaggedPhotosToPoints as GeoTaggedPhotosToPoints_management,
-    GeodeticDensify as GeodeticDensify_management,
-    GetCellValue as GetCellValue_management,
-    GetCount as GetCount_management,
-    GetRasterProperties as GetRasterProperties_management,
-    ImportAttributeRules as ImportAttributeRules_management,
-    ImportContingentValues as ImportContingentValues_management,
-    ImportGeodatabaseConfigurationKeywords as ImportGeodatabaseConfigurationKeywords_management,
-    ImportMessage as ImportMessage_management,
-    ImportMosaicDatasetGeometry as ImportMosaicDatasetGeometry_management,
-    ImportReplicaSchema as ImportReplicaSchema_management,
-    ImportTileCache as ImportTileCache_management,
-    ImportXMLWorkspaceDocument as ImportXMLWorkspaceDocument_management,
-    Integrate as Integrate_management,
-    InterpolateFromPointCloud as InterpolateFromPointCloud_management,
-    JoinField as JoinField_management,
-    LasDatasetStatistics as LasDatasetStatistics_management,
-    LasPointStatsAsRaster as LasPointStatsAsRaster_management,
-    MakeAggregationQueryLayer as MakeAggregationQueryLayer_management,
-    MakeBuildingLayer as MakeBuildingLayer_management,
-    MakeFeatureLayer as MakeFeatureLayer_management,
-    MakeImageServerLayer as MakeImageServerLayer_management,
-    MakeLasDatasetLayer as MakeLasDatasetLayer_management,
-    MakeMosaicLayer as MakeMosaicLayer_management,
-    MakeQueryLayer as MakeQueryLayer_management,
-    MakeQueryTable as MakeQueryTable_management,
-    MakeRasterLayer as MakeRasterLayer_management,
-    MakeSceneLayer as MakeSceneLayer_management,
-    MakeTableView as MakeTableView_management,
-    MakeTinLayer as MakeTinLayer_management,
-    MakeTrajectoryLayer as MakeTrajectoryLayer_management,
-    MakeWCSLayer as MakeWCSLayer_management,
-    MakeXYEventLayer as MakeXYEventLayer_management,
-    ManageFeatureBinCache as ManageFeatureBinCache_management,
-    ManageTileCache as ManageTileCache_management,
-    MatchControlPoints as MatchControlPoints_management,
-    MatchLayerSymbologyToAStyle as MatchLayerSymbologyToAStyle_management,
-    MatchPhotosToRowsByTime as MatchPhotosToRowsByTime_management,
-    Merge as Merge_management,
-    MergeMosaicDatasetItems as MergeMosaicDatasetItems_management,
-    MigrateObjectIDTo64Bit as MigrateObjectIDTo64Bit_management,
-    MigrateRelationshipClass as MigrateRelationshipClass_management,
-    MigrateStorage as MigrateStorage_management,
-    MinimumBoundingGeometry as MinimumBoundingGeometry_management,
-    Mirror as Mirror_management,
-    Mosaic as Mosaic_management,
-    MosaicDatasetToMobileMosaicDataset as MosaicDatasetToMobileMosaicDataset_management,
-    MosaicToNewRaster as MosaicToNewRaster_management,
-    MultipartToSinglepart as MultipartToSinglepart_management,
-    PackageLayer as PackageLayer_management,
-    PackageLocator as PackageLocator_management,
-    PackageMap as PackageMap_management,
-    PackageProject as PackageProject_management,
-    PackageResult as PackageResult_management,
-    PivotTable as PivotTable_management,
-    PointsToLine as PointsToLine_management,
-    PolygonToLine as PolygonToLine_management,
-    Project as Project_management,
-    ProjectRaster as ProjectRaster_management,
-    RasterCompare as RasterCompare_management,
-    RasterToDTED as RasterToDTED_management,
-    ReExportUnacknowledgedMessages as ReExportUnacknowledgedMessages_management,
-    RebuildIndexes as RebuildIndexes_management,
-    RecalculateFeatureClassExtent as RecalculateFeatureClassExtent_management,
-    ReclassifyField as ReclassifyField_management,
-    ReconcileVersion as ReconcileVersion_management,
-    ReconcileVersions as ReconcileVersions_management,
-    RecoverFileGDB as RecoverFileGDB_management,
-    RefreshExcel as RefreshExcel_management,
-    RegisterAsVersioned as RegisterAsVersioned_management,
-    RegisterRaster as RegisterRaster_management,
-    RegisterWithGeodatabase as RegisterWithGeodatabase_management,
-    Remove3DFormats as Remove3DFormats_management,
-    RemoveAttachments as RemoveAttachments_management,
-    RemoveContingentValue as RemoveContingentValue_management,
-    RemoveDomainFromField as RemoveDomainFromField_management,
-    RemoveFeatureClassFromTopology as RemoveFeatureClassFromTopology_management,
-    RemoveFieldConflictFilter as RemoveFieldConflictFilter_management,
-    RemoveFilesFromLasDataset as RemoveFilesFromLasDataset_management,
-    RemoveIndex as RemoveIndex_management,
-    RemoveJoin as RemoveJoin_management,
-    RemoveRastersFromMosaicDataset as RemoveRastersFromMosaicDataset_management,
-    RemoveRelate as RemoveRelate_management,
-    RemoveRuleFromRelationshipClass as RemoveRuleFromRelationshipClass_management,
-    RemoveRuleFromTopology as RemoveRuleFromTopology_management,
-    RemoveSpatialIndex as RemoveSpatialIndex_management,
-    RemoveSubtype as RemoveSubtype_management,
-    Rename as Rename_management,
-    ReorderAttributeRule as ReorderAttributeRule_management,
-    RepairGeometry as RepairGeometry_management,
-    RepairMosaicDatasetPaths as RepairMosaicDatasetPaths_management,
-    RepairTrajectoryDatasetPaths as RepairTrajectoryDatasetPaths_management,
-    RepairVersionMetadata as RepairVersionMetadata_management,
-    RepairVersionTables as RepairVersionTables_management,
-    Resample as Resample_management,
-    Rescale as Rescale_management,
-    Rotate as Rotate_management,
-    SaveToLayerFile as SaveToLayerFile_management,
-    SaveToolboxToVersion as SaveToolboxToVersion_management,
-    SelectData as SelectData_management,
-    SelectLayerByAttribute as SelectLayerByAttribute_management,
-    SelectLayerByLocation as SelectLayerByLocation_management,
-    SetClusterTolerance as SetClusterTolerance_management,
-    SetDefaultSubtype as SetDefaultSubtype_management,
-    SetFeatureClassSplitModel as SetFeatureClassSplitModel_management,
-    SetMosaicDatasetProperties as SetMosaicDatasetProperties_management,
-    SetRasterProperties as SetRasterProperties_management,
-    SetRelationshipClassSplitPolicy as SetRelationshipClassSplitPolicy_management,
-    SetSubtypeField as SetSubtypeField_management,
-    SetValueForRangeDomain as SetValueForRangeDomain_management,
-    SharePackage as SharePackage_management,
-    Shift as Shift_management,
-    Sort as Sort_management,
-    SortCodedValueDomain as SortCodedValueDomain_management,
-    SplitLine as SplitLine_management,
-    SplitLineAtPoint as SplitLineAtPoint_management,
-    SplitMosaicDatasetItems as SplitMosaicDatasetItems_management,
-    SplitRaster as SplitRaster_management,
-    StandardizeField as StandardizeField_management,
-    SubdividePolygon as SubdividePolygon_management,
-    SynchronizeChanges as SynchronizeChanges_management,
-    SynchronizeMosaicDataset as SynchronizeMosaicDataset_management,
-    TINCompare as TINCompare_management,
-    TableCompare as TableCompare_management,
-    TableToDomain as TableToDomain_management,
-    TableToEllipse as TableToEllipse_management,
-    TableToRelationshipClass as TableToRelationshipClass_management,
-    TransferFiles as TransferFiles_management,
-    TransformField as TransformField_management,
-    TransposeFields as TransposeFields_management,
-    TrimArchiveHistory as TrimArchiveHistory_management,
-    TruncateTable as TruncateTable_management,
-    UncompressFileGeodatabaseData as UncompressFileGeodatabaseData_management,
-    UnregisterAsVersioned as UnregisterAsVersioned_management,
-    UnregisterReplica as UnregisterReplica_management,
-    UnsplitLine as UnsplitLine_management,
-    UpdateEnterpriseGeodatabaseLicense as UpdateEnterpriseGeodatabaseLicense_management,
-    UpdateGeodatabaseConnectionPropertiesToBranch as UpdateGeodatabaseConnectionPropertiesToBranch_management,
-    UpdateInteriorOrientation as UpdateInteriorOrientation_management,
-    UpdatePortalDatasetOwner as UpdatePortalDatasetOwner_management,
-    UpgradeAttachments as UpgradeAttachments_management,
-    UpgradeDataset as UpgradeDataset_management,
-    UpgradeGDB as UpgradeGDB_management,
-    UpgradeSceneLayer as UpgradeSceneLayer_management,
-    ValidateJoin as ValidateJoin_management,
-    ValidateSceneLayerPackage as ValidateSceneLayerPackage_management,
-    ValidateTopology as ValidateTopology_management,
-    Warp as Warp_management,
-    WarpFromFile as WarpFromFile_management,
-    WorkspaceToRasterDataset as WorkspaceToRasterDataset_management,
-    XYTableToPoint as XYTableToPoint_management,
-    XYToLine as XYToLine_management,
+Add3DFormats_management = management.Add3DFormats
+AddAttachments_management = management.AddAttachments
+AddAttributeRule_management = management.AddAttributeRule
+AddCodedValueToDomain_management = management.AddCodedValueToDomain
+AddColormap_management = management.AddColormap
+AddContingentValue_management = management.AddContingentValue
+AddDataToTrajectoryDataset_management = management.AddDataToTrajectoryDataset
+AddFeatureClassToTopology_management = management.AddFeatureClassToTopology
+AddField_management = management.AddField
+AddFieldConflictFilter_management = management.AddFieldConflictFilter
+AddFields_management = management.AddFields
+AddFilesToLasDataset_management = management.AddFilesToLasDataset
+AddGPSMetadataFields_management = management.AddGPSMetadataFields
+AddGeometryAttributes_management = management.AddGeometryAttributes
+AddGlobalIDs_management = management.AddGlobalIDs
+AddIncrementingIDField_management = management.AddIncrementingIDField
+AddIndex_management = management.AddIndex
+AddItemsToCatalogDataset_management = management.AddItemsToCatalogDataset
+AddJoin_management = management.AddJoin
+AddPortalItemsToCatalogDataset_management = management.AddPortalItemsToCatalogDataset
+AddRastersToMosaicDataset_management = management.AddRastersToMosaicDataset
+AddRelate_management = management.AddRelate
+AddRuleToRelationshipClass_management = management.AddRuleToRelationshipClass
+AddRuleToTopology_management = management.AddRuleToTopology
+AddSpatialIndex_management = management.AddSpatialIndex
+AddSpatialJoin_management = management.AddSpatialJoin
+AddSubtype_management = management.AddSubtype
+AddXY_management = management.AddXY
+Adjust3DZ_management = management.Adjust3DZ
+AlterAttributeRule_management = management.AlterAttributeRule
+AlterDomain_management = management.AlterDomain
+AlterField_management = management.AlterField
+AlterFieldGroup_management = management.AlterFieldGroup
+AlterMosaicDatasetSchema_management = management.AlterMosaicDatasetSchema
+AlterVersion_management = management.AlterVersion
+Analyze_management = management.Analyze
+AnalyzeControlPoints_management = management.AnalyzeControlPoints
+AnalyzeDatasets_management = management.AnalyzeDatasets
+AnalyzeMosaicDataset_management = management.AnalyzeMosaicDataset
+AnalyzeToolboxForVersion_management = management.AnalyzeToolboxForVersion
+AnalyzeToolsForPro_management = management.AnalyzeToolsForPro
+Append_management = management.Append
+AppendAnnotation_management = management.AppendAnnotation
+AppendControlPoints_management = management.AppendControlPoints
+ApplyBlockAdjustment_management = management.ApplyBlockAdjustment
+ApplySymbologyFromLayer_management = management.ApplySymbologyFromLayer
+AssignDefaultToField_management = management.AssignDefaultToField
+AssignDomainToField_management = management.AssignDomainToField
+BatchBuildPyramids_management = management.BatchBuildPyramids
+BatchCalculateStatistics_management = management.BatchCalculateStatistics
+BatchProject_management = management.BatchProject
+BatchUpdateFields_management = management.BatchUpdateFields
+BearingDistanceToLine_management = management.BearingDistanceToLine
+BuildBoundary_management = management.BuildBoundary
+BuildFootprints_management = management.BuildFootprints
+BuildLasDatasetPyramid_management = management.BuildLasDatasetPyramid
+BuildMosaicDatasetItemCache_management = management.BuildMosaicDatasetItemCache
+BuildMultidimensionalInfo_management = management.BuildMultidimensionalInfo
+BuildMultidimensionalTranspose_management = management.BuildMultidimensionalTranspose
+BuildOverviews_management = management.BuildOverviews
+BuildPyramids_management = management.BuildPyramids
+BuildPyramidsandStatistics_management = management.BuildPyramidsandStatistics
+BuildRasterAttributeTable_management = management.BuildRasterAttributeTable
+BuildSeamlines_management = management.BuildSeamlines
+BuildStereoModel_management = management.BuildStereoModel
+CalculateCellSizeRanges_management = management.CalculateCellSizeRanges
+CalculateDefaultClusterTolerance_management = (
+    management.CalculateDefaultClusterTolerance
 )
+CalculateDefaultGridIndex_management = management.CalculateDefaultGridIndex
+CalculateEndTime_management = management.CalculateEndTime
+CalculateField_management = management.CalculateField
+CalculateFields_management = management.CalculateFields
+CalculateGeometryAttributes_management = management.CalculateGeometryAttributes
+CalculateStatistics_management = management.CalculateStatistics
+CalculateValue_management = management.CalculateValue
+ChangePrivileges_management = management.ChangePrivileges
+ChangeVersion_management = management.ChangeVersion
+CheckGeometry_management = management.CheckGeometry
+ClearPixelCache_management = management.ClearPixelCache
+ClearWorkspaceCache_management = management.ClearWorkspaceCache
+Clip_management = management.Clip
+ColorBalanceMosaicDataset_management = management.ColorBalanceMosaicDataset
+Compact_management = management.Compact
+CompareReplicaSchema_management = management.CompareReplicaSchema
+CompositeBands_management = management.CompositeBands
+Compress_management = management.Compress
+CompressFileGeodatabaseData_management = management.CompressFileGeodatabaseData
+ComputeBlockAdjustment_management = management.ComputeBlockAdjustment
+ComputeCameraModel_management = management.ComputeCameraModel
+ComputeControlPoints_management = management.ComputeControlPoints
+ComputeDirtyArea_management = management.ComputeDirtyArea
+ComputeFiducials_management = management.ComputeFiducials
+ComputeMosaicCandidates_management = management.ComputeMosaicCandidates
+ComputePansharpenWeights_management = management.ComputePansharpenWeights
+ComputeTiePoints_management = management.ComputeTiePoints
+ConfigureGeodatabaseLogFileTables_management = (
+    management.ConfigureGeodatabaseLogFileTables
+)
+ConsolidateLayer_management = management.ConsolidateLayer
+ConsolidateLocator_management = management.ConsolidateLocator
+ConsolidateMap_management = management.ConsolidateMap
+ConsolidateProject_management = management.ConsolidateProject
+ConsolidateToolbox_management = management.ConsolidateToolbox
+ConvertCoordinateNotation_management = management.ConvertCoordinateNotation
+ConvertRasterFunctionTemplate_management = management.ConvertRasterFunctionTemplate
+ConvertTimeField_management = management.ConvertTimeField
+ConvertTimeZone_management = management.ConvertTimeZone
+Copy_management = management.Copy
+CopyFeatures_management = management.CopyFeatures
+CopyRaster_management = management.CopyRaster
+CopyRows_management = management.CopyRows
+Create3DObjectSceneLayerPackage_management = management.Create3DObjectSceneLayerPackage
+CreateBuildingSceneLayerPackage_management = management.CreateBuildingSceneLayerPackage
+CreateCatalogDataset_management = management.CreateCatalogDataset
+CreateCloudStorageConnectionFile_management = (
+    management.CreateCloudStorageConnectionFile
+)
+CreateColorComposite_management = management.CreateColorComposite
+CreateConnectionString_management = management.CreateConnectionString
+CreateCustomGeoTransformation_management = management.CreateCustomGeoTransformation
+CreateDatabaseConnection_management = management.CreateDatabaseConnection
+CreateDatabaseConnectionString_management = management.CreateDatabaseConnectionString
+CreateDatabaseSequence_management = management.CreateDatabaseSequence
+CreateDatabaseUser_management = management.CreateDatabaseUser
+CreateDatabaseView_management = management.CreateDatabaseView
+CreateDomain_management = management.CreateDomain
+CreateEnterpriseGeodatabase_management = management.CreateEnterpriseGeodatabase
+CreateFeatureDataset_management = management.CreateFeatureDataset
+CreateFeatureclass_management = management.CreateFeatureclass
+CreateFieldGroup_management = management.CreateFieldGroup
+CreateFileGDB_management = management.CreateFileGDB
+CreateFishnet_management = management.CreateFishnet
+CreateFolder_management = management.CreateFolder
+CreateIntegratedMeshSceneLayerPackage_management = (
+    management.CreateIntegratedMeshSceneLayerPackage
+)
+CreateLasDataset_management = management.CreateLasDataset
+CreateMapTilePackage_management = management.CreateMapTilePackage
+CreateMobileGDB_management = management.CreateMobileGDB
+CreateMobileMapPackage_management = management.CreateMobileMapPackage
+CreateMobileScenePackage_management = management.CreateMobileScenePackage
+CreateMosaicDataset_management = management.CreateMosaicDataset
+CreateOrthoCorrectedRasterDataset_management = (
+    management.CreateOrthoCorrectedRasterDataset
+)
+CreatePansharpenedRasterDataset_management = management.CreatePansharpenedRasterDataset
+CreatePointCloudSceneLayerPackage_management = (
+    management.CreatePointCloudSceneLayerPackage
+)
+CreatePointSceneLayerPackage_management = management.CreatePointSceneLayerPackage
+CreateRandomPoints_management = management.CreateRandomPoints
+CreateRandomRaster_management = management.CreateRandomRaster
+CreateRasterDataset_management = management.CreateRasterDataset
+CreateRasterType_management = management.CreateRasterType
+CreateReferencedMosaicDataset_management = management.CreateReferencedMosaicDataset
+CreateRelationshipClass_management = management.CreateRelationshipClass
+CreateReplica_management = management.CreateReplica
+CreateReplicaFromServer_management = management.CreateReplicaFromServer
+CreateRole_management = management.CreateRole
+CreateSQLiteDatabase_management = management.CreateSQLiteDatabase
+CreateSceneLayerPackage_management = management.CreateSceneLayerPackage
+CreateSpatialReference_management = management.CreateSpatialReference
+CreateSpatialType_management = management.CreateSpatialType
+CreateTable_management = management.CreateTable
+CreateTopology_management = management.CreateTopology
+CreateTrajectoryDataset_management = management.CreateTrajectoryDataset
+CreateUnRegisteredFeatureclass_management = management.CreateUnRegisteredFeatureclass
+CreateUnRegisteredTable_management = management.CreateUnRegisteredTable
+CreateVectorTileIndex_management = management.CreateVectorTileIndex
+CreateVectorTilePackage_management = management.CreateVectorTilePackage
+CreateVersion_management = management.CreateVersion
+CreateVersionedView_management = management.CreateVersionedView
+CreateVoxelSceneLayerContent_management = management.CreateVoxelSceneLayerContent
+DefineMosaicDatasetNoData_management = management.DefineMosaicDatasetNoData
+DefineOverviews_management = management.DefineOverviews
+DefineProjection_management = management.DefineProjection
+Delete_management = management.Delete
+DeleteAttributeRule_management = management.DeleteAttributeRule
+DeleteCodedValueFromDomain_management = management.DeleteCodedValueFromDomain
+DeleteColormap_management = management.DeleteColormap
+DeleteDatabaseSequence_management = management.DeleteDatabaseSequence
+DeleteDomain_management = management.DeleteDomain
+DeleteFeatures_management = management.DeleteFeatures
+DeleteField_management = management.DeleteField
+DeleteFieldGroup_management = management.DeleteFieldGroup
+DeleteIdentical_management = management.DeleteIdentical
+DeleteMosaicDataset_management = management.DeleteMosaicDataset
+DeleteRasterAttributeTable_management = management.DeleteRasterAttributeTable
+DeleteRows_management = management.DeleteRows
+DeleteSchemaGeodatabase_management = management.DeleteSchemaGeodatabase
+DeleteVersion_management = management.DeleteVersion
+DetectFeatureChanges_management = management.DetectFeatureChanges
+DiagnoseVersionMetadata_management = management.DiagnoseVersionMetadata
+DiagnoseVersionTables_management = management.DiagnoseVersionTables
+Dice_management = management.Dice
+DisableArchiving_management = management.DisableArchiving
+DisableAttachments_management = management.DisableAttachments
+DisableAttributeRules_management = management.DisableAttributeRules
+DisableCOGO_management = management.DisableCOGO
+DisableEditorTracking_management = management.DisableEditorTracking
+DisableFeatureBinning_management = management.DisableFeatureBinning
+DisableReplicaTracking_management = management.DisableReplicaTracking
+Dissolve_management = management.Dissolve
+DomainToTable_management = management.DomainToTable
+DowngradeAttachments_management = management.DowngradeAttachments
+DownloadRasters_management = management.DownloadRasters
+EditRasterFunction_management = management.EditRasterFunction
+Eliminate_management = management.Eliminate
+EliminatePolygonPart_management = management.EliminatePolygonPart
+EnableArchiving_management = management.EnableArchiving
+EnableAttachments_management = management.EnableAttachments
+EnableAttributeRules_management = management.EnableAttributeRules
+EnableCOGO_management = management.EnableCOGO
+EnableEditorTracking_management = management.EnableEditorTracking
+EnableEnterpriseGeodatabase_management = management.EnableEnterpriseGeodatabase
+EnableFeatureBinning_management = management.EnableFeatureBinning
+EnableReplicaTracking_management = management.EnableReplicaTracking
+EncodeField_management = management.EncodeField
+EvaluateRules_management = management.EvaluateRules
+ExportAcknowledgementMessage_management = management.ExportAcknowledgementMessage
+ExportAttributeRules_management = management.ExportAttributeRules
+ExportContingentValues_management = management.ExportContingentValues
+ExportDataChangeMessage_management = management.ExportDataChangeMessage
+ExportFrameAndCameraParameters_management = management.ExportFrameAndCameraParameters
+ExportGeodatabaseConfigurationKeywords_management = (
+    management.ExportGeodatabaseConfigurationKeywords
+)
+ExportMosaicDatasetGeometry_management = management.ExportMosaicDatasetGeometry
+ExportMosaicDatasetItems_management = management.ExportMosaicDatasetItems
+ExportMosaicDatasetPaths_management = management.ExportMosaicDatasetPaths
+ExportRasterWorldFile_management = management.ExportRasterWorldFile
+ExportReplicaSchema_management = management.ExportReplicaSchema
+ExportReportToPDF_management = management.ExportReportToPDF
+ExportTileCache_management = management.ExportTileCache
+ExportTopologyErrors_management = management.ExportTopologyErrors
+ExportXMLWorkspaceDocument_management = management.ExportXMLWorkspaceDocument
+ExtractPackage_management = management.ExtractPackage
+ExtractSubDataset_management = management.ExtractSubDataset
+FeatureCompare_management = management.FeatureCompare
+FeatureEnvelopeToPolygon_management = management.FeatureEnvelopeToPolygon
+FeatureToLine_management = management.FeatureToLine
+FeatureToPoint_management = management.FeatureToPoint
+FeatureToPolygon_management = management.FeatureToPolygon
+FeatureVerticesToPoints_management = management.FeatureVerticesToPoints
+FieldStatisticsToTable_management = management.FieldStatisticsToTable
+FileCompare_management = management.FileCompare
+FindIdentical_management = management.FindIdentical
+Flip_management = management.Flip
+GenerateAttachmentMatchTable_management = management.GenerateAttachmentMatchTable
+GenerateBlockAdjustmentReport_management = management.GenerateBlockAdjustmentReport
+GenerateExcludeArea_management = management.GenerateExcludeArea
+GenerateFgdbLicense_management = management.GenerateFgdbLicense
+GenerateLicensedFgdb_management = management.GenerateLicensedFgdb
+GeneratePointCloud_management = management.GeneratePointCloud
+GeneratePointsAlongLines_management = management.GeneratePointsAlongLines
+GenerateRasterCollection_management = management.GenerateRasterCollection
+GenerateRasterFromRasterFunction_management = (
+    management.GenerateRasterFromRasterFunction
+)
+GenerateRectanglesAlongLines_management = management.GenerateRectanglesAlongLines
+GenerateTableFromRasterFunction_management = management.GenerateTableFromRasterFunction
+GenerateTessellation_management = management.GenerateTessellation
+GenerateTileCacheTilingScheme_management = management.GenerateTileCacheTilingScheme
+GenerateTransectsAlongLines_management = management.GenerateTransectsAlongLines
+GeoTaggedPhotosToPoints_management = management.GeoTaggedPhotosToPoints
+GeodeticDensify_management = management.GeodeticDensify
+GetCellValue_management = management.GetCellValue
+GetCount_management = management.GetCount
+GetRasterProperties_management = management.GetRasterProperties
+ImportAttributeRules_management = management.ImportAttributeRules
+ImportContingentValues_management = management.ImportContingentValues
+ImportGeodatabaseConfigurationKeywords_management = (
+    management.ImportGeodatabaseConfigurationKeywords
+)
+ImportMessage_management = management.ImportMessage
+ImportMosaicDatasetGeometry_management = management.ImportMosaicDatasetGeometry
+ImportReplicaSchema_management = management.ImportReplicaSchema
+ImportTileCache_management = management.ImportTileCache
+ImportXMLWorkspaceDocument_management = management.ImportXMLWorkspaceDocument
+Integrate_management = management.Integrate
+InterpolateFromPointCloud_management = management.InterpolateFromPointCloud
+JoinField_management = management.JoinField
+LasDatasetStatistics_management = management.LasDatasetStatistics
+LasPointStatsAsRaster_management = management.LasPointStatsAsRaster
+MakeAggregationQueryLayer_management = management.MakeAggregationQueryLayer
+MakeBuildingLayer_management = management.MakeBuildingLayer
+MakeFeatureLayer_management = management.MakeFeatureLayer
+MakeImageServerLayer_management = management.MakeImageServerLayer
+MakeLasDatasetLayer_management = management.MakeLasDatasetLayer
+MakeMosaicLayer_management = management.MakeMosaicLayer
+MakeQueryLayer_management = management.MakeQueryLayer
+MakeQueryTable_management = management.MakeQueryTable
+MakeRasterLayer_management = management.MakeRasterLayer
+MakeSceneLayer_management = management.MakeSceneLayer
+MakeTableView_management = management.MakeTableView
+MakeTinLayer_management = management.MakeTinLayer
+MakeTrajectoryLayer_management = management.MakeTrajectoryLayer
+MakeWCSLayer_management = management.MakeWCSLayer
+MakeXYEventLayer_management = management.MakeXYEventLayer
+ManageFeatureBinCache_management = management.ManageFeatureBinCache
+ManageTileCache_management = management.ManageTileCache
+MatchControlPoints_management = management.MatchControlPoints
+MatchLayerSymbologyToAStyle_management = management.MatchLayerSymbologyToAStyle
+MatchPhotosToRowsByTime_management = management.MatchPhotosToRowsByTime
+Merge_management = management.Merge
+MergeMosaicDatasetItems_management = management.MergeMosaicDatasetItems
+MigrateObjectIDTo64Bit_management = management.MigrateObjectIDTo64Bit
+MigrateRelationshipClass_management = management.MigrateRelationshipClass
+MigrateStorage_management = management.MigrateStorage
+MinimumBoundingGeometry_management = management.MinimumBoundingGeometry
+Mirror_management = management.Mirror
+Mosaic_management = management.Mosaic
+MosaicDatasetToMobileMosaicDataset_management = (
+    management.MosaicDatasetToMobileMosaicDataset
+)
+MosaicToNewRaster_management = management.MosaicToNewRaster
+MultipartToSinglepart_management = management.MultipartToSinglepart
+PackageLayer_management = management.PackageLayer
+PackageLocator_management = management.PackageLocator
+PackageMap_management = management.PackageMap
+PackageProject_management = management.PackageProject
+PackageResult_management = management.PackageResult
+PivotTable_management = management.PivotTable
+PointsToLine_management = management.PointsToLine
+PolygonToLine_management = management.PolygonToLine
+Project_management = management.Project
+ProjectRaster_management = management.ProjectRaster
+RasterCompare_management = management.RasterCompare
+RasterToDTED_management = management.RasterToDTED
+ReExportUnacknowledgedMessages_management = management.ReExportUnacknowledgedMessages
+RebuildIndexes_management = management.RebuildIndexes
+RecalculateFeatureClassExtent_management = management.RecalculateFeatureClassExtent
+ReclassifyField_management = management.ReclassifyField
+ReconcileVersion_management = management.ReconcileVersion
+ReconcileVersions_management = management.ReconcileVersions
+RecoverFileGDB_management = management.RecoverFileGDB
+RefreshExcel_management = management.RefreshExcel
+RegisterAsVersioned_management = management.RegisterAsVersioned
+RegisterRaster_management = management.RegisterRaster
+RegisterWithGeodatabase_management = management.RegisterWithGeodatabase
+Remove3DFormats_management = management.Remove3DFormats
+RemoveAttachments_management = management.RemoveAttachments
+RemoveContingentValue_management = management.RemoveContingentValue
+RemoveDomainFromField_management = management.RemoveDomainFromField
+RemoveFeatureClassFromTopology_management = management.RemoveFeatureClassFromTopology
+RemoveFieldConflictFilter_management = management.RemoveFieldConflictFilter
+RemoveFilesFromLasDataset_management = management.RemoveFilesFromLasDataset
+RemoveIndex_management = management.RemoveIndex
+RemoveJoin_management = management.RemoveJoin
+RemoveRastersFromMosaicDataset_management = management.RemoveRastersFromMosaicDataset
+RemoveRelate_management = management.RemoveRelate
+RemoveRuleFromRelationshipClass_management = management.RemoveRuleFromRelationshipClass
+RemoveRuleFromTopology_management = management.RemoveRuleFromTopology
+RemoveSpatialIndex_management = management.RemoveSpatialIndex
+RemoveSubtype_management = management.RemoveSubtype
+Rename_management = management.Rename
+ReorderAttributeRule_management = management.ReorderAttributeRule
+RepairGeometry_management = management.RepairGeometry
+RepairMosaicDatasetPaths_management = management.RepairMosaicDatasetPaths
+RepairTrajectoryDatasetPaths_management = management.RepairTrajectoryDatasetPaths
+RepairVersionMetadata_management = management.RepairVersionMetadata
+RepairVersionTables_management = management.RepairVersionTables
+Resample_management = management.Resample
+Rescale_management = management.Rescale
+Rotate_management = management.Rotate
+SaveToLayerFile_management = management.SaveToLayerFile
+SaveToolboxToVersion_management = management.SaveToolboxToVersion
+SelectData_management = management.SelectData
+SelectLayerByAttribute_management = management.SelectLayerByAttribute
+SelectLayerByLocation_management = management.SelectLayerByLocation
+SetClusterTolerance_management = management.SetClusterTolerance
+SetDefaultSubtype_management = management.SetDefaultSubtype
+SetFeatureClassSplitModel_management = management.SetFeatureClassSplitModel
+SetMosaicDatasetProperties_management = management.SetMosaicDatasetProperties
+SetRasterProperties_management = management.SetRasterProperties
+SetRelationshipClassSplitPolicy_management = management.SetRelationshipClassSplitPolicy
+SetSubtypeField_management = management.SetSubtypeField
+SetValueForRangeDomain_management = management.SetValueForRangeDomain
+SharePackage_management = management.SharePackage
+Shift_management = management.Shift
+Sort_management = management.Sort
+SortCodedValueDomain_management = management.SortCodedValueDomain
+SplitLine_management = management.SplitLine
+SplitLineAtPoint_management = management.SplitLineAtPoint
+SplitMosaicDatasetItems_management = management.SplitMosaicDatasetItems
+SplitRaster_management = management.SplitRaster
+StandardizeField_management = management.StandardizeField
+SubdividePolygon_management = management.SubdividePolygon
+SynchronizeChanges_management = management.SynchronizeChanges
+SynchronizeMosaicDataset_management = management.SynchronizeMosaicDataset
+TINCompare_management = management.TINCompare
+TableCompare_management = management.TableCompare
+TableToDomain_management = management.TableToDomain
+TableToEllipse_management = management.TableToEllipse
+TableToRelationshipClass_management = management.TableToRelationshipClass
+TransferFiles_management = management.TransferFiles
+TransformField_management = management.TransformField
+TransposeFields_management = management.TransposeFields
+TrimArchiveHistory_management = management.TrimArchiveHistory
+TruncateTable_management = management.TruncateTable
+UncompressFileGeodatabaseData_management = management.UncompressFileGeodatabaseData
+UnregisterAsVersioned_management = management.UnregisterAsVersioned
+UnregisterReplica_management = management.UnregisterReplica
+UnsplitLine_management = management.UnsplitLine
+UpdateEnterpriseGeodatabaseLicense_management = (
+    management.UpdateEnterpriseGeodatabaseLicense
+)
+UpdateGeodatabaseConnectionPropertiesToBranch_management = (
+    management.UpdateGeodatabaseConnectionPropertiesToBranch
+)
+UpdateInteriorOrientation_management = management.UpdateInteriorOrientation
+UpdatePortalDatasetOwner_management = management.UpdatePortalDatasetOwner
+UpgradeAttachments_management = management.UpgradeAttachments
+UpgradeDataset_management = management.UpgradeDataset
+UpgradeGDB_management = management.UpgradeGDB
+UpgradeSceneLayer_management = management.UpgradeSceneLayer
+ValidateJoin_management = management.ValidateJoin
+ValidateSceneLayerPackage_management = management.ValidateSceneLayerPackage
+ValidateTopology_management = management.ValidateTopology
+Warp_management = management.Warp
+WarpFromFile_management = management.WarpFromFile
+WorkspaceToRasterDataset_management = management.WorkspaceToRasterDataset
+XYTableToPoint_management = management.XYTableToPoint
+XYToLine_management = management.XYToLine
 
 # endregion
 
