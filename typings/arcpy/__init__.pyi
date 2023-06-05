@@ -42,6 +42,50 @@ from .sa import Raster, RasterInfo
 from .ia import Mensuration, Render
 from .cmanagers import EnvManager
 from . import management
+from . import analysis
+
+# region analysis aliases
+
+ApportionPolygon_analysis = analysis.ApportionPolygon
+Buffer_analysis = analysis.Buffer
+Clip_analysis = analysis.Clip
+CountOverlappingFeatures_analysis = analysis.CountOverlappingFeatures
+CreateThiessenPolygons_analysis = analysis.CreateThiessenPolygons
+Enrich_analysis = analysis.Enrich
+EnrichLayer_analysis = analysis.EnrichLayer
+Erase_analysis = analysis.Erase
+Frequency_analysis = analysis.Frequency
+GenerateNearTable_analysis = analysis.GenerateNearTable
+GenerateOriginDestinationLinks_analysis = analysis.GenerateOriginDestinationLinks
+GeographicallyWeightedRegression_analysis = analysis.GeographicallyWeightedRegression
+GraphicBuffer_analysis = analysis.GraphicBuffer
+Identity_analysis = analysis.Identity
+Intersect_analysis = analysis.Intersect
+MultipleRingBuffer_analysis = analysis.MultipleRingBuffer
+Near_analysis = analysis.Near
+PairwiseBuffer_analysis = analysis.PairwiseBuffer
+PairwiseClip_analysis = analysis.PairwiseClip
+PairwiseDissolve_analysis = analysis.PairwiseDissolve
+PairwiseErase_analysis = analysis.PairwiseErase
+PairwiseIntegrate_analysis = analysis.PairwiseIntegrate
+PairwiseIntersect_analysis = analysis.PairwiseIntersect
+PointDistance_analysis = analysis.PointDistance
+PolygonNeighbors_analysis = analysis.PolygonNeighbors
+RemoveOverlapMultiple_analysis = analysis.RemoveOverlapMultiple
+Select_analysis = analysis.Select
+SpatialJoin_analysis = analysis.SpatialJoin
+Split_analysis = analysis.Split
+SplitByAttributes_analysis = analysis.SplitByAttributes
+Statistics_analysis = analysis.Statistics
+SummarizeNearby_analysis = analysis.SummarizeNearby
+SummarizeWithin_analysis = analysis.SummarizeWithin
+SymDiff_analysis = analysis.SymDiff
+TableSelect_analysis = analysis.TableSelect
+TabulateIntersection_analysis = analysis.TabulateIntersection
+Union_analysis = analysis.Union
+Update_analysis = analysis.Update
+
+# endregion
 
 # region management aliases
 
@@ -576,7 +620,7 @@ def SetProgressor(
     min_range: Optional[int] = 0,
     max_range: Optional[int] = 100,
     step_value: Optional[int] = None,
-):  # -> conversion | int | float | complex | basestring | list[Unknown] | tuple[Unknown, ...] | dict[Unknown, Unknown]:
+) -> None:
     """SetProgressor(type, {message}, {min_range}, {max_range}, {step_value})
 
     Establishes a progressor object which allows progress information to be
@@ -604,7 +648,7 @@ def SetProgressor(
     The progressor step interval for updating the progress bar."""
     ...
 
-def ResetProgressor():  # -> conversion | int | float | complex | basestring | list[Unknown] | tuple[Unknown, ...] | dict[Unknown, Unknown]:
+def ResetProgressor() -> None:
     """ResetProgressor()
 
     Resets the progressor back to its initial state."""
@@ -612,7 +656,7 @@ def ResetProgressor():  # -> conversion | int | float | complex | basestring | l
 
 def SetProgressorLabel(
     label: str,
-):  # -> conversion | int | float | complex | basestring | list[Unknown] | tuple[Unknown, ...] | dict[Unknown, Unknown]:
+) -> None:
     """SetProgressorLabel(label)
 
     Updates the progressor dialog box label.
@@ -623,7 +667,7 @@ def SetProgressorLabel(
 
 def SetProgressorPosition(
     position: Optional[int],
-):  # -> conversion | int | float | complex | basestring | list[Unknown] | tuple[Unknown, ...] | dict[Unknown, Unknown]:
+) -> None:
     """SetProgressorPosition({position})
 
     Updates the status bar in the progressor dialog box.
@@ -632,7 +676,7 @@ def SetProgressorPosition(
     Sets the position of the status bar in the progressor dialog box."""
     ...
 
-def ResetEnvironments():  # -> conversion | int | float | complex | basestring | list[Unknown] | tuple[Unknown, ...] | dict[Unknown, Unknown]:
+def ResetEnvironments() -> None:
     """ResetEnvironments()
 
     Resets all environment settings to their default settings."""

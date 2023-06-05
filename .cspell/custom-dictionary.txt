@@ -5,6 +5,7 @@ arcgispro
 arcpy
 atbx
 dtype
+enginegeodb
 geodb
 ndarray
 progressor
