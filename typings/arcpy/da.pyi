@@ -2,7 +2,15 @@
 Data Access Module
 """
 
-from typing import Any, Generator, NamedTuple, Optional, Sequence, Callable
+from typing import (
+    Any,
+    Generator,
+    Iterable,
+    NamedTuple,
+    Optional,
+    Sequence,
+    Callable,
+)
 from typing_extensions import Literal, Self
 import numpy
 import pyarrow
@@ -121,7 +129,7 @@ class SearchCursor(__Cursor__):
     def __init__(
         self,
         in_table: str,
-        field_names: str | Sequence[str | SpecialFieldName | Literal["*"]],
+        field_names: str | Iterable[str | SpecialFieldName | Literal["*"]],
         where_clause: str | None = None,
         spatial_reference: SpatialReference | str | None = None,
         explode_to_points: bool = False,
