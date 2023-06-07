@@ -590,9 +590,7 @@ def ImportToolbox(
     temporary alias can be set as the second parameter."""
     ...
 
-def GetInstallInfo(
-    product: str = ...,
-) -> dict[str, str]:
+def GetInstallInfo(product: str = ...) -> dict[str, str]:
     """GetInstallInfo()
 
     The GetInstallInfo function returns a Python dictionary that contains
@@ -654,9 +652,7 @@ def ResetProgressor() -> None:
     Resets the progressor back to its initial state."""
     ...
 
-def SetProgressorLabel(
-    label: str,
-) -> None:
+def SetProgressorLabel(label: str) -> None:
     """SetProgressorLabel(label)
 
     Updates the progressor dialog box label.
@@ -665,9 +661,7 @@ def SetProgressorLabel(
     The label to be used on the progressor dialog box."""
     ...
 
-def SetProgressorPosition(
-    position: Optional[int],
-) -> None:
+def SetProgressorPosition(position: Optional[int]) -> None:
     """SetProgressorPosition({position})
 
     Updates the status bar in the progressor dialog box.
@@ -682,9 +676,7 @@ def ResetEnvironments() -> None:
     Resets all environment settings to their default settings."""
     ...
 
-def ClearEnvironment(
-    environment_name: str,
-) -> None:
+def ClearEnvironment(environment_name: str) -> None:
     """ClearEnvironment(environment_name)
 
     Resets a specific environment setting to its default.
@@ -694,9 +686,7 @@ def ClearEnvironment(
     setting."""
     ...
 
-def GetMessage(
-    index: int,
-) -> str:
+def GetMessage(index: int) -> str:
     """GetMessage(index)
 
     Returns a geoprocessing tool message by its index position.
@@ -723,9 +713,7 @@ def GetReturnCode(
     warnings, or errors."""
     ...
 
-def GetMessages(
-    severity: MessageSeverity,
-) -> Iterable[str]:
+def GetMessages(severity: MessageSeverity) -> Iterable[str]:
     """GetMessages({severity})
 
     Returns the geoprocessing messages from a tool by specified severity
@@ -743,9 +731,7 @@ def GetMessages(
     Not specifying a severity will return all types of messages."""
     ...
 
-def AddMessage(
-    message: str,
-) -> None:
+def AddMessage(message: str) -> None:
     """AddMessage(message)
 
     Creates a geoprocessing informative message (Severity=0) that can be
@@ -803,9 +789,7 @@ def GetIDMessage(message_ID: str, default_message: Optional[str] = None) -> str:
     The geoprocessing message ID."""
     ...
 
-def AddError(
-    message: str,
-) -> None:
+def AddError(message: str) -> None:
     """AddError(message)
 
     Creates a geoprocessing tool error message (Severity=2) that can be
@@ -815,9 +799,7 @@ def AddError(
     The message to add."""
     ...
 
-def AddWarning(
-    message: str,
-) -> None:
+def AddWarning(message: str) -> None:
     """AddWarning(message)
 
     Creates a geoprocessing warning message (Severity=1) that can be accessed
@@ -827,9 +809,7 @@ def AddWarning(
     The message to add."""
     ...
 
-def AddReturnMessage(
-    index: str,
-) -> None:
+def AddReturnMessage(index: str) -> None:
     """AddReturnMessage(index)
 
     Sets the return message of a script tool as an output message by index.
@@ -1172,9 +1152,7 @@ def GetParameterAsText(index: int) -> str:
     The numeric position of the parameter in the parameter list."""
     ...
 
-def SetParameterAsText(
-    index: int, text: str
-):  # -> conversion | int | float | complex | basestring | list[Unknown] | tuple[Unknown, ...] | dict[Unknown, Unknown]:
+def SetParameterAsText(index: int, text: str) -> None:
     """SetParameterAsText(index, text)
 
     Sets a specified parameter property by index using a string value. This
@@ -1189,9 +1167,7 @@ def SetParameterAsText(
     The string value that will set the specified parameter's property."""
     ...
 
-def GetParameter(
-    index: int,
-) -> Any:
+def GetParameter(index: int) -> Any:
     """GetParameter(index)
 
     From the parameter list, select the desired parameter by its index value.
@@ -1215,9 +1191,7 @@ def SetParameter(index: int, value: object) -> Any:
     The object that will set the specified parameter's property."""
     ...
 
-def CopyParameter(
-    from_param: int, to_param: int
-):  # -> conversion | int | float | complex | basestring | list[Unknown] | tuple[Unknown, ...] | dict[Unknown, Unknown]:
+def CopyParameter(from_param: int, to_param: int) -> None:
     """CopyParameter(from_param, to_param)
 
     Copies the specified parameter by index to another parameter in the
@@ -1230,9 +1204,7 @@ def CopyParameter(
     The index position of the parameter that will be copied to."""
     ...
 
-def SetParameterSymbology(
-    index: int, text: str
-):  # -> conversion | int | float | complex | basestring | list[Unknown] | tuple[Unknown, ...] | dict[Unknown, Unknown]:
+def SetParameterSymbology(index: int, text: str) -> None:
     """SetParameterSymbology(index, text)
 
     Sets a parameter's Symbology property.
@@ -1246,9 +1218,7 @@ def SetParameterSymbology(
     """
     ...
 
-def ListFiles(
-    wild_card: Optional[str] = None,
-) -> list[str]:
+def ListFiles(wild_card: Optional[str] = None) -> list[str]:
     """ListFiles({wild_card})
 
     Returns a list of files in the current workspace based on a query string.
@@ -1259,9 +1229,7 @@ def ListFiles(
     all values are returned."""
     ...
 
-def ListTools(
-    wild_card: str | None = None,
-) -> list[str]:
+def ListTools(wild_card: str | None = None) -> list[str]:
     """ListTools({wild_card})
 
     Lists the geoprocessing tools, limited by name.
@@ -1291,9 +1259,7 @@ def ListEnvironments(wild_card: Optional[str] = None) -> list[str]:
     """
     ...
 
-def ListToolboxes(
-    wild_card: Optional[str] = None,
-) -> list[str]:
+def ListToolboxes(wild_card: Optional[str] = None) -> list[str]:
     """ListToolboxes({wild_card})
 
     Lists the geoprocessing toolboxes, limited by name.
@@ -1354,9 +1320,7 @@ def RemoveToolbox(
       Server    machinename;servername"""
     ...
 
-def GetSystemEnvironment(
-    environment: str,
-) -> str:
+def GetSystemEnvironment(environment: str) -> str:
     """GetSystemEnvironment(environment)
 
     Gets the specified system environment variable value, such as "TEMP".
@@ -1365,9 +1329,7 @@ def GetSystemEnvironment(
     The name of the system environment variable."""
     ...
 
-def Command(
-    command_line: str,
-) -> ...:
+def Command(command_line: str) -> ...:
     """Command(command_line)
 
     Executes a geoprocessing tool as a single string.
@@ -1377,9 +1339,7 @@ def Command(
     be executed."""
     ...
 
-def Usage(
-    tool_name: str,
-) -> str:
+def Usage(tool_name: str) -> str:
     """Usage(tool_name)
 
     Returns the syntax for the specified tool or function.
@@ -1388,9 +1348,7 @@ def Usage(
     The tool name to display the syntax."""
     ...
 
-def Exists(
-    dataset: str,
-) -> bool:
+def Exists(dataset: str) -> bool:
     """Exists(dataset)
 
     Determines the existence of the specified data object. Tests for the
@@ -1634,9 +1592,7 @@ def ListWorkspaces(
      * All:   All workspaces will be selected. This is the default."""
     ...
 
-def ListVersions(
-    sde_workspace: str,
-) -> list[str]:
+def ListVersions(sde_workspace: str) -> list[str]:
     """ListVersions(sde_workspace)
 
     Lists the versions the connected user has permission to use.

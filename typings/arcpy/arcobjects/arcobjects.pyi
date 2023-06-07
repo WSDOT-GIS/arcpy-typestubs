@@ -15,7 +15,7 @@ class ArcSDESQLExecute(mixins.ArcSDESQLExecuteMixin, _BaseArcObject):
     transactionAutoCommit = ...
     def execute(
         self, *args
-    ):  # -> conversion | int | float | complex | basestring | list[Unknown] | tuple[Unknown, ...] | dict[Unknown, Unknown]:
+    ) -> ...:
         """ArcSDESQLExecute.execute(sql_statement)
 
         Sends the SQL statement to the database via an ArcSDE connection. If
@@ -35,7 +35,7 @@ class ArcSDESQLExecute(mixins.ArcSDESQLExecuteMixin, _BaseArcObject):
         ...
     def startTransaction(
         self, *args
-    ):  # -> conversion | int | float | complex | basestring | list[Unknown] | tuple[Unknown, ...] | dict[Unknown, Unknown]:
+    ) -> ...:
         """ArcSDESQLExecute.startTransaction()
 
         To control when your changes are committed to the database, call the
@@ -45,14 +45,14 @@ class ArcSDESQLExecute(mixins.ArcSDESQLExecuteMixin, _BaseArcObject):
         ...
     def rollbackTransaction(
         self, *args
-    ):  # -> conversion | int | float | complex | basestring | list[Unknown] | tuple[Unknown, ...] | dict[Unknown, Unknown]:
+    ) -> ...:
         """ArcSDESQLExecute.rollbackTransaction()
 
         Rollback any DML operations to the previous commit."""
         ...
     def commitTransaction(
         self, *args
-    ):  # -> conversion | int | float | complex | basestring | list[Unknown] | tuple[Unknown, ...] | dict[Unknown, Unknown]:
+    ) -> ...:
         """ArcSDESQLExecute.commitTransaction()
 
         No DML statements will be committed until the CommitTransaction
@@ -70,14 +70,14 @@ class Array(mixins.ArrayMixin, _BaseArcObject):
     count = ...
     def __next__(
         self, *args
-    ):  # -> conversion | int | float | complex | basestring | list[Unknown] | tuple[Unknown, ...] | dict[Unknown, Unknown]:
+    ) -> ...:
         """Array.__next__()
 
         Returns the next object at the current index."""
         ...
     def add(
         self, *args
-    ):  # -> conversion | int | float | complex | basestring | list[Unknown] | tuple[Unknown, ...] | dict[Unknown, Unknown]:
+    ) -> ...:
         """Array.add(value)
 
         Adds a point or array object to the end of the array
@@ -87,7 +87,7 @@ class Array(mixins.ArrayMixin, _BaseArcObject):
         ...
     def getObject(
         self, *args
-    ):  # -> conversion | int | float | complex | basestring | list[Unknown] | tuple[Unknown, ...] | dict[Unknown, Unknown]:
+    ) -> ...:
         """Array.getObject(index)
 
         Returns the object at the given index position in the array.
@@ -97,7 +97,7 @@ class Array(mixins.ArrayMixin, _BaseArcObject):
         ...
     def reset(
         self, *args
-    ):  # -> conversion | int | float | complex | basestring | list[Unknown] | tuple[Unknown, ...] | dict[Unknown, Unknown]:
+    ) -> ...:
         """Array.reset()
 
         Sets the current enumeration index (used by the next method) back to
@@ -105,14 +105,14 @@ class Array(mixins.ArrayMixin, _BaseArcObject):
         ...
     def next(
         self, *args
-    ):  # -> conversion | int | float | complex | basestring | list[Unknown] | tuple[Unknown, ...] | dict[Unknown, Unknown]:
+    ) -> ...:
         """Array.next()
 
         Returns the next object at the current index."""
         ...
     def remove(
         self, *args
-    ):  # -> conversion | int | float | complex | basestring | list[Unknown] | tuple[Unknown, ...] | dict[Unknown, Unknown]:
+    ) -> ...:
         """Array.remove(index)
 
         Removes the object at the specified index position from the array.
@@ -122,14 +122,14 @@ class Array(mixins.ArrayMixin, _BaseArcObject):
         ...
     def removeAll(
         self, *args
-    ):  # -> conversion | int | float | complex | basestring | list[Unknown] | tuple[Unknown, ...] | dict[Unknown, Unknown]:
+    ) -> ...:
         """Array.removeAll()
 
         Removes all values and creates an empty object."""
         ...
     def insert(
         self, *args
-    ):  # -> conversion | int | float | complex | basestring | list[Unknown] | tuple[Unknown, ...] | dict[Unknown, Unknown]:
+    ) -> ...:
         """Array.insert(index, value)
 
         Adds an object to the array at the specified index.
@@ -142,7 +142,7 @@ class Array(mixins.ArrayMixin, _BaseArcObject):
         ...
     def replace(
         self, *args
-    ):  # -> conversion | int | float | complex | basestring | list[Unknown] | tuple[Unknown, ...] | dict[Unknown, Unknown]:
+    ) -> ...:
         """Array.replace(index, value)
 
         Replaces the object at the specified index position in the array.
@@ -155,7 +155,7 @@ class Array(mixins.ArrayMixin, _BaseArcObject):
         ...
     def clone(
         self, *args
-    ):  # -> conversion | int | float | complex | basestring | list[Unknown] | tuple[Unknown, ...] | dict[Unknown, Unknown]:
+    ) -> ...:
         """Array.clone(point_object)
 
         Clone the point object.
@@ -172,14 +172,14 @@ class Cursor(mixins.CursorMixin, _BaseArcObject):
 
     def __next__(
         self, *args
-    ):  # -> conversion | int | float | complex | basestring | list[Unknown] | tuple[Unknown, ...] | dict[Unknown, Unknown]:
+    ) -> ...:
         """Cursor.__next__()
 
         Returns the next object at the current index."""
         ...
     def reset(
         self, *args
-    ):  # -> conversion | int | float | complex | basestring | list[Unknown] | tuple[Unknown, ...] | dict[Unknown, Unknown]:
+    ) -> ...:
         """Cursor.reset()
 
         Sets the current enumeration index (used by the next method) back to
@@ -187,21 +187,21 @@ class Cursor(mixins.CursorMixin, _BaseArcObject):
         ...
     def next(
         self, *args
-    ):  # -> conversion | int | float | complex | basestring | list[Unknown] | tuple[Unknown, ...] | dict[Unknown, Unknown]:
+    ) -> ...:
         """Cursor.next()
 
         Returns the next object at the current index."""
         ...
     def newRow(
         self, *args
-    ):  # -> conversion | int | float | complex | basestring | list[Unknown] | tuple[Unknown, ...] | dict[Unknown, Unknown]:
+    ) -> ...:
         """Cursor.newRow()
 
         Creates an empty row object."""
         ...
     def updateRow(
         self, *args
-    ):  # -> conversion | int | float | complex | basestring | list[Unknown] | tuple[Unknown, ...] | dict[Unknown, Unknown]:
+    ) -> ...:
         """Cursor.updateRow(row)
 
         The updateRow method can be used to update the row at the current
@@ -212,7 +212,7 @@ class Cursor(mixins.CursorMixin, _BaseArcObject):
         ...
     def insertRow(
         self, *args
-    ):  # -> conversion | int | float | complex | basestring | list[Unknown] | tuple[Unknown, ...] | dict[Unknown, Unknown]:
+    ) -> ...:
         """Cursor.insertRow(row)
 
         Inserts a new row into the database.
@@ -222,7 +222,7 @@ class Cursor(mixins.CursorMixin, _BaseArcObject):
         ...
     def deleteRow(
         self, *args
-    ):  # -> conversion | int | float | complex | basestring | list[Unknown] | tuple[Unknown, ...] | dict[Unknown, Unknown]:
+    ) -> ...:
         """Cursor.deleteRow(row)
 
         Deletes a row in the database. The row corresponding to the current
@@ -260,7 +260,7 @@ class Extent(mixins.ExtentMixin, _BaseArcObject):
     JSON = ...
     def contains(
         self, second_geometry, relation=...
-    ):  # -> conversion | int | float | complex | basestring | list[Unknown] | tuple[Unknown, ...] | dict[Unknown, Unknown]:
+    ) -> ...:
         """Extent.contains(second_geometry)
 
         Indicates if the base geometry contains the comparison geometry.
@@ -275,7 +275,7 @@ class Extent(mixins.ExtentMixin, _BaseArcObject):
         ...
     def crosses(
         self, second_geometry
-    ):  # -> conversion | int | float | complex | basestring | list[Unknown] | tuple[Unknown, ...] | dict[Unknown, Unknown]:
+    ) -> ...:
         """Extent.crosses(second_geometry)
 
         Indicates if the two geometries intersect in a geometry of a lesser
@@ -295,7 +295,7 @@ class Extent(mixins.ExtentMixin, _BaseArcObject):
         ...
     def disjoint(
         self, second_geometry
-    ):  # -> conversion | int | float | complex | basestring | list[Unknown] | tuple[Unknown, ...] | dict[Unknown, Unknown]:
+    ) -> ...:
         """Extent.disjoint(second_geometry)
 
         Indicates if the base and comparison geometries share no points in
@@ -312,7 +312,7 @@ class Extent(mixins.ExtentMixin, _BaseArcObject):
         ...
     def equals(
         self, second_geometry
-    ):  # -> conversion | int | float | complex | basestring | list[Unknown] | tuple[Unknown, ...] | dict[Unknown, Unknown]:
+    ) -> ...:
         """Extent.equals(second_geometry)
 
         Indicates if the base and comparison geometries are of the same shape
@@ -328,7 +328,7 @@ class Extent(mixins.ExtentMixin, _BaseArcObject):
         ...
     def overlaps(
         self, second_geometry
-    ):  # -> conversion | int | float | complex | basestring | list[Unknown] | tuple[Unknown, ...] | dict[Unknown, Unknown]:
+    ) -> ...:
         """Extent.overlaps(second_geometry)
 
         Indicates if the intersection of the two geometries has the same
@@ -343,7 +343,7 @@ class Extent(mixins.ExtentMixin, _BaseArcObject):
         ...
     def touches(
         self, second_geometry
-    ):  # -> conversion | int | float | complex | basestring | list[Unknown] | tuple[Unknown, ...] | dict[Unknown, Unknown]:
+    ) -> ...:
         """Extent.touches(second_geometry)
 
         Indicates if the boundaries of the geometries intersect.
@@ -361,7 +361,7 @@ class Extent(mixins.ExtentMixin, _BaseArcObject):
         ...
     def within(
         self, second_geometry, relation=...
-    ):  # -> conversion | int | float | complex | basestring | list[Unknown] | tuple[Unknown, ...] | dict[Unknown, Unknown]:
+    ) -> ...:
         """Extent.within(second_geometry)
 
         Indicates if the base geometry is within the comparison geometry.
@@ -377,7 +377,7 @@ class Extent(mixins.ExtentMixin, _BaseArcObject):
         ...
     def projectAs(
         self, spatial_reference, transformation_name=...
-    ):  # -> conversion | int | float | complex | basestring | list[Unknown] | tuple[Unknown, ...] | dict[Unknown, Unknown]:
+    ) -> ...:
         """Extent.projectAs(spatial_reference, {transformation_name})
 
         Projects a geometry and optionally applies a geotransformation.
@@ -406,7 +406,7 @@ class FeatureSet(mixins.FeatureSetMixin, _BaseArcObject):
     GeoJSON = ...
     def load(
         self, *args, **kwargs
-    ):  # -> conversion | int | float | complex | basestring | list[Unknown] | tuple[Unknown, ...] | dict[Unknown, Unknown]:
+    ) -> ...:
         """FeatureSet.load(table_path)
 
         Import from a table.
@@ -426,7 +426,7 @@ class FeatureSet(mixins.FeatureSetMixin, _BaseArcObject):
         ...
     def save(
         self, *args
-    ):  # -> conversion | int | float | complex | basestring | list[Unknown] | tuple[Unknown, ...] | dict[Unknown, Unknown]:
+    ) -> ...:
         """FeatureSet.save(table_path)
 
         Export to a table.
@@ -458,7 +458,7 @@ class FieldInfo(mixins.FieldInfoMixin, _BaseArcObject):
     count = ...
     def addField(
         self, *args
-    ):  # -> conversion | int | float | complex | basestring | list[Unknown] | tuple[Unknown, ...] | dict[Unknown, Unknown]:
+    ) -> ...:
         """FieldInfo.addField(field_name, new_field_name, visible, split_rule)
 
         Adds a field info entry
@@ -498,7 +498,7 @@ class FieldInfo(mixins.FieldInfoMixin, _BaseArcObject):
         ...
     def getNewName(
         self, *args
-    ):  # -> conversion | int | float | complex | basestring | list[Unknown] | tuple[Unknown, ...] | dict[Unknown, Unknown]:
+    ) -> ...:
         """FieldInfo.getNewName(index)
 
         Gets the new field name from the table by index position.
@@ -508,7 +508,7 @@ class FieldInfo(mixins.FieldInfoMixin, _BaseArcObject):
         ...
     def getSplitRule(
         self, *args
-    ):  # -> conversion | int | float | complex | basestring | list[Unknown] | tuple[Unknown, ...] | dict[Unknown, Unknown]:
+    ) -> ...:
         """FieldInfo.getSplitRule(index)
 
         Gets the split rule from the table by index position.
@@ -518,7 +518,7 @@ class FieldInfo(mixins.FieldInfoMixin, _BaseArcObject):
         ...
     def getVisible(
         self, *args
-    ):  # -> conversion | int | float | complex | basestring | list[Unknown] | tuple[Unknown, ...] | dict[Unknown, Unknown]:
+    ) -> ...:
         """FieldInfo.getVisible(index)
 
         Gets the visible flag from the table by index position.
@@ -528,7 +528,7 @@ class FieldInfo(mixins.FieldInfoMixin, _BaseArcObject):
         ...
     def setFieldName(
         self, *args
-    ):  # -> conversion | int | float | complex | basestring | list[Unknown] | tuple[Unknown, ...] | dict[Unknown, Unknown]:
+    ) -> ...:
         """FieldInfo.setFieldName(index, field_name)
 
         Sets the field name into the table.
@@ -541,7 +541,7 @@ class FieldInfo(mixins.FieldInfoMixin, _BaseArcObject):
         ...
     def setNewName(
         self, *args
-    ):  # -> conversion | int | float | complex | basestring | list[Unknown] | tuple[Unknown, ...] | dict[Unknown, Unknown]:
+    ) -> ...:
         """FieldInfo.setNewName(index, new_field_name)
 
         Sets the new field name into the table.
@@ -554,7 +554,7 @@ class FieldInfo(mixins.FieldInfoMixin, _BaseArcObject):
         ...
     def setSplitRule(
         self, *args
-    ):  # -> conversion | int | float | complex | basestring | list[Unknown] | tuple[Unknown, ...] | dict[Unknown, Unknown]:
+    ) -> ...:
         """FieldInfo.setSplitRule(index, rule)
 
         Sets the split rule into the table.
@@ -576,7 +576,7 @@ class FieldInfo(mixins.FieldInfoMixin, _BaseArcObject):
         ...
     def setVisible(
         self, *args
-    ):  # -> conversion | int | float | complex | basestring | list[Unknown] | tuple[Unknown, ...] | dict[Unknown, Unknown]:
+    ) -> ...:
         """FieldInfo.setVisible(index, visible)
 
         Set the visible flag of a field on the table.
@@ -593,7 +593,7 @@ class FieldInfo(mixins.FieldInfoMixin, _BaseArcObject):
         ...
     def removeField(
         self, *args
-    ):  # -> conversion | int | float | complex | basestring | list[Unknown] | tuple[Unknown, ...] | dict[Unknown, Unknown]:
+    ) -> ...:
         """FieldInfo.removeField(index)
 
         Removes the field info entry from a table.
@@ -603,7 +603,7 @@ class FieldInfo(mixins.FieldInfoMixin, _BaseArcObject):
         ...
     def findFieldByName(
         self, *args
-    ):  # -> conversion | int | float | complex | basestring | list[Unknown] | tuple[Unknown, ...] | dict[Unknown, Unknown]:
+    ) -> ...:
         """FieldInfo.findFieldByName(field_name)
 
         Finds the field index by field name
@@ -613,7 +613,7 @@ class FieldInfo(mixins.FieldInfoMixin, _BaseArcObject):
         ...
     def findFieldByNewName(
         self, *args
-    ):  # -> conversion | int | float | complex | basestring | list[Unknown] | tuple[Unknown, ...] | dict[Unknown, Unknown]:
+    ) -> ...:
         """FieldInfo.findFieldByNewName(field_name)
 
         Finds the field index by new field name.
@@ -623,7 +623,7 @@ class FieldInfo(mixins.FieldInfoMixin, _BaseArcObject):
         ...
     def loadFromString(
         self, *args
-    ):  # -> conversion | int | float | complex | basestring | list[Unknown] | tuple[Unknown, ...] | dict[Unknown, Unknown]:
+    ) -> ...:
         """FieldInfo.loadFromString(string)
 
         Restore the object using its string representation.     The
@@ -634,7 +634,7 @@ class FieldInfo(mixins.FieldInfoMixin, _BaseArcObject):
         ...
     def exportToString(
         self, *args
-    ):  # -> conversion | int | float | complex | basestring | list[Unknown] | tuple[Unknown, ...] | dict[Unknown, Unknown]:
+    ) -> ...:
         """FieldInfo.exportToString()
 
         Exports the object to its string representation."""
@@ -650,7 +650,7 @@ class FieldMap(mixins.FieldMapMixin, _BaseArcObject):
     inputFieldCount = ...
     def addInputField(
         self, *args
-    ):  # -> conversion | int | float | complex | basestring | list[Unknown] | tuple[Unknown, ...] | dict[Unknown, Unknown]:
+    ) -> ...:
         """FieldMap.addInputField(table_dataset, field_name, {start_position},
         {end_position})
 
@@ -670,7 +670,7 @@ class FieldMap(mixins.FieldMapMixin, _BaseArcObject):
         ...
     def getInputTableName(
         self, *args
-    ):  # -> conversion | int | float | complex | basestring | list[Unknown] | tuple[Unknown, ...] | dict[Unknown, Unknown]:
+    ) -> ...:
         """FieldMap.getInputTableName(index)
 
         Gets the name of an input table from the field map, based on the
@@ -681,7 +681,7 @@ class FieldMap(mixins.FieldMapMixin, _BaseArcObject):
         ...
     def getInputFieldName(
         self, *args
-    ):  # -> conversion | int | float | complex | basestring | list[Unknown] | tuple[Unknown, ...] | dict[Unknown, Unknown]:
+    ) -> ...:
         """FieldMap.getInputFieldName(index)
 
         Gets the name of an input field from the field map, based on the
@@ -692,7 +692,7 @@ class FieldMap(mixins.FieldMapMixin, _BaseArcObject):
         ...
     def getStartTextPosition(
         self, *args
-    ):  # -> conversion | int | float | complex | basestring | list[Unknown] | tuple[Unknown, ...] | dict[Unknown, Unknown]:
+    ) -> ...:
         """FieldMap.getStartTextPosition(index)
 
         Gets start text position from the field map.
@@ -702,7 +702,7 @@ class FieldMap(mixins.FieldMapMixin, _BaseArcObject):
         ...
     def getEndTextPosition(
         self, *args
-    ):  # -> conversion | int | float | complex | basestring | list[Unknown] | tuple[Unknown, ...] | dict[Unknown, Unknown]:
+    ) -> ...:
         """FieldMap.getEndTextPosition(index)
 
         Gets end text position from the field map.
@@ -712,14 +712,14 @@ class FieldMap(mixins.FieldMapMixin, _BaseArcObject):
         ...
     def removeAll(
         self, *args
-    ):  # -> conversion | int | float | complex | basestring | list[Unknown] | tuple[Unknown, ...] | dict[Unknown, Unknown]:
+    ) -> ...:
         """FieldMap.removeAll()
 
         Removes all values and creates an empty object."""
         ...
     def removeInputField(
         self, *args
-    ):  # -> conversion | int | float | complex | basestring | list[Unknown] | tuple[Unknown, ...] | dict[Unknown, Unknown]:
+    ) -> ...:
         """FieldMap.removeInputField(index)
 
         Removes an input field from the field map.
@@ -729,7 +729,7 @@ class FieldMap(mixins.FieldMapMixin, _BaseArcObject):
         ...
     def findInputFieldIndex(
         self, *args
-    ):  # -> conversion | int | float | complex | basestring | list[Unknown] | tuple[Unknown, ...] | dict[Unknown, Unknown]:
+    ) -> ...:
         """FieldMap.findInputFieldIndex(table_dataset, field_name)
 
         Finds an input field from the field map.
@@ -742,7 +742,7 @@ class FieldMap(mixins.FieldMapMixin, _BaseArcObject):
         ...
     def setStartTextPosition(
         self, *args
-    ):  # -> conversion | int | float | complex | basestring | list[Unknown] | tuple[Unknown, ...] | dict[Unknown, Unknown]:
+    ) -> ...:
         """FieldMap.setStartTextPosition(index, start_position)
 
         Sets the start text position from the field map.
@@ -755,7 +755,7 @@ class FieldMap(mixins.FieldMapMixin, _BaseArcObject):
         ...
     def setEndTextPosition(
         self, *args
-    ):  # -> conversion | int | float | complex | basestring | list[Unknown] | tuple[Unknown, ...] | dict[Unknown, Unknown]:
+    ) -> ...:
         """FieldMap.setEndTextPosition(index, end_position)
 
         Sets end text position for the field map.
@@ -778,7 +778,7 @@ class FieldMappings(mixins.FieldMappingsMixin, _BaseArcObject):
     fieldMappings = ...
     def addTable(
         self, *args
-    ):  # -> conversion | int | float | complex | basestring | list[Unknown] | tuple[Unknown, ...] | dict[Unknown, Unknown]:
+    ) -> ...:
         """FieldMappings.addTable(table_dataset)
 
         Adds a table to the field mappings object.
@@ -788,14 +788,14 @@ class FieldMappings(mixins.FieldMappingsMixin, _BaseArcObject):
         ...
     def removeAll(
         self, *args
-    ):  # -> conversion | int | float | complex | basestring | list[Unknown] | tuple[Unknown, ...] | dict[Unknown, Unknown]:
+    ) -> ...:
         """FieldMappings.removeAll()
 
         Removes all values and creates an empty object."""
         ...
     def addFieldMap(
         self, *args
-    ):  # -> conversion | int | float | complex | basestring | list[Unknown] | tuple[Unknown, ...] | dict[Unknown, Unknown]:
+    ) -> ...:
         """FieldMappings.addFieldMap(field_map)
 
         Add a field map to the field mappings.
@@ -805,7 +805,7 @@ class FieldMappings(mixins.FieldMappingsMixin, _BaseArcObject):
         ...
     def getFieldMap(
         self, *args
-    ):  # -> conversion | int | float | complex | basestring | list[Unknown] | tuple[Unknown, ...] | dict[Unknown, Unknown]:
+    ) -> ...:
         """FieldMappings.getFieldMap(index)
 
         Gets a field map from the field mappings.
@@ -815,7 +815,7 @@ class FieldMappings(mixins.FieldMappingsMixin, _BaseArcObject):
         ...
     def replaceFieldMap(
         self, *args
-    ):  # -> conversion | int | float | complex | basestring | list[Unknown] | tuple[Unknown, ...] | dict[Unknown, Unknown]:
+    ) -> ...:
         """FieldMappings.replaceFieldMap(index, value)
 
         Replace a field map within the field mappings.
@@ -828,7 +828,7 @@ class FieldMappings(mixins.FieldMappingsMixin, _BaseArcObject):
         ...
     def removeFieldMap(
         self, *args
-    ):  # -> conversion | int | float | complex | basestring | list[Unknown] | tuple[Unknown, ...] | dict[Unknown, Unknown]:
+    ) -> ...:
         """FieldMappings.removeFieldMap(index)
 
         Removes a field map from the field mappings.
@@ -838,7 +838,7 @@ class FieldMappings(mixins.FieldMappingsMixin, _BaseArcObject):
         ...
     def findFieldMapIndex(
         self, *args
-    ):  # -> conversion | int | float | complex | basestring | list[Unknown] | tuple[Unknown, ...] | dict[Unknown, Unknown]:
+    ) -> ...:
         """FieldMappings.findFieldMapIndex(field_map_name)
 
         Find a field map within the field mappings by name.
@@ -850,7 +850,7 @@ class FieldMappings(mixins.FieldMappingsMixin, _BaseArcObject):
         self, string: str
     ) -> (
         ...
-    ):  # -> conversion | int | float | complex | basestring | list[Unknown] | tuple[Unknown, ...] | dict[Unknown, Unknown]:
+    ) -> ...:
         """FieldMappings.loadFromString(string)
 
         Restore the object using its string representation.     The
@@ -1014,7 +1014,7 @@ class Geometry(mixins.GeometrySpecializationMixin, _BaseArcObject):
     hasCurves = ...
     def getPart(
         self, *args
-    ):  # -> conversion | int | float | complex | basestring | list[Unknown] | tuple[Unknown, ...] | dict[Unknown, Unknown]:
+    ) -> ...:
         """Geometry.getPart({index})
 
         Returns an array of point objects for a particular part of geometry
@@ -1025,7 +1025,7 @@ class Geometry(mixins.GeometrySpecializationMixin, _BaseArcObject):
         ...
     def contains(
         self, second_geometry, relation=...
-    ):  # -> conversion | int | float | complex | basestring | list[Unknown] | tuple[Unknown, ...] | dict[Unknown, Unknown]:
+    ) -> ...:
         """Geometry.contains(second_geometry)
 
         Indicates if the base geometry contains the comparison geometry.
@@ -1040,7 +1040,7 @@ class Geometry(mixins.GeometrySpecializationMixin, _BaseArcObject):
         ...
     def crosses(
         self, second_geometry
-    ):  # -> conversion | int | float | complex | basestring | list[Unknown] | tuple[Unknown, ...] | dict[Unknown, Unknown]:
+    ) -> ...:
         """Geometry.crosses(second_geometry)
 
         Indicates if the two geometries intersect in a geometry of a lesser
@@ -1074,7 +1074,7 @@ class Geometry(mixins.GeometrySpecializationMixin, _BaseArcObject):
         ...
     def equals(
         self, second_geometry
-    ):  # -> conversion | int | float | complex | basestring | list[Unknown] | tuple[Unknown, ...] | dict[Unknown, Unknown]:
+    ) -> ...:
         """Geometry.equals(second_geometry)
 
         Indicates if the base and comparison geometries are of the same shape
@@ -1090,7 +1090,7 @@ class Geometry(mixins.GeometrySpecializationMixin, _BaseArcObject):
         ...
     def overlaps(
         self, second_geometry
-    ):  # -> conversion | int | float | complex | basestring | list[Unknown] | tuple[Unknown, ...] | dict[Unknown, Unknown]:
+    ) -> ...:
         """Geometry.overlaps(second_geometry)
 
         Indicates if the intersection of the two geometries has the same
@@ -1105,7 +1105,7 @@ class Geometry(mixins.GeometrySpecializationMixin, _BaseArcObject):
         ...
     def touches(
         self, second_geometry
-    ):  # -> conversion | int | float | complex | basestring | list[Unknown] | tuple[Unknown, ...] | dict[Unknown, Unknown]:
+    ) -> ...:
         """Geometry.touches(second_geometry)
 
         Indicates if the boundaries of the geometries intersect.
@@ -1123,7 +1123,7 @@ class Geometry(mixins.GeometrySpecializationMixin, _BaseArcObject):
         ...
     def within(
         self, second_geometry, relation=...
-    ):  # -> conversion | int | float | complex | basestring | list[Unknown] | tuple[Unknown, ...] | dict[Unknown, Unknown]:
+    ) -> ...:
         """Geometry.within(second_geometry)
 
         Indicates if the base geometry is within the comparison geometry.
@@ -1139,7 +1139,7 @@ class Geometry(mixins.GeometrySpecializationMixin, _BaseArcObject):
         ...
     def projectAs(
         self, spatial_reference, transformation_name=...
-    ):  # -> conversion | int | float | complex | basestring | list[Unknown] | tuple[Unknown, ...] | dict[Unknown, Unknown]:
+    ) -> ...:
         """Geometry.projectAs(spatial_reference, {transformation_name})
 
         Projects a geometry and optionally applies a geotransformation.
@@ -1159,7 +1159,7 @@ class Geometry(mixins.GeometrySpecializationMixin, _BaseArcObject):
         ...
     def positionAlongLine(
         self, value, use_percentage=..., geodesic=...
-    ):  # -> conversion | int | float | complex | basestring | list[Unknown] | tuple[Unknown, ...] | dict[Unknown, Unknown]:
+    ) -> ...:
         """Geometry.positionAlongLine(value, {use_percentage})
 
         Returns a point on a line at a specified distance from
@@ -1216,7 +1216,7 @@ class Geometry(mixins.GeometrySpecializationMixin, _BaseArcObject):
         ...
     def snapToLine(
         self, in_point
-    ):  # -> conversion | int | float | complex | basestring | list[Unknown] | tuple[Unknown, ...] | dict[Unknown, Unknown]:
+    ) -> ...:
         """Geometry.snapToLine(in_point)
 
         Returns a new point based on in_point snapped to this geometry.
@@ -1226,7 +1226,7 @@ class Geometry(mixins.GeometrySpecializationMixin, _BaseArcObject):
         ...
     def measureOnLine(
         self, in_point, use_percentage=...
-    ):  # -> conversion | int | float | complex | basestring | list[Unknown] | tuple[Unknown, ...] | dict[Unknown, Unknown]:
+    ) -> ...:
         """Geometry.measureOnLine(in_point, {use_percentage})
 
         Returns a measure from the start point of this line to the in_point .
@@ -1242,7 +1242,7 @@ class Geometry(mixins.GeometrySpecializationMixin, _BaseArcObject):
     def generalize(self, distance): ...
     def getLength(
         self, method=..., units=...
-    ):  # -> conversion | int | float | complex | basestring | list[Unknown] | tuple[Unknown, ...] | dict[Unknown, Unknown]:
+    ) -> ...:
         """Geometry.getLength({method}, {units})
 
         Returns the length of the feature using a measurement type.
@@ -1289,7 +1289,7 @@ class Geometry(mixins.GeometrySpecializationMixin, _BaseArcObject):
         ...
     def getArea(
         self, method=..., units=...
-    ):  # -> conversion | int | float | complex | basestring | list[Unknown] | tuple[Unknown, ...] | dict[Unknown, Unknown]:
+    ) -> ...:
         """Geometry.getArea({method}, {units})
 
         Returns the area of the feature using a measurement type.
@@ -1337,7 +1337,7 @@ class Geometry(mixins.GeometrySpecializationMixin, _BaseArcObject):
         ...
     def getGeohash(
         self, precision=...
-    ):  # -> conversion | int | float | complex | basestring | list[Unknown] | tuple[Unknown, ...] | dict[Unknown, Unknown]:
+    ) -> ...:
         """getGeohash(precision)
 
         Converts a PointGeometry in geographic coordinate system coordinates
@@ -1351,7 +1351,7 @@ class Geometry(mixins.GeometrySpecializationMixin, _BaseArcObject):
         ...
     def segmentAlongLine(
         self, start_measure, end_measure, use_percentage=...
-    ):  # -> conversion | int | float | complex | basestring | list[Unknown] | tuple[Unknown, ...] | dict[Unknown, Unknown]:
+    ) -> ...:
         """Geometry.segmentAlongLine(start_measure, end_measure,
         {use_percentage})
 
@@ -1376,7 +1376,7 @@ class Geometry(mixins.GeometrySpecializationMixin, _BaseArcObject):
         ...
     def angleAndDistanceTo(
         self, other_geometry, method=...
-    ):  # -> conversion | int | float | complex | basestring | list[Unknown] | tuple[Unknown, ...] | dict[Unknown, Unknown]:
+    ) -> ...:
         """Geometry.angleAndDistanceTo(other, {method})
 
         Returns a tuple of angle and distance to another point using a
@@ -1420,7 +1420,7 @@ class Geometry(mixins.GeometrySpecializationMixin, _BaseArcObject):
         ...
     def pointFromAngleAndDistance(
         self, angle, distance, method=...
-    ):  # -> conversion | int | float | complex | basestring | list[Unknown] | tuple[Unknown, ...] | dict[Unknown, Unknown]:
+    ) -> ...:
         """Geometry.pointFromAngleAndDistance(angle, distance, {method})
 
         Returns a point at a given angle and distance in degrees and meters
@@ -1467,7 +1467,7 @@ class Geometry(mixins.GeometrySpecializationMixin, _BaseArcObject):
         ...
     def boundary(
         self,
-    ):  # -> conversion | int | float | complex | basestring | list[Unknown] | tuple[Unknown, ...] | dict[Unknown, Unknown]:
+    ) -> ...:
         """Geometry.boundary()
 
         Constructs the boundary of the geometry.   Boundary operator"""
@@ -1488,7 +1488,7 @@ class Geometry(mixins.GeometrySpecializationMixin, _BaseArcObject):
         ...
     def clip(
         self, envelope
-    ):  # -> conversion | int | float | complex | basestring | list[Unknown] | tuple[Unknown, ...] | dict[Unknown, Unknown]:
+    ) -> ...:
         """Geometry.clip(envelope)
 
         Constructs the intersection of the geometry and the specified extent.
@@ -1499,7 +1499,7 @@ class Geometry(mixins.GeometrySpecializationMixin, _BaseArcObject):
         ...
     def convexHull(
         self,
-    ):  # -> conversion | int | float | complex | basestring | list[Unknown] | tuple[Unknown, ...] | dict[Unknown, Unknown]:
+    ) -> ...:
         """Geometry.convexHull()
 
         Constructs the geometry that is the minimal bounding polygon such
@@ -1508,7 +1508,7 @@ class Geometry(mixins.GeometrySpecializationMixin, _BaseArcObject):
         ...
     def difference(
         self, other
-    ):  # -> conversion | int | float | complex | basestring | list[Unknown] | tuple[Unknown, ...] | dict[Unknown, Unknown]:
+    ) -> ...:
         """Geometry.difference(other)
 
         Constructs the geometry that is composed only of the region unique to
@@ -1522,7 +1522,7 @@ class Geometry(mixins.GeometrySpecializationMixin, _BaseArcObject):
         ...
     def intersect(
         self, other, dimension
-    ):  # -> conversion | int | float | complex | basestring | list[Unknown] | tuple[Unknown, ...] | dict[Unknown, Unknown]:
+    ) -> ...:
         """Geometry.intersect(other, dimension)
 
         Constructs a geometry that is the geometric intersection of
@@ -1550,7 +1550,7 @@ class Geometry(mixins.GeometrySpecializationMixin, _BaseArcObject):
         ...
     def symmetricDifference(
         self, other
-    ):  # -> conversion | int | float | complex | basestring | list[Unknown] | tuple[Unknown, ...] | dict[Unknown, Unknown]:
+    ) -> ...:
         """Geometry.symmetricDifference(other)
 
         Constructs
@@ -1565,7 +1565,7 @@ class Geometry(mixins.GeometrySpecializationMixin, _BaseArcObject):
         ...
     def union(
         self, other
-    ):  # -> conversion | int | float | complex | basestring | list[Unknown] | tuple[Unknown, ...] | dict[Unknown, Unknown]:
+    ) -> ...:
         """Geometry.union(other)
 
         Constructs the geometry that is the set-theoretic union of the input
@@ -1579,7 +1579,7 @@ class Geometry(mixins.GeometrySpecializationMixin, _BaseArcObject):
         ...
     def distanceTo(
         self, other
-    ):  # -> conversion | int | float | complex | basestring | list[Unknown] | tuple[Unknown, ...] | dict[Unknown, Unknown]:
+    ) -> ...:
         """Geometry.distanceTo(other)
 
         Returns the minimum distance between two geometries. If the
@@ -1592,7 +1592,7 @@ class Geometry(mixins.GeometrySpecializationMixin, _BaseArcObject):
         ...
     def cut(
         self, other
-    ):  # -> conversion | int | float | complex | basestring | list[Unknown] | tuple[Unknown, ...] | dict[Unknown, Unknown]:
+    ) -> ...:
         """Geometry.cut(cutter)
 
         Splits this geometry into a part left of the cutting polyline, and a
@@ -1611,7 +1611,7 @@ class Geometry(mixins.GeometrySpecializationMixin, _BaseArcObject):
         ...
     def densify(
         self, method, distance=..., deviation=...
-    ):  # -> conversion | int | float | complex | basestring | list[Unknown] | tuple[Unknown, ...] | dict[Unknown, Unknown]:
+    ) -> ...:
         """Geometry.densify(method, distance, deviation)
 
         Creates a new geometry with
@@ -1672,7 +1672,7 @@ class NetCDFFileProperties(mixins.NetCDFFilePropertiesMixin, _BaseArcObject):
 
     def getAttributeNames(
         self, *args
-    ):  # -> conversion | int | float | complex | basestring | list[Unknown] | tuple[Unknown, ...] | dict[Unknown, Unknown]:
+    ) -> ...:
         """NetCDFFileProperties.getAttributeNames({variable_name})
 
         Gets the attribute names of a variable in a NetCDF file.
@@ -1682,7 +1682,7 @@ class NetCDFFileProperties(mixins.NetCDFFilePropertiesMixin, _BaseArcObject):
         ...
     def getAttributeValue(
         self, *args
-    ):  # -> conversion | int | float | complex | basestring | list[Unknown] | tuple[Unknown, ...] | dict[Unknown, Unknown]:
+    ) -> ...:
         """NetCDFFileProperties.getAttributeValue(variable_name, attribute_name)
 
         Get the value of an attribute.
@@ -1695,7 +1695,7 @@ class NetCDFFileProperties(mixins.NetCDFFilePropertiesMixin, _BaseArcObject):
         ...
     def getDimensionIndex(
         self, *args
-    ):  # -> conversion | int | float | complex | basestring | list[Unknown] | tuple[Unknown, ...] | dict[Unknown, Unknown]:
+    ) -> ...:
         """NetCDFFileProperties.getDimensionIndex(dimension_name, value)
 
         Gets the dimension index.
@@ -1708,14 +1708,14 @@ class NetCDFFileProperties(mixins.NetCDFFilePropertiesMixin, _BaseArcObject):
         ...
     def getDimensions(
         self, *args
-    ):  # -> conversion | int | float | complex | basestring | list[Unknown] | tuple[Unknown, ...] | dict[Unknown, Unknown]:
+    ) -> ...:
         """NetCDFFileProperties.getDimensions()
 
         Gets the dimensions."""
         ...
     def getDimensionsByVariable(
         self, *args
-    ):  # -> conversion | int | float | complex | basestring | list[Unknown] | tuple[Unknown, ...] | dict[Unknown, Unknown]:
+    ) -> ...:
         """NetCDFFileProperties.getDimensionsByVariable(variable_name)
 
         Gets the dimensions by variable.
@@ -1725,7 +1725,7 @@ class NetCDFFileProperties(mixins.NetCDFFilePropertiesMixin, _BaseArcObject):
         ...
     def getDimensionSize(
         self, *args
-    ):  # -> conversion | int | float | complex | basestring | list[Unknown] | tuple[Unknown, ...] | dict[Unknown, Unknown]:
+    ) -> ...:
         """NetCDFFileProperties.getDimensionSize(dimension_name)
 
         Gets the dimension size.
@@ -1735,7 +1735,7 @@ class NetCDFFileProperties(mixins.NetCDFFilePropertiesMixin, _BaseArcObject):
         ...
     def getDimensionValue(
         self, *args
-    ):  # -> conversion | int | float | complex | basestring | list[Unknown] | tuple[Unknown, ...] | dict[Unknown, Unknown]:
+    ) -> ...:
         """NetCDFFileProperties.getDimensionValue(dimension_name, index)
 
         Gets the dimension value.
@@ -1748,7 +1748,7 @@ class NetCDFFileProperties(mixins.NetCDFFilePropertiesMixin, _BaseArcObject):
         ...
     def getFieldType(
         self, *args
-    ):  # -> conversion | int | float | complex | basestring | list[Unknown] | tuple[Unknown, ...] | dict[Unknown, Unknown]:
+    ) -> ...:
         """NetCDFFileProperties.getFieldType(name)
 
         Gets the field type of a variable or dimension.
@@ -1758,7 +1758,7 @@ class NetCDFFileProperties(mixins.NetCDFFilePropertiesMixin, _BaseArcObject):
         ...
     def getSpatialReference(
         self, *args
-    ):  # -> conversion | int | float | complex | basestring | list[Unknown] | tuple[Unknown, ...] | dict[Unknown, Unknown]:
+    ) -> ...:
         """NetCDFFileProperties.getSpatialReference(variable_name, x_dimension,
         y_dimension)
 
@@ -1775,14 +1775,14 @@ class NetCDFFileProperties(mixins.NetCDFFilePropertiesMixin, _BaseArcObject):
         ...
     def getVariables(
         self, *args
-    ):  # -> conversion | int | float | complex | basestring | list[Unknown] | tuple[Unknown, ...] | dict[Unknown, Unknown]:
+    ) -> ...:
         """NetCDFFileProperties.getVariables()
 
         Gets the variables."""
         ...
     def getVariablesByDimension(
         self, *args
-    ):  # -> conversion | int | float | complex | basestring | list[Unknown] | tuple[Unknown, ...] | dict[Unknown, Unknown]:
+    ) -> ...:
         """NetCDFFileProperties.getVariablesByDimension(dimension_name)
 
         Get the variables by dimension.
@@ -1822,7 +1822,7 @@ class Parameter(mixins.ParameterMixin, _BaseArcObject):
     controlCLSID = ...
     def setErrorMessage(
         self, *args
-    ):  # -> conversion | int | float | complex | basestring | list[Unknown] | tuple[Unknown, ...] | dict[Unknown, Unknown]:
+    ) -> ...:
         """Parameter.setErrorMessage(message)
 
         Marks the parameter as having an error with the supplied message.
@@ -1834,7 +1834,7 @@ class Parameter(mixins.ParameterMixin, _BaseArcObject):
         ...
     def setWarningMessage(
         self, *args
-    ):  # -> conversion | int | float | complex | basestring | list[Unknown] | tuple[Unknown, ...] | dict[Unknown, Unknown]:
+    ) -> ...:
         """Parameter.setWarningMessage(message)
 
         Marks the parameter as having a warning with the supplied message.
@@ -1913,7 +1913,7 @@ class Point(mixins.PointMixin, _BaseArcObject):
     ID = ...
     def clone(
         self, *args
-    ):  # -> conversion | int | float | complex | basestring | list[Unknown] | tuple[Unknown, ...] | dict[Unknown, Unknown]:
+    ) -> ...:
         """Point.clone(point_object)
 
         Clone the point object.
@@ -1923,7 +1923,7 @@ class Point(mixins.PointMixin, _BaseArcObject):
         ...
     def contains(
         self, second_geometry, relation=...
-    ):  # -> conversion | int | float | complex | basestring | list[Unknown] | tuple[Unknown, ...] | dict[Unknown, Unknown]:
+    ) -> ...:
         """Point.contains(second_geometry)
 
         Indicates if the base geometry contains the comparison geometry.
@@ -1938,7 +1938,7 @@ class Point(mixins.PointMixin, _BaseArcObject):
         ...
     def crosses(
         self, second_geometry
-    ):  # -> conversion | int | float | complex | basestring | list[Unknown] | tuple[Unknown, ...] | dict[Unknown, Unknown]:
+    ) -> ...:
         """Point.crosses(second_geometry)
 
         Indicates if the two geometries intersect in a geometry of a lesser
@@ -1958,7 +1958,7 @@ class Point(mixins.PointMixin, _BaseArcObject):
         ...
     def disjoint(
         self, second_geometry
-    ):  # -> conversion | int | float | complex | basestring | list[Unknown] | tuple[Unknown, ...] | dict[Unknown, Unknown]:
+    ) -> ...:
         """Point.disjoint(second_geometry)
 
         Indicates if the base and comparison geometries share no points in
@@ -1975,7 +1975,7 @@ class Point(mixins.PointMixin, _BaseArcObject):
         ...
     def equals(
         self, second_geometry
-    ):  # -> conversion | int | float | complex | basestring | list[Unknown] | tuple[Unknown, ...] | dict[Unknown, Unknown]:
+    ) -> ...:
         """Point.equals(second_geometry)
 
         Indicates if the base and comparison geometries are of the same shape
@@ -1991,7 +1991,7 @@ class Point(mixins.PointMixin, _BaseArcObject):
         ...
     def overlaps(
         self, second_geometry
-    ):  # -> conversion | int | float | complex | basestring | list[Unknown] | tuple[Unknown, ...] | dict[Unknown, Unknown]:
+    ) -> ...:
         """Point.overlaps(second_geometry)
 
         Indicates if the intersection of the two geometries has the same
@@ -2006,7 +2006,7 @@ class Point(mixins.PointMixin, _BaseArcObject):
         ...
     def touches(
         self, second_geometry
-    ):  # -> conversion | int | float | complex | basestring | list[Unknown] | tuple[Unknown, ...] | dict[Unknown, Unknown]:
+    ) -> ...:
         """Point.touches(second_geometry)
 
         Indicates if the boundaries of the geometries intersect.
@@ -2024,7 +2024,7 @@ class Point(mixins.PointMixin, _BaseArcObject):
         ...
     def within(
         self, second_geometry, relation=...
-    ):  # -> conversion | int | float | complex | basestring | list[Unknown] | tuple[Unknown, ...] | dict[Unknown, Unknown]:
+    ) -> ...:
         """Point.within(second_geometry)
 
         Indicates if the base geometry is within the comparison geometry.
@@ -2048,7 +2048,7 @@ class RandomNumberGenerator(_BaseArcObject):
 
     def loadFromString(
         self, *args
-    ):  # -> conversion | int | float | complex | basestring | list[Unknown] | tuple[Unknown, ...] | dict[Unknown, Unknown]:
+    ) -> ...:
         """RandomNumberGenerator.loadFromString(string)
 
         Restore the object using its string representation.     The
@@ -2059,7 +2059,7 @@ class RandomNumberGenerator(_BaseArcObject):
         ...
     def exportToString(
         self, *args
-    ):  # -> conversion | int | float | complex | basestring | list[Unknown] | tuple[Unknown, ...] | dict[Unknown, Unknown]:
+    ) -> ...:
         """RandomNumberGenerator.exportToString()
 
         Exports the object to its string representation."""
@@ -2074,7 +2074,7 @@ class RecordSet(mixins.RecordSetMixin, _BaseArcObject):
     JSON = ...
     def load(
         self, *args, **kwargs
-    ):  # -> conversion | int | float | complex | basestring | list[Unknown] | tuple[Unknown, ...] | dict[Unknown, Unknown]:
+    ) -> ...:
         """RecordSet.load(table_path)
 
         Import from a table.
@@ -2086,7 +2086,7 @@ class RecordSet(mixins.RecordSetMixin, _BaseArcObject):
         ...
     def save(
         self, *args
-    ):  # -> conversion | int | float | complex | basestring | list[Unknown] | tuple[Unknown, ...] | dict[Unknown, Unknown]:
+    ) -> ...:
         """RecordSet.save(table_path)
 
         Export to a table.
@@ -2100,13 +2100,11 @@ class Result(mixins.ResultMixin, _BaseArcObject):
 
     status = ...
     resultID = ...
-    messageCount = ...
+    messageCount: int = ...
     maxSeverity = ...
-    outputCount = ...
+    outputCount: int = ...
     inputCount = ...
-    def getMessage(
-        self, *args
-    ):  # -> conversion | int | float | complex | basestring | list[Unknown] | tuple[Unknown, ...] | dict[Unknown, Unknown]:
+    def getMessage(self, index: int) -> str:
         """Result.getMessage(index)
 
         Returns a specific message.
@@ -2129,9 +2127,7 @@ class Result(mixins.ResultMixin, _BaseArcObject):
 
          * 2:   error message"""
         ...
-    def getSeverity(
-        self, *args
-    ):  # -> conversion | int | float | complex | basestring | list[Unknown] | tuple[Unknown, ...] | dict[Unknown, Unknown]:
+    def getSeverity(self, index: int) -> int:
         """Result.getSeverity(index)
 
         Returns the severity of a specific message.
@@ -2150,9 +2146,7 @@ class Result(mixins.ResultMixin, _BaseArcObject):
           index(Integer):
         The index position of the outputs."""
         ...
-    def getInput(
-        self, *args
-    ):  # -> conversion | int | float | complex | basestring | list[Unknown] | tuple[Unknown, ...] | dict[Unknown, Unknown]:
+    def getInput(self, index: int) -> str | RecordSet:
         """Result.getInput(index)
 
         Returns a given input, either as a recordset or string.
@@ -2161,8 +2155,12 @@ class Result(mixins.ResultMixin, _BaseArcObject):
         The index position of the input."""
         ...
     def getMapImageURL(
-        self, *args
-    ):  # -> conversion | int | float | complex | basestring | list[Unknown] | tuple[Unknown, ...] | dict[Unknown, Unknown]:
+        self,
+        parameter_list: int | None = None,
+        height: float | None = None,
+        width: float | None = None,
+        resolution: float | None = None,
+    ) -> str:
         """Result.getMapImageURL({parameter_list}, {height}, {width},
         {resolution})
 
@@ -2180,16 +2178,12 @@ class Result(mixins.ResultMixin, _BaseArcObject):
           resolution{Double}:
         The resolution of the image."""
         ...
-    def cancel(
-        self, *args
-    ):  # -> conversion | int | float | complex | basestring | list[Unknown] | tuple[Unknown, ...] | dict[Unknown, Unknown]:
+    def cancel(self, *args) -> None:
         """Result.cancel()
 
         Cancels an associated job"""
         ...
-    def saveToFile(
-        self, *args
-    ):  # -> conversion | int | float | complex | basestring | list[Unknown] | tuple[Unknown, ...] | dict[Unknown, Unknown]:
+    def saveToFile(self, rlt_file: str) -> ...:
         """Result.saveToFile(rlt_file)
 
         Saves the result to a result file (.rlt) .
@@ -2206,7 +2200,7 @@ class Row(_BaseArcObject):
     __passthrough_to_ao__ = ...
     def setValue(
         self, *args
-    ):  # -> conversion | int | float | complex | basestring | list[Unknown] | tuple[Unknown, ...] | dict[Unknown, Unknown]:
+    ) -> ...:
         """Row.setValue(field_name, object)
 
         Sets the field value.
@@ -2219,7 +2213,7 @@ class Row(_BaseArcObject):
         ...
     def getValue(
         self, *args
-    ):  # -> conversion | int | float | complex | basestring | list[Unknown] | tuple[Unknown, ...] | dict[Unknown, Unknown]:
+    ) -> ...:
         """Row.getValue(field_name)
 
         Gets the field value.
@@ -2229,7 +2223,7 @@ class Row(_BaseArcObject):
         ...
     def setNull(
         self, *args
-    ):  # -> conversion | int | float | complex | basestring | list[Unknown] | tuple[Unknown, ...] | dict[Unknown, Unknown]:
+    ) -> ...:
         """Row.setNull(field_name)
 
         Sets the field value to null.
@@ -2239,7 +2233,7 @@ class Row(_BaseArcObject):
         ...
     def isNull(
         self, *args
-    ):  # -> conversion | int | float | complex | basestring | list[Unknown] | tuple[Unknown, ...] | dict[Unknown, Unknown]:
+    ) -> ...:
         """Row.isNull(field_name)
 
         Is the field value null.
@@ -2337,7 +2331,7 @@ class SpatialReference(mixins.SpatialReferenceMixin, _BaseArcObject):
     VCS = ...
     def setFalseOriginAndUnits(
         self, *args
-    ):  # -> conversion | int | float | complex | basestring | list[Unknown] | tuple[Unknown, ...] | dict[Unknown, Unknown]:
+    ) -> ...:
         """SpatialReference.setFalseOriginAndUnits(false_x, false_y, xy_units)
 
         Sets the XY false origin and units.
@@ -2353,7 +2347,7 @@ class SpatialReference(mixins.SpatialReferenceMixin, _BaseArcObject):
         ...
     def setZFalseOriginAndUnits(
         self, *args
-    ):  # -> conversion | int | float | complex | basestring | list[Unknown] | tuple[Unknown, ...] | dict[Unknown, Unknown]:
+    ) -> ...:
         """SpatialReference.setZFalseOriginAndUnits(false_z, z_units)
 
         Sets the Z false origin and units.
@@ -2366,7 +2360,7 @@ class SpatialReference(mixins.SpatialReferenceMixin, _BaseArcObject):
         ...
     def setMFalseOriginAndUnits(
         self, *args
-    ):  # -> conversion | int | float | complex | basestring | list[Unknown] | tuple[Unknown, ...] | dict[Unknown, Unknown]:
+    ) -> ...:
         """SpatialReference.setMFalseOriginAndUnits(false_m, m_units)
 
         Sets the M false origin and units.
@@ -2379,7 +2373,7 @@ class SpatialReference(mixins.SpatialReferenceMixin, _BaseArcObject):
         ...
     def setDomain(
         self, *args
-    ):  # -> conversion | int | float | complex | basestring | list[Unknown] | tuple[Unknown, ...] | dict[Unknown, Unknown]:
+    ) -> ...:
         """SpatialReference.setDomain(x_min, x_max, y_min, y_max)
 
         Sets the XY domain.
@@ -2398,7 +2392,7 @@ class SpatialReference(mixins.SpatialReferenceMixin, _BaseArcObject):
         ...
     def setZDomain(
         self, *args
-    ):  # -> conversion | int | float | complex | basestring | list[Unknown] | tuple[Unknown, ...] | dict[Unknown, Unknown]:
+    ) -> ...:
         """SpatialReference.setZDomain(z_min, z_max)
 
         Sets the Z domain.
@@ -2411,7 +2405,7 @@ class SpatialReference(mixins.SpatialReferenceMixin, _BaseArcObject):
         ...
     def setMDomain(
         self, *args
-    ):  # -> conversion | int | float | complex | basestring | list[Unknown] | tuple[Unknown, ...] | dict[Unknown, Unknown]:
+    ) -> ...:
         """SpatialReference.setMDomain(m_min, m_max)
 
         Sets the M domain.
@@ -2424,7 +2418,7 @@ class SpatialReference(mixins.SpatialReferenceMixin, _BaseArcObject):
         ...
     def createFromFile(
         self, *args
-    ):  # -> conversion | int | float | complex | basestring | list[Unknown] | tuple[Unknown, ...] | dict[Unknown, Unknown]:
+    ) -> ...:
         """SpatialReference.createFromFile(prj_file)
 
         Creates the spatial reference object from a projection file.
@@ -2434,14 +2428,14 @@ class SpatialReference(mixins.SpatialReferenceMixin, _BaseArcObject):
         ...
     def create(
         self, *args
-    ):  # -> conversion | int | float | complex | basestring | list[Unknown] | tuple[Unknown, ...] | dict[Unknown, Unknown]:
+    ) -> ...:
         """SpatialReference.create()
 
         Creates the spatial reference object using properties."""
         ...
     def loadFromString(
         self, *args
-    ):  # -> conversion | int | float | complex | basestring | list[Unknown] | tuple[Unknown, ...] | dict[Unknown, Unknown]:
+    ) -> ...:
         """SpatialReference.loadFromString(string)
 
         Restore the object using its string representation.     The
@@ -2452,7 +2446,7 @@ class SpatialReference(mixins.SpatialReferenceMixin, _BaseArcObject):
         ...
     def exportToString(
         self, *args
-    ):  # -> conversion | int | float | complex | basestring | list[Unknown] | tuple[Unknown, ...] | dict[Unknown, Unknown]:
+    ) -> ...:
         """SpatialReference.exportToString()
 
         Exports the object to its string representation."""
@@ -2474,7 +2468,7 @@ class ValueTable(mixins.ValueTableMixin, _BaseArcObject):
     columnCount = ...
     def setColumns(
         self, *args
-    ):  # -> conversion | int | float | complex | basestring | list[Unknown] | tuple[Unknown, ...] | dict[Unknown, Unknown]:
+    ) -> ...:
         """ValueTable.setColumns(number_of_columns)
 
         Sets the number of columns for the value table.
@@ -2484,7 +2478,7 @@ class ValueTable(mixins.ValueTableMixin, _BaseArcObject):
         ...
     def addColumns(
         self, *args
-    ):  # -> conversion | int | float | complex | basestring | list[Unknown] | tuple[Unknown, ...] | dict[Unknown, Unknown]:
+    ) -> ...:
         """ValueTable.addColumns(number_of_columns)
 
         Adds the number of columns for the value table.
@@ -2494,7 +2488,7 @@ class ValueTable(mixins.ValueTableMixin, _BaseArcObject):
         ...
     def addRow(
         self, *args
-    ):  # -> conversion | int | float | complex | basestring | list[Unknown] | tuple[Unknown, ...] | dict[Unknown, Unknown]:
+    ) -> ...:
         """ValueTable.addRow(value)
 
         Adds a row to the value table.
@@ -2510,7 +2504,7 @@ class ValueTable(mixins.ValueTableMixin, _BaseArcObject):
         ...
     def getRow(
         self, *args
-    ):  # -> conversion | int | float | complex | basestring | list[Unknown] | tuple[Unknown, ...] | dict[Unknown, Unknown]:
+    ) -> ...:
         """ValueTable.getRow(row)
 
         Gets a row from the value table.
@@ -2520,7 +2514,7 @@ class ValueTable(mixins.ValueTableMixin, _BaseArcObject):
         ...
     def getTrueRow(
         self, *args
-    ):  # -> conversion | int | float | complex | basestring | list[Unknown] | tuple[Unknown, ...] | dict[Unknown, Unknown]:
+    ) -> ...:
         """ValueTable.getTrueRow(row)
 
         Gets a row from the value table.
@@ -2530,7 +2524,7 @@ class ValueTable(mixins.ValueTableMixin, _BaseArcObject):
         ...
     def getValue(
         self, *args
-    ):  # -> conversion | int | float | complex | basestring | list[Unknown] | tuple[Unknown, ...] | dict[Unknown, Unknown]:
+    ) -> ...:
         """ValueTable.getValue(row, column)
 
         Gets value from a given column and row.
@@ -2543,7 +2537,7 @@ class ValueTable(mixins.ValueTableMixin, _BaseArcObject):
         ...
     def getTrueValue(
         self, *args
-    ):  # -> conversion | int | float | complex | basestring | list[Unknown] | tuple[Unknown, ...] | dict[Unknown, Unknown]:
+    ) -> ...:
         """ValueTable.getTrueValue(row, column)
 
         Gets value from a given column and row.
@@ -2556,7 +2550,7 @@ class ValueTable(mixins.ValueTableMixin, _BaseArcObject):
         ...
     def loadFromString(
         self, *args
-    ):  # -> conversion | int | float | complex | basestring | list[Unknown] | tuple[Unknown, ...] | dict[Unknown, Unknown]:
+    ) -> ...:
         """ValueTable.loadFromString(string)
 
         Restore the object using its string representation.     The
@@ -2567,14 +2561,14 @@ class ValueTable(mixins.ValueTableMixin, _BaseArcObject):
         ...
     def exportToString(
         self, *args
-    ):  # -> conversion | int | float | complex | basestring | list[Unknown] | tuple[Unknown, ...] | dict[Unknown, Unknown]:
+    ) -> ...:
         """ValueTable.exportToString()
 
         Exports the object to its string representation."""
         ...
     def removeRow(
         self, *args
-    ):  # -> conversion | int | float | complex | basestring | list[Unknown] | tuple[Unknown, ...] | dict[Unknown, Unknown]:
+    ) -> ...:
         """ValueTable.removeRow(row)
 
         Deletes a row from the value table.
@@ -2584,7 +2578,7 @@ class ValueTable(mixins.ValueTableMixin, _BaseArcObject):
         ...
     def setRow(
         self, *args
-    ):  # -> conversion | int | float | complex | basestring | list[Unknown] | tuple[Unknown, ...] | dict[Unknown, Unknown]:
+    ) -> ...:
         """ValueTable.setRow(row, value)
 
         Updates a given row within the value table.
@@ -2603,7 +2597,7 @@ class ValueTable(mixins.ValueTableMixin, _BaseArcObject):
         ...
     def setValue(
         self, *args
-    ):  # -> conversion | int | float | complex | basestring | list[Unknown] | tuple[Unknown, ...] | dict[Unknown, Unknown]:
+    ) -> ...:
         """ValueTable.setValue(row, column, value)
 
         Updates the value of a given row and column.
